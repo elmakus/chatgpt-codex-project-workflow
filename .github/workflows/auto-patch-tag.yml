@@ -1,0 +1,60 @@
+name: Auto patch tag
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-patch-tag-main
+  cancel-in-progress: false
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create next SemVer patch tag
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --force --tags origin
+
+          EXISTING="$(git tag --points-at "${GITHUB_SHA}" | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1 || true)"
+          if [ -n "${EXISTING}" ]; then
+            echo "${GITHUB_SHA} is already tagged as ${EXISTING}; nothing to do."
+            exit 0
+          fi
+
+          LATEST="$(git tag -l 'v[0-9]*.[0-9]*.[0-9]*' | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1 || true)"
+          if [ -z "${LATEST}" ]; then
+            echo "No baseline SemVer tag found. Create the first major/minor baseline tag manually." >&2
+            exit 1
+          fi
+
+          VERSION="${LATEST#v}"
+          IFS='.' read -r MAJOR MINOR PATCH <<< "${VERSION}"
+          NEXT="v${MAJOR}.${MINOR}.$((PATCH + 1))"
+
+          if git ls-remote --exit-code --tags origin "refs/tags/${NEXT}" >/dev/null 2>&1; then
+            echo "Refusing to move existing tag ${NEXT}." >&2
+            exit 1
+          fi
+
+          git tag -a "${NEXT}" "${GITHUB_SHA}" -m "Project Workflow ${NEXT}"
+          git push origin "refs/tags/${NEXT}"
+
+          git fetch --force origin "refs/tags/${NEXT}:refs/tags/${NEXT}"
+          RESOLVED="$(git rev-list -n 1 "${NEXT}")"
+          test "${RESOLVED}" = "${GITHUB_SHA}"
+          echo "Verified ${NEXT} -> ${RESOLVED}"
