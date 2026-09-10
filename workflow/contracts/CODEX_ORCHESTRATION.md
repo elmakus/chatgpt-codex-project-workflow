@@ -1,101 +1,86 @@
-# Codex Orchestration Contract
+# Codex Orchestration Integration Contract
 
-## 1. Main as orchestrator
+## 1. Domain boundary
 
-The primary Codex agent is the execution orchestrator, not a manual worker-message manager.
+This repository governs **project workflow**, not the internal runtime orchestration of Codex.
 
-It remains responsible for:
-- current Task Card outcome;
-- dependency and scope boundaries;
+Project Workflow remains authoritative for:
+- Task Card scope and dependencies;
+- accepted project requirements and planning boundaries;
+- Refresh Gate and selective JIT OpenSpec obligations;
+- durable GitHub execution state;
+- acceptance, evidence and Definition of Done;
+- strategic escalation boundaries;
+- milestone close and cumulative handoff.
+
+When the owner's `codex_workflow` is installed and enabled for Codex, that installed workflow is authoritative for **Codex runtime orchestration**, including matters such as:
+- leaf versus Heavy routing;
+- worker roles and model/reasoning choices;
+- Companion/worker lifecycle;
+- delegation mechanics;
+- wait/event/message behavior;
+- polling/silence policy;
+- concurrency and worker-runtime recovery.
+
+The source/update channel for that runtime workflow is `elmakus/codex_workflow`; Project Workflow must not duplicate or fork those runtime mechanics.
+
+If `codex_workflow` is not installed or enabled, Codex may use its native runtime mechanisms, while all project-level obligations in this repository still apply.
+
+## 2. Conflict rule
+
+Apply authority by domain:
+
+- project lifecycle, project state, Task Cards, OpenSpec obligations, evidence, acceptance and strategic authority → this Project Workflow;
+- internal Codex orchestration/runtime mechanics → the installed/enabled `codex_workflow`;
+- accepted product/system requirements and strategic decisions → the project's canonical requirements/decision artifacts.
+
+Do not use a runtime-orchestration rule to override accepted project requirements or project acceptance criteria.
+
+Do not use this Project Workflow to override worker/runtime mechanics owned by the installed `codex_workflow`.
+
+## 3. Main accountability at the project boundary
+
+Regardless of how runtime orchestration is implemented, the primary Codex agent remains accountable to Project Workflow for:
+- the current Task Card outcome;
+- scope and dependency boundaries;
 - integration;
-- tests/acceptance;
+- required tests and acceptance;
 - durable Git state;
 - blocker escalation;
-- final result/evidence.
+- final result pointers and evidence.
 
-Delegation does not transfer accountability for the card.
+Delegation does not transfer project-level accountability for a card.
 
-## 2. Bounded delegation
+## 4. Worker strategic boundary
 
-Delegate only a clearly bounded subproblem with:
-- explicit objective;
-- relevant inputs/context;
-- scope boundaries;
-- expected output;
-- completion/blocked criteria.
-
-Avoid delegating tiny edits that are cheaper and clearer to perform directly.
-
-Avoid giving a worker the entire project context when a narrower package is sufficient.
-
-## 3. Event-driven coordination
-
-Prefer completion events and long event-driven waits over polling.
-
-Normal worker completion should return through the standard completion path.
-
-Do not repeatedly ask workers:
-- "status?";
-- "are you done?";
-- "what percentage?";
-- "send progress";
-merely because time has elapsed.
-
-A timeout is not evidence that a worker needs a polling/status request. Use an appropriately long event-driven wait or continue independent work when safe.
-
-## 4. Push only for material events
-
-A worker should proactively interrupt/push only for a material event such as:
-- a blocker;
-- a required course change;
-- a critical partial result needed immediately by Main;
-- newly discovered evidence that invalidates the delegated assumptions;
-- a safety/integrity issue requiring orchestration action.
-
-Do not send routine progress chatter.
-
-Do not wake Main for non-material status.
-
-## 5. Main behavior while workers run
-
-Main may:
-- perform independent non-conflicting work;
-- prepare integration/test steps;
-- inspect already returned durable evidence;
-- wait for normal completion.
-
-Main should not create artificial management traffic.
-
-## 6. Worker completion
-
-Worker output should be concise and execution-useful:
-- what was established or changed;
-- exact relevant files/commits/evidence when applicable;
-- tests/checks performed;
-- blocker or remaining uncertainty.
-
-Main integrates and verifies the result against the Task Card; worker completion alone does not make the card `done`.
-
-## 7. Delegation and strategic authority
-
-Workers and subagents do not independently change:
+Workers/subagents do not independently change:
 - product requirements;
-- frozen architecture;
-- milestone acceptance;
+- frozen strategic architecture;
+- milestone acceptance criteria;
 - strategic decisions.
 
-If delegated evidence requires such a change, return a material blocker/course-change event to Main. Main follows the ChatGPT ↔ Codex strategic blocker contract when needed.
+If delegated evidence implies such a change, it must return to Main, which follows `workflow/contracts/CHATGPT_CODEX.md` when a strategic decision is required.
 
-## 8. No orchestration overengineering
+## 5. Completion boundary
 
-Do not build without a concrete need:
+Worker completion is not equivalent to Task Card completion.
+
+Main must integrate and verify delegated output against the Task Card, relevant OpenSpec and `workflow/contracts/GITHUB_STATE.md` before the card can become `done`.
+
+## 6. No shadow project-orchestration infrastructure
+
+Do not build a parallel project-management/orchestration system without a concrete project need, such as:
 - a task database;
 - a Jira clone;
-- a message broker;
-- a generic DAG engine;
-- an agent message service/database;
-- a vector database;
-- a custom workflow engine;
-- a polling/status service.
+- a generic project DAG engine;
+- a second workflow-state database;
+- a custom project workflow engine;
+- infrastructure whose only purpose is to mirror Task Board / Task Card / GitHub state.
 
-For normal workflow coordination, GitHub plus Markdown/YAML, selective OpenSpec, the direct strategic ChatGPT control channel and existing standard Codex workflow/agent mechanisms are sufficient. Prefer those existing mechanisms over inventing parallel infrastructure.
+This prohibition is about **project workflow infrastructure**. Internal Codex worker/runtime behavior belongs to the installed `codex_workflow` when enabled and is intentionally not re-specified here.
+
+## 7. Loading rule
+
+Project Workflow only requires this small integration contract to understand the boundary.
+
+Do not read the remote `elmakus/codex_workflow` repository during ordinary project planning or execution merely because it is referenced here. When Codex has `codex_workflow` installed/enabled, its installed instructions are the runtime authority and are loaded according to that workflow's own rules.
