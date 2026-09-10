@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## v3.0.1
+
+### Authority boundary
+
+- Clarified that `elmakus/chatgpt-codex-project-workflow` is authoritative for project lifecycle/process, durable project state, Task Cards, selective JIT OpenSpec, acceptance/evidence, strategic escalation and cumulative handoffs.
+- Clarified that, when the owner's `codex_workflow` is installed and enabled, its installed instructions are authoritative for internal Codex runtime orchestration such as worker roles/models, Companion lifecycle, delegation mechanics, wait/event/message behavior, polling/silence and worker-runtime recovery.
+- Replaced the duplicated runtime-orchestration rules in `workflow/contracts/CODEX_ORCHESTRATION.md` with a thin integration/boundary contract.
+- Preserved project-level delegation accountability: worker completion is not Task Card completion, Main still owns integration/acceptance/evidence, and workers cannot independently rewrite strategic/product authority.
+- Project Workflow no longer needs to read or reproduce the remote `elmakus/codex_workflow` repository during ordinary project work.
+
+### Version snapshots
+
+- Added a persistent GitHub Actions workflow that automatically creates the next annotated SemVer patch tag for each push to `main`.
+- `main` remains canonical authority; tags are immutable historical snapshots.
+- Major/minor version changes remain explicit; automatic tagging increments only the patch component from the highest existing SemVer tag.
+
 ## v3
 
 v3 reorganizes the v2.1 workflow without intentionally losing its execution semantics.
