@@ -88,6 +88,14 @@ If delegated evidence requires such a change, return a material blocker/course-c
 
 ## 8. No orchestration overengineering
 
-Do not build a custom message broker, polling service, generic DAG engine, agent message database or workflow engine merely to coordinate normal Codex work.
+Do not build without a concrete need:
+- a task database;
+- a Jira clone;
+- a message broker;
+- a generic DAG engine;
+- an agent message service/database;
+- a vector database;
+- a custom workflow engine;
+- a polling/status service.
 
-Use the platform's standard agent completion/event mechanisms plus durable project state.
+For normal workflow coordination, GitHub plus Markdown/YAML, selective OpenSpec, the direct strategic ChatGPT control channel and existing standard Codex workflow/agent mechanisms are sufficient. Prefer those existing mechanisms over inventing parallel infrastructure.
