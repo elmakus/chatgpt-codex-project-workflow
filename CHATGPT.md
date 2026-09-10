@@ -1,13 +1,16 @@
 # ChatGPT Workflow Router
 
-This repository is the canonical workflow authority for ChatGPT ↔ Codex project work.
+This repository is the canonical **project-workflow** authority for ChatGPT ↔ Codex project work.
 
 ## Authority
 
-- The current `main` branch of `elmakus/chatgpt-codex-project-workflow` is the workflow source of truth.
-- If conversation memory, an old prompt, a ZIP snapshot, or prior workflow text conflicts with current `main`, current `main` wins.
+- The current `main` branch of `elmakus/chatgpt-codex-project-workflow` is the source of truth for project lifecycle/process rules defined by this repository.
+- If conversation memory, an old prompt, a ZIP snapshot, or prior Project Workflow text conflicts with current `main`, current `main` wins within the Project Workflow domain.
 - This repository contains workflow rules only. Project knowledge belongs in the project's own repository.
 - One project uses one repository from the first brainstorming session onward unless the user explicitly approves a technically justified exception.
+- When the owner's `codex_workflow` is installed and enabled in Codex, its installed instructions are the authority for **internal Codex runtime orchestration**. Its source/update channel is `elmakus/codex_workflow`.
+- Project Workflow does not duplicate or override `codex_workflow` runtime mechanics. Apply authority by domain: project lifecycle/state/evidence here; internal Codex worker/runtime mechanics there.
+- Accepted project requirements and strategic decisions remain authoritative for product/system intent regardless of either workflow's runtime mechanics.
 
 ## Start here
 
@@ -21,6 +24,8 @@ For any project:
 6. Persist accepted project knowledge in the project repository instead of relying on chat memory.
 
 Do not load execution contracts during ordinary brainstorming unless the current question requires them.
+
+Do not load the remote `elmakus/codex_workflow` repository merely to plan a project. Codex runtime instructions are consumed through the installed/enabled workflow according to its own loading rules.
 
 ## Knowledge-state rule
 
