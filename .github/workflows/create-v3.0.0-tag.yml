@@ -1,0 +1,46 @@
+name: Create v3.0.0 tag
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/create-v3.0.0-tag.yml
+
+permissions:
+  contents: write
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create and verify annotated v3.0.0 tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          TARGET="704957778563cf5baed5dd4c070b7c0c82277475"
+          TAG="v3.0.0"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git ls-remote --exit-code --tags origin "refs/tags/${TAG}" >/dev/null 2>&1; then
+            git fetch --force origin "refs/tags/${TAG}:refs/tags/${TAG}"
+            RESOLVED="$(git rev-list -n 1 "${TAG}")"
+            test "${RESOLVED}" = "${TARGET}"
+            echo "${TAG} already exists and resolves to ${TARGET}."
+          else
+            git cat-file -e "${TARGET}^{commit}"
+            git tag -a "${TAG}" "${TARGET}" -m "Project Workflow v3.0.0"
+            git push origin "refs/tags/${TAG}"
+          fi
+
+          git fetch --force origin "refs/tags/${TAG}:refs/tags/${TAG}"
+          RESOLVED="$(git rev-list -n 1 "${TAG}")"
+          test "${RESOLVED}" = "${TARGET}"
+          echo "Verified ${TAG} -> ${RESOLVED}"
