@@ -32,10 +32,12 @@ Codex owns primarily:
 - durable execution state/evidence;
 - milestone acceptance;
 - cumulative handoff;
-- bounded orchestration/delegation;
+- project-level accountability for delegated work;
 - strategic escalation when required.
 
 Codex operates inside accepted requirements, strategic architecture and behavior contracts.
+
+Internal Codex worker/runtime orchestration is not defined here. When the owner's `codex_workflow` is installed and enabled, its installed instructions own runtime mechanics. See `workflow/contracts/CODEX_ORCHESTRATION.md` for the domain boundary.
 
 ## 2. GitHub and chat
 

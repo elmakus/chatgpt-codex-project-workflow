@@ -19,6 +19,6 @@ Codex then:
 9. persists result pointers/evidence and Git state;
 10. uses the correlated `request_id` strategic protocol only for true strategic blockers;
 11. performs integrated milestone acceptance and cumulative handoff;
-12. uses event-driven bounded multi-agent coordination rather than routine polling.
+12. when the owner's `codex_workflow` is installed/enabled, follows its installed instructions for internal worker/runtime orchestration rather than duplicating those mechanics from Project Workflow.
 
 Repository state outranks stale conversation history. A local `current.md` is optional convenience only.

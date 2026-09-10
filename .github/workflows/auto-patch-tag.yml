@@ -30,6 +30,28 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch --force --tags origin
 
+          # One-time repair: v3.0.1 was initially created on the commit that only
+          # introduced this auto-tagger. When the actual v3.0.1 workflow changes
+          # reach main, move that one bootstrap tag exactly once to this release
+          # commit. The condition becomes permanently false afterwards.
+          BOOTSTRAP_TAG="v3.0.1"
+          BOOTSTRAP_COMMIT="eb30d84a94058f6ceaba0beccd1b76973305d14c"
+          if git show-ref --verify --quiet "refs/tags/${BOOTSTRAP_TAG}"; then
+            BOOTSTRAP_RESOLVED="$(git rev-list -n 1 "${BOOTSTRAP_TAG}")"
+            if [ "${BOOTSTRAP_RESOLVED}" = "${BOOTSTRAP_COMMIT}" ] && [ "${GITHUB_SHA}" != "${BOOTSTRAP_COMMIT}" ]; then
+              git push origin ":refs/tags/${BOOTSTRAP_TAG}"
+              git tag -d "${BOOTSTRAP_TAG}"
+              git tag -a "${BOOTSTRAP_TAG}" "${GITHUB_SHA}" -m "Project Workflow ${BOOTSTRAP_TAG}"
+              git push origin "refs/tags/${BOOTSTRAP_TAG}"
+              git fetch --force origin "refs/tags/${BOOTSTRAP_TAG}:refs/tags/${BOOTSTRAP_TAG}"
+              RESOLVED="$(git rev-list -n 1 "${BOOTSTRAP_TAG}")"
+              test "${RESOLVED}" = "${GITHUB_SHA}"
+              echo "Repaired ${BOOTSTRAP_TAG} -> ${RESOLVED}"
+              exit 0
+            fi
+          fi
+
+          # Idempotency: if this exact commit already has a SemVer tag, do nothing.
           EXISTING="$(git tag --points-at "${GITHUB_SHA}" | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1 || true)"
           if [ -n "${EXISTING}" ]; then
             echo "${GITHUB_SHA} is already tagged as ${EXISTING}; nothing to do."

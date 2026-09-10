@@ -7,8 +7,10 @@ Read and obey:
 - `workflow/contracts/TASK_CARDS.md`;
 - `workflow/contracts/OPENSPEC.md`;
 - `workflow/contracts/CHATGPT_CODEX.md`;
-- `workflow/contracts/CODEX_ORCHESTRATION.md`;
+- `workflow/contracts/CODEX_ORCHESTRATION.md` as the project/runtime authority boundary;
 - project `PROJECT.md`.
+
+When the owner's `codex_workflow` is installed and enabled, its installed instructions govern internal Codex runtime orchestration. This Project Workflow continues to govern project scope, state, acceptance, evidence and strategic boundaries.
 
 ## Standard card loop
 
