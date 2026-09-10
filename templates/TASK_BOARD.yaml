@@ -1,0 +1,37 @@
+project: "<project>"
+plan_revision: "<R#>"
+current_milestone: "M01"
+
+chatgpt_control_chat:
+  name: "<configured chat or null>"
+  purpose: "strategic decisions only"
+
+execution_ref:
+  branch: null
+  pr: null
+  head: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: planned
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+
+cards:
+  - id: M01-T01
+    title: "<title>"
+    milestone: M01
+    decision_state: accepted
+    execution_status: planned
+    priority: high
+    complexity: medium
+    phase: implementation
+    code_locations: []
+    depends_on: []
+    openspec_change: null
+    result_commit: null
+    result_pr: null
+    evidence: null
