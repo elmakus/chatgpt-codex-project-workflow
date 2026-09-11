@@ -1,38 +1,64 @@
 # Review and Handoff
 
-## Card and milestone close
+## Card close
 
-A card is not done because an executor says so. Apply Task Card Definition of Done and the GitHub State Contract.
+A card is not done because an executor says it is done. Apply Task Card Definition of Done and GitHub State Contract.
 
-All required cards being `done` is necessary but not sufficient for a milestone. Run integrated milestone acceptance on the intended final state.
+## Milestone completion
 
-- RED: create/reopen bounded corrective work.
-- GREEN: finalize publication/merge, persist acceptance evidence, reconcile cumulative handoff and exact implementation head/checkpoint, then set the milestone `done`.
+All required cards being `done` is necessary but not sufficient.
+
+Run integrated milestone acceptance against intended final milestone state.
+
+- **RED:** create/reopen bounded corrective work; milestone is not done.
+- **GREEN:** finalize publication/merge according to branch policy, persist acceptance evidence, write/update cumulative handoff, record exact implementation head/checkpoint, then set milestone `done`.
+
+A green milestone may never remain `ready`. Its terminal durable state must be explicit.
 
 ## Independent review policy
 
-Use a fresh independent ChatGPT chat that reads durable repo/evidence rather than relying on the executor's narrative:
+Use a fresh independent **normal ChatGPT chat** that reads durable repo/evidence rather than relying on executor narrative:
 
-- **REQUIRED** for high-risk changes: security/auth, destructive/data migrations, hard-to-reverse production/live configuration, important external-state boundaries, or comparable risk.
-- **RECOMMENDED** for large architecture changes, major refactors, complex state machines and broad cross-package work.
+- **REQUIRED** for high-risk work: security/auth, destructive/data migrations, difficult-to-reverse production/live configuration, important external-state protection boundaries, or comparable risk.
+- **RECOMMENDED** for major architecture, large refactors, complex state machines and broad cross-package changes.
 - **OPTIONAL** for simple low-risk mechanical/docs changes.
 
-For a high-risk external write, place the independent review at the last useful reversible checkpoint when practical, then perform the write and post-write readback/verification.
+For high-risk external writes, place independent review at the last useful reversible checkpoint when practical, then perform write + post-write readback/verification.
 
-Do not create a permanent review-agent role or require independent review after every card.
+Do not create a permanent review role or review every trivial Task Card.
 
 ## Cumulative handoff
 
 Canonical location: `project-handoffs/MXX_HANDOFF.md`.
 
-It must let a fresh ChatGPT chat or Codex session recover without prior conversation. Record as applicable goal/status/checkpoint, implemented behavior, decisions, changed areas, schemas/APIs, side effects, tests, evidence, known issues, deferred items, provenance, exact Git state, architecture reopen assessment, requirements satisfied/outstanding and the next durable starting point.
+A cumulative handoff must be sufficient for a fresh ChatGPT chat or Codex session to start without prior conversation. Record as applicable:
+- goal/status/checkpoint;
+- implemented behavior;
+- accepted decisions;
+- changed files/packages;
+- schemas/migrations/APIs/contracts;
+- side effects/idempotency/external readback;
+- tests/results and independent review;
+- known issues/deferred items;
+- provenance and exact Git state;
+- architecture reopen assessment;
+- requirements satisfied/outstanding;
+- next durable starting point;
+- exact context needed by the next executor/session.
 
-The handoff summarizes durable truth; it does not replace Task Board, cards, specs, evidence or exact Git objects.
+A handoff summarizes durable truth; it does not replace Task Board, cards, specs, evidence or exact Git objects.
 
-## Next executor
+## Finalization and checkpoint
 
-Do not assume the next milestone goes to Codex. The next ChatGPT chat reads `PROJECT.md`, applies progressive disclosure and, at execution time, runs the Capability Gate under `execution_policy`.
+When a milestone uses a PR:
+1. integrated acceptance runs on intended final branch state;
+2. merge/finalization follows project policy;
+3. handoff is reconciled to actual final state;
+4. a small closure documentation commit is allowed when required;
+5. recorded checkpoint and `implementation_head` identify final verified state.
+
+The next milestone starts from that GREEN checkpoint and re-runs Capability Gate for its first executable card; it does not automatically inherit the previous executor.
 
 ## System verification and cutover
 
-Independent system verification should be its own gate when the project requires it. Deployment/cutover/migration should be runbook- or Task-Card-driven rather than improvised from chat.
+Independent system verification should act as its own gate when required. Deployment/cutover/migration should be runbook- or Task-Card-driven rather than improvised from chat. Runbooks/checklists do not automatically require OpenSpec unless they change a behavior contract.

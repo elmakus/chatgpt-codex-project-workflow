@@ -2,49 +2,59 @@
 
 ## Responsibility
 
-ChatGPT is the project planning/router layer for problem definition, verified baseline, requirements, architecture, global invariants, milestones and requirement coverage.
+ChatGPT is the strategic planner/project router for problem definition, verified baseline, requirements, architecture, global invariants, milestones and requirement coverage.
 
-Do not freeze detailed code-dependent design far in advance of the source/runtime state it depends on. The eventual executor reconciles implementation details through the Refresh Gate.
+The eventual executor reconciles code/runtime-dependent implementation detail against actual current state through the Refresh Gate. Do not freeze detailed implementation design far in advance of the source/runtime it depends on.
 
 ## Inputs
 
-Use project `PROJECT.md`, canonical requirements, relevant verified research, accepted decisions and current source/runtime baseline where needed.
+Use project `PROJECT.md`, canonical requirements, relevant verified research, accepted decisions and current project/source baseline where needed.
 
 ## Master Plan
 
-The approved Master Plan lives under `planning/` and covers as applicable:
-
-- problem and goal;
+The approved Master Plan normally lives at `planning/MASTER_PLAN.md` and covers as applicable:
+- problem/goal;
 - current state / verified baseline;
 - target state;
 - authoritative requirements;
 - frozen architecture decisions;
-- non-goals and invariants;
-- external constraints;
+- non-goals;
+- global invariants/external constraints;
 - known source seams;
-- milestones and acceptance;
+- milestones and checkpoint/acceptance for each;
 - requirement coverage;
 - dependencies;
 - deployment/migration strategy;
-- system verification;
-- idempotency/data integrity/security;
+- system verification strategy;
+- idempotency/data-integrity/security constraints;
 - fresh-context boundaries;
-- Task Card/OpenSpec/handoff references.
+- Task Decomposition/OpenSpec/Handoff policy references.
 
 The Master Plan is not the live task tracker. Live execution state belongs in `implementation/TASK_BOARD.yaml`.
 
-## Milestones and competing paths
+## Milestones
 
-A milestone is a stable, integrated, testable checkpoint, not a tiny task.
-
-When independent alternatives genuinely need experimentation, planning may use separate research/prototype branches (Path A, Path B, etc.) from the same stable checkpoint. Each path records its own findings/evidence. Later comparison produces an accepted A/B/Hybrid decision before production implementation. This is an optional pattern, not a mandatory lifecycle stage and not a new execution status.
+A milestone is a stable, integrated, testable checkpoint, not a single small task. Define outcomes/acceptance without pretending distant implementation interfaces are already known.
 
 ## Requirement coverage
 
-Every authoritative requirement must have an owner milestone and at least one implementation Task Card before execution. Use OpenSpec only when its contract-risk policy justifies it.
+Every authoritative requirement must have:
+- an owner milestone;
+- at least one implementation Task Card before execution of that requirement;
+- relevant OpenSpec when the behavior/API/schema/state/security/cross-package contract policy requires it.
 
-## Pre-implementation review
+## Pre-implementation planning audit
 
-Before execution preparation, independently audit false assumptions, risks, milestone boundaries, dependencies, tests/acceptance, requirement coverage, data integrity, security, migration and overengineering when practical.
+Before execution prep, perform an independent plan review when practical. Audit false assumptions, P0/P1 risks, milestone boundaries, task sizing, dependencies, missing acceptance/tests, requirement coverage, data integrity/idempotency/security, migration, OpenSpec boundaries and overengineering.
 
 Resolve or explicitly defer material gaps.
+
+## Competing research/prototype paths
+
+When the project genuinely needs independent alternatives, use separate branches from the same stable checkpoint, e.g. Path A and Path B. Each path produces independent findings/evidence/prototype result. Later comparison leads to an accepted A/B/Hybrid decision before production implementation.
+
+This pattern is optional. It does not add lifecycle states and experimental code is not merged merely because it exists.
+
+## Distant work
+
+Near-term cards may be detailed. Distant work stays functionally specific without freezing nonexistent interfaces. Every card whose details can drift before execution requires the Refresh Gate.

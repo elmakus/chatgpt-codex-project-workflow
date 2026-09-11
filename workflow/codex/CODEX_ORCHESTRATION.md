@@ -1,33 +1,55 @@
 # Codex Orchestration Integration Contract
 
-## Domain boundary
+## 1. Domain boundary
 
-Project Workflow governs Task Card scope/dependencies, accepted requirements/planning boundaries, Refresh Gate, JIT OpenSpec, durable state, acceptance/evidence, strategic escalation and milestone handoff.
+This repository governs **project workflow**, not internal runtime orchestration of Codex.
 
-When the owner's `codex_workflow` is installed and enabled, it governs only internal Codex runtime orchestration: worker/model routing, delegation mechanics, Companion/worker lifecycle, waits/events/messages, polling/silence, concurrency and worker-runtime recovery.
+Project Workflow remains authoritative for:
+- Task Card scope/dependencies;
+- accepted requirements/planning boundaries;
+- Refresh Gate and selective JIT OpenSpec;
+- durable GitHub/external execution state;
+- acceptance, evidence and Definition of Done;
+- strategic escalation boundaries;
+- milestone close and cumulative handoff.
 
-Project Workflow must not duplicate or fork those runtime mechanics.
+When the owner's `codex_workflow` is installed/enabled for Codex, that installed workflow is authoritative for internal Codex runtime orchestration, including leaf/Heavy routing, worker roles/models, Companion/worker lifecycle, delegation, wait/event/message behavior, polling/silence, concurrency and worker-runtime recovery.
 
-If `codex_workflow` is absent, Codex may use its native runtime mechanisms while all Project Workflow obligations remain unchanged.
+Source/update channel for that runtime workflow is `elmakus/codex_workflow`; Project Workflow must not duplicate/fork those mechanics.
 
-## Conflict rule
+If `codex_workflow` is not installed/enabled, Codex may use native runtime mechanisms while all project-level obligations here still apply.
 
-- project lifecycle/state/scope/evidence/acceptance → Project Workflow;
-- internal Codex orchestration → installed `codex_workflow`;
-- product/system intent → canonical project requirements/decisions.
+## 2. Conflict rule
 
-Runtime mechanics never override accepted project requirements.
+Apply authority by domain:
+- project lifecycle/state/Task Cards/OpenSpec/evidence/acceptance/strategic authority → Project Workflow;
+- internal Codex orchestration/runtime → installed `codex_workflow`;
+- accepted product/system intent → canonical requirements/decisions.
 
-## Main accountability
+Do not use runtime orchestration to override accepted requirements/acceptance. Do not use Project Workflow to override worker/runtime mechanics owned by installed `codex_workflow`.
 
-Regardless of delegation, the primary Codex agent remains accountable for current Task Card scope, integration, required tests/acceptance, durable state, blockers and evidence. Worker completion is not Task Card completion.
+## 3. Main accountability at project boundary
 
-Workers/subagents do not independently rewrite requirements, frozen architecture, milestone acceptance or strategic decisions.
+Regardless of runtime orchestration, primary Codex agent remains accountable to Project Workflow for current Task Card outcome, scope/dependencies, integration, required tests/acceptance, durable state, blocker escalation and final result pointers/evidence.
 
-## No shadow project orchestration
+Delegation does not transfer project-level accountability.
 
-Do not build a parallel task database, Jira clone, generic project DAG engine, second state database or custom project workflow engine merely to mirror Task Board/Card/Git state.
+## 4. Worker strategic boundary
 
-## Loading rule
+Workers/subagents do not independently change product requirements, frozen strategic architecture, milestone acceptance or strategic decisions. Evidence implying such a change returns to Main, which follows `workflow/codex/HANDOFF.md` when strategic resolution is required.
 
-Codex reads this small boundary contract when executing. ChatGPT does not need it during ordinary project work or its own execution.
+## 5. Completion boundary
+
+Worker completion is not Task Card completion. Main must integrate/verify delegated output against Task Card, relevant OpenSpec and `workflow/contracts/GITHUB_STATE.md` before `done`.
+
+## 6. No shadow project-orchestration infrastructure
+
+Do not build a parallel task database, Jira clone, generic project DAG engine, second workflow-state database, custom project workflow engine or infrastructure whose only purpose is to mirror Task Board/Card/Git state.
+
+This prohibition concerns project workflow infrastructure. Internal Codex worker/runtime behavior belongs to installed `codex_workflow` when enabled.
+
+## 7. Loading rule
+
+Codex reads this small integration contract for the boundary. Do not read the remote `elmakus/codex_workflow` repository during ordinary project execution merely because it is referenced here; installed instructions are loaded according to that workflow's own rules.
+
+Normal ChatGPT work does not load this file.

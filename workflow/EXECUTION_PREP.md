@@ -1,67 +1,89 @@
 # Execution Preparation
 
-Execution preparation converts an approved plan into a bounded, executable package without prematurely freezing code-dependent detail.
+Execution preparation converts an approved plan into a bounded execution package without prematurely freezing code-dependent detail.
 
 ## Preconditions
 
-Before executable cards exist:
+Before creating executable cards:
 - authoritative requirements are identifiable;
 - accepted architecture decisions are recorded;
 - current Master Plan/milestone is approved;
 - unresolved product questions that would invalidate implementation are resolved or explicitly blocking;
-- project `execution_policy` is set to `chatgpt_only` or `mixed`.
+- project `execution_policy` is explicitly `chatgpt_only` or `mixed`.
 
 ## Steps
 
-1. Inspect current project/source state.
-2. Define or refresh the milestone and branch policy.
-3. Decompose work into bounded Task Cards.
+1. Inspect current project repository and relevant source/runtime state.
+2. Define/refresh milestone file and branch policy.
+3. Decompose work into bounded Task Cards under `implementation/cards/`.
 4. Record dependencies, priority, complexity, phase and expected code locations.
-5. Define acceptance and required tests/checks.
-6. Identify external side effects and any required readback/verification.
-7. Add explicit `required_capabilities` only for unusual, external, high-risk or routing-significant cards; infer ordinary repo capabilities.
-8. Classify independent review as REQUIRED, RECOMMENDED or OPTIONAL where material.
-9. Mark OpenSpec candidates just-in-time according to `workflow/contracts/OPENSPEC.md`.
-10. Initialize/update `implementation/TASK_BOARD.yaml` and confirm requirement coverage.
-11. Audit sizing, dependencies, side effects, idempotency, security and migration.
-12. Set a card `ready` only when dependencies/prerequisites allow execution.
-13. For the next executable card, run `workflow/chatgpt/CAPABILITY_GATE.md`.
+5. Define acceptance criteria and required tests/checks for every card.
+6. Identify material external writes and required readback/verification evidence.
+7. Add explicit `required_capabilities` only for unusual, external, high-risk or routing-significant work; ordinary repo capabilities remain inferred.
+8. Classify independent review as REQUIRED/RECOMMENDED/OPTIONAL where material.
+9. Mark OpenSpec candidates according to `workflow/contracts/OPENSPEC.md`; do not create distant specs merely for later.
+10. Initialize/update `implementation/TASK_BOARD.yaml`.
+11. Confirm requirement coverage.
+12. Audit sizing, dependencies, side effects, idempotency, security and migration concerns.
+13. Set a card `ready` only when dependencies/prerequisites allow execution.
+14. For the next executable card, run `workflow/chatgpt/CAPABILITY_GATE.md`.
 
-## Execution result
+## Card versus OpenSpec task
 
-Execution prep does **not** always end with a Codex prompt.
+A Task Card is a bounded global work package. An OpenSpec `tasks.md` item is a smaller implementation checkbox inside one change. They are not interchangeable.
 
-It ends with exactly one routing outcome for the next executable Task Card:
+## Git preparation
+
+Follow `workflow/contracts/PROJECT_REPOSITORY.md#8-git-and-branch-policy` and `workflow/contracts/GITHUB_STATE.md`.
+
+Large milestone implementation should use an isolated branch/PR when the project normally uses PRs. Do not change repository ownership/topology during an active milestone.
+
+## Handoff input
+
+Execution prep consults the latest cumulative handoff when one exists. It describes what actually became true at the last GREEN milestone and is a primary input to the next package.
+
+## Routing outcome
+
+Execution prep does **not** always generate a Codex start prompt. It ends with one outcome for the next executable Task Card.
 
 ### `EXECUTOR: CHATGPT`
 
-Use when the current ChatGPT session has the required capabilities, can run the required tests/checks and can obtain required evidence/readback.
+Use when current normal ChatGPT chat has required capabilities, can run/satisfy required tests/checks and can obtain required evidence/readback.
 
-ChatGPT may continue in the current chat or recommend a fresh ChatGPT chat for context hygiene. No Codex prompt is generated.
+ChatGPT may continue immediately. Recommend a fresh ChatGPT chat only for context hygiene when the current context is materially stale/noisy or at a clean boundary where fresh review/execution is beneficial.
 
 ### `EXECUTOR: CODEX`
 
-Allowed only when `execution_policy: mixed` and Codex has a concrete required capability/environment, a material repo/runtime advantage, or an approved explicit assignment.
+Allowed only when `execution_policy: mixed` and at least one is true:
+- Codex has a required capability/environment unavailable to ChatGPT;
+- Codex has a material repo/runtime-heavy practical advantage;
+- the approved plan/card explicitly assigns Codex.
 
-Generate a short Codex kickoff according to `workflow/codex/HANDOFF.md`. Rely on durable project state rather than restating the whole project.
+Generate a short kickoff using `workflow/codex/HANDOFF.md`. Do not duplicate durable project context in chat.
 
 ### `EXECUTOR: BLOCKED`
 
-Use when the required capability/evidence path is unavailable under current policy. Under `chatgpt_only`, missing ChatGPT capability blocks execution; do not silently route to Codex or change policy.
+Use when required capability/authorization/evidence path is unavailable under current policy. Under `chatgpt_only`, missing ChatGPT capability blocks; do not route to Codex or change policy.
 
-## Required user-visible completion
+## Required completion handoff to user
 
-A completed prep reports:
+Execution prep is complete when durable prep artifacts are written and the response states:
 
 ```text
 EXECUTION PREP COMPLETE:
 Milestone: <MXX>
 Task Card: <MXX-TYY>
-Required prior checkpoint: <sha/tag>
+Required prior checkpoint: <checkpoint>
 Durable start pointer: <path>
 Execution policy: <chatgpt_only|mixed>
 Required capabilities: <explicit or inferred summary>
 EXECUTOR: <CHATGPT|CODEX|BLOCKED>
 ```
 
-If `CODEX`, include the smallest copy-paste kickoff and session recommendation. If `CHATGPT`, state whether the current chat can continue or a fresh ChatGPT chat is recommended only for context hygiene. If `BLOCKED`, state the exact missing capability/authorization/evidence path.
+If ChatGPT: state `CHATGPT SESSION RECOMMENDATION: CONTINUE CURRENT | FRESH` with brief context-hygiene reason and smallest user action only if fresh context is recommended.
+
+If Codex: state `CODEX SESSION RECOMMENDATION: FRESH | CONTINUE EXISTING`, brief reason, copy-paste kickoff and smallest user action. At a clean new-milestone boundary after GREEN, prefer fresh Codex unless existing context materially helps and remains current.
+
+If blocked: name the exact missing capability/authorization/evidence path.
+
+A session recommendation is context hygiene, not product authorization.

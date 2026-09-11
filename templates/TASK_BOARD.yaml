@@ -2,6 +2,11 @@ project: "<project>"
 plan_revision: "<R#>"
 current_milestone: "M01"
 
+# Optional. Use only when Codex strategic requests are configured to reach a ChatGPT control chat.
+chatgpt_control_chat:
+  name: null
+  purpose: "strategic Codex decisions only"
+
 execution_ref:
   branch: null
   pr: null
