@@ -107,26 +107,42 @@ Recovery must be possible from durable repository state without prior chat.
 
 GitHub is the durable source of exact commits, PRs, evidence and checkpoints.
 
-Default policy:
-- coherent commits per Task Card/logical slice;
-- isolated branch/PR for large milestones when project practice uses PRs;
-- a card may be `done` after verified acceptance and durable commit even if several cards share a milestone PR;
-- integrated milestone acceptance runs on intended final branch state;
-- after merge/finalization, reconcile handoff to exact final state;
-- create checkpoint/tag when project policy uses one;
-- next milestone starts from the green checkpoint.
+### GREEN-main invariant
 
-Never force-push `main` as a normal workflow action.
+`main` always represents the latest accepted GREEN checkpoint.
+
+Normal production implementation must not be performed directly on `main`.
+
+For every executable milestone:
+1. start from the exact current GREEN `main` checkpoint;
+2. create or reuse exactly one **primary milestone implementation branch** for that milestone;
+3. execute and commit all milestone Task Cards/logical slices on that branch;
+4. do not create a separate PR for each Task Card;
+5. run integrated milestone acceptance on the intended final state of that branch;
+6. RED stays on the milestone branch for corrective work and must not be merged to `main`;
+7. after GREEN, complete any REQUIRED independent review and any RECOMMENDED review unless explicitly waived by the user/authority;
+8. open one milestone PR from the primary implementation branch to `main`;
+9. merge only the reviewed/accepted GREEN milestone state;
+10. after merge, reconcile cumulative handoff, Task Board and milestone result pointers to the actual merged state;
+11. the next milestone starts from the resulting GREEN `main` checkpoint.
+
+`implementation_head` identifies the exact accepted primary milestone branch HEAD that entered the final milestone PR. `checkpoint` identifies the actual accepted `main` state after merge/final reconciliation (a commit SHA or immutable tag according to project policy).
+
+Because a merge commit SHA may not be knowable before merge, a **metadata-only closure commit on `main`** is allowed when necessary to reconcile handoff/checkpoint/result metadata to the actual merged state. It must not change production behavior, requirements or implementation scope. After such reconciliation, the resulting `main` HEAD is the milestone checkpoint.
+
+Never use a direct `main` commit for ordinary Task Card implementation or corrective production work. Never force-push `main` as a normal workflow action.
 
 ### Competing research/prototype paths
 
-When independent alternatives genuinely require experimentation, Path A/Path B branches may start from the same stable checkpoint. Each records isolated findings/prototype evidence. Later comparison produces an accepted A/B/Hybrid decision before production implementation. Do not merge experimental code merely because it exists. This is an optional pattern, not a new lifecycle state.
+When independent alternatives genuinely require experimentation, Path A/Path B branches may start from the same stable GREEN checkpoint. Each records isolated findings/prototype evidence. Later comparison produces an accepted A/B/Hybrid decision before production implementation.
+
+Experimental branches do not replace the primary milestone implementation branch. Any selected production result is integrated onto the one primary milestone branch before integrated acceptance/review/PR. Do not merge experimental code directly to `main` merely because it exists. This is an optional pattern, not a new lifecycle state.
 
 ## 9. In-flight branch/executor state
 
-The repository remains canonical even while execution happens on an implementation branch or external runtime.
+The repository remains canonical while execution happens on the primary milestone implementation branch or external runtime.
 
-For an active card, the exact branch/HEAD/runtime evidence and recorded `executor` are authoritative for in-flight state. Completed milestone truth is reconciled back to canonical project state according to branch policy.
+For an active card, the exact milestone branch/HEAD/runtime evidence and recorded `executor` are authoritative for in-flight state. Completed milestone truth is reconciled to the resulting GREEN `main` checkpoint according to the branch policy above.
 
 Strategic messages must include exact durable evidence/commit pointers so another session does not guess state.
 

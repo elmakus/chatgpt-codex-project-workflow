@@ -36,7 +36,7 @@ planned → ready → in_progress → done
 
 `blocked` is allowed for an unresolved milestone gate/blocker. `superseded` requires an explicit decision.
 
-A milestone that passed its green acceptance gate must not remain `ready` or `in_progress`.
+A milestone that passed integrated GREEN acceptance on its implementation branch is not yet terminal `done` until required/recommended review policy, milestone PR merge and post-merge reconciliation are complete.
 
 ## 3. Task Board
 
@@ -50,19 +50,24 @@ It should identify at least:
 - card states, dependencies and active executor when applicable;
 - result pointers;
 - relevant OpenSpec change;
-- branch/PR information when needed to recover in-flight work;
+- branch/PR information needed to recover in-flight work;
 - strategic control-chat identity only when that optional Codex communication mechanism is configured.
+
+During active milestone execution, `execution_ref.branch` identifies the one primary milestone implementation branch. `execution_ref.pr` remains null until the final milestone PR is opened.
 
 ## 4. Starting a card
 
-When execution begins:
+Before any normal production implementation starts, the current milestone must have one primary implementation branch created from the exact latest GREEN `main` checkpoint.
+
+When card execution begins:
 - Task Board card `ready → in_progress`;
 - card file `Execution status: IN_PROGRESS`;
 - record `executor: chatgpt | codex` in card and Task Board;
 - milestone `ready → in_progress` when this is its first real started card;
+- ensure `execution_ref.branch` points to the primary milestone implementation branch and HEAD is on that branch, not `main`;
 - persist a Refresh Gate note/evidence only when the gate discovers something material.
 
-The durable transition should be committed/pushed according to project branch policy before relying on it for recovery.
+The durable transition should be committed/pushed on the milestone implementation branch before relying on it for recovery.
 
 ## 5. Done-card result pointer contract
 
@@ -79,8 +84,8 @@ evidence: <repo-relative-path>
 The card also records a concise `tests_summary`.
 
 Rules:
-- `result_commit` identifies the commit containing or verifiably representing the accepted result.
-- `result_pr` identifies the PR when applicable. If no PR applies, use `null` and project branch policy must make publication path unambiguous.
+- `result_commit` identifies the commit containing or verifiably representing the accepted card result on the primary milestone implementation branch.
+- individual Task Cards do not require separate PRs; `result_pr` may remain `null` until the milestone PR exists, then may point to that shared milestone PR when useful.
 - `evidence` points to durable test/review evidence or an unambiguous cumulative evidence section.
 - evidence names exact tests/review/checks; `tests passed` alone is insufficient.
 - when material external writes require readback under `workflow/EXECUTION.md`, evidence records the target, readback method and verified resulting state.
@@ -100,12 +105,14 @@ A card can be `done` only after the Task Card Definition of Done has passed. At 
 - relevant side effects/readback/idempotency/reconciliation are verified;
 - no unassigned TODO remains inside accepted scope.
 
+Card `done` does not authorize merging the milestone to `main`; integrated milestone acceptance/review/PR policy still applies.
+
 ## 7. Blocked card
 
 When execution is blocked:
 - card `execution_status: blocked`;
 - write durable evidence under `implementation/blockers/` when material;
-- make a safe commit/push before messaging when possible;
+- make a safe commit/push on the milestone branch before messaging when possible;
 - do not start dependent cards.
 
 Capability routing and runtime capability failure are different stages:
@@ -123,36 +130,46 @@ For a strategic/product/architecture blocker, obtain the relevant authority deci
 
 Resume only after the blocker is actually resolved and Task Card/OpenSpec/plan/Task Board are reconciled as required.
 
-## 8. Milestone GREEN
+## 8. Milestone GREEN and merge
 
-A milestone is not done merely because all cards are done.
+A milestone is not done merely because all cards are done or because integrated branch acceptance is GREEN.
 
-After integrated acceptance is GREEN:
-1. finalize implementation branch/PR according to project policy;
-2. write/reconcile `project-handoffs/MXX_HANDOFF.md`;
-3. write acceptance evidence under `implementation/evidence/`;
-4. record exact final `implementation_head`;
-5. record checkpoint/tag according to project policy;
-6. set milestone `execution_status: done`;
-7. ensure every required card is `done` and has result pointers.
+Required finalization sequence:
+1. all required cards are `done` on the one primary milestone implementation branch;
+2. run integrated milestone acceptance on the intended final branch HEAD;
+3. if RED, keep/reopen corrective work on that same branch and do not merge to `main`;
+4. if GREEN, complete REQUIRED independent review and any RECOMMENDED review unless explicitly waived by the user/authority;
+5. open one milestone PR from the primary implementation branch to `main`;
+6. merge only the accepted GREEN state;
+7. reconcile `project-handoffs/MXX_HANDOFF.md`, Task Board and milestone metadata against the actual resulting `main` state;
+8. record `implementation_head` as the exact accepted primary milestone branch HEAD that entered the final PR;
+9. record `checkpoint` as the actual accepted `main` checkpoint after merge/final reconciliation (commit SHA or immutable tag according to policy);
+10. write/reconcile acceptance evidence under `implementation/evidence/`;
+11. set milestone `execution_status: done` only after merge and reconciliation are complete.
+
+A metadata-only closure commit directly on `main` is allowed only when necessary to record the actual post-merge checkpoint/handoff/result metadata that could not be known before merge. It must not change production behavior or implementation scope. The resulting `main` HEAD is then the milestone checkpoint.
 
 A done milestone stores at minimum:
 
 ```yaml
 execution_status: done
-checkpoint: <checkpoint-or-tag>
-implementation_head: <sha>
+checkpoint: <main-checkpoint-sha-or-tag>
+implementation_head: <accepted-milestone-branch-sha>
 handoff: project-handoffs/MXX_HANDOFF.md
 acceptance_evidence: implementation/evidence/MXX_ACCEPTANCE.md
 ```
 
 ## 9. Corrective work
 
-If integrated milestone acceptance is RED:
+If integrated milestone acceptance or independent review is RED:
 - do not mark the milestone done;
-- reopen the appropriate card or create a bounded corrective card;
+- do not merge the milestone to `main`;
+- reopen the appropriate card or create a bounded corrective card on the same primary milestone implementation branch;
 - record failing evidence;
-- preserve dependencies, capability gates and strategic escalation rules.
+- preserve dependencies, capability gates and strategic escalation rules;
+- rerun relevant acceptance/review before opening or merging the milestone PR.
+
+Corrective production work before merge never moves to a separate primary PR/branch merely because it is corrective.
 
 ## 10. Cumulative handoff and recovery
 
@@ -166,6 +183,8 @@ Fresh-session recovery also uses:
 - relevant OpenSpec;
 - evidence/result pointers.
 
+For an in-progress milestone, recovery returns to its one primary implementation branch. For a completed milestone, recovery starts from its recorded GREEN `main` checkpoint.
+
 A local `current.md` is optional convenience only and cannot be required for recovery.
 
 ## 11. Repository topology changes
@@ -175,8 +194,14 @@ Do not change project repository ownership/layout in the middle of an active mil
 ## 12. Consistency invariants
 
 Invalid states include:
+- normal production Task Card implementation committed directly to `main`;
+- more than one primary implementation branch or final production PR for the same milestone, excluding explicit experimental Path A/Path B branches;
+- a milestone branch not based on the previous accepted GREEN `main` checkpoint without an explicit reconciled reason;
+- a RED milestone merged to `main`;
+- milestone `done` before its final milestone PR is merged and post-merge reconciliation is complete;
 - card `done` with missing required result pointers or executor provenance;
 - milestone `done` with missing checkpoint, `implementation_head`, handoff or acceptance evidence;
+- a milestone checkpoint that does not identify the actual accepted `main` state at milestone close;
 - all required cards `done` while a green milestone remains `ready`;
 - a dependent card `in_progress` while a required dependency is `blocked`;
 - durable state existing only in chat or local `current.md`;

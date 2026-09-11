@@ -10,21 +10,33 @@ Read applicable `GITHUB_STATE.md`, `TASK_CARDS.md`, `OPENSPEC.md` and project `P
 
 ## Standard card loop
 
-1. Establish repository root, branch, exact HEAD, working-tree state and relevant external/runtime baseline.
+1. Establish repository root, primary milestone implementation branch, exact HEAD, working-tree state and relevant external/runtime baseline. Normal production implementation must not run directly on `main`.
 2. Read Task Board and recover a valid `in_progress` card if one exists.
 3. Otherwise select the first `ready` card whose dependencies are `done`; never select `planned`, `blocked`, `done` or `superseded`.
 4. Record the selected `executor`; transition card to `in_progress`, and milestone to `in_progress` if this is its first real execution.
 5. Run the Refresh Gate before implementation.
 6. Create/reconcile OpenSpec just-in-time if required.
-7. Implement only bounded card scope.
+7. Implement only bounded card scope on the primary milestone implementation branch.
 8. Run required tests/checks and verify card acceptance plus relevant OpenSpec behavior.
 9. For material external mutations, perform required readback/verification.
 10. If green, persist result/evidence/result pointers before marking the card `done`.
-11. Commit/push durable state according to project branch policy.
+11. Commit/push durable state to the primary milestone implementation branch according to project policy; do not create per-card PRs.
 12. Unblock eligible dependent cards.
-13. Continue to the next deterministic READY card when project policy, selected executor and session context allow; do not ask the user to choose when Task Board is unambiguous.
-14. After required cards are done, run integrated milestone acceptance.
-15. RED → reopen/create corrective work. GREEN → milestone close/handoff.
+13. Continue to the next deterministic READY card on the same milestone branch when project policy, selected executor and session context allow; do not ask the user to choose when Task Board is unambiguous.
+14. After required cards are done, run integrated milestone acceptance on the intended final milestone branch HEAD.
+15. RED → reopen/create corrective work on the same milestone branch. GREEN → proceed to milestone review/finalization; do not merge directly from card execution.
+
+## Git branch boundary
+
+`main` is the latest accepted GREEN checkpoint, not an active implementation branch.
+
+For every executable milestone:
+- all normal production Task Card commits belong on the one primary milestone implementation branch created from the previous GREEN `main` checkpoint;
+- corrective work before merge stays on that same branch;
+- experimental Path A/Path B branches are separate research/prototype paths only and must be integrated onto the primary milestone branch before production acceptance;
+- only the final accepted milestone state goes through the milestone PR to `main`.
+
+If execution is on `main` when a normal production mutation is about to occur, stop before mutation and restore the milestone branch context. A post-merge metadata-only reconciliation commit explicitly allowed by the Git/branch contract is not normal production implementation.
 
 ## User-visible continuation status
 
@@ -34,14 +46,15 @@ Use an explicit state appropriate to the situation:
 - `NEXT ACTION: continuing automatically with <card/action>; no user action required.` when deterministic continuation is valid;
 - `USER ACTION REQUIRED: <smallest concrete decision/authorization/input>.` only when execution genuinely cannot continue without the user;
 - `SESSION HANDOFF RECOMMENDED: <reason>. NEXT ACTION: start a fresh <ChatGPT chat|Codex session> from <durable pointer>.` when fresh context is beneficial but not a product/authorization gate;
-- `MILESTONE COMPLETE: <checkpoint>.` when fully closed/checkpointed.
+- `MILESTONE COMPLETE: <checkpoint>.` only after the milestone PR is merged and post-merge reconciliation is complete.
 
 A routine GREEN card is not itself a reason to stop.
 
 ## Refresh Gate
 
 Before implementation compare at minimum:
-- actual HEAD/working tree and relevant runtime/external state;
+- actual branch/HEAD/working tree and relevant runtime/external state;
+- previous accepted GREEN `main` checkpoint and current milestone implementation branch;
 - latest cumulative handoff;
 - current milestone;
 - current Task Card;
@@ -99,6 +112,7 @@ When Codex uses a configured correlated ChatGPT control channel, `workflow/codex
 If a session ends unexpectedly:
 - recover existing `in_progress`/`blocked` card;
 - inspect Git branch/HEAD/working tree and relevant external/runtime state;
+- confirm the recovered branch is the current milestone's one primary implementation branch rather than `main` or an abandoned experimental path;
 - inspect OpenSpec task state and tests;
 - inspect card `executor`, `result_*` and evidence pointers;
 - use any local `current.md` only as a hint;
