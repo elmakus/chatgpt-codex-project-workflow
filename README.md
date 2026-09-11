@@ -35,10 +35,20 @@ Agents read the smallest applicable path:
 - Codex starts at `prompts/CODEX_START.md`, then project `PROJECT.md`, then shared execution modules and Codex-specific modules. Codex does **not** load `CHATGPT.md` or ChatGPT-specific execution instructions.
 - ChatGPT may read `workflow/codex/HANDOFF.md` only when it must prepare or interpret a Codex handoff.
 
+## Bootstrap prompts
+
+- normal ChatGPT start: `prompts/CHATGPT_START.md`
+- reusable ChatGPT Project Instructions: `prompts/CHATGPT_PROJECT_INSTRUCTIONS.md`
+- Codex execution start: `prompts/CODEX_START.md`
+
 ## Start an existing project
 
 Use:
 
 > Użyj mojego Project Workflow z `elmakus/chatgpt-codex-project-workflow`. Repo projektu: `elmakus/example-project`. Kontynuujemy <cel/faza>.
 
-Current `main` is always the canonical Project Workflow authority.
+Current `main` is always the canonical Project Workflow authority, except for a deliberately frozen in-flight migration boundary documented in `MIGRATION_DUAL_EXECUTOR.md`.
+
+## Migration
+
+Existing projects moving from the v3.0.3 Codex-default execution model should follow `MIGRATION_DUAL_EXECUTOR.md`, especially when a Task Card/milestone is already in progress.
