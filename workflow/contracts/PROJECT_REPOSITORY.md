@@ -126,9 +126,9 @@ For every executable milestone:
 10. after merge, reconcile cumulative handoff, Task Board and milestone result pointers to the actual merged state;
 11. the next milestone starts from the resulting GREEN `main` checkpoint.
 
-`implementation_head` identifies the exact accepted primary milestone branch HEAD that entered the final milestone PR. `checkpoint` identifies the actual accepted `main` state after merge/final reconciliation (a commit SHA or immutable tag according to project policy).
+`implementation_head` identifies the exact implementation-bearing commit on `main` produced by merging the accepted final milestone PR. `checkpoint` identifies the actual accepted final `main` state after any required metadata-only reconciliation (a commit SHA or immutable tag according to project policy). If no post-merge reconciliation commit is required, `implementation_head` and `checkpoint` may identify the same `main` commit.
 
-Because a merge commit SHA may not be knowable before merge, a **metadata-only closure commit on `main`** is allowed when necessary to reconcile handoff/checkpoint/result metadata to the actual merged state. It must not change production behavior, requirements or implementation scope. After such reconciliation, the resulting `main` HEAD is the milestone checkpoint.
+Because a merge commit SHA may not be knowable before merge, a **metadata-only closure commit on `main`** is allowed when necessary to reconcile handoff/checkpoint/result metadata to the actual merged state. It must not change production behavior, requirements or implementation scope. After such reconciliation, the resulting `main` HEAD is the milestone checkpoint; `implementation_head` remains the implementation-bearing merged `main` commit.
 
 Never use a direct `main` commit for ordinary Task Card implementation or corrective production work. Never force-push `main` as a normal workflow action.
 

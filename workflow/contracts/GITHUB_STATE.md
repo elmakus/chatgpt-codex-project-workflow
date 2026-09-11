@@ -142,19 +142,19 @@ Required finalization sequence:
 5. open one milestone PR from the primary implementation branch to `main`;
 6. merge only the accepted GREEN state;
 7. reconcile `project-handoffs/MXX_HANDOFF.md`, Task Board and milestone metadata against the actual resulting `main` state;
-8. record `implementation_head` as the exact accepted primary milestone branch HEAD that entered the final PR;
-9. record `checkpoint` as the actual accepted `main` checkpoint after merge/final reconciliation (commit SHA or immutable tag according to policy);
+8. record `implementation_head` as the exact implementation-bearing `main` commit produced by merging the accepted final milestone PR;
+9. record `checkpoint` as the actual accepted final `main` checkpoint after any metadata-only reconciliation (commit SHA or immutable tag according to policy);
 10. write/reconcile acceptance evidence under `implementation/evidence/`;
 11. set milestone `execution_status: done` only after merge and reconciliation are complete.
 
-A metadata-only closure commit directly on `main` is allowed only when necessary to record the actual post-merge checkpoint/handoff/result metadata that could not be known before merge. It must not change production behavior or implementation scope. The resulting `main` HEAD is then the milestone checkpoint.
+A metadata-only closure commit directly on `main` is allowed only when necessary to record the actual post-merge checkpoint/handoff/result metadata that could not be known before merge. It must not change production behavior or implementation scope. If such a closure commit is required, `implementation_head` remains the merge-produced implementation-bearing `main` commit and the resulting `main` HEAD becomes `checkpoint`. If no closure commit is required, both may identify the same `main` commit.
 
 A done milestone stores at minimum:
 
 ```yaml
 execution_status: done
-checkpoint: <main-checkpoint-sha-or-tag>
-implementation_head: <accepted-milestone-branch-sha>
+checkpoint: <final-main-checkpoint-sha-or-tag>
+implementation_head: <merged-main-implementation-sha>
 handoff: project-handoffs/MXX_HANDOFF.md
 acceptance_evidence: implementation/evidence/MXX_ACCEPTANCE.md
 ```
@@ -201,7 +201,8 @@ Invalid states include:
 - milestone `done` before its final milestone PR is merged and post-merge reconciliation is complete;
 - card `done` with missing required result pointers or executor provenance;
 - milestone `done` with missing checkpoint, `implementation_head`, handoff or acceptance evidence;
-- a milestone checkpoint that does not identify the actual accepted `main` state at milestone close;
+- `implementation_head` that does not identify the implementation-bearing merged `main` commit for the milestone;
+- a milestone checkpoint that does not identify the actual accepted final `main` state at milestone close;
 - all required cards `done` while a green milestone remains `ready`;
 - a dependent card `in_progress` while a required dependency is `blocked`;
 - durable state existing only in chat or local `current.md`;

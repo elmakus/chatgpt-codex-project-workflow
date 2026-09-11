@@ -45,8 +45,9 @@ A cumulative handoff must be sufficient for a fresh ChatGPT chat or Codex sessio
 - tests/results and independent review;
 - known issues/deferred items;
 - provenance and exact Git state;
-- accepted milestone implementation branch HEAD;
-- final merged `main` checkpoint after reconciliation;
+- accepted milestone implementation branch HEAD for review provenance;
+- implementation-bearing merged `main` commit (`implementation_head`);
+- final accepted `main` checkpoint after reconciliation;
 - architecture reopen assessment;
 - requirements satisfied/outstanding;
 - next durable starting point;
@@ -66,11 +67,11 @@ The canonical milestone publication sequence is:
 6. open one milestone PR from the primary implementation branch to `main`;
 7. merge only the accepted GREEN state;
 8. reconcile cumulative handoff, Task Board and milestone metadata to the actual merged `main` state;
-9. record `implementation_head` as the accepted milestone branch HEAD that entered the final PR;
-10. record `checkpoint` as the actual accepted `main` state after merge/final reconciliation;
+9. record `implementation_head` as the exact implementation-bearing `main` commit produced by merging the accepted final milestone PR;
+10. record `checkpoint` as the actual accepted final `main` state after any metadata-only reconciliation;
 11. set the milestone `done` only after this reconciliation is complete.
 
-Because the actual merge SHA may not be knowable before merge, a small **metadata-only closure commit on `main`** is allowed when necessary to record the actual checkpoint/handoff/result metadata. It must not change production behavior, requirements or implementation scope. If such a closure commit is required, its resulting `main` HEAD is the final GREEN checkpoint.
+Because the actual merge SHA may not be knowable before merge, a small **metadata-only closure commit on `main`** is allowed when necessary to record the actual checkpoint/handoff/result metadata. It must not change production behavior, requirements or implementation scope. If such a closure commit is required, `implementation_head` remains the merge-produced implementation-bearing `main` commit and the resulting `main` HEAD becomes `checkpoint`. If no closure commit is required, both may identify the same `main` commit.
 
 Do not use direct `main` commits for normal production implementation or corrective work.
 
