@@ -62,9 +62,9 @@ List only unusual/external/high-risk/routing-significant capabilities. Delete th
 
 `none` or exact target + expected readback/verification.
 
-## Independent review
+## Independent review (only when material)
 
-`REQUIRED | RECOMMENDED | OPTIONAL` — include rationale when non-obvious.
+`REQUIRED | RECOMMENDED` plus rationale. Omit this section for ordinary low-risk cards where review is optional by default.
 
 ## Refresh Gate
 

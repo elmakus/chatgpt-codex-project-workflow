@@ -10,9 +10,12 @@
 
 ## Execution policy
 
-- execution_policy: `chatgpt_only | mixed`
+- execution_policy: `chatgpt_only`
 
-`chatgpt_only` blocks Codex routing; missing ChatGPT capability is a blocker. `mixed` lets ChatGPT route individual Task Cards to itself or Codex through the Capability Gate.
+`chatgpt_only` is the safe default for a new project. Change it to `mixed` only after an explicit user decision.
+
+- `chatgpt_only` blocks Codex routing; missing ChatGPT capability is a blocker.
+- `mixed` lets ChatGPT route individual Task Cards to itself or Codex through the Capability Gate.
 
 ## Canonical authority pointers
 

@@ -73,11 +73,13 @@ When a pointer does not yet exist, state `none` instead of inventing an artifact
 
 ### Execution policy
 
+For a new project, default to `chatgpt_only` unless the user explicitly chooses `mixed`.
+
 `chatgpt_only` means normal ChatGPT chat is the only permitted executor. ChatGPT may execute any work for which the current session has required capabilities/tests/evidence/readback. Missing capability is a blocker; do not route to Codex or mutate policy automatically.
 
 `mixed` means ChatGPT remains project router and may execute itself or route a bounded Task Card to Codex through `workflow/chatgpt/CAPABILITY_GATE.md`.
 
-ChatGPT Work is outside this workflow. Missing `execution_policy` in a legacy project must be resolved before new execution; absence is not a third mode.
+Changing `chatgpt_only → mixed` requires an explicit user decision. ChatGPT Work is outside this workflow. Missing `execution_policy` in a legacy project must be resolved before new execution; absence is not a third mode.
 
 ## 6. Authority and conflicts
 
@@ -141,7 +143,7 @@ Migration from v3.0.3 Codex-default execution to dual-executor semantics follows
 ## 12. Initializing a new project
 
 From an empty shell:
-1. add `PROJECT.md` from template and choose `execution_policy`;
+1. add `PROJECT.md` from template; it defaults to `chatgpt_only` unless the user explicitly selected `mixed`;
 2. create only phase-appropriate knowledge directories;
 3. start with brainstorming/research rather than fake implementation state;
 4. record accepted choices under `decisions/`;
