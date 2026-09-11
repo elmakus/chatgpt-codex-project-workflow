@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v3.0.2
+
+### Explicit continuation status
+
+- Codex user-visible execution checkpoints must now state unambiguously whether execution is continuing automatically, user action is required, a fresh session is only recommended, or the milestone is complete.
+- A routine GREEN Task Card no longer permits a neutral status-only ending that can be mistaken for a request to intervene; deterministic READY-card progression remains automatic.
+- Added standard markers: `NEXT ACTION:`, `USER ACTION REQUIRED:`, `SESSION HANDOFF RECOMMENDED:` and `MILESTONE COMPLETE:`.
+- Fresh-session recommendations must distinguish context hygiene/recovery from real product or authorization gates and include a durable continuation pointer.
+
 ## v3.0.1
 
 ### Authority boundary
