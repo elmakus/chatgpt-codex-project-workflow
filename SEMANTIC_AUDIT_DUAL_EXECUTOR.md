@@ -1,208 +1,262 @@
 # Semantic Audit — Dual-Executor Project Workflow
 
-**Status:** GREEN  
+**Status:** GREEN AFTER CORRECTIVE FIX — requires independent re-review  
 **Audit date:** 2026-09-11  
 **Baseline `main`:** `3374232680a9b8a3de440e08257e003bdd706cee` (v3.0.3 behavior)  
-**Audited feature state before this audit-only commit:** `e53ee5995102987d1ef0ce8f7b440955c9db3883`
+**Original frozen candidate:** `9bddfd1069a3cfca5d67eadba2b08391e7889aa1`  
+**Corrective functional state audited here:** `66203365af6086a73faba54a20473768a74ebb64`
 
-## 1. Audit goal
+## 1. Corrective audit note
 
-Verify that the dual-executor redesign changes the executor/routing model without losing the durable execution semantics preserved by v3, while keeping selective loading and avoiding new orchestration machinery.
+The original semantic audit marked the dual-executor branch GREEN but did **not** detect one real merge-blocking contradiction in runtime capability handling.
 
-The operating surface is intentionally limited to **normal ChatGPT chat + Codex**. ChatGPT Work is not an executor, routing target or dependency.
+Independent review found that shared contracts could re-apply `workflow/chatgpt/CAPABILITY_GATE.md` after an already-assigned executor discovered a missing capability. That permitted a nonsensical Codex → ChatGPT fallback path.
 
-## 2. Architecture checks
+This file supersedes the original capability-routing finding. The rest of the original audit remains valid unless contradicted below.
+
+## 2. Correct capability model
+
+Project routing now states the invariant:
+
+`ChatGPT capabilities ⊆ Codex capabilities`
+
+Consequences:
+
+1. ChatGPT Capability Gate is a **pre-assignment routing mechanism**.
+2. If ChatGPT has the required capability + evidence path, ChatGPT may execute the card.
+3. If ChatGPT lacks the capability and `execution_policy = mixed`, the card may be assigned to Codex.
+4. If Codex later discovers that a required capability is missing, there is no meaningful fallback to ChatGPT.
+5. Runtime capability failure after assignment is therefore:
+
+   `STOP → persist blocker/evidence → USER ACTION REQUIRED → user provides capability → resume same card/executor`
+
+6. Runtime capability failure does not automatically invoke the ChatGPT Capability Gate and does not automatically change executor.
+
+This correction does not add a new state, router, capability database, scoring model or fallback abstraction.
+
+## 3. Corrective finding F-01 — PASS AFTER FIX
+
+### Original conflict
+
+At candidate `9bddfd1069a3cfca5d67eadba2b08391e7889aa1`:
+
+- `workflow/EXECUTION.md` instructed a blocked executor to re-apply project policy through `workflow/chatgpt/CAPABILITY_GATE.md` before executor change;
+- `workflow/contracts/GITHUB_STATE.md` similarly told missing-capability cards to re-apply the ChatGPT Capability Gate;
+- `workflow/contracts/TASK_CARDS.md` did not clearly distinguish pre-assignment routing from runtime capability failure.
+
+This contradicted the capability-superset architecture when the already-assigned executor was Codex.
+
+### Corrective implementation
+
+#### `workflow/EXECUTION.md` — PASS
+
+Now states:
+
+- the capability-superset invariant;
+- Capability Gate is pre-assignment only;
+- runtime missing capability stops affected work safely;
+- exact missing MCP/access/credential/runtime/tool/test/readback/evidence capability is persisted;
+- card becomes `blocked` when contract cannot be met;
+- `USER ACTION REQUIRED` names the smallest concrete capability/access/configuration needed;
+- the same card resumes with the same assigned executor after the user provides the capability;
+- Codex runtime failure must not invoke `workflow/chatgpt/CAPABILITY_GATE.md` or fall back to ChatGPT.
+
+Failure recovery now preserves the same runtime-blocker semantics.
+
+#### `workflow/contracts/GITHUB_STATE.md` — PASS
+
+Blocked-card semantics now explicitly separate:
+
+- **before assignment:** ChatGPT Capability Gate may route according to project policy;
+- **after assignment/start:** missing capability is a runtime blocker, not a routing event.
+
+For Codex runtime failure:
+
+- blocker/evidence is persisted;
+- `USER ACTION REQUIRED` is surfaced;
+- same Codex card resumes after capability is supplied;
+- ChatGPT Capability Gate is not re-applied;
+- Codex → ChatGPT fallback is explicitly invalid under the capability-superset invariant.
+
+A corresponding invalid-state invariant was added for accidental Codex runtime fallback to ChatGPT.
+
+#### `workflow/contracts/TASK_CARDS.md` — PASS
+
+Now explicitly distinguishes:
+
+- ChatGPT Capability Gate before assignment;
+- runtime capability failure after assignment.
+
+It records the capability-superset invariant and requires Codex runtime capability failure to become durable `BLOCKED / USER ACTION REQUIRED`, followed by continuation of the same Codex card after the user provides the missing capability.
+
+#### `workflow/chatgpt/CAPABILITY_GATE.md` — PASS
+
+The existing gate now explicitly records the same invariant and its lifecycle boundary:
+
+- the gate belongs to normal ChatGPT before card assignment;
+- it may route ChatGPT → Codex under `mixed`;
+- it is not a runtime fallback mechanism;
+- if Codex verifies at runtime that a required capability is absent, the assigned Codex card blocks and waits for user-provided capability rather than falling back to ChatGPT.
+
+No new routing outcome was added.
+
+## 4. Architecture regression checks
 
 ### A. One workflow repository — PASS
 
-Project Workflow remains one repository. No ChatGPT-only workflow repo, shared-core repo or capability repo was introduced.
+No second ChatGPT workflow repo, Codex workflow repo, shared-core repo or capability registry was introduced.
 
-### B. One project repository — PASS
+### B. Execution policy — PASS
 
-`PROJECT_REPOSITORY.md` preserves ONE PROJECT = ONE REPOSITORY, durable project truth and the existing knowledge-state separation.
-
-### C. Execution policy — PASS
-
-Root `PROJECT.md` has exactly two execution policies:
+Exactly two project policies remain:
 
 - `chatgpt_only`;
 - `mixed`.
 
-New projects default to `chatgpt_only`. Changing to `mixed` requires explicit user decision. Missing legacy policy is configuration to resolve, not a third mode.
+New projects default to `chatgpt_only`; changing to `mixed` requires explicit user decision.
 
-### D. Capability Gate — PASS
+### C. Capability Gate outcomes — PASS
 
-`workflow/chatgpt/CAPABILITY_GATE.md` has exactly the intended routing outcomes:
+The only routing outcomes remain:
 
 - `EXECUTE IN CHATGPT`;
-- `HANDOFF TO CODEX` (mixed only);
+- `HANDOFF TO CODEX` under `mixed`;
 - `BLOCKED`.
 
-No executor score, capability database, preferred-executor weight, agent graph or scheduler was added.
+Runtime Codex capability failure is **not** a fourth routing outcome. It is ordinary blocked-card execution state plus `USER ACTION REQUIRED`.
 
-### E. ChatGPT is a full executor — PASS
+### D. ChatGPT full-executor semantics — PASS
 
-The ChatGPT adapter permits repository work, local Python/container/file execution and connected external-system operations when the current normal ChatGPT chat actually exposes the required capability and can obtain required verification/evidence.
+ChatGPT may execute when the current normal ChatGPT chat actually has all required capabilities, tests/checks and evidence/readback path.
 
-Platform-wide capabilities are not treated as proof of current-session capability.
+### E. Codex specialized-executor semantics — PASS
 
-### F. Codex remains specialized — PASS
+Codex may receive work under `mixed` for missing ChatGPT capability, material repo/runtime advantage or explicit approved assignment.
 
-Codex is routed work only in `mixed` when it has a required capability/environment, material repo/runtime advantage or an approved explicit assignment. "Technical"/"coding" does not automatically mean Codex.
+The correction does not make Codex the default for all technical work.
 
-## 3. Progressive disclosure checks
+### F. ChatGPT Work exclusion — PASS
+
+Project Workflow still uses normal ChatGPT chat + Codex only. ChatGPT Work is not an executor, routing target, fallback, capability provider, dependency or migration target.
+
+## 5. Progressive disclosure regression checks
 
 ### ChatGPT path — PASS
 
-`CHATGPT.md → PROJECT.md → CONTEXT_ROUTING → shared phase module → ChatGPT-specific module only when applicable`.
-
-ChatGPT reads `workflow/codex/HANDOFF.md` only when preparing/interpreting a Codex handoff.
+`CHATGPT.md → PROJECT.md → CONTEXT_ROUTING → shared phase module → ChatGPT-specific module only when applicable`
 
 ### Codex path — PASS
 
-`CODEX_START → PROJECT.md → CONTEXT_ROUTING → shared execution/contracts → workflow/codex/*`.
+`CODEX_START → PROJECT.md → CONTEXT_ROUTING → shared execution/contracts → workflow/codex/*`
 
-The Codex start path explicitly forbids automatic loading of `CHATGPT.md` and `workflow/chatgpt/*`.
+Codex still does not automatically load `CHATGPT.md` or `workflow/chatgpt/*`.
 
-### Shared execution core — PASS
+The corrective change does not require Codex to load the ChatGPT Capability Gate during runtime failure; it explicitly forbids doing so.
 
-There is one shared `workflow/EXECUTION.md`; ChatGPT and Codex use thin adapters. The workflow does not duplicate the full card loop for both executors.
+## 6. v3 execution-semantics regression checks
 
-## 4. v3 semantic preservation checks
-
-The redesign preserves the following v3 contracts:
+Still preserved:
 
 - card states `planned | ready | in_progress | blocked | done | superseded` — PASS;
 - separate decision state — PASS;
-- milestone lifecycle and terminal GREEN state — PASS;
-- Task Board as live execution index — PASS;
-- `result_commit`, `result_pr`, `evidence`, tests summary before `done` — PASS;
-- exact Definition of Done coupling — PASS;
-- dependency blocking and deterministic READY progression — PASS;
-- Refresh Gate before implementation — PASS;
-- just-in-time selective OpenSpec — PASS;
-- integrated milestone acceptance after cards are done — PASS;
-- corrective work on RED — PASS;
-- exact `implementation_head`, checkpoint, acceptance evidence and cumulative handoff on GREEN — PASS;
-- failure recovery from durable repository state — PASS;
-- optional local `current.md` remains non-authoritative — PASS;
-- no mid-milestone repository-topology migration — PASS;
-- Codex strategic correlation via `request_id` + `DECISION FOR CODEX:` retained when that channel is used — PASS;
-- `codex_workflow` remains authority only for internal Codex runtime orchestration — PASS;
-- no shadow task database/Jira clone/generic DAG workflow engine — PASS.
+- milestone lifecycle and GREEN semantics — PASS;
+- Task Board as durable execution index — PASS;
+- executor provenance — PASS;
+- result pointers/evidence/tests summary before `done` — PASS;
+- Definition of Done coupling — PASS;
+- dependency blocking — PASS;
+- deterministic READY progression — PASS;
+- Refresh Gate — PASS;
+- JIT OpenSpec — PASS;
+- integrated milestone acceptance — PASS;
+- RED corrective work — PASS;
+- cumulative handoff/checkpoint/implementation HEAD — PASS;
+- durable failure recovery — PASS;
+- optional `current.md` remains non-authoritative — PASS;
+- strategic `request_id` + `DECISION FOR CODEX:` behavior remains available where configured — PASS;
+- `codex_workflow` remains authority only for internal Codex runtime orchestration — PASS.
 
-## 5. New execution semantics checks
+## 7. New-semantics regression checks
 
-### Capability requirements — PASS
+Still preserved:
 
-Task Cards support optional explicit `required_capabilities` only for external/unusual/high-risk/routing-significant cases. Ordinary repository capabilities remain inferred.
+- optional `required_capabilities` only where materially useful — PASS;
+- executor provenance — PASS;
+- `WRITE → READBACK → VERIFY EXPECTED STATE → EVIDENCE` — PASS;
+- independent-review tiers — PASS;
+- optional Path A / Path B / Hybrid pattern — PASS;
+- no new research lifecycle states — PASS;
+- no capability registry/database — PASS;
+- no executor scoring — PASS;
+- no generic scheduler — PASS.
 
-### Executor provenance — PASS
+## 8. Runtime capability scenarios
 
-Task Card and Task Board record `executor: chatgpt | codex` when execution starts. This supports recovery/provenance and is not a routing score.
+### Scenario A — ChatGPT has capability
 
-### External write contract — PASS
+`mixed` or `chatgpt_only` + ChatGPT has work/test/evidence path → `EXECUTE IN CHATGPT`.
 
-Shared execution defines:
+**PASS.**
 
-`WRITE → READBACK → VERIFY EXPECTED STATE → EVIDENCE`
+### Scenario B — ChatGPT lacks capability, mixed project
 
-only when readback gives meaningful validation. The contract explicitly avoids mechanical fake readback when no useful independent read exists.
+Capability Gate may route card to Codex.
 
-### Independent review — PASS
+**PASS.**
 
-Fresh normal ChatGPT review is:
+### Scenario C — ChatGPT lacks capability, chatgpt_only project
 
-- REQUIRED for high-risk work;
-- RECOMMENDED for major architecture/refactors/complex state machines;
-- OPTIONAL by default for low-risk work.
+Card remains BLOCKED until user supplies capability or explicitly changes project policy.
 
-No permanent review-agent role or review-after-every-card requirement exists.
+**PASS.**
 
-### Competing paths — PASS
+### Scenario D — Codex discovers missing MCP/access/credential/runtime/tooling
 
-Path A / Path B / Hybrid is an optional branch/evidence pattern starting from a stable checkpoint. It does not introduce new lifecycle states or force experimental code merges.
+Required behavior:
 
-## 6. Execution Prep checks
+`BLOCKED → durable blocker/evidence → USER ACTION REQUIRED → user supplies missing capability → same Codex card resumes`
 
-Execution Prep now prepares branch policy, Task Cards, acceptance/tests, external readback needs, review level and material capability requirements, then runs Capability Gate.
+No ChatGPT fallback and no ChatGPT Capability Gate re-entry.
 
-Its terminal routing state is one of:
+**PASS AFTER CORRECTIVE FIX.**
 
-- `EXECUTOR: CHATGPT`;
-- `EXECUTOR: CODEX`;
-- `EXECUTOR: BLOCKED`.
+### Scenario E — session recovery while Codex card is capability-blocked
 
-A Codex prompt is generated only for the Codex outcome. `chatgpt_only` cannot route to Codex.
+Recovery reads durable blocker/card/executor state and continues the same Codex card once the missing capability exists.
 
-Session recommendations are context-hygiene guidance, not authorization gates.
+**PASS AFTER CORRECTIVE FIX.**
 
-## 7. Migration safety — PASS
+## 9. Scope of corrective change
 
-`MIGRATION_DUAL_EXECUTOR.md` handles existing projects and the special case of active execution prepared under v3.0.3.
+Functional corrective commit:
 
-Already-started bounded work may temporarily stay on the frozen pre-cutover workflow revision and adopt `execution_policy` at the next clean GREEN boundary, preventing a silent mid-flight contract change.
+`66203365af6086a73faba54a20473768a74ebb64`
 
-Historical evidence/handoffs are not rewritten simply to replace old Codex-specific wording.
+Files changed by the corrective semantic fix only:
 
-## 8. ChatGPT Work exclusion — PASS
+- `workflow/EXECUTION.md`;
+- `workflow/contracts/GITHUB_STATE.md`;
+- `workflow/contracts/TASK_CARDS.md`;
+- `workflow/chatgpt/CAPABILITY_GATE.md`.
 
-Current normative entrypoints, router, Capability Gate, ChatGPT adapter, project contract, migration guide and Project Instructions all state that Project Workflow uses normal ChatGPT chat + Codex only and does not route through ChatGPT Work.
+No production lifecycle redesign, new abstraction, new execution state, new policy or unrelated cleanup was introduced.
 
-## 9. Context-cost assessment — PASS
+## 10. Audit limitations
 
-The old Codex path loaded ChatGPT router/responsibility material. The new Codex path excludes `CHATGPT.md`, `workflow/chatgpt/CAPABILITY_GATE.md` and `workflow/chatgpt/EXECUTION.md`.
+This remains a semantic/document-contract audit, not an executable formal proof.
 
-Adding ChatGPT execution therefore does not add ChatGPT-specific daily context cost to Codex; the executor split reduces cross-executor context leakage.
+It can verify that normative workflow text is internally consistent at the audited commit. It cannot prove that every future ChatGPT or Codex runtime will obey those instructions.
 
-## 10. Validation scenarios
+No automated CI/test suite, end-to-end project migration, live ChatGPT→Codex execution, or capability-provisioning integration test is claimed by this audit.
 
-### Fitness / Liftosaur — PASS
+Independent re-review should inspect the corrective diff directly against frozen candidate `9bddfd1069a3cfca5d67eadba2b08391e7889aa1` and verify that no other fallback wording remains in normative execution contracts.
 
-The model supports ChatGPT-owned research/design/GitHub/Liftosaur execution when current chat has plugin write + playground + readback capabilities, while still allowing Codex for repo/runtime-heavy work. External deployment requires saved-state readback/evidence and can carry high-risk independent review/protection boundaries.
+## 11. Conclusion
 
-### Homelab — PASS
+**GREEN AFTER CORRECTIVE FIX, PENDING INDEPENDENT RE-REVIEW.**
 
-A `chatgpt_only` project blocks when current ChatGPT lacks required Home Assistant/Unraid/Node-RED runtime capability. In `mixed`, the same card can route to Codex only when its configured environment actually exposes the required MCP/runtime capability.
+The merge-blocking capability contradiction identified by independent review is corrected in functional state `66203365af6086a73faba54a20473768a74ebb64`.
 
-### Pure software repo — PASS
-
-Bounded GitHub/code work can remain in ChatGPT when executable/verifiable there; repo-wide refactors and long local code→test→fix loops can route to Codex for a concrete practical/runtime advantage without moving research/architecture/review out of ChatGPT.
-
-## 11. File/path integrity
-
-The active shared contracts directory contains only executor-neutral contracts:
-
-- `GITHUB_STATE.md`;
-- `OPENSPEC.md`;
-- `PROJECT_REPOSITORY.md`;
-- `TASK_CARDS.md`.
-
-The old monolithic `workflow/contracts/CHATGPT_CODEX.md` was removed and its surviving semantics were split by actual consumer.
-
-Old `workflow/contracts/CODEX_ORCHESTRATION.md` moved to `workflow/codex/CODEX_ORCHESTRATION.md`.
-
-References to removed paths in the feature diff are historical deletions or explicit migration instructions, not live normative routing links.
-
-## 12. Anti-overengineering result
-
-Not introduced:
-
-- executor scoring;
-- capability registry/database;
-- project tool inventory;
-- preferred-executor field;
-- third execution policy;
-- ChatGPT Work routing;
-- shared-core third repository;
-- mandatory capability declarations on trivial cards;
-- mandatory independent review for every card;
-- agent graph;
-- generic executor scheduler;
-- new lifecycle states for research branches.
-
-## 13. Conclusion
-
-**GREEN.** The branch implements the target dual-executor architecture while preserving the important v3 execution-state/evidence/recovery semantics and reducing cross-executor context loading.
+The previous GREEN finding was incomplete because it failed to distinguish pre-assignment ChatGPT routing from post-assignment Codex runtime capability failure.
 
 No merge to `main` is part of this audit.
