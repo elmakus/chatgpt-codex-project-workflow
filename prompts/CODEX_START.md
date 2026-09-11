@@ -22,3 +22,21 @@ Codex then:
 12. when the owner's `codex_workflow` is installed/enabled, follows its installed instructions for internal worker/runtime orchestration rather than duplicating those mechanics from Project Workflow.
 
 Repository state outranks stale conversation history. A local `current.md` is optional convenience only.
+
+## Execution-prep handoff template
+
+When ChatGPT has just completed execution prep, it should generate a project-specific prompt rather than making the user compose one. Prefer a short prompt shaped like:
+
+```text
+Use the current main of elmakus/chatgpt-codex-project-workflow.
+Project repo: <owner/repo>.
+Prepared milestone: <MXX>.
+Required prior checkpoint: <checkpoint>.
+Start from <repo-relative START_HERE and/or kickoff path>.
+
+Recover the prepared Task Board/card state from the repository, perform the required Refresh Gate, and execute the milestone card-by-card according to dependencies. Continue automatically between deterministic READY cards without asking me which card is next.
+
+Stop only for a genuine strategic blocker, an explicit user-authorization gate, a session handoff that you explicitly recommend for context reasons, or the final milestone checkpoint. Do not start the next milestone.
+```
+
+ChatGPT must accompany that prompt with an explicit `CODEX SESSION RECOMMENDATION: FRESH` or `CODEX SESSION RECOMMENDATION: CONTINUE EXISTING` according to `workflow/EXECUTION_PREP.md`.

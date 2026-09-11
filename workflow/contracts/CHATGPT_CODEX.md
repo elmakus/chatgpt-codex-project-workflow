@@ -13,6 +13,7 @@ ChatGPT owns primarily:
 - requirement coverage;
 - initial Task Card decomposition;
 - OpenSpec candidate mapping;
+- execution-prep handoff to Codex, including an explicit session recommendation and copy-paste-ready start prompt;
 - strategic review;
 - product/architecture decisions for strategic blockers;
 - plan changes when new evidence invalidates a frozen assumption.
@@ -176,9 +177,13 @@ Do not require the user to:
 - move handoffs;
 - copy OpenSpec;
 - track dependencies manually;
-- rewrite an accepted ChatGPT decision into Codex state.
+- rewrite an accepted ChatGPT decision into Codex state;
+- infer after execution prep whether to start a fresh Codex session or reuse the current one;
+- invent the Codex kickoff prompt after ChatGPT has already prepared the milestone.
 
 When a genuine product decision is necessary, present the smallest useful decision surface.
+
+After execution prep, ChatGPT must explicitly recommend `FRESH` or `CONTINUE EXISTING`, explain the reason briefly, provide a copy-paste-ready Codex start prompt, and state the user's smallest next action. Follow the detailed rules in `workflow/EXECUTION_PREP.md`.
 
 Every user-visible Codex execution status must also make the continuation state explicit:
 - if execution can continue deterministically, state that Codex is continuing automatically and that no user action is required;
