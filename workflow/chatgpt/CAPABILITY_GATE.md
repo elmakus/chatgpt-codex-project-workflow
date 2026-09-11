@@ -6,6 +6,16 @@ Choose execution from actual task requirements and capabilities of the **current
 
 Do not use ChatGPT Work. Do not maintain a global/static capability database. Capabilities may change between sessions as connectors/plugins/tools change.
 
+## Capability invariant
+
+Project routing assumes:
+
+`ChatGPT capabilities ⊆ Codex capabilities`
+
+The executor distinction is therefore not that ChatGPT can possess a required capability unavailable to Codex. This gate is a **pre-assignment routing mechanism** for normal ChatGPT. It is not a runtime fallback mechanism after a card has started.
+
+If Codex later discovers that a required capability is missing, do not route the card back to ChatGPT. Persist the blocker, report `USER ACTION REQUIRED`, obtain the missing capability from the user, and resume the same Codex card.
+
 ## Gate
 
 Before starting a Task Card:
@@ -39,17 +49,17 @@ Default when ChatGPT can correctly execute and verify the card and there is no a
 ### HANDOFF TO CODEX
 
 Use only when at least one is true:
-- Codex has a required capability/environment unavailable to ChatGPT;
+- ChatGPT lacks a required capability/environment that the mixed policy allows Codex to satisfy;
 - the card requires a repo/runtime-heavy loop where Codex has a material practical advantage;
 - the approved plan/card explicitly assigns the work to Codex.
 
 Do not equate "technical" or "coding" with Codex.
 
-If Codex capability is not actually known, do not invent it. A Codex handoff may require Codex to verify the named capability before mutating state and block durably if absent.
+If Codex capability is not actually known before handoff, do not invent it. Codex verifies the named capability before mutation when necessary. If it is absent at runtime, the assigned Codex card becomes `BLOCKED / USER ACTION REQUIRED`; it does not fall back to ChatGPT.
 
 ### BLOCKED
 
-Use when neither available execution path can satisfy the card contract.
+Use when no currently available execution path can satisfy the card contract without user-provided capability/access or another explicit user decision.
 
 ## Capability taxonomy for reasoning
 

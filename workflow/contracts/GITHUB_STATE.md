@@ -108,7 +108,16 @@ When execution is blocked:
 - make a safe commit/push before messaging when possible;
 - do not start dependent cards.
 
-For a missing capability/evidence path, re-apply project `execution_policy` and `workflow/chatgpt/CAPABILITY_GATE.md`. Under `chatgpt_only`, missing ChatGPT capability remains blocked until capability or policy changes by user decision.
+Capability routing and runtime capability failure are different stages:
+
+- **Before assignment**, normal ChatGPT may use `workflow/chatgpt/CAPABILITY_GATE.md` to choose ChatGPT, Codex, or BLOCKED according to project `execution_policy`.
+- **After assignment/execution start**, a newly discovered missing capability is a runtime blocker, not an automatic executor-routing event.
+
+For a runtime capability blocker, record the exact missing MCP/access/credential/runtime/tool/test/readback/evidence capability, surface `USER ACTION REQUIRED`, and resume the **same card with the same executor** after the user provides it.
+
+If the assigned executor is Codex, do not re-apply the ChatGPT Capability Gate and do not fall back to ChatGPT. Project routing assumes `ChatGPT capabilities ⊆ Codex capabilities`; therefore a required capability absent from Codex is not available from ChatGPT as an executor fallback.
+
+Under `chatgpt_only`, a ChatGPT runtime capability failure likewise remains blocked until the user provides the missing capability or explicitly changes project policy; policy never changes automatically.
 
 For a strategic/product/architecture blocker, obtain the relevant authority decision and persist an accepted decision record under `decisions/`. When Codex uses a correlated ChatGPT control-chat exchange, follow `workflow/codex/HANDOFF.md` including matching `request_id` and `DECISION FOR CODEX:`.
 
@@ -172,4 +181,5 @@ Invalid states include:
 - a dependent card `in_progress` while a required dependency is `blocked`;
 - durable state existing only in chat or local `current.md`;
 - Task Board/card disagreement left unreconciled at a durable checkpoint;
-- claimed external success when required readback/verification evidence shows a different persisted state.
+- claimed external success when required readback/verification evidence shows a different persisted state;
+- a Codex runtime capability blocker being rerouted to ChatGPT instead of remaining blocked for user-provided capability.

@@ -59,13 +59,20 @@ If evidence materially changes behavior, architecture, a frozen decision, requir
 
 Starting a card does not authorize pretending a missing capability exists.
 
-If required environment access, tests, external write/readback or evidence cannot be produced:
-- stop affected work safely;
-- persist available evidence;
-- set the card `blocked` when its contract cannot be met;
-- re-apply project `execution_policy` through `workflow/chatgpt/CAPABILITY_GATE.md` before any executor change.
+Project routing assumes the capability invariant:
 
-An executor change is routing, not evidence that prior execution succeeded.
+`ChatGPT capabilities ⊆ Codex capabilities`
+
+The ChatGPT Capability Gate is a **pre-assignment routing mechanism**. It is not a runtime fallback mechanism after execution has started.
+
+If the selected executor discovers during execution that a required environment access, MCP, credential, runtime/tool, test path, external write/readback or evidence capability is unavailable:
+- stop affected work safely;
+- persist the exact missing capability and available evidence;
+- set the card `blocked` when its contract cannot be met;
+- report `USER ACTION REQUIRED` with the smallest concrete capability/access/configuration the user must provide;
+- resume the **same card with the same assigned executor** after that capability is provided and durable state is reconciled.
+
+Do not automatically change executors after a runtime capability failure. In particular, when Codex discovers a missing required capability, do **not** invoke `workflow/chatgpt/CAPABILITY_GATE.md` and do not fall back to ChatGPT; under the capability-superset invariant ChatGPT cannot provide a capability that Codex lacks.
 
 ## External write contract
 
@@ -95,6 +102,6 @@ If a session ends unexpectedly:
 - inspect OpenSpec task state and tests;
 - inspect card `executor`, `result_*` and evidence pointers;
 - use any local `current.md` only as a hint;
-- continue the same card unless durable state proves completion/supersession or Capability Gate requires legitimate rerouting.
+- continue the same card unless durable state proves completion/supersession or an explicit user/strategic decision changes the assignment.
 
-Do not silently advance to the next card. Recovery must be possible from durable repository state without prior chat.
+A runtime capability blocker resumes on the same card/executor after the user supplies the missing capability. Do not silently advance to the next card or reroute through the ChatGPT Capability Gate. Recovery must be possible from durable repository state without prior chat.

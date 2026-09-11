@@ -38,6 +38,16 @@ required_capabilities:
 
 Do not require declarations for every trivial repository operation. Ordinary capabilities are inferred from scope, acceptance, tests/checks, external effects and evidence.
 
+### Capability routing invariant
+
+Project routing assumes:
+
+`ChatGPT capabilities ⊆ Codex capabilities`
+
+The difference between executors is therefore not that ChatGPT may have a required capability unavailable to Codex. ChatGPT Capability Gate is used **before assignment** to decide whether ChatGPT can execute or, under `mixed`, the card should be handed to Codex.
+
+Once a card has started, a newly discovered missing runtime capability is a blocker for the assigned executor, not a reason for automatic fallback/rerouting. If Codex discovers the missing capability, persist the blocker, report `USER ACTION REQUIRED`, obtain the missing MCP/access/credential/runtime/tooling or other capability from the user, then resume the same Codex card.
+
 ## 4. Executor provenance
 
 Leave `executor: null` while merely planned/ready unless an approved plan intentionally preassigns Codex. At actual start, record `chatgpt` or `codex` in card and Task Board.
@@ -83,7 +93,7 @@ At minimum compare:
 
 Implementation-detail drift within approved contracts may be reconciled by the current executor. Material behavior/architecture/requirement/external-contract/milestone-acceptance drift blocks the card and requires strategic resolution.
 
-If a required capability/evidence path is unavailable, do not pretend completion; apply `execution_policy` and Capability Gate.
+Before assignment, unavailable required capabilities are handled by project `execution_policy` and the ChatGPT Capability Gate. After assignment/execution start, a newly discovered missing capability follows runtime blocker semantics in `workflow/EXECUTION.md` and `GITHUB_STATE.md`; do not automatically reroute the card.
 
 ## 8. Definition of Done
 
