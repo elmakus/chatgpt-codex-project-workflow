@@ -4,27 +4,17 @@
 
 Every new project receives its own repository from the first brainstorming session.
 
-Do not wait for implementation before creating the repository. The project repository is the durable memory of the project across ChatGPT chats and Codex sessions.
+Do not wait for implementation before creating the repository. The project repository is durable memory across ChatGPT chats and Codex sessions.
 
-By default do not create a separate:
-- planning repository;
-- workspace repository;
-- backup repository for workflow state;
-- execution-control repository.
-
-A split-repository topology is an exception. It requires a concrete technical justification and an explicit user decision.
+By default do not create a separate planning repository, workspace repository, backup workflow-state repository or execution-control repository. A split-repository topology requires concrete technical justification and an explicit user decision.
 
 ## 2. Workflow repository versus project repository
 
-`elmakus/chatgpt-codex-project-workflow` contains only workflow rules, contracts, templates, prompts and workflow change history.
+`elmakus/chatgpt-codex-project-workflow` contains workflow rules, contracts, templates, prompts and workflow history only.
 
 A project repository contains project-specific knowledge and, when the project has code, the code itself.
 
-Do not create central project workspaces under the workflow repository.
-
 ## 3. Canonical project layout
-
-A project repository should converge on:
 
 ```text
 <project-repo>/
@@ -50,126 +40,114 @@ A project repository should converge on:
 └── <project source/code, if applicable>
 ```
 
-Projects may adapt filenames/paths when a real repository requires it, but `PROJECT.md` must state the actual canonical locations and the same knowledge-state separation must remain unambiguous.
+Projects may adapt filenames/paths when real repositories require it, but `PROJECT.md` must state actual canonical locations and knowledge-state separation must remain unambiguous.
 
 ## 4. Knowledge states
 
 - `brainstorming/` — tentative ideas, alternatives, hypotheses and experiments.
-- `decisions/` — decisions actually accepted by the relevant authority.
+- `decisions/` — decisions actually accepted by relevant authority.
 - `research/` — source-grounded findings, audits, comparisons and analysis.
 - `requirements/` — authoritative product/system requirements and constraints.
 - `planning/` — approved plan, architecture and milestones.
 - `implementation/` — live execution state, cards, evidence and blockers.
 - `project-handoffs/` — cumulative milestone handoffs.
-- `openspec/` — behavior/design contracts when OpenSpec is justified.
-
-The categories may reference each other but may not collapse into one ambiguous notes folder.
+- `openspec/` — behavior/design contracts when justified.
 
 ## 5. PROJECT.md
 
-Every project repository has a small, current root `PROJECT.md`.
+Every project has a small current root `PROJECT.md`. It is a router and authority index, not a copy of history.
 
-It is a router and authority index, not a copy of project history.
-
-At minimum it should identify:
+At minimum identify:
 - project name/repository;
-- current phase;
-- current goal;
-- current status;
-- canonical requirements;
-- canonical plan;
-- current milestone;
-- current Task Board;
+- current phase/goal/status;
+- `execution_policy: chatgpt_only | mixed`;
+- canonical requirements and plan;
+- current milestone and Task Board;
 - latest cumulative handoff;
 - active OpenSpec change(s);
 - relevant accepted decisions;
-- open questions;
-- current blockers;
-- workflow repository;
-- workflow ref, default `main`.
+- open questions and blockers;
+- workflow repository/ref.
 
-When a pointer does not yet exist, state `none` rather than inventing an artifact.
+When a pointer does not yet exist, state `none` instead of inventing an artifact.
 
-A fresh agent reads workflow entrypoint → `PROJECT.md` → phase-required context.
+### Execution policy
+
+For a new project, default to `chatgpt_only` unless the user explicitly chooses `mixed`.
+
+`chatgpt_only` means normal ChatGPT chat is the only permitted executor. ChatGPT may execute any work for which the current session has required capabilities/tests/evidence/readback. Missing capability is a blocker; do not route to Codex or mutate policy automatically.
+
+`mixed` means ChatGPT remains project router and may execute itself or route a bounded Task Card to Codex through `workflow/chatgpt/CAPABILITY_GATE.md`.
+
+Changing `chatgpt_only → mixed` requires an explicit user decision. ChatGPT Work is outside this workflow. Missing `execution_policy` in a legacy project must be resolved before new execution; absence is not a third mode.
 
 ## 6. Authority and conflicts
 
-Apply this authority by domain, not as a simplistic single total order:
+Apply authority by domain, not as one simplistic total order:
 
-1. **Workflow behavior:** current `main` of the workflow repository.
-2. **Accepted product/system intent:** canonical requirements plus accepted decision records.
-3. **Approved execution intent:** approved Master Plan/milestone, constrained by requirements and accepted decisions.
-4. **Current execution state:** current Task Board, Task Card, relevant OpenSpec, exact Git branch/HEAD and durable evidence.
-5. **Completed milestone truth:** cumulative handoff plus its referenced exact Git/evidence state.
-6. **Research:** evidence for decisions/requirements, but not a decision by itself.
-7. **Brainstorming:** tentative and non-authoritative until promoted.
+1. workflow behavior: current workflow `main`, except an explicitly frozen in-flight migration boundary documented by `MIGRATION_DUAL_EXECUTOR.md`;
+2. accepted product/system intent: canonical requirements plus accepted decisions;
+3. approved execution intent: Master Plan/milestone constrained by requirements/decisions;
+4. current execution state: Task Board, Task Card, relevant OpenSpec, exact Git/runtime state and durable evidence;
+5. completed milestone truth: cumulative handoff plus its referenced exact state;
+6. research: evidence, not decision;
+7. brainstorming: tentative until promoted.
 
-`PROJECT.md` points to authority; it does not override the authoritative artifact it references.
+`PROJECT.md` points to authority; it does not override referenced artifacts.
 
-If an old brainstorm, chat message or stale plan conflicts with accepted requirements/decisions, the accepted state wins.
-
-If current implementation evidence materially contradicts an approved behavior/architecture/requirement contract, Codex does not silently overwrite strategic authority. It blocks and escalates according to `CHATGPT_CODEX.md`.
+If current implementation/runtime evidence materially contradicts an approved behavior/architecture/requirement contract, the current executor does not silently rewrite strategic authority. It blocks and uses the appropriate strategic-resolution path.
 
 ## 7. Durable state versus local convenience
 
-A local `current.md` or similar checkpoint is optional. It:
-- may remain uncommitted;
-- may help the current session;
-- is not the canonical Task Board;
-- is not a cumulative handoff;
-- may not be the only location of important state;
-- never outranks durable GitHub state.
+A local `current.md` or similar checkpoint is optional. It may help the current session but is not canonical Task Board/handoff, may not be the only location of important state and never outranks durable repository state.
 
-Project recovery must be possible from GitHub, cumulative handoff, Task Board/cards/OpenSpec and exact Git state without `current.md`.
+Recovery must be possible from durable repository state without prior chat.
 
 ## 8. Git and branch policy
 
 GitHub is the durable source of exact commits, PRs, evidence and checkpoints.
 
 Default policy:
-- use coherent commits per Task Card or logical slice;
-- for a large milestone, use an isolated branch/PR when the project normally uses PRs;
-- a card may be `done` after verified acceptance and a durable commit even if several cards share one milestone PR;
-- `result_pr` may therefore be the shared milestone PR;
-- integrated milestone acceptance runs on the intended final branch state;
-- after merge/finalization, reconcile the handoff to the exact final state;
-- create a checkpoint/tag when project policy uses one;
-- the next milestone starts from the green checkpoint.
+- coherent commits per Task Card/logical slice;
+- isolated branch/PR for large milestones when project practice uses PRs;
+- a card may be `done` after verified acceptance and durable commit even if several cards share a milestone PR;
+- integrated milestone acceptance runs on intended final branch state;
+- after merge/finalization, reconcile handoff to exact final state;
+- create checkpoint/tag when project policy uses one;
+- next milestone starts from the green checkpoint.
 
 Never force-push `main` as a normal workflow action.
 
-## 9. In-flight branch state
+### Competing research/prototype paths
 
-The repository is the canonical project home even when execution is happening on an implementation branch.
+When independent alternatives genuinely require experimentation, Path A/Path B branches may start from the same stable checkpoint. Each records isolated findings/prototype evidence. Later comparison produces an accepted A/B/Hybrid decision before production implementation. Do not merge experimental code merely because it exists. This is an optional pattern, not a new lifecycle state.
 
-For an active card, the exact branch/HEAD named by the execution context and durable evidence is authoritative for that in-flight implementation state. Completed milestone truth is reconciled back to the project's canonical `main`/checkpoint according to branch policy.
+## 9. In-flight branch/executor state
 
-Strategic messages must include an exact evidence path and commit so ChatGPT does not guess which branch state to inspect.
+The repository remains canonical even while execution happens on an implementation branch or external runtime.
 
-## 10. Legacy split-repository migration
+For an active card, the exact branch/HEAD/runtime evidence and recorded `executor` are authoritative for in-flight state. Completed milestone truth is reconciled back to canonical project state according to branch policy.
 
-v3 does not migrate existing projects automatically.
+Strategic messages must include exact durable evidence/commit pointers so another session does not guess state.
 
-For a legacy project that currently uses separate project/control/implementation repositories:
-1. do not move an active milestone;
-2. complete it against its frozen current topology;
-3. reach a green checkpoint and write a cumulative handoff with exact final SHA;
-4. perform the topology change only at the green milestone boundary;
-5. start the next milestone in the selected canonical single project repository;
-6. copy only canonical/active artifacts needed to preserve project truth, with provenance;
-7. leave a pointer/migration note in the legacy location when appropriate;
-8. update root `PROJECT.md` and authority pointers.
+## 10. External write state
 
-Do not duplicate active authority across multiple repositories indefinitely.
+Material external mutations follow `workflow/EXECUTION.md`: when meaningful readback exists, `WRITE → READBACK → VERIFY → EVIDENCE`. A successful write response alone is not complete evidence when persisted state can and should be independently re-read.
 
-## 11. Initializing a new empty project repository
+## 11. Legacy topology and workflow migration
+
+Do not move active project topology mid-milestone. Legacy split-repository migration occurs at a green milestone boundary with provenance and updated `PROJECT.md` pointers.
+
+Migration from v3.0.3 Codex-default execution to dual-executor semantics follows root `MIGRATION_DUAL_EXECUTOR.md`. In-flight work may temporarily freeze the workflow revision that started it and adopt the new `execution_policy` at the next clean GREEN boundary.
+
+## 12. Initializing a new project
 
 From an empty shell:
-1. add `PROJECT.md` from `templates/PROJECT.md`;
-2. create the phase-appropriate knowledge directories;
-3. start with `brainstorming/` and/or `research/` rather than creating fake implementation state;
+1. add `PROJECT.md` from template; it defaults to `chatgpt_only` unless the user explicitly selected `mixed`;
+2. create only phase-appropriate knowledge directories;
+3. start with brainstorming/research rather than fake implementation state;
 4. record accepted choices under `decisions/`;
-5. create canonical requirements and planning only when they become meaningful;
-6. create `implementation/` artifacts, Task Cards and OpenSpec just-in-time as the project reaches execution prep.
+5. create canonical requirements/planning only when meaningful;
+6. create implementation artifacts, Task Cards and OpenSpec just-in-time.
 
 Do not populate placeholders merely to satisfy a directory checklist.

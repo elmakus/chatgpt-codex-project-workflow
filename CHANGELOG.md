@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## Unreleased — dual-executor architecture
+
+### Execution routing
+
+- Replaced the hard-coded `ChatGPT plans → Codex executes` model with `ChatGPT manages project → Capability Gate selects ChatGPT or Codex executor`.
+- Added project-level `execution_policy: chatgpt_only | mixed`.
+- Added a lightweight ChatGPT Capability Gate with three outcomes: `EXECUTE IN CHATGPT`, `HANDOFF TO CODEX`, or `BLOCKED`.
+- Explicitly scoped Project Workflow to normal ChatGPT chat + Codex; ChatGPT Work is not used by this workflow.
+- Made the execution core executor-neutral and added thin ChatGPT/Codex execution adapters.
+- Added optional Task Card capability requirements for external, unusual or routing-significant work and executor provenance for active work.
+- Added the shared external-write rule `WRITE → READBACK → VERIFY` when readback materially validates the resulting state.
+- Added independent-review tiers: required for high-risk work, recommended for major architecture/refactors, optional for simple changes.
+- Added an optional competing research-path pattern for A/B/Hybrid evaluation without making it a mandatory lifecycle stage.
+
+### Progressive disclosure
+
+- Codex no longer loads `CHATGPT.md` or ChatGPT-specific execution instructions.
+- ChatGPT loads Codex handoff rules only when actually handing work to/from Codex.
+- Moved the Codex runtime boundary contract under `workflow/codex/`.
+- Removed the monolithic ChatGPT↔Codex responsibility contract whose old role split is no longer valid.
+
+### Migration
+
+- Added a safe transition rule for projects with execution already in progress under v3.0.3: finish/recover bounded in-flight work under its frozen workflow revision and adopt `execution_policy` at the next clean GREEN boundary.
+- Added a reusable short ChatGPT Project Instructions bootstrap.
+
 ## v3.0.3
 
 ### Execution-prep handoff UX

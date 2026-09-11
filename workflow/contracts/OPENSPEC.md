@@ -2,64 +2,55 @@
 
 ## 1. Role
 
-OpenSpec formalizes behavior and technical contracts for changes where freezing those contracts before implementation reduces ambiguity or risk.
+OpenSpec formalizes behavior and technical contracts where freezing them before implementation reduces ambiguity or risk.
 
-OpenSpec does not replace:
-- accepted project requirements;
-- the Master Plan;
-- Task Cards;
-- Task Board;
-- cumulative handoffs.
+OpenSpec does not replace accepted requirements, Master Plan, Task Cards, Task Board or cumulative handoffs.
 
-A Task Card is a global bounded work package. An OpenSpec task is a smaller implementation checkbox within an OpenSpec change.
+A Task Card is a global bounded work package. An OpenSpec task is a smaller implementation checkbox within one change.
 
 ## 2. Selective policy
 
 OpenSpec is **not mandatory for every task**.
 
-It is normally required/justified for:
-- new or changed behavior contracts;
+Normally required/justified for:
+- new/changed behavior contracts;
 - API contracts;
 - persistent schema/state contracts;
-- retry, idempotency or reconciliation semantics;
+- retry/idempotency/reconciliation semantics;
 - migrations;
 - security-sensitive behavior;
 - cross-package architecture;
 - external side-effect semantics;
-- complex changes spanning multiple Task Cards;
+- complex multi-card changes;
 - changes where a technical contract should be frozen before implementation.
 
-It is normally skipped for:
-- a simple bug fix whose intended behavior is already unambiguous;
-- documentation-only changes;
+Normally skip:
+- simple bug fixes with unambiguous intended behavior;
+- documentation-only work;
 - pure research/investigation;
 - runbooks/deployment checklists that do not change behavior;
 - mechanical CI fixes;
-- small mechanical refactors without behavior change;
-- other small unambiguous changes.
+- small mechanical refactors without behavior change.
 
 If uncertain, evaluate contract risk rather than applying OpenSpec mechanically.
 
 ## 3. Candidate versus actual change
 
-During planning, ChatGPT may mark an OpenSpec candidate.
+During planning ChatGPT may mark an OpenSpec candidate. Do not build the complete OpenSpec far in advance merely because a distant card might need one.
 
-Do not build the complete OpenSpec far in advance merely because a distant card might need one.
-
-Codex creates or reconciles the actual OpenSpec **just in time** immediately before implementation.
+The **current executor** creates/reconciles actual OpenSpec just-in-time immediately before implementation when required.
 
 ## 4. JIT reconciliation inputs
 
-Before implementation, reconcile the OpenSpec against:
-- actual current HEAD/source;
+Before implementation reconcile OpenSpec against:
+- actual current HEAD/source/runtime;
 - latest cumulative handoff;
-- current milestone;
-- current Task Card;
-- authoritative requirements and accepted decisions;
+- current milestone and Task Card;
+- authoritative requirements/accepted decisions;
 - relevant Master Plan constraints;
 - completed dependencies.
 
-The actual code is an input to implementation design, not authority to silently rewrite product requirements.
+Actual code/runtime is an input to implementation design, not authority to silently rewrite product requirements.
 
 ## 5. Standard flow
 
@@ -75,24 +66,20 @@ verify
 archive
 ```
 
-The exact OpenSpec tooling/version may evolve; preserve the semantic sequence.
+Exact tooling/version may evolve; preserve semantic sequence.
 
 ## 6. Gate before coding
 
 When OpenSpec is required:
 - proposal/specs/design/tasks must be coherent enough for the card;
-- do not implement against an obviously stale or contradictory spec;
-- reconcile implementation-detail drift within Codex authority;
-- material strategic drift triggers the Refresh Gate blocker path.
+- do not implement against an obviously stale/contradictory spec;
+- implementation-detail drift may be reconciled by the current executor;
+- material strategic drift follows the shared Refresh Gate blocker path.
 
 ## 7. Verification
 
-Card verification includes applicable OpenSpec requirements.
-
-A completed change should leave OpenSpec state consistent with actual implemented behavior and archival policy.
+Card verification includes applicable OpenSpec requirements. A completed change leaves OpenSpec consistent with actual behavior and archival policy.
 
 ## 8. Multi-card changes
 
-One OpenSpec change may span multiple Task Cards when the behavior contract crosses those cards.
-
-Do not collapse all work into one oversized Task Card merely because there is one OpenSpec change.
+One OpenSpec change may span multiple Task Cards. Do not collapse all work into one oversized card merely because there is one OpenSpec change.

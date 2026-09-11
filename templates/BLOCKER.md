@@ -1,52 +1,43 @@
-# Strategic Blocker — <TASK_ID>
+# Execution Blocker — <TASK_ID>
 
 - Date: `<YYYY-MM-DD>`
 - Task: `<TASK_ID>`
 - Milestone: `<MXX>`
+- Executor: `<chatgpt | codex>`
 - Status: `blocked`
-- Evidence commit: `<sha>`
-- Strategic request_id: `<unique id>`
+- Evidence commit: `<sha | pending>`
+- Correlation/request_id: `<if an asynchronous Codex strategic exchange is used | none>`
 
 ## Finding
-
 ...
 
 ## Exact evidence
-
 ...
 
-## Source files / functions / tests
-
+## Missing capability / strategic conflict
 ...
 
 ## Impact on approved contract
 
-Mark all that apply:
 - [ ] behavior
 - [ ] architecture
 - [ ] frozen decision
 - [ ] requirement
 - [ ] external contract
 - [ ] milestone acceptance
+- [ ] required capability/evidence path
 
 ## Smallest safe options
 
 ### Option A
-
 ...
 
 ### Option B
-
-...
-
-## Codex recommendation
-
 ...
 
 ## Current green state / fallback
-
 ...
 
-## Required strategic decision
+## Required resolution
 
-Reply with the same `request_id` and `DECISION FOR CODEX:`.
+State the smallest user/strategic decision, policy change or capability restoration required. If using Codex correlation, preserve the same `request_id` and explicit `DECISION FOR CODEX:` marker.

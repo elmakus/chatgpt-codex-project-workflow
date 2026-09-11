@@ -8,65 +8,52 @@
 - Previous handoff: `<project-handoffs/MYY_HANDOFF.md | none>`
 
 ## Goal and achieved state
-
 ...
 
 ## Implemented behavior
-
 ...
 
 ## Accepted decisions now in force
-
 ...
 
 ## Changed files / packages
-
 ...
 
 ## Schemas / migrations
-
 ...
 
 ## APIs / contracts
-
 ...
 
-## Side effects / idempotency
-
+## Side effects / idempotency / external readback
 ...
 
 ## Tests / acceptance results
+...
 
+## Independent review
 ...
 
 ## Known issues
-
 ...
 
 ## Deferred items
-
 ...
 
 ## Provenance
-
 ...
 
 ## Architecture reopen assessment
-
 ...
 
 ## Requirements satisfied
-
 ...
 
 ## Outstanding requirements
-
 ...
 
 ## Next starting point
-
 ...
 
-## Exact context for the next Codex
-
+## Exact context for the next executor/session
 ...

@@ -1,6 +1,6 @@
 # GitHub State Contract
 
-This is the normative contract for durable execution state in a project repository.
+This is the normative contract for durable execution state in a project repository, independent of whether the active executor is ChatGPT or Codex.
 
 ## 1. Card execution states
 
@@ -47,21 +47,22 @@ It should identify at least:
 - plan revision/reference;
 - current milestone;
 - milestone states and checkpoint fields;
-- card states and dependencies;
+- card states, dependencies and active executor when applicable;
 - result pointers;
 - relevant OpenSpec change;
 - branch/PR information when needed to recover in-flight work;
-- strategic control-chat identity when that mechanism is configured.
+- strategic control-chat identity only when that optional Codex communication mechanism is configured.
 
 ## 4. Starting a card
 
 When execution begins:
 - Task Board card `ready → in_progress`;
 - card file `Execution status: IN_PROGRESS`;
+- record `executor: chatgpt | codex` in card and Task Board;
 - milestone `ready → in_progress` when this is its first real started card;
 - persist a Refresh Gate note/evidence only when the gate discovers something material.
 
-The durable transition should be committed/pushed according to the project branch policy before relying on it for recovery.
+The durable transition should be committed/pushed according to project branch policy before relying on it for recovery.
 
 ## 5. Done-card result pointer contract
 
@@ -69,6 +70,7 @@ Before a card is terminal `done`, both Task Board and card Result section must r
 
 ```yaml
 execution_status: done
+executor: chatgpt | codex
 result_commit: <sha>
 result_pr: <number-or-null>
 evidence: <repo-relative-path>
@@ -78,37 +80,48 @@ The card also records a concise `tests_summary`.
 
 Rules:
 - `result_commit` identifies the commit containing or verifiably representing the accepted result.
-- `result_pr` identifies the PR when applicable. If no PR applies, use `null` and the project branch policy must make the publication path unambiguous.
+- `result_pr` identifies the PR when applicable. If no PR applies, use `null` and project branch policy must make publication path unambiguous.
 - `evidence` points to durable test/review evidence or an unambiguous cumulative evidence section.
-- evidence names the exact tests/review/checks; `"tests passed"` by itself is insufficient.
+- evidence names exact tests/review/checks; `tests passed` alone is insufficient.
+- when material external writes require readback under `workflow/EXECUTION.md`, evidence records the target, readback method and verified resulting state.
 
 ## 6. Definition of Done state coupling
 
 A card can be `done` only after the Task Card Definition of Done has passed. At minimum:
 - scope is complete;
 - acceptance criteria are satisfied;
-- required tests ran;
-- tests are green or a baseline exception was explicitly accepted;
+- required tests/checks ran;
+- tests/checks are green or a baseline exception was explicitly accepted;
 - relevant OpenSpec requirements are satisfied;
 - no hidden blocker remains;
-- result exists in the repository;
+- result exists in durable repository state;
 - Task Board is updated;
 - result pointers/evidence are durable;
-- relevant side effects are reconciled;
-- no unassigned TODO remains inside the card's accepted scope.
+- relevant side effects/readback/idempotency/reconciliation are verified;
+- no unassigned TODO remains inside accepted scope.
 
 ## 7. Blocked card
 
-When a strategic blocker is found:
+When execution is blocked:
 - card `execution_status: blocked`;
-- write durable evidence under `implementation/blockers/`;
+- write durable evidence under `implementation/blockers/` when material;
 - make a safe commit/push before messaging when possible;
-- send a strategic request with a unique `request_id`;
-- after an authoritative matching decision, write its accepted decision record under `decisions/`;
-- reconcile Task Card/OpenSpec/plan/Task Board as required;
-- resume only after the blocker is actually resolved.
+- do not start dependent cards.
 
-Do not start dependent cards while their dependency is blocked.
+Capability routing and runtime capability failure are different stages:
+
+- **Before assignment**, normal ChatGPT may use `workflow/chatgpt/CAPABILITY_GATE.md` to choose ChatGPT, Codex, or BLOCKED according to project `execution_policy`.
+- **After assignment/execution start**, a newly discovered missing capability is a runtime blocker, not an automatic executor-routing event.
+
+For a runtime capability blocker, record the exact missing MCP/access/credential/runtime/tool/test/readback/evidence capability, surface `USER ACTION REQUIRED`, and resume the **same card with the same executor** after the user provides it.
+
+If the assigned executor is Codex, do not re-apply the ChatGPT Capability Gate and do not fall back to ChatGPT. Project routing assumes `ChatGPT capabilities ⊆ Codex capabilities`; therefore a required capability absent from Codex is not available from ChatGPT as an executor fallback.
+
+Under `chatgpt_only`, a ChatGPT runtime capability failure likewise remains blocked until the user provides the missing capability or explicitly changes project policy; policy never changes automatically.
+
+For a strategic/product/architecture blocker, obtain the relevant authority decision and persist an accepted decision record under `decisions/`. When Codex uses a correlated ChatGPT control-chat exchange, follow `workflow/codex/HANDOFF.md` including matching `request_id` and `DECISION FOR CODEX:`.
+
+Resume only after the blocker is actually resolved and Task Card/OpenSpec/plan/Task Board are reconciled as required.
 
 ## 8. Milestone GREEN
 
@@ -138,8 +151,8 @@ acceptance_evidence: implementation/evidence/MXX_ACCEPTANCE.md
 If integrated milestone acceptance is RED:
 - do not mark the milestone done;
 - reopen the appropriate card or create a bounded corrective card;
-- record the failing evidence;
-- preserve dependencies and strategic escalation rules.
+- record failing evidence;
+- preserve dependencies, capability gates and strategic escalation rules.
 
 ## 10. Cumulative handoff and recovery
 
@@ -149,6 +162,7 @@ Fresh-session recovery also uses:
 - exact Git branch/HEAD;
 - Task Board;
 - current milestone/card;
+- recorded executor for in-flight work;
 - relevant OpenSpec;
 - evidence/result pointers.
 
@@ -156,16 +170,16 @@ A local `current.md` is optional convenience only and cannot be required for rec
 
 ## 11. Repository topology changes
 
-Do not change project repository ownership/layout in the middle of an active milestone.
-
-Legacy split-repository migration occurs only at a green milestone boundary and follows `PROJECT_REPOSITORY.md`.
+Do not change project repository ownership/layout in the middle of an active milestone. Legacy split-repository migration occurs only at a green milestone boundary and follows `PROJECT_REPOSITORY.md`.
 
 ## 12. Consistency invariants
 
-The following states are invalid:
-- card `done` with missing required result pointers;
+Invalid states include:
+- card `done` with missing required result pointers or executor provenance;
 - milestone `done` with missing checkpoint, `implementation_head`, handoff or acceptance evidence;
 - all required cards `done` while a green milestone remains `ready`;
 - a dependent card `in_progress` while a required dependency is `blocked`;
 - durable state existing only in chat or local `current.md`;
-- Task Board/card disagreement left unreconciled at a durable checkpoint.
+- Task Board/card disagreement left unreconciled at a durable checkpoint;
+- claimed external success when required readback/verification evidence shows a different persisted state;
+- a Codex runtime capability blocker being rerouted to ChatGPT instead of remaining blocked for user-provided capability.

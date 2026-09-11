@@ -2,6 +2,7 @@
 
 - Decision state: `ACCEPTED | DEFERRED | REJECTED | REVIEW`
 - Execution status: `PLANNED | READY | IN_PROGRESS | BLOCKED | DONE | SUPERSEDED`
+- Executor: `null | chatgpt | codex`
 - Milestone: `MXX`
 - Priority: `HIGH | MEDIUM | LOW`
 - Complexity: `HIGH | MEDIUM | LOW`
@@ -14,6 +15,12 @@
 ## Expected code locations
 
 - `<path>`
+
+## Required capabilities (optional)
+
+List only unusual/external/high-risk/routing-significant capabilities. Delete this section when ordinary capabilities are obvious.
+
+- `<capability>`
 
 ## Canonical sources
 
@@ -34,11 +41,9 @@
 ## Scope
 
 ### Included
-
 ...
 
 ### Excluded
-
 ...
 
 ## Constraints
@@ -49,27 +54,23 @@
 
 ...
 
-## Required tests
+## Required tests / checks
 
 ...
 
+## External write/readback needs
+
+`none` or exact target + expected readback/verification.
+
+## Independent review (only when material)
+
+`REQUIRED | RECOMMENDED` plus rationale. Omit this section for ordinary low-risk cards where review is optional by default.
+
 ## Refresh Gate
 
-Before implementation compare:
-1. actual branch/HEAD/working tree;
-2. latest cumulative handoff;
-3. current milestone and Task Board;
-4. this Task Card;
-5. relevant requirements, accepted decisions and Master Plan sections;
-6. relevant OpenSpec;
-7. completed dependencies;
-8. actual code locations/interfaces.
+Before implementation compare actual branch/HEAD/current state, latest handoff, milestone/Task Board, this card, relevant requirements/decisions/plan/OpenSpec, dependencies, actual interfaces and capability/evidence requirements.
 
-If only implementation detail drifted within accepted contracts, reconcile it. If behavior/architecture/requirement/external-contract/milestone-acceptance drift is material, set `BLOCKED`, persist evidence and use strategic escalation.
-
-## Strategic escalation rule
-
-Do not continue dependent work across a strategic blocker. Follow `workflow/contracts/CHATGPT_CODEX.md`.
+Implementation-detail drift inside accepted contracts may be reconciled. Material strategic drift or inability to satisfy required capability/evidence blocks the card.
 
 ## Result
 
@@ -85,12 +86,12 @@ Fill before `DONE`:
 - [ ] Included scope complete
 - [ ] Acceptance satisfied
 - [ ] Required tests/checks executed
-- [ ] Tests green or authorized baseline exception recorded
-- [ ] Relevant OpenSpec requirements satisfied
+- [ ] Tests green or authorized exception recorded
+- [ ] Relevant OpenSpec satisfied
 - [ ] No hidden blocker
 - [ ] Result durable in Git
 - [ ] Task Board reconciled
-- [ ] Result pointers recorded
-- [ ] Evidence identifies exact checks/review
-- [ ] Side effects/idempotency reconciled where relevant
+- [ ] Executor/result pointers recorded
+- [ ] Evidence identifies exact verification
+- [ ] Material external writes read back/verified where required
 - [ ] No unassigned TODO in accepted scope

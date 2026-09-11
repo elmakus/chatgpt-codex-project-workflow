@@ -8,6 +8,15 @@
 - Current goal: `<short goal>`
 - Current status: `<short status>`
 
+## Execution policy
+
+- execution_policy: `chatgpt_only`
+
+`chatgpt_only` is the safe default for a new project. Change it to `mixed` only after an explicit user decision.
+
+- `chatgpt_only` blocks Codex routing; missing ChatGPT capability is a blocker.
+- `mixed` lets ChatGPT route individual Task Cards to itself or Codex through the Capability Gate.
+
 ## Canonical authority pointers
 
 - Requirements: `requirements/REQUIREMENTS.md | none`
@@ -30,7 +39,7 @@
 
 ## Execution ref
 
-Use this section only when active execution needs an explicit durable branch pointer.
+Use only when active execution needs an explicit durable pointer.
 
 - Branch: `<branch | none>`
 - PR: `<number | none>`
@@ -38,4 +47,4 @@ Use this section only when active execution needs an explicit durable branch poi
 
 ## Context note
 
-This file is a router, not project history. Follow the referenced canonical artifacts and `workflow/CONTEXT_ROUTING.md`. Brainstorming is non-authoritative unless promoted into an accepted decision or requirement.
+This file is a router, not project history. Follow current workflow context routing and referenced canonical artifacts.
