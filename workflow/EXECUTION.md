@@ -29,6 +29,21 @@ When the owner's `codex_workflow` is installed and enabled, its installed instru
 13. After required cards are done, run integrated milestone acceptance.
 14. RED → reopen/create corrective work. GREEN → follow milestone close and handoff.
 
+## User-visible continuation status
+
+A user-visible execution checkpoint must never leave it ambiguous whether Codex is waiting for the user or continuing autonomously.
+
+When Codex sends a user-visible status during execution, end it with exactly one explicit continuation state appropriate to the situation:
+
+- `NEXT ACTION: continuing automatically with <card/action>; no user action required.` when the Task Board and milestone policy permit deterministic continuation;
+- `USER ACTION REQUIRED: <smallest concrete decision, authorization or input>.` only when execution genuinely cannot continue without the user;
+- `SESSION HANDOFF RECOMMENDED: <reason>. NEXT ACTION: start a fresh Codex session from <durable pointer>.` when a fresh context is beneficial for context/recovery reasons rather than a product decision;
+- `MILESTONE COMPLETE: <checkpoint>.` when the milestone has been fully closed and checkpointed.
+
+A routine GREEN Task Card is not, by itself, a reason to stop. If the next READY card is deterministic, continue the standard card loop. If execution intentionally ends at a session boundary despite there being no user decision gate, make clear that no approval is needed and provide the exact durable continuation pointer.
+
+Do not use a neutral status-only ending such as `T01 GREEN; T02 planned` when that can be mistaken for a request to intervene. Do not convert an informational checkpoint into an implicit wait.
+
 ## Refresh Gate
 
 Before implementation compare at minimum:
