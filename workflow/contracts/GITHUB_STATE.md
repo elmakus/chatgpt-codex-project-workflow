@@ -1,171 +1,63 @@
 # GitHub State Contract
 
-This is the normative contract for durable execution state in a project repository.
+This is the normative durable execution-state contract for project repositories.
 
-## 1. Card execution states
+## Card states
 
-Allowed card `execution_status` values:
+`planned | ready | in_progress | blocked | done | superseded`
 
-```text
-planned
-ready
-in_progress
-blocked
-done
-superseded
-```
+Decision state, when useful: `accepted | deferred | rejected | review`.
 
-Decision state is separate and, when used, has:
+## Milestone lifecycle
 
-```text
-accepted
-deferred
-rejected
-review
-```
+`planned → ready → in_progress → done`, with `blocked` or explicit `superseded` where justified.
 
-Do not infer execution completion from decision acceptance.
+## Task Board
 
-## 2. Milestone execution lifecycle
+`implementation/TASK_BOARD.yaml` is the live execution index. It should identify current milestone, card states/dependencies, result pointers, relevant OpenSpec, branch/PR recovery pointers and the active executor where applicable.
 
-Normal milestone lifecycle:
-
-```text
-planned → ready → in_progress → done
-```
-
-`blocked` is allowed for an unresolved milestone gate/blocker. `superseded` requires an explicit decision.
-
-A milestone that passed its green acceptance gate must not remain `ready` or `in_progress`.
-
-## 3. Task Board
-
-`implementation/TASK_BOARD.yaml` is the live index of execution state, not the complete implementation narrative.
-
-It should identify at least:
-- project;
-- plan revision/reference;
-- current milestone;
-- milestone states and checkpoint fields;
-- card states and dependencies;
-- result pointers;
-- relevant OpenSpec change;
-- branch/PR information when needed to recover in-flight work;
-- strategic control-chat identity when that mechanism is configured.
-
-## 4. Starting a card
+## Starting a card
 
 When execution begins:
-- Task Board card `ready → in_progress`;
-- card file `Execution status: IN_PROGRESS`;
-- milestone `ready → in_progress` when this is its first real started card;
-- persist a Refresh Gate note/evidence only when the gate discovers something material.
+- card `ready → in_progress`;
+- card file reflects `IN_PROGRESS`;
+- record `executor: chatgpt | codex`;
+- milestone becomes `in_progress` on first real execution;
+- persist durable transition according to branch policy.
 
-The durable transition should be committed/pushed according to the project branch policy before relying on it for recovery.
+## Done-card result contract
 
-## 5. Done-card result pointer contract
-
-Before a card is terminal `done`, both Task Board and card Result section must record:
+Before `done`, Task Board and card Result record:
 
 ```yaml
 execution_status: done
+executor: chatgpt | codex
 result_commit: <sha>
 result_pr: <number-or-null>
 evidence: <repo-relative-path>
 ```
 
-The card also records a concise `tests_summary`.
+plus a concise tests/checks summary.
 
-Rules:
-- `result_commit` identifies the commit containing or verifiably representing the accepted result.
-- `result_pr` identifies the PR when applicable. If no PR applies, use `null` and the project branch policy must make the publication path unambiguous.
-- `evidence` points to durable test/review evidence or an unambiguous cumulative evidence section.
-- evidence names the exact tests/review/checks; `"tests passed"` by itself is insufficient.
+A card is done only after scope, acceptance, required tests/checks, relevant OpenSpec, evidence, side effects and Task Board/card consistency are verified. For material external writes, evidence includes readback/verification when required by the shared execution contract.
 
-## 6. Definition of Done state coupling
+## Blocked card
 
-A card can be `done` only after the Task Card Definition of Done has passed. At minimum:
-- scope is complete;
-- acceptance criteria are satisfied;
-- required tests ran;
-- tests are green or a baseline exception was explicitly accepted;
-- relevant OpenSpec requirements are satisfied;
-- no hidden blocker remains;
-- result exists in the repository;
-- Task Board is updated;
-- result pointers/evidence are durable;
-- relevant side effects are reconciled;
-- no unassigned TODO remains inside the card's accepted scope.
+When execution cannot meet capability, strategic or evidence requirements:
+- set card `blocked`;
+- persist exact evidence/reason;
+- do not start dependent cards;
+- apply project policy before any executor reassignment;
+- persist accepted strategic decisions in `decisions/` before resuming.
 
-## 7. Blocked card
+## Milestone GREEN
 
-When a strategic blocker is found:
-- card `execution_status: blocked`;
-- write durable evidence under `implementation/blockers/`;
-- make a safe commit/push before messaging when possible;
-- send a strategic request with a unique `request_id`;
-- after an authoritative matching decision, write its accepted decision record under `decisions/`;
-- reconcile Task Card/OpenSpec/plan/Task Board as required;
-- resume only after the blocker is actually resolved.
+After integrated GREEN acceptance:
+1. finalize branch/PR as applicable;
+2. reconcile cumulative handoff;
+3. persist acceptance evidence;
+4. record exact `implementation_head` and checkpoint;
+5. set milestone `done`;
+6. ensure required cards are done with complete result pointers.
 
-Do not start dependent cards while their dependency is blocked.
-
-## 8. Milestone GREEN
-
-A milestone is not done merely because all cards are done.
-
-After integrated acceptance is GREEN:
-1. finalize implementation branch/PR according to project policy;
-2. write/reconcile `project-handoffs/MXX_HANDOFF.md`;
-3. write acceptance evidence under `implementation/evidence/`;
-4. record exact final `implementation_head`;
-5. record checkpoint/tag according to project policy;
-6. set milestone `execution_status: done`;
-7. ensure every required card is `done` and has result pointers.
-
-A done milestone stores at minimum:
-
-```yaml
-execution_status: done
-checkpoint: <checkpoint-or-tag>
-implementation_head: <sha>
-handoff: project-handoffs/MXX_HANDOFF.md
-acceptance_evidence: implementation/evidence/MXX_ACCEPTANCE.md
-```
-
-## 9. Corrective work
-
-If integrated milestone acceptance is RED:
-- do not mark the milestone done;
-- reopen the appropriate card or create a bounded corrective card;
-- record the failing evidence;
-- preserve dependencies and strategic escalation rules.
-
-## 10. Cumulative handoff and recovery
-
-`project-handoffs/MXX_HANDOFF.md` is the canonical cumulative handoff for the completed milestone.
-
-Fresh-session recovery also uses:
-- exact Git branch/HEAD;
-- Task Board;
-- current milestone/card;
-- relevant OpenSpec;
-- evidence/result pointers.
-
-A local `current.md` is optional convenience only and cannot be required for recovery.
-
-## 11. Repository topology changes
-
-Do not change project repository ownership/layout in the middle of an active milestone.
-
-Legacy split-repository migration occurs only at a green milestone boundary and follows `PROJECT_REPOSITORY.md`.
-
-## 12. Consistency invariants
-
-The following states are invalid:
-- card `done` with missing required result pointers;
-- milestone `done` with missing checkpoint, `implementation_head`, handoff or acceptance evidence;
-- all required cards `done` while a green milestone remains `ready`;
-- a dependent card `in_progress` while a required dependency is `blocked`;
-- durable state existing only in chat or local `current.md`;
-- Task Board/card disagreement left unreconciled at a durable checkpoint.
+Invalid states include done cards without required pointers, done milestones without checkpoint/head/handoff/evidence, dependent work running across blocked dependencies, or important execution truth existing only in chat.

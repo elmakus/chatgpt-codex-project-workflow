@@ -2,10 +2,6 @@ project: "<project>"
 plan_revision: "<R#>"
 current_milestone: "M01"
 
-chatgpt_control_chat:
-  name: "<configured chat or null>"
-  purpose: "strategic decisions only"
-
 execution_ref:
   branch: null
   pr: null
@@ -26,6 +22,7 @@ cards:
     milestone: M01
     decision_state: accepted
     execution_status: planned
+    executor: null
     priority: high
     complexity: medium
     phase: implementation

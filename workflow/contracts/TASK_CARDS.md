@@ -1,130 +1,55 @@
 # Task Card Contract
 
-## 1. Meaning
+## Meaning
 
-A Task Card is a bounded global work package for one project.
+A Task Card is a bounded project work package, distinct from smaller OpenSpec implementation tasks.
 
-It is not an OpenSpec `tasks.md` checkbox. OpenSpec tasks are smaller implementation steps inside a behavior/design change.
+## Core fields
 
-## 2. Required fields
+Each card defines id/title/milestone, execution status, priority/complexity/phase, expected code locations, dependencies, outcome, included/excluded scope, constraints, acceptance, required tests/checks, relevant authority references, OpenSpec candidate/ref, Refresh Gate, blocker rule, Result and Definition of Done.
 
-Each Task Card should define:
+### Executor provenance
 
-- `id`;
-- `title`;
-- `milestone`;
-- optional `decision_state`;
-- `execution_status`;
-- `priority`;
-- `complexity`;
-- `phase`;
-- expected/relevant `code_locations`;
-- `depends_on`;
-- outcome;
-- included scope;
-- excluded scope;
-- constraints;
-- acceptance criteria;
-- required tests;
-- relevant Master Plan/requirement/decision references;
-- OpenSpec candidate/ref;
-- Refresh Gate;
-- strategic escalation rule;
-- Result section;
-- Definition of Done.
+Use:
 
-Use `templates/TASK_CARD.md`.
-
-## 3. Status model
-
-Card execution state is one of:
-
-`planned | ready | in_progress | blocked | done | superseded`
-
-Decision state, when useful, is independently:
-
-`accepted | deferred | rejected | review`
-
-A decision can be accepted while implementation remains planned.
-
-## 4. Readiness
-
-A card becomes `ready` only when:
-- dependencies needed to start are done;
-- required authoritative inputs exist;
-- acceptance is testable enough to execute;
-- there is no known unresolved strategic blocker.
-
-Do not ask the user which card comes next when the Task Board provides one unambiguous READY card.
-
-## 5. Refresh Gate
-
-Every card is reconciled immediately before implementation against actual current state.
-
-At minimum compare:
-- repo branch/HEAD/working tree;
-- latest cumulative handoff;
-- current milestone;
-- current card;
-- relevant requirements/accepted decisions/Master Plan sections;
-- relevant OpenSpec;
-- completed dependencies;
-- actual code locations/interfaces.
-
-Implementation-detail drift within approved contracts may be reconciled by Codex.
-
-Material behavior/architecture/requirement/external-contract/milestone-acceptance drift blocks the card and requires strategic escalation.
-
-## 6. Definition of Done
-
-A card is `done` only when all applicable items hold:
-
-1. included scope is complete and excluded scope was not silently expanded;
-2. acceptance criteria are satisfied;
-3. all required tests/checks ran;
-4. tests/checks are green or an explicitly authorized baseline exception exists;
-5. relevant OpenSpec requirements are satisfied;
-6. no hidden blocker remains;
-7. the accepted result exists in durable Git state;
-8. Task Board and Task Card states are reconciled;
-9. `result_commit` is recorded;
-10. `result_pr` is recorded when applicable, otherwise explicitly `null`;
-11. durable evidence is recorded and identifies exact checks;
-12. relevant external side effects/idempotency/reconciliation have been verified;
-13. no unassigned TODO remains inside accepted scope.
-
-`done` is a verified state, not an agent assertion.
-
-## 7. Result section
-
-At close, persist:
-
-```text
-result_commit:
-result_pr:
-evidence:
-tests_summary:
+```yaml
+executor: null | chatgpt | codex
 ```
 
-The same essential pointers must appear in the Task Board.
+Leave `null` while merely planned/ready unless an approved plan intentionally preassigns Codex. Set the actual executor when work starts. This supports recovery/provenance; it is not an executor score.
 
-## 8. Dependency handling
+### Optional required capabilities
 
-Completion of a card may unblock dependent cards.
+Use `required_capabilities` only when explicit capabilities materially improve routing/safety, especially external, unusual, high-risk or environment-specific tasks:
 
-A generic DAG engine is unnecessary. Explicit `depends_on` relationships plus Task Board state are sufficient unless the project has a concrete reason for more machinery.
+```yaml
+required_capabilities:
+  - liftosaur_write
+  - liftosaur_readback
+```
 
-## 9. Near-term versus distant cards
+Do not require capability declarations for every banal repository operation. Ordinary capabilities may be inferred from scope, tests, acceptance and evidence.
 
-Near-term cards may contain detailed implementation expectations.
+## Readiness
 
-Distant cards should remain functionally precise but avoid freezing interfaces that do not yet exist. Refresh Gate is mandatory before execution and may update implementation details without changing accepted behavior.
+A card is `ready` only when dependencies and authoritative inputs allow start, acceptance is executable and no known strategic/capability blocker prevents the required execution path.
 
-## 10. Scope discipline
+## Refresh Gate
 
-Codex implements only the current card's bounded scope unless:
-- a necessary adjacent change is clearly within the same acceptance contract and is documented; or
-- a new bounded corrective/dependency card is created; or
-- strategic authority explicitly changes the plan.
+Before implementation compare branch/HEAD/current state, latest handoff, milestone/card, relevant requirements/decisions/plan/OpenSpec, dependencies, real interfaces and capability/test/evidence requirements.
 
-Do not hide unrelated cleanup or architecture changes inside a card.
+Implementation-detail drift inside approved contracts may be reconciled by the current executor. Material strategic drift blocks execution.
+
+## Definition of Done
+
+A card is `done` only when included scope is complete, acceptance satisfied, required tests/checks executed, OpenSpec satisfied where applicable, no hidden blocker remains, result is durable, Task Board/card/result pointers agree, evidence identifies exact verification, material external side effects are reconciled/read back when required, and no unassigned TODO remains inside accepted scope.
+
+## Dependencies and sizing
+
+Explicit `depends_on` plus Task Board state are sufficient; do not build a generic DAG engine without a concrete need.
+
+Near-term cards may be detailed. Distant cards stay functionally precise without freezing nonexistent interfaces and must run the Refresh Gate before execution.
+
+## Scope discipline
+
+The selected executor implements only bounded card scope unless a necessary adjacent change is clearly within the same acceptance contract, a new bounded card is created, or strategic authority explicitly changes the plan.

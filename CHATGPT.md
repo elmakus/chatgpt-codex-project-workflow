@@ -1,39 +1,44 @@
-# ChatGPT Workflow Router
+# ChatGPT Project Workflow Router
 
-This repository is the canonical **project-workflow** authority for ChatGPT ↔ Codex project work.
+This repository is the canonical project-workflow authority for projects managed through normal ChatGPT chat, optionally using Codex as a specialized executor.
+
+ChatGPT Work is outside this workflow. Do not route project work through ChatGPT Work or make it a prerequisite.
 
 ## Authority
 
-- The current `main` branch of `elmakus/chatgpt-codex-project-workflow` is the source of truth for project lifecycle/process rules defined by this repository.
-- If conversation memory, an old prompt, a ZIP snapshot, or prior Project Workflow text conflicts with current `main`, current `main` wins within the Project Workflow domain.
-- This repository contains workflow rules only. Project knowledge belongs in the project's own repository.
-- One project uses one repository from the first brainstorming session onward unless the user explicitly approves a technically justified exception.
-- When the owner's `codex_workflow` is installed and enabled in Codex, its installed instructions are the authority for **internal Codex runtime orchestration**. Its source/update channel is `elmakus/codex_workflow`.
-- Project Workflow does not duplicate or override `codex_workflow` runtime mechanics. Apply authority by domain: project lifecycle/state/evidence here; internal Codex worker/runtime mechanics there.
-- Accepted project requirements and strategic decisions remain authoritative for product/system intent regardless of either workflow's runtime mechanics.
+- Current `main` of `elmakus/chatgpt-codex-project-workflow` is authoritative for workflow behavior.
+- Project knowledge belongs in the project repository, not this workflow repository.
+- Accepted durable project state outranks stale chat memory.
+- One project uses one repository unless the user explicitly approves a technically justified exception.
+- `elmakus/codex_workflow`, when installed/enabled in Codex, governs only internal Codex runtime orchestration.
 
 ## Start here
 
-For any project:
+1. Read project root `PROJECT.md` when it exists.
+2. Read `workflow/CONTEXT_ROUTING.md`.
+3. Load only the shared phase module and project artifacts required for the current task.
+4. Respect `execution_policy` in `PROJECT.md`.
+5. Persist accepted project knowledge and execution truth in the project repository.
 
-1. Determine the current phase.
-2. If a project repository exists, read its root `PROJECT.md`.
-3. Read `workflow/CONTEXT_ROUTING.md`.
-4. Load only the workflow modules and project artifacts required for the current phase.
-5. Follow the authority order declared by `PROJECT.md` and `workflow/contracts/PROJECT_REPOSITORY.md`.
-6. Persist accepted project knowledge in the project repository instead of relying on chat memory.
+Do not load execution contracts during ordinary brainstorming/research unless the current task requires them.
 
-Do not load execution contracts during ordinary brainstorming unless the current question requires them.
+Do not load detailed Codex-specific instructions during ordinary ChatGPT work. When preparing or interpreting a Codex handoff, load only `workflow/codex/HANDOFF.md` unless more Codex context is genuinely required.
 
-Do not load the remote `elmakus/codex_workflow` repository merely to plan a project. Codex runtime instructions are consumed through the installed/enabled workflow according to its own loading rules.
+## Execution policy
 
-## Knowledge-state rule
+### `chatgpt_only`
 
-`brainstorming/` is tentative. It is not a decision record.
+ChatGPT may brainstorm, research, plan, modify repositories, implement, test, use connected plugins/services, deploy, verify, review and close milestones when the **current ChatGPT chat session** has all required capabilities and can obtain the required evidence.
 
-Accepted decisions belong in `decisions/`; authoritative product requirements belong in `requirements/`; approved plans belong in `planning/`; execution state belongs in `implementation/`; milestone truth is summarized cumulatively in `project-handoffs/`.
+If a required capability is unavailable, report the exact blocker. Do not hand the task to Codex and do not change policy automatically.
 
-Never treat an old brainstorm option as current policy merely because it exists in the repository.
+### `mixed`
+
+ChatGPT remains project router. Before executing a Task Card, apply `workflow/chatgpt/CAPABILITY_GATE.md`.
+
+Execute in ChatGPT when the current session can correctly perform the task, run the required tests/checks and obtain the required evidence/readback.
+
+Hand off to Codex only when policy permits and Codex has a required capability/environment, a material repo/runtime advantage, or the approved card/plan explicitly assigns the task to Codex.
 
 ## Phase routes
 
@@ -41,8 +46,7 @@ Never treat an old brainstorm option as current policy merely because it exists 
 - Research → `workflow/RESEARCH.md`
 - Planning → `workflow/PLANNING.md`
 - Execution preparation → `workflow/EXECUTION_PREP.md`
-- Execution / recovery / blocker handling → `workflow/EXECUTION.md`
-- Milestone review / close / handoff → `workflow/REVIEW_AND_HANDOFF.md`
-- Context selection rules → `workflow/CONTEXT_ROUTING.md`
-
-Load contracts referenced by the selected phase only when needed.
+- Shared execution/recovery → `workflow/EXECUTION.md`
+- ChatGPT execution adapter → `workflow/chatgpt/EXECUTION.md`
+- Milestone review/close/handoff → `workflow/REVIEW_AND_HANDOFF.md`
+- Context rules → `workflow/CONTEXT_ROUTING.md`

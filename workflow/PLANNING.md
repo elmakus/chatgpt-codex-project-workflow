@@ -2,77 +2,49 @@
 
 ## Responsibility
 
-ChatGPT is the strategic planner for problem definition, verified baseline, requirements, architecture, global invariants, milestones and requirement coverage. Codex owns implementation details that must be reconciled against actual current code.
+ChatGPT is the project planning/router layer for problem definition, verified baseline, requirements, architecture, global invariants, milestones and requirement coverage.
 
-Do not freeze detailed code-dependent design far in advance of the code it depends on.
+Do not freeze detailed code-dependent design far in advance of the source/runtime state it depends on. The eventual executor reconciles implementation details through the Refresh Gate.
 
 ## Inputs
 
-Use:
-- project `PROJECT.md`;
-- canonical requirements;
-- relevant verified research;
-- accepted decisions;
-- current project/source baseline where needed.
+Use project `PROJECT.md`, canonical requirements, relevant verified research, accepted decisions and current source/runtime baseline where needed.
 
 ## Master Plan
 
-The approved Master Plan lives under `planning/`, normally `planning/MASTER_PLAN.md`, and should cover as applicable:
+The approved Master Plan lives under `planning/` and covers as applicable:
 
 - problem and goal;
 - current state / verified baseline;
 - target state;
 - authoritative requirements;
 - frozen architecture decisions;
-- non-goals;
-- global invariants;
+- non-goals and invariants;
 - external constraints;
 - known source seams;
-- milestones and checkpoint/acceptance for each;
+- milestones and acceptance;
 - requirement coverage;
 - dependencies;
 - deployment/migration strategy;
-- system verification strategy;
-- idempotency/data-integrity constraints;
+- system verification;
+- idempotency/data integrity/security;
 - fresh-context boundaries;
-- Task Decomposition Policy references;
-- OpenSpec Policy references;
-- Handoff Policy references;
-- Strategic Communication Policy references.
+- Task Card/OpenSpec/handoff references.
 
 The Master Plan is not the live task tracker. Live execution state belongs in `implementation/TASK_BOARD.yaml`.
 
-## Milestones
+## Milestones and competing paths
 
-A milestone is a stable, integrated, testable checkpoint, not a single small task.
+A milestone is a stable, integrated, testable checkpoint, not a tiny task.
 
-Planning should define milestone outcomes and acceptance without pretending that distant implementation interfaces are already known.
+When independent alternatives genuinely need experimentation, planning may use separate research/prototype branches (Path A, Path B, etc.) from the same stable checkpoint. Each path records its own findings/evidence. Later comparison produces an accepted A/B/Hybrid decision before production implementation. This is an optional pattern, not a mandatory lifecycle stage and not a new execution status.
 
 ## Requirement coverage
 
-Every authoritative requirement must have:
-- an owner milestone;
-- at least one implementation Task Card before execution of that requirement;
-- a relevant OpenSpec change when the requirement establishes a behavior/API/schema/state/security/cross-package contract covered by the OpenSpec policy.
+Every authoritative requirement must have an owner milestone and at least one implementation Task Card before execution. Use OpenSpec only when its contract-risk policy justifies it.
 
-## Pre-implementation planning audit
+## Pre-implementation review
 
-Before execution preparation, perform an independent plan review when practical; whether performed by a separate reviewer/subagent or by a fresh review pass, audit:
-- false assumptions;
-- P0/P1 risks;
-- milestone boundaries;
-- task sizing;
-- dependency correctness;
-- missing acceptance/tests;
-- requirement coverage;
-- idempotency/data integrity;
-- security;
-- migration;
-- OpenSpec boundaries;
-- overengineering.
+Before execution preparation, independently audit false assumptions, risks, milestone boundaries, dependencies, tests/acceptance, requirement coverage, data integrity, security, migration and overengineering when practical.
 
 Resolve or explicitly defer material gaps.
-
-## Distant work
-
-Near-term Task Cards may be detailed. Distant work should be functionally specific but must not freeze nonexistent interfaces. Every card whose details can drift before execution requires the Refresh Gate.

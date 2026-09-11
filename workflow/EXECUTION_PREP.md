@@ -1,77 +1,67 @@
 # Execution Preparation
 
-Execution preparation converts an approved plan into a bounded execution package without prematurely freezing code-dependent detail.
+Execution preparation converts an approved plan into a bounded, executable package without prematurely freezing code-dependent detail.
 
 ## Preconditions
 
-Before creating executable cards:
+Before executable cards exist:
 - authoritative requirements are identifiable;
 - accepted architecture decisions are recorded;
 - current Master Plan/milestone is approved;
-- unresolved product questions that would invalidate implementation are either resolved or explicitly blocking.
+- unresolved product questions that would invalidate implementation are resolved or explicitly blocking;
+- project `execution_policy` is set to `chatgpt_only` or `mixed`.
 
 ## Steps
 
-1. Inspect the current project repository and relevant source state.
-2. Define or refresh the milestone file.
-3. Decompose work into bounded Task Cards under `implementation/cards/`.
+1. Inspect current project/source state.
+2. Define or refresh the milestone and branch policy.
+3. Decompose work into bounded Task Cards.
 4. Record dependencies, priority, complexity, phase and expected code locations.
-5. Define acceptance criteria and required tests for every card.
-6. Mark OpenSpec candidates according to `workflow/contracts/OPENSPEC.md`; do not create distant specs merely "for later".
-7. Initialize/update `implementation/TASK_BOARD.yaml`.
-8. Confirm requirement coverage.
-9. Audit sizing, dependencies, side effects, idempotency, security and migration concerns.
-10. Set a card to `ready` only when its dependencies and prerequisites allow execution.
+5. Define acceptance and required tests/checks.
+6. Identify external side effects and any required readback/verification.
+7. Add explicit `required_capabilities` only for unusual, external, high-risk or routing-significant cards; infer ordinary repo capabilities.
+8. Classify independent review as REQUIRED, RECOMMENDED or OPTIONAL where material.
+9. Mark OpenSpec candidates just-in-time according to `workflow/contracts/OPENSPEC.md`.
+10. Initialize/update `implementation/TASK_BOARD.yaml` and confirm requirement coverage.
+11. Audit sizing, dependencies, side effects, idempotency, security and migration.
+12. Set a card `ready` only when dependencies/prerequisites allow execution.
+13. For the next executable card, run `workflow/chatgpt/CAPABILITY_GATE.md`.
 
-## Card versus OpenSpec task
+## Execution result
 
-A Task Card is a bounded global work package. An OpenSpec `tasks.md` item is a smaller implementation checkbox inside one OpenSpec change. They are not interchangeable.
+Execution prep does **not** always end with a Codex prompt.
 
-## Git preparation
+It ends with exactly one routing outcome for the next executable Task Card:
 
-Follow `workflow/contracts/PROJECT_REPOSITORY.md#git-and-branch-policy` and `workflow/contracts/GITHUB_STATE.md`.
+### `EXECUTOR: CHATGPT`
 
-Large milestone implementation should use an isolated branch/PR when the project normally uses PRs. Do not change repository ownership/topology during an active milestone.
+Use when the current ChatGPT session has the required capabilities, can run the required tests/checks and can obtain required evidence/readback.
 
-## Handoff input
+ChatGPT may continue in the current chat or recommend a fresh ChatGPT chat for context hygiene. No Codex prompt is generated.
 
-Execution prep must consult the latest cumulative handoff when one exists. It describes what actually became true at the last green milestone and is a primary input to the next execution package.
+### `EXECUTOR: CODEX`
 
-## Required completion handoff to the user
+Allowed only when `execution_policy: mixed` and Codex has a concrete required capability/environment, a material repo/runtime advantage, or an approved explicit assignment.
 
-Execution preparation is not complete until ChatGPT also tells the user exactly how to start execution. After the durable prep artifacts are written, the final user-visible response must contain all of the following:
+Generate a short Codex kickoff according to `workflow/codex/HANDOFF.md`. Rely on durable project state rather than restating the whole project.
 
-1. `EXECUTION PREP COMPLETE:` with the prepared milestone, required prior checkpoint and the durable start/kickoff pointer.
-2. `CODEX SESSION RECOMMENDATION:` with exactly one of:
-   - `FRESH` — start a new Codex session;
-   - `CONTINUE EXISTING` — send the prompt to the currently active Codex session.
-3. A short reason for that session recommendation.
-4. `CODEX START PROMPT:` followed by a copy-paste-ready prompt that is sufficient to start the prepared milestone from durable repository state.
-5. `USER ACTION:` stating the smallest concrete next step, for example `Start a fresh Codex session with the prompt above.` or `Send the prompt above to the current Codex session.`
+### `EXECUTOR: BLOCKED`
 
-Do not make the user infer whether a fresh Codex session is preferable, whether the old session should be reused, or what text should be sent to Codex.
+Use when the required capability/evidence path is unavailable under current policy. Under `chatgpt_only`, missing ChatGPT capability blocks execution; do not silently route to Codex or change policy.
 
-### Session recommendation rule
+## Required user-visible completion
 
-Recommend `FRESH` by default when execution prep starts a new milestone after a completed green checkpoint, especially when the prior Codex session completed the previous milestone. The cumulative handoff and repository state are designed to make that boundary self-contained, and carrying the previous milestone's execution context usually adds stale/noisy context without adding authority.
+A completed prep reports:
 
-Recommend `CONTINUE EXISTING` when the prep is for the same still-active milestone and the current Codex session already holds useful, current execution context that materially helps the next step without creating stale-context risk.
+```text
+EXECUTION PREP COMPLETE:
+Milestone: <MXX>
+Task Card: <MXX-TYY>
+Required prior checkpoint: <sha/tag>
+Durable start pointer: <path>
+Execution policy: <chatgpt_only|mixed>
+Required capabilities: <explicit or inferred summary>
+EXECUTOR: <CHATGPT|CODEX|BLOCKED>
+```
 
-Also recommend `FRESH` when a prior session accumulated a major strategic blocker, long investigation, material course correction or other context that is no longer needed after durable reconciliation. If uncertain at a clean milestone boundary, prefer `FRESH`.
-
-A session recommendation is context-hygiene guidance, not a product decision or authorization gate. Never present `FRESH` as mandatory unless an accepted project/milestone contract explicitly requires a fresh context.
-
-### Start-prompt rule
-
-The generated `CODEX START PROMPT` should be short and rely on durable repository artifacts instead of restating the whole plan. It should identify at minimum:
-- current workflow authority: `elmakus/chatgpt-codex-project-workflow:main`;
-- project repository;
-- prepared milestone;
-- required prior checkpoint;
-- the repo-relative start router and/or Codex kickoff prepared for that milestone when present;
-- instruction to recover Task Board/card state, run the Refresh Gate and execute cards according to dependencies;
-- instruction to continue automatically between deterministic READY cards;
-- instruction to stop only for a genuine strategic blocker, explicit user-authorization gate, recommended session handoff, or final milestone checkpoint;
-- instruction not to begin the next milestone silently.
-
-If the project already contains a milestone-specific kickoff file, point Codex to it rather than duplicating its detailed contents in chat.
+If `CODEX`, include the smallest copy-paste kickoff and session recommendation. If `CHATGPT`, state whether the current chat can continue or a fresh ChatGPT chat is recommended only for context hygiene. If `BLOCKED`, state the exact missing capability/authorization/evidence path.

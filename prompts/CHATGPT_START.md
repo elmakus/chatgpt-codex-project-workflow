@@ -1,8 +1,6 @@
 # ChatGPT start prompt
 
-Use this for normal ChatGPT. It deliberately stays short because the workflow repository and project `PROJECT.md` perform context routing.
-
-No installable ChatGPT skill, Custom GPT, `@Project Workflow`, or ChatGPT Work mode is required by this workflow.
+Use this in normal ChatGPT chat. ChatGPT Work is not part of Project Workflow.
 
 ## Existing project
 
@@ -12,24 +10,19 @@ Repo projektu: <owner/repo>.
 Kontynuujemy <phase albo krótki cel>.
 ```
 
-On receipt, ChatGPT should:
-1. read current `main` of the workflow repository starting with `CHATGPT.md`;
-2. read the project root `PROJECT.md`;
-3. determine/confirm the current phase from project state and the user's instruction;
-4. load only phase-required workflow modules and project artifacts;
-5. treat accepted repository knowledge as durable authority over stale chat memory;
-6. persist newly accepted project knowledge back to the project repository when repository-writing capability and authority are available; do not leave accepted state only in chat. If the current environment is read-only, explicitly identify what durable artifact must be updated.
+ChatGPT should:
+1. read current workflow `main`, starting with `CHATGPT.md`;
+2. read project root `PROJECT.md`;
+3. determine/confirm phase and `execution_policy`;
+4. apply progressive disclosure;
+5. treat accepted durable repository knowledge as authority over stale chat memory;
+6. persist accepted state when current GitHub/project capabilities allow it;
+7. before execution, apply the Capability Gate rather than assuming Codex must execute.
 
-If the user's stated phase intentionally changes the project phase, reconcile `PROJECT.md` rather than silently treating stale phase metadata as superior to the user's current instruction.
+If `chatgpt_only` and a required capability is missing, report the blocker rather than routing to Codex.
 
-## Completely new project
+If `mixed`, hand work to Codex only under the Capability Gate and use `workflow/codex/HANDOFF.md` for the minimal kickoff.
 
-Create an empty repository for the project first, then use:
+## New project
 
-```text
-Użyj mojego Project Workflow z elmakus/chatgpt-codex-project-workflow.
-Nowy projekt. Repo projektu: <owner/repo>.
-Zacznij od brainstormingu i zainicjalizuj PROJECT.md według workflow.
-```
-
-Initialization uses `templates/PROJECT.md` plus only phase-appropriate project templates. Do not create Task Cards or OpenSpec merely because the repository is new.
+Create/choose the project repository, initialize `PROJECT.md` with `execution_policy`, then create only phase-appropriate artifacts. Do not create Task Cards/OpenSpec merely because the repo is new.
