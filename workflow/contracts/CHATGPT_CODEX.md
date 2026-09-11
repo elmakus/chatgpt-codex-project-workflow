@@ -179,3 +179,11 @@ Do not require the user to:
 - rewrite an accepted ChatGPT decision into Codex state.
 
 When a genuine product decision is necessary, present the smallest useful decision surface.
+
+Every user-visible Codex execution status must also make the continuation state explicit:
+- if execution can continue deterministically, state that Codex is continuing automatically and that no user action is required;
+- if execution is blocked on the user, use an explicit `USER ACTION REQUIRED:` line with the smallest concrete decision, authorization or input;
+- if a fresh Codex context is merely recommended, label it `SESSION HANDOFF RECOMMENDED:` and distinguish that recommendation from an authorization/product-decision gate;
+- if the milestone is fully closed, state `MILESTONE COMPLETE:` with the checkpoint.
+
+A Task Card completion report must not look like an implicit request to intervene. Informational progress messages do not suspend the standard card loop when the next READY card is deterministic.
