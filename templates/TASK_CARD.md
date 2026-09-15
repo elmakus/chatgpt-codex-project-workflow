@@ -16,6 +16,18 @@
 
 - `<path>`
 
+## Parallel execution (optional)
+
+Delete this section for ordinary serial-only cards. `parallel_safe: true` is valid only when mutable ownership and external resources are bounded enough to run beside another compatible READY card.
+
+- parallel_safe: `true | false`
+- write_scope:
+  - `<repo-relative path/glob; empty only for genuinely read-only work>`
+- exclusive_resources:
+  - `<shared mutable fixture/service/external target | none>`
+
+Project-global Task Board/milestone integration state remains coordinator-owned and must not be placed in a lane worker's write scope.
+
 ## Required capabilities (optional)
 
 List only unusual/external/high-risk/routing-significant capabilities. Delete this section when ordinary capabilities are obvious.
@@ -60,7 +72,7 @@ List only unusual/external/high-risk/routing-significant capabilities. Delete th
 
 ## External write/readback needs
 
-`none` or exact target + expected readback/verification.
+`none` or exact target + expected readback/verification. If a mutable external target must be serialized across parallel cards, also list it under `exclusive_resources`.
 
 ## Independent review (only when material)
 
@@ -68,9 +80,9 @@ List only unusual/external/high-risk/routing-significant capabilities. Delete th
 
 ## Refresh Gate
 
-Before implementation compare actual branch/HEAD/current state, latest handoff, milestone/Task Board, this card, relevant requirements/decisions/plan/OpenSpec, dependencies, actual interfaces and capability/evidence requirements.
+Before implementation compare actual integration branch/HEAD/current state, exact lane base/workspace when parallel, latest handoff, milestone/Task Board, this card, relevant requirements/decisions/plan/OpenSpec, dependencies, actual interfaces, capability/evidence requirements and recorded parallel-ownership assumptions.
 
-Implementation-detail drift inside accepted contracts may be reconciled. Material strategic drift or inability to satisfy required capability/evidence blocks the card.
+Implementation-detail drift inside accepted contracts may be reconciled. Material strategic drift, unexpected mutable ownership overlap or inability to satisfy required capability/evidence blocks the affected card/lane.
 
 ## Result
 
@@ -81,6 +93,8 @@ Fill before `DONE`:
 - evidence:
 - tests_summary:
 
+For parallel execution, evidence also records the lane base/branch or equivalent isolated workspace and post-integration verification target.
+
 ## Definition of Done
 
 - [ ] Included scope complete
@@ -90,6 +104,7 @@ Fill before `DONE`:
 - [ ] Relevant OpenSpec satisfied
 - [ ] No hidden blocker
 - [ ] Result durable in Git
+- [ ] Parallel lane integrated and post-integration verification green when applicable
 - [ ] Task Board reconciled
 - [ ] Executor/result pointers recorded
 - [ ] Evidence identifies exact verification
