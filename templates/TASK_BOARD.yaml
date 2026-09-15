@@ -2,6 +2,10 @@ project: "<project>"
 plan_revision: "<R#>"
 current_milestone: "M01"
 
+# Default is serial. Use bounded_parallel only when cards have explicit safe ownership.
+execution_mode: serial # serial | bounded_parallel
+parallel_card_limit: 1
+
 # Optional. Use only when Codex strategic requests are configured to reach a ChatGPT control chat.
 chatgpt_control_chat:
   name: null
@@ -34,6 +38,13 @@ cards:
     code_locations: []
     depends_on: []
     openspec_change: null
+    # Optional bounded-parallel metadata. Omitted/false means serial-only.
+    parallel_safe: false
+    write_scope: []
+    exclusive_resources: []
+    # Populated only while/recovering a mutable parallel lane.
+    lane_branch: null
+    lane_base: null
     result_commit: null
     result_pr: null
     evidence: null
