@@ -7,8 +7,9 @@ This is the only Codex-specific module ChatGPT normally needs when preparing or 
 A kickoff stays short and points to durable state. Include:
 - workflow authority `elmakus/chatgpt-codex-project-workflow:main`;
 - project repository;
-- branch when known;
-- current milestone and Task Card;
+- integration branch when known;
+- current milestone and Task Card or compatible ready set;
+- execution mode and parallel-card limit when relevant;
 - required prior checkpoint;
 - exact durable start/kickoff pointer;
 - required capabilities/evidence/readback obligations that materially affect routing;
@@ -17,7 +18,7 @@ A kickoff stays short and points to durable state. Include:
 
 Do not paste whole plan/history/OpenSpec trees/large diffs into chat.
 
-Suggested shape:
+Serial suggested shape:
 
 ```text
 Use current main of elmakus/chatgpt-codex-project-workflow.
@@ -34,9 +35,30 @@ Recover durable state, verify required capabilities, run the Refresh Gate and ex
 Stop if a required capability is absent, strategic authority must change, explicit user authorization is required, or required acceptance/evidence cannot be produced.
 ```
 
+Bounded-parallel suggested shape:
+
+```text
+Use current main of elmakus/chatgpt-codex-project-workflow.
+Project repo: <owner/repo>
+Integration branch: <branch>
+Milestone: <MXX>
+Execution mode: bounded_parallel
+Parallel card limit: <N>
+Ready set: <MXX-TYY, MXX-TZZ, ...>
+Required prior checkpoint: <sha/tag>
+Durable start pointer: <Task Board/start pointer>
+Required capabilities/evidence: <summary>
+
+Recover durable state and existing lanes first. Recompute the compatible ready set from Task Board; do not trust this message over repository state. Run each card Refresh Gate. Codex Main is the project coordinator: persist lane/base state, use isolated mutable lane workspaces, delegate compatible Task Cards through installed codex_workflow as useful, integrate lanes one at a time, run required post-integration verification, then update Task Board/Card result state.
+
+Do not exceed the project parallel-card limit or race overlapping write_scope/exclusive_resources. Stop affected lanes if strategic authority must change, explicit user authorization is required, or required acceptance/evidence cannot be produced.
+```
+
 ## 2. Codex → ChatGPT normal return
 
 Codex returns project truth through the repository, not a multi-page copy/paste report. Persist Task Card/Task Board state, result commit/PR, tests/evidence, external readback, blocker records and milestone handoff as applicable.
+
+For bounded-parallel execution, durable return state also identifies every still-active lane/base and every integrated/done card so recovery never depends on the Codex conversation.
 
 A fresh ChatGPT chat recovers from `PROJECT.md` and durable pointers.
 
@@ -46,12 +68,12 @@ Do not use ChatGPT as a routine Codex message bus.
 
 Use strategic escalation when evidence reveals contradictory requirements, required architecture/product decisions, impossible/wrong acceptance, frozen-plan invalidation, material external-contract change, or behavior/security/schema choices beyond Codex authority.
 
-Routine implementation details within approved contracts remain executor implementation detail.
+Routine implementation details within approved contracts remain executor implementation detail. A simple lane conflict that can be serialized without changing accepted scope is coordinator implementation detail; a conflict proving the approved decomposition/architecture wrong is strategic.
 
 ## 4. Strategic blocker lifecycle
 
 When Codex uses the configured ChatGPT control-chat mechanism:
-1. stop dependent work and set current card `blocked`;
+1. stop dependent/affected work and set current card `blocked`;
 2. write complete blocker evidence under `implementation/blockers/`;
 3. safely commit/push evidence when possible;
 4. post a short structured request with unique `request_id`;
@@ -62,6 +84,8 @@ When Codex uses the configured ChatGPT control-chat mechanism:
 9. Codex persists accepted decision under `decisions/` with provenance;
 10. reconcile Task Card/OpenSpec/plan/Task Board as required;
 11. resume only after blocker is resolved.
+
+Unrelated compatible lanes may continue only when the blocker does not invalidate their dependencies, ownership, external resources or acceptance assumptions.
 
 ## 5. Request format
 
@@ -110,4 +134,4 @@ Do not design around a guaranteed ChatGPT→Codex-session-UUID push API. The fal
 
 ## 8. User interaction
 
-The user should make real strategic/authorization decisions, not manually transport long state. Do not require the user to copy plans/OpenSpec/evidence/handoffs or choose the next card when Task Board selection is deterministic.
+The user should make real strategic/authorization decisions, not manually transport long state. Do not require the user to copy plans/OpenSpec/evidence/handoffs or choose the next card/ready set when Task Board selection is deterministic.

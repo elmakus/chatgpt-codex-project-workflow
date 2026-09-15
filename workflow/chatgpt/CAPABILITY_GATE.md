@@ -18,39 +18,44 @@ If Codex later discovers that a required capability is missing, do not route the
 
 ## Gate
 
-Before starting a Task Card:
+Before starting a Task Card or compatible bounded-parallel ready set:
 
-1. Read scope, acceptance, required tests/checks, evidence and external side effects.
-2. Derive the capabilities genuinely required to complete and verify the card. Merge any explicit `required_capabilities` from the card.
-3. Inspect capabilities actually available in the current ChatGPT session. Do not assume a product-wide capability is present in this session.
-4. Read `execution_policy` from project `PROJECT.md`.
-5. Route using the rules below.
+1. Read scope, acceptance, required tests/checks, evidence and external side effects for every candidate card.
+2. Derive the capabilities genuinely required to complete and verify each card. Merge any explicit `required_capabilities` from the cards.
+3. When Task Board uses `bounded_parallel`, verify the proposed set is dependency-complete, within `parallel_card_limit`, explicitly `parallel_safe` and pairwise compatible by `write_scope`/`exclusive_resources`. Executor routing must not manufacture project-level parallel safety.
+4. Inspect capabilities actually available in the current ChatGPT session. Do not assume a product-wide capability is present in this session.
+5. Read `execution_policy` from project `PROJECT.md`.
+6. Route using the rules below.
 
 ## `chatgpt_only`
 
 ### EXECUTE IN CHATGPT
 
 Only when ChatGPT can:
-- perform the work;
+- perform the work for the selected card/set;
+- safely isolate any concurrent mutable lanes it actually intends to run;
 - run or otherwise satisfy every required test/check;
 - obtain required evidence;
 - perform required external readback/verification where applicable.
 
+A bounded-parallel Task Board does not force actual concurrency. ChatGPT may execute a smaller compatible subset or one READY card when its current tool/runtime surface cannot safely run multiple mutable lanes.
+
 ### BLOCKED
 
-If any required capability/evidence path is unavailable. State the concrete missing capability. Do not route to Codex and do not change policy.
+If any required capability/evidence path for the selected work is unavailable. State the concrete missing capability. Do not route to Codex and do not change policy.
 
 ## `mixed`
 
 ### EXECUTE IN CHATGPT
 
-Default when ChatGPT can correctly execute and verify the card and there is no approved explicit Codex assignment or material Codex practical advantage.
+Default when ChatGPT can correctly execute and verify the selected card/set and there is no approved explicit Codex assignment or material Codex practical advantage.
 
 ### HANDOFF TO CODEX
 
 Use only when at least one is true:
 - ChatGPT lacks a required capability/environment that the mixed policy allows Codex to satisfy;
-- the card requires a repo/runtime-heavy loop where Codex has a material practical advantage;
+- the card/set requires a repo/runtime-heavy loop where Codex has a material practical advantage;
+- useful bounded-parallel repo execution materially benefits from Codex orchestration;
 - the approved plan/card explicitly assigns the work to Codex.
 
 Do not equate "technical" or "coding" with Codex.
@@ -59,7 +64,7 @@ If Codex capability is not actually known before handoff, do not invent it. Code
 
 ### BLOCKED
 
-Use when no currently available execution path can satisfy the card contract without user-provided capability/access or another explicit user decision.
+Use when no currently available execution path can satisfy the selected card/set contract without user-provided capability/access or another explicit user decision.
 
 ## Capability taxonomy for reasoning
 
