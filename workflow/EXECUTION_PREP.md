@@ -22,15 +22,33 @@ Before creating executable cards:
 7. Add explicit `required_capabilities` only for unusual, external, high-risk or routing-significant work; ordinary repo capabilities remain inferred.
 8. Classify independent review as REQUIRED/RECOMMENDED/OPTIONAL where material.
 9. Mark OpenSpec candidates according to `workflow/contracts/OPENSPEC.md`; do not create distant specs merely for later.
-10. Initialize/update `implementation/TASK_BOARD.yaml`.
-11. Confirm requirement coverage.
-12. Audit sizing, dependencies, side effects, idempotency, security and migration concerns.
-13. Set a card `ready` only when dependencies/prerequisites allow execution.
-14. For the next executable card, run `workflow/chatgpt/CAPABILITY_GATE.md`.
+10. Decide execution mode. Default to `serial`. Use `bounded_parallel` only when concrete cards have true dependency independence and bounded mutable ownership.
+11. For each parallel candidate record `parallel_safe`, bounded `write_scope` and any `exclusive_resources`. Keep a card serial when ownership or external side effects cannot be isolated confidently.
+12. Set a conservative `parallel_card_limit` based on useful independent work, not theoretical platform capacity. The limit is a ceiling, not a target.
+13. Initialize/update `implementation/TASK_BOARD.yaml`, including integration branch/base policy and parallel metadata when used.
+14. Confirm requirement coverage.
+15. Audit sizing, dependencies, side effects, idempotency, security, migration concerns, write-scope overlap, shared fixtures and external resource conflicts.
+16. Set a card `ready` only when dependencies/prerequisites allow execution. Scheduling capacity/conflicts do not change readiness.
+17. For the next executable card or compatible ready set, run `workflow/chatgpt/CAPABILITY_GATE.md` for executor routing. A bounded-parallel set may be routed to Codex when Codex has a material repo/runtime orchestration advantage.
 
 ## Card versus OpenSpec task
 
 A Task Card is a bounded global work package. An OpenSpec `tasks.md` item is a smaller implementation checkbox inside one change. They are not interchangeable.
+
+## Parallel preparation rules
+
+Bounded parallelism is allowed only when it improves elapsed execution time without weakening ownership, review or integration evidence.
+
+Do not split one causally coupled change into artificial cards merely to fill concurrency. Prefer parallel cards when they:
+- consume the same already-accepted predecessor contract;
+- own distinct mutable code/test/documentation surfaces;
+- do not require one another's unfinished implementation details;
+- can be tested meaningfully in isolation;
+- can later be integrated with bounded cross-lane verification.
+
+Project-global execution state remains coordinator-owned. Parallel workers do not independently edit the Task Board, milestone-wide handoff/acceptance state or shared integration bookkeeping.
+
+For mutable project-level parallel cards, plan isolated lane branches/worktrees from one exact integration base. Read-only parallel work may share the same repository snapshot when no mutable workspace/index is shared.
 
 ## Git preparation
 
@@ -38,13 +56,15 @@ Follow `workflow/contracts/PROJECT_REPOSITORY.md#8-git-and-branch-policy` and `w
 
 Large milestone implementation should use an isolated branch/PR when the project normally uses PRs. Do not change repository ownership/topology during an active milestone.
 
+For bounded-parallel execution, the milestone/integration branch remains the canonical assembly point. Each mutable lane starts from the exact recorded integration base and is integrated back one lane at a time with required post-integration verification.
+
 ## Handoff input
 
 Execution prep consults the latest cumulative handoff when one exists. It describes what actually became true at the last GREEN milestone and is a primary input to the next package.
 
 ## Routing outcome
 
-Execution prep does **not** always generate a Codex start prompt. It ends with one outcome for the next executable Task Card.
+Execution prep does **not** always generate a Codex start prompt. It ends with one outcome for the next executable Task Card or compatible ready set.
 
 ### `EXECUTOR: CHATGPT`
 
@@ -57,9 +77,10 @@ ChatGPT may continue immediately. Recommend a fresh ChatGPT chat only for contex
 Allowed only when `execution_policy: mixed` and at least one is true:
 - Codex has a required capability/environment unavailable to ChatGPT;
 - Codex has a material repo/runtime-heavy practical advantage;
+- bounded-parallel repo execution materially benefits from Codex orchestration;
 - the approved plan/card explicitly assigns Codex.
 
-Generate a short kickoff using `workflow/codex/HANDOFF.md`. Do not duplicate durable project context in chat.
+Generate a short kickoff using `workflow/codex/HANDOFF.md`. Do not duplicate durable project context in chat. When a compatible ready set is being handed off, name the set and durable Task Board pointer; Codex Main remains responsible for project-level coordination and integration.
 
 ### `EXECUTOR: BLOCKED`
 
@@ -72,7 +93,9 @@ Execution prep is complete when durable prep artifacts are written and the respo
 ```text
 EXECUTION PREP COMPLETE:
 Milestone: <MXX>
-Task Card: <MXX-TYY>
+Task Card(s): <MXX-TYY[, ...]>
+Execution mode: <serial|bounded_parallel>
+Parallel card limit: <N | n/a>
 Required prior checkpoint: <checkpoint>
 Durable start pointer: <path>
 Execution policy: <chatgpt_only|mixed>
