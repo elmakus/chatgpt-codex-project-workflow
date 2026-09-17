@@ -2,6 +2,9 @@ project: "<project>"
 plan_revision: "<R#>"
 current_milestone: "M01"
 
+# Sole authoritative mutable execution-state record.
+# PROJECT.md is high-level only; milestone/Card files are contracts.
+
 # Default is serial. Use bounded_parallel only when cards have explicit safe ownership.
 execution_mode: serial # serial | bounded_parallel
 parallel_card_limit: 1
@@ -35,16 +38,17 @@ cards:
     priority: high
     complexity: medium
     phase: implementation
-    code_locations: []
     depends_on: []
     openspec_change: null
-    # Optional bounded-parallel metadata. Omitted/false means serial-only.
+    # Stable scope/acceptance details live in implementation/cards/M01-T01.md.
+    contract: implementation/cards/M01-T01.md
+    # Optional bounded-parallel metadata mirrored here because it affects live scheduling/recovery.
     parallel_safe: false
     write_scope: []
     exclusive_resources: []
-    # Populated only while/recovering a mutable parallel lane.
     lane_branch: null
     lane_base: null
     result_commit: null
     result_pr: null
     evidence: null
+    tests_summary: null

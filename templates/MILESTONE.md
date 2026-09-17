@@ -1,12 +1,8 @@
 # MXX — <milestone title>
 
-- Decision state: `accepted | deferred | rejected | review`
-- Execution status: `planned | ready | in_progress | blocked | done | superseded`
-- Plan revision: `<R#>`
-- Checkpoint: `<name | pending>`
-- Implementation head: `<sha | pending>`
-- Acceptance evidence: `<implementation/evidence/MXX_ACCEPTANCE.md | pending>`
-- Cumulative handoff: `<project-handoffs/MXX_HANDOFF.md | pending>`
+Plan revision: `<R#>`
+
+> This file is the milestone **contract**, not live state. Current decision/execution status, checkpoint, implementation head, handoff and acceptance-evidence pointers live in `implementation/TASK_BOARD.yaml`.
 
 ## Outcome
 
@@ -25,20 +21,26 @@
 - `MXX-T01`
 - `MXX-T02`
 
-## Integrated acceptance
+## Boundary gates / user authorization
+
+`none` or exact strategic/deployment/live-write/user gate that must stop automatic continuation.
+
+If `none`, fixed-policy execution may continue automatically to the next already-approved milestone after this milestone is GREEN.
+
+## Integrated acceptance contract
 
 ...
 
 ## Corrective-work rule
 
-If integrated acceptance is RED, do not mark the milestone done. Reopen/create bounded corrective work and persist failing evidence.
+If integrated acceptance is RED, do not mark milestone done in Task Board. Reopen/create bounded corrective work and persist failing evidence.
 
-## Close criteria
+## Close contract
 
-Milestone `done` requires:
-- all required cards done;
-- integrated acceptance GREEN;
-- final publication/merge state resolved;
-- checkpoint and exact `implementation_head`;
-- durable acceptance evidence;
-- cumulative handoff.
+Task Board milestone may become `done` only when:
+- all required cards are done;
+- integrated acceptance is GREEN;
+- final publication/merge state is resolved;
+- exact checkpoint and `implementation_head` are known;
+- durable acceptance evidence exists;
+- cumulative handoff exists.

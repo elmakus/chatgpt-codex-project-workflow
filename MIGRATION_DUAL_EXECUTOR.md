@@ -1,53 +1,77 @@
-# Migration to dual-executor Project Workflow
+# Migration to policy-driven ChatGPT/Codex Project Workflow
 
-This document covers migration from the v3.0.3 `ChatGPT plans → Codex executes` model to the dual-executor model.
+This document covers migration from older `ChatGPT plans → Codex executes` / two-policy workflow revisions to current policy-driven model.
 
-## What changes
+## Current model
 
-Every project gains one project-level policy in root `PROJECT.md`:
+Every project has one project-level policy in root `PROJECT.md`:
 
 ```yaml
-execution_policy: chatgpt_only | mixed
+execution_policy: chatgpt_only | codex_only | mixed
 ```
 
-No second repository, capability registry, agent graph or executor-scoring configuration is required.
+There are still only two executors: normal ChatGPT and Codex. The three values are execution **policies**.
 
-Task Cards may gain `executor` provenance and optional `required_capabilities` only when useful. Existing project knowledge/layout remains valid.
+- `chatgpt_only` — fixed ChatGPT executor, no Capability Gate.
+- `codex_only` — fixed Codex executor, no Capability Gate.
+- `mixed` — ChatGPT routes new assignments through Capability Gate.
+
+Project routing assumes `ChatGPT capabilities ⊆ Codex capabilities`.
+
+Changing policy requires explicit user decision.
+
+## Execution-state ownership change
+
+Current workflow also makes:
+
+`implementation/TASK_BOARD.yaml = sole authoritative mutable execution state`
+
+Milestone/Card files are contracts; cumulative handoffs are completed-result summaries; `PROJECT.md` is high-level router/policy/index.
+
+Legacy projects may still contain duplicated execution status, executor, SHA/checkpoint and result fields in milestone/Card/PROJECT files. Do not rewrite historical evidence merely for cosmetics. Once current workflow is adopted:
+
+1. Task Board controls all new live execution-state changes.
+2. Old duplicate fields are historical/non-authoritative.
+3. Stop updating duplicate fields in milestone/Card/PROJECT files.
+4. Remove them opportunistically when those contracts are next legitimately revised or at a clean milestone boundary.
 
 ## New or idle projects
 
-Before the next execution prep/execution:
-
-1. choose `chatgpt_only` or `mixed` explicitly;
-2. add `execution_policy` to `PROJECT.md`;
-3. update any project-local workflow links that point directly to removed `workflow/contracts/CHATGPT_CODEX.md` or old `workflow/contracts/CODEX_ORCHESTRATION.md`;
+Before next execution:
+1. choose one of `chatgpt_only`, `codex_only`, `mixed` explicitly;
+2. add/update `execution_policy` in high-level `PROJECT.md`;
+3. ensure Task Board is the only live execution-state record;
 4. use current workflow `main` normally.
 
-Missing `execution_policy` is not a third mode. Execution must not guess it.
+Missing `execution_policy` is not a fourth mode. Execution must not guess it.
 
-## Active execution started under v3.0.3
+## Active execution started under older workflow
 
-Do not change execution semantics in the middle of an active card merely because workflow `main` changed.
+Do not change execution semantics in middle of an active card merely because workflow `main` changed.
 
-If a project has an active `in_progress` Codex card/milestone whose execution package was prepared under pre-cutover Project Workflow:
+For already-active bounded work:
+1. preserve exact workflow revision that started it when changing semantics mid-card would invalidate recovery/acceptance;
+2. finish/recover that bounded work under frozen contract unless safety/strategic blocker requires otherwise;
+3. at next clean GREEN boundary, adopt current policy/state model;
+4. reconcile Task Board as authoritative live state;
+5. stop mirroring future status/result fields into milestone/Card/PROJECT files.
 
-1. preserve the exact workflow revision that started that active execution (`3374232680a9b8a3de440e08257e003bdd706cee` or its corresponding immutable release tag if available);
-2. finish/recover that active bounded work under its frozen execution contract unless a safety/strategic blocker requires otherwise;
-3. at the next clean GREEN boundary, choose the project's `execution_policy`;
-4. update `PROJECT.md` and any stale workflow pointers;
-5. start subsequent execution preparation under current `main` and the Capability Gate.
+This is a migration-safety exception to normal current-`main` authority.
 
-This is a migration-safety exception to the normal rule that current workflow `main` is authoritative. It exists only to avoid changing an already-started execution contract mid-flight.
+## Fixed-policy milestone continuation
 
-## Existing durable state
+After migration, `chatgpt_only` and `codex_only` do not run Capability Gate at each card/milestone.
 
-Do not rewrite old evidence, handoffs or decision records merely to replace historical words such as `Codex`. Historical provenance should remain truthful.
+If approved Master Plan already contains the next milestone and no strategic/user/deployment/live-write gate intervenes, fixed executor may continue automatically across GREEN milestone boundary using normal close/handoff, just-in-time execution prep and fresh Refresh Gate.
 
-New/updated active artifacts should use executor-neutral wording and record the actual current executor where relevant.
+Under `codex_only`, this allows Codex Main to orchestrate an approved multi-milestone sequence without returning to ChatGPT just for routing.
 
-## Policy choice
+## Existing durable history
 
-- Choose `chatgpt_only` when the project must not automatically use Codex. Missing ChatGPT capability blocks execution until the user changes policy or the capability becomes available.
-- Choose `mixed` when ChatGPT may route bounded tasks to Codex when the Capability Gate finds a real capability/environment/practical advantage.
+Do not rewrite old evidence, handoffs or decision records merely to replace historical wording. Historical provenance should remain truthful.
+
+New active artifacts use current state-ownership rules.
+
+## ChatGPT Work
 
 The workflow uses normal ChatGPT chat + Codex only. ChatGPT Work is not a migration target or execution mode.

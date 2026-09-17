@@ -4,47 +4,37 @@
 
 - Project: `<name>`
 - Repository: `<owner/repo>`
-- Phase: `brainstorming | research | planning | execution_prep | execution | milestone_review | system_verification | cutover`
-- Current goal: `<short goal>`
-- Current status: `<short status>`
+- Lifecycle: `active | maintenance | paused | completed`
+- High-level goal: `<short durable goal>`
+- High-level status: `<short project-level status; do not mirror current card/milestone state>`
 
 ## Execution policy
 
 - execution_policy: `chatgpt_only`
 
-`chatgpt_only` is the safe default for a new project. Change it to `mixed` only after an explicit user decision.
+Allowed values:
+- `chatgpt_only` — ChatGPT is fixed Task Card executor; no Capability Gate.
+- `codex_only` — Codex is fixed Task Card executor; no Capability Gate; approved milestone sequences may continue automatically across GREEN boundaries.
+- `mixed` — ChatGPT routes new execution assignments through Capability Gate.
 
-- `chatgpt_only` blocks Codex routing; missing ChatGPT capability is a blocker.
-- `mixed` lets ChatGPT route individual Task Cards to itself or Codex through the Capability Gate.
+Changing execution policy requires explicit user decision. Default for new project is `chatgpt_only`.
 
 ## Canonical authority pointers
 
 - Requirements: `requirements/REQUIREMENTS.md | none`
 - Approved plan: `planning/MASTER_PLAN.md | none`
-- Current milestone: `implementation/milestones/MXX.md | none`
 - Task Board: `implementation/TASK_BOARD.yaml | none`
 - Latest cumulative handoff: `project-handoffs/MXX_HANDOFF.md | none`
-- Active OpenSpec change: `<openspec/changes/... | none>`
-- Relevant accepted decisions:
+- Accepted decisions index / key pointers:
   - `<decisions/... | none>`
-- Open questions:
-  - `<brainstorming/OPEN_QUESTIONS.md or other path | none>`
-- Current blockers:
-  - `<implementation/blockers/... | none>`
 
 ## Workflow
 
 - Workflow repository: `elmakus/chatgpt-codex-project-workflow`
 - Workflow ref: `main`
 
-## Execution ref
-
-Use only when active execution needs an explicit durable pointer.
-
-- Branch: `<branch | none>`
-- PR: `<number | none>`
-- HEAD: `<sha | none>`
-
 ## Context note
 
-This file is a router, not project history. Follow current workflow context routing and referenced canonical artifacts.
+This file is a high-level router/policy/index, not live execution state.
+
+Do not record current milestone/card, assigned executor, active branch/HEAD, checkpoint, current OpenSpec or blocker status here. Read `implementation/TASK_BOARD.yaml` for all mutable execution state and follow referenced milestone/Card contracts/evidence/handoffs.

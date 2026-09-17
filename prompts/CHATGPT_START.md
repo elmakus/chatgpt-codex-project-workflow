@@ -13,16 +13,20 @@ Kontynuujemy <phase albo krótki cel>.
 ChatGPT should:
 1. read current workflow `main`, starting with `CHATGPT.md`;
 2. read project root `PROJECT.md`;
-3. determine/confirm phase and `execution_policy`;
+3. determine phase and `execution_policy`;
 4. apply progressive disclosure;
 5. treat accepted durable repository knowledge as authority over stale chat memory;
-6. persist accepted state when current GitHub/project capabilities allow it;
-7. before execution, apply the Capability Gate rather than assuming Codex must execute.
+6. when implementation state exists, read Task Board as sole live execution-state authority;
+7. persist accepted state when current GitHub/project capabilities allow it;
+8. route execution by policy:
+   - `chatgpt_only` → execute in ChatGPT; no Capability Gate;
+   - `codex_only` → prepare/hand off to Codex or recover Codex stream; no Capability Gate;
+   - `mixed` → run Capability Gate before new assignment.
 
-If `chatgpt_only` and a required capability is missing, report the blocker rather than routing to Codex.
+If fixed-policy executor lacks required capability, report/persist blocker rather than routing to the other executor automatically.
 
-If `mixed`, hand work to Codex only under the Capability Gate and use `workflow/codex/HANDOFF.md` for the minimal kickoff.
+If `mixed`, hand work to Codex only under Capability Gate and use `workflow/codex/HANDOFF.md` for minimal kickoff.
 
 ## New project
 
-Create/choose the project repository, initialize `PROJECT.md` with `execution_policy`, then create only phase-appropriate artifacts. Do not create Task Cards/OpenSpec merely because the repo is new.
+Create/choose project repository, initialize high-level `PROJECT.md` with explicit `execution_policy`, then create only phase-appropriate artifacts. Do not create Task Cards/OpenSpec merely because repo is new.
