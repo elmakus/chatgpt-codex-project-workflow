@@ -45,7 +45,7 @@
 - Added independent-review tiers: required for high-risk work, recommended for major architecture/refactors, optional for simple changes.
 - Added an optional competing research-path pattern for A/B/Hybrid evaluation without making it a mandatory lifecycle stage.
 - Added optional `bounded_parallel` Task Card execution while preserving serial as the default.
-- Parallel project cards now require completed dependencies, explicit `parallel_safe`, bounded non-overlapping mutable `write_scope`, no shared `exclusive_resources`, isolated mutable lanes and coordinator-owned Task Board/integration state.
+- Parallel project cards now require completed dependencies, explicit `parallel_safe`, bounded non-overlapping `write_scope`, no shared `exclusive_resources`, isolated mutable lanes and coordinator-owned Task Board/integration state.
 - Added a project `parallel_card_limit` ceiling and deterministic compatible-ready-set selection without introducing a generic DAG engine or shadow scheduler.
 - Codex Main may map compatible project Task Cards to isolated `codex_workflow` workers while remaining responsible for project-level lane state, integration, post-integration verification and card completion.
 
