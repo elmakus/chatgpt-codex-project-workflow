@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## Unreleased — runtime capability discovery and explicit independent-review handoff
+
+### Fixed-policy capabilities
+
+- `chatgpt_only` and `codex_only` no longer perform capability preflight/inventory/checklists during Execution Prep or Refresh Gate.
+- Fixed-policy execution starts directly after the normal state/contract Refresh Gate; capability becomes workflow state only when a concrete required operation cannot proceed.
+- Codex may self-remediate ordinary non-secret local tooling/dependency gaps when its environment permits and accepted security/reproducibility constraints allow it.
+- User-provided MCP/credential/token/account permission/privileged access is requested only when concretely needed and unavailable.
+- A user may explicitly change `execution_policy` after a runtime blocker; Task Board is reconciled before blocked work is reassigned. Policy/executor never changes automatically.
+
+### Independent review
+
+- Added durable Task Board review fields: `review_state`, `review_subject`, `review_evidence`.
+- Under `chatgpt_only`, a chat that implemented a REQUIRED/RECOMMENDED review subject must freeze/persist the exact subject and stop at `review_state: pending`; the user starts a fresh normal ChatGPT chat for the independent review.
+- A fresh ChatGPT reviewer may continue later deterministic work after GREEN; if it implements a new reviewable subject, another fresh chat is required for that later independent review.
+- Under `codex_only`, Codex Main obtains an independent reviewer worker/session without a user handoff solely for reviewer independence.
+- When `codex_workflow` is installed/enabled, it remains authoritative for internal Codex execute/review-worker routing, roles/models, lifecycle, delegation and runtime recovery; Project Workflow owns exact subject, review requirement, durable verdict/evidence and acceptance state.
+
 ## Unreleased — policy-fixed execution and single live-state authority
 
 ### Execution state
