@@ -4,7 +4,7 @@
 
 A Task Card is a bounded global work-package **contract** for one project. It defines scope, acceptance, tests and execution boundaries. It is not the live execution-state record and it is not an OpenSpec `tasks.md` checkbox.
 
-Live card status, assigned executor, lane/base pointers and result pointers live only in `implementation/TASK_BOARD.yaml`.
+Live card status, assigned executor, lane/base pointers, review state and result pointers live only in `implementation/TASK_BOARD.yaml`.
 
 ## 2. Required contract fields
 
@@ -19,15 +19,16 @@ Each Task Card should define:
 - OpenSpec candidate/ref;
 - Refresh Gate requirements;
 - blocker/escalation rule;
+- independent-review requirement when material;
 - Definition of Done contract.
 
-Do **not** put mutable `execution_status`, assigned executor, `result_commit`, `result_pr`, evidence status or current branch/HEAD into the Task Card file.
+Do **not** put mutable `execution_status`, assigned executor, `result_commit`, `result_pr`, review state, evidence status or current branch/HEAD into the Task Card file.
 
 Use `templates/TASK_CARD.md`.
 
 ## 3. Optional capability requirements
 
-Add `required_capabilities` only when explicit capabilities materially improve safety or mixed-policy routing, especially external, unusual, high-risk or environment-specific work.
+Add `required_capabilities` only when explicit capabilities materially improve **mixed-policy routing** or document unusual external/security/user-authorization prerequisites.
 
 Example:
 
@@ -37,7 +38,7 @@ required_capabilities:
   - liftosaur_readback
 ```
 
-Do not require declarations for every trivial repository operation. Ordinary capabilities are inferred from scope, acceptance, tests/checks, external effects and evidence.
+Do not require declarations for every trivial repository operation.
 
 ### Capability routing invariant
 
@@ -47,9 +48,11 @@ Project routing assumes:
 
 Capability Gate is used **only** under `execution_policy: mixed` before assignment.
 
-Under `chatgpt_only`, the card is assigned to ChatGPT without Capability Gate. Under `codex_only`, it is assigned to Codex without Capability Gate. A known or discovered missing capability becomes a blocker for the fixed executor; policy does not change automatically.
+Under `chatgpt_only`, the card is assigned to ChatGPT without Capability Gate or capability preflight. Under `codex_only`, it is assigned to Codex without Capability Gate or capability preflight.
 
-Once a card has started, a newly discovered missing runtime capability is a blocker for the assigned executor, not a reason for automatic fallback/rerouting.
+`required_capabilities` metadata does **not** instruct fixed-policy execution to inventory/verify tools before starting. In fixed modes, a capability becomes a blocker only when a concrete required operation cannot proceed.
+
+Once a card has started, a newly discovered runtime capability problem is handled by `workflow/EXECUTION.md`. Ordinary self-remediable Codex tooling/dependency gaps are implementation detail; user-provided MCP/credential/token/access becomes a blocker when concretely needed and unavailable.
 
 ## 4. Executor provenance
 
@@ -74,14 +77,21 @@ Decision state, when useful, is independently:
 
 A decision can be accepted while implementation remains planned.
 
+Independent review has separate mutable Task Board state when active:
+
+`pending | in_progress | green | red`
+
+plus exact `review_subject` and `review_evidence` pointers.
+
 ## 6. Readiness
 
 A Task Board card becomes `ready` only when:
 - dependencies needed to start are `done`;
 - required authoritative inputs exist;
 - acceptance is testable enough to execute;
-- no known unresolved strategic blocker exists;
-- there is at least a plausible execution/evidence path under project policy.
+- no known unresolved strategic or explicit authorization blocker exists.
+
+Do **not** keep a fixed-policy card unready merely because some future capability may or may not be available. Runtime capability is discovered by executing the concrete operation.
 
 A READY card may remain unscheduled when the current parallel-card limit is full or its mutable ownership conflicts with another active card. Readiness and scheduling are separate facts.
 
@@ -106,7 +116,7 @@ Rules:
 - a mutable parallel card must have bounded `write_scope`; a genuinely read-only card may use an empty scope;
 - simultaneously active cards must have non-overlapping mutable `write_scope` and no shared `exclusive_resources`;
 - if ownership cannot be bounded confidently, keep the card serial;
-- Task Board, milestone-wide handoff/acceptance state and shared integration bookkeeping are coordinator-owned and never lane-worker write scope;
+- Task Board, milestone-wide handoff/acceptance/review state and shared integration bookkeeping are coordinator-owned and never lane-worker write scope;
 - a dependency must already be `done` in Task Board;
 - external mutable systems can be named as `exclusive_resources` even when repository scopes do not overlap;
 - unexpected overlap discovered during execution is a coordination blocker, not permission to race writes.
@@ -125,14 +135,26 @@ At minimum compare:
 - relevant OpenSpec;
 - completed dependencies;
 - actual interfaces;
-- required capabilities, tests/checks and evidence/readback path;
+- required tests/checks, evidence/readback obligations and review requirements;
 - when parallel, exact lane base plus current `write_scope`/`exclusive_resources` assumptions.
+
+Refresh Gate is a **state/contract drift gate**. Under fixed policies it is not a capability inventory/checklist.
 
 Implementation-detail drift within approved contracts may be reconciled by the current executor. Material behavior/architecture/requirement/external-contract/milestone-acceptance drift blocks the card and requires strategic resolution.
 
-Under `mixed`, unavailable required capabilities may affect pre-assignment routing through Capability Gate. Under fixed policies, and after any assignment, missing capability follows runtime blocker semantics in `workflow/EXECUTION.md`; do not automatically change executor or policy.
+Under `mixed`, unavailable required capabilities may affect pre-assignment routing through Capability Gate. Under fixed policies, capability problems are runtime blockers only when a concrete required operation cannot proceed.
 
-## 9. Definition of Done contract
+## 9. Independent review contract
+
+When review is REQUIRED or RECOMMENDED, the Task Card/milestone contract states that requirement but mutable review progress lives in Task Board.
+
+- `chatgpt_only`: the ChatGPT chat that implemented the subject must stop before independent verdict; a fresh normal ChatGPT chat performs review from exact durable `review_subject`.
+- `codex_only`: Codex Main obtains an independent reviewer worker/session; installed `codex_workflow` governs internal reviewer orchestration.
+- `mixed`: reviewer must be independent of implementing worker/session according to accepted review path.
+
+OPTIONAL review does not create a mandatory review gate unless explicitly activated.
+
+## 10. Definition of Done contract
 
 A Task Board card may be marked `done` only when all applicable items hold:
 1. included scope complete and excluded scope not silently expanded;
@@ -140,19 +162,20 @@ A Task Board card may be marked `done` only when all applicable items hold:
 3. required tests/checks ran;
 4. checks green or authorized baseline exception exists;
 5. relevant OpenSpec requirements satisfied;
-6. no hidden blocker remains;
-7. accepted result exists in durable Git/external state;
-8. Task Board state/result pointers reconciled;
-9. assigned executor and result commit recorded in Task Board;
-10. result PR recorded when applicable, otherwise `null`;
-11. durable evidence identifies exact checks/review;
-12. relevant external side effects/idempotency/reconciliation/readback verified where required;
-13. when parallel, the accepted lane result has been integrated and required post-integration checks are green;
-14. no unassigned TODO remains inside accepted scope.
+6. required/recommended independent review is GREEN when applicable;
+7. no hidden blocker remains;
+8. accepted result exists in durable Git/external state;
+9. Task Board state/result pointers reconciled;
+10. assigned executor and result commit recorded in Task Board;
+11. result PR recorded when applicable, otherwise `null`;
+12. durable evidence identifies exact checks/review;
+13. relevant external side effects/idempotency/reconciliation/readback verified where required;
+14. when parallel, the accepted lane result has been integrated and required post-integration checks are green;
+15. no unassigned TODO remains inside accepted scope.
 
 `done` is verified state, not an agent assertion. The Task Card file itself is not edited merely to mark these checks complete.
 
-## 10. Result state
+## 11. Result state
 
 At close persist mutable result state in Task Board:
 
@@ -167,7 +190,7 @@ tests_summary: <concise summary or evidence pointer>
 
 For a parallel lane, evidence also identifies the exact lane base/branch or equivalent isolated workspace and integrated verification target.
 
-## 11. Dependency and parallel-set handling
+## 12. Dependency and parallel-set handling
 
 Completion may unblock dependent cards. A generic DAG engine is unnecessary: explicit `depends_on`, Task Board state and bounded-parallel ownership rules are sufficient.
 
@@ -175,11 +198,11 @@ For `serial`, select one deterministic READY card.
 
 For `bounded_parallel`, select a deterministic set of READY cards up to `parallel_card_limit` such that every selected card is `parallel_safe` and pairwise compatible by `write_scope` and `exclusive_resources`.
 
-## 12. Near-term versus distant cards
+## 13. Near-term versus distant cards
 
 Near-term cards may contain detailed implementation expectations. Distant cards stay functionally precise without freezing interfaces that do not yet exist. Refresh Gate is mandatory before execution.
 
-## 13. Scope discipline
+## 14. Scope discipline
 
 The current executor implements only bounded card scope unless a necessary adjacent change is clearly within the same acceptance contract and documented, a new bounded corrective/dependency card is created, or strategic authority explicitly changes the plan.
 
