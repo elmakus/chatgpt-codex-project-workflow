@@ -1,6 +1,6 @@
 # ChatGPT Project Workflow Router
 
-This repository is the canonical project-workflow authority for projects managed through normal ChatGPT chat, optionally using Codex as a specialized executor.
+This repository is the canonical project-workflow authority for projects managed through normal ChatGPT chat and/or Codex.
 
 ChatGPT Work is outside this workflow. Do not route project work through ChatGPT Work or make it a prerequisite.
 
@@ -10,6 +10,7 @@ ChatGPT Work is outside this workflow. Do not route project work through ChatGPT
 - Project knowledge belongs in the project repository, not this workflow repository.
 - Accepted durable project state outranks stale chat memory.
 - One project uses one repository unless the user explicitly approves a technically justified exception.
+- `implementation/TASK_BOARD.yaml` is the sole authoritative mutable execution-state record once implementation state exists.
 - `elmakus/codex_workflow`, when installed/enabled in Codex, governs only internal Codex runtime orchestration.
 
 ## Start here
@@ -26,19 +27,46 @@ Do not load detailed Codex-specific instructions during ordinary ChatGPT work. W
 
 ## Execution policy
 
+Every project uses exactly one execution policy:
+
 ### `chatgpt_only`
 
-ChatGPT may brainstorm, research, plan, modify repositories, implement, test, use connected plugins/services, deploy, verify, review and close milestones when the **current ChatGPT chat session** has all required capabilities and can obtain the required evidence.
+Normal ChatGPT is the fixed Task Card executor. Do **not** run the Capability Gate.
 
-If a required capability is unavailable, report the exact blocker. Do not hand the task to Codex and do not change policy automatically.
+Before and during execution, ChatGPT still verifies the capabilities/evidence path actually available to the current session. A missing required capability is a blocker; do not route to Codex or change policy automatically.
+
+### `codex_only`
+
+Codex is the fixed Task Card executor. Do **not** run the Capability Gate.
+
+Normal ChatGPT may still perform strategy, research, planning, user-facing decisions and review when the workflow calls for them, but executable Task Cards are assigned to Codex. Once Codex is running an approved multi-milestone plan, Codex Main may continue automatically across GREEN milestone boundaries when the next milestone is already approved and no strategic/user-authorization gate intervenes.
+
+A required capability missing from Codex is a blocker; do not fall back to ChatGPT or change policy automatically.
 
 ### `mixed`
 
-ChatGPT remains project router. Before executing a Task Card, apply `workflow/chatgpt/CAPABILITY_GATE.md`.
+ChatGPT remains project router. Before assigning the next Task Card or compatible ready set, use `workflow/chatgpt/CAPABILITY_GATE.md` to select ChatGPT, Codex or BLOCKED.
 
-Execute in ChatGPT when the current session can correctly perform the task, run the required tests/checks and obtain the required evidence/readback.
+Project routing assumes the capability invariant:
 
-Hand off to Codex only when policy permits and Codex has a required capability/environment, a material repo/runtime advantage, or the approved card/plan explicitly assigns the task to Codex.
+`ChatGPT capabilities ⊆ Codex capabilities`
+
+The gate is therefore a routing/practical-advantage mechanism, not a claim that ChatGPT may provide a capability unavailable to Codex.
+
+Changing execution policy requires an explicit user decision.
+
+## Milestone continuity
+
+A milestone boundary is an acceptance/checkpoint boundary, not automatically a human-routing boundary.
+
+Under `chatgpt_only` or `codex_only`, the fixed executor may continue from a GREEN milestone into the next already-approved milestone without a new Capability Gate or user prompt when:
+- the next milestone is already accepted in the approved Master Plan;
+- execution preparation is deterministic from durable authority;
+- no explicit user/deployment/authorization gate is due;
+- no strategic requirement/architecture/product decision is unresolved;
+- the executor can run the required Refresh Gate and evidence path.
+
+Under `mixed`, the next new execution assignment is routed through the Capability Gate.
 
 ## Phase routes
 

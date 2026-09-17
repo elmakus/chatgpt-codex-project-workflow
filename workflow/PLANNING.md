@@ -6,6 +6,8 @@ ChatGPT is the strategic planner/project router for problem definition, verified
 
 The eventual executor reconciles code/runtime-dependent implementation detail against actual current state through the Refresh Gate. Do not freeze detailed implementation design far in advance of the source/runtime it depends on.
 
+Under `codex_only`, an already-approved Master Plan may later be executed continuously by Codex; this does not transfer strategic authority to Codex to invent or revise requirements/architecture.
+
 ## Inputs
 
 Use project `PROJECT.md`, canonical requirements, relevant verified research, accepted decisions and current project/source baseline where needed.
@@ -22,19 +24,23 @@ The approved Master Plan normally lives at `planning/MASTER_PLAN.md` and covers 
 - global invariants/external constraints;
 - known source seams;
 - milestones and checkpoint/acceptance for each;
+- milestone dependencies and explicit user/authorization gates;
 - requirement coverage;
-- dependencies;
 - deployment/migration strategy;
 - system verification strategy;
 - idempotency/data-integrity/security constraints;
 - fresh-context boundaries;
 - Task Decomposition/OpenSpec/Handoff policy references.
 
-The Master Plan is not the live task tracker. Live execution state belongs in `implementation/TASK_BOARD.yaml`.
+The Master Plan is not the live task tracker. Live execution state belongs only in `implementation/TASK_BOARD.yaml`.
 
 ## Milestones
 
 A milestone is a stable, integrated, testable checkpoint, not a single small task. Define outcomes/acceptance without pretending distant implementation interfaces are already known.
+
+An approved sequence of milestones is permission to execute that approved scope under the project's execution policy; it is not permission to bypass any explicit deployment/live-write/user authorization gate recorded by the plan or requirements.
+
+Under fixed execution policy (`chatgpt_only` or `codex_only`), GREEN milestone boundaries may be crossed automatically when the next milestone is already approved and no strategic/authorization gate intervenes. The boundary still requires fresh execution preparation/Refresh Gate as applicable.
 
 ## Requirement coverage
 
