@@ -16,14 +16,16 @@ ChatGPT should:
 3. determine phase and `execution_policy`;
 4. apply progressive disclosure;
 5. treat accepted durable repository knowledge as authority over stale chat memory;
-6. when implementation state exists, read Task Board as sole live execution-state authority;
+6. when implementation state exists, read Task Board as sole live execution-state authority, including any pending/in-progress review gate;
 7. persist accepted state when current GitHub/project capabilities allow it;
 8. route execution by policy:
-   - `chatgpt_only` → execute in ChatGPT; no Capability Gate;
-   - `codex_only` → prepare/hand off to Codex or recover Codex stream; no Capability Gate;
+   - `chatgpt_only` → execute in ChatGPT; no Capability Gate and no capability preflight/inventory;
+   - `codex_only` → prepare/hand off to Codex or recover Codex stream; no Capability Gate and no capability preflight/inventory;
    - `mixed` → run Capability Gate before new assignment.
 
-If fixed-policy executor lacks required capability, report/persist blocker rather than routing to the other executor automatically.
+Under fixed policy, run state/contract Refresh Gate and attempt the work directly. If a concrete required operation cannot proceed, persist/report the runtime blocker rather than speculating before execution.
+
+Under `chatgpt_only`, if this chat implemented the subject and REQUIRED/RECOMMENDED independent review becomes due, persist exact `review_subject`/`review_state: pending`, stop, and instruct the user to open a fresh normal ChatGPT chat for review. A fresh review chat may continue later deterministic work after GREEN.
 
 If `mixed`, hand work to Codex only under Capability Gate and use `workflow/codex/HANDOFF.md` for minimal kickoff.
 
