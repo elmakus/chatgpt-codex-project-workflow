@@ -16,8 +16,8 @@ Include:
 - execution mode/parallel-card limit when relevant;
 - required prior checkpoint;
 - durable Task Board pointer;
-- material required capabilities/evidence/readback obligations;
-- instruction to run Refresh Gate;
+- material evidence/readback obligations;
+- instruction to run the state/contract Refresh Gate;
 - stop conditions.
 
 Example:
@@ -30,7 +30,7 @@ Durable start pointer: implementation/TASK_BOARD.yaml
 Assigned milestone/set: <MXX / MXX-TYY[, ...]>
 Required prior checkpoint: <sha/tag>
 
-Recover Task Board/Git state, verify required capabilities, run Refresh Gate and execute only assigned scope. Persist tests/evidence/result pointers in Task Board. Stop for missing capability, strategic authority change, explicit user authorization gate or unsatisfied acceptance/evidence.
+Recover Task Board/Git state, run the state/contract Refresh Gate and execute only assigned scope. The mixed Capability Gate already handled pre-assignment routing; do not run another capability preflight. If a concrete runtime operation cannot proceed, persist the blocker. Persist tests/evidence/result/review pointers in Task Board. Stop for a real runtime blocker, strategic authority change, explicit user authorization gate or unsatisfied acceptance/evidence.
 ```
 
 ### Codex-only continuous execution
@@ -45,14 +45,18 @@ Durable start pointer: implementation/TASK_BOARD.yaml
 Approved plan: <planning/MASTER_PLAN.md>
 Start from: <checkpoint/current milestone>
 
-Recover durable state and execute deterministic READY work. After each GREEN milestone, continue automatically into the next already-approved milestone using just-in-time execution prep + fresh Refresh Gate. Do not run Capability Gate. Stop only for a real strategic/product/architecture blocker, missing required capability/evidence, explicit user/deployment/live-write authorization gate, RED requiring strategic resolution, or end of approved scope.
+Recover durable state and execute deterministic READY work. Run state/contract Refresh Gates but do not run Capability Gate or capability preflight/inventory. Attempt concrete operations directly. Self-remediate ordinary non-secret local tooling/dependency gaps when permitted. Ask the user only when a concrete operation requires unavailable MCP/credential/token/access/authorization that Codex cannot obtain itself.
+
+When installed/enabled, codex_workflow controls internal execute/review-worker orchestration. REQUIRED/RECOMMENDED independent review uses a reviewer worker/session that did not implement the exact subject; do not return to ChatGPT merely for reviewer independence.
+
+After each GREEN milestone, continue automatically into the next already-approved milestone using just-in-time execution prep + fresh state/contract Refresh Gate. Stop only for a real non-self-remediable runtime blocker, strategic/product/architecture blocker, explicit user/deployment/live-write authorization gate, RED requiring strategic resolution, or end of approved scope.
 ```
 
 Do not paste whole plan/history/OpenSpec trees/large diffs into chat.
 
 ## 2. Codex → ChatGPT normal return
 
-Codex returns project truth through repository, not a multi-page copy/paste report. Persist Task Board state, result commit/PR, tests/evidence, external readback, blocker records and milestone handoff as applicable.
+Codex returns project truth through repository, not a multi-page copy/paste report. Persist Task Board state, result commit/PR, tests/evidence, review state/evidence, external readback, blocker records and milestone handoff as applicable.
 
 Do not duplicate live state into Task Card/milestone/PROJECT files.
 
@@ -60,7 +64,7 @@ For bounded-parallel execution, durable return state identifies every still-acti
 
 A fresh ChatGPT chat recovers from `PROJECT.md` for high-level routing and Task Board for live execution truth.
 
-Under `codex_only`, routine GREEN milestone completion is **not** a reason to return to ChatGPT when automatic continuation conditions hold.
+Under `codex_only`, routine GREEN milestone completion or an internally orchestrated independent review is **not** a reason to return to ChatGPT when automatic continuation conditions hold.
 
 ## 3. Strategic escalation
 
