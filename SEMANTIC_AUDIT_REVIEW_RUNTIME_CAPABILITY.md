@@ -50,6 +50,8 @@ The implementing chat cannot satisfy its own REQUIRED/RECOMMENDED independent re
 
 The fresh review chat reads durable state, transitions review to `in_progress`, persists GREEN/RED evidence and updates Task Board. After GREEN it may continue later deterministic execution. If that chat then implements a later reviewable subject, another fresh review chat is required.
 
+`workflow/CONTEXT_ROUTING.md` gives pending/in-progress review priority over later dependent implementation, so a fresh review chat cannot silently skip the review and continue execution first.
+
 OPTIONAL review does not force a fresh-chat boundary unless activated explicitly.
 
 ### `codex_only`
@@ -57,6 +59,8 @@ OPTIONAL review does not force a fresh-chat boundary unless activated explicitly
 PASS.
 
 Codex Main remains coordinator. The implementing worker cannot review its own subject. Main obtains a distinct reviewer worker/session. When installed/enabled, `codex_workflow` owns the internal reviewer-routing mechanics. Reviewer independence therefore does not force a user or normal-ChatGPT handoff.
+
+`workflow/codex/HANDOFF.md` and `prompts/CODEX_START.md` both preserve this boundary without duplicating `codex_workflow` runtime mechanics.
 
 ## Capability semantics
 
@@ -119,17 +123,21 @@ This preserves recovery across ChatGPT chats and Codex worker/session boundaries
 Reviewed and aligned:
 - `CHATGPT.md`
 - `README.md`
+- `workflow/CONTEXT_ROUTING.md`
 - `workflow/EXECUTION.md`
 - `workflow/EXECUTION_PREP.md`
 - `workflow/REVIEW_AND_HANDOFF.md`
 - `workflow/chatgpt/EXECUTION.md`
 - `workflow/codex/EXECUTION.md`
 - `workflow/codex/CODEX_ORCHESTRATION.md`
+- `workflow/codex/HANDOFF.md`
 - `workflow/contracts/GITHUB_STATE.md`
 - `workflow/contracts/TASK_CARDS.md`
 - `templates/TASK_BOARD.yaml`
 - `templates/TASK_CARD.md`
-- ChatGPT/Codex bootstrap prompts
+- `prompts/CHATGPT_PROJECT_INSTRUCTIONS.md`
+- `prompts/CHATGPT_START.md`
+- `prompts/CODEX_START.md`
 - `CHANGELOG.md`
 
 ## Verdict
