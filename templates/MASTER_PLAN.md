@@ -38,6 +38,9 @@ Updated: `<YYYY-MM-DD>`
 - Acceptance: ...
 - Requirement coverage: ...
 - Dependencies: ...
+- Boundary gate / explicit user authorization: `none | <exact gate>`
+
+An approved milestone sequence may execute continuously under fixed `chatgpt_only` or `codex_only` policy. GREEN milestone boundaries still require normal close/handoff plus fresh execution prep/Refresh Gate; execution stops at any explicit boundary gate.
 
 ## 10. Requirement coverage matrix
 
@@ -62,10 +65,10 @@ Updated: `<YYYY-MM-DD>`
 - Context routing: `workflow/CONTEXT_ROUTING.md`
 - Execution prep: `workflow/EXECUTION_PREP.md`
 - Shared execution: `workflow/EXECUTION.md`
-- Capability Gate: `workflow/chatgpt/CAPABILITY_GATE.md`
+- Capability Gate (`mixed` only): `workflow/chatgpt/CAPABILITY_GATE.md`
 - Task decomposition: `workflow/contracts/TASK_CARDS.md`
 - OpenSpec: `workflow/contracts/OPENSPEC.md`
 - GitHub state: `workflow/contracts/GITHUB_STATE.md`
 - Handoff/review: `workflow/REVIEW_AND_HANDOFF.md`
 
-The Master Plan is not the live task tracker.
+The Master Plan is not live task tracker. Live execution state belongs only in `implementation/TASK_BOARD.yaml`.

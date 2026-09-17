@@ -24,28 +24,28 @@ Do not use ChatGPT Work.
 1. `prompts/CODEX_START.md`;
 2. project root `PROJECT.md`;
 3. this routing document;
-4. shared execution modules/contracts required by the assigned card;
+4. shared execution modules/contracts required by assigned/continuing scope;
 5. `workflow/codex/*` required for execution/runtime boundary.
 
 Codex does **not** automatically read `CHATGPT.md` or `workflow/chatgpt/*`.
 
-ChatGPT may read `workflow/codex/HANDOFF.md` only when preparing/interpreting a Codex handoff; it does not need detailed Codex execution/orchestration for ordinary work.
+ChatGPT may read `workflow/codex/HANDOFF.md` only when preparing/interpreting a Codex handoff.
 
 ## Authority before routing
 
 Apply `workflow/contracts/PROJECT_REPOSITORY.md#6-authority-and-conflicts` before interpreting project content.
 
-Accepted decisions/requirements outrank brainstorming, approved plan outranks abandoned alternatives, current Task Board/Card/Git/runtime evidence govern in-flight execution and cumulative handoff records completed milestone truth.
+Accepted decisions/requirements outrank brainstorming, approved plan outranks abandoned alternatives, Task Board + exact Git/runtime evidence govern live execution, milestone/Card files define contracts, and cumulative handoff summarizes completed milestone truth.
 
 ## BRAINSTORMING
 
 Read primarily `workflow/BRAINSTORMING.md`, project `PROJECT.md`, current brainstorming notes, relevant accepted decisions and open questions.
 
-Usually do not load Task Cards, full GitHub State, all OpenSpec, all handoffs or implementation evidence unless the question genuinely depends on them.
+Usually do not load Task Board/full GitHub State/all OpenSpec/all handoffs unless question genuinely depends on them.
 
 ## RESEARCH
 
-Read `workflow/RESEARCH.md`, `PROJECT.md`, current research question/notes, relevant requirements/accepted decisions and only needed source/current-state material. Do not load full project history by default.
+Read `workflow/RESEARCH.md`, `PROJECT.md`, current research question/notes, relevant requirements/accepted decisions and only needed source/current-state material.
 
 ## PLANNING
 
@@ -53,32 +53,41 @@ Read `workflow/PLANNING.md`, `PROJECT.md`, canonical requirements, relevant veri
 
 ## EXECUTION PREP
 
-Read `workflow/EXECUTION_PREP.md`, `PROJECT.md`, canonical requirements/approved Master Plan/current milestone/latest handoff, `TASK_CARDS`, `OPENSPEC`, `GITHUB_STATE` and relevant current source/runtime state. ChatGPT then reads `workflow/chatgpt/CAPABILITY_GATE.md`.
+Read `workflow/EXECUTION_PREP.md`, `PROJECT.md`, canonical requirements/approved Master Plan, latest handoff when relevant, Task Board if it exists, `TASK_CARDS`, `OPENSPEC`, `GITHUB_STATE` and relevant current source/runtime state.
+
+Then route by policy:
+- `chatgpt_only` → no Capability Gate;
+- `codex_only` → no Capability Gate;
+- `mixed` → normal ChatGPT reads/runs `workflow/chatgpt/CAPABILITY_GATE.md`.
+
+During automatic `codex_only` multi-milestone continuation, Codex Main may read `workflow/EXECUTION_PREP.md` to prepare the next already-approved milestone within strategic boundaries.
 
 ## CHATGPT EXECUTION
 
-Read shared `workflow/EXECUTION.md`, `workflow/chatgpt/EXECUTION.md`, project `PROJECT.md`, Task Board, current milestone/card, latest handoff, relevant OpenSpec/plan/source and only contracts needed by the current card.
+Read shared `workflow/EXECUTION.md`, `workflow/chatgpt/EXECUTION.md`, project `PROJECT.md`, Task Board, current milestone/Card contracts, latest handoff, relevant OpenSpec/plan/source and only contracts needed by current set.
 
 Do not automatically load Codex execution/orchestration.
 
 ## CODEX EXECUTION
 
-Read shared `workflow/EXECUTION.md`, `workflow/codex/EXECUTION.md`, `workflow/codex/CODEX_ORCHESTRATION.md`, project `PROJECT.md`, Task Board, current milestone/card, latest handoff, relevant OpenSpec/plan/source and only needed shared contracts.
+Read shared `workflow/EXECUTION.md`, `workflow/codex/EXECUTION.md`, `workflow/codex/CODEX_ORCHESTRATION.md`, project `PROJECT.md`, Task Board, current milestone/Card contracts, latest handoff, relevant OpenSpec/plan/source and only needed shared contracts.
+
+Under `codex_only`, also load `workflow/EXECUTION_PREP.md` at an approved milestone boundary when deterministic next-milestone preparation is required.
 
 Do not load ChatGPT-specific modules.
 
 ## STRATEGIC BLOCKER
 
-Read project `PROJECT.md`, specific blocker/evidence/exact commit, current Task Card/Task Board and only authority/source/research needed to decide it.
+Read project `PROJECT.md`, Task Board, specific blocker/evidence/exact commit, current milestone/Card contracts and only authority/source/research needed to decide it.
 
-For Codex correlated ChatGPT control-channel communication, additionally read `workflow/codex/HANDOFF.md`. A strategic blocker never justifies loading all project history.
+For Codex correlated ChatGPT control-channel communication, additionally read `workflow/codex/HANDOFF.md`.
 
 ## MILESTONE REVIEW / CLOSE
 
-Read `workflow/REVIEW_AND_HANDOFF.md`, `PROJECT.md`, Task Board/current milestone, required card results, acceptance/review evidence, relevant OpenSpec/Git/external state and prior cumulative handoff when needed.
+Read `workflow/REVIEW_AND_HANDOFF.md`, `PROJECT.md`, Task Board/current milestone contract, required card results/evidence, relevant OpenSpec/Git/external state and prior cumulative handoff when needed.
 
 ## FAILURE RECOVERY
 
-Read `PROJECT.md`, exact branch/HEAD/runtime state, Task Board, any `in_progress`/`blocked` card, recorded executor, latest handoff, relevant OpenSpec/tests/evidence/result pointers.
+Read `PROJECT.md`, exact branch/HEAD/runtime state, Task Board, contracts for every `in_progress`/`blocked` card, recorded executor, latest handoff, relevant OpenSpec/tests/evidence/result pointers.
 
 A local `current.md` may be a convenience hint, but recovery must succeed without it.

@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## Unreleased — policy-fixed execution and single live-state authority
+
+### Execution state
+
+- Made `implementation/TASK_BOARD.yaml` the sole authoritative mutable execution-state record.
+- Milestone and Task Card files are now stable scope/acceptance/test contracts rather than status/result mirrors.
+- `PROJECT.md` is now explicitly high-level project routing/policy only; current milestone/card/executor/branch/HEAD/checkpoint/OpenSpec/blocker state belongs in Task Board.
+- Cumulative handoffs remain completed-milestone summaries, not live trackers.
+- Removed the requirement to synchronize `execution_status`, executor and result pointers between Task Board and Task Card files.
+
+### Execution routing
+
+- Added third execution policy: `codex_only`.
+- `chatgpt_only` and `codex_only` are fixed-executor modes and no longer run Capability Gate.
+- Capability Gate is now explicitly `mixed`-only.
+- Preserved routing invariant `ChatGPT capabilities ⊆ Codex capabilities`.
+- Missing capability under fixed policy is a blocker for the fixed executor; policy never changes automatically.
+
+### Multi-milestone continuation
+
+- GREEN milestone boundaries are no longer automatic routing/user stops under fixed execution policy.
+- ChatGPT under `chatgpt_only` and Codex Main under `codex_only` may continue automatically into the next already-approved milestone after normal close/handoff + just-in-time execution prep + fresh Refresh Gate.
+- Explicit strategic/product/architecture decisions, user/deployment/live-write authorization gates, missing capability/evidence and end of approved scope remain hard stops.
+- Under `mixed`, new execution assignments continue to route through Capability Gate.
+- No separate Campaign or scheduler abstraction was added; approved Master Plan + Task Board + existing milestone gates are sufficient.
+
+### Review
+
+- Independent review is now defined by independence from implementing worker/session rather than hard-coded to normal ChatGPT.
+- `chatgpt_only` uses fresh independent ChatGPT review when required/recommended; `codex_only` may use a distinct Codex reviewer/worker/session; `mixed` follows the accepted independent review contract.
+
 ## Unreleased — dual-executor architecture
 
 ### Execution routing

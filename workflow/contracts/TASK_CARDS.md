@@ -2,31 +2,32 @@
 
 ## 1. Meaning
 
-A Task Card is a bounded global work package for one project. It is not an OpenSpec `tasks.md` checkbox; OpenSpec tasks are smaller implementation steps inside one behavior/design change.
+A Task Card is a bounded global work-package **contract** for one project. It defines scope, acceptance, tests and execution boundaries. It is not the live execution-state record and it is not an OpenSpec `tasks.md` checkbox.
 
-## 2. Required fields
+Live card status, assigned executor, lane/base pointers and result pointers live only in `implementation/TASK_BOARD.yaml`.
+
+## 2. Required contract fields
 
 Each Task Card should define:
 - `id`, `title`, `milestone`;
-- optional `decision_state`;
-- `execution_status`;
-- `executor: null | chatgpt | codex`;
 - priority, complexity, phase;
 - expected/relevant `code_locations`;
 - `depends_on`;
-- outcome, included/excluded scope, constraints;
+- outcome, included/excluded scope and constraints;
 - acceptance criteria and required tests/checks;
 - relevant Master Plan/requirement/decision refs;
 - OpenSpec candidate/ref;
-- Refresh Gate;
+- Refresh Gate requirements;
 - blocker/escalation rule;
-- Result section and Definition of Done.
+- Definition of Done contract.
+
+Do **not** put mutable `execution_status`, assigned executor, `result_commit`, `result_pr`, evidence status or current branch/HEAD into the Task Card file.
 
 Use `templates/TASK_CARD.md`.
 
 ## 3. Optional capability requirements
 
-Add `required_capabilities` only when explicit capabilities materially improve routing or safety, especially external, unusual, high-risk or environment-specific work.
+Add `required_capabilities` only when explicit capabilities materially improve safety or mixed-policy routing, especially external, unusual, high-risk or environment-specific work.
 
 Example:
 
@@ -44,19 +45,26 @@ Project routing assumes:
 
 `ChatGPT capabilities ⊆ Codex capabilities`
 
-The difference between executors is therefore not that ChatGPT may have a required capability unavailable to Codex. ChatGPT Capability Gate is used **before assignment** to decide whether ChatGPT can execute or, under `mixed`, the card should be handed to Codex.
+Capability Gate is used **only** under `execution_policy: mixed` before assignment.
 
-Once a card has started, a newly discovered missing runtime capability is a blocker for the assigned executor, not a reason for automatic fallback/rerouting. If Codex discovers the missing capability, persist the blocker, report `USER ACTION REQUIRED`, obtain the missing MCP/access/credential/runtime/tooling or other capability from the user, then resume the same Codex card.
+Under `chatgpt_only`, the card is assigned to ChatGPT without Capability Gate. Under `codex_only`, it is assigned to Codex without Capability Gate. A known or discovered missing capability becomes a blocker for the fixed executor; policy does not change automatically.
+
+Once a card has started, a newly discovered missing runtime capability is a blocker for the assigned executor, not a reason for automatic fallback/rerouting.
 
 ## 4. Executor provenance
 
-Leave `executor: null` while merely planned/ready unless an approved plan intentionally preassigns Codex. At actual start, record `chatgpt` or `codex` in card and Task Board.
+Executor provenance is mutable execution state and therefore lives in Task Board only.
 
-This field supports recovery/provenance. It is not an executor score and does not override project `execution_policy`.
+At actual start record `executor: chatgpt | codex` in the Task Board card entry. Do not mirror that value into the Task Card contract.
+
+Policy determines assignment as follows:
+- `chatgpt_only` → ChatGPT;
+- `codex_only` → Codex;
+- `mixed` → result of Capability Gate.
 
 ## 5. Status model
 
-Execution state is:
+Execution state is stored only in Task Board:
 
 `planned | ready | in_progress | blocked | done | superseded`
 
@@ -68,22 +76,22 @@ A decision can be accepted while implementation remains planned.
 
 ## 6. Readiness
 
-A card becomes `ready` only when:
-- dependencies needed to start are done;
+A Task Board card becomes `ready` only when:
+- dependencies needed to start are `done`;
 - required authoritative inputs exist;
 - acceptance is testable enough to execute;
 - no known unresolved strategic blocker exists;
 - there is at least a plausible execution/evidence path under project policy.
 
-A READY card may remain unscheduled when the current parallel-card limit is full or when its mutable ownership conflicts with another active card. Readiness and scheduling are separate facts.
+A READY card may remain unscheduled when the current parallel-card limit is full or its mutable ownership conflicts with another active card. Readiness and scheduling are separate facts.
 
-Do not ask the user which card comes next when Task Board provides an unambiguous executable card or executable ready set.
+Do not ask the user which card comes next when Task Board provides an unambiguous executable card or compatible ready set.
 
-## 7. Optional bounded-parallel metadata
+## 7. Optional bounded-parallel contract metadata
 
-Project execution is serial by default. A project or milestone may opt into `execution_mode: bounded_parallel` in its Task Board. This is a scheduling policy over ordinary Task Cards, not a new lifecycle state and not a generic DAG engine.
+Project execution is serial by default. A project or milestone may opt into `execution_mode: bounded_parallel` in Task Board.
 
-A card may participate in a parallel execution set only when it explicitly records:
+A Task Card contract may participate in a parallel execution set only when it explicitly records:
 
 ```yaml
 parallel_safe: true
@@ -95,78 +103,77 @@ exclusive_resources:
 
 Rules:
 - omitted `parallel_safe` means `false`;
-- a mutable parallel card must have a bounded `write_scope`; a genuinely read-only card may use an empty `write_scope`;
+- a mutable parallel card must have bounded `write_scope`; a genuinely read-only card may use an empty scope;
 - simultaneously active cards must have non-overlapping mutable `write_scope` and no shared `exclusive_resources`;
 - if ownership cannot be bounded confidently, keep the card serial;
-- files that hold project-global execution state, such as the Task Board, milestone-wide handoff/acceptance state and shared integration metadata, are coordinator-owned and must not be assigned as worker write scope;
-- a dependency must already be `done`; two cards are not made parallel merely because they belong to the same milestone;
-- external mutable systems can be named as `exclusive_resources` even when repository write scopes do not overlap;
-- unexpected overlap discovered during execution is a coordination blocker for the affected lanes, not permission to race writes.
+- Task Board, milestone-wide handoff/acceptance state and shared integration bookkeeping are coordinator-owned and never lane-worker write scope;
+- a dependency must already be `done` in Task Board;
+- external mutable systems can be named as `exclusive_resources` even when repository scopes do not overlap;
+- unexpected overlap discovered during execution is a coordination blocker, not permission to race writes.
 
-`code_locations` describes where implementation is expected. `write_scope` is narrower: it defines mutable ownership while the card is running in parallel.
+`code_locations` describes expected implementation surface. `write_scope` defines mutable ownership while a card is running in parallel.
 
 ## 8. Refresh Gate
 
 Every card is reconciled immediately before implementation against actual current state.
 
 At minimum compare:
-- repo branch/HEAD/working tree and relevant runtime state;
+- repo branch/HEAD/working tree and relevant runtime/external state;
+- Task Board current milestone/card/set and exact execution pointers;
 - latest cumulative handoff;
-- current milestone/card;
-- relevant requirements/accepted decisions/Master Plan;
+- relevant requirements/accepted decisions/Master Plan/milestone contract;
 - relevant OpenSpec;
 - completed dependencies;
 - actual interfaces;
 - required capabilities, tests/checks and evidence/readback path;
-- when parallel execution is planned, exact lane base plus current `write_scope`/`exclusive_resources` assumptions.
+- when parallel, exact lane base plus current `write_scope`/`exclusive_resources` assumptions.
 
 Implementation-detail drift within approved contracts may be reconciled by the current executor. Material behavior/architecture/requirement/external-contract/milestone-acceptance drift blocks the card and requires strategic resolution.
 
-Before assignment, unavailable required capabilities are handled by project `execution_policy` and the ChatGPT Capability Gate. After assignment/execution start, a newly discovered missing capability follows runtime blocker semantics in `workflow/EXECUTION.md` and `GITHUB_STATE.md`; do not automatically reroute the card.
+Under `mixed`, unavailable required capabilities may affect pre-assignment routing through Capability Gate. Under fixed policies, and after any assignment, missing capability follows runtime blocker semantics in `workflow/EXECUTION.md`; do not automatically change executor or policy.
 
-## 9. Definition of Done
+## 9. Definition of Done contract
 
-A card is `done` only when all applicable items hold:
+A Task Board card may be marked `done` only when all applicable items hold:
 1. included scope complete and excluded scope not silently expanded;
 2. acceptance satisfied;
 3. required tests/checks ran;
 4. checks green or authorized baseline exception exists;
 5. relevant OpenSpec requirements satisfied;
 6. no hidden blocker remains;
-7. accepted result exists in durable Git state;
-8. Task Board/Card states reconciled;
-9. `executor` and `result_commit` recorded;
-10. `result_pr` recorded when applicable, otherwise `null`;
+7. accepted result exists in durable Git/external state;
+8. Task Board state/result pointers reconciled;
+9. assigned executor and result commit recorded in Task Board;
+10. result PR recorded when applicable, otherwise `null`;
 11. durable evidence identifies exact checks/review;
 12. relevant external side effects/idempotency/reconciliation/readback verified where required;
-13. when executed in a parallel lane, the accepted lane result has been integrated into the intended milestone state and required post-integration checks are green;
+13. when parallel, the accepted lane result has been integrated and required post-integration checks are green;
 14. no unassigned TODO remains inside accepted scope.
 
-`done` is verified state, not an agent assertion.
+`done` is verified state, not an agent assertion. The Task Card file itself is not edited merely to mark these checks complete.
 
-## 10. Result section
+## 10. Result state
 
-At close persist:
+At close persist mutable result state in Task Board:
 
-```text
-executor:
-result_commit:
-result_pr:
-evidence:
-tests_summary:
+```yaml
+execution_status: done
+executor: chatgpt | codex
+result_commit: <sha>
+result_pr: <number-or-null>
+evidence: <repo-relative-path>
+tests_summary: <concise summary or evidence pointer>
 ```
 
-For a parallel lane, evidence also identifies the exact lane base/branch or equivalent isolated workspace and the integrated target state used for final verification.
-
-The same essential pointers appear in Task Board.
+For a parallel lane, evidence also identifies the exact lane base/branch or equivalent isolated workspace and integrated verification target.
 
 ## 11. Dependency and parallel-set handling
 
-Completion may unblock dependent cards. A generic DAG engine is unnecessary: explicit `depends_on`, Task Board state and the bounded-parallel ownership rules above are sufficient.
+Completion may unblock dependent cards. A generic DAG engine is unnecessary: explicit `depends_on`, Task Board state and bounded-parallel ownership rules are sufficient.
 
 For `serial`, select one deterministic READY card.
 
-For `bounded_parallel`, select a deterministic set of READY cards up to `parallel_card_limit` such that every selected card is `parallel_safe` and pairwise compatible by `write_scope` and `exclusive_resources`. Do not maximize concurrency when a smaller set materially reduces integration risk or duplicated work.
+For `bounded_parallel`, select a deterministic set of READY cards up to `parallel_card_limit` such that every selected card is `parallel_safe` and pairwise compatible by `write_scope` and `exclusive_resources`.
 
 ## 12. Near-term versus distant cards
 

@@ -1,12 +1,11 @@
 # MXX-TYY — <title>
 
-- Decision state: `ACCEPTED | DEFERRED | REJECTED | REVIEW`
-- Execution status: `PLANNED | READY | IN_PROGRESS | BLOCKED | DONE | SUPERSEDED`
-- Executor: `null | chatgpt | codex`
 - Milestone: `MXX`
 - Priority: `HIGH | MEDIUM | LOW`
 - Complexity: `HIGH | MEDIUM | LOW`
 - Phase: `<phase>`
+
+> This file is the Task Card **contract**, not live state. Decision/execution status, assigned executor, lane/base pointers and result/evidence pointers live only in `implementation/TASK_BOARD.yaml`.
 
 ## Dependencies
 
@@ -16,9 +15,9 @@
 
 - `<path>`
 
-## Parallel execution (optional)
+## Parallel execution (optional contract)
 
-Delete this section for ordinary serial-only cards. `parallel_safe: true` is valid only when mutable ownership and external resources are bounded enough to run beside another compatible READY card.
+Delete for ordinary serial-only cards.
 
 - parallel_safe: `true | false`
 - write_scope:
@@ -26,11 +25,11 @@ Delete this section for ordinary serial-only cards. `parallel_safe: true` is val
 - exclusive_resources:
   - `<shared mutable fixture/service/external target | none>`
 
-Project-global Task Board/milestone integration state remains coordinator-owned and must not be placed in a lane worker's write scope.
+Project-global Task Board/milestone integration state remains coordinator-owned and must not be placed in lane-worker write scope.
 
 ## Required capabilities (optional)
 
-List only unusual/external/high-risk/routing-significant capabilities. Delete this section when ordinary capabilities are obvious.
+List only unusual/external/high-risk/routing-significant capabilities. Under fixed policy these can block but do not trigger Capability Gate; under `mixed` they may affect routing.
 
 - `<capability>`
 
@@ -72,41 +71,31 @@ List only unusual/external/high-risk/routing-significant capabilities. Delete th
 
 ## External write/readback needs
 
-`none` or exact target + expected readback/verification. If a mutable external target must be serialized across parallel cards, also list it under `exclusive_resources`.
+`none` or exact target + expected readback/verification. If mutable external target must be serialized across parallel cards, also list under `exclusive_resources`.
 
 ## Independent review (only when material)
 
-`REQUIRED | RECOMMENDED` plus rationale. Omit this section for ordinary low-risk cards where review is optional by default.
+`REQUIRED | RECOMMENDED` plus rationale. Reviewer must be independent from implementing worker/session; concrete reviewer path follows project execution policy.
 
 ## Refresh Gate
 
-Before implementation compare actual integration branch/HEAD/current state, exact lane base/workspace when parallel, latest handoff, milestone/Task Board, this card, relevant requirements/decisions/plan/OpenSpec, dependencies, actual interfaces, capability/evidence requirements and recorded parallel-ownership assumptions.
+Before implementation compare actual integration branch/HEAD/current state, Task Board, exact lane base/workspace when parallel, latest handoff, milestone/card contracts, relevant requirements/decisions/plan/OpenSpec, dependencies, actual interfaces, capability/evidence requirements and recorded parallel-ownership assumptions.
 
-Implementation-detail drift inside accepted contracts may be reconciled. Material strategic drift, unexpected mutable ownership overlap or inability to satisfy required capability/evidence blocks the affected card/lane.
+Implementation-detail drift inside accepted contracts may be reconciled. Material strategic drift, unexpected mutable ownership overlap or inability to satisfy required capability/evidence blocks affected card/lane.
 
-## Result
+## Definition of Done contract
 
-Fill before `DONE`:
+Task Board may mark this card `done` only after:
+- Included scope complete
+- Acceptance satisfied
+- Required tests/checks executed
+- Tests green or authorized exception recorded
+- Relevant OpenSpec satisfied
+- No hidden blocker
+- Result durable in Git/external state
+- Parallel lane integrated/post-integration verification green when applicable
+- Task Board result/executor/evidence pointers recorded
+- Material external writes read back/verified where required
+- No unassigned TODO in accepted scope
 
-- result_commit:
-- result_pr:
-- evidence:
-- tests_summary:
-
-For parallel execution, evidence also records the lane base/branch or equivalent isolated workspace and post-integration verification target.
-
-## Definition of Done
-
-- [ ] Included scope complete
-- [ ] Acceptance satisfied
-- [ ] Required tests/checks executed
-- [ ] Tests green or authorized exception recorded
-- [ ] Relevant OpenSpec satisfied
-- [ ] No hidden blocker
-- [ ] Result durable in Git
-- [ ] Parallel lane integrated and post-integration verification green when applicable
-- [ ] Task Board reconciled
-- [ ] Executor/result pointers recorded
-- [ ] Evidence identifies exact verification
-- [ ] Material external writes read back/verified where required
-- [ ] No unassigned TODO in accepted scope
+Do not edit this file merely to check off completion or copy result SHAs.
