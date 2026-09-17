@@ -5,7 +5,7 @@
 - Complexity: `HIGH | MEDIUM | LOW`
 - Phase: `<phase>`
 
-> This file is the Task Card **contract**, not live state. Decision/execution status, assigned executor, lane/base pointers and result/evidence pointers live only in `implementation/TASK_BOARD.yaml`.
+> This file is the Task Card **contract**, not live state. Decision/execution status, assigned executor, lane/base pointers, review state and result/evidence pointers live only in `implementation/TASK_BOARD.yaml`.
 
 ## Dependencies
 
@@ -25,11 +25,14 @@ Delete for ordinary serial-only cards.
 - exclusive_resources:
   - `<shared mutable fixture/service/external target | none>`
 
-Project-global Task Board/milestone integration state remains coordinator-owned and must not be placed in lane-worker write scope.
+Project-global Task Board/milestone integration/review state remains coordinator-owned and must not be placed in lane-worker write scope.
 
 ## Required capabilities (optional)
 
-List only unusual/external/high-risk/routing-significant capabilities. Under fixed policy these can block but do not trigger Capability Gate; under `mixed` they may affect routing.
+List only unusual/external/high-risk/routing-significant capabilities.
+
+- Under `mixed`, these may affect Capability Gate routing.
+- Under `chatgpt_only` / `codex_only`, they are documentation only and do **not** trigger a capability preflight. Execution starts directly; a capability becomes a blocker only when a concrete required operation cannot proceed.
 
 - `<capability>`
 
@@ -75,13 +78,21 @@ List only unusual/external/high-risk/routing-significant capabilities. Under fix
 
 ## Independent review (only when material)
 
-`REQUIRED | RECOMMENDED` plus rationale. Reviewer must be independent from implementing worker/session; concrete reviewer path follows project execution policy.
+`REQUIRED | RECOMMENDED` plus rationale.
+
+- `chatgpt_only`: the implementing chat must stop at the review boundary; a fresh normal ChatGPT chat reviews the exact durable subject.
+- `codex_only`: Codex Main uses an independent reviewer worker/session; installed `codex_workflow` governs reviewer orchestration.
+- `mixed`: reviewer path follows accepted routing/review contract.
+
+Reviewer must never be the implementing worker/session for the reviewed subject.
 
 ## Refresh Gate
 
-Before implementation compare actual integration branch/HEAD/current state, Task Board, exact lane base/workspace when parallel, latest handoff, milestone/card contracts, relevant requirements/decisions/plan/OpenSpec, dependencies, actual interfaces, capability/evidence requirements and recorded parallel-ownership assumptions.
+Before implementation compare actual integration branch/HEAD/current state, Task Board, exact lane base/workspace when parallel, latest handoff, milestone/card contracts, relevant requirements/decisions/plan/OpenSpec, dependencies, actual interfaces, required tests/evidence/readback/review obligations and recorded parallel-ownership assumptions.
 
-Implementation-detail drift inside accepted contracts may be reconciled. Material strategic drift, unexpected mutable ownership overlap or inability to satisfy required capability/evidence blocks affected card/lane.
+Refresh Gate is a state/contract drift gate. Under fixed execution policy it is **not** a capability inventory/checklist.
+
+Implementation-detail drift inside accepted contracts may be reconciled. Material strategic drift or unexpected mutable ownership overlap blocks affected card/lane.
 
 ## Definition of Done contract
 
@@ -91,10 +102,11 @@ Task Board may mark this card `done` only after:
 - Required tests/checks executed
 - Tests green or authorized exception recorded
 - Relevant OpenSpec satisfied
+- Required/recommended independent review GREEN when applicable
 - No hidden blocker
 - Result durable in Git/external state
 - Parallel lane integrated/post-integration verification green when applicable
-- Task Board result/executor/evidence pointers recorded
+- Task Board result/executor/evidence/review pointers recorded
 - Material external writes read back/verified where required
 - No unassigned TODO in accepted scope
 

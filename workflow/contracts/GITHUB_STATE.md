@@ -59,16 +59,31 @@ Task Board should identify at least:
 - card result pointers, evidence and concise tests summary;
 - relevant OpenSpec change per card when applicable;
 - integration branch/PR/head information needed to recover in-flight work;
+- review-state pointers when a card/milestone independent-review gate is active;
 - strategic control-chat identity only when that optional Codex communication mechanism is configured.
 
 Serial remains the default when execution mode is omitted in a legacy project.
+
+### Review-state fields
+
+When independent review is active for a card or milestone, Task Board records:
+
+```yaml
+review_state: pending | in_progress | green | red
+review_subject: <exact sha/subject>
+review_evidence: <repo-relative-path-or-null>
+```
+
+Omit/null these fields when no review gate is active.
+
+`review_subject` is immutable for one review attempt. If corrective work changes the subject, create/update the next review attempt against the new exact subject rather than silently reusing the old verdict.
 
 ## 5. Executor assignment
 
 Read project `execution_policy` from `PROJECT.md`.
 
-- `chatgpt_only` → assign ChatGPT directly. Do not run Capability Gate.
-- `codex_only` → assign Codex directly. Do not run Capability Gate.
+- `chatgpt_only` → assign ChatGPT directly. Do not run Capability Gate or capability preflight.
+- `codex_only` → assign Codex directly. Do not run Capability Gate or capability preflight.
 - `mixed` → normal ChatGPT runs `workflow/chatgpt/CAPABILITY_GATE.md` before assignment.
 
 Project routing assumes `ChatGPT capabilities ⊆ Codex capabilities`.
@@ -105,14 +120,14 @@ The durable start transition should be committed/pushed on the integration branc
 
 While parallel lanes are active, only the project-level coordinator updates shared execution state, including:
 - Task Board;
-- milestone-wide checkpoint/handoff/acceptance pointers;
+- milestone-wide checkpoint/handoff/acceptance/review pointers;
 - integration-base and lane pointers;
 - deterministic integration order;
 - cross-lane corrective state.
 
 A lane worker may write implementation, tests and card-scoped evidence within its owned scope, but must not independently race edits to Task Board or milestone-wide integration bookkeeping.
 
-When Codex with `codex_workflow` is used, Codex Main is coordinator and internal workers may own individual Task Card lanes. Worker completion does not itself change Task Board card state to `done`.
+When Codex with `codex_workflow` is used, Codex Main is coordinator and internal workers/reviewers may own individual Task Card/review lanes. Worker completion does not itself change Task Board card state to `done` or review state to accepted milestone truth; Main integrates the result.
 
 ## 8. Parallel lane integration
 
@@ -125,7 +140,24 @@ Before marking a parallel card `done`:
 
 Unexpected write-scope conflict means the affected lanes were not safely independent. Pause/serialize/re-scope them.
 
-## 9. Done-card result pointer contract
+## 9. Independent-review lifecycle
+
+When a REQUIRED/RECOMMENDED review gate is reached:
+
+1. freeze the exact `review_subject` and implementation/test evidence;
+2. set `review_state: pending` in Task Board;
+3. persist durable state before the independent verdict;
+4. independent reviewer sets `review_state: in_progress` when review begins;
+5. reviewer persists GREEN/RED evidence and coordinator sets `review_state: green | red` plus `review_evidence`.
+
+Policy-specific behavior:
+- `chatgpt_only` → the implementing ChatGPT chat must stop at `pending`; the user opens a **fresh normal ChatGPT chat** to perform the independent review. The implementing chat must not issue the verdict on its own subject.
+- `codex_only` → Codex Main obtains a reviewer worker/session independent of the implementing worker. When installed/enabled, `codex_workflow` governs internal review orchestration; no user handoff is required solely for reviewer independence.
+- `mixed` → use an independent reviewer path appropriate to the accepted review contract.
+
+A GREEN review may unblock milestone acceptance/continuation. A RED review creates/reopens bounded corrective work; a changed subject requires a new review attempt.
+
+## 10. Done-card result pointer contract
 
 Before a Task Board card is terminal `done`, record:
 
@@ -147,7 +179,7 @@ Rules:
 
 The Task Card contract is not edited to duplicate these result fields.
 
-## 10. Blocked card
+## 11. Capability and blocked-card semantics
 
 When execution is blocked:
 - Task Board card `execution_status: blocked`;
@@ -157,18 +189,19 @@ When execution is blocked:
 
 Capability routing and runtime capability failure are different stages:
 - under `mixed`, Capability Gate is used only **before assignment**;
-- under `chatgpt_only`/`codex_only`, there is no routing gate;
-- **after assignment/start**, a newly discovered missing capability is a runtime blocker, not an automatic executor-routing event.
+- under `chatgpt_only`/`codex_only`, there is no routing gate and **no capability preflight/inventory**;
+- fixed-policy execution starts directly after state/contract Refresh Gate;
+- a capability becomes a workflow blocker only when a concrete required operation cannot proceed.
 
-For a runtime capability blocker, record the exact missing capability, surface `USER ACTION REQUIRED`, and resume the same card with the same executor after capability is provided.
+For a runtime capability blocker, record the exact missing capability/access and surface `USER ACTION REQUIRED` with the smallest concrete remedy.
 
-If assigned executor is Codex, do not fall back to ChatGPT. Under the capability invariant, a required capability absent from Codex is not an executor fallback opportunity.
+Codex should self-remediate ordinary non-secret local tooling/dependency gaps when the environment allows and accepted security/reproducibility constraints permit it. User-provided MCP/credential/token/account permission/privileged access becomes a blocker when actually needed and unavailable.
 
-If assigned executor is ChatGPT under `chatgpt_only`, remain blocked until capability is supplied or the user explicitly changes policy.
+If the user supplies the missing capability, resume the same card. If the user explicitly changes `execution_policy`, reconcile Task Board and reassign the blocked card under the new policy. Do not reroute or mutate policy automatically.
 
 For a strategic/product/architecture blocker, obtain the relevant authority decision and persist it under `decisions/`. When Codex uses a correlated ChatGPT control channel, follow `workflow/codex/HANDOFF.md`.
 
-## 11. Milestone GREEN
+## 12. Milestone GREEN
 
 A milestone is not done merely because all required cards are done.
 
@@ -178,7 +211,8 @@ After integrated milestone acceptance is GREEN:
 3. write acceptance evidence;
 4. record exact final `implementation_head` and checkpoint/tag when applicable;
 5. set Task Board milestone `execution_status: done`;
-6. ensure every required card is `done` with result pointers.
+6. ensure every required card is `done` with result pointers;
+7. ensure every required/recommended independent-review gate for the accepted subject is `green`.
 
 A done Task Board milestone stores at minimum:
 
@@ -192,50 +226,58 @@ acceptance_evidence: implementation/evidence/MXX_ACCEPTANCE.md
 
 Do not mirror those terminal pointers back into the milestone contract file merely for state synchronization.
 
-## 12. Automatic next-milestone continuation
+## 13. Automatic next-milestone continuation
 
 A GREEN milestone does not by itself require a user/router stop.
 
 Under `chatgpt_only` or `codex_only`, the fixed executor may continue automatically into the next milestone when:
 - it is already accepted in the approved Master Plan;
 - its prerequisites are satisfied by the GREEN checkpoint;
+- every required/recommended review gate for the completed subject is `green`;
 - deterministic execution preparation can be performed from durable authority;
 - no explicit user/deployment/authorization gate is due;
 - no unresolved strategic decision exists.
 
-The coordinator updates Task Board to the next milestone, performs any allowed just-in-time execution preparation, runs fresh Refresh Gates, and continues. No Capability Gate is run.
+The coordinator updates Task Board to the next milestone, performs allowed just-in-time execution preparation, runs fresh state/contract Refresh Gates and continues. No Capability Gate or fixed-policy capability preflight is run.
+
+Under `chatgpt_only`, if the current chat implemented the subject and review is required/recommended, the current chat stops at `review_state: pending`; continuation resumes in the fresh review chat after GREEN.
+
+Under `codex_only`, Codex Main may orchestrate independent reviewer workers under installed `codex_workflow` and continue without a user handoff solely for review.
 
 Under `mixed`, the next new execution assignment returns to ChatGPT routing and Capability Gate.
 
 An explicit deployment/live-write approval remains a hard stop regardless of execution policy.
 
-## 13. Corrective work
+## 14. Corrective work
 
-If integrated milestone acceptance is RED:
+If integrated milestone acceptance or independent review is RED:
 - do not mark milestone done;
 - reopen the appropriate Task Board card or create a bounded corrective card/contract;
 - record failing evidence;
-- preserve dependencies, execution policy and strategic escalation rules.
+- preserve dependencies, execution policy and strategic escalation rules;
+- after corrective work changes the subject, run a fresh independent review when still required/recommended.
 
-## 14. Cumulative handoff and recovery
+## 15. Cumulative handoff and recovery
 
 `project-handoffs/MXX_HANDOFF.md` is the canonical summary for a completed milestone, but Task Board remains the live execution-state authority.
 
 Fresh-session recovery uses:
 - `PROJECT.md` for high-level routing/policy;
 - exact integration branch/HEAD/runtime state;
-- Task Board;
+- Task Board including review state;
 - milestone/Card contracts referenced by active state;
 - latest handoff;
-- relevant OpenSpec/evidence/result pointers.
+- relevant OpenSpec/evidence/result/review pointers.
 
 A local `current.md` is optional convenience only.
 
-## 15. Consistency invariants
+## 16. Consistency invariants
 
 Invalid states include:
 - Task Board card `done` with missing required executor/result/evidence pointers;
 - Task Board milestone `done` with missing checkpoint, implementation head, handoff or acceptance evidence;
+- Task Board milestone `done` while a required/recommended review gate for the accepted subject is `pending`, `in_progress` or `red`;
+- a `green` review whose `review_subject` does not match the accepted subject it claims to review;
 - all required cards `done` while a GREEN milestone remains `ready`/`in_progress`;
 - a dependent card `in_progress` while a required dependency is not `done`;
 - more concurrently active cards than `parallel_card_limit`;
@@ -244,6 +286,7 @@ Invalid states include:
 - lane workers racing coordinator-owned Task Board/global integration state;
 - durable execution state existing only in chat, `PROJECT.md`, milestone/Card files or local `current.md`;
 - claimed external success contradicted by required readback evidence;
-- fixed-policy execution invoking Capability Gate;
+- fixed-policy execution invoking Capability Gate or capability preflight/inventory;
 - execution policy changing without explicit user decision;
-- a runtime capability blocker being silently rerouted instead of remaining blocked for the assigned executor.
+- a runtime capability blocker being silently rerouted instead of being resolved or explicitly reassigned after user policy change;
+- a `chatgpt_only` implementing chat issuing its own REQUIRED/RECOMMENDED independent-review verdict.

@@ -27,6 +27,10 @@ milestones:
     implementation_head: null
     handoff: null
     acceptance_evidence: null
+    # Populate only while an independent milestone review gate is active.
+    review_state: null # pending | in_progress | green | red
+    review_subject: null
+    review_evidence: null
 
 cards:
   - id: M01-T01
@@ -48,6 +52,10 @@ cards:
     exclusive_resources: []
     lane_branch: null
     lane_base: null
+    # Populate only while an independent card review gate is active.
+    review_state: null # pending | in_progress | green | red
+    review_subject: null
+    review_evidence: null
     result_commit: null
     result_pr: null
     evidence: null

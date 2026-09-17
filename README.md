@@ -14,7 +14,7 @@ The project repository is durable project truth. It stores brainstorming, resear
 
 The workflow deliberately separates contract from state:
 
-- `implementation/TASK_BOARD.yaml` — **sole mutable execution-state authority**;
+- `implementation/TASK_BOARD.yaml` — **sole mutable execution-state authority**, including active independent-review state;
 - milestone/Card files — stable scope, acceptance and test contracts;
 - cumulative handoff — summary of what became true at a completed milestone;
 - root `PROJECT.md` — small high-level project router/policy/index, not a live tracker.
@@ -25,13 +25,31 @@ This avoids repeatedly synchronizing status, executor, SHA and result pointers a
 
 Every project chooses exactly one:
 
-- `chatgpt_only` — ChatGPT is the fixed Task Card executor. No Capability Gate. Missing ChatGPT capability blocks execution until supplied or policy is explicitly changed.
-- `codex_only` — Codex is the fixed Task Card executor. No Capability Gate. Codex Main may continue automatically across already-approved GREEN milestone boundaries when no strategic/user/authorization gate intervenes.
+- `chatgpt_only` — ChatGPT is the fixed Task Card executor. No Capability Gate and no capability preflight. Start the work; if a concrete required operation cannot be performed, persist the runtime blocker and ask for the smallest remedy or an explicit policy change.
+- `codex_only` — Codex is the fixed Task Card executor. No Capability Gate and no capability preflight. Codex starts directly, self-remediates ordinary installable non-secret tooling/dependencies when permitted, and asks the user only when a concrete operation requires unavailable user-provided MCP/credential/token/access/authorization.
 - `mixed` — ChatGPT remains project router and uses the Capability Gate before new execution assignment to choose ChatGPT, Codex or BLOCKED.
 
 Project routing assumes `ChatGPT capabilities ⊆ Codex capabilities`.
 
 Changing policy requires an explicit user decision.
+
+## Capability semantics
+
+For fixed policies, capability availability is **runtime discovery**, not a recurring planning gate.
+
+Execution Prep and Refresh Gate do not inventory tools/MCPs or attempt to prove that the fixed executor can perform every future operation. Refresh Gate checks current state, contracts, dependencies, interfaces, tests/evidence obligations and drift.
+
+A capability becomes a blocker only when the active card reaches a concrete required operation that cannot proceed. No automatic executor/policy switch occurs. The user may provide the missing capability or explicitly change policy, after which Task Board is reconciled before reassignment.
+
+## Independent review
+
+Independent means independent from the worker/session that implemented the reviewed subject.
+
+- `chatgpt_only` — a ChatGPT chat that implemented a REQUIRED/RECOMMENDED review subject must freeze exact `review_subject`, persist `review_state: pending`, and **stop**. The user opens a fresh normal ChatGPT chat, which performs the independent review from durable Task Board state. After GREEN, that fresh chat may continue later deterministic work.
+- `codex_only` — Codex Main obtains an independent reviewer worker/session. When `codex_workflow` is installed/enabled, it owns the internal execute/review-worker orchestration. Project Workflow owns only the project-level review requirement, exact subject, durable verdict/evidence and acceptance boundary. No user handoff is required solely for review independence.
+- `mixed` — reviewer path follows the accepted review contract and must remain independent from implementation.
+
+Task Board records active review state using `review_state`, `review_subject` and `review_evidence`.
 
 ## Milestone continuity
 
@@ -39,9 +57,9 @@ Milestones remain stable integrated/testable checkpoints. They are **not** autom
 
 Under `chatgpt_only` or `codex_only`, the fixed executor may run an approved multi-milestone plan continuously:
 
-`M01 → acceptance/checkpoint → M02 → ...`
+`M01 → acceptance/review/checkpoint → M02 → ...`
 
-Each boundary still performs required close/handoff, just-in-time execution prep and fresh Refresh Gate. Execution stops only for real strategic/product/architecture decisions, missing capability/evidence, explicit deployment/live-write/user authorization gates, material RED requiring strategic resolution, or end of approved scope.
+Each boundary still performs required close/handoff, just-in-time execution prep and fresh state/contract Refresh Gate. Execution stops only for real strategic/product/architecture decisions, explicit deployment/live-write/user authorization gates, concrete runtime blockers that cannot be self-remediated, RED requiring strategic resolution, required `chatgpt_only` fresh-review handoff, or end of approved scope.
 
 Under `mixed`, the next new execution assignment is routed again by Capability Gate.
 
@@ -57,9 +75,7 @@ Task Board plus ordinary Git lane branches/worktrees remain the durable coordina
 
 ChatGPT is the strategic/research/planning agent and user-facing router. It is also the fixed executor in `chatgpt_only` and a possible executor in `mixed`.
 
-Codex is the fixed executor in `codex_only` and a possible executor in `mixed`. When `codex_workflow` is installed/enabled, it governs internal Codex runtime orchestration only; Project Workflow retains project-level Task Card/state/acceptance authority.
-
-Independent review means independent from the implementing worker/session. Reviewer selection follows execution policy rather than being hard-coded to one product.
+Codex is the fixed executor in `codex_only` and a possible executor in `mixed`. When `codex_workflow` is installed/enabled, it governs internal Codex runtime orchestration — including execute/review workers, worker/model routing, delegation, lifecycle, waiting and runtime recovery. Project Workflow retains project-level Task Card/state/review/acceptance authority.
 
 ## Progressive disclosure
 

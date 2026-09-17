@@ -37,6 +37,14 @@ Apply `workflow/contracts/PROJECT_REPOSITORY.md#6-authority-and-conflicts` befor
 
 Accepted decisions/requirements outrank brainstorming, approved plan outranks abandoned alternatives, Task Board + exact Git/runtime evidence govern live execution, milestone/Card files define contracts, and cumulative handoff summarizes completed milestone truth.
 
+### Pending independent review has priority
+
+When Task Board contains `review_state: pending | in_progress` for a REQUIRED/RECOMMENDED review gate, route to **MILESTONE REVIEW / CLOSE** (or the applicable card-review gate) before starting later dependent implementation.
+
+Under `chatgpt_only`, a fresh ChatGPT chat opened after an implementing-chat handoff must treat the pending exact `review_subject` as its first execution obligation. It does not continue implementation first.
+
+Under `codex_only`, Codex Main handles this priority internally through an independent reviewer worker/session according to installed `codex_workflow`.
+
 ## BRAINSTORMING
 
 Read primarily `workflow/BRAINSTORMING.md`, project `PROJECT.md`, current brainstorming notes, relevant accepted decisions and open questions.
@@ -56,8 +64,8 @@ Read `workflow/PLANNING.md`, `PROJECT.md`, canonical requirements, relevant veri
 Read `workflow/EXECUTION_PREP.md`, `PROJECT.md`, canonical requirements/approved Master Plan, latest handoff when relevant, Task Board if it exists, `TASK_CARDS`, `OPENSPEC`, `GITHUB_STATE` and relevant current source/runtime state.
 
 Then route by policy:
-- `chatgpt_only` → no Capability Gate;
-- `codex_only` → no Capability Gate;
+- `chatgpt_only` → no Capability Gate and no capability preflight/inventory;
+- `codex_only` → no Capability Gate and no capability preflight/inventory;
 - `mixed` → normal ChatGPT reads/runs `workflow/chatgpt/CAPABILITY_GATE.md`.
 
 During automatic `codex_only` multi-milestone continuation, Codex Main may read `workflow/EXECUTION_PREP.md` to prepare the next already-approved milestone within strategic boundaries.
@@ -66,13 +74,15 @@ During automatic `codex_only` multi-milestone continuation, Codex Main may read 
 
 Read shared `workflow/EXECUTION.md`, `workflow/chatgpt/EXECUTION.md`, project `PROJECT.md`, Task Board, current milestone/Card contracts, latest handoff, relevant OpenSpec/plan/source and only contracts needed by current set.
 
+Under fixed `chatgpt_only`, Refresh Gate is state/contract drift checking, not a capability inventory.
+
 Do not automatically load Codex execution/orchestration.
 
 ## CODEX EXECUTION
 
 Read shared `workflow/EXECUTION.md`, `workflow/codex/EXECUTION.md`, `workflow/codex/CODEX_ORCHESTRATION.md`, project `PROJECT.md`, Task Board, current milestone/Card contracts, latest handoff, relevant OpenSpec/plan/source and only needed shared contracts.
 
-Under `codex_only`, also load `workflow/EXECUTION_PREP.md` at an approved milestone boundary when deterministic next-milestone preparation is required.
+Under `codex_only`, also load `workflow/EXECUTION_PREP.md` at an approved milestone boundary when deterministic next-milestone preparation is required. Do not run a capability preflight; concrete runtime blockers are handled during execution.
 
 Do not load ChatGPT-specific modules.
 
@@ -84,10 +94,12 @@ For Codex correlated ChatGPT control-channel communication, additionally read `w
 
 ## MILESTONE REVIEW / CLOSE
 
-Read `workflow/REVIEW_AND_HANDOFF.md`, `PROJECT.md`, Task Board/current milestone contract, required card results/evidence, relevant OpenSpec/Git/external state and prior cumulative handoff when needed.
+Read `workflow/REVIEW_AND_HANDOFF.md`, `PROJECT.md`, Task Board/current milestone contract, exact `review_subject` when present, required card results/evidence, relevant OpenSpec/Git/external state and prior cumulative handoff when needed.
+
+For `chatgpt_only` REQUIRED/RECOMMENDED review, the reviewer must be a fresh normal ChatGPT chat that did not implement `review_subject`.
 
 ## FAILURE RECOVERY
 
-Read `PROJECT.md`, exact branch/HEAD/runtime state, Task Board, contracts for every `in_progress`/`blocked` card, recorded executor, latest handoff, relevant OpenSpec/tests/evidence/result pointers.
+Read `PROJECT.md`, exact branch/HEAD/runtime state, Task Board, contracts for every `in_progress`/`blocked` card, any `pending`/`in_progress` review gate, recorded executor, latest handoff, relevant OpenSpec/tests/evidence/result/review pointers.
 
 A local `current.md` may be a convenience hint, but recovery must succeed without it.

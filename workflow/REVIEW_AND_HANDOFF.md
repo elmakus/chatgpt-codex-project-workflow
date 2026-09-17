@@ -19,16 +19,42 @@ A GREEN milestone may never remain `ready` or `in_progress` in Task Board.
 
 ## Independent review policy
 
-Independence means the reviewer does not rely on the implementing worker/session narrative and re-reads durable repo/evidence from the exact subject.
+Independence means the reviewer did not implement the reviewed subject, does not rely on implementing-session narrative, and re-reads durable repo/evidence from the exact review subject.
 
 - **REQUIRED** for high-risk work: security/auth, destructive/data migrations, difficult-to-reverse production/live configuration, important external-state protection boundaries or comparable risk.
 - **RECOMMENDED** for major architecture, large refactors, complex state machines and broad cross-package changes.
 - **OPTIONAL** for simple low-risk mechanical/docs changes.
 
 Reviewer selection follows project policy:
-- `chatgpt_only` → use a fresh independent normal ChatGPT chat when review is required/recommended;
-- `codex_only` → use an independent Codex reviewer/worker/session that did not implement the reviewed subject; Codex Main remains accountable for exact-subject integration and evidence;
-- `mixed` → use an independent reviewer path appropriate to the accepted review contract; prefer a different session/worker from implementation and do not reuse executor narrative as proof.
+- `chatgpt_only` → required/recommended independent review uses a **fresh normal ChatGPT chat** that did not implement the subject;
+- `codex_only` → Codex Main obtains an independent Codex reviewer worker/session that did not implement the reviewed subject; when installed/enabled, `codex_workflow` governs the internal reviewer-worker/session mechanics;
+- `mixed` → use an independent reviewer path appropriate to the accepted review contract; the reviewer must not be the implementing worker/session for that subject.
+
+### `chatgpt_only` hard review handoff
+
+A normal ChatGPT chat cannot review its own implementation when review is REQUIRED or RECOMMENDED.
+
+When an implementing ChatGPT chat reaches such a review boundary it must:
+1. freeze/persist the exact review subject and all implementation/test evidence;
+2. set the relevant Task Board `review_state: pending`, `review_subject: <exact sha/subject>` and review-evidence pointer when available;
+3. commit/push durable state when possible;
+4. **stop before issuing the independent verdict**;
+5. report `USER ACTION REQUIRED: start a fresh normal ChatGPT chat for independent review from implementation/TASK_BOARD.yaml`.
+
+The fresh review chat:
+1. recovers Task Board and exact `review_subject`;
+2. sets `review_state: in_progress` when it begins the review;
+3. independently reads the exact subject/contracts/evidence;
+4. persists a GREEN/RED review verdict and evidence;
+5. sets `review_state: green | red` and `review_evidence` in Task Board.
+
+After GREEN, that fresh chat may continue subsequent deterministic `chatgpt_only` execution if normal continuation conditions hold. If it later implements a new subject that itself requires/recommends independent review, another fresh ChatGPT chat is required for that later review.
+
+### `codex_only` review continuity
+
+A required/recommended review is **not** a user handoff solely because review is independent. Codex Main remains coordinator and uses an independent reviewer worker/session according to installed `codex_workflow` (or native Codex mechanisms when that workflow is unavailable), while Project Workflow requires only the project-level facts: exact subject, reviewer independence, verdict/evidence and Task Board review state.
+
+Codex Main must not let the implementing worker review its own subject, and worker review completion is not milestone acceptance until Main integrates the verdict into durable project state.
 
 For high-risk external writes, place independent review at the last useful reversible checkpoint when practical, then perform write + post-write readback/verification.
 
@@ -103,17 +129,19 @@ After a GREEN checkpoint:
 
 ### `chatgpt_only`
 
-ChatGPT remains fixed executor. If next milestone is already approved and no strategic/user/deployment gate intervenes, continue automatically through just-in-time execution prep + fresh Refresh Gate. Do not run Capability Gate.
+ChatGPT remains fixed executor. If next milestone is already approved and no strategic/user/deployment gate intervenes, continue automatically through just-in-time execution prep + fresh Refresh Gate **after every required/recommended independent review gate is GREEN**. Do not run Capability Gate.
+
+A chat that implemented the subject must stop at its required/recommended review boundary as defined above; project continuation resumes in the fresh review chat after GREEN.
 
 ### `codex_only`
 
-Codex remains fixed executor. Codex Main may continue automatically into the next already-approved milestone, including deterministic just-in-time execution prep, without returning to ChatGPT merely for routing. Stop only for real strategic/user/authorization/capability/evidence blockers or when approved scope ends.
+Codex remains fixed executor. Codex Main may continue automatically into the next already-approved milestone, including deterministic just-in-time execution prep, without returning to ChatGPT merely for routing or independent review. Stop only for real strategic/user/authorization/runtime blockers or when approved scope ends.
 
 ### `mixed`
 
 The next new execution assignment returns to normal ChatGPT Capability Gate. Previous executor is not inherited automatically.
 
-A session recommendation for fresh context is context hygiene, not product authorization.
+A session recommendation for fresh context is context hygiene, not product authorization. The `chatgpt_only` fresh-review requirement above is different: it is a real independence gate.
 
 ## System verification and cutover
 
