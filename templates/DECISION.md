@@ -6,7 +6,7 @@
 - Authority: `<user/product/approved governance authority>`
 - Supersedes: `<decision IDs or none>`
 - Related requirements: `<paths/IDs or none>`
-- Related milestone/card: `<IDs or none>`
+- Related milestone/card: `<IDs or none; may remain none until Planning/Execution Prep>`
 
 ## Context
 
@@ -30,7 +30,7 @@
 
 ## Required authoritative updates
 
-- Requirements: ...
+- Requirements / Project Definition: ...
 - Planning: ...
 - Task Card/OpenSpec: ...
 - PROJECT.md: ...
