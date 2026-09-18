@@ -106,7 +106,7 @@ Card may become `done` only when all applicable conditions hold:
 2. acceptance satisfied;
 3. required tests/checks GREEN or authorized baseline exception exists;
 4. applicable OpenSpec consistent;
-5. every required delegated-worker step, when present, completed with a valid normalized result or an explicitly accepted exception; worker success alone does not replace Card tests/acceptance;
+5. every required delegated-worker step, when present, completed with a valid normalized result under the active Card contract; worker success alone does not replace Card tests/acceptance;
 6. REQUIRED/RECOMMENDED independent review GREEN when review is a Card-completion requirement;
 7. no hidden blocker/unassigned TODO inside accepted scope;
 8. accepted result exists durably;
