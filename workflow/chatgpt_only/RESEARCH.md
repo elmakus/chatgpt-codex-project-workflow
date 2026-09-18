@@ -33,7 +33,7 @@ Pre-execution Brainstorming / Project Definition / Strategic Planning / plan-rev
 
 Execution Prep / implementation / recovery Research uses:
 
-`implementation/TASK_BOARD.yaml → research_obligation`.
+selected canonical Task Board → `research_obligation` (branch-isolated manifest-selected board, or legacy/default `implementation/TASK_BOARD.yaml`).
 
 Never mirror an implementation/recovery Research obligation into `PROJECT.md`.
 
