@@ -38,9 +38,12 @@ Updated: `<YYYY-MM-DD>`
 - Acceptance: ...
 - Requirement coverage: ...
 - Dependencies: ...
+- Must-preserve constraints / implementation-shaping rationale: `<only when material>`
 - Boundary gate / explicit user authorization: `none | <exact gate>`
 
 An approved milestone sequence may execute continuously under fixed `chatgpt_only` or `codex_only` policy. GREEN milestone boundaries still require normal close/handoff plus fresh execution prep/Refresh Gate; execution stops at any explicit boundary gate.
+
+Each approved milestone subsection is the default milestone contract. Create a separate `implementation/milestones/MXX.md` only just-in-time when it adds material contract detail needed for execution or integrated acceptance. Never replace richer planner intent with a shorter milestone/card paraphrase; downstream contracts point back to the exact authoritative sections.
 
 ## 10. Requirement coverage matrix
 
