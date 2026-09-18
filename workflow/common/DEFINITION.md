@@ -27,6 +27,14 @@ Persist accepted definition into the existing canonical artifacts:
 
 Use `templates/REQUIREMENTS.md` and `templates/DECISION.md` when useful.
 
+## Entry boundary
+
+Project Definition may begin only after the selected policy route's entry conditions are satisfied.
+
+If the selected route requires explicit user promotion from exploratory Brainstorming, Definition must verify that authorization instead of inferring it from brainstorming maturity, research completion or the existence of tentative conclusions.
+
+Once Definition has been explicitly authorized for the current definition scope, ordinary Research ↔ Definition evidence loops do not require repeated promotion unless the work deliberately returns to open-ended Brainstorming and reopens that scope.
+
 ## Inputs
 
 Read only what is needed to establish accepted intent:
