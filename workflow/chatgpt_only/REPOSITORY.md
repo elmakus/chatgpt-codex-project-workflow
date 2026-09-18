@@ -152,7 +152,7 @@ From an empty project shell:
 4. when substantial exploratory work has a canonical brainstorming record, point `PROJECT.md → Active exploratory scope` to it; do not create a placeholder record merely for the pointer;
 5. use Project Definition to promote accepted intent into `requirements/` + `decisions/` only after the chatgpt_only promotion gate is satisfied;
 6. create an approved Master Plan only after Definition Complete is GREEN;
-7. create Task Board and Task Cards just-in-time through Execution Prep;
+7. create Task Board from `workflow/chatgpt_only/TASK_BOARD_TEMPLATE.yaml` and create Task Cards just-in-time through Execution Prep;
 8. create separate milestone contracts, standalone evidence and OpenSpec only when their material criteria are met.
 
 Do not populate placeholder artifacts merely to satisfy a directory checklist.

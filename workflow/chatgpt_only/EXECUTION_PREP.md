@@ -18,6 +18,8 @@ Execution prep writes:
 - optional JIT milestone extension only when it adds material detail beyond the approved Master Plan milestone section;
 - mutable readiness/status/result/review state only to `implementation/TASK_BOARD.yaml`.
 
+When creating the first Task Board for this policy, scaffold it from `workflow/chatgpt_only/TASK_BOARD_TEMPLATE.yaml`. Do **not** use the shared `templates/TASK_BOARD.yaml`, which belongs to the legacy/other-policy stack and may contain bounded-parallel coordination fields that are illegal in active `chatgpt_only`.
+
 Do not mirror live state into Card/milestone/`PROJECT.md`.
 
 ## Preparation steps
