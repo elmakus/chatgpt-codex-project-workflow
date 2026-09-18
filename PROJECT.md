@@ -6,7 +6,7 @@
 - Repository: `elmakus/chatgpt-codex-project-workflow`
 - Lifecycle: `active`
 - High-level goal: maintain and evolve the repository-backed Project Workflow contracts used by ChatGPT/Codex project execution.
-- High-level status: active development under accepted durable requirements, decisions and reviewed plans.
+- High-level status: `MW-R1` multi-workstream/intake scope completed and integrated; repository remains active for future workflow evolution.
 
 ## Execution policy
 
@@ -21,7 +21,7 @@ Changing execution policy requires an explicit user decision.
 - Requirements: `requirements/CHATGPT_ONLY_MULTI_WORKSTREAM_INTAKE.md`
 - Approved plan: `planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md`
 - Task Board: `implementation/TASK_BOARD.yaml`
-- Latest cumulative handoff: `project-handoffs/M04_HANDOFF.md`
+- Latest cumulative handoff: `project-handoffs/M05_HANDOFF.md`
 - Accepted decisions index / key pointers:
   - `decisions/ADR_CHATGPT_ONLY_BRANCH_ISOLATED_WORKSTREAMS.md`
 
