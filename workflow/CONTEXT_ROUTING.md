@@ -122,4 +122,4 @@ Project/Git:
 
 Under `chatgpt_only`, the reviewer must be a fresh normal ChatGPT chat that did not implement the exact subject.
 
-The reviewer writes only review verdict/evidence and required review-state transitions. RED corrective implementation leaves this route and returns through the normal preparation/execution path.
+The reviewer first persists the independent verdict/evidence and required review-state transitions. If verdict is RED and bounded deterministic corrective work is immediately legal under `chatgpt_only`, **do not end the user turn**: leave review-only mode, load the normal ChatGPT execution route, perform remediation, freeze the new exact subject as `review_state: pending`, then stop and provide the fresh re-review prompt. Stop earlier only for a real strategic/user/authorization/runtime blocker.
