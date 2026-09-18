@@ -10,7 +10,7 @@ Read applicable `GITHUB_STATE.md`, `TASK_CARDS.md`, `OPENSPEC.md` and project `P
 
 ## State authority
 
-`implementation/TASK_BOARD.yaml` is the sole live execution-state authority. Milestone/Card files are contracts; evidence/handoffs prove or summarize results; `PROJECT.md` is high-level routing only.
+`implementation/TASK_BOARD.yaml` is the sole live execution-state authority. The approved Master Plan milestone section is the default milestone contract; an optional `implementation/milestones/MXX.md` may extend it just-in-time. Task Card files are bounded contracts; evidence/handoffs prove or summarize results; `PROJECT.md` is high-level routing only.
 
 Do not create synchronization commits whose only purpose is copying live status/result fields into milestone/Card/PROJECT files.
 
@@ -20,7 +20,7 @@ Project execution is serial unless Task Board explicitly opts into `execution_mo
 
 1. Establish repository root, intended integration branch, exact HEAD, working-tree state and relevant external/runtime baseline.
 2. Read project execution policy and Task Board; recover every valid `in_progress` or `blocked` card and lane/base pointer.
-3. Read the contracts for current milestone and candidate Task Cards plus relevant OpenSpec/requirements/decisions.
+3. Resolve the current milestone contract from the Task Board pointer (normally the approved Master Plan subsection, optionally a JIT milestone extension), then read candidate Task Cards and their exact authority slices plus relevant OpenSpec/requirements/decisions.
 4. Determine READY cards whose dependencies are `done`; never select `planned`, `blocked`, `done` or `superseded`.
 5. Build the next execution set:
    - `serial` → choose the first deterministic READY card;
@@ -32,11 +32,11 @@ Project execution is serial unless Task Board explicitly opts into `execution_mo
 7. Before work relies on the selection, persist coordinator-owned Task Board transitions for the whole set: executor, `in_progress`, exact integration base and lane/workspace pointers. Transition Task Board milestone to `in_progress` when this is its first real execution.
 8. Run Refresh Gate independently for each selected card against the same durable integration base plus completed dependencies.
 9. Create/reconcile OpenSpec just-in-time if required.
-10. Execute only bounded card scope. Mutable parallel cards use isolated lane branches/worktrees or equivalent isolated workspace.
-11. Run required tests/checks and verify card acceptance plus relevant OpenSpec behavior in each lane.
+10. Execute only bounded card scope. Before delegation or implementation, preserve the card's applicable authority slice: every implementation-shaping constraint must either be carried explicitly in the execution package or read from exact durable authority. Mutable parallel cards use isolated lane branches/worktrees or equivalent isolated workspace.
+11. Run required tests/checks and verify card acceptance plus relevant OpenSpec behavior in each lane. Worker completion must surface material deviations/conflicting evidence rather than silently reinterpret authority.
 12. For material external mutations, perform required readback/verification. External mutable targets named as exclusive resources remain serialized.
 13. Integrate completed parallel lanes into intended milestone branch one at a time; reconcile conflicts explicitly.
-14. After integration, run required post-integration checks or equivalent proof. Only then persist result/evidence/result pointers in Task Board and mark card `done`.
+14. After integration, run required post-integration checks or equivalent proof. Persist exact result pointers and `tests_summary`; add a standalone evidence pointer when the evidence policy requires one. Only then mark the card `done`.
 15. Commit/push durable coordinator state, unblock newly eligible dependent cards and refill available parallel slots deterministically when safe.
 16. Continue automatically while project policy, current review state and Task Board provide an unambiguous safe execution set. Do not ask the user to choose among equivalent runnable cards.
 17. When a REQUIRED/RECOMMENDED independent review boundary is reached, apply `workflow/REVIEW_AND_HANDOFF.md` before claiming the reviewed subject GREEN.
@@ -56,6 +56,16 @@ When Codex is executor and `codex_workflow` is installed, Codex Main is project-
 
 Parallel worker completion is not card completion. Reviewer-worker completion is not milestone acceptance. Main/coordinator integrates and persists project-level state.
 
+## Authority-preserving delegation
+
+Progressive disclosure is **lossless by authority, selective by context**.
+
+A coordinator may send a worker less total context than the planner originally used, but may not drop an authoritative constraint that can affect the worker's implementation or acceptance. For each worker package, either carry the applicable constraint explicitly without semantic change or require the worker to read the exact durable authority reference before acting.
+
+This rule applies equally to ChatGPT execution and Codex project-level delegation. It does not prescribe Codex worker mechanics owned by `codex_workflow`; it constrains only the project information that must survive delegation.
+
+The independent reviewer uses the same applicable authority slice as the executor. Reviewing only the diff while omitting relevant requirements/decisions/plan constraints is insufficient when those constraints can change the verdict.
+
 ## Independent review boundary
 
 Task Board may carry `review_state`, `review_subject` and `review_evidence` for a card or milestone review gate.
@@ -69,6 +79,8 @@ Under `chatgpt_only`, a ChatGPT chat that implemented the review subject **must 
 Under `codex_only`, Codex Main uses an independent reviewer worker/session according to installed `codex_workflow` (or native Codex mechanisms if unavailable). This review boundary does not require a user handoff solely for independence.
 
 Under `mixed`, follow the accepted review path and ensure the reviewer did not implement the subject.
+
+Regardless of policy, the reviewer must recover the same applicable authority slice used to define the reviewed scope, plus exact subject/evidence. Reviewer independence is not permission to substitute a thinner interpretation of the accepted plan.
 
 ## Next-milestone continuation
 
