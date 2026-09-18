@@ -65,9 +65,9 @@ cards:
     depends_on: ["M01-T01"]
     openspec_change: null
     contract: "implementation/cards/M02-T01.md"
-    review_state: in_progress
+    review_state: green
     review_subject: "85c268bc3931902de265c2dba3d749732d2ceec4"
-    review_evidence: null
+    review_evidence: "implementation/evidence/M02-T01-review-02.md"
     result_commit: "85c268bc3931902de265c2dba3d749732d2ceec4"
     result_pr: null
     evidence: "implementation/evidence/M02-T01.md"
