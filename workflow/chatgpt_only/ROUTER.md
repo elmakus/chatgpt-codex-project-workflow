@@ -268,9 +268,9 @@ Read only:
 If this route is the exact `execution_resolution:<subject>` Return target of a completed implementation/recovery Research record:
 1. verify that Task Board `research_obligation` still points to that record and that its Origin/Return subjects match the affected durable Card/blocker state;
 2. classify the findings against current durable authority;
-3. persist that classification by replacing the record's Return target with the exact final owning role/subject while keeping `Status: complete`, `Return reconciliation: pending`, and keeping Task Board `research_obligation`;
-4. return through this router; the pointer now deterministically routes to that final target;
-5. for ordinary classification, do **not** mark the record `consumed` here — the final target consumes it only after its correction/reconciliation is durably complete. If classification itself needs more evidence, use the classifier-to-Research chain transition in `RESEARCH.md` instead.
+3. if classification identifies an exact final owning role/subject, persist that classification by replacing the record's Return target with that final owner while keeping `Status: complete`, `Return reconciliation: pending`, and keeping Task Board `research_obligation`;
+4. for that ordinary final-owner case, return through this router; the pointer now deterministically routes to the final target and the classifier does **not** mark the record `consumed`;
+5. if classification instead proves that more evidence is needed before any final owner can be named, do not invent or persist a final Return target; use the classifier-to-Research chain transition in `RESEARCH.md`.
 
 Then:
 - bounded L1/L2 correction inside accepted authority → refine Return target to Execution Prep or Execution;
