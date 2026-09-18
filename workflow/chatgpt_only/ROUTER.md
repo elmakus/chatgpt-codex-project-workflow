@@ -26,11 +26,11 @@ When that role finishes:
 1. persist the durable state/evidence produced by the role;
 2. re-evaluate Task Board + accepted authority;
 3. return to this router;
-4. if the current chat has reached a fresh independent-review boundary for a subject it implemented, stop there using the normal review handoff; that fresh review already provides the context reset;
-5. otherwise perform the context-health trigger check below before loading the next role;
+4. if durable state already owns a real stop from root `CHATGPT.md#Real-stop-response-contract` — fresh independent review, L3/user decision, explicit authorization, concrete runtime/access/input blocker, or end of approved scope — handle that stop first and do not run a separate hygiene handoff;
+5. only when a deterministic authorized next role exists, perform the context-health trigger check below;
 6. select the next legal route;
 7. load that route's module(s);
-8. continue in the same chat without a user-facing stop when the transition is deterministic, authorized and context health remains CONTINUE.
+8. continue in the same chat without a user-facing stop when context health remains CONTINUE.
 
 The same chat may therefore move, for example:
 
@@ -60,7 +60,7 @@ Then obey its decision:
 - `CONTEXT_HEALTH: CONTINUE` → select/load the next route now;
 - `CONTEXT_HEALTH: FRESH` → do not start the next obligation; perform the context-hygiene user stop.
 
-Never run a separate context-health handoff when a pending REQUIRED/RECOMMENDED fresh independent review already forces a new chat.
+Never run a separate context-health handoff when another real stop already owns the boundary. A pending REQUIRED/RECOMMENDED fresh independent review is one such case and already provides the context reset.
 
 ## Routes
 
