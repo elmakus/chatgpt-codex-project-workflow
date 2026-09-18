@@ -9,7 +9,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/chatgpt-only-multi-workstream-intake"
   pr: null
-  head: "c328e802ea4735ac85c10ac4d7471107b3123585"
+  head: "c30a51a4897ceb6676857b64abf3abd54156b281"
 
 research_obligation: null
 
@@ -89,7 +89,7 @@ cards:
     title: "Micro-fix and branch-local execution/review/recovery semantics"
     milestone: "M03"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: ["M02-T01"]
     openspec_change: null
@@ -100,4 +100,4 @@ cards:
     result_commit: "fe447d4e0322b8b4f1ef5a5f1fd46b703877a75b"
     result_pr: null
     evidence: "implementation/evidence/M03-T01.md"
-    tests_summary: "GREEN implementation verification recorded in implementation/evidence/M03-T01.md; M03 subject frozen for RECOMMENDED independent review."
+    tests_summary: "GREEN: implementation verification in implementation/evidence/M03-T01.md and fresh independent review in implementation/evidence/M03-T01-review-01.md; reviewed subject unchanged through terminal Card finalization."
