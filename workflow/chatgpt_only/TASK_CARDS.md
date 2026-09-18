@@ -81,6 +81,12 @@ Use:
 
 For REQUIRED/RECOMMENDED review, the chat that implemented the exact subject cannot issue its independent verdict.
 
+## Near-term versus distant Cards
+
+Near-term Cards may contain detailed implementation expectations.
+
+Distant work stays functionally precise without freezing interfaces that are not yet knowable. Prefer an exact JIT trigger over speculative implementation detail.
+
 ## Scope discipline
 
 Do not hide unrelated cleanup/architecture changes inside a Card.

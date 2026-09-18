@@ -109,8 +109,9 @@ When this chat implements a subject requiring/recommending independent review:
 - freeze exact subject and implementation/test evidence;
 - set `review_state: pending`;
 - persist durable state;
+- commit/push the durable handoff state when possible;
 - **stop before issuing verdict**;
-- final user-facing response includes ready-to-copy branch-aware fresh-review prompt from `REVIEW.md`.
+- final user-facing response clearly marks that user action is required and includes the ready-to-copy branch-aware fresh-review prompt from `REVIEW.md`.
 
 This is a real independence stop.
 

@@ -22,6 +22,18 @@ For every normal ChatGPT project task:
 
 Progressive disclosure is **lossless by authority, selective by context**.
 
+## Normal ChatGPT scope and session continuity
+
+ChatGPT Work is outside this workflow.
+
+A normal ChatGPT chat may continue deterministic work in the same session while context remains useful and the selected route permits continuation.
+
+A fresh chat may be recommended for context hygiene, but that recommendation is not a workflow gate unless the selected route explicitly defines a real boundary such as REQUIRED/RECOMMENDED independent-review separation.
+
+Do not impose a fixed token count, turn count or milestone cadence for starting fresh chats.
+
+A fresh chat reconstructs authority from the durable project repository and current workflow `main`, not from the previous transcript.
+
 ## Human control surface
 
 These rules apply to every normal ChatGPT route.

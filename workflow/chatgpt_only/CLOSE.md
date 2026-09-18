@@ -41,7 +41,9 @@ Proceed to publication/finalization.
 
 Verify as applicable:
 - correct base/head branches;
-- PR/publication artifact matches accepted milestone state;
+- expected PR head/publication state is correct;
+- PR/publication artifact matches accepted milestone state and cumulative handoff;
+- commits after the reviewed implementation head are only authorized closure/publication changes;
 - no unreviewed behavioral/scope drift after accepted subject;
 - required status checks/mergeability understood;
 - publication does not perform unauthorized live/deployment action.
@@ -95,3 +97,13 @@ Then:
 5. execute without requiring user “continue”.
 
 Stop only for real strategic/user/authorization/runtime blocker or end of approved scope.
+## System verification and cutover
+
+Independent system verification acts as its own gate when required.
+
+Deployment, cutover and migration should be runbook- or Task-Card-driven rather than improvised from chat.
+
+Runbooks/checklists do not automatically require OpenSpec unless they change a behavior contract.
+
+Explicit deployment/live-write authorization remains a hard stop.
+

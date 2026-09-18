@@ -66,6 +66,26 @@ review_evidence: <repo-relative-path-or-null>
 
 One review attempt refers to one immutable exact subject. Corrective work creates a new subject/review attempt.
 
+## Incremental Card-set state
+
+Task Board does not need speculative future Cards whose contracts are not yet knowable.
+
+When accepted milestone/plan authority records a JIT decomposition trigger:
+- currently contractible Cards may execute normally;
+- after predecessor evidence satisfies the trigger, create/revise the real not-yet-started Card contracts and reconcile their Task Board entries before execution;
+- absence of speculative future Cards is not an inconsistent state while the trigger is unsatisfied;
+- active/in-progress Cards are not silently redefined through this mechanism.
+
+## Legacy execution-mode reconciliation
+
+The active ChatGPT-only route is serial: exactly one project Card may be in progress.
+
+If a legacy ChatGPT-only Task Board still contains old concurrent-card metadata:
+- do not invent or start new concurrent lanes;
+- if no conflicting Cards are active, treat obsolete concurrency metadata as non-operative and clean it up at the next safe state edit;
+- if multiple old Cards are genuinely active, recover each exact durable result/state first, then serialize/reconcile them before starting new work;
+- never discard lane/result/evidence history merely to fit the new serial model.
+
 ## Starting a Card
 
 Before implementation:
@@ -178,6 +198,7 @@ Examples:
 - milestone `done` with non-green required review;
 - dependent Card started before dependency `done`;
 - review verdict attached to wrong subject;
-- durable execution truth existing only in chat;
+- durable execution truth existing only in chat, `PROJECT.md`, stable Card/milestone files or local `current.md`;
 - external success contradicted by required readback;
+- `execution_policy` changing without an explicit user decision;
 - implementing chat issuing independent verdict on its own required/recommended subject.

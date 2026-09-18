@@ -28,6 +28,14 @@ Until its dedicated policy namespace is migrated, read:
 
 The legacy route remains authoritative for that policy during this staged migration.
 
+## Policy invariants
+
+`execution_policy` never changes automatically because of a blocker, runtime limitation or convenience. Changing policy requires an explicit user decision.
+
+For a brand-new project with no previously accepted execution policy, default to `chatgpt_only` unless the user explicitly selects another accepted policy.
+
+Once a policy is accepted, a runtime blocker does not silently reroute execution through another policy.
+
 ## Missing or inconsistent policy
 
 Do not guess an execution route.

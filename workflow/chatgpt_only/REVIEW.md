@@ -72,6 +72,14 @@ Do **not** end the turn after RED merely to say remediation is next or not start
 
 Stop earlier only for a real strategic/user/authorization/runtime blocker or when corrective scope cannot safely be bounded.
 
+## High-risk external writes
+
+When practical, place REQUIRED/RECOMMENDED independent review at the last useful reversible checkpoint before a high-risk external write.
+
+After GREEN, perform the authorized write plus required post-write readback/verification.
+
+Do not create a permanent review role or independently review every trivial Card.
+
 ## Fresh-review prompt
 
 Whenever a fresh independent review is required, final response includes:

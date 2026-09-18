@@ -34,6 +34,22 @@ Read:
 - the exact research question/material;
 - only relevant accepted requirements/decisions/source state.
 
+### Repository / project initialization
+
+Read:
+- `workflow/chatgpt_only/REPOSITORY.md`;
+- `workflow/common/AUTHORITY.md`;
+- existing `PROJECT.md` when present;
+- only project artifacts needed for topology/layout/state-ownership/legacy-migration or detailed Git/branch questions.
+
+Use this route for:
+- new project initialization;
+- repository topology/layout;
+- split-repository questions;
+- detailed branch policy;
+- state-ownership ambiguity;
+- legacy repository/state migration.
+
 ### Strategic planning
 
 Read:

@@ -1,3 +1,7 @@
+> **Superseded audit notice — 2026-09-18**  
+> This post-switch audit validated routing/isolation and key execution scenarios, but it was not a complete section-by-section lossless migration proof. A later full comparison found several omitted legacy semantics, which were restored in `fix/chatgpt-only-lossless-gaps`.  
+> The authoritative lossless result is now `docs/audits/CHATGPT_ONLY_LOSSLESS_SEMANTIC_MATRIX.md`. Preserve the original audit below as historical evidence of the earlier validation scope.
+
 # Semantic Audit — ChatGPT-only Policy Split POST-SWITCH
 
 Date: 2026-09-18

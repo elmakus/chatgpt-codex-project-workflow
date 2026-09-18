@@ -12,6 +12,8 @@
 - Relevant OpenSpec: `<path | none>`
 - Accepted dependency results: `<refs | none>`
 
+If this Card was created JIT from predecessor evidence, include that exact accepted result in the Authority slice. Do not create the Card before its scope is sufficiently knowable.
+
 ### Must preserve
 
 List every applicable invariant, accepted behavior/architecture choice, failure semantic, compatibility rule, external-write boundary or other constraint that can change implementation or acceptance.
@@ -19,6 +21,8 @@ List every applicable invariant, accepted behavior/architecture choice, failure 
 ### Must not / rationale that must travel
 
 Include only when omission could reasonably cause a different implementation choice.
+
+Delegation may reduce context volume, not authoritative constraints. A downstream executor/reviewer must either receive every applicable constraint explicitly or read the exact referenced authority before acting. Summary text never overrides exact authority.
 
 ## Dependencies
 
@@ -50,6 +54,7 @@ Include only when omission could reasonably cause a different implementation cho
 
 - Priority: `HIGH | MEDIUM | LOW`
 - Complexity: `HIGH | MEDIUM | LOW`
+- Phase: `<phase>`
 - Expected/relevant code locations:
   - `<path>`
 

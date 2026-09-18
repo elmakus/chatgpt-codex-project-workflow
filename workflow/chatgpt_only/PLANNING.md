@@ -2,7 +2,7 @@
 
 ## Responsibility
 
-The strategic-planning role owns:
+The strategic-planning role is not bound to a named model or reasoning level. It owns:
 - problem definition;
 - verified baseline;
 - authoritative requirements;
@@ -43,7 +43,9 @@ Cover as applicable:
 - deployment/migration strategy;
 - system verification;
 - idempotency/data-integrity/security constraints;
-- JIT decomposition triggers where detail is not yet knowable.
+- JIT decomposition triggers where detail is not yet knowable;
+- fresh-context boundaries when materially useful;
+- Task decomposition/OpenSpec/handoff policy references when they materially shape execution.
 
 The Master Plan is not the live task tracker. Mutable execution state lives only in Task Board.
 
@@ -99,9 +101,9 @@ A coverage matrix may point to a JIT trigger instead of speculative future Card 
 
 ## Pre-implementation audit
 
-Before execution preparation, audit:
+Before execution preparation, perform an independent plan review when practical. Audit:
 - false assumptions;
-- high-risk gaps;
+- false assumptions and P0/P1 risks;
 - milestone boundaries;
 - task sizing/dependencies;
 - missing acceptance/tests;
@@ -112,6 +114,14 @@ Before execution preparation, audit:
 - overengineering.
 
 Resolve material gaps or record an explicit blocker.
+
+## Competing research/prototype paths
+
+When genuinely independent alternatives need experimentation, separate Path A / Path B branches may start from the same stable checkpoint.
+
+Each path produces independent findings/evidence/prototype results. Later comparison leads to an accepted A/B/Hybrid decision before production implementation.
+
+This pattern is optional. It does not add lifecycle states, and experimental code is not merged merely because it exists.
 
 ## Distant work
 
