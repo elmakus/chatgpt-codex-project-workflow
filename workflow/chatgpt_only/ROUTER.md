@@ -78,6 +78,19 @@ Read:
 - the exact research question/material;
 - only relevant accepted requirements/decisions/source state.
 
+### Project Definition
+
+Read:
+- `workflow/common/DEFINITION.md`;
+- current user/product goal and explicit accepted choices;
+- relevant brainstorming conclusions;
+- relevant verified research/evidence;
+- existing requirements/decisions when redefining accepted authority;
+- only current source/external baseline needed to constrain the definition.
+
+Do not load Planning or execution modules merely to define product/system intent.
+
+
 ### Repository / project initialization
 
 Read:
@@ -98,12 +111,14 @@ Use this route for:
 
 Read:
 - `workflow/chatgpt_only/PLANNING.md`;
-- canonical requirements;
+- approved canonical requirements;
 - accepted decisions;
-- relevant verified research;
+- only verified research/baseline that the accepted definition or plan actually references;
 - current approved plan when replanning.
 
-Read Task Board/current handoff only when planning an active project. Do not load execution files merely to plan strategy.
+Planning assumes Project Definition is complete. If requirements/strategic decisions are missing or contradictory, return to Project Definition instead of silently deciding them.
+
+Read Task Board/current handoff only when planning/replanning an active project. Do not load execution files merely to organize strategy.
 
 ### Execution preparation / JIT refinement
 
@@ -158,9 +173,14 @@ Read:
 Read only:
 - exact blocker/evidence;
 - current Card/milestone contract;
-- smallest requirements/decision/research/source slice needed to decide it.
+- smallest requirements/decision/research/source slice needed to classify it.
 
-Do not continue affected work until authority is resolved.
+Then:
+- if accepted product/system intent or a strategic decision must change, route to Project Definition;
+- if accepted definition remains valid but milestone sequencing/plan must change, route to Strategic planning;
+- if more evidence is needed before either can be decided, route to Research.
+
+Do not continue affected work until the owning authority is resolved.
 
 ### Recovery
 
