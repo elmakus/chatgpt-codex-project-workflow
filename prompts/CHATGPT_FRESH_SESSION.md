@@ -13,7 +13,7 @@ Do not maintain or improvise a second template here.
 A fresh-session prompt is:
 - a thin router into durable project truth;
 - branch-aware;
-- anchored to one exact entry obligation and the smallest durable start pointer;
+- anchored to one exact entry obligation and the smallest durable start pointer; for branch-isolated `chatgpt_only`, this may be the selected workstream Task Board for Card/milestone review or the selected `WORKSTREAM.yaml` for its manifest-owned final-integration review;
 - explicit that the entry obligation is **not** a session-scope boundary;
 - explicit that after the located role completes, the new chat returns to the selected policy router and continues deterministic authorized transitions until a real workflow stop.
 
