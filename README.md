@@ -21,7 +21,7 @@ The workflow deliberately separates contract from state:
 - Task Card files — bounded authority/scope/acceptance/test contracts;
 - cumulative handoff — compact summary of what became true at a completed milestone;
 - root `PROJECT.md` — small high-level project router/policy/index, not a live execution tracker; while an exploratory/Definition scope is active it may point to the exact canonical brainstorming record used to recover promotion state, and while pre-execution Research/return-role reconciliation is active it may point to the exact canonical Research obligation record;
-- active Research record — owns `active | blocked | complete | consumed` lifecycle plus exact Origin/Return subjects for recoverable pre-execution Research loops; it is evidence/routing state, not accepted decision authority.
+- active Research record — owns `active | blocked | complete | consumed` lifecycle plus exact Origin/Return subjects; pre-execution routing is located from `PROJECT.md`, while `chatgpt_only` implementation/recovery routing is located from Task Board `research_obligation`. Research is evidence/routing state, not accepted decision authority.
 
 This avoids repeatedly synchronizing status, executor, SHA and result pointers across several documents.
 
@@ -234,7 +234,7 @@ Each route separates:
 - **CONDITIONAL** files loaded only when a concrete trigger exists;
 - **DO NOT READ BY DEFAULT** files that are outside the normal context set.
 
-Normal ChatGPT starts with the intentionally small `CHATGPT.md` router, project `PROJECT.md`, and `CONTEXT_ROUTING.md`. Under `chatgpt_only`, implementation/implementation-review/recovery state is recovered from Task Board, pre-execution plan-review state from its `planning/reviews/<plan-revision>.md` record, and an active pre-execution Research loop from the exact `PROJECT.md → Active research obligation` record. It then follows one primary route rather than loading neighboring phase modules "just in case."
+Normal ChatGPT starts with the intentionally small `CHATGPT.md` router, project `PROJECT.md`, and `CONTEXT_ROUTING.md`. Under `chatgpt_only`, implementation/implementation-review/recovery state is recovered from Task Board (including `research_obligation` when implementation/recovery Research is active), pre-execution plan-review state from its `planning/reviews/<plan-revision>.md` record, and an active pre-execution Research loop from the exact `PROJECT.md → Active research obligation` record. It then follows one primary route rather than loading neighboring phase modules "just in case."
 
 For a `chatgpt_only` independent-review obligation, the normal workflow modules are `workflow/chatgpt_only/REVIEW.md` + `STATE.md` with the exact reviewed subject/authority/evidence. When the verdict is persisted, the review role ends and the chat returns to `workflow/chatgpt_only/ROUTER.md`; downstream execution/close modules are loaded only if the router assigns those roles.
 
