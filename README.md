@@ -135,6 +135,7 @@ Do not duplicate SHAs, test summaries, changed-file lists or evidence prose that
 ## Bootstrap prompts
 
 - normal ChatGPT start: `prompts/CHATGPT_START.md`
+- fresh ChatGPT session handoff: `prompts/CHATGPT_FRESH_SESSION.md`
 - reusable ChatGPT Project Instructions: `prompts/CHATGPT_PROJECT_INSTRUCTIONS.md`
 - Codex execution start: `prompts/CODEX_START.md`
 
