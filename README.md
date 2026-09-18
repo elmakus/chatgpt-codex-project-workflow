@@ -51,8 +51,8 @@ CHATGPT.md
 The first migrated namespace is `workflow/chatgpt_only/`.
 
 For `chatgpt_only`:
-- common authority/brainstorming/research/Project Definition/OpenSpec/user-stop rules come only from `workflow/common/`;
-- planning, execution preparation, Task Cards, state, execution, independent review, close/publication and recovery come only from `workflow/chatgpt_only/`;
+- genuinely policy-neutral authority/OpenSpec/user-stop rules come from `workflow/common/`;
+- Brainstorming, Research, Project Definition, planning, execution preparation, Task Cards, state, execution, independent review, close/publication and recovery semantics come from `workflow/chatgpt_only/`;
 - normal project execution handles exactly one READY Task Card at a time;
 - other policy execution/orchestration semantics are outside the route.
 
