@@ -14,7 +14,7 @@ Read with:
 1. Establish exact project repository, active branch, HEAD and relevant runtime/external baseline.
 2. Read Task Board.
 3. Recover existing `in_progress` or `blocked` obligation before selecting new work.
-4. If REQUIRED/RECOMMENDED review is `pending|in_progress`, route to `REVIEW.md` before later dependent implementation.
+4. If a REQUIRED/RECOMMENDED review is `pending|in_progress`, return to the router so it selects `REVIEW.md` before later dependent implementation.
 5. Select exactly one deterministic READY Card whose dependencies are done.
 6. Read its exact milestone/Card authority slice.
 7. Persist start transition from `STATE.md`.
@@ -111,7 +111,7 @@ When this chat implements a subject requiring/recommending independent review:
 - persist durable state;
 - commit/push the durable handoff state when possible;
 - **stop before issuing verdict**;
-- final user-facing response clearly marks that user action is required and includes the ready-to-copy branch-aware fresh-review prompt from `REVIEW.md`.
+- this is a real stop: use root `CHATGPT.md#Real-stop-response-contract`, clearly mark `USER ACTION REQUIRED:`, and include the ready-to-copy branch-aware fresh-review prompt from `REVIEW.md`.
 
 This is a real independence stop.
 
