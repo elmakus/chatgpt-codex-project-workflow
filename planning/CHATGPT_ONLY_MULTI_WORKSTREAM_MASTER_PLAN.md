@@ -1,6 +1,6 @@
 # ChatGPT-only Multi-Workstream + Intake — Master Plan
 
-Status: draft
+Status: approved
 Plan revision: MW-R1
 Date: 2026-09-18
 Independent plan review: REQUIRED
