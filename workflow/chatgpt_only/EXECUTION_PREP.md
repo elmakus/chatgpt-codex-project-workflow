@@ -16,9 +16,9 @@ Before creating executable work:
 Execution prep writes:
 - Task Card contracts under `implementation/cards/`;
 - optional JIT milestone extension only when it adds material detail beyond the approved Master Plan milestone section;
-- mutable readiness/status/result/review state only to `implementation/TASK_BOARD.yaml`.
+- mutable readiness/status/result/review state only to the **selected canonical Task Board** resolved by `workflow/chatgpt_only/WORKSTREAMS.md`.
 
-When creating the first Task Board for this policy, scaffold it from `workflow/chatgpt_only/TASK_BOARD_TEMPLATE.yaml`. Do **not** use the shared `templates/TASK_BOARD.yaml`, which belongs to the legacy/other-policy stack and may contain bounded-parallel coordination fields that are illegal in active `chatgpt_only`.
+When creating the first Task Board for this policy, resolve the state context first. For legacy/default state, scaffold `implementation/TASK_BOARD.yaml` from `workflow/chatgpt_only/TASK_BOARD_TEMPLATE.yaml`. For a validated branch-isolated workstream, scaffold the exact manifest-selected path from `workflow/chatgpt_only/WORKSTREAM_TASK_BOARD_TEMPLATE.yaml`. Do **not** use the shared `templates/TASK_BOARD.yaml`, which belongs to the legacy/other-policy stack and may contain bounded-parallel coordination fields that are illegal in active `chatgpt_only`.
 
 Do not mirror live state into Card/milestone/`PROJECT.md`.
 
@@ -41,7 +41,7 @@ If the Research record is `active | blocked`, or it is `complete` for a differen
 
 When Execution Prep needs more evidence before it can legally classify or complete L2/JIT preparation:
 
-1. ensure a Task Board exists; if this is first preparation, initialize a minimal board conforming to `workflow/chatgpt_only/TASK_BOARD_TEMPLATE.yaml` without inventing speculative placeholder Cards;
+1. ensure the selected canonical Task Board exists; if this is first preparation, initialize the correct policy-local default/workstream template without inventing speculative placeholder Cards;
 2. create one exact Research record under `workflow/chatgpt_only/RESEARCH.md#Durable record contract`, with `Origin role: execution_prep`, the exact current milestone/preparation obligation as Origin subject, `Return target: execution_resolution:<same exact subject>`, and `Return reconciliation: pending`;
 3. persist the Research record and Task Board `research_obligation` in the same durable transition before yielding;
 4. preserve all already-valid preparation/Card state; do not mark unrelated work ready merely to create the handoff;
@@ -52,7 +52,7 @@ When Research completes, `execution_resolution` classifies the findings. It eith
 ## Preparation steps
 
 1. Inspect current project/source/runtime/external state needed by the milestone.
-2. Read Task Board when implementation state exists.
+2. Resolve the state context through `workflow/chatgpt_only/WORKSTREAMS.md` when branch-isolated, then read only its selected canonical Task Board when implementation state exists.
 3. Resolve current milestone contract from the approved Master Plan.
 4. Create a separate JIT milestone extension only when material execution/acceptance detail is missing.
 5. Decompose only work that is deterministic enough to contract now.
@@ -63,7 +63,7 @@ When Research completes, `execution_resolution` classifies the findings. It eith
 10. Identify material external writes plus required persisted-state verification.
 11. Classify independent review when material.
 12. Mark OpenSpec candidates using `workflow/common/OPENSPEC.md`.
-13. Initialize/reconcile Task Board as sole live execution state.
+13. Initialize/reconcile the selected canonical Task Board as sole live Card/milestone execution state for this default/workstream context.
 14. Confirm requirement coverage, allowing future requirements to point to a durable JIT trigger.
 15. Audit sizing, dependencies, side effects, idempotency, security, migration and explicit authorization gates.
 16. Set exactly the next eligible Card `ready` when dependencies/prerequisites allow execution.
