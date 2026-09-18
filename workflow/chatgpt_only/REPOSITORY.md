@@ -64,6 +64,7 @@ Keep it small. It should identify:
 - high-level goal/status;
 - `execution_policy: chatgpt_only`;
 - active exploratory-scope pointer when Brainstorming/Definition recovery currently needs one;
+- active pre-execution research-obligation pointer when Research/return-role recovery currently needs one;
 - canonical requirements/plan;
 - Task Board path when implementation exists;
 - latest cumulative handoff when one exists;
@@ -71,6 +72,8 @@ Keep it small. It should identify:
 - workflow repository/ref.
 
 It is a router, not a live execution tracker. An `Active exploratory scope` pointer is allowed because it locates the canonical Brainstorming/Definition promotion record; promotion authorization/revision remains in that pointed record rather than being duplicated into `PROJECT.md`.
+
+An `Active research obligation` pointer is also allowed for pre-execution Research because it locates the canonical research lifecycle record. Research `Status`, Origin subject and Return target remain in that pointed record. Implementation-triggered Research stays Task Board/blocker-owned and is not mirrored into `PROJECT.md`.
 
 ## Durable state versus local convenience
 
@@ -112,6 +115,7 @@ Material external mutations require meaningful persisted-state readback when ava
 Recovery must be possible from:
 - `PROJECT.md`;
 - the PROJECT-pointed active exploratory record when Brainstorming/Definition promotion or recovery is active;
+- the PROJECT-pointed active pre-execution research record when Research/return-role recovery is active;
 - Task Board;
 - exact Git/runtime/external state;
 - current milestone/Card contracts;

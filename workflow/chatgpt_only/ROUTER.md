@@ -15,10 +15,11 @@ Do not load legacy/shared execution trees or another policy directory.
 3. If implementation, implementation-review, blocker or execution-recovery state exists or is referenced, read `implementation/TASK_BOARD.yaml` before choosing the route.
 4. A REQUIRED/RECOMMENDED implementation `review_state: pending | in_progress` outranks later implementation.
 5. An `in_progress` Card with `review_state: green` routes to Execution for terminal Post-review Card finalization before later work.
-6. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
-7. Select exactly one primary route below.
-8. Read only that route's required project artifacts plus exact authority refs.
-9. Continue deterministic work automatically until a real workflow stop is reached.
+6. If `PROJECT.md → Active research obligation` points to a pre-execution research record, read that exact record before choosing the route. `Status: active | blocked` routes to Research; `Status: complete` routes to the exact recorded Return target; `Status: consumed` means the pointer is stale and should be cleared at the next safe edit.
+7. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
+8. Select exactly one primary route below.
+9. Read only that route's required project artifacts plus exact authority refs.
+10. Continue deterministic work automatically until a real workflow stop is reached.
 
 ## Role-transition protocol
 
@@ -115,6 +116,7 @@ Never run a separate context-health handoff when another real stop already owns 
 Read:
 - `workflow/common/BRAINSTORMING.md`;
 - the exact record referenced by `PROJECT.md → Active exploratory scope` when that pointer exists;
+- the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Brainstorming subject;
 - otherwise the current brainstorming material needed to establish/create that pointer;
 - only accepted constraints already relevant.
 
@@ -122,8 +124,12 @@ Read:
 
 Read:
 - `workflow/common/RESEARCH.md`;
+- the exact record referenced by `PROJECT.md → Active research obligation` for pre-execution Research when that pointer exists;
+- otherwise the exact implementation/blocker-owned research pointer when Research was triggered from active execution;
 - the exact research question/material;
 - only relevant accepted requirements/decisions/source state.
+
+The durable research record owns its `Status`, Origin subject and Return target. Do not infer the return role from chat history.
 
 ### Project Definition
 
@@ -131,6 +137,7 @@ Read:
 - `workflow/common/DEFINITION.md`;
 - current user/product goal and explicit accepted choices;
 - the exact `PROJECT.md → Active exploratory scope` record when Definition was entered through the promotion gate and the pointer is still active;
+- the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Project Definition subject;
 - relevant brainstorming conclusions;
 - relevant verified research/evidence;
 - existing requirements/decisions when redefining accepted authority;
