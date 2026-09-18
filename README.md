@@ -35,6 +35,20 @@ Project routing assumes `ChatGPT capabilities ⊆ Codex capabilities`.
 
 Changing policy requires an explicit user decision.
 
+### Delegated workers under `chatgpt_only`
+
+`chatgpt_only` may optionally delegate bounded implementation or verification work while normal ChatGPT remains the fixed Task Card executor and Task Board authority.
+
+Delegation is defined by `workflow/chatgpt_only/DELEGATED_WORKERS.md`:
+- a Card explicitly opts into a project-defined worker profile;
+- ChatGPT invokes and awaits the worker instead of busy-loop polling;
+- the worker returns a bounded normalized result;
+- raw worker transcripts/logs remain outside the main ChatGPT context by default;
+- delegated workers are leaf workers unless later authority explicitly permits nesting;
+- a delegated tester/verifier is Card evidence, **not** a replacement for fresh REQUIRED/RECOMMENDED ChatGPT Independent Review.
+
+Backend-specific commands, credentials and output parsing live behind project/runtime adapters rather than in generic workflow authority.
+
 ## Policy-first routing
 
 Normal ChatGPT now enters through a small policy dispatcher:
