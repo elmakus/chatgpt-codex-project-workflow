@@ -37,6 +37,8 @@ selected canonical Task Board → `research_obligation` (branch-isolated manifes
 
 Never mirror an implementation/recovery Research obligation into `PROJECT.md`.
 
+When the evidence gap originates from a branch-isolated workstream final-integration RED review, the RED review state remains manifest-owned but the Research continuation pointer still belongs only to that same workstream's validated selected Task Board. The Research record Origin subject must identify the exact manifest review subject/evidence. Never place that continuation in the default board or another workstream's board.
+
 Keep the owning pointer through `Status: complete`. Normally clear it only after final-target reconciliation is durable and the record is `consumed`. The sole exception is the classifier-to-Research chain transition below: it consumes the completed classifier record and replaces the pointer with the next exact active Research record in one durable Git transition, so recovery never observes a gap or an unowned completed record.
 
 ## Status semantics
