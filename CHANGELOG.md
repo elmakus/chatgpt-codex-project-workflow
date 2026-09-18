@@ -7,7 +7,7 @@
 - Restored the earlier independent-plan-review semantics: new/materially revised plans use independent review when practical, with a fresh ChatGPT plan reviewer under `chatgpt_only`.
 - Added `workflow/chatgpt_only/PLAN_REVIEW.md`; mutable plan-review state lives outside the frozen Master Plan subject under `planning/reviews/<plan-revision>.md`.
 - Narrowed old `L3/user decision` stop wording: plan-only replans route automatically to Planning when accepted Project Definition remains valid; only unresolved strategic/product choices that require user authority are user stops.
-- Marked the prior Definition/Planning GREEN self-audit as superseded by the corrective review package pending fresh independent audit.
+- Marked the prior Definition/Planning GREEN self-audit as superseded; the corrective package later completed a fresh independent GREEN re-review and was merged via PR #22.
 
 ## Unreleased — Project Definition before Planning
 
