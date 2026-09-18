@@ -75,9 +75,9 @@ For Research triggered from implementation/recovery, Task Board carries only one
 research_obligation: research/<record>.md | null
 ```
 
-The pointed Research record owns its `Status`, Origin role/subject, Return target and question. Do not duplicate those lifecycle fields into Task Board and do not mirror this execution obligation into `PROJECT.md`.
+The pointed Research record owns its `Status`, Origin role/subject, Return target, question, `Return reconciliation` state and exact reconciliation-result refs. Do not duplicate those lifecycle fields into Task Board and do not mirror this execution obligation into `PROJECT.md`.
 
-Before execution/recovery yields to Research, persist both the exact research record and this pointer. Keep the pointer through Research `complete`; clear it only after the exact recorded Return target has durably reconciled the findings and marked the record `consumed`.
+Before Execution Prep / execution / recovery yields to Research, persist both the exact research record and this pointer. Keep the pointer through Research `complete`; clear it only after the final Return target has durably persisted `Return reconciliation: applied`, then marked the record `consumed`. Recovery from `applied + complete` is consume/clear-only.
 
 ## Incremental Card-set state
 
