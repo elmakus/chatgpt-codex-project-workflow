@@ -14,7 +14,8 @@ The project repository is durable project truth. It stores brainstorming, resear
 
 The workflow deliberately separates contract from state:
 
-- `implementation/TASK_BOARD.yaml` — **sole mutable execution-state authority**, including active independent-review state;
+- `implementation/TASK_BOARD.yaml` — **sole mutable execution-state authority**, including active implementation-review state;
+- `planning/reviews/<plan-revision>.md` — mutable pre-execution independent plan-review state/evidence; it is not execution state and never substitutes for Task Board;
 - approved Master Plan milestone subsections — default milestone contracts;
 - `implementation/milestones/MXX.md` — optional JIT contract extensions only when the Master Plan needs material execution/acceptance detail;
 - Task Card files — bounded authority/scope/acceptance/test contracts;
