@@ -22,7 +22,7 @@ Enter through exactly one legal close shape.
 
 A qualified micro-fix does not need a Master Plan or milestone entry merely to enter Close.
 
-If a pending/in-progress Card/milestone review or an already-active manifest final-integration review exists, route to `REVIEW.md` first. A null manifest final-integration review state is not a blocker to entering Close because this role runs target refresh before first coverage reuse/freeze.
+If a Card/milestone review or manifest final-integration review is `pending | in_progress`, route to `REVIEW.md` first. A GREEN manifest final-integration review may proceed to Close subject to refresh-preservation checks; a null manifest final-integration review state is also not a blocker to entering Close because this role runs target refresh before first coverage reuse/freeze.
 
 ## Integrated milestone acceptance
 
