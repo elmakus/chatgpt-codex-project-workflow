@@ -54,9 +54,9 @@ The intake record should contain only durable material needed to recover the int
 - selected integration target and exact base;
 - independent versus stacked classification and rationale;
 - parent workstream/branch when stacked;
-- chosen path classification;
+- chosen path classification and exact `next_route` when the downstream route has a named recovery entry;
 - any unresolved evidence/gate;
-- exact durable artifact that owns the next route once intake completes.
+- exact durable artifact that owns the next route once intake completes, or for qualified micro-fix the exact completed Intake record itself as the pre-Task-Board continuation anchor.
 
 Do not use chat history as the only copy of these facts.
 
