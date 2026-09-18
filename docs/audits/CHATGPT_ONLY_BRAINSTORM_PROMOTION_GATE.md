@@ -179,3 +179,67 @@ This verdict therefore makes **no CI/test-execution claim**. It is an independen
 
 Persisting this section adds review evidence after the reviewed HEAD and does not change the reviewed workflow semantics.
 
+
+
+## Post-review hardening — 2026-09-18
+
+Current status: **PENDING FRESH INDEPENDENT RE-REVIEW**
+
+The earlier independent GREEN remains valid for its frozen semantic subject `2e0601ba021e3c1c4de060c16718d02ebba9fe3a`, but it does **not** cover the bounded hardening below.
+
+New frozen semantic subject:
+
+`5585bec4dc2d70a803ce2a6e83d0e2719b4c50ad`
+
+### Reason for hardening
+
+A post-review analysis identified three non-blocking weaknesses in the prior subject:
+
+1. durable `user_authorized` existed in a brainstorming record, but fresh-session recovery did not define a deterministic way to locate the active record;
+2. authorization was described as applying to the "same scope" without binding it to an exact scope revision;
+3. common Brainstorming/Research wording could still be read as if accepting one idea or completing research implied immediate Definition routing.
+
+### Remediation
+
+The hardened subject now:
+
+- adds `PROJECT.md → Active exploratory scope` as the durable router pointer to the current canonical brainstorming record;
+- adds stable `Scope ID` and `Revision` fields to the brainstorming record;
+- binds authorization to exact `Definition promotion subject: <scope-id>@<revision>`;
+- rejects stale `user_authorized` when the promotion subject does not match the current record revision;
+- requires any material exploratory change before Definition begins to create a new revision and reset authorization to `pending`;
+- keeps the pointer/record available during bounded Definition ↔ Research recovery, then clears the active pointer once Definition Complete is GREEN and the exploratory promotion obligation is over;
+- makes the ChatGPT-only repository contract own the exploratory pointer/recovery semantics;
+- clarifies that accepting an individual brainstorm choice is not phase promotion;
+- makes the Research lifecycle diagram show the selected-policy Definition entry gate explicitly.
+
+### Bounded self-audit of hardened subject
+
+1. PROJECT has a durable active exploratory pointer — PASS.
+2. Brainstorm record has stable scope ID — PASS.
+3. Brainstorm record has revision — PASS.
+4. Promotion subject is exact `scope-id@revision` — PASS.
+5. Material pre-Definition scope change resets authorization — PASS.
+6. Router discovers active scope from PROJECT — PASS.
+7. Durable authorization requires exact current subject match — PASS.
+8. Stale authorization is explicitly rejected — PASS.
+9. Explicit promotion persists record, pointer and exact subject — PASS.
+10. Reopened open-ended Brainstorming creates a new revision/scope and resets the gate — PASS.
+11. Pointer remains available for bounded Definition/Research recovery — PASS.
+12. Pointer is cleared after Definition Complete when no longer active — PASS.
+13. Repository contract defines exploratory pointer ownership/recovery — PASS.
+14. Acceptance of one brainstorming choice is not phase promotion — PASS.
+15. Research lifecycle explicitly includes the Definition entry gate — PASS.
+16. Definition verifies the exact promotion subject/revision required by the selected route — PASS.
+17. Definition Complete still routes to Planning — PASS.
+18. Promotion gate remains same-chat; it does not require a fresh chat — PASS.
+19. Planning still requires approved Definition-owned authority and routes incomplete intent back to Definition — PASS.
+20. README documents exact recoverable scope/revision — PASS.
+21. CHANGELOG records exact subject binding and reset behavior — PASS.
+22. Legacy/non-`chatgpt_only` router receives no hard-gate semantics — PASS.
+
+Result: **22/22 PASS**.
+
+Because this hardening changes workflow semantics after the previous independent review, merge must wait for a fresh independent re-review of the new exact subject `5585bec4dc2d70a803ce2a6e83d0e2719b4c50ad`.
+
+Persisting this section is audit evidence after the frozen semantic subject and does not itself change workflow semantics.
