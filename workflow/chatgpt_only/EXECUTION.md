@@ -52,24 +52,22 @@ When the router returns an `in_progress` Card with `review_state: green`:
 2. verify that the implementation/result being finalized is still exactly the subject that received GREEN;
 3. verify all remaining Definition of Done conditions;
 4. if no implementation/behavioral change occurred after the GREEN subject, set `execution_status: done` and persist terminal result state;
-5. when this is a selected branch-isolated micro-fix, perform **Micro-fix final-review reconciliation** below before returning;
+5. when this is a selected branch-isolated micro-fix, leave the distinct manifest final-integration gate for Close; final review coverage may be reused or frozen only after the integration refresh gate has run;
 6. return to the router before selecting later work.
 
 Do not re-run implementation merely because review completed.
 
 If the implementation/result changed after the GREEN subject, that verdict does not cover the new subject. Keep the Card non-terminal, freeze the changed subject and create the next REQUIRED/RECOMMENDED review attempt before `done`.
 
-## Micro-fix final-review reconciliation
+## Micro-fix post-review handoff
 
-After the bounded micro-fix Card has an independent GREEN verdict and is otherwise terminal:
+After the bounded micro-fix Card becomes terminal, do not reconcile or freeze the manifest-owned final-integration review inside Execution.
 
-1. read the selected manifest `review` block and `workflow/chatgpt_only/MICRO_FIX.md#Workstream-final-integration-review`;
-2. prove whether the GREEN Card review covers the entire immutable behavioral workstream subject and whole workstream acceptance surface;
-3. when exact coverage is proven, reconcile the distinct manifest final-integration gate to `green` with the same subject/evidence and an exact `covered_by` pointer; this is coverage reuse, not a new verdict by this chat;
-4. when exact coverage is not proven, freeze the exact workstream final subject in manifest `review.subject`, set `review.state: pending`, keep `covered_by: null`, persist the boundary and return to the router;
-5. do not mark the workstream `done` or integrate it while its REQUIRED/RECOMMENDED final-integration gate is non-green.
+Return to the router. A qualified micro-fix with a terminal Card and an unfinished selected workstream routes to `CLOSE.md`, which runs the integration refresh gate first and only then:
+- reuses the exact independent Card verdict when `MICRO_FIX.md#Workstream-final-integration-review` coverage is still proven for the refreshed integrated subject and whole acceptance surface; or
+- freezes the exact manifest final-integration review subject as `pending`.
 
-Never copy Card lifecycle state into manifest review fields merely because both gates exist.
+This ordering preserves `WORKSTREAMS.md#Integration refresh contract`: final-integration review is never first frozen or reused before current-target compatibility has been established.
 
 ## Refresh Gate
 
