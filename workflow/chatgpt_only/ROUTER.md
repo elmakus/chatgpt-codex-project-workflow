@@ -24,6 +24,18 @@ Do not load legacy/shared execution trees or another policy directory.
 12. Read only that route's required project artifacts plus exact authority refs.
 13. Continue deterministic work automatically until a real workflow stop is reached.
 
+## Fresh-session entry semantics
+
+A fresh-session handoff target is a **recovery/entry locator only**. It identifies the first obligation to recover; it does not narrow the approved project scope to one role, one verdict, one Card or one milestone.
+
+After the located obligation completes:
+- persist its durable result/state;
+- return to this router;
+- continue all deterministic authorized role transitions under the normal protocol below;
+- stop only when durable state reaches a real workflow boundary.
+
+Do not interpret wording such as `Kontynuuj`, `Punkt wejścia`, a review target, a Card ID or a milestone ID as an implicit instruction to reply immediately after that obligation. Only explicit user/project authority can deliberately narrow the approved scope.
+
 ## Role-transition protocol
 
 A route module owns only its current role.
