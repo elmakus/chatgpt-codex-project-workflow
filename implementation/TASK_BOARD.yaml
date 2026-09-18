@@ -1,6 +1,6 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 plan_revision: "MW-R1"
-current_milestone: "M02"
+current_milestone: "M03"
 
 # ChatGPT-only serial execution state for this implementation project.
 # This project is currently executing on the legacy/default Task Board path.
@@ -34,6 +34,18 @@ milestones:
     implementation_head: "85c268bc3931902de265c2dba3d749732d2ceec4"
     handoff: "project-handoffs/M02_HANDOFF.md"
     acceptance_evidence: "implementation/evidence/M02-acceptance.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M03:
+    decision_state: accepted
+    execution_status: planned
+    contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M03--micro-fix-execution-review-and-recovery-semantics"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
     review_state: null
     review_subject: null
     review_evidence: null
