@@ -1,6 +1,6 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 plan_revision: "MW-R1"
-current_milestone: "M04"
+current_milestone: "M05"
 
 # ChatGPT-only serial execution state for this implementation project.
 # This project is currently executing on the legacy/default Task Board path.
@@ -58,6 +58,18 @@ milestones:
     implementation_head: "38955588da57039183b0c15a3cd55fbf8b384e80"
     handoff: "project-handoffs/M04_HANDOFF.md"
     acceptance_evidence: "implementation/evidence/M04-acceptance.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M05:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M05--ux-templates-migration-and-regression-coverage"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
     review_state: null
     review_subject: null
     review_evidence: null
@@ -130,3 +142,20 @@ cards:
     result_pr: null
     evidence: "implementation/evidence/M04-T01.md"
     tests_summary: "GREEN implementation verification: R8 local worktree isolation with remote-only exemption; R9 stacked parent/dependency/legal integration paths; R10 target refresh with affected verification and exact-subject review preservation/invalidation; R11 overlap vs real textual/semantic conflict semantics; legacy/default and foreign-policy boundaries preserved; exact details in implementation/evidence/M04-T01.md."
+
+  - id: "M05-T01"
+    title: "UX, templates, migration and final regression closure"
+    milestone: "M05"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: ["M04-T01"]
+    openspec_change: null
+    contract: "implementation/cards/M05-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
