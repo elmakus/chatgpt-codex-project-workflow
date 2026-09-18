@@ -1,6 +1,8 @@
 # GitHub State Contract
 
-This is the normative contract for durable execution state in a project repository, independent of whether the active executor is ChatGPT or Codex.
+This is the extended durable-state contract for project coordination, parallel lanes, review, milestone close and recovery, independent of whether the active executor is ChatGPT or Codex.
+
+Core single-Task-Card start/block/done/result semantics live in `workflow/contracts/TASK_EXECUTION.md`. Ordinary serial executors do not need this full contract unless state/coordinator/close/recovery semantics are triggered.
 
 ## 1. Single live-state authority
 
@@ -104,14 +106,9 @@ When a milestone/plan records a JIT decomposition trigger:
 
 ### Serial
 
-When serial execution begins:
-- Task Board card `ready → in_progress`;
-- record `executor: chatgpt | codex` in Task Board;
-- milestone `ready → in_progress` when this is its first real started card;
-- update `execution_ref` as needed;
-- persist Refresh Gate evidence only when the gate discovers something material.
+Core serial readiness/start transitions are canonical in `workflow/contracts/TASK_EXECUTION.md`.
 
-Do not edit the Task Card contract merely to reflect this transition.
+This extended contract adds no extra serial preflight. Do not load it merely to start a normal serial card.
 
 ### Bounded parallel
 
@@ -169,49 +166,31 @@ A GREEN review may unblock milestone acceptance/continuation. A RED review creat
 
 ## 10. Done-card result pointer contract
 
-Before a Task Board card is terminal `done`, record:
+Core card Definition of Done and result fields are canonical in `workflow/contracts/TASK_EXECUTION.md`.
 
-```yaml
-execution_status: done
-executor: chatgpt | codex
-result_commit: <sha>
-result_pr: <number-or-null>
-evidence: <repo-relative-path-or-null>
-tests_summary: <concise exact summary or evidence pointer>
-```
+Load this extended contract in addition when the result is part of:
+- bounded-parallel integration;
+- milestone close/publication;
+- review/coordinator reconciliation;
+- state inconsistency/recovery.
 
-Rules:
-- `result_commit` identifies the commit containing or verifiably representing the accepted result;
-- `result_pr` identifies the PR when applicable, otherwise `null`;
-- `tests_summary` names exact tests/review/checks; `tests passed` alone is insufficient;
-- standalone evidence may be `null` for a simple reproducible card;
-- standalone evidence is expected for integrated milestone acceptance, REQUIRED/RECOMMENDED independent review, baseline/authorized exceptions, material external writes/readback, complex multi-stage verification, or an explicit contract requirement;
-- for a parallel lane, the durable result record identifies lane base/workspace and integrated verification target;
-- for material external writes, standalone evidence records target, readback method and verified persisted state.
+Do not edit Task Card contract files merely to mirror result state.
 
-The Task Card contract is not edited to duplicate these result fields.
+## 11. Runtime blocker and assignment semantics
 
-## 11. Capability and blocked-card semantics
+Core blocked-card behavior is canonical in `workflow/contracts/TASK_EXECUTION.md`.
 
-When execution is blocked:
-- Task Board card `execution_status: blocked`;
-- write durable blocker evidence under `implementation/blockers/` when material;
-- make a safe commit/push before messaging when possible;
-- do not start dependent cards.
+Additional project-state rules:
+- under `mixed`, Capability Gate is pre-assignment only;
+- under `chatgpt_only`/`codex_only`, there is no Capability Gate or capability inventory/preflight;
+- Project Workflow does not prescribe an executor's tool inventory;
+- a runtime failure never silently changes executor or `execution_policy`;
+- an explicit user policy change may reassign blocked work only after Task Board reconciliation;
+- strategic/product/architecture blockers require the appropriate durable authority decision rather than executor rerouting.
 
-Capability routing and runtime capability failure are different stages:
-- under `mixed`, Capability Gate is used only **before assignment**;
-- under `chatgpt_only`/`codex_only`, there is no routing gate and **no capability preflight/inventory**;
-- fixed-policy execution starts directly after state/contract Refresh Gate;
-- a capability becomes a workflow blocker only when a concrete required operation cannot proceed.
+When a concrete required operation cannot proceed, persist the exact blocker and request only the smallest user-provided input/access/authorization actually needed.
 
-For a runtime capability blocker, record the exact missing capability/access and surface `USER ACTION REQUIRED` with the smallest concrete remedy.
-
-Codex should self-remediate ordinary non-secret local tooling/dependency gaps when the environment allows and accepted security/reproducibility constraints permit it. User-provided MCP/credential/token/account permission/privileged access becomes a blocker when actually needed and unavailable.
-
-If the user supplies the missing capability, resume the same card. If the user explicitly changes `execution_policy`, reconcile Task Board and reassign the blocked card under the new policy. Do not reroute or mutate policy automatically.
-
-For a strategic/product/architecture blocker, obtain the relevant authority decision and persist it under `decisions/`. When Codex uses a correlated ChatGPT control channel, follow `workflow/codex/HANDOFF.md`.
+When Codex uses a correlated ChatGPT control channel for strategic resolution, follow `workflow/codex/HANDOFF.md`.
 
 ## 12. Milestone GREEN
 
@@ -298,7 +277,7 @@ Invalid states include:
 - lane workers racing coordinator-owned Task Board/global integration state;
 - durable execution state existing only in chat, `PROJECT.md`, milestone/Card files or local `current.md`;
 - claimed external success contradicted by required readback evidence;
-- fixed-policy execution invoking Capability Gate or capability preflight/inventory;
+- fixed-policy execution invoking Capability Gate or capability inventory/preflight;
 - execution policy changing without explicit user decision;
-- a runtime capability blocker being silently rerouted instead of being resolved or explicitly reassigned after user policy change;
+- a runtime blocker being silently rerouted instead of being resolved or explicitly reassigned after user policy change;
 - a `chatgpt_only` implementing chat issuing its own REQUIRED/RECOMMENDED independent-review verdict.
