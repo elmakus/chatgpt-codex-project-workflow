@@ -12,7 +12,7 @@ Updated: `<YYYY-MM-DD>`
 
 | ID | Requirement | Priority | Source / decision | Owner milestone | Status |
 |---|---|---|---|---|---|
-| REQ-001 | ... | MUST | ... | M01 | accepted |
+| REQ-001 | ... | MUST | ... | `unassigned` during Definition; set by Planning | accepted |
 
 ## Constraints
 
@@ -38,6 +38,19 @@ Updated: `<YYYY-MM-DD>`
 
 ...
 
+## Definition completeness
+
+Before `Status: approved`:
+- target state and material MUST requirements are explicit;
+- constraints/non-goals/invariants are captured;
+- acceptance-level outcomes are knowable enough to plan;
+- strategic choices needed before planning exist as accepted decision records;
+- no unresolved user/product choice can materially alter the target definition.
+
 ## Coverage
 
-Every accepted requirement must be mapped to an owner milestone and, before execution, at least one Task Card. Link OpenSpec where the behavior-contract policy requires it.
+Project Definition does not need to invent milestone ownership.
+
+Planning maps every accepted requirement to at least one owner milestone and a planned work package or JIT trigger.
+
+Execution Prep creates at least one concrete Task Card before implementation of that requirement. Link OpenSpec where the behavior-contract policy requires it.
