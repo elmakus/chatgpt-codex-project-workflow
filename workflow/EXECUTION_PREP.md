@@ -27,7 +27,7 @@ Do not put live execution state into milestone/Card files or `PROJECT.md`.
 1. Inspect current project repository and relevant source/runtime/external state.
 2. Read current execution policy and Task Board when one exists.
 3. Resolve the milestone contract from the approved Master Plan. Create/refresh a separate milestone file only when just-in-time preparation needs material detail not already present there; record branch policy where applicable.
-4. Decompose work into bounded Task Card contracts.
+4. Decompose only the work that is deterministic enough to contract now. If later card scope materially depends on predecessor evidence, persist the dependency/JIT trigger and defer those cards instead of creating placeholders.
 5. For each card record dependencies plus an exact authority slice: applicable requirement/decision/plan/milestone/dependency-result references and every must-preserve constraint that could change implementation or acceptance. Priority, complexity, phase and expected code locations are optional execution hints, not mandatory boilerplate.
 6. Define acceptance criteria and required tests/checks for every card.
 7. Identify material external writes and required readback/verification evidence.
@@ -38,12 +38,31 @@ Do not put live execution state into milestone/Card files or `PROJECT.md`.
 12. For each parallel candidate record `parallel_safe`, bounded `write_scope` and any `exclusive_resources` in the card contract/Task Board metadata as appropriate.
 13. Set a conservative `parallel_card_limit` based on useful independent work, not theoretical platform capacity.
 14. Initialize/update Task Board as the sole live execution-state record, including integration branch/base policy, parallel metadata and review-state fields when a review gate becomes active.
-15. Confirm requirement coverage.
+15. Confirm requirement coverage, allowing future requirements to point to a durable JIT decomposition trigger when their implementation cards are not yet responsibly knowable.
 16. Audit sizing, dependencies, side effects, idempotency, security, migration concerns, write-scope overlap, shared fixtures and external resource conflicts.
 17. Set a Task Board card `ready` only when dependencies/prerequisites allow execution and no known strategic/authorization blocker prevents starting.
 18. Determine executor from project policy as described below.
 
 Execution preparation under fixed policy does **not** ask whether the fixed executor can theoretically perform every future operation. Actual capability failure is handled at runtime when a concrete operation is attempted.
+
+## Incremental execution preparation
+
+Execution Prep is incremental. It does not require every Task Card in the current or future milestone to exist before the first deterministic card starts.
+
+The execution orchestrator/JIT planner may create or revise **not-yet-started** cards after predecessor cards/milestones produce durable evidence. It may also create/complete an optional JIT milestone extension when the Master Plan intentionally deferred implementation-level detail.
+
+This is allowed without strategic replanning when all changes remain inside:
+- accepted requirements;
+- accepted/frozen architecture and decisions;
+- global/milestone invariants;
+- approved milestone outcome;
+- explicit boundary/authorization gates.
+
+The orchestrator may change card count/order, split/merge cards, refine technical scope, tests and implementation-level acceptance, and bind newly known dependency-result authority.
+
+It may not reinterpret a strategic ambiguity as implementation freedom. Evidence requiring a change to the bounded strategic authority above is an L3 strategic replan/blocker.
+
+Do not create “future placeholder cards” with unknowable scope. A Task Board may contain only the cards currently contractible plus milestone/plan references that state the JIT trigger for later decomposition.
 
 ## Authority preservation during decomposition
 
@@ -88,7 +107,7 @@ Prepare the card, assign ChatGPT in Task Board and start execution. If a concret
 
 Executor is fixed to Codex. **Do not run Capability Gate or capability preflight/inventory.**
 
-ChatGPT may prepare the initial package and hand it to Codex. Once a Codex-only execution stream is active, Codex Main may perform just-in-time execution preparation for a subsequent already-approved milestone when the Master Plan fully determines its outcome/dependencies/acceptance and no new strategic decision is required.
+ChatGPT may prepare the initial package and hand it to Codex. Once a Codex-only execution stream is active, the execution orchestrator may perform just-in-time execution preparation both **within the active milestone** and for a subsequent already-approved milestone when durable authority plus predecessor evidence determine the required L1/L2 refinement and no new strategic decision is required.
 
 Codex may refresh implementation details against actual state; it may not invent or revise product requirements/frozen architecture merely to continue. Ordinary installable local tooling/dependency gaps are runtime implementation detail when Codex can safely self-remediate them. User-provided MCP/credential/token/access becomes a blocker only when concretely needed and unavailable.
 
