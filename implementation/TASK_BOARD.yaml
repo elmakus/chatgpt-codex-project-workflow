@@ -7,9 +7,9 @@ current_milestone: "M05"
 # M01 changes workflow semantics so future projects may instead select a workstream-local board.
 
 execution_ref:
-  branch: "feat/chatgpt-only-multi-workstream-intake"
+  branch: "main"
   pr: 28
-  head: "13975e34df485fe10d01730613e042e9dab952c7"
+  head: "d7688e3ee9ef60383e7c467a0895b0108f3a3fb1"
 
 research_obligation: null
 
@@ -64,12 +64,12 @@ milestones:
 
   M05:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M05--ux-templates-migration-and-regression-coverage"
-    checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    checkpoint: "d7688e3ee9ef60383e7c467a0895b0108f3a3fb1"
+    implementation_head: "d7688e3ee9ef60383e7c467a0895b0108f3a3fb1"
+    handoff: "project-handoffs/M05_HANDOFF.md"
+    acceptance_evidence: "implementation/evidence/M05-acceptance.md"
     review_state: null
     review_subject: null
     review_evidence: null
@@ -156,6 +156,6 @@ cards:
     review_subject: "13975e34df485fe10d01730613e042e9dab952c7"
     review_evidence: "implementation/evidence/M05-T01-review-02.md"
     result_commit: "13975e34df485fe10d01730613e042e9dab952c7"
-    result_pr: null
+    result_pr: 28
     evidence: "implementation/evidence/M05-T01.md"
     tests_summary: "GREEN corrected implementation validation plus fresh independent review 02 GREEN on exact subject 13975e34df485fe10d01730613e042e9dab952c7; M05 final architecture/coherence scope and E2E 1-10 reviewed GREEN; no CI status checks reported for the subject, so no CI-execution claim is made."
