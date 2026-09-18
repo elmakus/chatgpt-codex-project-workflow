@@ -30,7 +30,9 @@ Use when a competent downstream executor could otherwise choose a different path
 
 ## Dependencies
 
-- `<MXX-T.. | none>`
+- `<MXX-T.. | exact predecessor milestone/result | none>`
+
+If this card was created JIT from predecessor evidence, include that exact accepted result in the Authority slice above. Do not create this card before its scope is sufficiently knowable.
 
 ## Outcome
 
