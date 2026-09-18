@@ -18,18 +18,38 @@ Later arrows occur only after the appropriate user/authority decisions. Research
 
 ## Required distinctions
 
-A research artifact should distinguish verified facts/sources, project observations, assumptions, uncertainties, alternatives, recommendations when requested, and unresolved user/product authority.
+A research artifact should distinguish:
+- verified facts and sources;
+- observations from the current project/repository;
+- assumptions;
+- uncertainties;
+- alternatives;
+- recommendation, if requested;
+- questions still requiring user/product authority.
 
 When current external information matters, verify it rather than relying on stale memory.
 
 ## Context discipline
 
-Read only the current research question, relevant requirements, accepted decisions, required source material and repository areas needed for that question. Do not load unrelated implementation history.
+Read only:
+- the current research question;
+- relevant requirements;
+- accepted decisions;
+- required source material;
+- repository areas needed for that question.
+
+Do not load unrelated implementation history.
 
 ## Promoting findings
 
 Research does not directly promote itself into accepted product/system authority.
 
-When findings are ready to influence target behavior, return to the selected policy router. Route through Project Definition only when that policy's Definition-entry conditions are satisfied. Research completion does not itself authorize phase promotion.
+When findings are ready to influence target behavior:
+- return to the policy router;
+- route through Project Definition only when the selected policy's entry conditions for Definition are satisfied;
+- if research was entered from exploratory Brainstorming and that policy requires explicit user phase promotion, research completion does **not** count as that promotion;
+- Definition promotes verified constraints to `requirements/` and explicit accepted choices to `decisions/` with provenance.
 
-Implementation-time facts inside already-approved work may flow to the current Task Card/OpenSpec/evidence as appropriate without redefining product intent. If Research contradicts accepted authority, route to strategic resolution.
+Implementation-time facts discovered for already-approved work may still flow to the current Task Card/OpenSpec/evidence as appropriate without redefining product intent.
+
+If research evidence contradicts already accepted authority during active work, route to strategic resolution rather than silently rewriting downstream contracts.
