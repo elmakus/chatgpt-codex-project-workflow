@@ -15,10 +15,10 @@ Read with:
 2. Read Task Board.
 3. Recover existing `in_progress` or `blocked` obligation before selecting new work.
 4. If a REQUIRED/RECOMMENDED review is `pending|in_progress`, return to the router so it selects `REVIEW.md` before later dependent implementation.
-5. If a non-terminal REQUIRED/RECOMMENDED subject has `review_state: red`, return to the router so Recovery performs the canonical RED corrective-route classification before later implementation.
-6. If Task Board `research_obligation` points to an `active | blocked | complete` implementation/recovery Research record, return to the router before selecting later work.
+5. If Task Board `research_obligation` points to an `active | blocked | complete` implementation/recovery Research record, return to the router before selecting later work.
+6. If the current non-terminal Card has `review_state: red`, this Execution route is legal only when the router selected bounded L1/L2 corrective work from that exact RED evidence. Continue correction of that affected Card/subject; do not select an unrelated READY Card. If that classification has not been established or is contradictory, return to the router/Recovery.
 7. If an existing `in_progress` Card has `review_state: green` for its exact persisted implementation subject, perform **Post-review Card finalization** below before selecting new work.
-8. Select exactly one deterministic READY Card whose dependencies are done.
+8. Only when no active RED correction exists, select exactly one deterministic READY Card whose dependencies are done.
 9. Read its exact milestone/Card authority slice.
 10. Persist start transition from `STATE.md`.
 11. Run Refresh Gate.
