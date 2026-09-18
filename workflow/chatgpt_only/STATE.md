@@ -1,6 +1,14 @@
 # ChatGPT-only State Contract
 
-`implementation/TASK_BOARD.yaml` is the sole authoritative mutable execution-state record.
+The **selected canonical Task Board** is the sole authoritative mutable Card/milestone execution-state record for the current ChatGPT-only state context.
+
+Resolve that context through `workflow/chatgpt_only/WORKSTREAMS.md` before using this contract:
+- branch-isolated workstream → the exact Task Board named by its validated manifest;
+- otherwise → legacy/default `implementation/TASK_BOARD.yaml`.
+
+Do not combine Cards from multiple workstream Task Boards into one synthetic execution state.
+
+For a branch-isolated selected board, `workstream_id` and `execution_ref.branch` are binding identity fields. Before any mutable state in that board is trusted, they must exactly match the validated manifest `id` and `branch` under `workflow/chatgpt_only/WORKSTREAMS.md`. A mismatch is invalid state, not a reason to fall back to the legacy/default board.
 
 ## Card states
 
@@ -37,6 +45,18 @@ planned → ready → in_progress → done
 `blocked` is allowed for a real unresolved milestone gate. `superseded` requires an explicit decision.
 
 A GREEN accepted milestone must not remain `ready` or `in_progress`.
+
+### Qualified micro-fix state
+
+A qualified branch-isolated micro-fix is a deliberate no-Master-Plan/no-milestone exception defined by `workflow/chatgpt_only/MICRO_FIX.md`.
+
+Its selected Task Board uses:
+- `plan_revision: micro-fix`;
+- `current_milestone: micro-fix`;
+- `milestones: {}`;
+- one bounded fix Card as the direct execution/acceptance contract.
+
+Do not synthesize a milestone entry merely to reuse milestone lifecycle transitions. Card/review/Research state remains otherwise normal and canonical in this selected Task Board.
 
 ## Minimum Task Board state
 
@@ -91,7 +111,7 @@ When accepted milestone/plan authority records a JIT decomposition trigger:
 
 ## Legacy execution-mode reconciliation
 
-The active ChatGPT-only route is serial: exactly one project Card may be in progress.
+The active ChatGPT-only route is serial **per selected Task Board**: exactly one Card may be in progress in that workstream/default board. Another independent workstream may have its own one in-progress Card without making this board invalid.
 
 If a legacy ChatGPT-only Task Board still contains old concurrent-card metadata:
 - do not invent or start new concurrent lanes;
@@ -111,9 +131,9 @@ Persist:
 - `executor: chatgpt`;
 - exact execution branch/base pointer needed for recovery.
 
-Set milestone `ready → in_progress` when its first real Card starts.
+Set milestone `ready → in_progress` when its first real Card starts. In qualified micro-fix mode there is no milestone entry, so skip this milestone mutation.
 
-Exactly one project Card may be `in_progress` at a time in this policy path.
+Exactly one Card may be `in_progress` at a time in the selected Task Board.
 
 ## Done result
 
@@ -166,6 +186,16 @@ If independent review is later explicitly requested for `none`, persist the requ
 
 The implementing chat never issues its own REQUIRED/RECOMMENDED verdict.
 
+## Workstream final-integration review state
+
+For a branch-isolated intake-created workstream, the distinct final-integration review lifecycle is owned by the selected `WORKSTREAM.yaml` manifest, not by this Task Board.
+
+- Card/milestone `review_state/review_subject/review_evidence` remain unchanged and Task-Board-owned.
+- Manifest `review.requirement/state/subject/evidence/covered_by` must not mirror an active Task Board review attempt.
+- Behavioral issue/feature workstreams require at least RECOMMENDED final-integration review unless exact coverage by a stronger already-independent review is proven under `WORKSTREAMS.md` / `MICRO_FIX.md`.
+- RED workstream review correction uses this same selected Task Board for corrective execution/Research; it must not create or select another mutable board.
+- A non-green REQUIRED/RECOMMENDED manifest review blocks workstream integration even if all Task Board Cards are terminal.
+
 ## Milestone GREEN
 
 A milestone is not done merely because all Cards are done.
@@ -190,6 +220,8 @@ If review/acceptance is RED:
 
 When a fresh reviewer produces RED and corrective work is bounded, deterministic, authorized and unblocked, the reviewer role ends and the same chat returns to the router. The router assigns execution preparation/execution for the correction. After that chat implements the corrected reviewable subject, it freezes the new exact subject as `pending` and stops before self-review.
 
+For qualified micro-fix there is no milestone GREEN transition. After its Card is terminal, return through the router to Close. Close runs current-target integration refresh first, then reconciles or freezes the selected manifest's final-integration review gate under `WORKSTREAMS.md` / `MICRO_FIX.md`, and only then may integrate or record the workstream `done`. Do not synthesize a milestone.
+
 ## Next milestone
 
 After GREEN, advance automatically into next already-approved milestone when:
@@ -205,7 +237,8 @@ Use fresh JIT preparation + Refresh Gate.
 
 Fresh-session recovery uses:
 - `PROJECT.md`;
-- Task Board;
+- exact workstream branch + validated manifest when branch-isolated;
+- the selected canonical Task Board;
 - exact branch/HEAD/runtime/external state;
 - current milestone/Card contracts;
 - referenced OpenSpec/evidence/result/review pointers;
@@ -217,10 +250,13 @@ Previous chat narrative is not required.
 ## Invalid states
 
 Examples:
-- more than one Card `in_progress`;
+- more than one Card `in_progress` in the same selected Task Board;
+- branch-isolated Task Board `workstream_id` or `execution_ref.branch` does not exactly match its selected manifest, or required branch-isolated implementation/review/recovery state has a null/missing Task Board;
 - `done` Card missing required result/tests provenance;
 - `done` Card with a REQUIRED/RECOMMENDED review still `pending | in_progress | red`;
 - milestone `done` with non-green required review;
+- branch-isolated behavioral issue/feature final integration attempted while manifest `review.requirement` is REQUIRED/RECOMMENDED and its distinct final-integration gate is not GREEN;
+- manifest workstream review fields used as a mirror of Card/milestone Task Board review lifecycle;
 - dependent Card started before dependency `done`;
 - review verdict attached to wrong subject;
 - non-terminal REQUIRED/RECOMMENDED `review_state: red` bypassed in favor of later implementation;

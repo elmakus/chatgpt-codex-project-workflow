@@ -25,7 +25,8 @@ Changing execution policy requires explicit user decision. Default for new proje
 - Active research obligation (only when the selected policy defines this pointer; `chatgpt_only` uses it for pre-execution Research): `research/<record>.md | none`
 - Requirements: `requirements/REQUIREMENTS.md | none`
 - Approved plan: `planning/MASTER_PLAN.md | none`
-- Task Board: `implementation/TASK_BOARD.yaml | none`
+- Task Board: `implementation/TASK_BOARD.yaml | none` (legacy/default state context; branch-isolated Task Boards are selected through their manifests)
+- Workstream root: `implementation/workstreams/ | none` (optional non-live locator convention; never a registry of active state)
 - Latest cumulative handoff: `project-handoffs/MXX_HANDOFF.md | none`
 - Accepted decisions index / key pointers:
   - `<decisions/... | none>`
@@ -43,4 +44,4 @@ This file is a high-level router/policy/index, not live execution state.
 
 `Active research obligation` is operative only when the selected policy route defines that continuation contract. Under `chatgpt_only`, it is the routing pointer for pre-execution Research: the pointed record owns active/complete/blocked/consumed lifecycle state plus exact Origin/Return subjects, remains pointed through `complete`, and is cleared only after durable consumption. `chatgpt_only` implementation/recovery Research instead uses Task Board `research_obligation`. A legacy/other-policy route that does not define this pointer keeps it `none`; the field's presence in this shared template does not import `chatgpt_only` routing semantics.
 
-Do not record current milestone/card, assigned executor, active branch/HEAD, checkpoint, current OpenSpec or blocker status here. Read `implementation/TASK_BOARD.yaml` for all mutable execution state. The approved Master Plan milestone subsection is the default milestone contract; follow any optional JIT milestone extension, referenced Task Card authority slices, required evidence and handoffs.
+Do not record current milestone/card, assigned executor, active branch/HEAD, checkpoint, current OpenSpec, blocker status, active workstream list or workstream review state here. Under `chatgpt_only`, resolve the selected state context first: legacy/default mode uses `implementation/TASK_BOARD.yaml`, while a branch-isolated workstream uses its exact validated manifest to locate the canonical Task Board and owns its distinct final-integration review in that manifest. `Workstream root` is only a path convention for discovery, never live state. The approved Master Plan milestone subsection is the default milestone contract; follow any optional JIT milestone extension, referenced Task Card authority slices, required evidence and handoffs.

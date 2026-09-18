@@ -1,12 +1,12 @@
 # MXX-TYY — <title>
 
-- Milestone: `MXX`
+- Milestone: `MXX | micro-fix`
 
-> This file is a stable Task Card contract. Mutable execution/review/result state lives only in `implementation/TASK_BOARD.yaml`.
+> This file is a stable Task Card contract. Mutable execution/review/result state lives only in the selected canonical Task Board resolved by the ChatGPT-only workstream contract; the legacy/default path remains `implementation/TASK_BOARD.yaml`.
 
 ## Authority slice
 
-- Master Plan / milestone contract: `<exact section/path>`
+- Master Plan / milestone contract: `<exact section/path | none — qualified micro-fix under R6 + exact completed Intake record>`
 - Requirements: `<IDs/paths>`
 - Accepted decisions: `<IDs/paths>`
 - Relevant OpenSpec: `<path | none>`

@@ -18,7 +18,7 @@ After selecting this route:
 - use only `workflow/common/*` and `workflow/chatgpt_only/*` workflow modules;
 - do not load legacy/shared execution contracts;
 - do not load another policy namespace;
-- recover mutable state from the canonical source defined by the selected policy route; for `chatgpt_only`, implementation/implementation-review state lives in Task Board while pre-execution plan-review state lives under `planning/reviews/`.
+- recover mutable state from the canonical source defined by the selected policy route; for `chatgpt_only`, resolve the selected workstream state context first, then use that workstream's canonical Task Board for implementation/implementation-review state, with `implementation/TASK_BOARD.yaml` retained as the legacy/default fallback. Pre-execution plan-review state lives under `planning/reviews/`.
 
 ### Other accepted policy
 

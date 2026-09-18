@@ -6,11 +6,13 @@ A Task Card is one bounded project work-package contract executed by normal Chat
 
 It defines stable authority, scope, acceptance and tests. It is not live execution state.
 
-Mutable status, branch/result pointers and review state live only in `implementation/TASK_BOARD.yaml`.
+Mutable status, branch/result pointers and Card/milestone review state live only in the selected canonical Task Board resolved by `workflow/chatgpt_only/WORKSTREAMS.md`; the legacy/default path remains `implementation/TASK_BOARD.yaml`.
 
 Use `workflow/chatgpt_only/TASK_CARD_TEMPLATE.md`.
 
 ## Required contract fields
+
+A qualified micro-fix uses the same bounded Card contract, with `milestone: micro-fix` and no Master Plan authority. Its exact completed Intake record + accepted requirements/decisions replace the normal milestone-plan pointer; see `workflow/chatgpt_only/MICRO_FIX.md`.
 
 Each Card defines:
 - ID/title/milestone;

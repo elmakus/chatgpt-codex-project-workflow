@@ -14,8 +14,9 @@ The project repository is durable project truth. It stores brainstorming, resear
 
 The workflow deliberately separates contract from state:
 
-- `implementation/TASK_BOARD.yaml` — **sole mutable execution-state authority**, including active implementation-review state;
+- `implementation/TASK_BOARD.yaml` — legacy/default `chatgpt_only` mutable execution-state authority; a branch-isolated workstream instead uses the exact Task Board selected by its validated `WORKSTREAM.yaml`; each selected Task Board is the sole mutable Card/milestone execution-state authority for that state context;
 - `planning/reviews/<plan-revision>.md` — mutable pre-execution independent plan-review state/evidence; it is not execution state and never substitutes for Task Board;
+- branch-isolated `WORKSTREAM.yaml` — workstream identity/routing, intake lifecycle/location metadata and the distinct workstream final-integration review lifecycle; it never mirrors Card/milestone Task Board state;
 - approved Master Plan milestone subsections — default milestone contracts;
 - `implementation/milestones/MXX.md` — optional JIT contract extensions only when the Master Plan needs material execution/acceptance detail;
 - Task Card files — bounded authority/scope/acceptance/test contracts;
@@ -53,10 +54,26 @@ The first migrated namespace is `workflow/chatgpt_only/`.
 For `chatgpt_only`:
 - genuinely policy-neutral authority/OpenSpec/user-stop rules come from `workflow/common/`;
 - Brainstorming, Research, Project Definition, planning, execution preparation, Task Cards, state, execution, independent review, close/publication and recovery semantics come from `workflow/chatgpt_only/`;
-- normal project execution handles exactly one READY Task Card at a time;
+- normal project execution handles exactly one READY Task Card at a time **per selected Task Board**; independent branch-isolated workstreams may each progress on distinct branches/state;
 - other policy execution/orchestration semantics are outside the route.
 
 The prior multi-policy router is preserved at `workflow/legacy/CONTEXT_ROUTING.md` for policies not yet migrated. This is a staged migration: legacy shared execution/contracts remain in place until those policies receive their own namespaces.
+
+
+## ChatGPT-only branch-isolated workstreams and intake
+
+Existing projects may continue in legacy/default single-workstream mode with `implementation/TASK_BOARD.yaml`. When independent work should proceed concurrently, `chatgpt_only` may create branch-isolated workstreams under `implementation/workstreams/<id>/`:
+
+- `WORKSTREAM.yaml` identifies the workstream, exact branch/base/target, optional parent dependency, canonical Task Board and distinct final-integration review gate;
+- the manifest-selected `TASK_BOARD.yaml` owns Card/milestone execution, Card/milestone review and implementation/recovery Research state for that workstream;
+- `#issue` starts diagnosis/repair intake and chooses independent versus genuinely parent-dependent stacked work before implementation;
+- `#feature` starts feature discovery but does **not** bypass the user-owned Brainstorming → Project Definition promotion gate;
+- a bounded issue may use the micro-fix path without a full Master Plan while retaining durable acceptance/evidence and independent review;
+- different local workstreams executing concurrently require separate Git worktrees/equivalent isolated checkouts; remote-only GitHub execution does not;
+- stacked children cannot masquerade as independent while they still require parent-only state;
+- before final integration, the selected workstream refreshes against the current target, reruns affected verification, checks textual and semantic conflicts, and re-freezes independent review only when the exact covered subject/acceptance surface materially changes.
+
+There is no required mutable repository-global workstream registry or scheduler. Exact branch/manifests/PRs plus branch-local durable state are the recovery anchors.
 
 ## Capability semantics
 
@@ -129,13 +146,13 @@ A hygiene handoff is session continuity only. It does not change requirements, e
 
 Independent means independent from the worker/session that implemented the reviewed subject.
 
-- `chatgpt_only` — a ChatGPT chat that implemented a REQUIRED/RECOMMENDED review subject must freeze exact `review_subject`, persist `review_state: pending`, and **stop**. The user opens a fresh normal ChatGPT chat, which performs the independent review from durable Task Board state. After GREEN the review role ends and the same chat returns to the policy router for the next legal role. After RED, if remediation is bounded/deterministic/authorized, the review role ends and the router assigns execution preparation/execution to the same chat; once that chat implements the corrected reviewable subject, it freezes a new pending review and stops with the next fresh re-review prompt.
+- `chatgpt_only` — a ChatGPT chat that implemented a REQUIRED/RECOMMENDED review subject must freeze exact `review_subject`, persist `review_state: pending`, and **stop**. The user opens a fresh normal ChatGPT chat, which performs the independent review from the exact canonical review owner: the selected Task Board for Card/milestone review or the selected manifest for branch-isolated workstream final-integration review. After GREEN the review role ends and the same chat returns to the policy router for the next legal role. After RED, if remediation is bounded/deterministic/authorized, the review role ends and the router assigns execution preparation/execution to the same chat; once that chat implements the corrected reviewable subject, it freezes a new pending review and stops with the next fresh re-review prompt.
 - `codex_only` — Codex Main obtains an independent reviewer worker/session. When `codex_workflow` is installed/enabled, it owns the internal execute/review-worker orchestration. Project Workflow owns only the project-level review requirement, exact subject, durable verdict/evidence and acceptance boundary. No user handoff is required solely for review independence.
 - `mixed` — reviewer path follows the accepted review contract and must remain independent from implementation.
 
 For `chatgpt_only`, a Task Card uses `REQUIRED | RECOMMENDED | none`. REQUIRED and RECOMMENDED are real independent-review gates; `none` creates no review state. An explicit later request for independent review promotes `none` to RECOMMENDED before the gate is activated.
 
-Task Board records active review state using `review_state`, `review_subject` and `review_evidence`.
+The selected Task Board records Card/milestone review state using `review_state`, `review_subject` and `review_evidence`. A branch-isolated workstream's distinct final-integration review lives in its selected `WORKSTREAM.yaml` manifest.
 
 ## Milestone continuity
 
@@ -198,7 +215,7 @@ workflow/EXECUTION.md
 → current Task Card + exact authority slice + required source/runtime
 ```
 
-This is **not** the active runtime path for `chatgpt_only`. The migrated `chatgpt_only` policy follows `workflow/chatgpt_only/ROUTER.md` and its namespaced Execution/State/Review contracts, and executes exactly one READY project Card at a time.
+This is **not** the active runtime path for `chatgpt_only`. The migrated `chatgpt_only` policy follows `workflow/chatgpt_only/ROUTER.md` and its namespaced Execution/State/Review contracts, and executes exactly one READY project Card at a time per selected Task Board.
 
 For policies that still use the shared execution core, `TASK_CARDS.md` is an authoring/decomposition contract rather than a mandatory serial-executor read, and `GITHUB_STATE.md` supplies extended coordinator/parallel/review/milestone/recovery semantics only when that route requires them.
 
@@ -208,7 +225,7 @@ Project Workflow does not teach ChatGPT or Codex a catalog of their tools/capabi
 
 The shared/legacy execution stack may support serial execution plus explicitly contracted **bounded parallel** execution when its policy route permits it. Those parallel-card semantics do not apply to the active `chatgpt_only` namespace.
 
-Under `chatgpt_only`, execution is serial: exactly one project Card may be `in_progress`, and completed Card boundaries return through the ChatGPT-only router before the next obligation starts.
+Under `chatgpt_only`, execution is serial **inside each selected state context**: exactly one Card may be `in_progress` per selected Task Board. Independent branch-isolated workstreams may each have their own one in-progress Card when branch/state isolation and their own gates are satisfied. Completed Card boundaries return through the ChatGPT-only router before the next obligation in that workstream starts.
 
 ## Roles
 
@@ -234,7 +251,7 @@ Each route separates:
 - **CONDITIONAL** files loaded only when a concrete trigger exists;
 - **DO NOT READ BY DEFAULT** files that are outside the normal context set.
 
-Normal ChatGPT starts with the intentionally small `CHATGPT.md` router, project `PROJECT.md`, and `CONTEXT_ROUTING.md`. Under `chatgpt_only`, implementation/implementation-review/recovery state is recovered from Task Board (including `research_obligation` when implementation/recovery Research is active), pre-execution plan-review state from its `planning/reviews/<plan-revision>.md` record, and an active pre-execution Research loop from the exact `PROJECT.md → Active research obligation` record. It then follows one primary route rather than loading neighboring phase modules "just in case."
+Normal ChatGPT starts with the intentionally small `CHATGPT.md` router, project `PROJECT.md`, and `CONTEXT_ROUTING.md`. Under `chatgpt_only`, a branch-isolated state context is resolved from its exact branch + `WORKSTREAM.yaml` before mutable execution state is interpreted. Card/milestone implementation-review/recovery state then comes from that manifest-selected Task Board (including `research_obligation` when implementation/recovery Research is active), while the distinct workstream final-integration review stays manifest-owned. The legacy/default fallback remains `implementation/TASK_BOARD.yaml`; pre-execution plan-review state comes from `planning/reviews/<plan-revision>.md`, and an active pre-execution Research loop comes from the exact `PROJECT.md → Active research obligation` record. It then follows one primary route rather than loading neighboring phase modules "just in case."
 
 For a `chatgpt_only` independent-review obligation, the normal workflow modules are `workflow/chatgpt_only/REVIEW.md` + `STATE.md` with the exact reviewed subject/authority/evidence. When the verdict is persisted, the review role ends and the chat returns to `workflow/chatgpt_only/ROUTER.md`; downstream execution/close modules are loaded only if the router assigns those roles.
 
@@ -261,7 +278,7 @@ The prompt is intentionally thin and **locator-only**:
 - project repository;
 - exact active project/implementation branch;
 - exact entry obligation (for example pending independent review for one card);
-- smallest durable start pointer;
+- smallest durable start pointer — selected Task Board for Card/milestone execution-review, selected `WORKSTREAM.yaml` for manifest-owned workstream final-integration review, or the route's other exact canonical pointer;
 - instruction to recover exact state/subject/authority/evidence from the repository;
 - one explicit reminder that the entry obligation is not a session-scope boundary and normal router-owned continuation resumes after that role completes.
 

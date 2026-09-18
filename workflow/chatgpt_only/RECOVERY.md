@@ -6,11 +6,13 @@ Recovery reconstructs execution truth from durable project state without prior c
 
 Read:
 - project `PROJECT.md`;
-- `implementation/TASK_BOARD.yaml`;
+- `workflow/chatgpt_only/WORKSTREAMS.md` when branch-isolated;
 - exact active branch/HEAD;
+- validated workstream manifest + its selected canonical Task Board when branch-isolated, otherwise legacy/default `implementation/TASK_BOARD.yaml`;
 - relevant runtime/external state;
 - current milestone/Card contracts;
-- active review state;
+- active Card/milestone review state from the selected Task Board;
+- selected manifest workstream final-integration review state when branch-isolated;
 - Task Board `research_obligation` and its exact research record when present;
 - referenced evidence/result/OpenSpec/blocker;
 - handoff only when materially needed.
@@ -19,13 +21,18 @@ Previous chat narrative is not authority.
 
 ## Recovery priority
 
+Apply this priority only inside the selected default/workstream Task Board. An unrelated workstream's active Card/review is not a blocker for this one.
+
 1. REQUIRED/RECOMMENDED `review_state: pending | in_progress` outranks later implementation.
 2. Task Board `research_obligation` with research `Status: active | blocked | complete` outranks selecting new implementation, including when opened from a RED verdict, and recovers through **Implementation-owned Research** below.
 3. A non-terminal REQUIRED/RECOMMENDED subject with `review_state: red` and no already-materialized Research continuation routes to **RED review recovery** below before any unrelated/new Card.
 4. An `in_progress` Card with `review_state: green` and complete persisted implementation/result evidence routes to Execution for terminal Post-review Card finalization before any new Card.
 5. Any other existing `in_progress` Card outranks selecting a new Card.
 6. Existing `blocked` Card must be re-evaluated before dependent work.
-7. Only when no active obligation exists may next READY Card be selected.
+7. When no higher-priority Task Board obligation remains, a selected manifest final-integration `review.state: pending | in_progress` routes to Independent review before new/later implementation for that workstream.
+8. A selected manifest final-integration `review.state: red` routes through the same RED corrective classification, with any corrective execution/Research confined to this selected workstream Task Board.
+9. A qualified micro-fix whose bounded Card is terminal and whose selected workstream is not done routes to Close once higher-priority Task Board or manifest pending/RED review obligations are absent; Close runs target refresh before final-review reuse/freeze and integration. Do not start another Card and do not synthesize a milestone.
+10. Only when no active obligation exists may next READY Card be selected.
 
 ## In-progress Card
 
@@ -72,6 +79,18 @@ A persisted RED verdict is already a completed independent-review result. Recove
 
 When correction changes the reviewable implementation subject, preserve the old RED evidence, freeze the new exact subject as a new `pending` review attempt, and require a fresh independent reviewer before terminal Card completion.
 
+## Workstream final-integration review recovery
+
+For a selected branch-isolated workstream, manifest final-integration review is recovered independently from Card/milestone Task Board review.
+
+- `pending | in_progress` → route to `REVIEW.md` with the exact manifest as review owner and exact manifest `review.subject`;
+- `green` → do not replay review; continue only if the GREEN subject still equals the exact integrated subject;
+- `red` → keep the manifest gate RED and classify deterministic correction under `REVIEW.md#RED → corrective-route transition`; bounded correction and implementation-owned Research stay on the selected Task Board;
+- qualified micro-fix with terminal GREEN-reviewed fix Card and no active pending/RED manifest gate → route to Close for integration refresh first, then exact coverage reuse or a newly frozen manifest review subject;
+- a manifest review subject that no longer matches the integrated subject is not GREEN coverage; freeze/review the changed exact subject before integration.
+
+Never inspect or mutate another workstream Task Board to recover or repair this gate.
+
 ## Implementation-owned Research
 
 When Task Board `research_obligation` points to an implementation/recovery Research record:
@@ -98,7 +117,7 @@ Do not create synchronization edits merely to make documents look consistent.
 
 ## Resume
 
-After durable state is coherent, the recovery role is complete.
+After durable state is coherent, including selected manifest review state when branch-isolated, the recovery role is complete.
 
 Return to `workflow/chatgpt_only/ROUTER.md`. The router selects execution, review, close or strategic resolution from the recovered state.
 

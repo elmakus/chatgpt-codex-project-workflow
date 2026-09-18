@@ -1,0 +1,161 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+plan_revision: "MW-R1"
+current_milestone: "M05"
+
+# ChatGPT-only serial execution state for this implementation project.
+# This project is currently executing on the legacy/default Task Board path.
+# M01 changes workflow semantics so future projects may instead select a workstream-local board.
+
+execution_ref:
+  branch: "feat/chatgpt-only-multi-workstream-intake"
+  pr: 28
+  head: "13975e34df485fe10d01730613e042e9dab952c7"
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: done
+    contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M01--workstream-state-model-and-routing-foundation"
+    checkpoint: "adba7d1da3641e9bc008483c53246119b20dd066"
+    implementation_head: "adba7d1da3641e9bc008483c53246119b20dd066"
+    handoff: "project-handoffs/M01_HANDOFF.md"
+    acceptance_evidence: "implementation/evidence/M01-T01-review-02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M02:
+    decision_state: accepted
+    execution_status: done
+    contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M02--intake-route-issue--feature"
+    checkpoint: "85c268bc3931902de265c2dba3d749732d2ceec4"
+    implementation_head: "85c268bc3931902de265c2dba3d749732d2ceec4"
+    handoff: "project-handoffs/M02_HANDOFF.md"
+    acceptance_evidence: "implementation/evidence/M02-acceptance.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M03:
+    decision_state: accepted
+    execution_status: done
+    contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M03--micro-fix-execution-review-and-recovery-semantics"
+    checkpoint: "fe447d4e0322b8b4f1ef5a5f1fd46b703877a75b"
+    implementation_head: "fe447d4e0322b8b4f1ef5a5f1fd46b703877a75b"
+    handoff: "project-handoffs/M03_HANDOFF.md"
+    acceptance_evidence: "implementation/evidence/M03-acceptance.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M04:
+    decision_state: accepted
+    execution_status: done
+    contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M04--worktree-stacked-branch-and-integration-refresh-contracts"
+    checkpoint: "38955588da57039183b0c15a3cd55fbf8b384e80"
+    implementation_head: "38955588da57039183b0c15a3cd55fbf8b384e80"
+    handoff: "project-handoffs/M04_HANDOFF.md"
+    acceptance_evidence: "implementation/evidence/M04-acceptance.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M05:
+    decision_state: accepted
+    execution_status: in_progress
+    contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M05--ux-templates-migration-and-regression-coverage"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Workstream state model and routing foundation"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/cards/M01-T01.md"
+    review_state: green
+    review_subject: "adba7d1da3641e9bc008483c53246119b20dd066"
+    review_evidence: "implementation/evidence/M01-T01-review-02.md"
+    result_commit: "adba7d1da3641e9bc008483c53246119b20dd066"
+    result_pr: null
+    evidence: "implementation/evidence/M01-T01.md"
+    tests_summary: "GREEN: full M01 diff-check, manifest↔Task Board identity binding/recovery, legacy fallback, workstream-local seriality, no-global-registry and foreign-policy-boundary coherence checks passed; manual template structure checks passed; parser-based YAML validation unavailable in runtime and is not claimed."
+
+  - id: "M02-T01"
+    title: "Explicit #issue / #feature intake routing"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: ["M01-T01"]
+    openspec_change: null
+    contract: "implementation/cards/M02-T01.md"
+    review_state: green
+    review_subject: "85c268bc3931902de265c2dba3d749732d2ceec4"
+    review_evidence: "implementation/evidence/M02-T01-review-02.md"
+    result_commit: "85c268bc3931902de265c2dba3d749732d2ceec4"
+    result_pr: null
+    evidence: "implementation/evidence/M02-T01.md"
+    tests_summary: "GREEN correction validation: original M02 checks remain applicable; corrected intake now requires route-specific pre-creation discovery/diagnosis before base selection, removes duplicate create/select ordering, preserves feature promotion and prior routing/state semantics; exact details in implementation/evidence/M02-T01.md."
+
+  - id: "M03-T01"
+    title: "Micro-fix and branch-local execution/review/recovery semantics"
+    milestone: "M03"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: ["M02-T01"]
+    openspec_change: null
+    contract: "implementation/cards/M03-T01.md"
+    review_state: green
+    review_subject: "fe447d4e0322b8b4f1ef5a5f1fd46b703877a75b"
+    review_evidence: "implementation/evidence/M03-T01-review-01.md"
+    result_commit: "fe447d4e0322b8b4f1ef5a5f1fd46b703877a75b"
+    result_pr: null
+    evidence: "implementation/evidence/M03-T01.md"
+    tests_summary: "GREEN: implementation verification in implementation/evidence/M03-T01.md and fresh independent review in implementation/evidence/M03-T01-review-01.md; reviewed subject unchanged through terminal Card finalization."
+
+  - id: "M04-T01"
+    title: "Worktree, stacked branch and integration refresh contracts"
+    milestone: "M04"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: ["M03-T01"]
+    openspec_change: null
+    contract: "implementation/cards/M04-T01.md"
+    review_state: green
+    review_subject: "38955588da57039183b0c15a3cd55fbf8b384e80"
+    review_evidence: "implementation/evidence/M04-T01-review-01.md"
+    result_commit: "38955588da57039183b0c15a3cd55fbf8b384e80"
+    result_pr: null
+    evidence: "implementation/evidence/M04-T01.md"
+    tests_summary: "GREEN implementation verification: R8 local worktree isolation with remote-only exemption; R9 stacked parent/dependency/legal integration paths; R10 target refresh with affected verification and exact-subject review preservation/invalidation; R11 overlap vs real textual/semantic conflict semantics; legacy/default and foreign-policy boundaries preserved; exact details in implementation/evidence/M04-T01.md."
+
+  - id: "M05-T01"
+    title: "UX, templates, migration and final regression closure"
+    milestone: "M05"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: ["M04-T01"]
+    openspec_change: null
+    contract: "implementation/cards/M05-T01.md"
+    review_state: green
+    review_subject: "13975e34df485fe10d01730613e042e9dab952c7"
+    review_evidence: "implementation/evidence/M05-T01-review-02.md"
+    result_commit: "13975e34df485fe10d01730613e042e9dab952c7"
+    result_pr: null
+    evidence: "implementation/evidence/M05-T01.md"
+    tests_summary: "GREEN corrected implementation validation plus fresh independent review 02 GREEN on exact subject 13975e34df485fe10d01730613e042e9dab952c7; M05 final architecture/coherence scope and E2E 1-10 reviewed GREEN; no CI status checks reported for the subject, so no CI-execution claim is made."

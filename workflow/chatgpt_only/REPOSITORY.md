@@ -28,7 +28,14 @@ Do not duplicate project truth into the workflow repository.
 ├── planning/
 │   └── reviews/
 ├── implementation/
-│   ├── TASK_BOARD.yaml
+│   ├── TASK_BOARD.yaml        # legacy/default single-workstream board
+│   ├── workstreams/            # optional branch-isolated workstreams
+│   │   └── <workstream-id>/
+│   │       ├── WORKSTREAM.yaml
+│   │       ├── TASK_BOARD.yaml
+│   │       ├── cards/
+│   │       ├── evidence/
+│   │       └── blockers/
 │   ├── milestones/
 │   ├── cards/
 │   ├── evidence/
@@ -48,14 +55,15 @@ Projects may adapt paths, but `PROJECT.md` must identify actual canonical locati
 - requirements → authoritative product/system requirements;
 - planning → draft/approved plan authority;
 - planning/reviews → mutable pre-execution independent plan-review lifecycle/evidence; not execution state and never a substitute for Task Board;
-- Task Board → sole mutable execution state, including the implementation/recovery Research routing pointer when such an obligation is active;
+- selected canonical Task Board → sole mutable Card/milestone execution state for that default/workstream context, including its implementation/recovery Research routing pointer when such an obligation is active;
+- branch-isolated `WORKSTREAM.yaml` → workstream identity/routing + coarse lifecycle/location metadata only; it never mirrors Card/milestone state from its selected Task Board;
 - milestone/Card files → stable contracts, not status mirrors;
 - evidence → durable proof when materially useful/required;
 - blockers → durable blocker evidence;
 - handoffs → completed milestone summaries;
 - OpenSpec → selected behavior/design contracts.
 
-Do not mirror current card/milestone/result/branch/review state into `PROJECT.md` or stable contract files.
+Do not mirror current card/milestone/result/branch/review state into `PROJECT.md` or stable contract files. `PROJECT.md` may document the workstream-root convention but is not a mutable global workstream registry.
 
 ## PROJECT.md
 
@@ -66,7 +74,7 @@ Keep it small. It should identify:
 - active exploratory-scope pointer when Brainstorming/Definition recovery currently needs one;
 - active pre-execution research-obligation pointer when Research/return-role recovery currently needs one;
 - canonical requirements/plan;
-- Task Board path when implementation exists;
+- legacy/default Task Board path when the project uses that mode; branch-isolated Task Boards are located from their validated workstream manifests rather than mirrored into `PROJECT.md`;
 - latest cumulative handoff when one exists;
 - accepted-decision pointers;
 - workflow repository/ref.
@@ -83,6 +91,14 @@ It is not canonical Task Board/handoff state, must never be the only location of
 
 Recovery must be possible from Task Board plus referenced contracts/evidence/Git/runtime state without prior chat.
 
+## Branch-isolated workstream state
+
+When the current branch is a branch-isolated ChatGPT-only workstream, apply `workflow/chatgpt_only/WORKSTREAMS.md` before loading implementation/review/recovery state.
+
+The validated manifest owns the canonical Task Board path. The legacy/default `implementation/TASK_BOARD.yaml` remains untouched unless that default state itself is the selected context.
+
+Correctness must not require a mutable repository-global workstream registry.
+
 ## Git/branch policy
 
 GitHub is durable source for exact commits, PRs, evidence and checkpoints.
@@ -97,6 +113,22 @@ Default:
 - next milestone starts from the GREEN checkpoint.
 
 Never force-push `main` as a normal workflow action.
+
+## Local concurrent checkout isolation
+
+Branch isolation and filesystem isolation are separate requirements.
+
+When two or more ChatGPT-only workstreams are actively executing against the same local repository storage at the same time:
+- each actively mutating workstream must use its own Git worktree or equivalent isolated checkout;
+- each checkout must remain on the exact branch/workstream it owns while that execution is active;
+- one executor must not switch, reset or otherwise repurpose a checkout underneath another active workstream;
+- sharing the same `.git` object database through normal Git worktree mechanics is allowed; the mutable working tree/index must be isolated.
+
+A branch name by itself is not local isolation. Sequential work may reuse one checkout once no other executor is actively relying on that mutable checkout and the exact branch/state is reconciled before reuse.
+
+Remote-only GitHub operations do not require creation of a local worktree because they do not share a mutable local checkout. A local worktree is therefore a runtime isolation precondition when concurrent local mutation exists, not a new durable execution-state source.
+
+Worktree presence does not authorize concurrency inside one workstream. The selected Task Board still permits at most one `in_progress` Card.
 
 ## In-flight branch/runtime state
 
@@ -114,11 +146,12 @@ Material external mutations require meaningful persisted-state readback when ava
 
 Recovery must be possible from:
 - `PROJECT.md`;
+- exact workstream branch + validated `WORKSTREAM.yaml` when branch-isolated;
 - the PROJECT-pointed active exploratory record when Brainstorming/Definition promotion or recovery is active;
 - the PROJECT-pointed active pre-execution research record when Research/return-role recovery is active;
-- Task Board, including its implementation/recovery `research_obligation` pointer and exact pointed record when present;
+- selected canonical Task Board, including its implementation/recovery `research_obligation` pointer and exact pointed record when present;
 - exact Git/runtime/external state;
-- current milestone/Card contracts;
+- current milestone/Card contracts, or the exact bounded micro-fix Card + completed Intake record for a qualified direct fix;
 - referenced evidence/OpenSpec/handoff as actually needed.
 
 Previous chat narrative is not required authority.

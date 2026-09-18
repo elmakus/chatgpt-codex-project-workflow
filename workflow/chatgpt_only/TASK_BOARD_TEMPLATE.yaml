@@ -2,9 +2,10 @@ project: "<project>"
 plan_revision: "<R#>"
 current_milestone: "M01"
 
-# ChatGPT-only serial Task Board template.
-# Sole authoritative mutable implementation/execution-review state record.
-# Policy invariant: exactly one project Card may be in_progress at a time.
+# ChatGPT-only legacy/default serial Task Board template.
+# Sole authoritative mutable Card/milestone implementation + execution-review state for the default state context.
+# Policy invariant: exactly one Card may be in_progress in this Task Board.
+# Branch-isolated workstreams use WORKSTREAM_TASK_BOARD_TEMPLATE.yaml instead.
 # Keep this schema serial and policy-local; do not add foreign scheduling or executor-routing metadata.
 
 execution_ref:

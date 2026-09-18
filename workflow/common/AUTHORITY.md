@@ -7,7 +7,7 @@ This file contains only policy-neutral authority rules.
 - Current workflow `main` is authoritative for workflow behavior unless an explicitly frozen in-flight boundary says otherwise.
 - Project repository is durable project truth.
 - Root `PROJECT.md` is a high-level router/index, not live execution state.
-- When implementation state exists, `implementation/TASK_BOARD.yaml` is the sole authoritative mutable execution-state record.
+- When implementation state exists, the **canonical Task Board selected by the active policy route** is the sole authoritative mutable Card/milestone execution-state record. Unless that route explicitly defines another canonical Task Board location, the default is `implementation/TASK_BOARD.yaml`.
 - Accepted durable repository state outranks stale chat/session narrative.
 
 ## Role semantics

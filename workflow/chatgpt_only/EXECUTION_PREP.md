@@ -1,24 +1,24 @@
 # ChatGPT-only Execution Preparation
 
-Execution preparation turns approved milestone authority into bounded executable Cards and Task Board state.
+Execution preparation turns approved milestone authority, or a qualified branch-isolated micro-fix intake, into bounded executable Cards and Task Board state.
 
 ## Preconditions
 
 Before creating executable work:
-- authoritative requirements are identifiable;
+- applicable accepted product/behavior authority is identifiable; for a qualified micro-fix this may be the exact completed Intake intent/diagnostic record plus existing requirements/decisions, without requiring a new formal requirements artifact;
 - accepted architecture/decisions are recorded;
-- current Master Plan/milestone is approved;
+- either the current Master Plan/milestone is approved, or a selected branch-isolated issue Intake has completed with `path: micro_fix` and durable evidence for every R6 qualification criterion;
 - unresolved strategic questions are resolved or explicitly blocking;
 - project is routed here under `execution_policy: chatgpt_only`.
 
 ## State ownership
 
 Execution prep writes:
-- Task Card contracts under `implementation/cards/`;
-- optional JIT milestone extension only when it adds material detail beyond the approved Master Plan milestone section;
-- mutable readiness/status/result/review state only to `implementation/TASK_BOARD.yaml`.
+- Task Card contracts in the selected state context: legacy/default `implementation/cards/`, or the selected workstream's manifest-bound cards location/conventional `implementation/workstreams/<id>/cards/`;
+- optional JIT milestone extension only when it adds material detail beyond the approved Master Plan milestone section; qualified micro-fixes do not create one merely to imitate milestone shape;
+- mutable readiness/status/result/review state only to the **selected canonical Task Board** resolved by `workflow/chatgpt_only/WORKSTREAMS.md`.
 
-When creating the first Task Board for this policy, scaffold it from `workflow/chatgpt_only/TASK_BOARD_TEMPLATE.yaml`. Do **not** use the shared `templates/TASK_BOARD.yaml`, which belongs to the legacy/other-policy stack and may contain bounded-parallel coordination fields that are illegal in active `chatgpt_only`.
+When creating the first Task Board for this policy, resolve the state context first. For legacy/default state, scaffold `implementation/TASK_BOARD.yaml` from `workflow/chatgpt_only/TASK_BOARD_TEMPLATE.yaml`. For a validated branch-isolated workstream, scaffold the exact manifest-selected path from `workflow/chatgpt_only/WORKSTREAM_TASK_BOARD_TEMPLATE.yaml`. Do **not** use the shared `templates/TASK_BOARD.yaml`, which belongs to the legacy/other-policy stack and may contain bounded-parallel coordination fields that are illegal in active `chatgpt_only`.
 
 Do not mirror live state into Card/milestone/`PROJECT.md`.
 
@@ -41,7 +41,7 @@ If the Research record is `active | blocked`, or it is `complete` for a differen
 
 When Execution Prep needs more evidence before it can legally classify or complete L2/JIT preparation:
 
-1. ensure a Task Board exists; if this is first preparation, initialize a minimal board conforming to `workflow/chatgpt_only/TASK_BOARD_TEMPLATE.yaml` without inventing speculative placeholder Cards;
+1. ensure the selected canonical Task Board exists; if this is first preparation, initialize the correct policy-local default/workstream template without inventing speculative placeholder Cards;
 2. create one exact Research record under `workflow/chatgpt_only/RESEARCH.md#Durable record contract`, with `Origin role: execution_prep`, the exact current milestone/preparation obligation as Origin subject, `Return target: execution_resolution:<same exact subject>`, and `Return reconciliation: pending`;
 3. persist the Research record and Task Board `research_obligation` in the same durable transition before yielding;
 4. preserve all already-valid preparation/Card state; do not mark unrelated work ready merely to create the handoff;
@@ -49,11 +49,25 @@ When Execution Prep needs more evidence before it can legally classify or comple
 
 When Research completes, `execution_resolution` classifies the findings. It either keeps the completed record pointed while naming an exact final Return target, or, if classification itself still needs evidence, atomically consumes that record and switches the pointer to one exact next active Research record under the classifier-to-Research chain protocol. A fresh session must therefore recover Research, the classifier, the chained Research obligation, or the final owner without transcript inference.
 
+## Qualified micro-fix preparation
+
+When the selected branch-isolated issue workstream has completed Intake with `path: micro_fix` and exact `next_route: execution_prep:micro_fix`:
+
+1. read `workflow/chatgpt_only/MICRO_FIX.md`, the selected manifest and exact completed Intake record;
+2. verify the Intake record proves every accepted R6 criterion; if any criterion is false or materially uncertain, do not force micro-fix—return to the router for the smallest normal Research / Project Definition / Strategic Planning / Execution Prep route supported by evidence;
+3. create/reconcile exactly one bounded fix Card contract from the Intake scope/diagnostic evidence and applicable accepted authority;
+4. create/reconcile the manifest-selected workstream Task Board with exact binding identity, `plan_revision: micro-fix`, `current_milestone: micro-fix`, empty `milestones`, and that one fix Card;
+5. set manifest `task_board` to the exact board path and set the distinct workstream final-integration review requirement to at least `RECOMMENDED` for behavioral/code/runtime-configuration work, or `REQUIRED` when existing risk authority requires it;
+6. do not invent a Master Plan, milestone contract or milestone lifecycle solely for the micro-fix;
+7. set the one eligible fix Card `ready` when its direct acceptance/tests are executable, then return to the router for normal selected-workstream Execution.
+
+After materialization, the selected Task Board is the sole mutable Card/review/Research state exactly as for any other workstream.
+
 ## Preparation steps
 
 1. Inspect current project/source/runtime/external state needed by the milestone.
-2. Read Task Board when implementation state exists.
-3. Resolve current milestone contract from the approved Master Plan.
+2. Resolve the state context through `workflow/chatgpt_only/WORKSTREAMS.md` when branch-isolated, then read only its selected canonical Task Board when implementation state exists.
+3. Resolve the current milestone contract from the approved Master Plan, or for a qualified micro-fix resolve the completed Intake + bounded fix authority under `MICRO_FIX.md` without requiring a Master Plan/milestone contract.
 4. Create a separate JIT milestone extension only when material execution/acceptance detail is missing.
 5. Decompose only work that is deterministic enough to contract now.
 6. If later Card scope depends materially on predecessor evidence, persist a JIT trigger instead of creating a placeholder.
@@ -61,9 +75,9 @@ When Research completes, `execution_resolution` classifies the findings. It eith
 8. Define bounded included/excluded scope.
 9. Define acceptance and required tests/checks.
 10. Identify material external writes plus required persisted-state verification.
-11. Classify independent review when material.
+11. Classify Card/milestone independent review when material. Separately, for a selected intake-created `issue | feature` workstream that changes code, runtime configuration, external behavior or system behavior, ensure manifest `review.requirement` is at least `RECOMMENDED` (or `REQUIRED` under existing high-risk authority); leave its workstream-level `state/subject/evidence` unactivated until an exact final/integrated subject exists or exact stronger-review coverage is proven.
 12. Mark OpenSpec candidates using `workflow/common/OPENSPEC.md`.
-13. Initialize/reconcile Task Board as sole live execution state.
+13. Initialize/reconcile the selected canonical Task Board as sole live Card/milestone execution state for this default/workstream context.
 14. Confirm requirement coverage, allowing future requirements to point to a durable JIT trigger.
 15. Audit sizing, dependencies, side effects, idempotency, security, migration and explicit authorization gates.
 16. Set exactly the next eligible Card `ready` when dependencies/prerequisites allow execution.
