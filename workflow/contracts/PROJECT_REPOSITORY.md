@@ -155,6 +155,12 @@ For a legacy project whose milestone/Card files still duplicate live status/resu
 - remove or stop updating those duplicate fields at the next safe contract edit or milestone boundary;
 - do not create churn merely to rewrite completed historical artifacts.
 
+Documentation compaction is also forward-looking:
+- existing milestone files remain valid durable contracts; do not delete them merely because separate milestone files are now optional;
+- existing standalone evidence and cumulative handoffs remain durable history/evidence;
+- a legacy Task Board without an explicit milestone `contract` pointer may recover from its existing plan/milestone references; add the pointer at the next safe execution-prep/state edit rather than performing repository-wide churn;
+- use the lean JIT rules for newly prepared work.
+
 Do not move active project topology mid-milestone. Legacy split-repository migration still occurs at a GREEN boundary with provenance.
 
 ## 12. Initializing a new project
