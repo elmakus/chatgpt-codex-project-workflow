@@ -99,4 +99,4 @@ Do not hide unrelated cleanup/architecture changes inside a Card.
 
 If execution discovers a necessary adjacent change outside current authority:
 - add bounded corrective/JIT work when it remains L1/L2;
-- otherwise stop for strategic resolution.
+- otherwise stop affected work and return to the router for Planning / Project Definition / Research classification; user stop only when unresolved user/product authority or another explicit real gate is reached.
