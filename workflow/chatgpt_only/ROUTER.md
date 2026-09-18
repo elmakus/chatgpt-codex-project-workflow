@@ -112,23 +112,24 @@ Then obey its decision:
 
 Never run a separate context-health handoff when another real stop already owns the boundary. A pending REQUIRED/RECOMMENDED fresh independent review is one such case and already provides the context reset.
 
-## Implementation/recovery Research return consumption
+## Research return ownership and crash recovery
 
-For a Task Board `research_obligation` whose record is `Status: complete`:
+For any `complete` Research record, the exact current `Return target` owns continuation and the owning pointer remains until durable consumption.
 
-- the exact current `Return target` owns continuation and the pointer remains in Task Board while that obligation is unfinished;
-- when the current Return target is `execution_resolution:<subject>`, Strategic blocker is an intermediate classifier: it must persist an exact final Return target such as `execution:<subject>`, `execution_prep:<subject>`, `strategic_planning:<subject>`, or `project_definition:<subject>` while keeping `Status: complete` and keeping Task Board `research_obligation`;
-- only the final owning Return target marks the record `consumed` and clears Task Board `research_obligation`, and only after its reconciliation/correction is durably persisted;
-- therefore a crash before, during, or after classification always leaves one exact durable continuation target.
+- `execution_resolution:<subject>` is the only intermediate classifier. It refines the exact final Return target while keeping `Status: complete`, `Return reconciliation: pending`, and the Task Board pointer.
+- Every final target — Brainstorming, Project Definition, Strategic Planning, Execution Prep or Execution — MUST follow `workflow/chatgpt_only/RESEARCH.md#Final Return-target protocol`.
+- Final target mutation and `Return reconciliation: applied` + exact result refs are persisted in the same durable Git transition.
+- If a crash occurs after that transition but before `consumed`/pointer-clear, re-entry is consume/clear-only; target work must not be replayed.
+- Only the final owning Return target consumes/clears.
 
-Research never selects that final route by itself; the authorized classifier does.
+Research never selects a different route by itself; only the authorized classifier may refine a Return target.
 
 ## Routes
 
 ### Brainstorming
 
 Read:
-- `workflow/common/BRAINSTORMING.md`;
+- `workflow/chatgpt_only/BRAINSTORMING.md`;
 - the exact record referenced by `PROJECT.md → Active exploratory scope` when that pointer exists;
 - the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Brainstorming subject;
 - otherwise the current brainstorming material needed to establish/create that pointer;
@@ -137,7 +138,7 @@ Read:
 ### Research
 
 Read:
-- `workflow/common/RESEARCH.md`;
+- `workflow/chatgpt_only/RESEARCH.md`;
 - the exact record referenced by `PROJECT.md → Active research obligation` for pre-execution Research when that pointer exists;
 - otherwise the exact Task Board `research_obligation` pointer when Research was triggered from active execution/recovery;
 - the exact research question/material;
@@ -148,7 +149,7 @@ The durable research record owns its `Status`, Origin subject and Return target.
 ### Project Definition
 
 Read:
-- `workflow/common/DEFINITION.md`;
+- `workflow/chatgpt_only/DEFINITION.md`;
 - current user/product goal and explicit accepted choices;
 - the exact `PROJECT.md → Active exploratory scope` record when Definition was entered through the promotion gate and the pointer is still active;
 - the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Project Definition subject;
