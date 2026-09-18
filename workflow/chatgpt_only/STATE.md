@@ -52,6 +52,7 @@ Track as applicable:
 - standalone evidence pointer when required;
 - relevant OpenSpec pointer;
 - active review state;
+- implementation/recovery Research pointer when active;
 - blockers.
 
 ## Review fields
@@ -65,6 +66,18 @@ review_evidence: <repo-relative-path-or-null>
 ```
 
 One review attempt refers to one immutable exact subject. Corrective work creates a new subject/review attempt.
+
+## Implementation-owned Research pointer
+
+For Research triggered from implementation/recovery, Task Board carries only one routing pointer:
+
+```yaml
+research_obligation: research/<record>.md | null
+```
+
+The pointed Research record owns its `Status`, Origin role/subject, Return target and question. Do not duplicate those lifecycle fields into Task Board and do not mirror this execution obligation into `PROJECT.md`.
+
+Before execution/recovery yields to Research, persist both the exact research record and this pointer. Keep the pointer through Research `complete`; clear it only after the exact recorded Return target has durably reconciled the findings and marked the record `consumed`.
 
 ## Incremental Card-set state
 
@@ -131,7 +144,7 @@ When a concrete required operation or accepted contract cannot proceed:
 
 A runtime blocker does not silently redefine accepted requirements or execution authority.
 
-If a blocker exceeds L1/L2 authority, return to the router for strategic classification: Planning when Project Definition remains valid but plan strategy must change, Project Definition when accepted product/system authority must change, or Research when more evidence is required. A user stop exists only when that classification reaches unresolved user/product authority or another explicit real gate.
+If a blocker exceeds L1/L2 authority, return to the router for strategic classification: Planning when Project Definition remains valid but plan strategy must change, Project Definition when accepted product/system authority must change, or Research when more evidence is required. Before yielding to implementation-triggered Research, persist the exact Research record + Task Board `research_obligation` using `EXECUTION.md#Implementation → Research handoff`. A user stop exists only when that classification reaches unresolved user/product authority or another explicit real gate.
 
 ## Independent review lifecycle
 
@@ -196,6 +209,7 @@ Fresh-session recovery uses:
 - exact branch/HEAD/runtime/external state;
 - current milestone/Card contracts;
 - referenced OpenSpec/evidence/result/review pointers;
+- Task Board `research_obligation` + exact pointed Research record when present;
 - handoff only when materially needed.
 
 Previous chat narrative is not required.
@@ -209,6 +223,8 @@ Examples:
 - milestone `done` with non-green required review;
 - dependent Card started before dependency `done`;
 - review verdict attached to wrong subject;
+- non-terminal REQUIRED/RECOMMENDED `review_state: red` bypassed in favor of later implementation;
+- implementation/recovery Research active or complete across a role/session boundary without an exact Task Board `research_obligation` pointer;
 - durable execution truth existing only in chat, `PROJECT.md`, stable Card/milestone files or local `current.md`;
 - external success contradicted by required readback;
 - `execution_policy` changing without an explicit user decision;
