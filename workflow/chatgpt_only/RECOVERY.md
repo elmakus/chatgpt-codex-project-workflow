@@ -78,8 +78,9 @@ When Task Board `research_obligation` points to an implementation/recovery Resea
 - read that exact record; Task Board stores only the pointer while the research record owns Status, Origin and Return target;
 - `active | blocked` → route to Research;
 - `complete` → route to the exact recorded current Return target without clearing the pointer first;
-- when that target is `execution_resolution:<subject>`, recover the classifier; it durably refines Return target to the exact final owning role/subject and keeps `Status: complete` + the Task Board pointer;
-- the final owning Return target performs the actual correction/reconciliation and only then marks the record `consumed` and clears Task Board `research_obligation`;
+- when that target is `execution_resolution:<subject>`, recover the classifier; it durably refines Return target to the exact final owning role/subject and keeps `Status: complete`, `Return reconciliation: pending` + the Task Board pointer;
+- at a final Return target, apply `workflow/chatgpt_only/RESEARCH.md#Final Return-target protocol`; `Return reconciliation: applied` means target work is already durable and recovery is consume/clear-only;
+- only the final owning Return target marks the record `consumed` and clears Task Board `research_obligation`;
 - `consumed` with a leftover pointer → clear the stale pointer at the next safe edit;
 - missing/mismatched pointer, Origin subject or Return target → preserve as inconsistent state rather than infer from chat.
 
