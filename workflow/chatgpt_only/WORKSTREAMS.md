@@ -62,6 +62,21 @@ The manifest `review` block is reserved for a **workstream-level final integrati
 
 Do not infer a Card/milestone state from the coarse manifest `status`. If manifest status and the selected Task Board appear inconsistent, recover the exact durable facts and reconcile the manifest only at a safe workstream-lifecycle boundary; never overwrite Task Board truth to make the summary match.
 
+## Manifest ↔ Task Board binding validation
+
+For a branch-isolated workstream, the manifest `task_board` value is only a location pointer until the pointed board is proven to belong to that exact workstream.
+
+Before interpreting any Card/milestone/review/Research state from a branch-isolated Task Board:
+1. when `task_board` is non-null, or implementation/review/recovery state is otherwise referenced for the selected workstream, require an exact non-null `task_board` path and require that file to exist on the exact selected workstream branch;
+2. read only the pointed board's binding identity first;
+3. require Task Board `workstream_id` to exactly equal manifest `id`;
+4. require Task Board `execution_ref.branch` to exactly equal manifest `branch`;
+5. only after those checks pass may the pointed board become the selected canonical Task Board and may its mutable execution state be interpreted.
+
+A missing board, null board pointer when implementation/review/recovery state is required, mismatched `workstream_id`, or mismatched/null `execution_ref.branch` is inconsistent branch-isolated state. Route to Recovery; do not fall back to the legacy/default board and do not inspect another workstream board to guess intent.
+
+This binding check does not create a global registry. It validates only the exact manifest/board pair selected by the current durable branch/locator.
+
 ## Selection before mutable execution state
 
 Before reading implementation/review/recovery state, resolve exactly one state context.
@@ -71,8 +86,9 @@ Before reading implementation/review/recovery state, resolve exactly one state c
 When the durable handoff/current request identifies an exact workstream manifest or an exact workstream branch + canonical workstream pointer:
 1. read that exact manifest;
 2. verify its `branch` matches the intended exact branch;
-3. if implementation state exists, read only the manifest's exact `task_board`;
-4. do not inspect another workstream Task Board merely because it exists.
+3. apply **Manifest ↔ Task Board binding validation** to the manifest's exact `task_board` before interpreting mutable state;
+4. if implementation state exists, read only that successfully bound Task Board;
+5. do not inspect another workstream Task Board merely because it exists.
 
 A locator is routing input, not authority to ignore mismatches.
 
@@ -81,7 +97,7 @@ A locator is routing input, not authority to ignore mismatches.
 When execution is already on an exact non-default workstream branch and no stronger durable locator exists:
 1. inspect the branch for workstream manifests under the project's configured/default workstream root;
 2. select the one manifest whose exact `branch` matches the active branch;
-3. require an unambiguous match before loading its Task Board.
+3. require an unambiguous manifest match, then apply **Manifest ↔ Task Board binding validation** before interpreting its Task Board.
 
 Zero matching manifests means this branch is not resolved as a branch-isolated workstream. More than one matching manifest is inconsistent state and routes to Recovery.
 
