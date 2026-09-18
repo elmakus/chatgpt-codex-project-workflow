@@ -4,7 +4,7 @@ Date: 2026-09-18
 Base: `main@23b8c368aea160566abdfd3fbc42bd0facb88bd4`  
 Implementation branch: `fix/definition-planning-audit-findings`
 
-Status: **INDEPENDENT RE-REVIEW RED — BOUNDED REMEDIATION REQUIRED**
+Status: **RED-04 REMEDIATED — NEW FRESH INDEPENDENT RE-REVIEW PENDING**
 
 ## Review subject
 
@@ -272,6 +272,18 @@ Required correction:
 
 This is a bounded routing/documentation inconsistency. No GREEN verdict is issued for the reviewed subject.
 
+## Bounded remediation after RED-04
+
+RED-04 was corrected after the independent reviewer role ended.
+
+- the router no longer presents `PLANNING → PLAN_REVIEW` as a same-chat transition;
+- a same-chat `PLANNING → EXECUTION_PREP` example is explicitly limited to cases where Planning does not create a REQUIRED/RECOMMENDED independent plan-review gate;
+- when such a gate is created, the plan-authoring chat explicitly stops at the fresh independent-plan-review boundary before entering `PLAN_REVIEW`;
+- the `PLAN_REVIEW → PLANNING → EXECUTION_PREP → EXECUTION` example is explicitly defined as beginning in the fresh reviewer chat after its verdict;
+- the existing fresh-review priority and `planning/reviews/<plan-revision>.md` handoff remain unchanged.
+
+This remediation changes the reviewed subject. The current branch head is therefore **not GREEN by inheritance** and requires a new fresh independent re-review. The fresh reviewer must reconstruct the exact current head from GitHub.
+
 ## Verdict
 
-**RED for `cf34c4cb0c85eb8b37d4b8d75a19bce565021702`. Findings 1, 2 and 4 plus RED-01/02/03 are corrected, but RED-04 leaves the restored independent plan-review lifecycle internally contradictory in the authoritative router. A corrected head requires a fresh independent re-review.**
+**RED for `cf34c4cb0c85eb8b37d4b8d75a19bce565021702`. RED-04 has since been boundedly remediated. The current corrected branch head is a new review subject and remains PENDING FRESH INDEPENDENT RE-REVIEW.**
