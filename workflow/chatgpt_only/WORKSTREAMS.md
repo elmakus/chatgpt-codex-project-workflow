@@ -79,6 +79,12 @@ For intake-created issue/feature work that changes code, runtime configuration, 
 
 If a workstream final review is RED, corrective execution/research remains inside that selected workstream and its selected Task Board. Do not mutate or inspect another workstream Task Board to find a correction lane.
 
+Before final integration/publication of a workstream whose `review.requirement` is REQUIRED/RECOMMENDED, the owning finalization/integration role must do exactly one of:
+1. prove an already-independent stronger review covers the identical immutable integrated subject and whole workstream acceptance surface, then reconcile this distinct manifest gate GREEN with exact `covered_by` evidence; or
+2. freeze the exact integrated subject as manifest `review.state: pending` and stop at the normal fresh-review independence boundary.
+
+A null workstream review state is therefore not integration approval. M04 owns target-refresh/rebase/retarget ordering around this gate; it may invalidate prior coverage only when the exact integrated subject materially changes.
+
 For one-Card qualified micro-fixes, apply `workflow/chatgpt_only/MICRO_FIX.md#Workstream-final-integration-review`.
 
 ## Micro-fix state context
