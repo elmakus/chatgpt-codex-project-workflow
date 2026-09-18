@@ -9,7 +9,7 @@ current_milestone: "M04"
 execution_ref:
   branch: "feat/chatgpt-only-multi-workstream-intake"
   pr: null
-  head: "9f4429b675209ce5ef40d55226f6193eb63cbf9a"
+  head: "1674e7d25d31b109da4e1be0ca1916304d75406c"
 
 research_obligation: null
 
@@ -52,7 +52,7 @@ milestones:
 
   M04:
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M04--worktree-stacked-branch-and-integration-refresh-contracts"
     checkpoint: null
     implementation_head: null
@@ -113,3 +113,20 @@ cards:
     result_pr: null
     evidence: "implementation/evidence/M03-T01.md"
     tests_summary: "GREEN: implementation verification in implementation/evidence/M03-T01.md and fresh independent review in implementation/evidence/M03-T01-review-01.md; reviewed subject unchanged through terminal Card finalization."
+
+  - id: "M04-T01"
+    title: "Worktree, stacked branch and integration refresh contracts"
+    milestone: "M04"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: ["M03-T01"]
+    openspec_change: null
+    contract: "implementation/cards/M04-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
