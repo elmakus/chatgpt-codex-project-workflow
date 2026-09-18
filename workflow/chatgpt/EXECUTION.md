@@ -20,21 +20,9 @@ If Task Board uses `bounded_parallel`, load the conditional parallel contracts f
 
 ChatGPT Work is outside Project Workflow.
 
-## Human-facing control summary
+## Human-facing output
 
-Normal ChatGPT output is a human control surface, not execution telemetry.
-
-By default tell the user:
-1. what happened / what errors or blockers were found;
-2. what it means;
-3. what happens next / smallest user action.
-
-Keep internal provenance in durable state rather than dumping it into chat. Do not show SHAs, blob IDs, branch/HEAD pointers, evidence paths, raw Task Board fields, long test inventories, changed-file lists or agent-internal bookkeeping unless:
-- the user asks;
-- the exact value is needed for an action;
-- debugging/recovery/security materially requires it.
-
-If no user action is required, say so plainly.
+Use the global normal-ChatGPT human control surface defined in `CHATGPT.md`. Do not duplicate execution telemetry into the user response.
 
 ## Review boundary
 
