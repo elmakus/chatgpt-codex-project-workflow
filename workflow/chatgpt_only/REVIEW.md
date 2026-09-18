@@ -6,7 +6,7 @@ Independent review is performed by a fresh normal ChatGPT chat that did not impl
 
 - **REQUIRED** — high-risk work such as security/auth, destructive/data migration, difficult-to-reverse live configuration, important external-state protection boundary or comparable risk.
 - **RECOMMENDED** — independent review is intentionally part of the accepted Card/milestone contract or workstream final-integration gate even though the work is not intrinsically high-risk.
-- **none** — no independent-review gate exists and this route is not entered.
+- **none** — no independent-review gate exists for that Card/milestone/workstream-final subject and this route is not entered.
 
 REQUIRED and RECOMMENDED have the same independence mechanics once activated. The difference records why the gate exists, not whether it is real.
 
@@ -89,6 +89,8 @@ From the selected route onward, the same chat acts under that role rather than u
 Do not end the turn after RED merely to announce deterministic remediation or replanning that the router can perform.
 
 If the same chat later implements the correction and that corrected subject requires/recommends independent review, the execution route freezes a new exact subject as `pending` and stops for a fresh independent reviewer. The former reviewer cannot review the subject it just implemented.
+
+For a workstream final-integration RED, preserve the old manifest RED evidence. After deterministic correction reaches a new exact integrated subject, either prove exact stronger independent coverage under `WORKSTREAMS.md` or set the manifest gate to a new `pending` subject. A chat that implemented any part of that corrected exact subject cannot issue the new verdict.
 
 ## High-risk external writes
 
