@@ -27,27 +27,27 @@ When that role finishes:
 1. persist the durable state/evidence produced by the role;
 2. re-evaluate the applicable durable state (plan-review record and/or Task Board) + accepted authority;
 3. return to this router;
-4. if durable state already owns a real stop from root `CHATGPT.md#Real-stop-response-contract` — fresh-review handoff, unresolved strategic/product decision requiring user authority, explicit authorization, concrete runtime/access/input blocker, or end of approved scope — handle that stop first and do not run a separate hygiene handoff;
+4. if durable state/current phase already owns a real stop — including a root `CHATGPT.md#Real-stop-response-contract` boundary or the `chatgpt_only` Brainstorming → Project Definition promotion gate below — handle that stop first and do not run a separate hygiene handoff;
 5. only when a deterministic authorized next role exists, perform the context-health trigger check below;
 6. select the next legal route;
 7. load that route's module(s);
 8. continue in the same chat without a user-facing stop when context health remains CONTINUE.
 
-The same chat may therefore move across deterministic role transitions when no fresh-review boundary intervenes, for example:
+The same chat may therefore move across deterministic role transitions when no real boundary intervenes, for example:
 
 ```text
-RESEARCH → PROJECT DEFINITION → PLANNING → EXECUTION_PREP → EXECUTION
+PROJECT DEFINITION → PLANNING → EXECUTION_PREP → EXECUTION
 PLAN_REVIEW → PLANNING → EXECUTION_PREP → EXECUTION
 REVIEW → EXECUTION_PREP → EXECUTION → CLOSE → EXECUTION_PREP → EXECUTION
 ```
 
-The first line applies when Planning does not create a REQUIRED/RECOMMENDED independent plan-review gate. When Planning does create one, the authoring chat stops at the fresh independent-plan-review boundary before entering `PLAN_REVIEW`. The `PLAN_REVIEW → PLANNING → ...` line begins in the fresh reviewer chat after that reviewer has completed its verdict and the router assigns the next legal role.
+The first line begins only after Project Definition has been legally entered. For a new exploratory `chatgpt_only` scope, Brainstorming/Research cannot enter Project Definition until the user-owned promotion gate below is satisfied. Once Definition is entered, `Definition Complete = GREEN → Planning` remains deterministic. When Planning creates a REQUIRED/RECOMMENDED independent plan-review gate, the authoring chat stops before entering `PLAN_REVIEW`. The `PLAN_REVIEW → PLANNING → ...` line begins in the fresh reviewer chat after that reviewer has completed its verdict and the router assigns the next legal role.
 
 Role identity is per obligation, not permanent for the whole chat.
 
 A reviewer that has completed its verdict is no longer governed by `REVIEW.md` once the router assigns a new route. If the same chat later implements a new reviewable subject, it is the implementing chat for that new subject and cannot independently review it.
 
-Only a real boundary from root `CHATGPT.md#Real-stop-response-contract` ends the turn.
+Only a real boundary from root `CHATGPT.md#Real-stop-response-contract` or an explicit policy-specific boundary defined by this router ends the turn.
 
 ## Brainstorming → Project Definition promotion gate
 
