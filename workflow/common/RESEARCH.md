@@ -42,12 +42,13 @@ Do not load unrelated implementation history.
 
 ## Promoting findings
 
-Research becomes authoritative project behavior only through the appropriate target:
-- product constraint → `requirements/`;
-- accepted choice → `decisions/`;
-- approved execution approach → `planning/`;
-- implementation-time fact → current Task Card/OpenSpec/evidence, as appropriate.
+Research does not directly promote itself into accepted product/system authority.
 
-Preserve provenance when promoting a finding.
+When findings are ready to influence target behavior:
+- return to the policy router;
+- route through Project Definition;
+- Definition promotes verified constraints to `requirements/` and explicit accepted choices to `decisions/` with provenance.
+
+Implementation-time facts discovered for already-approved work may still flow to the current Task Card/OpenSpec/evidence as appropriate without redefining product intent.
 
 If research evidence contradicts already accepted authority during active work, route to strategic resolution rather than silently rewriting downstream contracts.
