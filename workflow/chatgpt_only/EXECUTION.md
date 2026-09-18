@@ -25,9 +25,12 @@ Read with:
 12. Perform material external readback/verification when meaningful.
 13. Apply Definition of Done.
 14. Persist exact result/tests/evidence pointers and mark Card done.
-15. If a JIT trigger is now satisfied, persist current execution state, end the execution-role obligation, return to the router and let it select execution preparation.
-16. If another READY Card is already legal, continue execution automatically.
-17. At review/close/strategic/user/runtime/end-of-scope boundary, persist state and return to the router so it selects the owning route.
+15. The current execution-role obligation ends at the durable Card boundary.
+16. Persist the completed Card/result state and return to the router before starting any next Card.
+17. The router performs its context-health trigger check, then:
+   - selects execution preparation when a JIT trigger is satisfied;
+   - selects execution again when another READY Card is legal;
+   - selects review/close/strategic/recovery/user-stop handling when that state owns the next obligation.
 
 Do not ask the user to choose among equivalent deterministic next Cards.
 
@@ -117,7 +120,7 @@ This is a real independence stop.
 
 ## Automatic continuation
 
-Routine GREEN Card is not a user stop.
+Routine GREEN Card is not a user stop. It returns to the router, which may immediately select the next execution obligation after the context-health check.
 
 Deterministic JIT prep is not a user stop.
 
