@@ -171,7 +171,7 @@ intake:
 
 the intake record must exist on that exact branch and the router resumes Intake before later Task Board execution for that workstream.
 
-When `intake.state: complete`, Intake must not be replayed. The completed intake must already have materialized the canonical downstream state (for example the exploratory Brainstorming record/pointer or later implementation state) needed for normal router recovery.
+When `intake.state: complete`, Intake must not be replayed. The completed intake must already have materialized the canonical downstream state needed for normal router recovery. For a qualified micro-fix, the completed Intake record itself may be the pre-Task-Board continuation anchor when it records `path: micro_fix` + `next_route: execution_prep:micro_fix`; Execution Prep then materializes the bounded fix Card/Task Board.
 
 A missing active intake record, an intake record that belongs to another workstream, or contradictory branch/manifest identity is inconsistent state and routes to Recovery rather than guessing.
 
