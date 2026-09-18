@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Unreleased — concise human-facing ChatGPT control summaries
+
+- Normal ChatGPT status responses are now treated as a human control surface rather than an execution-telemetry dump.
+- Default user-facing output explains what happened/what errors were found, what it means and what happens next.
+- Commit/review SHAs, blob IDs, branch/HEAD pointers, evidence paths, raw Task Board fields, changed-file lists and long test inventories are hidden by default but remain exact in durable state.
+- Exact technical identifiers are shown when the user asks, must act on them, or debugging/recovery/blocker handling materially requires them.
+- This UX rule applies to ChatGPT→user communication only; Codex/worker/reviewer/internal agent communication remains free to carry the full technical detail required by workflow contracts.
+
 ## Unreleased — automatic fresh-ChatGPT start prompts
 
 - Whenever workflow requires or recommends a fresh normal ChatGPT chat, the same response must include a fenced copy-paste-ready `NEW CHAT START PROMPT`.

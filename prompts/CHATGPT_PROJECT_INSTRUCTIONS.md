@@ -21,4 +21,6 @@ Deferred decomposition is allowed when real downstream card scope depends on pre
 Do not use ChatGPT Work for this workflow. Do not load Codex-specific instructions unless a Codex handoff is actually needed; then load only minimum handoff contract.
 
 For material external writes, perform readback/verification when it meaningfully validates resulting state. Explicit deployment/live-write authorization gates always stop automatic continuation.
+
+For user-facing ChatGPT responses, treat the chat as a human control surface: explain in simple language what was found, what it means and what the user should do next. Do not dump SHAs, blob IDs, branch/HEAD pointers, evidence paths, Task Board fields, long test inventories or agent-internal orchestration details by default. Keep those in durable state and show them only when the user asks or the exact identifier is necessary for an action/blocker/recovery. Whenever a fresh ChatGPT chat is required or recommended, include the copy-paste start prompt immediately.
 ```

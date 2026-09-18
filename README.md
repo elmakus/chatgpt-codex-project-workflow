@@ -120,6 +120,19 @@ Agents read the smallest applicable path:
 - Codex starts at `prompts/CODEX_START.md`, then project `PROJECT.md`, then shared execution modules and Codex-specific modules. Codex does **not** load `CHATGPT.md` or ChatGPT-specific execution instructions.
 - ChatGPT reads `workflow/codex/HANDOFF.md` only when preparing/interpreting a Codex handoff.
 
+## ChatGPT human control surface
+
+User-facing normal ChatGPT status is intentionally different from agent-to-agent execution communication.
+
+For ChatGPT → user:
+- summarize actual findings/errors in plain language;
+- explain impact briefly;
+- state the next action clearly;
+- keep technical provenance in durable repository state instead of dumping it into chat;
+- expose SHAs, blob IDs, evidence paths, raw Task Board state and detailed test telemetry only when requested or materially actionable.
+
+This rule does **not** reduce the information available to Codex Main, workers, reviewers or other execution agents. Agent-to-agent packages continue to carry whatever authority/evidence detail the execution workflow requires.
+
 ## Fresh Chat handoff UX
 
 Whenever Project Workflow requires or recommends that the user open a fresh normal ChatGPT chat, the current response must also provide the ready-to-copy start prompt immediately.

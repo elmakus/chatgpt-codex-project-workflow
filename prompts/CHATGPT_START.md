@@ -29,6 +29,15 @@ Under `chatgpt_only`, if this chat implemented the subject and REQUIRED/RECOMMEN
 
 If `mixed`, hand work to Codex only under Capability Gate and use `workflow/codex/HANDOFF.md` for minimal kickoff.
 
+## User-facing status style
+
+When reporting execution/review/recovery status to the user, default to:
+- what happened / errors found;
+- what it means;
+- what happens next / smallest user action.
+
+Keep Git SHAs, blob IDs, evidence paths, raw Task Board fields, long test details and internal agent orchestration out of the default response unless the user asks or an exact pointer is materially required. Durable state remains exact in the repository.
+
 ## New project
 
 Create/choose project repository, initialize high-level `PROJECT.md` with explicit `execution_policy`, then create only phase-appropriate artifacts. Do not create Task Cards/OpenSpec merely because repo is new.

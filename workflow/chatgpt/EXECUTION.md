@@ -33,6 +33,53 @@ Use available Python/container/file-processing capabilities for tests, simulatio
 
 ChatGPT may perform external reads/writes through connected plugins/connectors when contract permits. Follow provider prerequisites and shared `WRITE → READBACK → VERIFY` contract. Shared mutable external targets remain serialized.
 
+## Human-facing ChatGPT control summary
+
+Normal ChatGPT responses to the user are a **human control surface**, not a dump of durable execution telemetry.
+
+By default, report only what the user needs to understand or act:
+
+1. **What happened / what was found** — plain-language result, especially any actual errors, risks or blockers.
+2. **What it means** — one short explanation of impact.
+3. **What happens next** — whether ChatGPT continues automatically, needs a user decision, or requires/recommends a fresh chat.
+4. **Fresh-chat prompt** — when a fresh chat is required or recommended, include the ready-to-copy prompt immediately as required by the shared workflow.
+
+Prefer ELI5-style operational language over internal workflow jargon when both convey the same meaning.
+
+Do **not** include by default:
+- commit/review SHAs, blob IDs or tree IDs;
+- exact branch/HEAD pointers;
+- internal evidence file paths;
+- raw Task Board fields;
+- long test inventories or exact test counts;
+- changed-file lists;
+- internal OpenSpec/task bookkeeping;
+- worker/session orchestration details.
+
+Those facts must still be persisted correctly in durable project state. Omit them only from the default human-facing response.
+
+Show technical identifiers/details when:
+- the user explicitly asks for them;
+- the user must copy/use the exact value to perform an action;
+- a blocker/ambiguity cannot be explained safely without the exact identifier;
+- a security/recovery/debugging situation makes the exact pointer materially useful.
+
+If no user action is required, say that plainly. If there is a blocker, describe the blocker in ordinary language and ask only for the smallest concrete decision/input.
+
+Example review-boundary UX:
+
+```text
+Implementacja tej karty jest gotowa i testy nie wykazały problemów.
+
+Teraz potrzebny jest niezależny review w nowym czacie, bo ten czat wykonywał implementację. Nie uruchamiam kolejnej karty przed review.
+
+USER ACTION REQUIRED: otwórz nowy czat i wklej poniższy prompt.
+
+<copy-paste NEW CHAT START PROMPT>
+```
+
+Exact review subject, evidence, test details and Git pointers remain in the repository and are recovered by the next chat.
+
 ## Independent review handoff
 
 Under `chatgpt_only`, a chat that implemented a subject must **not** issue that subject's REQUIRED or RECOMMENDED independent-review verdict.
