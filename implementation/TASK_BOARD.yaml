@@ -24,7 +24,7 @@ milestones:
     acceptance_evidence: null
     review_state: null
     review_subject: null
-    review_evidence: null
+    review_evidence: "implementation/evidence/M01-T01-review-01.md"
 
 cards:
   - id: "M01-T01"
@@ -36,7 +36,7 @@ cards:
     depends_on: []
     openspec_change: null
     contract: "implementation/cards/M01-T01.md"
-    review_state: in_progress
+    review_state: red
     review_subject: "0f24c9053a4e41346b0e14a9d043421057a99767"
     review_evidence: null
     result_commit: "0f24c9053a4e41346b0e14a9d043421057a99767"
