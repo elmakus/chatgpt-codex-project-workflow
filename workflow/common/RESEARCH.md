@@ -43,7 +43,7 @@ origin role
 → Status: consumed + clear active pointer
 ```
 
-Research itself does not silently accept an option or choose a different Return target from chat narrative.
+Research itself does not silently accept an option or choose a different Return target from chat narrative. A policy-specific Return target whose explicit role is to classify an evidence-dependent continuation may durably refine `Return target` to the exact final owning role/subject after classification; keep `Status: complete` and the owning pointer until that final target durably consumes the findings.
 
 ## Required distinctions
 
@@ -77,7 +77,7 @@ When findings are ready to influence target behavior:
 - persist findings/evidence and set the exact research record to `Status: complete`;
 - preserve its active pointer until the recorded Return target has durably reconciled the result;
 - return to the policy router;
-- route to the record's exact Return target; Project Definition is legal only when the selected policy's entry conditions for Definition are satisfied;
+- route to the record's exact current Return target; if that target is an authorized continuation classifier, it may durably refine the target as described above, but Research itself may not; Project Definition is legal only when the selected policy's entry conditions for Definition are satisfied;
 - if research was entered from exploratory Brainstorming and that policy requires explicit user phase promotion, research completion does **not** count as that promotion;
 - Definition promotes verified constraints to `requirements/` and explicit accepted choices to `decisions/` with provenance;
 - after the target role persists that reconciliation, set the research record to `consumed` and clear the owning pointer (the pre-execution PROJECT pointer or the selected policy's execution-state pointer).
