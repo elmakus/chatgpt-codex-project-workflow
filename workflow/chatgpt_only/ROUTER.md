@@ -126,6 +126,7 @@ Read Task Board/current handoff only when planning/replanning an active project.
 Read:
 - `workflow/chatgpt_only/EXECUTION_PREP.md`;
 - `workflow/chatgpt_only/TASK_CARDS.md`;
+- `workflow/chatgpt_only/DELEGATED_WORKERS.md` only when the Card being prepared declares delegated workers;
 - current milestone/plan authority;
 - Task Board when implementation state exists;
 - exact predecessor evidence needed by current decomposition.
@@ -137,6 +138,7 @@ Read `workflow/common/OPENSPEC.md` only when current preparation marks/reconcile
 Read:
 - `workflow/chatgpt_only/EXECUTION.md`;
 - `workflow/chatgpt_only/STATE.md`;
+- `workflow/chatgpt_only/DELEGATED_WORKERS.md` only when the active Card declares delegated workers;
 - Task Board;
 - current milestone/Card;
 - exact authority slice;
