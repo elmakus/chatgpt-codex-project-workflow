@@ -12,6 +12,11 @@ execution_ref:
   pr: null
   head: null
 
+# Implementation/recovery Research routing pointer only.
+# The pointed research record owns Status, Origin and Return target.
+# Keep through Status: complete; clear only after durable consumption.
+research_obligation: null # research/<record>.md | null
+
 milestones:
   M01:
     decision_state: accepted
