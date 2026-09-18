@@ -12,7 +12,7 @@ This file contains only policy-neutral authority rules.
 
 ## Role semantics
 
-Strategic planner, execution orchestrator/JIT planner, executor and independent reviewer are authority roles, not prescribed model identities or reasoning levels.
+Definition owner, strategic planner, execution orchestrator/JIT planner, executor and independent reviewer are authority roles, not prescribed model identities or reasoning levels.
 
 Policy-specific routes decide which runtime performs a role; the common authority model does not.
 
@@ -29,7 +29,7 @@ Do not use the workflow repository as a second project-state store.
 Apply authority by domain:
 
 1. workflow behavior → current workflow `main`;
-2. accepted product/system intent → canonical requirements + accepted decisions;
+2. accepted product/system intent → canonical requirements + accepted decisions produced/reconciled by Definition;
 3. approved execution intent → Master Plan milestone + valid JIT extension;
 4. live execution truth → Task Board + exact Git/runtime/external evidence;
 5. bounded implementation/acceptance contract → Task Card + relevant OpenSpec;
