@@ -47,7 +47,9 @@ A real stop includes:
 - a concrete runtime/access/input blocker prevents the required operation;
 - approved scope is complete and no deterministic next work is authorized.
 
-At a real stop, use this user-facing shape:
+At a real stop, read `workflow/common/USER_STOP.md` and use its user-facing contract.
+
+The minimum shape is:
 1. what was completed/found;
 2. what it means now;
 3. the exact next step.
