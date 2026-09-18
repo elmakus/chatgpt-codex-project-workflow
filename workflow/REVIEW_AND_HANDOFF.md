@@ -41,7 +41,30 @@ When an implementing ChatGPT chat reaches such a review boundary it must:
 2. set the relevant Task Board `review_state: pending`, `review_subject: <exact sha/subject>` and review-evidence pointer when available;
 3. commit/push durable state when possible;
 4. **stop before issuing the independent verdict**;
-5. report `USER ACTION REQUIRED: start a fresh normal ChatGPT chat for independent review from implementation/TASK_BOARD.yaml`.
+5. report `USER ACTION REQUIRED: start a fresh normal ChatGPT chat for independent review from implementation/TASK_BOARD.yaml`;
+6. in the same response, include the minimal copy-paste-ready `NEW CHAT START PROMPT` defined below.
+
+### Fresh Chat start prompt
+
+Any mandatory or recommended fresh-ChatGPT handoff must be self-contained for the user's copy/paste action but **must not duplicate durable state**.
+
+Use this shape:
+
+```text
+NEW CHAT START PROMPT:
+Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
+Repo projektu: <owner/repo>.
+Kontynuuj: <pending independent review for MXX-TYY | exact concise continuation goal>.
+Durable start pointer: <implementation/TASK_BOARD.yaml | exact durable pointer>.
+Odtwórz aktualny stan, exact review_subject/authority slice/evidence z repo i wykonaj tylko legalny następny krok. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
+```
+
+Rules:
+- include repository and exact continuation target;
+- include the smallest durable start pointer;
+- do not paste test counts, SHAs, evidence prose, changed-file lists or implementation summary when recoverable from repo;
+- do not ask the user to separately request a start prompt;
+- if the fresh chat is only recommended for context hygiene, say so outside the fenced prompt; the prompt itself remains a minimal durable-state recovery instruction.
 
 The fresh review chat:
 1. recovers Task Board and exact `review_subject`;
