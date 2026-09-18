@@ -4,8 +4,6 @@ Revision: `<R#>`
 Status: `draft | approved`
 Updated: `<YYYY-MM-DD>`
 Independent plan review: `REQUIRED | RECOMMENDED | none`
-Plan review status: `pending | in_progress | green | red | not_required`
-Plan review evidence: `<planning/reviews/... | none>`
 
 > Planning organizes an already-approved Project Definition. Requirements/accepted decisions remain the product/system authority; this plan does not redefine them.
 
