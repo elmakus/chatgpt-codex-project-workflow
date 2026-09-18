@@ -113,7 +113,8 @@ Never run a separate context-health handoff when another real stop already owns 
 
 Read:
 - `workflow/common/BRAINSTORMING.md`;
-- current brainstorming material;
+- the exact record referenced by `PROJECT.md → Active exploratory scope` when that pointer exists;
+- otherwise the current brainstorming material needed to establish/create that pointer;
 - only accepted constraints already relevant.
 
 ### Research
@@ -128,6 +129,7 @@ Read:
 Read:
 - `workflow/common/DEFINITION.md`;
 - current user/product goal and explicit accepted choices;
+- the exact `PROJECT.md → Active exploratory scope` record when Definition was entered through the promotion gate and the pointer is still active;
 - relevant brainstorming conclusions;
 - relevant verified research/evidence;
 - existing requirements/decisions when redefining accepted authority;
