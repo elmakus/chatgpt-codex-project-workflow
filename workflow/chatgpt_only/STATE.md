@@ -255,6 +255,8 @@ Examples:
 - `done` Card missing required result/tests provenance;
 - `done` Card with a REQUIRED/RECOMMENDED review still `pending | in_progress | red`;
 - milestone `done` with non-green required review;
+- branch-isolated behavioral issue/feature final integration attempted while manifest `review.requirement` is REQUIRED/RECOMMENDED and its distinct final-integration gate is not GREEN;
+- manifest workstream review fields used as a mirror of Card/milestone Task Board review lifecycle;
 - dependent Card started before dependency `done`;
 - review verdict attached to wrong subject;
 - non-terminal REQUIRED/RECOMMENDED `review_state: red` bypassed in favor of later implementation;
