@@ -28,7 +28,14 @@ Do not duplicate project truth into the workflow repository.
 ├── planning/
 │   └── reviews/
 ├── implementation/
-│   ├── TASK_BOARD.yaml
+│   ├── TASK_BOARD.yaml        # legacy/default single-workstream board
+│   ├── workstreams/            # optional branch-isolated workstreams
+│   │   └── <workstream-id>/
+│   │       ├── WORKSTREAM.yaml
+│   │       ├── TASK_BOARD.yaml
+│   │       ├── cards/
+│   │       ├── evidence/
+│   │       └── blockers/
 │   ├── milestones/
 │   ├── cards/
 │   ├── evidence/
@@ -48,14 +55,15 @@ Projects may adapt paths, but `PROJECT.md` must identify actual canonical locati
 - requirements → authoritative product/system requirements;
 - planning → draft/approved plan authority;
 - planning/reviews → mutable pre-execution independent plan-review lifecycle/evidence; not execution state and never a substitute for Task Board;
-- Task Board → sole mutable execution state, including the implementation/recovery Research routing pointer when such an obligation is active;
+- selected canonical Task Board → sole mutable Card/milestone execution state for that default/workstream context, including its implementation/recovery Research routing pointer when such an obligation is active;
+- branch-isolated `WORKSTREAM.yaml` → workstream identity/routing + coarse lifecycle/location metadata only; it never mirrors Card/milestone state from its selected Task Board;
 - milestone/Card files → stable contracts, not status mirrors;
 - evidence → durable proof when materially useful/required;
 - blockers → durable blocker evidence;
 - handoffs → completed milestone summaries;
 - OpenSpec → selected behavior/design contracts.
 
-Do not mirror current card/milestone/result/branch/review state into `PROJECT.md` or stable contract files.
+Do not mirror current card/milestone/result/branch/review state into `PROJECT.md` or stable contract files. `PROJECT.md` may document the workstream-root convention but is not a mutable global workstream registry.
 
 ## PROJECT.md
 
@@ -66,7 +74,7 @@ Keep it small. It should identify:
 - active exploratory-scope pointer when Brainstorming/Definition recovery currently needs one;
 - active pre-execution research-obligation pointer when Research/return-role recovery currently needs one;
 - canonical requirements/plan;
-- Task Board path when implementation exists;
+- legacy/default Task Board path when the project uses that mode; branch-isolated Task Boards are located from their validated workstream manifests rather than mirrored into `PROJECT.md`;
 - latest cumulative handoff when one exists;
 - accepted-decision pointers;
 - workflow repository/ref.
@@ -82,6 +90,14 @@ A local `current.md` or similar checkpoint is optional convenience only.
 It is not canonical Task Board/handoff state, must never be the only location of important execution truth, and never outranks durable repository state.
 
 Recovery must be possible from Task Board plus referenced contracts/evidence/Git/runtime state without prior chat.
+
+## Branch-isolated workstream state
+
+When the current branch is a branch-isolated ChatGPT-only workstream, apply `workflow/chatgpt_only/WORKSTREAMS.md` before loading implementation/review/recovery state.
+
+The validated manifest owns the canonical Task Board path. The legacy/default `implementation/TASK_BOARD.yaml` remains untouched unless that default state itself is the selected context.
+
+Correctness must not require a mutable repository-global workstream registry.
 
 ## Git/branch policy
 
@@ -114,9 +130,10 @@ Material external mutations require meaningful persisted-state readback when ava
 
 Recovery must be possible from:
 - `PROJECT.md`;
+- exact workstream branch + validated `WORKSTREAM.yaml` when branch-isolated;
 - the PROJECT-pointed active exploratory record when Brainstorming/Definition promotion or recovery is active;
 - the PROJECT-pointed active pre-execution research record when Research/return-role recovery is active;
-- Task Board, including its implementation/recovery `research_obligation` pointer and exact pointed record when present;
+- selected canonical Task Board, including its implementation/recovery `research_obligation` pointer and exact pointed record when present;
 - exact Git/runtime/external state;
 - current milestone/Card contracts;
 - referenced evidence/OpenSpec/handoff as actually needed.
