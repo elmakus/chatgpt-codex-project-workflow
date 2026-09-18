@@ -52,7 +52,7 @@ Refresh Gate is not a tool/capability inventory.
 
 Local implementation-detail drift inside accepted authority may be reconciled.
 
-If evidence requires changing requirements, frozen architecture/decisions, global invariants, milestone outcome/behavior contract or explicit authorization boundary, stop affected execution for strategic resolution.
+If evidence exceeds current L1/L2 authority, stop affected work and return to the router for classification: Planning when Project Definition remains valid but milestone/plan strategy must change, Project Definition when accepted requirements/strategic decisions/global target-state authority must change, or Research when more evidence is required first. Do not convert plan-only replanning into a user stop.
 
 ## Runtime-operation rule
 
