@@ -20,9 +20,9 @@ If ordinary non-secret local tooling/dependencies are missing, self-remediate th
 
 When installed/enabled, codex_workflow controls internal orchestration, including execute/review workers, delegation, role/model routing, lifecycle and runtime recovery. REQUIRED/RECOMMENDED independent review uses a reviewer worker/session that did not implement the subject; do not return to ChatGPT merely for reviewer independence.
 
-After each GREEN milestone, continue automatically into the next already-approved milestone using allowed just-in-time execution prep + fresh state/contract Refresh Gate. Persist result/review pointers/tests/evidence/readback in Task Board/evidence.
+Within the active milestone and after each GREEN milestone, perform allowed L2 just-in-time decomposition/refinement from durable predecessor evidence when deferred detail becomes knowable. Create/revise only not-yet-started cards, preserve strategic authority, reconcile Task Board, then continue automatically into the next deterministic work using fresh state/contract Refresh Gate. Persist result/review pointers/tests/evidence/readback in Task Board/evidence.
 
-Stop only for a real concrete runtime blocker that cannot be self-remediated, strategic product/architecture/frozen-contract change, explicit user/deployment/live-write authorization gate, RED requiring strategic resolution, or end of approved scope.
+Stop only for a real concrete runtime blocker that cannot be self-remediated, L3 strategic replan (requirements/frozen architecture or decisions/invariants/milestone outcome/behavior contract must change), explicit user/deployment/live-write authorization gate, RED requiring strategic resolution, or end of approved scope.
 ```
 
 ## Mixed-policy bounded start
@@ -39,7 +39,7 @@ Read project PROJECT.md and workflow/CONTEXT_ROUTING.md. Load shared execution c
 
 The mixed-policy Capability Gate already performed pre-assignment routing. After assignment, do not rerun it because of a runtime capability problem; persist the blocker instead.
 
-Do not self-assign a new mixed-policy milestone after assigned scope ends; return durable state to ChatGPT routing.
+Do not self-assign a new mixed-policy milestone after assigned scope ends; return durable state to ChatGPT routing. Within an already assigned scope, allowed L2 refinement may create/revise not-yet-started cards only when the assignment and strategic authority still cover them.
 ```
 
 Progressive disclosure is lossless by authority: do not replace applicable requirements/accepted decisions/approved-plan constraints with a thinner coordinator summary. Carry them explicitly or read the exact durable refs before implementation/review.
