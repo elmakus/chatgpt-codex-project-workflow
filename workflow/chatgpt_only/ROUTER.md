@@ -4,7 +4,7 @@ This router applies only after root `CHATGPT.md` confirms project `execution_pol
 
 Once here, stay inside:
 - `workflow/common/*` for genuinely policy-neutral rules;
-- `workflow/chatgpt_only/*` for planning/execution/review/state/recovery.
+- `workflow/chatgpt_only/*` for Brainstorming/Research/Definition plus planning/execution/review/state/recovery.
 
 Do not load legacy/shared execution trees or another policy directory.
 
@@ -13,11 +13,16 @@ Do not load legacy/shared execution trees or another policy directory.
 1. Read `workflow/common/AUTHORITY.md`.
 2. Read project root `PROJECT.md`.
 3. If implementation, implementation-review, blocker or execution-recovery state exists or is referenced, read `implementation/TASK_BOARD.yaml` before choosing the route.
-4. A REQUIRED/RECOMMENDED implementation `review_state: pending | in_progress` outranks later implementation.
-5. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
-6. Select exactly one primary route below.
-7. Read only that route's required project artifacts plus exact authority refs.
-8. Continue deterministic work automatically until a real workflow stop is reached.
+4. A REQUIRED/RECOMMENDED implementation `review_state: pending | in_progress` outranks later implementation and routes to Independent review.
+5. If Task Board `research_obligation` points to an implementation/recovery Research record, read that exact record before choosing later implementation, including when the Research obligation was opened from a RED review. `Status: active | blocked` routes to Research; `Status: complete` routes to its exact recorded Return target; `Status: consumed` means the Task Board pointer is stale and should be cleared at the next safe edit.
+6. A non-terminal REQUIRED/RECOMMENDED subject with `review_state: red` outranks unrelated/later implementation. Read its exact RED evidence and apply the single canonical classification in `REVIEW.md#RED → corrective-route transition` against current durable state: bounded L1/L2 correction → Execution Prep/Execution; plan-only correction → Strategic planning; accepted-authority correction → Project Definition; missing evidence → materialize the implementation-owned Research handoff before Research; unresolved real gate → user stop. If the RED evidence/current state cannot be coherently classified, route to Recovery rather than guessing.
+7. An `in_progress` Card with `review_state: green` routes to Execution for terminal Post-review Card finalization before later work.
+8. If `PROJECT.md → Active research obligation` points to a pre-execution research record, read that exact record before choosing the route. `Status: active | blocked` routes to Research; `Status: complete` routes to the exact recorded Return target; `Status: consumed` means the pointer is stale and should be cleared at the next safe edit.
+9. If both Task Board and PROJECT point to different active/blocked/complete Research obligations, treat that as inconsistent state and route to Recovery instead of guessing which obligation owns continuation.
+10. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
+11. Select exactly one primary route below.
+12. Read only that route's required project artifacts plus exact authority refs.
+13. Continue deterministic work automatically until a real workflow stop is reached.
 
 ## Role-transition protocol
 
@@ -107,29 +112,48 @@ Then obey its decision:
 
 Never run a separate context-health handoff when another real stop already owns the boundary. A pending REQUIRED/RECOMMENDED fresh independent review is one such case and already provides the context reset.
 
+## Research return ownership and crash recovery
+
+For any `complete` Research record, the exact current `Return target` owns continuation and the owning pointer remains until durable consumption.
+
+- `execution_resolution:<subject>` is the only intermediate classifier. Ordinarily it refines the exact final Return target while keeping `Status: complete`, `Return reconciliation: pending`, and the Task Board pointer. If classification itself requires more evidence, it instead uses the explicit classifier-to-Research chain transition in `RESEARCH.md`.
+- Every final target — Brainstorming, Project Definition, Strategic Planning, Execution Prep or Execution — MUST follow `workflow/chatgpt_only/RESEARCH.md#Final Return-target protocol`.
+- Final target mutation and `Return reconciliation: applied` + exact result refs are persisted in the same durable Git transition.
+- If a crash occurs after that transition but before `consumed`/pointer-clear, re-entry is consume/clear-only; target work must not be replayed.
+- Normally only the final owning Return target consumes/clears. The sole exception is classifier-to-Research chaining, where `execution_resolution` atomically records `R1` reconciliation as the exact new `R2` obligation, consumes `R1`, creates `R2 active`, and switches the Task Board pointer in the same durable Git transition.
+
+Research never selects a different route by itself; only the authorized classifier may refine a Return target.
+
 ## Routes
 
 ### Brainstorming
 
 Read:
-- `workflow/common/BRAINSTORMING.md`;
+- `workflow/chatgpt_only/BRAINSTORMING.md`;
 - the exact record referenced by `PROJECT.md → Active exploratory scope` when that pointer exists;
+- the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Brainstorming subject;
 - otherwise the current brainstorming material needed to establish/create that pointer;
 - only accepted constraints already relevant.
 
 ### Research
 
 Read:
-- `workflow/common/RESEARCH.md`;
+- `workflow/chatgpt_only/RESEARCH.md`;
+- the exact record referenced by `PROJECT.md → Active research obligation` for pre-execution Research when that pointer exists;
+- otherwise the exact Task Board `research_obligation` pointer when Research was triggered from active execution/recovery;
 - the exact research question/material;
 - only relevant accepted requirements/decisions/source state.
+
+The durable research record owns its `Status`, Origin subject and Return target. Do not infer the return role from chat history.
 
 ### Project Definition
 
 Read:
-- `workflow/common/DEFINITION.md`;
+- `workflow/chatgpt_only/DEFINITION.md`;
 - current user/product goal and explicit accepted choices;
 - the exact `PROJECT.md → Active exploratory scope` record when Definition was entered through the promotion gate and the pointer is still active;
+- the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Project Definition subject;
+- the exact `complete` record referenced by Task Board `research_obligation` when its final Return target is this Project Definition subject;
 - relevant brainstorming conclusions;
 - relevant verified research/evidence;
 - existing requirements/decisions when redefining accepted authority;
@@ -160,6 +184,8 @@ Read:
 - `workflow/chatgpt_only/PLANNING.md`;
 - approved canonical requirements;
 - accepted decisions;
+- the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Strategic Planning subject;
+- the exact `complete` record referenced by Task Board `research_obligation` when its final Return target is this Strategic Planning subject;
 - only verified research/baseline that the accepted definition or plan actually references;
 - current approved plan when replanning.
 
@@ -189,7 +215,8 @@ Read:
 - `workflow/chatgpt_only/TASK_CARDS.md`;
 - current milestone/plan authority;
 - Task Board when implementation state exists;
-- exact predecessor evidence needed by current decomposition.
+- exact predecessor evidence needed by current decomposition;
+- the exact `complete` record referenced by Task Board `research_obligation` when its final Return target is this Execution Prep subject.
 
 Read `workflow/common/OPENSPEC.md` only when current preparation marks/reconciles an OpenSpec-relevant contract.
 
@@ -201,7 +228,8 @@ Read:
 - Task Board;
 - current milestone/Card;
 - exact authority slice;
-- only source/runtime/evidence needed for that card.
+- only source/runtime/evidence needed for that card;
+- the exact `complete` record referenced by Task Board `research_obligation` when its final Return target is this Execution subject.
 
 Read `workflow/common/OPENSPEC.md` only when the current card references/requires it.
 
@@ -237,10 +265,18 @@ Read only:
 - current Card/milestone contract;
 - smallest requirements/decision/research/source slice needed to classify it.
 
+If this route is the exact `execution_resolution:<subject>` Return target of a completed implementation/recovery Research record:
+1. verify that Task Board `research_obligation` still points to that record and that its Origin/Return subjects match the affected durable Card/blocker state;
+2. classify the findings against current durable authority;
+3. if classification identifies an exact final owning role/subject, persist that classification by replacing the record's Return target with that final owner while keeping `Status: complete`, `Return reconciliation: pending`, and keeping Task Board `research_obligation`;
+4. for that ordinary final-owner case, return through this router; the pointer now deterministically routes to the final target and the classifier does **not** mark the record `consumed`;
+5. if classification instead proves that more evidence is needed before any final owner can be named, do not invent or persist a final Return target; use the classifier-to-Research chain transition in `RESEARCH.md`.
+
 Then:
-- if accepted product/system intent or a strategic decision must change, route to Project Definition;
-- if accepted definition remains valid but milestone sequencing/plan must change, route to Strategic planning;
-- if more evidence is needed before either can be decided, route to Research.
+- bounded L1/L2 correction inside accepted authority → refine Return target to Execution Prep or Execution;
+- if accepted product/system intent or a strategic decision must change → refine Return target to Project Definition;
+- if accepted definition remains valid but milestone sequencing/plan must change → refine Return target to Strategic planning;
+- if more evidence is still needed before either can be decided → in one durable Git transition persist `R1 Return reconciliation: applied` with exact `R2` ref, set `R1 Status: consumed`, create `R2 Status: active`, and switch Task Board `research_obligation` directly from `R1` to `R2`; then route to Research. Never expose `R1 complete` after moving the pointer and never expose a null-pointer gap.
 
 Do not continue affected work until the owning authority is resolved.
 

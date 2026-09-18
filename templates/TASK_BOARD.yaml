@@ -1,3 +1,7 @@
+# Shared/legacy multi-policy Task Board template.
+# DO NOT use this template for execution_policy: chatgpt_only.
+# The migrated ChatGPT-only route uses workflow/chatgpt_only/TASK_BOARD_TEMPLATE.yaml.
+#
 project: "<project>"
 plan_revision: "<R#>"
 current_milestone: "M01"

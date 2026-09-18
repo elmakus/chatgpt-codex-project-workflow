@@ -8,6 +8,8 @@ Produce source-grounded findings that can support requirements, accepted decisio
 
 Research artifacts live in `research/`. Use `templates/RESEARCH.md`.
 
+This legacy route does **not** adopt `chatgpt_only` PROJECT/Task-Board Research-pointer routing merely because the shared template exposes optional durable-continuation metadata. Unless this legacy policy route explicitly defines an equivalent lifecycle, treat those fields as optional provenance and do not create `PROJECT.md → Active research obligation` or Task Board `research_obligation` from the template alone.
+
 ## Research workflow
 
 `USER GOAL → discovery → research → source verification → alternatives → architecture candidates → accepted decisions → requirements → planning`

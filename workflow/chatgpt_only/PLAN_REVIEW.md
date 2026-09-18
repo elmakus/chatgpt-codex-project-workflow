@@ -94,7 +94,7 @@ After RED:
 Then:
 - bounded plan-only defects inside accepted Project Definition → route to Planning for correction;
 - defect reveals missing/incorrect accepted product/system authority → route to Project Definition;
-- more evidence needed before either can be resolved → route to Research;
+- more evidence needed before either can be resolved → create one exact record under `workflow/chatgpt_only/RESEARCH.md#Durable record contract`, with `Status: active`, `Origin role: plan_review`, this exact review record/subject as Origin subject, `Return target: strategic_planning:<exact correction subject>`, and `Return reconciliation: pending`; for a pre-execution plan review set `PROJECT.md → Active research obligation`, but for an active-work replan review set Task Board `research_obligation`; persist record + pointer before routing to Research;
 - unresolved user/product authority → real user stop.
 
 If the same chat corrects the plan, it becomes the authoring chat for the corrected subject. When independent review remains REQUIRED/RECOMMENDED, freeze the new subject as `pending` and stop for a fresh independent re-review.

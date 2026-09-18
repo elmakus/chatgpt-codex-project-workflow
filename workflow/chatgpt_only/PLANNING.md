@@ -36,11 +36,22 @@ Before planning:
 
 If these conditions fail:
 - missing/contradictory accepted intent → return to Project Definition;
-- missing evidence → return to Research;
+- missing evidence → use the durable Research handoff below, then return to Research;
 - broader option generation/comparison needed → return to Brainstorming;
 - explicit user/product decision needed → real user stop.
 
 Do not compensate for an incomplete definition by inventing strategic authority inside the plan.
+
+## Research handoff from Planning
+
+When Planning needs evidence before it can make a valid planning decision:
+
+1. create one exact record under `workflow/chatgpt_only/RESEARCH.md#Durable record contract`, with `Origin role: strategic_planning`, the current plan revision/planning obligation as Origin subject, `Return target: strategic_planning:<exact subject>`, and `Return reconciliation: pending`;
+2. for pre-execution Planning, set `PROJECT.md → Active research obligation` before yielding;
+3. when replanning active implementation/recovery work, set Task Board `research_obligation` instead and do not mirror it into `PROJECT.md`;
+4. persist record + owning pointer before returning to the router for Research.
+
+When that record becomes `complete` for this Strategic Planning subject, follow `workflow/chatgpt_only/RESEARCH.md#Final Return-target protocol`. The target-specific reconciliation is the exact planning result: updated planning authority and, when REQUIRED/RECOMMENDED review still applies, the exact next plan revision/review boundary. Persist that result and `Return reconciliation: applied` + exact result refs in the same durable Git transition. Only then consume/clear. Recovery from `applied + complete` must not create another plan revision or review record.
 
 ## Inputs
 

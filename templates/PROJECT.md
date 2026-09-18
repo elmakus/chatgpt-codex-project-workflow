@@ -22,6 +22,7 @@ Changing execution policy requires explicit user decision. Default for new proje
 ## Canonical authority pointers
 
 - Active exploratory scope: `brainstorming/<record>.md | none`
+- Active research obligation (only when the selected policy defines this pointer; `chatgpt_only` uses it for pre-execution Research): `research/<record>.md | none`
 - Requirements: `requirements/REQUIREMENTS.md | none`
 - Approved plan: `planning/MASTER_PLAN.md | none`
 - Task Board: `implementation/TASK_BOARD.yaml | none`
@@ -39,5 +40,7 @@ Changing execution policy requires explicit user decision. Default for new proje
 This file is a high-level router/policy/index, not live execution state.
 
 `Active exploratory scope` is a routing pointer to the current brainstorming record when one exists; it is not implementation execution state. Clear or replace it when that exploratory scope is closed/superseded.
+
+`Active research obligation` is operative only when the selected policy route defines that continuation contract. Under `chatgpt_only`, it is the routing pointer for pre-execution Research: the pointed record owns active/complete/blocked/consumed lifecycle state plus exact Origin/Return subjects, remains pointed through `complete`, and is cleared only after durable consumption. `chatgpt_only` implementation/recovery Research instead uses Task Board `research_obligation`. A legacy/other-policy route that does not define this pointer keeps it `none`; the field's presence in this shared template does not import `chatgpt_only` routing semantics.
 
 Do not record current milestone/card, assigned executor, active branch/HEAD, checkpoint, current OpenSpec or blocker status here. Read `implementation/TASK_BOARD.yaml` for all mutable execution state. The approved Master Plan milestone subsection is the default milestone contract; follow any optional JIT milestone extension, referenced Task Card authority slices, required evidence and handoffs.

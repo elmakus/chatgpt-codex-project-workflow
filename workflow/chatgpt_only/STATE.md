@@ -52,6 +52,7 @@ Track as applicable:
 - standalone evidence pointer when required;
 - relevant OpenSpec pointer;
 - active review state;
+- implementation/recovery Research pointer when active;
 - blockers.
 
 ## Review fields
@@ -65,6 +66,18 @@ review_evidence: <repo-relative-path-or-null>
 ```
 
 One review attempt refers to one immutable exact subject. Corrective work creates a new subject/review attempt.
+
+## Implementation-owned Research pointer
+
+For Research triggered from implementation/recovery, Task Board carries only one routing pointer:
+
+```yaml
+research_obligation: research/<record>.md | null
+```
+
+The pointed Research record owns its `Status`, Origin role/subject, Return target, question, `Return reconciliation` state and exact reconciliation-result refs. Do not duplicate those lifecycle fields into Task Board and do not mirror this execution obligation into `PROJECT.md`.
+
+Before Execution Prep / execution / recovery yields to Research, persist both the exact research record and this pointer. Keep the pointer through Research `complete`. Normally clear it only after the final Return target has durably persisted `Return reconciliation: applied`, then marked the record `consumed`. The sole exception is classifier-to-Research chaining: `execution_resolution` may consume completed `R1` only by atomically recording the exact new `R2` obligation as its reconciliation result, creating `R2 active`, and replacing this pointer from `R1` to `R2` in the same durable Git transition. Recovery from ordinary `applied + complete` is consume/clear-only.
 
 ## Incremental Card-set state
 
@@ -104,7 +117,9 @@ Exactly one project Card may be `in_progress` at a time in this policy path.
 
 ## Done result
 
-Before Card becomes `done`, persist:
+A Card with REQUIRED/RECOMMENDED independent review remains non-terminal until the exact current subject has `review_state: green`.
+
+Before Card becomes `done`, verify all applicable Definition of Done conditions, including GREEN required/recommended review, then persist:
 
 ```yaml
 execution_status: done
@@ -129,18 +144,21 @@ When a concrete required operation or accepted contract cannot proceed:
 
 A runtime blocker does not silently redefine accepted requirements or execution authority.
 
-If a blocker exceeds L1/L2 authority, return to the router for strategic classification: Planning when Project Definition remains valid but plan strategy must change, Project Definition when accepted product/system authority must change, or Research when more evidence is required. A user stop exists only when that classification reaches unresolved user/product authority or another explicit real gate.
+If a blocker exceeds L1/L2 authority, return to the router for strategic classification: Planning when Project Definition remains valid but plan strategy must change, Project Definition when accepted product/system authority must change, or Research when more evidence is required. Before yielding to implementation-triggered Research, persist the exact Research record + Task Board `research_obligation` using `EXECUTION.md#Implementation → Research handoff`. A user stop exists only when that classification reaches unresolved user/product authority or another explicit real gate.
 
 ## Independent review lifecycle
 
 For a Card/milestone contracted as REQUIRED or RECOMMENDED:
-1. implementing chat freezes exact subject/evidence;
-2. set `review_state: pending`;
-3. persist durable state;
-4. fresh independent chat sets `in_progress`;
-5. reviewer persists GREEN/RED evidence;
-6. set `review_state: green | red`;
-7. completed reviewer role returns to the router for the next legal obligation.
+1. implementing chat persists implementation/result evidence while the Card remains non-terminal;
+2. implementing chat freezes exact subject/evidence;
+3. set `review_state: pending`;
+4. persist durable state;
+5. fresh independent chat sets `in_progress`;
+6. reviewer persists GREEN/RED evidence;
+7. set `review_state: green | red`;
+8. completed reviewer role returns to the router for the next legal obligation;
+9. for a Card-completion review, GREEN routes to Execution for deterministic terminal finalization; the reviewer verdict itself does not mark the Card `done`;
+10. RED keeps the reviewed Card non-terminal until corrected/replaced within legal authority and a new subject is reviewed when still required/recommended.
 
 For `independent_review: none`, do not create review state as routine workflow.
 
@@ -191,6 +209,7 @@ Fresh-session recovery uses:
 - exact branch/HEAD/runtime/external state;
 - current milestone/Card contracts;
 - referenced OpenSpec/evidence/result/review pointers;
+- Task Board `research_obligation` + exact pointed Research record when present;
 - handoff only when materially needed.
 
 Previous chat narrative is not required.
@@ -200,9 +219,12 @@ Previous chat narrative is not required.
 Examples:
 - more than one Card `in_progress`;
 - `done` Card missing required result/tests provenance;
+- `done` Card with a REQUIRED/RECOMMENDED review still `pending | in_progress | red`;
 - milestone `done` with non-green required review;
 - dependent Card started before dependency `done`;
 - review verdict attached to wrong subject;
+- non-terminal REQUIRED/RECOMMENDED `review_state: red` bypassed in favor of later implementation;
+- implementation/recovery Research active or complete across a role/session boundary without an exact Task Board `research_obligation` pointer;
 - durable execution truth existing only in chat, `PROJECT.md`, stable Card/milestone files or local `current.md`;
 - external success contradicted by required readback;
 - `execution_policy` changing without an explicit user decision;

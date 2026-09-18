@@ -44,11 +44,11 @@ Projects may adapt paths, but `PROJECT.md` must identify actual canonical locati
 
 - brainstorming → tentative ideas plus the exact current exploratory-scope/revision promotion record when that phase is active;
 - decisions → accepted decisions;
-- research → evidence;
+- research → evidence plus the exact active/complete/blocked/consumed Research continuation record when such an obligation exists; Research is not decision authority;
 - requirements → authoritative product/system requirements;
 - planning → draft/approved plan authority;
 - planning/reviews → mutable pre-execution independent plan-review lifecycle/evidence; not execution state and never a substitute for Task Board;
-- Task Board → sole mutable execution state;
+- Task Board → sole mutable execution state, including the implementation/recovery Research routing pointer when such an obligation is active;
 - milestone/Card files → stable contracts, not status mirrors;
 - evidence → durable proof when materially useful/required;
 - blockers → durable blocker evidence;
@@ -64,6 +64,7 @@ Keep it small. It should identify:
 - high-level goal/status;
 - `execution_policy: chatgpt_only`;
 - active exploratory-scope pointer when Brainstorming/Definition recovery currently needs one;
+- active pre-execution research-obligation pointer when Research/return-role recovery currently needs one;
 - canonical requirements/plan;
 - Task Board path when implementation exists;
 - latest cumulative handoff when one exists;
@@ -71,6 +72,8 @@ Keep it small. It should identify:
 - workflow repository/ref.
 
 It is a router, not a live execution tracker. An `Active exploratory scope` pointer is allowed because it locates the canonical Brainstorming/Definition promotion record; promotion authorization/revision remains in that pointed record rather than being duplicated into `PROJECT.md`.
+
+An `Active research obligation` pointer is also allowed for pre-execution Research because it locates the canonical research lifecycle record. Research `Status`, Origin subject and Return target remain in that pointed record. Implementation-triggered Research is routed by Task Board `research_obligation` and is not mirrored into `PROJECT.md`; the pointed research record owns lifecycle Status, Origin and Return target.
 
 ## Durable state versus local convenience
 
@@ -112,7 +115,8 @@ Material external mutations require meaningful persisted-state readback when ava
 Recovery must be possible from:
 - `PROJECT.md`;
 - the PROJECT-pointed active exploratory record when Brainstorming/Definition promotion or recovery is active;
-- Task Board;
+- the PROJECT-pointed active pre-execution research record when Research/return-role recovery is active;
+- Task Board, including its implementation/recovery `research_obligation` pointer and exact pointed record when present;
 - exact Git/runtime/external state;
 - current milestone/Card contracts;
 - referenced evidence/OpenSpec/handoff as actually needed.
@@ -148,7 +152,7 @@ From an empty project shell:
 4. when substantial exploratory work has a canonical brainstorming record, point `PROJECT.md → Active exploratory scope` to it; do not create a placeholder record merely for the pointer;
 5. use Project Definition to promote accepted intent into `requirements/` + `decisions/` only after the chatgpt_only promotion gate is satisfied;
 6. create an approved Master Plan only after Definition Complete is GREEN;
-7. create Task Board and Task Cards just-in-time through Execution Prep;
+7. create Task Board from `workflow/chatgpt_only/TASK_BOARD_TEMPLATE.yaml` and create Task Cards just-in-time through Execution Prep;
 8. create separate milestone contracts, standalone evidence and OpenSpec only when their material criteria are met.
 
 Do not populate placeholder artifacts merely to satisfy a directory checklist.

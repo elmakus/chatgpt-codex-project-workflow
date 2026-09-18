@@ -1,0 +1,52 @@
+project: "<project>"
+plan_revision: "<R#>"
+current_milestone: "M01"
+
+# ChatGPT-only serial Task Board template.
+# Sole authoritative mutable implementation/execution-review state record.
+# Policy invariant: exactly one project Card may be in_progress at a time.
+# Keep this schema serial and policy-local; do not add foreign scheduling or executor-routing metadata.
+
+execution_ref:
+  branch: null
+  pr: null
+  head: null
+
+# Implementation/recovery Research routing pointer only.
+# The pointed research record owns Status, Origin and Return target.
+# Keep through Status: complete; clear only after durable consumption.
+research_obligation: null # research/<record>.md | null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: planned
+    contract: planning/MASTER_PLAN.md#M01
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    # Populate only while an independent milestone review gate is active.
+    review_state: null # pending | in_progress | green | red
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: M01-T01
+    title: "<title>"
+    milestone: M01
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on: []
+    openspec_change: null
+    contract: implementation/cards/M01-T01.md
+    # Populate only while an independent Card review gate is active.
+    # A REQUIRED/RECOMMENDED Card remains non-terminal until review_state is green.
+    review_state: null # pending | in_progress | green | red
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
