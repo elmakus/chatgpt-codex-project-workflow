@@ -50,6 +50,6 @@ Research question: `<exact question>`
 - Open user/product question: ...
 - Downstream planning implication if Definition accepts it: ...
 
-Research is evidence, not an accepted requirement/decision/plan by itself. Route promotion through Project Definition.
+Research is evidence, not an accepted requirement/decision/plan by itself. Return to the exact recorded Return target; only changes to accepted product/system authority are promoted through Project Definition under the selected policy's entry rules.
 
-For a pre-execution Research obligation, `PROJECT.md → Active research obligation` points to this record while `Status` is `active | blocked | complete`. Keep `complete` until the exact Return target durably reconciles these findings; then set `consumed` and clear the pointer. Do not infer Origin/Return from chat history.
+For a pre-execution Research obligation, `PROJECT.md → Active research obligation` points to this record while `Status` is `active | blocked | complete`. Implementation/recovery Research uses the selected policy's execution-state pointer instead (Task Board `research_obligation` under `chatgpt_only`). Keep `complete` until the exact Return target durably reconciles these findings; then set `consumed` and clear the owning pointer. Do not infer Origin/Return from chat history.
