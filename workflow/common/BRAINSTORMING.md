@@ -25,7 +25,7 @@ Brainstorming may contain:
 
 Nothing in `brainstorming/` becomes authoritative merely because it was written down or discussed repeatedly.
 
-When the user explicitly accepts a choice, preserve that acceptance and route it through Project Definition so canonical requirements/decision authority is reconciled in one place. Do not make Brainstorming a second requirements/planning writer.
+When the user explicitly accepts an individual choice during exploration, preserve it in the active brainstorming record as an explicit user/product choice to be reconciled by Project Definition later. Acceptance of one choice does **not** by itself authorize leaving Brainstorming when the selected policy owns a separate phase-promotion gate. Do not make Brainstorming a second requirements/planning writer.
 
 Do not rewrite history to make old brainstorming look settled.
 
