@@ -4,7 +4,7 @@ This router applies only after root `CHATGPT.md` confirms project `execution_pol
 
 Once here, stay inside:
 - `workflow/common/*` for genuinely policy-neutral rules;
-- `workflow/chatgpt_only/*` for planning/execution/review/state/recovery.
+- `workflow/chatgpt_only/*` for Brainstorming/Research/Definition plus planning/execution/review/state/recovery.
 
 Do not load legacy/shared execution trees or another policy directory.
 
@@ -268,7 +268,7 @@ Read only:
 If this route is the exact `execution_resolution:<subject>` Return target of a completed implementation/recovery Research record:
 1. verify that Task Board `research_obligation` still points to that record and that its Origin/Return subjects match the affected durable Card/blocker state;
 2. classify the findings against current durable authority;
-3. persist that classification by replacing the record's Return target with the exact final owning role/subject while keeping `Status: complete` and keeping Task Board `research_obligation`;
+3. persist that classification by replacing the record's Return target with the exact final owning role/subject while keeping `Status: complete`, `Return reconciliation: pending`, and keeping Task Board `research_obligation`;
 4. return through this router; the pointer now deterministically routes to that final target;
 5. do **not** mark the record `consumed` here — the final target consumes it only after its correction/reconciliation is durably complete.
 
