@@ -1,43 +1,28 @@
 # ChatGPT start prompt
 
-Use this in normal ChatGPT chat. ChatGPT Work is not part of Project Workflow.
+Use this in a normal ChatGPT chat.
 
 ## Existing project
 
 ```text
-Użyj mojego Project Workflow z elmakus/chatgpt-codex-project-workflow.
+Użyj mojego Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
 Repo projektu: <owner/repo>.
-Kontynuujemy <phase albo krótki cel>.
+Kontynuujemy <krótki cel albo durable continuation pointer>.
 ```
 
-ChatGPT should:
-1. read current workflow `main`, starting with `CHATGPT.md`;
+Normal ChatGPT should:
+1. read current workflow `CHATGPT.md`;
 2. read project root `PROJECT.md`;
-3. determine phase and `execution_policy`;
-4. apply progressive disclosure without semantic loss: resolve the exact applicable authority slice rather than replacing richer durable authority with a summary;
-5. treat accepted durable repository knowledge as authority over stale chat memory;
-6. when implementation state exists, read Task Board as sole live execution-state authority, including any pending/in-progress review gate;
-7. persist accepted state when current GitHub/project capabilities allow it;
-8. route execution by policy:
-   - `chatgpt_only` → execute in ChatGPT; no Capability Gate and no capability preflight/inventory;
-   - `codex_only` → prepare/hand off to Codex or recover Codex stream; no Capability Gate and no capability preflight/inventory;
-   - `mixed` → run Capability Gate before new assignment.
+3. read `workflow/CONTEXT_ROUTING.md`;
+4. follow only the execution-policy route selected there;
+5. recover Task Board when implementation/review state exists;
+6. treat durable repository authority as stronger than stale chat memory;
+7. persist changed durable truth when current project capabilities allow it.
 
-Under fixed policy, run state/contract Refresh Gate and attempt the work directly. When predecessor evidence satisfies a recorded JIT trigger, the execution orchestrator may perform L2 refinement and create/revise not-yet-started cards without returning to the original strategic planner. If a concrete required operation cannot proceed, persist/report the runtime blocker rather than speculating before execution.
+Do not paste execution-policy semantics into the start prompt. The repository router owns them.
 
-Under `chatgpt_only`, if this chat implemented the subject and REQUIRED/RECOMMENDED independent review becomes due, persist exact `review_subject`/`review_state: pending`, stop, and instruct the user to open a fresh normal ChatGPT chat for review. In that same response, include a minimal fenced copy-paste `NEW CHAT START PROMPT` containing project repo, exact active branch, continuation target and durable pointer only; do not duplicate durable state. A fresh review chat may continue later deterministic work after GREEN. Outside this independence boundary, a fresh chat is optional context hygiene, not a workflow gate; any such recommendation must also include its ready-to-copy start prompt.
-
-If `mixed`, hand work to Codex only under Capability Gate and use `workflow/codex/HANDOFF.md` for minimal kickoff.
-
-## User-facing status style
-
-When reporting execution/review/recovery status to the user, default to:
-- what happened / errors found;
-- what it means;
-- what happens next / smallest user action.
-
-Keep Git SHAs, blob IDs, evidence paths, raw Task Board fields, long test details and internal agent orchestration out of the default response unless the user asks or an exact pointer is materially required. Durable state remains exact in the repository.
+When a fresh ChatGPT chat is required or recommended later, use the branch-aware fresh-session prompt and keep recoverable execution telemetry in durable state.
 
 ## New project
 
-Create/choose project repository, initialize high-level `PROJECT.md` with explicit `execution_policy`, then create only phase-appropriate artifacts. Do not create Task Cards/OpenSpec merely because repo is new.
+Create/choose project repository, initialize a small `PROJECT.md` with an explicit accepted execution policy, then create only phase-appropriate artifacts. Do not create implementation state before it is needed.
