@@ -257,14 +257,21 @@ This rule does **not** reduce the information available to Codex Main, workers, 
 
 Whenever Project Workflow requires or recommends that the user open a fresh normal ChatGPT chat, the current response must also provide the ready-to-copy start prompt immediately.
 
-The prompt is intentionally thin:
+The prompt is intentionally thin and **locator-only**:
 - project repository;
 - exact active project/implementation branch;
-- exact continuation target (for example pending independent review for one card);
+- exact entry obligation (for example pending independent review for one card);
 - smallest durable start pointer;
-- instruction to recover exact state/subject/authority/evidence from the repository.
+- instruction to recover exact state/subject/authority/evidence from the repository;
+- one explicit reminder that the entry obligation is not a session-scope boundary and normal router-owned continuation resumes after that role completes.
 
-Do not duplicate SHAs, test summaries, changed-file lists or evidence prose that already exist in durable state. The user should be able to press **Copy**, open a new chat and paste once.
+Do not duplicate SHAs, test summaries, changed-file lists, evidence prose, audit/review checklists, prior findings, remediation proposals or outcome-dependent workflow branches that already exist or can be persisted in durable state.
+
+If special review/audit scope is materially required and cannot be reconstructed from existing authority, persist that scope first in an appropriate durable project artifact and point the handoff at it. Do not turn the chat prompt into a second task contract.
+
+The canonical user-facing format lives in `workflow/common/USER_STOP.md`. `prompts/CHATGPT_FRESH_SESSION.md` is only a convenience entrypoint and must not maintain a divergent template.
+
+The user should be able to press **Copy**, open a new chat and paste once. After the located role completes, the new chat returns to the policy router and continues deterministic authorized work until a real workflow stop.
 
 ## Bootstrap prompts
 
