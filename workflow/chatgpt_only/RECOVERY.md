@@ -19,9 +19,10 @@ Previous chat narrative is not authority.
 ## Recovery priority
 
 1. REQUIRED/RECOMMENDED `review_state: pending | in_progress` outranks later implementation.
-2. Existing `in_progress` Card outranks selecting a new Card.
-3. Existing `blocked` Card must be re-evaluated before dependent work.
-4. Only when no active obligation exists may next READY Card be selected.
+2. An `in_progress` Card with `review_state: green` and complete persisted implementation/result evidence routes to Execution for terminal Post-review Card finalization before any new Card.
+3. Any other existing `in_progress` Card outranks selecting a new Card.
+4. Existing `blocked` Card must be re-evaluated before dependent work.
+5. Only when no active obligation exists may next READY Card be selected.
 
 ## In-progress Card
 

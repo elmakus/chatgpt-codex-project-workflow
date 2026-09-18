@@ -104,7 +104,9 @@ Exactly one project Card may be `in_progress` at a time in this policy path.
 
 ## Done result
 
-Before Card becomes `done`, persist:
+A Card with REQUIRED/RECOMMENDED independent review remains non-terminal until the exact current subject has `review_state: green`.
+
+Before Card becomes `done`, verify all applicable Definition of Done conditions, including GREEN required/recommended review, then persist:
 
 ```yaml
 execution_status: done
@@ -134,13 +136,16 @@ If a blocker exceeds L1/L2 authority, return to the router for strategic classif
 ## Independent review lifecycle
 
 For a Card/milestone contracted as REQUIRED or RECOMMENDED:
-1. implementing chat freezes exact subject/evidence;
-2. set `review_state: pending`;
-3. persist durable state;
-4. fresh independent chat sets `in_progress`;
-5. reviewer persists GREEN/RED evidence;
-6. set `review_state: green | red`;
-7. completed reviewer role returns to the router for the next legal obligation.
+1. implementing chat persists implementation/result evidence while the Card remains non-terminal;
+2. implementing chat freezes exact subject/evidence;
+3. set `review_state: pending`;
+4. persist durable state;
+5. fresh independent chat sets `in_progress`;
+6. reviewer persists GREEN/RED evidence;
+7. set `review_state: green | red`;
+8. completed reviewer role returns to the router for the next legal obligation;
+9. for a Card-completion review, GREEN routes to Execution for deterministic terminal finalization; the reviewer verdict itself does not mark the Card `done`;
+10. RED keeps the reviewed Card non-terminal until corrected/replaced within legal authority and a new subject is reviewed when still required/recommended.
 
 For `independent_review: none`, do not create review state as routine workflow.
 
@@ -200,6 +205,7 @@ Previous chat narrative is not required.
 Examples:
 - more than one Card `in_progress`;
 - `done` Card missing required result/tests provenance;
+- `done` Card with a REQUIRED/RECOMMENDED review still `pending | in_progress | red`;
 - milestone `done` with non-green required review;
 - dependent Card started before dependency `done`;
 - review verdict attached to wrong subject;

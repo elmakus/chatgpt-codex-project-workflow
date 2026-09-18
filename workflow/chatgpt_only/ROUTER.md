@@ -14,10 +14,11 @@ Do not load legacy/shared execution trees or another policy directory.
 2. Read project root `PROJECT.md`.
 3. If implementation, implementation-review, blocker or execution-recovery state exists or is referenced, read `implementation/TASK_BOARD.yaml` before choosing the route.
 4. A REQUIRED/RECOMMENDED implementation `review_state: pending | in_progress` outranks later implementation.
-5. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
-6. Select exactly one primary route below.
-7. Read only that route's required project artifacts plus exact authority refs.
-8. Continue deterministic work automatically until a real workflow stop is reached.
+5. An `in_progress` Card with `review_state: green` routes to Execution for terminal Post-review Card finalization before later work.
+6. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
+7. Select exactly one primary route below.
+8. Read only that route's required project artifacts plus exact authority refs.
+9. Continue deterministic work automatically until a real workflow stop is reached.
 
 ## Role-transition protocol
 

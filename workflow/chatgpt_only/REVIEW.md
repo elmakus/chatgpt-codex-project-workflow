@@ -47,8 +47,9 @@ After GREEN:
 1. persist verdict/evidence/state;
 2. the independent-review role is complete;
 3. return to `workflow/chatgpt_only/ROUTER.md`;
-4. let the router choose the next legal route from the new durable state;
-5. continue in the same chat when that route is deterministic and authorized.
+4. if this was a Card-completion review, the reviewed Card is still non-terminal; route to Execution for deterministic Post-review Card finalization before any dependent/later Card;
+5. if this was a milestone/other review, let the router choose the owning continuation route;
+6. continue in the same chat when that route is deterministic and authorized.
 
 Do not remain in reviewer mode merely because this chat began as a reviewer.
 
@@ -61,7 +62,7 @@ If the router later assigns implementation and this chat creates a new REQUIRED/
 RED is not itself a user stop when corrective work can be bounded deterministically inside accepted authority.
 
 After RED:
-1. persist the RED verdict/evidence/state;
+1. persist the RED verdict/evidence/state; a Card-completion subject remains non-terminal;
 2. do not mutate the reviewed subject while still acting as reviewer;
 3. classify the correction before deciding whether a stop exists;
 4. bounded L1/L2 implementation correction inside accepted authority → return to the router for `EXECUTION_PREP` or `EXECUTION`;

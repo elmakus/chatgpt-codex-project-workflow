@@ -15,24 +15,42 @@ Read with:
 2. Read Task Board.
 3. Recover existing `in_progress` or `blocked` obligation before selecting new work.
 4. If a REQUIRED/RECOMMENDED review is `pending|in_progress`, return to the router so it selects `REVIEW.md` before later dependent implementation.
-5. Select exactly one deterministic READY Card whose dependencies are done.
-6. Read its exact milestone/Card authority slice.
-7. Persist start transition from `STATE.md`.
-8. Run Refresh Gate.
-9. Reconcile OpenSpec JIT only when current Card requires it.
-10. Execute bounded scope.
-11. Run required tests/checks and verify acceptance.
-12. Perform material external readback/verification when meaningful.
-13. Apply Definition of Done.
-14. Persist exact result/tests/evidence pointers and mark Card done.
-15. The current execution-role obligation ends at the durable Card boundary.
-16. Persist the completed Card/result state and return to the router before starting any next Card.
-17. The router performs its context-health trigger check, then:
+5. If an existing `in_progress` Card has `review_state: green` for its exact persisted implementation subject, perform **Post-review Card finalization** below before selecting new work.
+6. Select exactly one deterministic READY Card whose dependencies are done.
+7. Read its exact milestone/Card authority slice.
+8. Persist start transition from `STATE.md`.
+9. Run Refresh Gate.
+10. Reconcile OpenSpec JIT only when current Card requires it.
+11. Execute bounded scope.
+12. Run required tests/checks and verify acceptance.
+13. Perform material external readback/verification when meaningful.
+14. Persist exact implementation result/tests/evidence pointers before any terminal state transition.
+15. If the Card requires/recommends independent review and the exact current subject is not already GREEN, keep the Card non-terminal, activate the Review boundary below, persist `review_state: pending`, and stop for a fresh reviewer.
+16. Otherwise apply Definition of Done and mark the Card `done`.
+17. The current execution-role obligation ends at the durable Card boundary.
+18. Persist the terminal Card/result state and return to the router before starting any next Card.
+19. The router performs its context-health trigger check, then:
    - selects execution preparation when a JIT trigger is satisfied;
    - selects execution again when another READY Card is legal;
    - selects review/close/strategic/recovery/user-stop handling when that state owns the next obligation.
 
 Do not ask the user to choose among equivalent deterministic next Cards.
+
+## Post-review Card finalization
+
+A Card-level REQUIRED/RECOMMENDED review is a **precondition for terminal `done`**, not a review of an already-terminal Card.
+
+When the router returns an `in_progress` Card with `review_state: green`:
+
+1. recover the exact `review_subject`, review evidence and persisted implementation result;
+2. verify that the implementation/result being finalized is still exactly the subject that received GREEN;
+3. verify all remaining Definition of Done conditions;
+4. if no implementation/behavioral change occurred after the GREEN subject, set `execution_status: done` and persist terminal result state;
+5. return to the router before selecting later work.
+
+Do not re-run implementation merely because review completed.
+
+If the implementation/result changed after the GREEN subject, that verdict does not cover the new subject. Keep the Card non-terminal, freeze the changed subject and create the next REQUIRED/RECOMMENDED review attempt before `done`.
 
 ## Refresh Gate
 
@@ -109,6 +127,7 @@ Card may become `done` only when all applicable conditions hold:
 ## Review boundary
 
 When this chat implements a subject requiring/recommending independent review:
+- persist exact implementation/result/test/evidence pointers but keep the Card `execution_status` non-terminal (normally `in_progress`);
 - freeze exact subject and implementation/test evidence;
 - set `review_state: pending`;
 - persist durable state;
