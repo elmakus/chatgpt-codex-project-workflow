@@ -12,9 +12,9 @@ Do not load legacy/shared execution trees or another policy directory.
 
 1. Read `workflow/common/AUTHORITY.md`.
 2. Read project root `PROJECT.md`.
-3. If implementation/review/blocker/recovery state exists or is referenced, read `implementation/TASK_BOARD.yaml` before choosing the route.
+3. If implementation, implementation-review, blocker or execution-recovery state exists or is referenced, read `implementation/TASK_BOARD.yaml` before choosing the route.
 4. A REQUIRED/RECOMMENDED implementation `review_state: pending | in_progress` outranks later implementation.
-5. A referenced current plan-review record in `pending | in_progress` outranks plan approval and Execution Prep.
+5. If the current planning state or durable handoff references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. `pending | in_progress` outranks both.
 6. Select exactly one primary route below.
 7. Read only that route's required project artifacts plus exact authority refs.
 8. Continue deterministic work automatically until a real workflow stop is reached.
@@ -25,7 +25,7 @@ A route module owns only its current role.
 
 When that role finishes:
 1. persist the durable state/evidence produced by the role;
-2. re-evaluate Task Board + accepted authority;
+2. re-evaluate the applicable durable state (plan-review record and/or Task Board) + accepted authority;
 3. return to this router;
 4. if durable state already owns a real stop from root `CHATGPT.md#Real-stop-response-contract` — fresh-review handoff, unresolved strategic/product decision requiring user authority, explicit authorization, concrete runtime/access/input blocker, or end of approved scope — handle that stop first and do not run a separate hygiene handoff;
 5. only when a deterministic authorized next role exists, perform the context-health trigger check below;
