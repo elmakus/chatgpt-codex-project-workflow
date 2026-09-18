@@ -21,7 +21,7 @@ Normal ChatGPT should:
 
 Do not paste execution-policy semantics into the start prompt. The repository router owns them.
 
-When a fresh ChatGPT chat is required or recommended later, use the branch-aware fresh-session prompt and keep recoverable execution telemetry in durable state.
+When a fresh ChatGPT chat is required or recommended later, use the exact canonical branch-aware handoff from `workflow/common/USER_STOP.md`. Keep it locator-only: do not expand it with recoverable workflow semantics, checklists or telemetry, and do not treat the named entry obligation as a session-scope boundary.
 
 ## New project
 
