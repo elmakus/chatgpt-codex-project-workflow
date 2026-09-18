@@ -1,4 +1,5 @@
 project: "<project>"
+# Binding identity: MUST exactly match WORKSTREAM.yaml `id`.
 workstream_id: "<stable-workstream-id>"
 plan_revision: "<R# | micro-fix | none>"
 current_milestone: "<MXX | micro-fix | none>"
@@ -8,6 +9,7 @@ current_milestone: "<MXX | micro-fix | none>"
 # Policy invariant: exactly one Card may be in_progress in this Task Board.
 # Do not add foreign scheduling, lane or executor-routing metadata.
 
+# Binding identity: branch MUST exactly match WORKSTREAM.yaml `branch`.
 execution_ref:
   branch: "<exact-workstream-branch>"
   pr: null
