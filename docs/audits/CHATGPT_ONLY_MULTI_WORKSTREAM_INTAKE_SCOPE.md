@@ -1,10 +1,10 @@
 # ChatGPT-only Multi-Workstream + Intake — Final Independent Architecture/Coherence Review Scope
 
-Date: 2026-09-19  
-Implementation baseline: `main@03035876f3283d33e8a10ff43265f5be21a27a06`  
-Implementation branch: `feat/chatgpt-only-multi-workstream-intake`  
-Review requirement: **REQUIRED**  
-Canonical review state: `implementation/TASK_BOARD.yaml → M05-T01`  
+Date: 2026-09-19
+Implementation baseline: `main@03035876f3283d33e8a10ff43265f5be21a27a06`
+Implementation branch: `feat/chatgpt-only-multi-workstream-intake`
+Review requirement: **REQUIRED**
+Canonical review state: `implementation/TASK_BOARD.yaml → M05-T01`
 Review subject: recover the exact immutable `M05-T01.review_subject` from Task Board at independent-review entry. Do not use this file, the PR body or implementation-author evidence as verdict authority.
 
 ## Accepted target behavior
