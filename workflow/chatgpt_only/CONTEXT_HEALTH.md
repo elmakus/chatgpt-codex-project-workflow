@@ -42,7 +42,7 @@ Strong signals — any one may justify FRESH:
 - the agent is having difficulty distinguishing current durable truth from earlier transient discussion/tool output;
 - correct continuation would require mentally reconstructing substantial prior state that is already cleaner and more authoritative in the repository.
 
-Soft signals — normally require at least two together:
+Soft signals — use a meaningful combination rather than any one weak signal:
 - the chat has crossed several materially different roles or major project phases and much of the prior context is no longer relevant;
 - the next obligation uses a substantially different authority/source area than the work just completed;
 - large prior tool outputs, diffs, diagnostics or failed paths now dominate context but are not needed for the next obligation;
