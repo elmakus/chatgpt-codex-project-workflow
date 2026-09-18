@@ -343,3 +343,19 @@ workflow/common/DEFINITION.md
 **GREEN — lossless for applicable ChatGPT-only semantics, with explicit documented supersessions and policy exclusions.**
 
 No remaining applicable pre-split ChatGPT-only rule is unowned in this matrix.
+
+## 12. 2026-09-18 additive delegated-worker semantics
+
+These rows are additive post-split semantics rather than migrated legacy behavior.
+
+| New semantic | Owner | Status |
+|---|---|---|
+| ChatGPT remains fixed Task Card executor when a Card delegates bounded work | `chatgpt_only/DELEGATED_WORKERS.md` + `EXECUTION.md` + `STATE.md` | ADDED |
+| Delegation is opt-in in stable Card authority; existing no-delegation Cards are unchanged | `DELEGATED_WORKERS.md` + `TASK_CARDS.md` + template | ADDED |
+| Worker invocation is awaited; normal busy-loop completion polling is forbidden | `DELEGATED_WORKERS.md#Execution semantics` | ADDED |
+| Raw worker event/transcript output stays outside normal parent context; bounded normalized result returns | `DELEGATED_WORKERS.md#Execution semantics` + `#State and evidence` | ADDED |
+| Delegated tester receives contract + resulting state rather than executor transcript by default | `DELEGATED_WORKERS.md#Executor--tester separation` | ADDED |
+| Delegated tester is not REQUIRED/RECOMMENDED workflow Independent Review | `DELEGATED_WORKERS.md#Independent Review remains separate` + `TASK_CARDS.md` + `STATE.md` | ADDED |
+| Delegated workers are leaf workers by default; no backend-native nested fan-out | `DELEGATED_WORKERS.md#Leaf-worker invariant` | ADDED |
+| Task Board remains sole mutable execution-state authority; no worker state ledger is introduced | `DELEGATED_WORKERS.md#State and evidence` + `STATE.md` | ADDED |
+| Runtime worker availability is discovered at concrete invocation, not capability preflight | `EXECUTION.md#Runtime-operation rule` + `DELEGATED_WORKERS.md` | ADDED |
