@@ -21,7 +21,7 @@ Changing execution policy requires an explicit user decision.
 - Requirements: `requirements/CHATGPT_ONLY_MULTI_WORKSTREAM_INTAKE.md`
 - Approved plan: `planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md`
 - Task Board: `implementation/TASK_BOARD.yaml`
-- Latest cumulative handoff: `project-handoffs/M01_HANDOFF.md`
+- Latest cumulative handoff: `project-handoffs/M04_HANDOFF.md`
 - Accepted decisions index / key pointers:
   - `decisions/ADR_CHATGPT_ONLY_BRANCH_ISOLATED_WORKSTREAMS.md`
 
