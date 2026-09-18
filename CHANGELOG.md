@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Unreleased — lossless ChatGPT-only gap closure
+
+- Re-audited the policy split against the exact pre-split checkpoint instead of relying on the earlier scenario-level audit.
+- Restored omitted policy-neutral brainstorming/research/OpenSpec semantics under `workflow/common/`.
+- Restored ChatGPT-only planning, repository, state, session-continuity, high-risk review, publication and cutover semantics that had been over-compressed during the first split.
+- Added explicit execution-policy invariants: policy changes require an explicit user decision; a brand-new project defaults to `chatgpt_only` unless the user explicitly selects another accepted policy.
+- Added safe reconciliation for legacy ChatGPT-only concurrent-card metadata while keeping the new active ChatGPT-only model serial.
+- Added a full lossless semantic matrix mapping pre-split rules to new owners, policy exclusions or explicit supersessions.
+- Marked the earlier post-switch audit as superseded for lossless-proof purposes; its historical routing/isolation findings remain preserved.
+
 ## Unreleased — policy-first routing and isolated chatgpt_only namespace
 
 - `workflow/CONTEXT_ROUTING.md` is now a small execution-policy dispatcher rather than the full multi-policy route map.
