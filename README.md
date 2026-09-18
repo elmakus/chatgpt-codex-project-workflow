@@ -79,6 +79,20 @@ Under `mixed`, the next new execution assignment is routed again by Capability G
 
 No separate Campaign object or scheduler is required.
 
+## Delegated JIT planning
+
+A strong strategic plan does not need to predict every downstream implementation card before predecessor evidence exists.
+
+The execution orchestrator may, without returning to the original planner:
+- create later Task Cards only when predecessor evidence makes their scope deterministic;
+- split, merge, reorder or replace **not-yet-started** implementation cards;
+- complete an optional JIT milestone extension;
+- refine implementation-level acceptance/tests/interfaces from actual predecessor results.
+
+This authority is bounded. It must not change accepted requirements, frozen architecture/decisions, global invariants, milestone outcome or explicit user/deployment/authorization gates. If new evidence requires one of those to change, execution stops for strategic replan.
+
+Do not create placeholder cards whose real scope is merely “whatever the previous card reveals.” Persist the dependency/JIT trigger instead and create the real card when the evidence exists.
+
 ## Task execution
 
 Task Cards are serial by default. A prepared milestone may opt into **bounded parallel** execution when multiple READY cards have completed dependencies, explicit `parallel_safe` ownership, non-overlapping mutable `write_scope` and no shared `exclusive_resources`.
@@ -87,9 +101,16 @@ Task Board plus ordinary Git lane branches/worktrees remain the durable coordina
 
 ## Roles
 
-ChatGPT is the strategic/research/planning agent and user-facing router. It is also the fixed executor in `chatgpt_only` and a possible executor in `mixed`.
+Project Workflow defines **roles, not model identities**. It never requires a named model or reasoning level for planning, orchestration, execution or review. The user/runtime may choose different models, reasoning levels or sessions for the same role at different times.
 
-Codex is the fixed executor in `codex_only` and a possible executor in `mixed`. When `codex_workflow` is installed/enabled, it governs internal Codex runtime orchestration — including execute/review workers, worker/model routing, delegation, lifecycle, waiting and runtime recovery. Project Workflow retains project-level Task Card/state/review/acceptance authority.
+- **Strategic planner** — establishes or revises project goal, requirements, accepted architecture/decisions, global invariants, milestone outcomes and explicit boundary gates.
+- **Execution orchestrator / JIT planner** — turns accepted strategic authority plus current durable evidence into executable milestone detail and Task Cards, coordinates execution, and refines not-yet-started work within delegated planning authority.
+- **Executor / worker** — implements bounded Task Card scope against its exact authority slice.
+- **Independent reviewer** — evaluates the exact reviewed subject against the same applicable authority slice without having implemented that subject.
+
+Roles may be performed by normal ChatGPT or Codex according to project `execution_policy` and current routing. Under `codex_only`, Codex Main commonly occupies the execution-orchestrator role; when `codex_workflow` is installed/enabled, it governs internal Codex worker/model routing and lifecycle. Project Workflow does not choose those models or duplicate those mechanics.
+
+A strategic replan returns to the **strategic-planning role**, not necessarily to the same model/session that authored the original plan.
 
 ## Progressive disclosure
 

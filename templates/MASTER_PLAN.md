@@ -35,10 +35,12 @@ Updated: `<YYYY-MM-DD>`
 ### M01 — <name>
 - Outcome: ...
 - Checkpoint: ...
-- Acceptance: ...
+- Acceptance: `<stable outcome-level acceptance; defer only implementation-level detail that genuinely depends on predecessor evidence>`
 - Requirement coverage: ...
 - Dependencies: ...
 - Must-preserve constraints / implementation-shaping rationale: `<only when material>`
+- JIT decomposition / deferred-detail trigger: `none | after <exact predecessor/result/evidence>`
+- Strategic replan trigger: `<only when a known condition would invalidate accepted strategic authority>`
 - Boundary gate / explicit user authorization: `none | <exact gate>`
 
 An approved milestone sequence may execute continuously under fixed `chatgpt_only` or `codex_only` policy. GREEN milestone boundaries still require normal close/handoff plus fresh execution prep/Refresh Gate; execution stops at any explicit boundary gate.
@@ -49,7 +51,7 @@ Each approved milestone subsection is the default milestone contract. Create a s
 
 | Requirement | Milestone | Planned Task Card(s) | OpenSpec candidate |
 |---|---|---|---|
-| REQ-001 | M01 | M01-T01 | yes/no |
+| REQ-001 | M01 | `M01-T01` or `JIT after <exact trigger>` | yes/no |
 
 ## 11. Deployment / migration strategy
 ...

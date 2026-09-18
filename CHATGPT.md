@@ -12,6 +12,7 @@ ChatGPT Work is outside this workflow. Do not route project work through ChatGPT
 - One project uses one repository unless the user explicitly approves a technically justified exception.
 - `implementation/TASK_BOARD.yaml` is the sole authoritative mutable execution-state record once implementation state exists.
 - `elmakus/codex_workflow`, when installed/enabled in Codex, governs only internal Codex runtime orchestration.
+- Project Workflow defines planner/orchestrator/executor/reviewer roles and their authority boundaries, never mandatory model identities or reasoning levels.
 
 ## Start here
 

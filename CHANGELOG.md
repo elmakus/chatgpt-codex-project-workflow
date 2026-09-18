@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## Unreleased — delegated JIT planning and role/model separation
+
+### Roles
+
+- Project Workflow now defines strategic planner, execution orchestrator/JIT planner, executor/worker and independent reviewer as **roles**, not model identities.
+- No named model or reasoning level is required by workflow contracts; model/session selection remains a user/runtime concern.
+- Strategic replan returns to the strategic-planning role, not necessarily the original planning model/session.
+
+### Incremental planning
+
+- Future Task Cards no longer need to be pre-created when their real scope materially depends on predecessor evidence.
+- Placeholder cards with unknowable “whatever the previous step reveals” scope are explicitly discouraged.
+- Execution orchestrators may create/split/merge/reorder/replace not-yet-started cards and complete JIT milestone detail from durable predecessor evidence without returning to the original planner.
+- Added L1 execution detail, L2 JIT decomposition/refinement and L3 strategic replan boundaries.
+- L2 authority is bounded by accepted requirements, frozen architecture/decisions, invariants, milestone outcome and explicit authorization gates.
+- Known strategic ambiguity cannot be hidden as deferred decomposition.
+
 ## Unreleased — lean documentation and authority-preserving delegation
 
 ### Documentation footprint

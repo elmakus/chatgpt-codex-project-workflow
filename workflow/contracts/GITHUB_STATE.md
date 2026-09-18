@@ -90,6 +90,16 @@ Project routing assumes `ChatGPT capabilities ⊆ Codex capabilities`.
 
 Assignment is persisted only in Task Board. Policy never changes automatically because of a blocker.
 
+## 5A. Incremental Card-set state
+
+Task Board does not need to contain speculative future cards whose contracts are not yet knowable.
+
+When a milestone/plan records a JIT decomposition trigger:
+- the currently contractible cards may execute normally;
+- after predecessor evidence satisfies the trigger, the execution orchestrator creates/revises the real not-yet-started card contracts and adds/reconciles their Task Board entries before execution;
+- absence of speculative future cards is not an inconsistent state while the JIT trigger is unsatisfied;
+- active/in-progress cards are not silently redefined through this mechanism.
+
 ## 6. Starting cards
 
 ### Serial

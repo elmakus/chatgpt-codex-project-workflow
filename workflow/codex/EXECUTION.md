@@ -19,7 +19,7 @@ Codex must not load `CHATGPT.md` or `workflow/chatgpt/*` merely because they exi
 
 When Task Board uses `bounded_parallel`, Codex Main applies `CODEX_ORCHESTRATION.md`: Main remains project coordinator, mutable Task Cards use isolated lane workspaces, compatible cards may be delegated to internal workers, and Main alone integrates/updates shared execution state.
 
-When the owner's `codex_workflow` is installed/enabled, it is authoritative for internal Codex orchestration: worker selection, execute/review roles, delegation, concurrency, lifecycle, waiting and runtime recovery. Project Workflow supplies Task Card/review boundaries, applicable authority slices and durable project state; it does not duplicate those mechanics. Project Workflow's Authority Preservation Rule constrains what project intent must survive delegation, not how `codex_workflow` creates or manages workers.
+When the owner's `codex_workflow` is installed/enabled, it is authoritative for internal Codex orchestration: worker selection, execute/review roles, delegation, concurrency, lifecycle, waiting and runtime recovery. Project Workflow supplies Task Card/review boundaries, applicable authority slices and durable project state; it does not duplicate those mechanics. Project Workflow never hard-codes a model for planner/orchestrator/executor/reviewer roles. Project Workflow's Authority Preservation Rule constrains what project intent must survive delegation, not how `codex_workflow` creates or manages workers.
 
 ## `codex_only` capability behavior
 
@@ -33,7 +33,7 @@ Do not stop merely because a capability might be needed later.
 
 ## `codex_only` continuous execution
 
-After a GREEN milestone, Codex Main may continue automatically into the next already-approved milestone when shared continuation conditions hold. It may read `workflow/EXECUTION_PREP.md` and perform deterministic just-in-time preparation of milestone/Card contracts and Task Board state from the approved Master Plan.
+During an active milestone or after a GREEN milestone, the Codex execution orchestrator may perform allowed L2 just-in-time decomposition/refinement from durable authority and predecessor evidence. It may read `workflow/EXECUTION_PREP.md`, create/revise not-yet-started Task Cards, complete optional JIT milestone detail and reconcile Task Board. After a GREEN milestone, Codex Main may continue automatically into the next already-approved milestone when shared continuation conditions hold.
 
 This permits an approved multi-milestone sequence to run as one orchestrated Codex execution stream. Codex must still stop for:
 - strategic/product/architecture/frozen-requirement change;
