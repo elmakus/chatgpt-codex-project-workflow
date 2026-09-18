@@ -99,8 +99,8 @@ Read the latest cumulative handoff only when it materially supplies predecessor 
 
 When preparation leaves an unblocked READY Card and no real user/authorization/strategic gate intervenes, **do not end the user turn merely to report preparation**.
 
-Load `workflow/chatgpt_only/EXECUTION.md` + `STATE.md` and start the Card immediately.
+The execution-preparation role is complete. Persist its durable state, return to `workflow/chatgpt_only/ROUTER.md`, and let the router select the execution route from the new Task Board state. Continue in the same chat.
 
 A fresh session may be recommended for context hygiene at a clean boundary, but that recommendation is not an execution gate.
 
-When current chat later implements a subject requiring/recommending independent review, stop only at the required fresh-review boundary defined in `REVIEW.md`.
+If the later execution role implements a subject requiring/recommending independent review, the execution route owns that fresh-review boundary.
