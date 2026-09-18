@@ -8,8 +8,8 @@ current_milestone: "M05"
 
 execution_ref:
   branch: "feat/chatgpt-only-multi-workstream-intake"
-  pr: null
-  head: "38955588da57039183b0c15a3cd55fbf8b384e80"
+  pr: 28
+  head: "a8693eb8d20272511aecff118c386c48406f4e44"
 
 research_obligation: null
 
@@ -64,7 +64,7 @@ milestones:
 
   M05:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M05--ux-templates-migration-and-regression-coverage"
     checkpoint: null
     implementation_head: null
@@ -147,8 +147,8 @@ cards:
     title: "UX, templates, migration and final regression closure"
     milestone: "M05"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on: ["M04-T01"]
     openspec_change: null
     contract: "implementation/cards/M05-T01.md"
