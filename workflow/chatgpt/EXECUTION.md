@@ -16,6 +16,8 @@ Attempt the concrete operation with the runtime available in the current normal 
 
 Do not infer production/runtime success from an isolated local test when they are materially different environments.
 
+If Task Board uses `bounded_parallel`, load the conditional parallel contracts from the shared router. ChatGPT may execute a compatible subset or one card when needed; it does not manufacture concurrency merely because parallel mode is allowed.
+
 ChatGPT Work is outside Project Workflow.
 
 ## Human-facing control summary
