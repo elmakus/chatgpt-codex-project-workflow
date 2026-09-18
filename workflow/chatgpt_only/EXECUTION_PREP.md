@@ -75,7 +75,7 @@ After materialization, the selected Task Board is the sole mutable Card/review/R
 8. Define bounded included/excluded scope.
 9. Define acceptance and required tests/checks.
 10. Identify material external writes plus required persisted-state verification.
-11. Classify independent review when material.
+11. Classify Card/milestone independent review when material. Separately, for a selected intake-created `issue | feature` workstream that changes code, runtime configuration, external behavior or system behavior, ensure manifest `review.requirement` is at least `RECOMMENDED` (or `REQUIRED` under existing high-risk authority); leave its workstream-level `state/subject/evidence` unactivated until an exact final/integrated subject exists or exact stronger-review coverage is proven.
 12. Mark OpenSpec candidates using `workflow/common/OPENSPEC.md`.
 13. Initialize/reconcile the selected canonical Task Board as sole live Card/milestone execution state for this default/workstream context.
 14. Confirm requirement coverage, allowing future requirements to point to a durable JIT trigger.
