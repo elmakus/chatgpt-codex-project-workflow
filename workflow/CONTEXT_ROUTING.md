@@ -18,7 +18,7 @@ After selecting this route:
 - use only `workflow/common/*` and `workflow/chatgpt_only/*` workflow modules;
 - do not load legacy/shared execution contracts;
 - do not load another policy namespace;
-- recover current implementation/review state from Task Board when present.
+- recover mutable state from the canonical source defined by the selected policy route; for `chatgpt_only`, implementation/implementation-review state lives in Task Board while pre-execution plan-review state lives under `planning/reviews/`.
 
 ### Other accepted policy
 
