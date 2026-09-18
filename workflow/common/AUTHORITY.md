@@ -6,7 +6,7 @@ This file contains only policy-neutral authority rules.
 
 - Current workflow `main` is authoritative for workflow behavior unless an explicitly frozen in-flight boundary says otherwise.
 - Project repository is durable project truth.
-- Root `PROJECT.md` is a high-level router/index, not live execution state. It may locate exact pre-execution continuation records such as an active exploratory scope or active Research obligation; lifecycle/detail remains owned by the pointed record.
+- Root `PROJECT.md` is a high-level router/index, not live execution state.
 - When implementation state exists, `implementation/TASK_BOARD.yaml` is the sole authoritative mutable execution-state record.
 - Accepted durable repository state outranks stale chat/session narrative.
 
