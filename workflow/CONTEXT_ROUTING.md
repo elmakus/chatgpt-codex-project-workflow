@@ -57,7 +57,7 @@ Read `workflow/RESEARCH.md`, `PROJECT.md`, current research question/notes, rele
 
 ## PLANNING
 
-Read `workflow/PLANNING.md`, `PROJECT.md`, canonical requirements, relevant verified research, accepted decisions and current approved/draft plan. Load Task Card/OpenSpec execution contracts only when planning reaches execution decomposition.
+Read `workflow/PLANNING.md`, `PROJECT.md`, canonical requirements, relevant verified research, accepted decisions and current approved/draft plan. Load Task Card/OpenSpec execution contracts only when planning reaches execution decomposition. Do not force speculative future Card creation when the plan deliberately records a JIT decomposition trigger.
 
 ## EXECUTION PREP
 
@@ -68,7 +68,7 @@ Then route by policy:
 - `codex_only` → no Capability Gate and no capability preflight/inventory;
 - `mixed` → normal ChatGPT reads/runs `workflow/chatgpt/CAPABILITY_GATE.md`.
 
-During automatic `codex_only` multi-milestone continuation, Codex Main may read `workflow/EXECUTION_PREP.md` to prepare the next already-approved milestone within strategic boundaries.
+During active or automatic `codex_only` execution, the execution orchestrator may read `workflow/EXECUTION_PREP.md` for L2 JIT decomposition/refinement within strategic boundaries, including later cards in the current milestone or the next already-approved milestone.
 
 ## CHATGPT EXECUTION
 
