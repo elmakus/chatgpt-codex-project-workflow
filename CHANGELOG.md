@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Unreleased — policy-first routing and isolated chatgpt_only namespace
+
+- `workflow/CONTEXT_ROUTING.md` is now a small execution-policy dispatcher rather than the full multi-policy route map.
+- Added `workflow/chatgpt_only/` with isolated planning, execution preparation, Task Card, state, execution, review, close/publication, recovery and repository contracts.
+- Added policy-neutral `workflow/common/` authority, brainstorming, research and OpenSpec modules.
+- `chatgpt_only` execution now selects exactly one READY project Card at a time and does not load alternate-executor, pre-assignment routing or project-card concurrency semantics.
+- Preserved the previous router unchanged at `workflow/legacy/CONTEXT_ROUTING.md` for policies not yet migrated.
+- Existing shared execution/contracts and other executor-specific modules remain unchanged in this phase; no legacy deletion occurs before the remaining policy migrations.
+- Simplified normal ChatGPT start/Project Instructions templates to point at the live policy router instead of duplicating policy semantics.
+- Preserved fresh-review independence, RED same-turn bounded remediation, automatic continuation, JIT refinement, milestone close/publication and recovery semantics in the new ChatGPT-only path.
+
 ## Unreleased — reviewer auto-remediation and global ChatGPT control surface
 
 - Normal ChatGPT human-facing output rules now live in the global `CHATGPT.md` bootstrap, so independent reviewers use the same concise control-surface behavior as executors.
