@@ -46,12 +46,12 @@ Do not compensate for an incomplete definition by inventing strategic authority 
 
 When Planning needs evidence before it can make a valid planning decision:
 
-1. persist one exact research record with `Status: active`, `Origin role: strategic_planning`, the current plan revision/planning obligation as `Origin subject`, and `Return target: strategic_planning:<exact subject>`;
-2. for pre-execution Planning, set `PROJECT.md → Active research obligation` to that record before yielding Planning;
-3. when replanning is the current resolution of active implementation/recovery work, set Task Board `research_obligation` instead and do not mirror the execution obligation into `PROJECT.md`;
-4. return to the router and route to Research.
+1. create one exact record under `workflow/chatgpt_only/RESEARCH.md#Durable record contract`, with `Origin role: strategic_planning`, the current plan revision/planning obligation as Origin subject, `Return target: strategic_planning:<exact subject>`, and `Return reconciliation: pending`;
+2. for pre-execution Planning, set `PROJECT.md → Active research obligation` before yielding;
+3. when replanning active implementation/recovery work, set Task Board `research_obligation` instead and do not mirror it into `PROJECT.md`;
+4. persist record + owning pointer before returning to the router for Research.
 
-When that record becomes `complete`, the router returns to the exact recorded Strategic Planning subject. Reconcile the verified findings into planning authority first; then set the research record to `consumed` and clear its owning pointer (PROJECT for pre-execution Planning, Task Board for active implementation/recovery replanning).
+When that record becomes `complete` for this Strategic Planning subject, follow `workflow/chatgpt_only/RESEARCH.md#Final Return-target protocol`. The target-specific reconciliation is the exact planning result: updated planning authority and, when REQUIRED/RECOMMENDED review still applies, the exact next plan revision/review boundary. Persist that result and `Return reconciliation: applied` + exact result refs in the same durable Git transition. Only then consume/clear. Recovery from `applied + complete` must not create another plan revision or review record.
 
 ## Inputs
 
