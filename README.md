@@ -93,6 +93,27 @@ This authority is bounded. It must not change accepted requirements, frozen arch
 
 Do not create placeholder cards whose real scope is merely “whatever the previous card reveals.” Persist the dependency/JIT trigger instead and create the real card when the evidence exists.
 
+## Lean executor runtime
+
+Ordinary execution of an already-defined Task Card uses a small shared runtime path:
+
+```text
+workflow/EXECUTION.md
+→ workflow/contracts/TASK_EXECUTION.md
+→ executor adapter
+→ current Task Card + exact authority slice + required source/runtime
+```
+
+`TASK_CARDS.md` is an authoring/decomposition contract, not a mandatory executor read. `GITHUB_STATE.md` is the extended coordinator/parallel/review/milestone/recovery state contract, not a mandatory serial-card read.
+
+Conditional material is loaded only on trigger:
+- OpenSpec when current scope references/requires it;
+- Task Card authoring + Execution Prep for JIT decomposition/refinement;
+- full GitHub State for bounded parallel/coordinator state, close/publication, inconsistency or recovery;
+- Review and Handoff only when review/acceptance/close is reached.
+
+Project Workflow does not teach ChatGPT or Codex a catalog of their tools/capabilities. Executors attempt concrete operations with their actual runtime; fixed-policy capability inventory/preflight is not part of normal execution.
+
 ## Task execution
 
 Task Cards are serial by default. A prepared milestone may opt into **bounded parallel** execution when multiple READY cards have completed dependencies, explicit `parallel_safe` ownership, non-overlapping mutable `write_scope` and no shared `exclusive_resources`.
