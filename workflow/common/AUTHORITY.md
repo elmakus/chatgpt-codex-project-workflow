@@ -10,6 +10,14 @@ This file contains only policy-neutral authority rules.
 - When implementation state exists, `implementation/TASK_BOARD.yaml` is the sole authoritative mutable execution-state record.
 - Accepted durable repository state outranks stale chat/session narrative.
 
+## Workflow repository versus project repository
+
+The workflow repository contains workflow rules, contracts, templates, prompts and workflow history only.
+
+Project-specific knowledge, decisions, requirements, plans, execution state, evidence, handoffs and project source/code belong in the project repository.
+
+Do not use the workflow repository as a second project-state store.
+
 ## Authority precedence
 
 Apply authority by domain:
