@@ -1,0 +1,32 @@
+# ChatGPT-only branch-isolated workstream manifest template.
+# Routing/workstream-lifecycle metadata only.
+# Card/milestone execution/review state belongs only to the selected Task Board.
+
+id: "<stable-workstream-id>"
+kind: "issue" # issue | feature | maintenance
+status: "discovery" # discovery | definition | planning | ready | in_progress | review | blocked | done | superseded
+
+branch: "<exact-workstream-branch>"
+base_ref: "<exact-ref-used-to-create-workstream>"
+integration_target: "<target-branch>"
+
+parent_workstream: null
+parent_branch: null
+
+task_board: null # implementation/workstreams/<id>/TASK_BOARD.yaml | null
+
+authority:
+  requirements: null
+  decisions: []
+  plan: null
+
+# Workstream-level final-integration review only.
+# Never mirror Card/milestone review state from the Task Board here.
+review:
+  requirement: null # REQUIRED | RECOMMENDED | none | null
+  state: null # pending | in_progress | green | red | null
+  subject: null
+  evidence: null
+
+pr: null
+result: null
