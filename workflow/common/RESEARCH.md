@@ -28,7 +28,9 @@ Status semantics:
 - `complete` — evidence/findings are durably complete and the exact recorded Return target is now the next obligation;
 - `consumed` — the Return target durably reconciled the findings; the active pointer may now be cleared.
 
-Do not clear an active research pointer at `complete`. Clear it only after the Return target has durably consumed/reconciled the findings so a crash between research completion and return-role reconciliation is recoverable.
+Do not clear an active research pointer at `complete`. Clear it only after the final Return target has durably consumed/reconciled the findings so a crash between research completion and return-role reconciliation is recoverable.
+
+Do not overwrite an active/complete Research pointer with a new question. If the current Return target needs another Research obligation, first durably reconcile the current findings into that target's state/open question, then atomically mark the old record `consumed` and replace the owning pointer with the new exact `active` record.
 
 ## Research workflow
 
