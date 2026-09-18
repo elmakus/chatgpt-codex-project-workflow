@@ -12,17 +12,19 @@ Do not load legacy/shared execution trees or another policy directory.
 
 1. Read `workflow/common/AUTHORITY.md`.
 2. Read project root `PROJECT.md`.
-3. If implementation, implementation-review, blocker or execution-recovery state exists or is referenced, resolve the state context **before** reading mutable execution state. Read `workflow/chatgpt_only/WORKSTREAMS.md` when a branch-isolated workstream is referenced or present; select its exact manifest + Task Board only after branch/manifest validation **and** manifest ↔ Task Board binding validation (`workstream_id` + `execution_ref.branch`). A failed branch-isolated binding routes to Recovery and must not fall back to the default board. When no branch-isolated workstream is selected, keep the legacy/default `implementation/TASK_BOARD.yaml` fallback. In the rest of this router, `Task Board` means that exact selected canonical board.
-4. A REQUIRED/RECOMMENDED implementation `review_state: pending | in_progress` outranks later implementation and routes to Independent review.
-5. If Task Board `research_obligation` points to an implementation/recovery Research record, read that exact record before choosing later implementation, including when the Research obligation was opened from a RED review. `Status: active | blocked` routes to Research; `Status: complete` routes to its exact recorded Return target; `Status: consumed` means the Task Board pointer is stale and should be cleared at the next safe edit.
-6. A non-terminal REQUIRED/RECOMMENDED subject with `review_state: red` outranks unrelated/later implementation. Read its exact RED evidence and apply the single canonical classification in `REVIEW.md#RED → corrective-route transition` against current durable state: bounded L1/L2 correction → Execution Prep/Execution; plan-only correction → Strategic planning; accepted-authority correction → Project Definition; missing evidence → materialize the implementation-owned Research handoff before Research; unresolved real gate → user stop. If the RED evidence/current state cannot be coherently classified, route to Recovery rather than guessing.
-7. An `in_progress` Card with `review_state: green` routes to Execution for terminal Post-review Card finalization before later work.
-8. If `PROJECT.md → Active research obligation` points to a pre-execution research record, read that exact record before choosing the route. `Status: active | blocked` routes to Research; `Status: complete` routes to the exact recorded Return target; `Status: consumed` means the pointer is stale and should be cleared at the next safe edit.
-9. If both Task Board and PROJECT point to different active/blocked/complete Research obligations, treat that as inconsistent state and route to Recovery instead of guessing which obligation owns continuation.
-10. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
-11. Select exactly one primary route below.
-12. Read only that route's required project artifacts plus exact authority refs.
-13. Continue deterministic work automatically until a real workflow stop is reached.
+3. If the current user request intentionally invokes `#issue` or `#feature` as an operator directive, read `workflow/chatgpt_only/INTAKE.md` and route to Intake **before** ordinary implementation/review selection for any previously active default/workstream state. Quoted/example/incidental marker text is not a directive. Intake owns discovery of an existing matching workstream or creation of a new one; do not preselect an unrelated Task Board first.
+4. Otherwise, if implementation, implementation-review, blocker or execution-recovery state exists or is referenced, resolve the state context **before** reading mutable execution state. Read `workflow/chatgpt_only/WORKSTREAMS.md` when a branch-isolated workstream is referenced or present; select its exact manifest + Task Board only after branch/manifest validation **and** manifest ↔ Task Board binding validation (`workstream_id` + `execution_ref.branch`). A failed branch-isolated binding routes to Recovery and must not fall back to the default board. When no branch-isolated workstream is selected, keep the legacy/default `implementation/TASK_BOARD.yaml` fallback. In the rest of this router, `Task Board` means that exact selected canonical board.
+5. When an exact selected branch-isolated manifest has `intake.state: active`, read its exact `intake.record` and route to Intake before later Task Board work for that workstream. `intake.state: complete` is historical routing evidence; do not replay it—recover the downstream canonical state materialized by Intake.
+6. A REQUIRED/RECOMMENDED implementation `review_state: pending | in_progress` outranks later implementation and routes to Independent review.
+7. If Task Board `research_obligation` points to an implementation/recovery Research record, read that exact record before choosing later implementation, including when the Research obligation was opened from a RED review. `Status: active | blocked` routes to Research; `Status: complete` routes to its exact recorded Return target; `Status: consumed` means the Task Board pointer is stale and should be cleared at the next safe edit.
+8. A non-terminal REQUIRED/RECOMMENDED subject with `review_state: red` outranks unrelated/later implementation. Read its exact RED evidence and apply the single canonical classification in `REVIEW.md#RED → corrective-route transition` against current durable state: bounded L1/L2 correction → Execution Prep/Execution; plan-only correction → Strategic planning; accepted-authority correction → Project Definition; missing evidence → materialize the implementation-owned Research handoff before Research; unresolved real gate → user stop. If the RED evidence/current state cannot be coherently classified, route to Recovery rather than guessing.
+9. An `in_progress` Card with `review_state: green` routes to Execution for terminal Post-review Card finalization before later work.
+10. If `PROJECT.md → Active research obligation` points to a pre-execution research record, read that exact record before choosing the route. `Status: active | blocked` routes to Research; `Status: complete` routes to the exact recorded Return target; `Status: consumed` means the pointer is stale and should be cleared at the next safe edit.
+11. If both Task Board and PROJECT point to different active/blocked/complete Research obligations, treat that as inconsistent state and route to Recovery instead of guessing which obligation owns continuation.
+12. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
+13. Select exactly one primary route below.
+14. Read only that route's required project artifacts plus exact authority refs.
+15. Continue deterministic work automatically until a real workflow stop is reached.
 
 ## Fresh-session entry semantics
 
@@ -137,6 +139,19 @@ For any `complete` Research record, the exact current `Return target` owns conti
 Research never selects a different route by itself; only the authorized classifier may refine a Return target.
 
 ## Routes
+
+### Intake
+
+Read:
+- `workflow/chatgpt_only/INTAKE.md`;
+- `workflow/chatgpt_only/WORKSTREAMS.md`;
+- the explicit current `#issue` / `#feature` directive, or the exact active intake record from the selected workstream manifest;
+- project `PROJECT.md`;
+- only repository branch/PR/workstream/source/runtime evidence needed to establish identity, reproduce/diagnose when practical, choose base/dependency and materialize the smallest legal downstream route.
+
+For a new explicit directive, do not load an unrelated active Task Board merely because it is the current/default execution state. Intake discovers relevant workstreams without adopting their mutable state.
+
+When Intake completes, it must first materialize the canonical durable state owned by the selected downstream route, then set its manifest intake state complete, return to this router and continue. A completed intake is not a user/session stop by itself.
 
 ### Brainstorming
 
