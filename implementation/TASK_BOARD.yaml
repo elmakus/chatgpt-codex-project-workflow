@@ -31,7 +31,7 @@ cards:
     title: "Workstream state model and routing foundation"
     milestone: "M01"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     openspec_change: null
