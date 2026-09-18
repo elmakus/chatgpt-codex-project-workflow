@@ -19,6 +19,6 @@ A fresh-session prompt is:
 
 Do not expand the prompt with review/audit checklists, findings, remediation proposals, test inventories, implementation summaries, changed-file lists, recoverable SHAs or GREEN/RED continuation branches.
 
-If special review/audit scope cannot be reconstructed from existing durable authority, persist that scope in the project repository first and point the canonical handoff at the durable scope artifact.
+If special review/audit scope cannot be reconstructed from existing durable authority, persist that scope in the project repository first. Preserve any canonical durable state/start pointer required by the selected route and make its owning state/contract reference the scope artifact; point the handoff directly at the scope artifact only when no canonical pointer exists.
 
 The user-facing response must include the completed canonical prompt immediately. Do not make the user ask for it separately.
