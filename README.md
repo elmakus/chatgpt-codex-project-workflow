@@ -167,6 +167,7 @@ Whenever Project Workflow requires or recommends that the user open a fresh norm
 
 The prompt is intentionally thin:
 - project repository;
+- exact active project/implementation branch;
 - exact continuation target (for example pending independent review for one card);
 - smallest durable start pointer;
 - instruction to recover exact state/subject/authority/evidence from the repository.
