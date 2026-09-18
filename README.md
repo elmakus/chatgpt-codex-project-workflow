@@ -144,6 +144,23 @@ Under `mixed`, the next new execution assignment is routed again by Capability G
 
 No separate Campaign object or scheduler is required.
 
+## Independent plan review
+
+A new or materially revised Master Plan uses independent plan review when practical.
+
+Under `chatgpt_only`:
+- the planner performs its own planning audit first;
+- REQUIRED/RECOMMENDED review keeps the plan in `draft`;
+- the exact plan subject is frozen;
+- mutable review state lives separately under `planning/reviews/<plan-revision>.md`;
+- the authoring chat stops for a fresh normal ChatGPT reviewer;
+- GREEN returns through the router to Planning for final approval;
+- RED routes to Planning, Project Definition or Research according to the defect.
+
+Trivial/editorial plan changes may use `Independent plan review: none`.
+
+The reviewed Master Plan itself does not carry mutable review-state fields, so review lifecycle updates cannot accidentally change the frozen review subject.
+
 ## Delegated JIT planning
 
 A strong strategic plan does not need to predict every downstream implementation card before predecessor evidence exists.
@@ -196,6 +213,7 @@ Project Workflow defines **roles, not model identities**. It never requires a na
 
 - **Definition owner** — turns accepted user/product intent + verified evidence into canonical requirements, accepted strategic/high-level decisions, constraints, invariants, non-goals and acceptance-level target state.
 - **Strategic planner** — organizes that approved Definition into Master Plan milestones, dependencies, planned work packages, outcome-level acceptance, verification/migration strategy and JIT boundaries without redefining product/system intent.
+- **Independent plan reviewer** — independently audits one exact frozen Master Plan draft against the approved Definition before approval when review is REQUIRED/RECOMMENDED.
 - **Execution orchestrator / JIT planner** — turns accepted strategic authority plus current durable evidence into executable milestone detail and Task Cards, coordinates execution, and refines not-yet-started work within delegated planning authority.
 - **Executor / worker** — implements bounded Task Card scope against its exact authority slice.
 - **Independent reviewer** — evaluates the exact reviewed subject against the same applicable authority slice without having implemented that subject.
