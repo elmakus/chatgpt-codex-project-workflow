@@ -48,7 +48,7 @@ Projects may adapt paths, but `PROJECT.md` must identify actual canonical locati
 - requirements → authoritative product/system requirements;
 - planning → draft/approved plan authority;
 - planning/reviews → mutable pre-execution independent plan-review lifecycle/evidence; not execution state and never a substitute for Task Board;
-- Task Board → sole mutable execution state;
+- Task Board → sole mutable execution state, including the implementation/recovery Research routing pointer when such an obligation is active;
 - milestone/Card files → stable contracts, not status mirrors;
 - evidence → durable proof when materially useful/required;
 - blockers → durable blocker evidence;
@@ -73,7 +73,7 @@ Keep it small. It should identify:
 
 It is a router, not a live execution tracker. An `Active exploratory scope` pointer is allowed because it locates the canonical Brainstorming/Definition promotion record; promotion authorization/revision remains in that pointed record rather than being duplicated into `PROJECT.md`.
 
-An `Active research obligation` pointer is also allowed for pre-execution Research because it locates the canonical research lifecycle record. Research `Status`, Origin subject and Return target remain in that pointed record. Implementation-triggered Research stays Task Board/blocker-owned and is not mirrored into `PROJECT.md`.
+An `Active research obligation` pointer is also allowed for pre-execution Research because it locates the canonical research lifecycle record. Research `Status`, Origin subject and Return target remain in that pointed record. Implementation-triggered Research is routed by Task Board `research_obligation` and is not mirrored into `PROJECT.md`; the pointed research record owns lifecycle Status, Origin and Return target.
 
 ## Durable state versus local convenience
 
@@ -116,7 +116,7 @@ Recovery must be possible from:
 - `PROJECT.md`;
 - the PROJECT-pointed active exploratory record when Brainstorming/Definition promotion or recovery is active;
 - the PROJECT-pointed active pre-execution research record when Research/return-role recovery is active;
-- Task Board;
+- Task Board, including its implementation/recovery `research_obligation` pointer and exact pointed record when present;
 - exact Git/runtime/external state;
 - current milestone/Card contracts;
 - referenced evidence/OpenSpec/handoff as actually needed.
