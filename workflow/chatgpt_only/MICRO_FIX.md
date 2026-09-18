@@ -79,7 +79,7 @@ Micro-fix differences are only:
 - there is no approved Master Plan/milestone contract to read;
 - `current_milestone: micro-fix` has no entry in `milestones`;
 - the one bounded fix Card is the execution/acceptance contract;
-- milestone lifecycle/start/close mutations are skipped;
+- milestone lifecycle/start/close **state mutations** are skipped; the workstream still enters `CLOSE.md` for final target refresh/review/integration without synthesizing a milestone;
 - Card result/evidence/review state remains canonical only in the selected Task Board.
 
 Implementation-owned Research still uses only that selected Task Board's `research_obligation`.
