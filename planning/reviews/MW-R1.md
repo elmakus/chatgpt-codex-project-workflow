@@ -2,7 +2,7 @@
 
 Plan revision: MW-R1
 Review requirement: REQUIRED
-Review state: pending
+Review state: in_progress
 Review subject: 6722da91da4585dd6d470fa7063169b932f3ad29
 Plan: planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md
 Requirements: requirements/CHATGPT_ONLY_MULTI_WORKSTREAM_INTAKE.md
