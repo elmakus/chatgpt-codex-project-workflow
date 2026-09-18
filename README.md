@@ -114,11 +114,18 @@ A strategic replan returns to the **strategic-planning role**, not necessarily t
 
 ## Progressive disclosure
 
-Agents read the smallest applicable path:
+Agents follow deterministic route read sets from `workflow/CONTEXT_ROUTING.md`.
 
-- ChatGPT starts at `CHATGPT.md`, then project `PROJECT.md`, then shared phase modules and ChatGPT-specific modules only when needed.
-- Codex starts at `prompts/CODEX_START.md`, then project `PROJECT.md`, then shared execution modules and Codex-specific modules. Codex does **not** load `CHATGPT.md` or ChatGPT-specific execution instructions.
-- ChatGPT reads `workflow/codex/HANDOFF.md` only when preparing/interpreting a Codex handoff.
+Each route separates:
+- **REQUIRED** files/artifacts;
+- **CONDITIONAL** files loaded only when a concrete trigger exists;
+- **DO NOT READ BY DEFAULT** files that are outside the normal context set.
+
+Normal ChatGPT starts with the intentionally small `CHATGPT.md` router, project `PROJECT.md`, and `CONTEXT_ROUTING.md`; when implementation/review/recovery state exists it reads Task Board before final route selection. It then follows one primary route rather than loading neighboring phase modules "just in case."
+
+For a review-only ChatGPT session, the normal workflow module is `workflow/REVIEW_AND_HANDOFF.md`; Task Card/GitHub State/OpenSpec/Project Repository contracts are conditional on their specific triggers. ChatGPT execution/planning modules and all `workflow/codex/*` are outside the default review context.
+
+Codex starts from `prompts/CODEX_START.md` and its own route. Codex does **not** load `CHATGPT.md` or ChatGPT-specific execution instructions. ChatGPT reads `workflow/codex/HANDOFF.md` only for an actual Codex handoff/return/strategic escalation.
 
 ## ChatGPT human control surface
 

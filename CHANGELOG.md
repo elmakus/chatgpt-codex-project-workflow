@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased — deterministic context read sets
+
+- Slimmed `CHATGPT.md` into a true bootstrap/router instead of duplicating execution-policy and milestone-continuation semantics owned by phase modules.
+- `workflow/CONTEXT_ROUTING.md` now defines per-route **REQUIRED**, **CONDITIONAL**, and **DO NOT READ BY DEFAULT** context sets.
+- Pending independent review remains a global routing priority.
+- Review-only ChatGPT sessions no longer load execution/planning/Codex modules by default; `TASK_CARDS`, `GITHUB_STATE`, `OPENSPEC`, and `PROJECT_REPOSITORY` are loaded only on explicit triggers.
+- Compact authority precedence now lives in the router, so ordinary tasks do not need to read the full Project Repository Contract merely to determine authority order.
+- Full `PROJECT_REPOSITORY.md` remains conditional for authority conflict, topology, legacy migration, layout/state-ownership ambiguity, or detailed branch-policy cases.
+
 ## Unreleased — branch-aware fresh-ChatGPT prompts
 
 - Every fresh-ChatGPT start prompt now includes the exact active project/implementation branch, including `main` when applicable.
