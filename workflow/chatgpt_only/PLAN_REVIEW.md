@@ -7,7 +7,7 @@ Independent plan review is performed by a fresh normal ChatGPT chat that did not
 Use:
 - **REQUIRED** when project/user authority explicitly requires independent plan review;
 - **RECOMMENDED** for a new or materially revised Master Plan when independent review is practical;
-- **none** only for trivial/editorial plan changes that do not alter execution strategy, milestone structure, requirement coverage or accepted gates.
+- **none** for trivial/editorial plan changes that do not alter execution strategy, milestone structure, requirement coverage or accepted gates, or when independent review is concretely impractical and no project/user authority requires it. A nontrivial `none` requires a concrete recorded reason; convenience alone is not enough.
 
 This preserves the workflow rule that independent plan review should be performed when practical without turning every mechanical planning edit into a hard gate.
 
