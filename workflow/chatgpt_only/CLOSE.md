@@ -96,7 +96,7 @@ Then:
 4. let the router select execution preparation for the next approved milestone;
 5. continue without requiring user “continue”.
 
-Stop only for a real strategic/user/authorization/runtime blocker or end of approved scope. At a stop, use root `CHATGPT.md#Real-stop-response-contract`.
+Return strategic changes to the router for Planning / Project Definition / Research classification. Stop only for unresolved user/product authority, an explicit user/deployment/live-write authorization gate, a concrete runtime/access/input blocker, or end of approved scope. At a stop, use root `CHATGPT.md#Real-stop-response-contract`.
 ## System verification and cutover
 
 Independent system verification acts as its own gate when required.
