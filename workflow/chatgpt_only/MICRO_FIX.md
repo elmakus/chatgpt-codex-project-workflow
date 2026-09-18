@@ -108,7 +108,7 @@ For a one-Card micro-fix, an independent GREEN Card review may satisfy the works
 3. no behavioral/config/code change occurred after that subject;
 4. the Card review used the same applicable authority/acceptance needed for the whole workstream.
 
-When all four hold, the owning post-review/finalization role may reconcile the manifest gate as:
+When all four hold **after `WORKSTREAMS.md#Integration refresh contract` has run against the current target**, the owning Close/finalization role may reconcile the manifest gate as:
 
 ```yaml
 state: green
@@ -117,7 +117,9 @@ evidence: <same independent review evidence>
 covered_by: "task_board:MF-T01"
 ```
 
-This is coverage reuse of an already independent verdict, not a new self-review. If exact coverage cannot be proven, freeze the workstream final subject as `pending`, set `covered_by: null`, and require a fresh independent workstream review before integration.
+This is coverage reuse of an already independent verdict, not a new self-review. Execution must not perform this reuse before target refresh. If exact coverage cannot be proven after refresh, freeze the workstream final subject as `pending`, set `covered_by: null`, and require a fresh independent workstream review before integration.
+
+After the bounded fix Card is terminal, return through the router to `CLOSE.md` for target refresh, final-integration review coverage/freeze, and integration. Do not invent a milestone merely to enter Close.
 
 ## Recovery
 
