@@ -46,13 +46,26 @@ Track as applicable:
 - milestone decision/execution state;
 - milestone checkpoint/final result pointers;
 - Card state/dependencies;
-- `executor: chatgpt` for active/completed execution provenance;
+- `executor: chatgpt` for active/completed execution provenance, including Cards that use delegated workers;
 - current integration branch/HEAD information needed for recovery;
 - Card result pointers + exact concise tests summary;
 - standalone evidence pointer when required;
 - relevant OpenSpec pointer;
 - active review state;
 - blockers.
+
+## Delegated-worker state
+
+Delegated workers do not create a second mutable execution-state authority.
+
+For a Card that uses workers:
+- Task Board `executor` stays `chatgpt`;
+- worker role/profile requirements live in the stable Task Card contract;
+- raw worker logs/transcripts stay in evidence/artifact storage, not Task Board;
+- persist only concise worker-result/evidence pointers needed for Card acceptance/recovery;
+- a delegated tester/verifier does not set `review_state` and does not satisfy REQUIRED/RECOMMENDED Independent Review.
+
+The initial delegated-worker contract is foreground/awaited. Do not add durable detached-worker lifecycle fields to Task Board without a later accepted state/recovery contract.
 
 ## Review fields
 
