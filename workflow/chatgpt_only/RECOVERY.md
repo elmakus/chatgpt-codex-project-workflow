@@ -77,11 +77,13 @@ When correction changes the reviewable implementation subject, preserve the old 
 When Task Board `research_obligation` points to an implementation/recovery Research record:
 - read that exact record; Task Board stores only the pointer while the research record owns Status, Origin and Return target;
 - `active | blocked` → route to Research;
-- `complete` → route to the exact recorded Return target, normally `execution_resolution:<subject>`, without clearing the pointer first;
-- `consumed` → clear the stale Task Board pointer at the next safe edit;
+- `complete` → route to the exact recorded current Return target without clearing the pointer first;
+- when that target is `execution_resolution:<subject>`, recover the classifier; it durably refines Return target to the exact final owning role/subject and keeps `Status: complete` + the Task Board pointer;
+- the final owning Return target performs the actual correction/reconciliation and only then marks the record `consumed` and clears Task Board `research_obligation`;
+- `consumed` with a leftover pointer → clear the stale pointer at the next safe edit;
 - missing/mismatched pointer, Origin subject or Return target → preserve as inconsistent state rather than infer from chat.
 
-The Return target must durably reconcile/classify the findings before setting the record to `consumed` and clearing Task Board `research_obligation`.
+Thus a fresh session always recovers either Research, the classifier, or the final owning return role from one durable pointer/record.
 
 ## Inconsistent state
 
