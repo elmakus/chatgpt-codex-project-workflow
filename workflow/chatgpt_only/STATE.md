@@ -1,6 +1,12 @@
 # ChatGPT-only State Contract
 
-`implementation/TASK_BOARD.yaml` is the sole authoritative mutable execution-state record.
+The **selected canonical Task Board** is the sole authoritative mutable Card/milestone execution-state record for the current ChatGPT-only state context.
+
+Resolve that context through `workflow/chatgpt_only/WORKSTREAMS.md` before using this contract:
+- branch-isolated workstream → the exact Task Board named by its validated manifest;
+- otherwise → legacy/default `implementation/TASK_BOARD.yaml`.
+
+Do not combine Cards from multiple workstream Task Boards into one synthetic execution state.
 
 ## Card states
 
@@ -91,7 +97,7 @@ When accepted milestone/plan authority records a JIT decomposition trigger:
 
 ## Legacy execution-mode reconciliation
 
-The active ChatGPT-only route is serial: exactly one project Card may be in progress.
+The active ChatGPT-only route is serial **per selected Task Board**: exactly one Card may be in progress in that workstream/default board. Another independent workstream may have its own one in-progress Card without making this board invalid.
 
 If a legacy ChatGPT-only Task Board still contains old concurrent-card metadata:
 - do not invent or start new concurrent lanes;
@@ -113,7 +119,7 @@ Persist:
 
 Set milestone `ready → in_progress` when its first real Card starts.
 
-Exactly one project Card may be `in_progress` at a time in this policy path.
+Exactly one Card may be `in_progress` at a time in the selected Task Board.
 
 ## Done result
 
@@ -205,7 +211,8 @@ Use fresh JIT preparation + Refresh Gate.
 
 Fresh-session recovery uses:
 - `PROJECT.md`;
-- Task Board;
+- exact workstream branch + validated manifest when branch-isolated;
+- the selected canonical Task Board;
 - exact branch/HEAD/runtime/external state;
 - current milestone/Card contracts;
 - referenced OpenSpec/evidence/result/review pointers;
@@ -217,7 +224,7 @@ Previous chat narrative is not required.
 ## Invalid states
 
 Examples:
-- more than one Card `in_progress`;
+- more than one Card `in_progress` in the same selected Task Board;
 - `done` Card missing required result/tests provenance;
 - `done` Card with a REQUIRED/RECOMMENDED review still `pending | in_progress | red`;
 - milestone `done` with non-green required review;
