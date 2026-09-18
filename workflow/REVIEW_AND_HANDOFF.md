@@ -54,13 +54,14 @@ Use this shape:
 NEW CHAT START PROMPT:
 Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
 Repo projektu: <owner/repo>.
+Branch projektu: <exact active project/implementation branch>.
 Kontynuuj: <pending independent review for MXX-TYY | exact concise continuation goal>.
 Durable start pointer: <implementation/TASK_BOARD.yaml | exact durable pointer>.
 Odtwórz aktualny stan, exact review_subject/authority slice/evidence z repo i wykonaj tylko legalny następny krok. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
 ```
 
 Rules:
-- include repository and exact continuation target;
+- include repository, exact active project/implementation branch and exact continuation target;
 - include the smallest durable start pointer;
 - do not paste test counts, SHAs, evidence prose, changed-file lists or implementation summary when recoverable from repo;
 - do not ask the user to separately request a start prompt;
