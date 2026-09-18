@@ -13,6 +13,12 @@ integration_target: "<target-branch>"
 parent_workstream: null
 parent_branch: null
 
+# Intake is routing/workstream-lifecycle metadata only.
+# The pointed record owns intake scope/findings/classification; Card state stays in Task Board.
+intake:
+  state: null # active | complete | null
+  record: null # implementation/workstreams/<id>/INTAKE.md | null
+
 task_board: null # implementation/workstreams/<id>/TASK_BOARD.yaml | null
 
 authority:
