@@ -76,6 +76,16 @@ When accepted milestone/plan authority records a JIT decomposition trigger:
 - absence of speculative future Cards is not an inconsistent state while the trigger is unsatisfied;
 - active/in-progress Cards are not silently redefined through this mechanism.
 
+## Legacy execution-mode reconciliation
+
+The active ChatGPT-only route is serial: exactly one project Card may be in progress.
+
+If a legacy ChatGPT-only Task Board still contains old concurrent-card metadata:
+- do not invent or start new concurrent lanes;
+- if no conflicting Cards are active, treat obsolete concurrency metadata as non-operative and clean it up at the next safe state edit;
+- if multiple old Cards are genuinely active, recover each exact durable result/state first, then serialize/reconcile them before starting new work;
+- never discard lane/result/evidence history merely to fit the new serial model.
+
 ## Starting a Card
 
 Before implementation:
