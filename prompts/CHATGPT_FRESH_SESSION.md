@@ -1,63 +1,24 @@
 # Fresh ChatGPT Session Start Prompt
 
-Use this template whenever Project Workflow **requires** or **recommends** a fresh normal ChatGPT chat.
+Use this entrypoint whenever Project Workflow **requires** or **recommends** a fresh normal ChatGPT chat.
 
-The user-facing response must include the completed prompt immediately in a fenced Markdown block. Do not make the user ask for it separately.
+The canonical user-facing fresh-session handoff contract is:
 
-## Minimal template
+`workflow/common/USER_STOP.md#Fresh ChatGPT handoff`
 
-```text
-NEW CHAT START PROMPT:
-Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
-Repo projektu: <owner/repo>.
-Branch projektu: <exact active project/implementation branch>.
-Kontynuuj: <exact card/milestone/review gate or concise goal>.
-Durable start pointer: <implementation/TASK_BOARD.yaml | other exact durable pointer>.
-Odtwórz aktualny stan, exact subject, authority slice i wymagane evidence z repo. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
-```
+Do not maintain or improvise a second template here.
 
-For a pending independent review, prefer:
+## Required semantics
 
-```text
-NEW CHAT START PROMPT:
-Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
-Repo projektu: <owner/repo>.
-Branch projektu: <exact active project/implementation branch>.
-Kontynuuj: pending independent review dla <MXX-TYY>.
-Durable start pointer: implementation/TASK_BOARD.yaml.
-Odtwórz exact review_subject, authority slice i evidence z repo, wykonaj niezależny review zgodnie z workflow i zapisz verdict/evidence w durable state. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
-```
+A fresh-session prompt is:
+- a thin router into durable project truth;
+- branch-aware;
+- anchored to one exact entry obligation and the smallest durable start pointer;
+- explicit that the entry obligation is **not** a session-scope boundary;
+- explicit that after the located role completes, the new chat returns to the selected policy router and continues deterministic authorized transitions until a real workflow stop.
 
-For a pending independent plan review, prefer:
+Do not expand the prompt with review/audit checklists, findings, remediation proposals, test inventories, implementation summaries, changed-file lists, recoverable SHAs or GREEN/RED continuation branches.
 
-```text
-NEW CHAT START PROMPT:
-Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
-Repo projektu: <owner/repo>.
-Branch projektu: <exact active project/planning branch>.
-Kontynuuj: pending independent plan review dla <plan revision>.
-Durable start pointer: planning/reviews/<plan-revision>.md.
-Odtwórz exact Review subject, approved Definition, canonical requirements/decisions i wymagane evidence z repo, wykonaj niezależny plan review zgodnie z workflow i zapisz verdict/evidence w tym review record. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
-```
+If special review/audit scope cannot be reconstructed from existing durable authority, persist that scope in the project repository first and point the canonical handoff at the durable scope artifact.
 
-## Inclusion rule
-
-Include:
-- project repository;
-- exact active project/implementation branch, even when it is `main`;
-- exact continuation target;
-- smallest durable start pointer;
-- one instruction to recover authoritative state from repository;
-- only non-durable user intent that cannot be recovered from repository.
-
-Do not duplicate:
-- exact SHA/review subject if Task Board already records it;
-- test counts/results;
-- evidence prose;
-- changed files/blobs;
-- implementation summary;
-- HEAD/SHA details already recoverable from durable state.
-
-The branch is the one deliberate exception: always include the exact active branch because it is a routing locator, not redundant execution telemetry.
-
-The prompt is a router into durable project truth, not a second handoff document.
+The user-facing response must include the completed canonical prompt immediately. Do not make the user ask for it separately.
