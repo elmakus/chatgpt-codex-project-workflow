@@ -2,11 +2,15 @@
 
 Independent review is performed by a fresh normal ChatGPT chat that did not implement the exact reviewed subject.
 
-## Review levels
+## Review requirement
 
 - **REQUIRED** — high-risk work such as security/auth, destructive/data migration, difficult-to-reverse live configuration, important external-state protection boundary or comparable risk.
-- **RECOMMENDED** — major architecture, large refactor, complex state machine or broad cross-package change.
-- **OPTIONAL** — simple low-risk work unless project explicitly activates review.
+- **RECOMMENDED** — independent review is intentionally part of the accepted Card/milestone contract even though the work is not intrinsically high-risk.
+- **none** — no independent-review gate exists and this route is not entered.
+
+REQUIRED and RECOMMENDED have the same independence mechanics once activated. The difference records why the gate exists, not whether it is real.
+
+If the user explicitly requests review for work previously contracted as `none`, first persist the requirement as `RECOMMENDED`, then create the normal review state.
 
 ## Required read set
 
@@ -39,38 +43,37 @@ Do not mutate reviewed subject while judging it.
 
 ## GREEN
 
-If GREEN:
-- persist verdict/state first;
-- if deterministic later work is already legal, continue automatically through router;
-- do not stop merely to report GREEN unless a real boundary requires user action.
+After GREEN:
+1. persist verdict/evidence/state;
+2. the independent-review role is complete;
+3. return to `workflow/chatgpt_only/ROUTER.md`;
+4. let the router choose the next legal route from the new durable state;
+5. continue in the same chat when that route is deterministic and authorized.
 
-If this chat later implements a new reviewable subject, it becomes the implementing chat for that new subject and must stop at its fresh-review boundary.
+Do not remain in reviewer mode merely because this chat began as a reviewer.
 
-## RED → automatic bounded remediation
+Do not stop merely to report GREEN.
 
-RED is not itself a user stop when corrective work is bounded, deterministic, authorized and unblocked.
+If the router later assigns implementation and this chat creates a new REQUIRED/RECOMMENDED review subject, this chat is the implementing chat for that new subject and must stop at the fresh-review boundary.
 
-After persisting RED, continue in the **same turn** when:
-- Task Board/accepted authority identifies bounded corrective work, or reviewer can create/reopen a bounded corrective Card without changing strategic authority;
-- remediation is L1/L2 implementation detail;
-- no explicit user/deployment/live-write authorization gate is due;
-- no concrete runtime blocker prevents remediation.
+## RED → corrective-route transition
 
-Then:
-1. persist RED evidence/state;
-2. leave review-only mode;
-3. load `EXECUTION_PREP.md` if bounded corrective Card must be created/reopened/reconciled;
-4. load `EXECUTION.md` + `STATE.md`;
-5. perform remediation immediately;
-6. run required checks and persist corrected result;
-7. freeze new exact remediation subject;
-8. set review back to `pending`;
-9. stop only now, before self-reviewing corrected subject;
-10. include ready-to-copy fresh independent re-review prompt.
+RED is not itself a user stop when corrective work can be bounded deterministically inside accepted authority.
 
-Do **not** end the turn after RED merely to say remediation is next or not started.
+After RED:
+1. persist the RED verdict/evidence/state;
+2. do not mutate the reviewed subject while still acting as reviewer;
+3. determine whether corrective work is safely routable as L1/L2 work without a strategic/user/authorization/runtime blocker;
+4. if yes, the independent-review role is complete;
+5. return to `workflow/chatgpt_only/ROUTER.md`;
+6. the router selects `EXECUTION_PREP` when corrective work must be created/reopened/reconciled, otherwise `EXECUTION`;
+7. from that point the same chat acts under the selected execution route, not under this review module.
 
-Stop earlier only for a real strategic/user/authorization/runtime blocker or when corrective scope cannot safely be bounded.
+Do not end the turn after RED merely to announce that remediation is next.
+
+If corrective work cannot be safely bounded, requires L3 authority, requires explicit user/deployment/live-write authorization, or is blocked by a concrete runtime/access/input requirement, that is a real stop. Use the global real-stop response contract.
+
+If the same chat later implements the correction and that corrected subject requires/recommends independent review, the execution route freezes a new exact subject as `pending` and stops for a fresh independent reviewer. The former reviewer cannot review the subject it just implemented.
 
 ## High-risk external writes
 
@@ -82,7 +85,7 @@ Do not create a permanent review role or independently review every trivial Card
 
 ## Fresh-review prompt
 
-Whenever a fresh independent review is required, final response includes:
+Whenever this chat reaches a real boundary requiring a fresh independent review, the final response follows root `CHATGPT.md#Real-stop-response-contract` and includes:
 
 ```text
 NEW CHAT START PROMPT:
@@ -96,12 +99,10 @@ Odtwórz exact review_subject, authority slice i evidence z repo, wykonaj niezal
 
 Prompt is a router into durable truth. Do not duplicate SHAs, test counts/results, evidence prose or implementation summary when Task Board/repo already contains them.
 
-## User-facing review result
+## User-facing response
 
-Use root `CHATGPT.md` control surface:
-- what was found;
-- impact;
-- what happened next;
-- smallest real user action.
+A review verdict alone is not a reason to reply.
 
-Keep review telemetry in durable evidence unless exact detail is materially actionable or user asks.
+Use root `CHATGPT.md#Real-stop-response-contract` only when the workflow actually reaches a real stop after all legal deterministic role transitions have been exhausted.
+
+Keep review telemetry in durable evidence unless exact detail is materially actionable or the user asks.
