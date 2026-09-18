@@ -31,6 +31,18 @@ When approved scope is complete and no further action is required, say plainly:
 No action required.
 ```
 
+## Explicit phase-promotion gate
+
+When the selected policy route defines a user-owned phase promotion boundary, this contract only formats that stop; the policy route remains authoritative for when it applies.
+
+For a Brainstorming → Project Definition promotion stop, keep it minimal:
+
+```text
+USER ACTION REQUIRED: choose one: continue brainstorming/research, or explicitly promote the current scope into Project Definition.
+```
+
+Do not imply that Definition or Planning has already started. Do not require a fresh chat solely for this gate.
+
 ## Fresh ChatGPT handoff
 
 Whenever a fresh normal ChatGPT chat is required or recommended at the real stop, include a ready-to-copy prompt in the same response.
