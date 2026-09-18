@@ -267,7 +267,7 @@ The prompt is intentionally thin and **locator-only**:
 
 Do not duplicate SHAs, test summaries, changed-file lists, evidence prose, audit/review checklists, prior findings, remediation proposals or outcome-dependent workflow branches that already exist or can be persisted in durable state.
 
-If special review/audit scope is materially required and cannot be reconstructed from existing authority, persist that scope first in an appropriate durable project artifact and point the handoff at it. Do not turn the chat prompt into a second task contract.
+If special review/audit scope is materially required and cannot be reconstructed from existing authority, persist that scope first in an appropriate durable project artifact. If the selected route already has a canonical durable state/start pointer, keep that pointer and make its owning state/contract reference the scope artifact; point the handoff directly at the scope artifact only when no canonical pointer exists. Do not turn the chat prompt into a second task contract.
 
 The canonical user-facing format lives in `workflow/common/USER_STOP.md`. `prompts/CHATGPT_FRESH_SESSION.md` is only a convenience entrypoint and must not maintain a divergent template.
 
