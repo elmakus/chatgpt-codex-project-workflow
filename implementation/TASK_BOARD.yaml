@@ -123,7 +123,7 @@ cards:
     depends_on: ["M03-T01"]
     openspec_change: null
     contract: "implementation/cards/M04-T01.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "38955588da57039183b0c15a3cd55fbf8b384e80"
     review_evidence: null
     result_commit: "38955588da57039183b0c15a3cd55fbf8b384e80"
