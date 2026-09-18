@@ -33,12 +33,15 @@ When that role finishes:
 7. load that route's module(s);
 8. continue in the same chat without a user-facing stop when context health remains CONTINUE.
 
-The same chat may therefore move, for example:
+The same chat may therefore move across deterministic role transitions when no fresh-review boundary intervenes, for example:
 
 ```text
-RESEARCH → PROJECT DEFINITION → PLANNING → PLAN_REVIEW → PLANNING → EXECUTION_PREP → EXECUTION
+RESEARCH → PROJECT DEFINITION → PLANNING → EXECUTION_PREP → EXECUTION
+PLAN_REVIEW → PLANNING → EXECUTION_PREP → EXECUTION
 REVIEW → EXECUTION_PREP → EXECUTION → CLOSE → EXECUTION_PREP → EXECUTION
 ```
+
+The first line applies when Planning does not create a REQUIRED/RECOMMENDED independent plan-review gate. When Planning does create one, the authoring chat stops at the fresh independent-plan-review boundary before entering `PLAN_REVIEW`. The `PLAN_REVIEW → PLANNING → ...` line begins in the fresh reviewer chat after that reviewer has completed its verdict and the router assigns the next legal role.
 
 Role identity is per obligation, not permanent for the whole chat.
 
