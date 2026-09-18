@@ -48,8 +48,8 @@ The manifest is authoritative for **workstream identity, routing and workstream-
 It owns:
 - stable ID and kind;
 - coarse workstream lifecycle status;
-- exact branch, base and integration target;
-- optional stacked parent identity/branch;
+- exact branch, creation base and integration target;
+- optional stacked parent identity/branch plus the exact parent-only dependency relation;
 - active/completed Intake lifecycle + exact intake-record location when the workstream was created/recovered through explicit intake;
 - exact Task Board location when implementation state exists;
 - workstream authority pointers;
@@ -83,7 +83,7 @@ Before final integration/publication of a workstream whose `review.requirement` 
 1. prove an already-independent stronger review covers the identical immutable integrated subject and whole workstream acceptance surface, then reconcile this distinct manifest gate GREEN with exact `covered_by` evidence; or
 2. freeze the exact integrated subject as manifest `review.state: pending` and stop at the normal fresh-review independence boundary.
 
-A null workstream review state is therefore not integration approval. M04 owns target-refresh/rebase/retarget ordering around this gate; it may invalidate prior coverage only when the exact integrated subject materially changes.
+A null workstream review state is therefore not integration approval. Run the Integration refresh contract below before first freezing/reusing this final-integration gate, and repeat it if the target moves again before merge. Target movement by itself does not invalidate a verdict; prior coverage is invalid only when the exact covered workstream content/behavior or acceptance surface materially changes.
 
 For one-Card qualified micro-fixes, apply `workflow/chatgpt_only/MICRO_FIX.md#Workstream-final-integration-review`.
 
@@ -191,7 +191,7 @@ An optional project-level index may exist only as non-authoritative navigation u
 
 `PROJECT.md` may document the workstream-root convention but must not mirror current workstream/Card/review state.
 
-## Seriality and isolation
+## Seriality and filesystem isolation
 
 The serial invariant is scoped to the selected Task Board:
 - one selected workstream may have at most one `in_progress` Card;
@@ -200,13 +200,115 @@ The serial invariant is scoped to the selected Task Board:
 
 Branch identity and mutable state identity must both be distinct for independent workstreams.
 
-Filesystem/worktree isolation for concurrent local execution and detailed stacked/integration-refresh semantics are owned by the later worktree/integration contract; M01 does not weaken those accepted requirements.
+When multiple workstreams actively mutate the same local repository storage concurrently, each must use a separate Git worktree or equivalent isolated checkout as defined by `workflow/chatgpt_only/REPOSITORY.md#Local concurrent checkout isolation`. Different branch names in one shared mutable checkout are insufficient.
 
-## Stacked metadata
+Remote-only GitHub operations do not require a local worktree because they do not share a mutable local working tree/index.
 
-The manifest carries `parent_workstream`, `parent_branch`, `base_ref` and `integration_target` so later intake/integration logic can distinguish independent from stacked work.
+Filesystem isolation never creates a second execution lane inside one workstream and never becomes a new canonical state source.
 
-M01 defines the stacked metadata fields. M02 Intake owns parent/base selection for new workstreams. Local worktrees, refresh/rebase/retarget and final integration remain owned by M04.
+## Stacked dependency contract
+
+A workstream is **stacked** only when it genuinely requires unmerged parent-only state. Intake owns the initial classification/base selection; this contract owns the durable integration consequences.
+
+For an independent workstream:
+- `parent_workstream`, `parent_branch` and `parent_dependency` are null;
+- `base_ref` records the exact creation base;
+- `integration_target` records the intended final target.
+
+For a stacked workstream:
+- `parent_workstream` and `parent_branch` identify the exact parent;
+- `parent_dependency` is non-null and concisely states the parent-only behavior/interface/state the child requires;
+- `base_ref` remains creation provenance and must not be rewritten later to pretend the child started independently;
+- `integration_target` remains the intended final target unless accepted authority explicitly changes that target.
+
+The fuller dependency evidence/rationale remains in the Intake record. The manifest keeps only the routing/integration fact needed for recovery.
+
+Likely file overlap, convenience or avoiding a future rebase is not a valid stacked dependency. Conversely, once a real parent dependency exists, do not clear the parent metadata merely to make the child appear independent.
+
+### Legal stacked integration paths
+
+A stacked child has two legal ways forward:
+
+1. **Fold child into the parent before parent integration.**
+   - Integrate the child into the declared parent branch, not directly into the parent's final target.
+   - The parent workstream now contains the child change; its own integrated subject/acceptance surface must be refreshed and any no-longer-covering final review must be invalidated/re-frozen.
+   - Recording the child as merged into the parent is not the same as recording the child as independently integrated to main/default.
+
+2. **Integrate the parent first, then reconcile the child.**
+   - After the required parent commits are present in the child's `integration_target`, rebase/merge/retarget/reconcile the child against that current target as appropriate.
+   - Run the Integration refresh contract below before the child's final integration.
+   - Preserve parent metadata as dependency provenance; parent satisfaction is proven from exact Git/integration evidence, not merely a coarse parent status string.
+
+Direct child → main/default integration is forbidden while commits/content required by `parent_dependency` remain available only on the unmerged parent branch.
+
+If the declared parent dependency is discovered to be wrong or accepted integration intent must change, do not silently rewrite history. Reconcile the manifest/intake evidence inside current L1/L2 authority when the correction is purely technical; otherwise return through the router to Planning / Project Definition / Research as appropriate.
+
+## Integration refresh contract
+
+Before final merge/integration of a branch-isolated workstream, compare the exact frozen/validated workstream state with the **current** `integration_target`.
+
+The gate is scoped to the selected workstream. Do not inspect or mutate unrelated Task Boards merely because another branch is active.
+
+### 1. Establish target movement
+
+Use exact Git/PR evidence to identify:
+- current workstream branch/head or other exact covered content identity;
+- current integration-target ref;
+- the target state against which the workstream was last reconciled/validated, when one exists.
+
+On the first final-integration pass, establish the current target as the compatibility baseline and run the verification required by the workstream acceptance surface.
+
+If the target has not materially moved relative to the validated baseline, no reconciliation is required solely for freshness.
+
+### 2. Reconcile material target movement
+
+When the target moved materially, choose the smallest legal technical reconciliation inside accepted authority:
+- fast-forward/rebase when project practice and history policy permit it;
+- merge target changes into the workstream when that is the accepted project convention;
+- retarget only when the resulting target still matches accepted integration intent;
+- for a formerly stacked child whose parent is now integrated, reconcile onto the resulting current integration target.
+
+Never force-push `main` as normal remediation.
+
+After reconciliation:
+- rerun only verification materially affected by target movement or conflict resolution;
+- verify both textual merge/rebase conflicts and material semantic/interface/behavior conflicts;
+- preserve exact evidence sufficient to show whether the covered workstream content/behavior and acceptance surface changed.
+
+If reconciliation would change accepted product/system intent, architecture/strategic decisions or milestone strategy rather than merely technical integration detail, stop the affected integration and return through the router for Project Definition / Planning / Research classification.
+
+### 3. Conflict semantics
+
+File overlap is a diagnostic signal, not a blocker by itself.
+
+Block/depend on another workstream only when there is:
+- a real parent/dependency relation;
+- incompatible accepted authority;
+- an unresolved material semantic/interface conflict;
+- or a textual/integration conflict that cannot be reconciled inside current authority.
+
+A clean textual merge is not proof of semantic compatibility. Use the affected tests/checks, interfaces, requirements and accepted decisions needed to detect material semantic conflicts.
+
+### 4. Review-subject preservation or invalidation
+
+Run refresh **before** first freezing or reusing the manifest-owned final-integration review gate.
+
+The final-integration `review.subject` must identify an exact immutable covered workstream content/behavior subject plus its acceptance surface. It must not be only a moving branch name or moving target ref. Exact Git refs/diffs and durable evidence may be used to prove that identity.
+
+Target movement, a changed target commit SHA, or changed commit ancestry does **not** by itself invalidate an existing GREEN verdict when exact evidence proves that:
+- the covered workstream-owned content/behavior is unchanged;
+- the reviewed acceptance surface is unchanged;
+- affected compatibility verification against the new target is GREEN.
+
+When reconciliation materially changes the exact covered workstream content/behavior or the acceptance surface:
+- the prior verdict/coverage no longer applies;
+- clear stale `covered_by` reuse as applicable;
+- freeze the new exact subject in the selected manifest;
+- set the required/recommended final-integration review to `pending`;
+- persist reconciliation evidence;
+- the chat that performed that behavioral reconciliation cannot independently review the new subject.
+
+Immediately before the actual merge/integration, re-read the current integration target. If it moved again after GREEN review/coverage was established, repeat this refresh gate. Never merge solely on a stale target comparison.
 
 ## Recovery invariant
 
