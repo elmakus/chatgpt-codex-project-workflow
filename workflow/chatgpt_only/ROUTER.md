@@ -55,27 +55,37 @@ Under `chatgpt_only`, the first transition from exploratory Brainstorming into P
 
 Brainstorming may reach `ready_for_definition`, but that state is only a recommendation that formalization is now possible. It is not permission to start Definition.
 
+The active exploratory scope is discovered from project `PROJECT.md → Active exploratory scope`. That pointer identifies the exact brainstorming record used for recovery. The record carries a stable `Scope ID`, `Revision`, and `Definition promotion subject`.
+
 Before entering Project Definition from an exploratory Brainstorming/Research path, require one of:
 - an explicit current user instruction to promote the current scope into Project Definition; or
-- durable `Definition promotion authorization: user_authorized` in the active brainstorming record for that same scope.
+- durable `Definition promotion authorization: user_authorized` in the PROJECT-pointed brainstorming record, with `Definition promotion subject` exactly matching that record's current `<scope-id>@<revision>`.
+
+A durable `user_authorized` value without an exact matching promotion subject is stale/insufficient and must not authorize Definition.
 
 Examples of sufficient user intent include “przejdź do Definition”, “formalizuj wymagania/decyzje”, or another unambiguous instruction to leave exploration and begin Project Definition. Mere agreement with an individual idea, answering a brainstorming question, or asking for more research is not phase-promotion authority.
 
 When Brainstorming is ready but promotion is not authorized:
 1. persist the useful brainstorming state;
-2. set `Status: ready_for_definition` and `Definition promotion authorization: pending` in the active brainstorming record;
-3. do **not** enter Project Definition or Planning;
-4. treat this as a policy-specific real user stop;
-5. use `workflow/common/USER_STOP.md` and ask only whether to continue brainstorming/research or promote the current scope into Project Definition.
+2. ensure `PROJECT.md → Active exploratory scope` points to that exact record;
+3. set `Status: ready_for_definition`, `Definition promotion authorization: pending`, and `Definition promotion subject: none`;
+4. do **not** enter Project Definition or Planning;
+5. treat this as a policy-specific real user stop;
+6. use `workflow/common/USER_STOP.md` and ask only whether to continue brainstorming/research or promote the current scope into Project Definition.
 
 When the user explicitly authorizes promotion:
-1. persist `Definition promotion authorization: user_authorized` before entering Definition;
-2. route to Project Definition;
-3. continue normally from there.
+1. ensure the current exploratory record and its PROJECT pointer are persisted;
+2. persist `Definition promotion authorization: user_authorized` plus `Definition promotion subject: <scope-id>@<revision>` before entering Definition;
+3. route to Project Definition;
+4. continue normally from there.
+
+If substantive exploratory scope changes after authorization but before Definition begins, increment/change the brainstorming revision and reset authorization to `pending` with promotion subject `none`. Never carry authorization across a materially changed revision.
 
 Research completion does not bypass this gate. If Research was entered from an unpromoted exploratory scope, return to Brainstorming/promotion handling rather than entering Definition automatically.
 
-The authorization applies to the current Definition scope. Once Definition has begun, bounded Research ↔ Definition loops for that same scope do not require repeated authorization. If Definition deliberately returns to open-ended Brainstorming because the product/problem space has materially reopened, reset the promotion authorization to `pending` for that reopened scope.
+The authorization applies only to the exact promoted scope/revision. Once Definition has begun, keep the active exploratory pointer/record available so bounded Research ↔ Definition recovery for that same promoted subject does not require repeated authorization. If Definition deliberately returns to open-ended Brainstorming because the product/problem space has materially reopened, create a new brainstorming revision (or a new scope when appropriate) and reset authorization to `pending` with promotion subject `none`.
+
+When Definition Complete becomes GREEN, the exploratory promotion obligation is complete. Clear `PROJECT.md → Active exploratory scope` when it no longer represents an active exploratory/Definition recovery pointer, then continue to Planning.
 
 This gate does **not** apply to `Definition Complete = GREEN → Planning`; that transition remains deterministic and automatic when planning is in scope.
 
