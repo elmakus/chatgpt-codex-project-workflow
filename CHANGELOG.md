@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased — locator-only fresh-chat continuation
+
+- Fresh normal-ChatGPT handoffs are now explicitly recovery/entry locators rather than bounded one-role task contracts.
+- Completing the role named in a handoff no longer permits a user-facing status response unless the policy router confirms a real workflow stop.
+- The common user-stop contract forbids prompt inflation with review/audit checklists, prior findings, remediation branches, test inventories, implementation summaries and other recoverable telemetry.
+- Nonstandard review/audit scope that cannot be reconstructed from existing authority must be persisted durably first; the fresh prompt points to that artifact.
+- `workflow/common/USER_STOP.md` is the single canonical owner of fresh-session prompt formatting; `prompts/CHATGPT_FRESH_SESSION.md` is now a convenience pointer rather than a duplicate template.
+- Independent review, RED same-turn remediation, milestone continuation and Context Health FRESH all use the same locator-only continuation semantics.
+
 ## Unreleased — user-owned Brainstorming promotion
 
 - Under `chatgpt_only`, Brainstorming may become `ready_for_definition` but cannot enter Project Definition until the user explicitly promotes the current scope.
