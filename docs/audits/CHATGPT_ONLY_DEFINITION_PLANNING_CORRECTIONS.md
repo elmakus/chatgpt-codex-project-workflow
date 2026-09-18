@@ -4,7 +4,7 @@ Date: 2026-09-18
 Base: `main@23b8c368aea160566abdfd3fbc42bd0facb88bd4`  
 Implementation branch: `fix/definition-planning-audit-findings`
 
-Status: **IMPLEMENTATION COMPLETE — INDEPENDENT REVIEW PENDING**
+Status: **INDEPENDENT REVIEW RED — BOUNDED REMEDIATION IN PROGRESS**
 
 ## Review subject
 
@@ -112,20 +112,58 @@ PLAN_REVIEW RED
 
 A corrected plan that still requires/recommends review becomes a new immutable review subject and requires a fresh independent reviewer.
 
+## Independent review attempt — 2026-09-18
+
+Reviewed exact subject:
+
+- base: `23b8c368aea160566abdfd3fbc42bd0facb88bd4`
+- head: `d769474185218e89c41025d9867cf35db159bfb7`
+
+Verdict: **RED**
+
+### RED-01 — plan-review state is not consistently recoverable outside Task Board
+
+The new plan-review module correctly places mutable pre-execution review state under `planning/reviews/<plan-revision>.md`, but three existing control points still assume review state is Task-Board-owned:
+
+- root `CHATGPT.md` says implementation/review state is recovered from `implementation/TASK_BOARD.yaml`;
+- `workflow/chatgpt_only/ROUTER.md` bootstrap says any implementation/review/blocker/recovery state triggers a Task Board read;
+- `workflow/common/USER_STOP.md` has only an implementation-review fresh-chat variant whose durable pointer is hard-coded to `implementation/TASK_BOARD.yaml`.
+
+This conflicts with the new state split and can make a pre-execution plan review non-recoverable before a Task Board exists.
+
+Required correction:
+- distinguish implementation review state from plan-review state in bootstrap/routing;
+- add an explicit plan-review fresh-chat handoff using `planning/reviews/<plan-revision>.md` as the durable start pointer;
+- make `PLAN_REVIEW.md` select that handoff explicitly.
+
+### RED-02 — old L3 wording can still create a false user stop
+
+The router/context-health wording was narrowed, but two authoritative paths still retain the old broad shorthand:
+
+- root `CHATGPT.md` still lists “a strategic/L3 decision requires user authority” as a real stop;
+- `workflow/chatgpt_only/REVIEW.md` still says corrective work that “requires L3 authority” is a real stop.
+
+After the Definition/Planning split, a plan-only change to milestone structure/order/outcome or execution strategy can be above L1/L2 without requiring user/product authority. Those cases must route to Planning rather than stop for the user.
+
+Required correction:
+- remove the generic L3→user-stop implication;
+- classify post-review strategic corrections through Planning / Project Definition / Research, with user stop only for unresolved user/product authority or another explicit real gate.
+
 ## Self-check scope
 
-The implementing chat may run static/coherence checks but must not issue the independent verdict for this corrective subject.
+The implementing chat may run static/coherence checks but must not issue the independent verdict for the corrected subject.
 
 The fresh reviewer should specifically verify:
-1. all four findings are actually fixed on the branch;
-2. no new duplicate authority source was introduced;
-3. shared templates remain policy-neutral;
-4. plan review is operationally routable without Task Board existing yet;
-5. review subject immutability is preserved;
-6. planner/Definition/Execution Prep ownership remains non-circular;
-7. plan-only replan does not produce a false user stop;
-8. no previous ChatGPT-only semantics were unintentionally lost.
+1. all four original findings are actually fixed on the branch;
+2. RED-01 and RED-02 above are fixed;
+3. no new duplicate authority source was introduced;
+4. shared templates remain policy-neutral;
+5. plan review is operationally routable without Task Board existing yet;
+6. review subject immutability is preserved;
+7. planner/Definition/Execution Prep ownership remains non-circular;
+8. plan-only replan does not produce a false user stop;
+9. no previous ChatGPT-only semantics were unintentionally lost.
 
 ## Verdict
 
-**PENDING FRESH INDEPENDENT REVIEW.**
+**RED for `d769474185218e89c41025d9867cf35db159bfb7`; bounded remediation is authorized and in progress.**
