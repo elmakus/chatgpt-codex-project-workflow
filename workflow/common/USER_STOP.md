@@ -47,6 +47,8 @@ Durable start pointer: <implementation/TASK_BOARD.yaml | exact durable pointer>.
 Odtwórz aktualny stan i wymagane authority/evidence z repo, a następnie wykonaj tylko legalny następny krok. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
 ```
 
+The variants below format the handoff only. Canonical review-state ownership is defined by the selected policy route; this response contract does not create a second state source.
+
 For pending implementation independent review, use:
 
 ```text
