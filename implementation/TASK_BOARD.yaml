@@ -9,7 +9,7 @@ current_milestone: "M02"
 execution_ref:
   branch: "feat/chatgpt-only-multi-workstream-intake"
   pr: null
-  head: "1a8b2c358abc18d69d045c0b73d4a74c27c9baae"
+  head: "85c268bc3931902de265c2dba3d749732d2ceec4"
 
 research_obligation: null
 
@@ -65,10 +65,10 @@ cards:
     depends_on: ["M01-T01"]
     openspec_change: null
     contract: "implementation/cards/M02-T01.md"
-    review_state: red
-    review_subject: "1a8b2c358abc18d69d045c0b73d4a74c27c9baae"
-    review_evidence: "implementation/evidence/M02-T01-review-01.md"
-    result_commit: "1a8b2c358abc18d69d045c0b73d4a74c27c9baae"
+    review_state: pending
+    review_subject: "85c268bc3931902de265c2dba3d749732d2ceec4"
+    review_evidence: null
+    result_commit: "85c268bc3931902de265c2dba3d749732d2ceec4"
     result_pr: null
     evidence: "implementation/evidence/M02-T01.md"
-    tests_summary: "GREEN self-validation: explicit intake precedence, no-marker fallback, active-intake recovery before Task Board, independent/stacked issue traces, feature promotion gate, same-workstream recovery, collision naming, ownership boundaries and YAML template parsing passed; exact details in implementation/evidence/M02-T01.md."
+    tests_summary: "GREEN correction validation: original M02 checks remain applicable; corrected intake now requires route-specific pre-creation discovery/diagnosis before base selection, removes duplicate create/select ordering, preserves feature promotion and prior routing/state semantics; exact details in implementation/evidence/M02-T01.md."
