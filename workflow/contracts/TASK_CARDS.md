@@ -102,6 +102,20 @@ Independent review has separate mutable Task Board state when active:
 
 plus exact `review_subject` and `review_evidence` pointers.
 
+## 5A. Deferred Card creation
+
+Not every future Task Card must exist at initial plan approval or even at milestone start.
+
+When correct card scope materially depends on predecessor evidence:
+- keep the dependency/JIT trigger in the Master Plan, milestone contract or other exact durable authority;
+- do not create a vague placeholder card;
+- after the dependency becomes durable GREEN evidence, the execution orchestrator creates the real bounded card(s), with exact authority slices including the predecessor result;
+- persist new/changed not-yet-started card contracts and reconcile Task Board before execution.
+
+The orchestrator may perform this L2 refinement without returning to the original strategic planner as long as requirements, accepted/frozen architecture/decisions, invariants, milestone outcome and explicit boundary gates do not change.
+
+A card already `in_progress` is not casually rewritten as JIT decomposition. Material scope changes to active work use normal blocker/corrective/replan semantics.
+
 ## 6. Readiness
 
 A Task Board card becomes `ready` only when:
