@@ -3,7 +3,8 @@ plan_revision: "<R#>"
 current_milestone: "M01"
 
 # Sole authoritative mutable execution-state record.
-# PROJECT.md is high-level only; milestone/Card files are contracts.
+# PROJECT.md is high-level only. The approved Master Plan milestone section is the
+# default milestone contract; an implementation/milestones/MXX.md file is optional.
 
 # Default is serial. Use bounded_parallel only when cards have explicit safe ownership.
 execution_mode: serial # serial | bounded_parallel
@@ -23,6 +24,9 @@ milestones:
   M01:
     decision_state: accepted
     execution_status: planned
+    # Default to the approved Master Plan subsection. Point to a separate milestone
+    # file only when that JIT contract materially extends the plan.
+    contract: planning/MASTER_PLAN.md#M01
     checkpoint: null
     implementation_head: null
     handoff: null
@@ -39,12 +43,9 @@ cards:
     decision_state: accepted
     execution_status: planned
     executor: null
-    priority: high
-    complexity: medium
-    phase: implementation
     depends_on: []
     openspec_change: null
-    # Stable scope/acceptance details live in implementation/cards/M01-T01.md.
+    # Stable authority/scope/acceptance details live in the card contract.
     contract: implementation/cards/M01-T01.md
     # Optional bounded-parallel metadata mirrored here because it affects live scheduling/recovery.
     parallel_safe: false
@@ -58,5 +59,9 @@ cards:
     review_evidence: null
     result_commit: null
     result_pr: null
+    # A simple reproducible card may use tests_summary with evidence: null.
+    # Standalone evidence is expected for milestone acceptance, required/recommended
+    # independent review, baseline exceptions, material external writes/readback,
+    # complex multi-stage verification, or an explicit contract requirement.
     evidence: null
     tests_summary: null

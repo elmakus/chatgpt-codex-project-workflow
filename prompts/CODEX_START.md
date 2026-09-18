@@ -14,7 +14,7 @@ Required prior checkpoint: <checkpoint/current Task Board state>.
 
 Read project PROJECT.md and workflow/CONTEXT_ROUTING.md. Load shared execution contracts and workflow/codex modules only. Do not load CHATGPT.md or workflow/chatgpt/*.
 
-Recover Task Board/Git/runtime/review state, run the state/contract Refresh Gate and execute deterministic READY work. Do NOT run Capability Gate or capability preflight/inventory. Attempt concrete operations directly.
+Recover Task Board/Git/runtime/review state, resolve the current milestone contract and each READY Task Card's exact authority slice, run the state/contract Refresh Gate and execute deterministic READY work. Do NOT run Capability Gate or capability preflight/inventory. Attempt concrete operations directly.
 
 If ordinary non-secret local tooling/dependencies are missing, self-remediate them when the environment permits and accepted security/reproducibility constraints allow it. Ask the user only when a concrete operation requires unavailable MCP/credential/token/access/authorization that Codex cannot obtain itself.
 
@@ -35,11 +35,13 @@ Assigned milestone/set: <MXX / MXX-TYY[, ...]>.
 Required prior checkpoint: <checkpoint>.
 Durable start pointer: implementation/TASK_BOARD.yaml.
 
-Read project PROJECT.md and workflow/CONTEXT_ROUTING.md. Load shared execution contracts and workflow/codex modules only. Recover assigned Task Board/Git/review state, run state/contract Refresh Gate and execute assigned scope. Persist result/review pointers/tests/evidence/readback.
+Read project PROJECT.md and workflow/CONTEXT_ROUTING.md. Load shared execution contracts and workflow/codex modules only. Recover assigned Task Board/Git/review state, resolve the assigned Task Card authority slice, run state/contract Refresh Gate and execute assigned scope. Persist result/review pointers/tests/evidence/readback.
 
 The mixed-policy Capability Gate already performed pre-assignment routing. After assignment, do not rerun it because of a runtime capability problem; persist the blocker instead.
 
 Do not self-assign a new mixed-policy milestone after assigned scope ends; return durable state to ChatGPT routing.
 ```
+
+Progressive disclosure is lossless by authority: do not replace applicable requirements/accepted decisions/approved-plan constraints with a thinner coordinator summary. Carry them explicitly or read the exact durable refs before implementation/review.
 
 Repository state outranks stale conversation history. When installed/enabled, `codex_workflow` controls internal Codex runtime orchestration only; Project Workflow controls project Task Card/state/review/acceptance boundaries.

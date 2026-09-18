@@ -12,14 +12,14 @@ Codex must not load `CHATGPT.md` or `workflow/chatgpt/*` merely because they exi
 ## Start/recovery
 
 1. Establish repository root, integration branch, exact HEAD and working-tree/runtime state.
-2. Read project `PROJECT.md`, Task Board, current milestone/Card contracts, latest handoff and relevant authority artifacts.
+2. Read project `PROJECT.md`, Task Board, current milestone contract (approved Master Plan subsection or optional JIT extension), current Task Cards, their exact authority slices, latest handoff and only relevant authority artifacts.
 3. Recover every Codex-assigned `in_progress`/`blocked` card, pending/in-progress review gate and lane/base state before selecting new work.
 4. Run shared state/contract Refresh Gate for each selected card. Do not use it as a capability preflight under `codex_only`.
-5. Execute/test/verify serial card scope or compatible bounded set and persist durable evidence/Task Board state.
+5. Execute/test/verify serial card scope or compatible bounded set using authority-preserving delegation; persist exact result/test state and standalone evidence only when materially required.
 
 When Task Board uses `bounded_parallel`, Codex Main applies `CODEX_ORCHESTRATION.md`: Main remains project coordinator, mutable Task Cards use isolated lane workspaces, compatible cards may be delegated to internal workers, and Main alone integrates/updates shared execution state.
 
-When the owner's `codex_workflow` is installed/enabled, it is authoritative for internal Codex orchestration: worker selection, execute/review roles, delegation, concurrency, lifecycle, waiting and runtime recovery. Project Workflow supplies Task Card/review boundaries and durable project state; it does not duplicate those mechanics.
+When the owner's `codex_workflow` is installed/enabled, it is authoritative for internal Codex orchestration: worker selection, execute/review roles, delegation, concurrency, lifecycle, waiting and runtime recovery. Project Workflow supplies Task Card/review boundaries, applicable authority slices and durable project state; it does not duplicate those mechanics. Project Workflow's Authority Preservation Rule constrains what project intent must survive delegation, not how `codex_workflow` creates or manages workers.
 
 ## `codex_only` capability behavior
 
@@ -52,6 +52,7 @@ Codex Main freezes the exact review subject/evidence in Task Board and obtains a
 
 Project Workflow requires:
 - exact `review_subject`;
+- recovery of the same applicable authority slice that governed implementation;
 - `review_state: pending → in_progress → green|red`;
 - reviewer independence from the implementing worker/session;
 - durable review evidence/verdict;

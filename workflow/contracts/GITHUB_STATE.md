@@ -6,7 +6,7 @@ This is the normative contract for durable execution state in a project reposito
 
 `implementation/TASK_BOARD.yaml` is the **sole authoritative mutable execution-state record**.
 
-Milestone files and Task Card files are stable scope/acceptance contracts. `PROJECT.md` is a high-level router. Handoffs summarize completed truth. None of them mirror live status/executor/result/branch state.
+The approved Master Plan milestone subsection is the default stable milestone contract; an optional `implementation/milestones/MXX.md` may extend it just-in-time. Task Card files are stable bounded authority/scope/acceptance contracts. `PROJECT.md` is a high-level router. Handoffs summarize completed truth. None of them mirror live status/executor/result/branch state.
 
 If a legacy project still contains duplicated status/result fields in old milestone/Card files, Task Board controls new execution state after adoption of current workflow; legacy duplicate fields are historical/non-authoritative.
 
@@ -56,7 +56,7 @@ Task Board should identify at least:
 - milestone decision/execution states and terminal checkpoint/result pointers;
 - card decision/execution states, dependencies and assigned executor when applicable;
 - per-card parallel metadata when used: `parallel_safe`, `write_scope`, `exclusive_resources`, active lane branch/workspace and exact lane base;
-- card result pointers, evidence and concise tests summary;
+- card result pointers and concise tests summary, plus standalone evidence pointer when materially required;
 - relevant OpenSpec change per card when applicable;
 - integration branch/PR/head information needed to recover in-flight work;
 - review-state pointers when a card/milestone independent-review gate is active;
@@ -166,16 +166,18 @@ execution_status: done
 executor: chatgpt | codex
 result_commit: <sha>
 result_pr: <number-or-null>
-evidence: <repo-relative-path>
-tests_summary: <concise summary or evidence pointer>
+evidence: <repo-relative-path-or-null>
+tests_summary: <concise exact summary or evidence pointer>
 ```
 
 Rules:
 - `result_commit` identifies the commit containing or verifiably representing the accepted result;
 - `result_pr` identifies the PR when applicable, otherwise `null`;
-- evidence names exact tests/review/checks; `tests passed` alone is insufficient;
-- for a parallel lane, evidence identifies lane base/workspace and integrated verification target;
-- for material external writes, evidence records target, readback method and verified persisted state.
+- `tests_summary` names exact tests/review/checks; `tests passed` alone is insufficient;
+- standalone evidence may be `null` for a simple reproducible card;
+- standalone evidence is expected for integrated milestone acceptance, REQUIRED/RECOMMENDED independent review, baseline/authorized exceptions, material external writes/readback, complex multi-stage verification, or an explicit contract requirement;
+- for a parallel lane, the durable result record identifies lane base/workspace and integrated verification target;
+- for material external writes, standalone evidence records target, readback method and verified persisted state.
 
 The Task Card contract is not edited to duplicate these result fields.
 
@@ -265,7 +267,7 @@ Fresh-session recovery uses:
 - `PROJECT.md` for high-level routing/policy;
 - exact integration branch/HEAD/runtime state;
 - Task Board including review state;
-- milestone/Card contracts referenced by active state;
+- current milestone contract referenced by Task Board (Master Plan subsection or optional JIT extension) and active Task Card contracts;
 - latest handoff;
 - relevant OpenSpec/evidence/result/review pointers.
 
@@ -274,7 +276,7 @@ A local `current.md` is optional convenience only.
 ## 16. Consistency invariants
 
 Invalid states include:
-- Task Board card `done` with missing required executor/result/evidence pointers;
+- Task Board card `done` with missing required executor/result/tests summary or a missing standalone evidence pointer when that evidence is required;
 - Task Board milestone `done` with missing checkpoint, implementation head, handoff or acceptance evidence;
 - Task Board milestone `done` while a required/recommended review gate for the accepted subject is `pending`, `in_progress` or `red`;
 - a `green` review whose `review_subject` does not match the accepted subject it claims to review;

@@ -1,52 +1,36 @@
 # MXX-TYY — <title>
 
 - Milestone: `MXX`
-- Priority: `HIGH | MEDIUM | LOW`
-- Complexity: `HIGH | MEDIUM | LOW`
-- Phase: `<phase>`
 
 > This file is the Task Card **contract**, not live state. Decision/execution status, assigned executor, lane/base pointers, review state and result/evidence pointers live only in `implementation/TASK_BOARD.yaml`.
+
+## Authority slice
+
+Use exact durable references at the smallest practical granularity.
+
+- Master Plan / milestone contract: `<planning/MASTER_PLAN.md#... | implementation/milestones/MXX.md#...>`
+- Requirements: `<IDs/paths>`
+- Accepted decisions: `<IDs/paths>`
+- Relevant OpenSpec: `<path | none>`
+- Accepted dependency results: `<card/result/evidence refs | none>`
+
+### Must preserve
+
+List every applicable invariant, accepted behavior/architecture choice, failure semantic, compatibility rule, external-write boundary or other constraint that could change implementation or acceptance.
+
+...
+
+### Must not / rationale that must travel (only when material)
+
+Use when a competent downstream executor could otherwise choose a different path than the approved one.
+
+...
+
+> Delegation may reduce context volume, not authoritative constraints. A downstream executor/reviewer must either receive every applicable constraint explicitly or read the exact referenced authority before acting. Summary text never overrides exact authority.
 
 ## Dependencies
 
 - `<MXX-T.. | none>`
-
-## Expected code locations
-
-- `<path>`
-
-## Parallel execution (optional contract)
-
-Delete for ordinary serial-only cards.
-
-- parallel_safe: `true | false`
-- write_scope:
-  - `<repo-relative path/glob; empty only for genuinely read-only work>`
-- exclusive_resources:
-  - `<shared mutable fixture/service/external target | none>`
-
-Project-global Task Board/milestone integration/review state remains coordinator-owned and must not be placed in lane-worker write scope.
-
-## Required capabilities (optional)
-
-List only unusual/external/high-risk/routing-significant capabilities.
-
-- Under `mixed`, these may affect Capability Gate routing.
-- Under `chatgpt_only` / `codex_only`, they are documentation only and do **not** trigger a capability preflight. Execution starts directly; a capability becomes a blocker only when a concrete required operation cannot proceed.
-
-- `<capability>`
-
-## Canonical sources
-
-- Requirements: `<IDs/paths>`
-- Accepted decisions: `<paths>`
-- Master Plan: `<section/path>`
-- Latest cumulative handoff: `<path | none>`
-
-## OpenSpec
-
-- Required/candidate: `required | candidate | skip`
-- Change: `<openspec/changes/... | none>`
 
 ## Outcome
 
@@ -60,10 +44,6 @@ List only unusual/external/high-risk/routing-significant capabilities.
 ### Excluded
 ...
 
-## Constraints
-
-...
-
 ## Acceptance
 
 ...
@@ -72,42 +52,46 @@ List only unusual/external/high-risk/routing-significant capabilities.
 
 ...
 
-## External write/readback needs
+## Optional execution hints
 
-`none` or exact target + expected readback/verification. If mutable external target must be serialized across parallel cards, also list under `exclusive_resources`.
+Delete fields that do not add execution value.
+
+- Priority: `HIGH | MEDIUM | LOW`
+- Complexity: `HIGH | MEDIUM | LOW`
+- Phase: `<phase>`
+- Expected/relevant code locations:
+  - `<path>`
+- Required capabilities:
+  - `<only unusual/external/high-risk/routing-significant capability>`
+
+Under `chatgpt_only` / `codex_only`, capability hints do not trigger preflight. Under `mixed`, material capability hints may affect Capability Gate routing.
+
+## Parallel execution (only when applicable)
+
+- parallel_safe: `true`
+- write_scope:
+  - `<repo-relative path/glob; empty only for genuinely read-only work>`
+- exclusive_resources:
+  - `<shared mutable fixture/service/external target | none>`
+
+Project-global Task Board/milestone integration/review state remains coordinator-owned and must not be placed in lane-worker write scope.
+
+## External write/readback needs (only when material)
+
+`none` or exact target + expected readback/verification. Mutable external targets shared across parallel cards also belong in `exclusive_resources`.
 
 ## Independent review (only when material)
 
 `REQUIRED | RECOMMENDED` plus rationale.
 
-- `chatgpt_only`: the implementing chat must stop at the review boundary; a fresh normal ChatGPT chat reviews the exact durable subject.
+- `chatgpt_only`: implementing chat stops at the review boundary; a fresh normal ChatGPT chat reviews the exact durable subject.
 - `codex_only`: Codex Main uses an independent reviewer worker/session; installed `codex_workflow` governs reviewer orchestration.
 - `mixed`: reviewer path follows accepted routing/review contract.
 
-Reviewer must never be the implementing worker/session for the reviewed subject.
+Reviewer must never be the implementing worker/session for the reviewed subject and must verify against the same applicable authority slice.
 
-## Refresh Gate
+## Contract overrides (optional)
 
-Before implementation compare actual integration branch/HEAD/current state, Task Board, exact lane base/workspace when parallel, latest handoff, milestone/card contracts, relevant requirements/decisions/plan/OpenSpec, dependencies, actual interfaces, required tests/evidence/readback/review obligations and recorded parallel-ownership assumptions.
+Workflow-standard Refresh Gate, blocker/escalation behavior, evidence rules and Definition of Done are inherited from `workflow/contracts/TASK_CARDS.md` and `workflow/EXECUTION.md`.
 
-Refresh Gate is a state/contract drift gate. Under fixed execution policy it is **not** a capability inventory/checklist.
-
-Implementation-detail drift inside accepted contracts may be reconciled. Material strategic drift or unexpected mutable ownership overlap blocks affected card/lane.
-
-## Definition of Done contract
-
-Task Board may mark this card `done` only after:
-- Included scope complete
-- Acceptance satisfied
-- Required tests/checks executed
-- Tests green or authorized exception recorded
-- Relevant OpenSpec satisfied
-- Required/recommended independent review GREEN when applicable
-- No hidden blocker
-- Result durable in Git/external state
-- Parallel lane integrated/post-integration verification green when applicable
-- Task Board result/executor/evidence/review pointers recorded
-- Material external writes read back/verified where required
-- No unassigned TODO in accepted scope
-
-Do not edit this file merely to check off completion or copy result SHAs.
+Record only material card-specific overrides here. Do not copy standard workflow text merely to fill sections.

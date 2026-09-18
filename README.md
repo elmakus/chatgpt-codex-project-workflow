@@ -15,8 +15,10 @@ The project repository is durable project truth. It stores brainstorming, resear
 The workflow deliberately separates contract from state:
 
 - `implementation/TASK_BOARD.yaml` — **sole mutable execution-state authority**, including active independent-review state;
-- milestone/Card files — stable scope, acceptance and test contracts;
-- cumulative handoff — summary of what became true at a completed milestone;
+- approved Master Plan milestone subsections — default milestone contracts;
+- `implementation/milestones/MXX.md` — optional JIT contract extensions only when the Master Plan needs material execution/acceptance detail;
+- Task Card files — bounded authority/scope/acceptance/test contracts;
+- cumulative handoff — compact summary of what became true at a completed milestone;
 - root `PROJECT.md` — small high-level project router/policy/index, not a live tracker.
 
 This avoids repeatedly synchronizing status, executor, SHA and result pointers across several documents.
@@ -40,6 +42,18 @@ For fixed policies, capability availability is **runtime discovery**, not a recu
 Execution Prep and Refresh Gate do not inventory tools/MCPs or attempt to prove that the fixed executor can perform every future operation. Refresh Gate checks current state, contracts, dependencies, interfaces, tests/evidence obligations and drift.
 
 A capability becomes a blocker only when the active card reaches a concrete required operation that cannot proceed. No automatic executor/policy switch occurs. The user may provide the missing capability or explicitly change policy, after which Task Board is reconciled before reassignment.
+
+## Authority preservation
+
+Progressive disclosure reduces context volume, not accepted intent. Planning/decomposition/delegation follows **lossless by authority, selective by context**:
+
+- a Task Card identifies the exact durable authority slice applicable to its bounded scope;
+- implementation-shaping constraints are either carried explicitly into a downstream package or the worker/reviewer must read the exact authority reference;
+- planner rationale is retained when omitting it could reasonably lead to a different implementation choice;
+- executor and independent reviewer use the same applicable authority slice;
+- summaries/paraphrases are navigation aids and never override requirements, accepted decisions or approved plan authority.
+
+This allows stronger planning models to produce rich durable intent while smaller execution/review contexts remain bounded without semantic loss.
 
 ## Independent review
 

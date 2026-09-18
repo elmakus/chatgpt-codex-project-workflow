@@ -28,9 +28,9 @@ A project repository contains project-specific knowledge and, when the project h
 │   └── MASTER_PLAN.md
 ├── implementation/
 │   ├── TASK_BOARD.yaml
-│   ├── milestones/
+│   ├── milestones/        # optional JIT milestone extensions
 │   ├── cards/
-│   ├── evidence/
+│   ├── evidence/          # standalone only when materially useful/required
 │   └── blockers/
 ├── project-handoffs/
 │   └── MXX_HANDOFF.md
@@ -48,11 +48,11 @@ Projects may adapt filenames/paths when real repositories require it, but `PROJE
 - `decisions/` — decisions actually accepted by relevant authority.
 - `research/` — source-grounded findings, audits, comparisons and analysis.
 - `requirements/` — authoritative product/system requirements and constraints.
-- `planning/` — approved plan, architecture and milestone contracts.
+- `planning/` — approved plan and architecture; approved Master Plan milestone subsections are the default milestone contracts.
 - `implementation/TASK_BOARD.yaml` — **sole authoritative mutable execution state**.
-- `implementation/milestones/` — stable milestone outcome/acceptance/boundary contracts; not live status mirrors.
-- `implementation/cards/` — bounded Task Card scope/acceptance/test contracts; not live status/result mirrors.
-- `implementation/evidence/` — durable proof of execution/review/acceptance.
+- `implementation/milestones/` — optional just-in-time extensions when the Master Plan milestone contract needs material execution/acceptance detail; not live status mirrors.
+- `implementation/cards/` — bounded Task Card authority/scope/acceptance/test contracts; not live status/result mirrors.
+- `implementation/evidence/` — standalone durable proof when materially useful/required; simple card checks may remain in Task Board `tests_summary`.
 - `implementation/blockers/` — durable blocker evidence.
 - `project-handoffs/` — summaries of completed milestone truth and next starting context; not live trackers.
 - `openspec/` — behavior/design contracts when justified.
@@ -97,14 +97,14 @@ Apply authority by domain, not as one simplistic total order:
 
 1. workflow behavior: current workflow `main`, except an explicitly frozen in-flight migration boundary;
 2. accepted product/system intent: canonical requirements plus accepted decisions;
-3. approved execution intent: Master Plan/milestone contracts constrained by requirements/decisions;
+3. approved execution intent: Master Plan milestone contracts plus any JIT milestone extension, constrained by requirements/decisions;
 4. current execution state: Task Board plus exact Git/runtime/external state and durable evidence;
-5. card/milestone acceptance contracts: Task Card and milestone files plus relevant OpenSpec;
+5. bounded execution/acceptance contracts: Task Cards plus relevant OpenSpec;
 6. completed milestone summary: cumulative handoff plus its referenced exact state;
 7. research: evidence, not decision;
 8. brainstorming: tentative until promoted.
 
-`PROJECT.md` points to authority; it does not override referenced artifacts. Milestone/Card files define contracts; they do not override newer Task Board execution state.
+`PROJECT.md` points to authority; it does not override referenced artifacts. A separate milestone file is optional and extends rather than replaces the approved Master Plan subsection. Task Cards narrow execution scope but do not override richer requirements/decisions/plan authority. None of these contract artifacts override newer Task Board execution state.
 
 If current implementation/runtime evidence materially contradicts an approved behavior/architecture/requirement contract, the current executor does not silently rewrite strategic authority. It blocks and uses the appropriate strategic-resolution path.
 
@@ -155,6 +155,12 @@ For a legacy project whose milestone/Card files still duplicate live status/resu
 - remove or stop updating those duplicate fields at the next safe contract edit or milestone boundary;
 - do not create churn merely to rewrite completed historical artifacts.
 
+Documentation compaction is also forward-looking:
+- existing milestone files remain valid durable contracts; do not delete them merely because separate milestone files are now optional;
+- existing standalone evidence and cumulative handoffs remain durable history/evidence;
+- a legacy Task Board without an explicit milestone `contract` pointer may recover from its existing plan/milestone references; add the pointer at the next safe execution-prep/state edit rather than performing repository-wide churn;
+- use the lean JIT rules for newly prepared work.
+
 Do not move active project topology mid-milestone. Legacy split-repository migration still occurs at a GREEN boundary with provenance.
 
 ## 12. Initializing a new project
@@ -165,6 +171,6 @@ From an empty shell:
 3. start with brainstorming/research rather than fake implementation state;
 4. record accepted choices under `decisions/`;
 5. create canonical requirements/planning only when meaningful;
-6. create Task Board, milestone/Card contracts, evidence and OpenSpec just-in-time.
+6. create Task Board and Task Cards just-in-time; create separate milestone contracts, standalone evidence and OpenSpec only when their material criteria are met.
 
 Do not populate placeholders merely to satisfy a directory checklist.

@@ -34,9 +34,13 @@ The approved Master Plan normally lives at `planning/MASTER_PLAN.md` and covers 
 
 The Master Plan is not the live task tracker. Live execution state belongs only in `implementation/TASK_BOARD.yaml`.
 
+An approved Master Plan milestone section is the **default milestone contract**. Do not create a separate milestone file merely to restate the same outcome, dependencies, constraints and acceptance. Create `implementation/milestones/MXX.md` just-in-time only when execution preparation needs material contract detail that the approved plan does not already carry.
+
 ## Milestones
 
 A milestone is a stable, integrated, testable checkpoint, not a single small task. Define outcomes/acceptance without pretending distant implementation interfaces are already known.
+
+Planner quality must survive execution decomposition. Keep material rationale, invariants, failure semantics, rejected-path constraints and other implementation-shaping intent in durable authority. Later Task Cards may narrow context, but must not replace that authority with a lossy summary.
 
 An approved sequence of milestones is permission to execute that approved scope under the project's execution policy; it is not permission to bypass any explicit deployment/live-write/user authorization gate recorded by the plan or requirements.
 

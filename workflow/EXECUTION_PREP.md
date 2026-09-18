@@ -14,8 +14,11 @@ Before creating executable cards:
 ## State ownership
 
 Execution prep writes:
-- milestone/Card **contracts** under `implementation/milestones/` and `implementation/cards/`;
+- Task Card **contracts** under `implementation/cards/`;
+- an optional milestone contract under `implementation/milestones/` only when it adds material execution/acceptance detail beyond the approved Master Plan milestone section;
 - all mutable readiness/status/executor/result/integration/review state to `implementation/TASK_BOARD.yaml`.
+
+The approved Master Plan milestone section is the default milestone contract. Do not create a second milestone document merely to duplicate it.
 
 Do not put live execution state into milestone/Card files or `PROJECT.md`.
 
@@ -23,9 +26,9 @@ Do not put live execution state into milestone/Card files or `PROJECT.md`.
 
 1. Inspect current project repository and relevant source/runtime/external state.
 2. Read current execution policy and Task Board when one exists.
-3. Define/refresh milestone contract and branch policy.
+3. Resolve the milestone contract from the approved Master Plan. Create/refresh a separate milestone file only when just-in-time preparation needs material detail not already present there; record branch policy where applicable.
 4. Decompose work into bounded Task Card contracts.
-5. Record dependencies, priority, complexity, phase and expected code locations in card contracts.
+5. For each card record dependencies plus an exact authority slice: applicable requirement/decision/plan/milestone/dependency-result references and every must-preserve constraint that could change implementation or acceptance. Priority, complexity, phase and expected code locations are optional execution hints, not mandatory boilerplate.
 6. Define acceptance criteria and required tests/checks for every card.
 7. Identify material external writes and required readback/verification evidence.
 8. Add explicit `required_capabilities` only when they materially improve **mixed-policy routing** or document unusual external/security/user-authorization prerequisites. Do not turn this metadata into a fixed-policy capability preflight.
@@ -41,6 +44,33 @@ Do not put live execution state into milestone/Card files or `PROJECT.md`.
 18. Determine executor from project policy as described below.
 
 Execution preparation under fixed policy does **not** ask whether the fixed executor can theoretically perform every future operation. Actual capability failure is handled at runtime when a concrete operation is attempted.
+
+## Authority preservation during decomposition
+
+Execution preparation may reduce context volume but must not reduce applicable authoritative constraints.
+
+For every Task Card:
+- identify exact durable authority references at the smallest practical section/ID granularity;
+- carry forward every invariant, accepted behavior/architecture choice, failure semantic, compatibility rule, external-write boundary, dependency result and exclusion that can materially change implementation or acceptance;
+- preserve rationale when omitting it could make a competent downstream executor reasonably choose a different path than the approved one;
+- prefer exact authority references over paraphrase; summaries are navigation aids and never override the referenced authority;
+- if a downstream executor/reviewer will not read a referenced artifact directly, its execution/review package must explicitly carry the applicable constraints without changing their meaning.
+
+This is **lossless by authority, selective by context**: fewer documents and smaller worker packages are allowed; semantic compression of accepted intent is not.
+
+## Evidence granularity
+
+A simple Task Card does not require a standalone evidence file merely because it completed. `tests_summary` plus exact result pointers in Task Board may be sufficient when the result is straightforward and reproducible.
+
+Create standalone durable evidence when materially useful or required, including:
+- milestone integrated acceptance;
+- REQUIRED/RECOMMENDED independent review;
+- baseline/authorized exceptions;
+- material external writes/readback/reconciliation;
+- complex or multi-stage verification whose proof cannot be represented safely by a concise Task Board summary;
+- an explicit contract requirement.
+
+When no standalone evidence artifact is required, keep `evidence: null` and record a concise exact `tests_summary`.
 
 ## Card versus OpenSpec task
 

@@ -45,9 +45,10 @@ The **current executor** creates/reconciles actual OpenSpec just-in-time immedia
 Before implementation reconcile OpenSpec against:
 - actual current HEAD/source/runtime;
 - latest cumulative handoff;
-- current milestone and Task Card;
+- current milestone contract and Task Card;
+- the Task Card's exact applicable authority slice;
 - authoritative requirements/accepted decisions;
-- relevant Master Plan constraints;
+- relevant approved-plan constraints;
 - completed dependencies.
 
 Actual code/runtime is an input to implementation design, not authority to silently rewrite product requirements.

@@ -35,7 +35,7 @@ ChatGPT may read `workflow/codex/HANDOFF.md` only when preparing/interpreting a 
 
 Apply `workflow/contracts/PROJECT_REPOSITORY.md#6-authority-and-conflicts` before interpreting project content.
 
-Accepted decisions/requirements outrank brainstorming, approved plan outranks abandoned alternatives, Task Board + exact Git/runtime evidence govern live execution, milestone/Card files define contracts, and cumulative handoff summarizes completed milestone truth.
+Accepted decisions/requirements outrank brainstorming, approved plan outranks abandoned alternatives, Task Board + exact Git/runtime evidence govern live execution, the approved Master Plan milestone subsection is the default milestone contract, optional milestone files may extend it just-in-time, Task Cards define bounded execution contracts, and cumulative handoff summarizes completed milestone truth.
 
 ### Pending independent review has priority
 
@@ -72,7 +72,7 @@ During automatic `codex_only` multi-milestone continuation, Codex Main may read 
 
 ## CHATGPT EXECUTION
 
-Read shared `workflow/EXECUTION.md`, `workflow/chatgpt/EXECUTION.md`, project `PROJECT.md`, Task Board, current milestone/Card contracts, latest handoff, relevant OpenSpec/plan/source and only contracts needed by current set.
+Read shared `workflow/EXECUTION.md`, `workflow/chatgpt/EXECUTION.md`, project `PROJECT.md`, Task Board, current milestone contract (Master Plan subsection or optional JIT extension), candidate Task Cards, their exact authority slices, latest handoff, relevant OpenSpec/source and only contracts needed by current set.
 
 Under fixed `chatgpt_only`, Refresh Gate is state/contract drift checking, not a capability inventory.
 
@@ -80,7 +80,7 @@ Do not automatically load Codex execution/orchestration.
 
 ## CODEX EXECUTION
 
-Read shared `workflow/EXECUTION.md`, `workflow/codex/EXECUTION.md`, `workflow/codex/CODEX_ORCHESTRATION.md`, project `PROJECT.md`, Task Board, current milestone/Card contracts, latest handoff, relevant OpenSpec/plan/source and only needed shared contracts.
+Read shared `workflow/EXECUTION.md`, `workflow/codex/EXECUTION.md`, `workflow/codex/CODEX_ORCHESTRATION.md`, project `PROJECT.md`, Task Board, current milestone contract (Master Plan subsection or optional JIT extension), candidate Task Cards, their exact authority slices, latest handoff, relevant OpenSpec/source and only needed shared contracts.
 
 Under `codex_only`, also load `workflow/EXECUTION_PREP.md` at an approved milestone boundary when deterministic next-milestone preparation is required. Do not run a capability preflight; concrete runtime blockers are handled during execution.
 
@@ -94,7 +94,7 @@ For Codex correlated ChatGPT control-channel communication, additionally read `w
 
 ## MILESTONE REVIEW / CLOSE
 
-Read `workflow/REVIEW_AND_HANDOFF.md`, `PROJECT.md`, Task Board/current milestone contract, exact `review_subject` when present, required card results/evidence, relevant OpenSpec/Git/external state and prior cumulative handoff when needed.
+Read `workflow/REVIEW_AND_HANDOFF.md`, `PROJECT.md`, Task Board/current milestone contract, exact `review_subject` when present, the same applicable authority slice that governed implementation, required card results/evidence, relevant OpenSpec/Git/external state and prior cumulative handoff when needed.
 
 For `chatgpt_only` REQUIRED/RECOMMENDED review, the reviewer must be a fresh normal ChatGPT chat that did not implement `review_subject`.
 

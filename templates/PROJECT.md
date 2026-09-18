@@ -37,4 +37,4 @@ Changing execution policy requires explicit user decision. Default for new proje
 
 This file is a high-level router/policy/index, not live execution state.
 
-Do not record current milestone/card, assigned executor, active branch/HEAD, checkpoint, current OpenSpec or blocker status here. Read `implementation/TASK_BOARD.yaml` for all mutable execution state and follow referenced milestone/Card contracts/evidence/handoffs.
+Do not record current milestone/card, assigned executor, active branch/HEAD, checkpoint, current OpenSpec or blocker status here. Read `implementation/TASK_BOARD.yaml` for all mutable execution state. The approved Master Plan milestone subsection is the default milestone contract; follow any optional JIT milestone extension, referenced Task Card authority slices, required evidence and handoffs.
