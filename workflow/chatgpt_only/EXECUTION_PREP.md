@@ -5,7 +5,7 @@ Execution preparation turns approved milestone authority, or a qualified branch-
 ## Preconditions
 
 Before creating executable work:
-- authoritative requirements are identifiable;
+- applicable accepted product/behavior authority is identifiable; for a qualified micro-fix this may be the exact completed Intake intent/diagnostic record plus existing requirements/decisions, without requiring a new formal requirements artifact;
 - accepted architecture/decisions are recorded;
 - either the current Master Plan/milestone is approved, or a selected branch-isolated issue Intake has completed with `path: micro_fix` and durable evidence for every R6 qualification criterion;
 - unresolved strategic questions are resolved or explicitly blocking;
