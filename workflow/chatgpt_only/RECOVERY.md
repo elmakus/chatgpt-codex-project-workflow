@@ -6,8 +6,9 @@ Recovery reconstructs execution truth from durable project state without prior c
 
 Read:
 - project `PROJECT.md`;
-- `implementation/TASK_BOARD.yaml`;
+- `workflow/chatgpt_only/WORKSTREAMS.md` when branch-isolated;
 - exact active branch/HEAD;
+- validated workstream manifest + its selected canonical Task Board when branch-isolated, otherwise legacy/default `implementation/TASK_BOARD.yaml`;
 - relevant runtime/external state;
 - current milestone/Card contracts;
 - active review state;
@@ -18,6 +19,8 @@ Read:
 Previous chat narrative is not authority.
 
 ## Recovery priority
+
+Apply this priority only inside the selected default/workstream Task Board. An unrelated workstream's active Card/review is not a blocker for this one.
 
 1. REQUIRED/RECOMMENDED `review_state: pending | in_progress` outranks later implementation.
 2. Task Board `research_obligation` with research `Status: active | blocked | complete` outranks selecting new implementation, including when opened from a RED verdict, and recovers through **Implementation-owned Research** below.
