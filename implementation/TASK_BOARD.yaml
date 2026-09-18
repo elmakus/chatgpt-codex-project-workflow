@@ -9,7 +9,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/chatgpt-only-multi-workstream-intake"
   pr: null
-  head: "4c5a2b50f37199b5038fccb89a02b696a2514c11"
+  head: "c328e802ea4735ac85c10ac4d7471107b3123585"
 
 research_obligation: null
 
@@ -94,9 +94,9 @@ cards:
     depends_on: ["M02-T01"]
     openspec_change: null
     contract: "implementation/cards/M03-T01.md"
-    review_state: in_progress
+    review_state: green
     review_subject: "fe447d4e0322b8b4f1ef5a5f1fd46b703877a75b"
-    review_evidence: null
+    review_evidence: "implementation/evidence/M03-T01-review-01.md"
     result_commit: "fe447d4e0322b8b4f1ef5a5f1fd46b703877a75b"
     result_pr: null
     evidence: "implementation/evidence/M03-T01.md"
