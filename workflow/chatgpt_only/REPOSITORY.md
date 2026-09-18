@@ -141,9 +141,9 @@ From an empty project shell:
 1. create a small `PROJECT.md` with the accepted `execution_policy: chatgpt_only`;
 2. create only phase-appropriate knowledge directories;
 3. begin with brainstorming/research rather than fake implementation state;
-4. record accepted choices under `decisions/`;
-5. create canonical requirements/planning only when meaningful;
-6. create Task Board and Task Cards just-in-time;
+4. use Project Definition to promote accepted intent into `requirements/` + `decisions/`;
+5. create an approved Master Plan only after Definition Complete is GREEN;
+6. create Task Board and Task Cards just-in-time through Execution Prep;
 7. create separate milestone contracts, standalone evidence and OpenSpec only when their material criteria are met.
 
 Do not populate placeholder artifacts merely to satisfy a directory checklist.

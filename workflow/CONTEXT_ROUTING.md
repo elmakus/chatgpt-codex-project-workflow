@@ -44,7 +44,7 @@ If an accepted policy can be recovered unambiguously from durable project author
 
 Otherwise, execution is blocked until the policy is explicitly resolved.
 
-Research/brainstorming that does not depend on executor semantics may continue through policy-neutral common modules when safe.
+Brainstorming/research/Project Definition that does not depend on executor semantics may continue through policy-neutral common modules when safe.
 
 ## Migration invariant
 

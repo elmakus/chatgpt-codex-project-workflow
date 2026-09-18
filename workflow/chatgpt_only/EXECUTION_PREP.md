@@ -60,7 +60,7 @@ Allowed L2 refinement includes:
 - bind exact dependency-result authority;
 - complete a JIT milestone extension.
 
-Evidence requiring a change to strategic authority is L3 and stops affected execution for strategic resolution.
+Evidence requiring authority above delegated L1/L2 stops affected execution and returns to the router for strategic classification: Definition when accepted product/system authority must change, Planning when the accepted Definition remains valid but milestone/plan strategy must change, or Research when more evidence is required first.
 
 ## Authority preservation
 

@@ -302,6 +302,42 @@ A later explicit user decision refined the active ChatGPT-only state machine wit
 - role completion is not a user stop;
 - all normal-ChatGPT real-stop responses use `workflow/common/USER_STOP.md`.
 
+## Later Project Definition / Planning refinement
+
+A later explicit user decision intentionally superseded the earlier combined strategic-planner ownership model.
+
+The active lifecycle is now:
+
+```text
+BRAINSTORMING ↔ RESEARCH
+        ↓
+PROJECT DEFINITION
+        ↓
+PLANNING
+        ↓
+EXECUTION PREP
+        ↓
+EXECUTION
+```
+
+This refinement changes ownership without dropping the underlying pre-split semantics:
+
+- brainstorming remains tentative;
+- research remains evidence;
+- accepted product/system requirements and strategic/high-level decisions are now promoted through `workflow/common/DEFINITION.md`;
+- Planning no longer invents or owns product/system intent;
+- Planning owns Master Plan execution organization: milestones, dependencies, planned work packages, outcome-level acceptance, verification/migration strategy and JIT triggers;
+- exact Task Cards remain Execution Prep responsibility;
+- strategic escalation is split: Definition change when accepted target authority changes, Planning replan when Definition remains valid but milestone/strategy changes.
+
+Historical matrix rows that say the strategic planner directly owns requirements/architecture or that Brainstorming/Research promote directly into Planning should be read as **SUPERSEDED BY EXPLICIT USER DECISION**, with their authority-preservation intent retained through the new Definition boundary.
+
+The single common directory now also contains:
+
+```text
+workflow/common/DEFINITION.md
+```
+
 ## Final verdict
 
 **GREEN — lossless for applicable ChatGPT-only semantics, with explicit documented supersessions and policy exclusions.**

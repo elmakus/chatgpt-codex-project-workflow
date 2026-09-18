@@ -8,7 +8,7 @@ A GitHub-backed workflow for technical projects managed from normal ChatGPT chat
 
 **ONE PROJECT = ONE REPOSITORY from the first idea.**
 
-The project repository is durable project truth. It stores brainstorming, research, accepted decisions, requirements, approved planning, implementation contracts/state, OpenSpec, evidence and cumulative handoffs. This workflow repository stores only workflow rules, contracts, templates and bootstrap prompts.
+The project repository is durable project truth. It stores brainstorming, research, accepted Project Definition authority (requirements + decisions), approved planning, implementation contracts/state, OpenSpec, evidence and cumulative handoffs. This workflow repository stores only workflow rules, contracts, templates and bootstrap prompts.
 
 ### State ownership
 
@@ -49,7 +49,7 @@ CHATGPT.md
 The first migrated namespace is `workflow/chatgpt_only/`.
 
 For `chatgpt_only`:
-- common authority/brainstorming/research/OpenSpec/user-stop rules come only from `workflow/common/`;
+- common authority/brainstorming/research/Project Definition/OpenSpec/user-stop rules come only from `workflow/common/`;
 - planning, execution preparation, Task Cards, state, execution, independent review, close/publication and recovery come only from `workflow/chatgpt_only/`;
 - normal project execution handles exactly one READY Task Card at a time;
 - other policy execution/orchestration semantics are outside the route.
@@ -63,6 +63,30 @@ For fixed policies, capability availability is **runtime discovery**, not a recu
 Execution Prep and Refresh Gate do not inventory executor tools/capabilities or attempt to prove that the fixed executor can perform every future operation. Refresh Gate checks current state, contracts, dependencies, interfaces, tests/evidence obligations and drift.
 
 A capability becomes a blocker only when the active card reaches a concrete required operation that cannot proceed. No automatic executor/policy switch occurs. The user may provide the missing capability or explicitly change policy, after which Task Board is reconciled before reassignment.
+
+## Definition before planning
+
+The durable lifecycle separates exploration, accepted intent and execution organization:
+
+```text
+BRAINSTORMING ↔ RESEARCH
+        ↓
+PROJECT DEFINITION
+        ↓
+PLANNING
+        ↓
+EXECUTION PREP
+        ↓
+EXECUTION
+```
+
+- **Brainstorming** explores possibilities; it is not authority.
+- **Research** produces evidence; it is not authority.
+- **Project Definition** promotes accepted intent into `requirements/` + `decisions/` and keeps unresolved product/strategic questions explicit.
+- **Planning** consumes an approved Definition and organizes it into a Master Plan, milestone sequence, planned work packages, acceptance/checkpoints and JIT triggers.
+- **Execution Prep** converts currently knowable planned work into concrete executable Task Cards and Task Board state.
+
+Planning does not silently decide missing product/system intent. Execution Prep does not require speculative future Card IDs from Planning.
 
 ## Authority preservation
 
@@ -130,7 +154,12 @@ The execution orchestrator may, without returning to the original planner:
 - complete an optional JIT milestone extension;
 - refine implementation-level acceptance/tests/interfaces from actual predecessor results.
 
-This authority is bounded. It must not change accepted requirements, frozen architecture/decisions, global invariants, milestone outcome or explicit user/deployment/authorization gates. If new evidence requires one of those to change, execution stops for strategic replan.
+This authority is bounded. It must not change accepted requirements, strategic/high-level decisions, global product/system invariants, approved milestone strategy/outcomes or explicit user/deployment/authorization gates.
+
+If new evidence requires:
+- accepted product/system intent, strategic decisions, invariants or authorization boundaries to change → return to Project Definition;
+- only milestone structure/order/outcome or execution strategy to change while Definition remains valid → return to Planning;
+- more evidence before either can be resolved → return to Research.
 
 Do not create placeholder cards whose real scope is merely “whatever the previous card reveals.” Persist the dependency/JIT trigger instead and create the real card when the evidence exists.
 
@@ -165,14 +194,15 @@ Task Board plus ordinary Git lane branches/worktrees remain the durable coordina
 
 Project Workflow defines **roles, not model identities**. It never requires a named model or reasoning level for planning, orchestration, execution or review. The user/runtime may choose different models, reasoning levels or sessions for the same role at different times.
 
-- **Strategic planner** — establishes or revises project goal, requirements, accepted architecture/decisions, global invariants, milestone outcomes and explicit boundary gates.
+- **Definition owner** — turns accepted user/product intent + verified evidence into canonical requirements, accepted strategic/high-level decisions, constraints, invariants, non-goals and acceptance-level target state.
+- **Strategic planner** — organizes that approved Definition into Master Plan milestones, dependencies, planned work packages, outcome-level acceptance, verification/migration strategy and JIT boundaries without redefining product/system intent.
 - **Execution orchestrator / JIT planner** — turns accepted strategic authority plus current durable evidence into executable milestone detail and Task Cards, coordinates execution, and refines not-yet-started work within delegated planning authority.
 - **Executor / worker** — implements bounded Task Card scope against its exact authority slice.
 - **Independent reviewer** — evaluates the exact reviewed subject against the same applicable authority slice without having implemented that subject.
 
 Roles may be performed by normal ChatGPT or Codex according to project `execution_policy` and current routing. Under `codex_only`, Codex Main commonly occupies the execution-orchestrator role; when `codex_workflow` is installed/enabled, it governs internal Codex worker/model routing and lifecycle. Project Workflow does not choose those models or duplicate those mechanics.
 
-A strategic replan returns to the **strategic-planning role**, not necessarily to the same model/session that authored the original plan.
+A plan-only reorganization returns to the **strategic-planning role**. A change to accepted requirements/strategic decisions/global target-state authority returns first to **Project Definition**. Neither role must be performed by the same model/session that authored the prior artifact.
 
 ## Progressive disclosure
 

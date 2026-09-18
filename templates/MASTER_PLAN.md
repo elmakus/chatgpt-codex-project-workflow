@@ -4,76 +4,109 @@ Revision: `<R#>`
 Status: `draft | approved`
 Updated: `<YYYY-MM-DD>`
 
-## 1. Problem and goal
-...
+> Planning organizes an already-approved Project Definition. Requirements/accepted decisions remain the product/system authority; this plan does not redefine them.
 
-## 2. Current state / verified baseline
-...
+## 1. Accepted target / canonical inputs
 
-## 3. Target state
-...
-
-## 4. Canonical inputs
-- Requirements: `requirements/REQUIREMENTS.md`
+- Requirements: `requirements/REQUIREMENTS.md` (must be `approved`)
 - Accepted decisions: ...
-- Relevant research: ...
+- Relevant research/evidence pointers: ...
+- Project baseline/reference: ...
 
-## 5. Frozen architecture decisions
+## 2. Execution baseline
+
+Only the verified current-state facts needed to organize execution.
+
 ...
 
-## 6. Non-goals
+## 3. Inherited non-goals / invariants / external constraints
+
+Reference exact Definition authority. Repeat only implementation-shaping detail whose omission could cause a different plan.
+
 ...
 
-## 7. Global invariants / external constraints
-...
-
-## 8. Known source seams
-...
-
-## 9. Milestones
+## 4. Milestones
 
 ### M01 — <name>
+
 - Outcome: ...
 - Checkpoint: ...
-- Acceptance: `<stable outcome-level acceptance; defer only implementation-level detail that genuinely depends on predecessor evidence>`
+- Acceptance: `<stable outcome-level acceptance; defer only detail that genuinely depends on predecessor evidence>`
 - Requirement coverage: ...
 - Dependencies: ...
-- Must-preserve constraints / implementation-shaping rationale: `<only when material>`
+- Inherited constraints / rationale: `<exact refs + only material carried context>`
+- Planned work packages:
+  - `<bounded work package/theme; not a live Task Card>`
 - JIT decomposition / deferred-detail trigger: `none | after <exact predecessor/result/evidence>`
-- Strategic replan trigger: `<only when a known condition would invalidate accepted strategic authority>`
+- Planning re-evaluation trigger: `<condition that could invalidate milestone structure/order while Definition remains valid | none>`
+- Definition re-open trigger: `<condition that could invalidate accepted requirements/decisions/invariants | none>`
 - Boundary gate / explicit user authorization: `none | <exact gate>`
 
-An approved milestone sequence may execute continuously under fixed `chatgpt_only` or `codex_only` policy. GREEN milestone boundaries still require normal close/handoff plus fresh execution prep/Refresh Gate; execution stops at any explicit boundary gate.
+An approved milestone sequence may execute continuously under the active execution policy when downstream gates permit it.
 
-Each approved milestone subsection is the default milestone contract. Create a separate `implementation/milestones/MXX.md` only just-in-time when it adds material contract detail needed for execution or integrated acceptance. Never replace richer planner intent with a shorter milestone/card paraphrase; downstream contracts point back to the exact authoritative sections.
+Each approved milestone subsection is the default milestone contract. Create a separate `implementation/milestones/MXX.md` only just-in-time when it adds material execution/acceptance detail needed by Execution Prep or integrated acceptance.
 
-## 10. Requirement coverage matrix
+## 5. Requirement coverage matrix
 
-| Requirement | Milestone | Planned Task Card(s) | OpenSpec candidate |
+| Requirement | Owner milestone | Planned work package or JIT trigger | OpenSpec candidate |
 |---|---|---|---|
-| REQ-001 | M01 | `M01-T01` or `JIT after <exact trigger>` | yes/no |
+| REQ-001 | M01 | `<work package>` or `JIT after <exact trigger>` | yes/no |
 
-## 11. Deployment / migration strategy
+Do not invent future Task Card IDs merely to make this table look complete. Execution Prep creates concrete Cards before implementation.
+
+## 6. Dependency / execution order
+
 ...
 
-## 12. System verification strategy
+## 7. Deployment / migration / rollback strategy
+
 ...
 
-## 13. Idempotency / data-integrity / security strategy
+## 8. System verification strategy
+
 ...
 
-## 14. Fresh-context boundaries
+## 9. Idempotency / data-integrity / security strategy
+
 ...
 
-## 15. Workflow policy references
+## 10. Explicit authorization boundaries
 
-- Context routing: `workflow/CONTEXT_ROUTING.md`
-- Execution prep: `workflow/EXECUTION_PREP.md`
-- Shared execution: `workflow/EXECUTION.md`
-- Capability Gate (`mixed` only): `workflow/chatgpt/CAPABILITY_GATE.md`
-- Task decomposition: `workflow/contracts/TASK_CARDS.md`
-- OpenSpec: `workflow/contracts/OPENSPEC.md`
-- GitHub state: `workflow/contracts/GITHUB_STATE.md`
-- Handoff/review: `workflow/REVIEW_AND_HANDOFF.md`
+...
 
-The Master Plan is not live task tracker. Live execution state belongs only in `implementation/TASK_BOARD.yaml`.
+## 11. JIT / deferred decomposition map
+
+...
+
+## 12. Fresh-context boundaries
+
+Only when materially useful. Runtime Context Health Gate remains authoritative for actual session-hygiene handoffs.
+
+...
+
+## 13. Pre-implementation planning audit
+
+- Definition Complete still GREEN: ...
+- False assumptions / P0/P1 risks: ...
+- Milestone boundaries/order: ...
+- Dependency completeness: ...
+- Outcome-level acceptance: ...
+- Requirement coverage: ...
+- Migration/rollback: ...
+- System verification: ...
+- Data integrity/idempotency/security: ...
+- Authorization gates: ...
+- OpenSpec boundaries: ...
+- Overengineering/premature detail: ...
+- Remaining blockers: `none | ...`
+
+## 14. Workflow references
+
+- Project Definition: `workflow/common/DEFINITION.md`
+- ChatGPT-only planning: `workflow/chatgpt_only/PLANNING.md`
+- Execution prep: `workflow/chatgpt_only/EXECUTION_PREP.md`
+- Task Cards: `workflow/chatgpt_only/TASK_CARDS.md`
+- OpenSpec: `workflow/common/OPENSPEC.md`
+- State: `workflow/chatgpt_only/STATE.md`
+
+The Master Plan is not the live task tracker. Mutable execution state belongs only in `implementation/TASK_BOARD.yaml`.
