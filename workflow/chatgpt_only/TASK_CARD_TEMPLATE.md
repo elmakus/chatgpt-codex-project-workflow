@@ -50,6 +50,21 @@ Delegation may reduce context volume, not authoritative constraints. A downstrea
 
 ...
 
+## Delegated workers
+
+Delete this section when the Card does not delegate work. When used, read `workflow/chatgpt_only/DELEGATED_WORKERS.md`.
+
+For each required worker step record:
+- Role: `<executor | tester | verifier | other semantic role>`
+- Profile: `<project-defined worker profile>`
+- Invocation point/order: `<when this worker runs>`
+- Task/authority input: `<exact refs/constraints or bounded package>`
+- Workspace boundary: `<assigned cwd/worktree/runtime scope>`
+- Normalized result contract: `<schema/path/required fields>`
+- Failure/retry override: `<none | bounded rule>`
+
+Do not put raw backend CLI flags here unless the project-defined profile contract itself requires them. Task Board `executor` remains `chatgpt`.
+
 ## Optional execution hints
 
 - Priority: `HIGH | MEDIUM | LOW`
