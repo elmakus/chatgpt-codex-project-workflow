@@ -46,6 +46,18 @@ planned → ready → in_progress → done
 
 A GREEN accepted milestone must not remain `ready` or `in_progress`.
 
+### Qualified micro-fix state
+
+A qualified branch-isolated micro-fix is a deliberate no-Master-Plan/no-milestone exception defined by `workflow/chatgpt_only/MICRO_FIX.md`.
+
+Its selected Task Board uses:
+- `plan_revision: micro-fix`;
+- `current_milestone: micro-fix`;
+- `milestones: {}`;
+- one bounded fix Card as the direct execution/acceptance contract.
+
+Do not synthesize a milestone entry merely to reuse milestone lifecycle transitions. Card/review/Research state remains otherwise normal and canonical in this selected Task Board.
+
 ## Minimum Task Board state
 
 Track as applicable:
@@ -119,7 +131,7 @@ Persist:
 - `executor: chatgpt`;
 - exact execution branch/base pointer needed for recovery.
 
-Set milestone `ready → in_progress` when its first real Card starts.
+Set milestone `ready → in_progress` when its first real Card starts. In qualified micro-fix mode there is no milestone entry, so skip this milestone mutation.
 
 Exactly one Card may be `in_progress` at a time in the selected Task Board.
 
@@ -174,6 +186,16 @@ If independent review is later explicitly requested for `none`, persist the requ
 
 The implementing chat never issues its own REQUIRED/RECOMMENDED verdict.
 
+## Workstream final-integration review state
+
+For a branch-isolated intake-created workstream, the distinct final-integration review lifecycle is owned by the selected `WORKSTREAM.yaml` manifest, not by this Task Board.
+
+- Card/milestone `review_state/review_subject/review_evidence` remain unchanged and Task-Board-owned.
+- Manifest `review.requirement/state/subject/evidence/covered_by` must not mirror an active Task Board review attempt.
+- Behavioral issue/feature workstreams require at least RECOMMENDED final-integration review unless exact coverage by a stronger already-independent review is proven under `WORKSTREAMS.md` / `MICRO_FIX.md`.
+- RED workstream review correction uses this same selected Task Board for corrective execution/Research; it must not create or select another mutable board.
+- A non-green REQUIRED/RECOMMENDED manifest review blocks workstream integration even if all Task Board Cards are terminal.
+
 ## Milestone GREEN
 
 A milestone is not done merely because all Cards are done.
@@ -197,6 +219,8 @@ If review/acceptance is RED:
 - changed subject receives a new independent review when still required/recommended.
 
 When a fresh reviewer produces RED and corrective work is bounded, deterministic, authorized and unblocked, the reviewer role ends and the same chat returns to the router. The router assigns execution preparation/execution for the correction. After that chat implements the corrected reviewable subject, it freezes the new exact subject as `pending` and stops before self-review.
+
+For qualified micro-fix there is no milestone GREEN transition. After its Card is terminal, reconcile the selected manifest's final-integration review gate under `MICRO_FIX.md` before any workstream integration or `done` lifecycle summary.
 
 ## Next milestone
 
