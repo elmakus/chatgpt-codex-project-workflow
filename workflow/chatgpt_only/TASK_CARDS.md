@@ -12,6 +12,8 @@ Use `workflow/chatgpt_only/TASK_CARD_TEMPLATE.md`.
 
 ## Required contract fields
 
+A qualified micro-fix uses the same bounded Card contract, with `milestone: micro-fix` and no Master Plan authority. Its exact completed Intake record + accepted requirements/decisions replace the normal milestone-plan pointer; see `workflow/chatgpt_only/MICRO_FIX.md`.
+
 Each Card defines:
 - ID/title/milestone;
 - dependencies;
