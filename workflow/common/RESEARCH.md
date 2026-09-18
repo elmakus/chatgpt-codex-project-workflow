@@ -80,7 +80,7 @@ When findings are ready to influence target behavior:
 - route to the record's exact current Return target; if that target is an authorized continuation classifier, it may durably refine the target as described above, but Research itself may not; Project Definition is legal only when the selected policy's entry conditions for Definition are satisfied;
 - if research was entered from exploratory Brainstorming and that policy requires explicit user phase promotion, research completion does **not** count as that promotion;
 - Definition promotes verified constraints to `requirements/` and explicit accepted choices to `decisions/` with provenance;
-- after the target role persists that reconciliation, set the research record to `consumed` and clear the owning pointer (the pre-execution PROJECT pointer or the selected policy's execution-state pointer).
+- after the **final owning Return target** persists its reconciliation, set the research record to `consumed` and clear the owning pointer (the pre-execution PROJECT pointer or the selected policy's execution-state pointer). An intermediate continuation classifier does not consume the record.
 
 Implementation-time facts discovered for already-approved work may still flow to the current Task Card/OpenSpec/evidence as appropriate without redefining product intent.
 
