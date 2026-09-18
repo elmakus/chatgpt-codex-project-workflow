@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Unreleased — automatic fresh-ChatGPT start prompts
+
+- Whenever workflow requires or recommends a fresh normal ChatGPT chat, the same response must include a fenced copy-paste-ready `NEW CHAT START PROMPT`.
+- Fresh-chat prompts are routing-only: project repo, exact continuation target, durable start pointer and repo-recovery instruction.
+- Durable SHAs, test summaries, evidence prose and implementation details are not duplicated into the prompt when recoverable from repository state.
+- Users no longer need to separately ask for a prompt after a fresh-session recommendation or mandatory independent-review handoff.
+
 ## Unreleased — delegated JIT planning and role/model separation
 
 ### Roles
