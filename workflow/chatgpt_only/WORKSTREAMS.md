@@ -174,7 +174,7 @@ Filesystem/worktree isolation for concurrent local execution and detailed stacke
 
 The manifest carries `parent_workstream`, `parent_branch`, `base_ref` and `integration_target` so later intake/integration logic can distinguish independent from stacked work.
 
-M01 defines the fields only. Rules for choosing a parent, local worktrees, refresh/rebase/retarget and final integration are owned by the later accepted milestones.
+M01 defines the stacked metadata fields. M02 Intake owns parent/base selection for new workstreams. Local worktrees, refresh/rebase/retarget and final integration remain owned by M04.
 
 ## Recovery invariant
 
