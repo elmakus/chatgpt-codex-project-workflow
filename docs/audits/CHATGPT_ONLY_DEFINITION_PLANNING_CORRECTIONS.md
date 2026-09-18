@@ -4,7 +4,7 @@ Date: 2026-09-18
 Base: `main@23b8c368aea160566abdfd3fbc42bd0facb88bd4`  
 Implementation branch: `fix/definition-planning-audit-findings`
 
-Status: **RED-04 REMEDIATED — NEW FRESH INDEPENDENT RE-REVIEW PENDING**
+Status: **GREEN — FRESH INDEPENDENT RE-REVIEW COMPLETE**
 
 ## Review subject
 
@@ -287,3 +287,67 @@ This remediation changes the reviewed subject. The current branch head is theref
 ## Verdict
 
 **RED for `cf34c4cb0c85eb8b37d4b8d75a19bce565021702`. RED-04 has since been boundedly remediated. The current corrected branch head is a new review subject and remains PENDING FRESH INDEPENDENT RE-REVIEW.**
+
+
+## Fresh independent re-review after RED-04 — 2026-09-18
+
+Reviewed exact subject:
+
+- base: `23b8c368aea160566abdfd3fbc42bd0facb88bd4`
+- head: `2fbfd80c421b43bf6e7ff0aba4968ae2aef85153`
+- PR: `#22`
+- branch: `fix/definition-planning-audit-findings`
+
+Verdict: **GREEN**
+
+This review was reconstructed directly from GitHub from current workflow `main`, the exact branch head above, the complete PR/base diff, and the applicable workflow authority. The prompt, PR body, prior review prose and implementer self-checks were treated only as locators/history, not as proof.
+
+### Independent re-review results
+
+- Original Finding 1 — shared Master Plan policy neutrality: **GREEN**. `templates/MASTER_PLAN.md` contains only policy-neutral/common workflow references and delegates policy-specific Planning/plan-review/Execution Prep/Task Card/state modules to the selected policy router.
+- Original Finding 2 — requirement coverage ownership: **GREEN**. `templates/REQUIREMENTS.md` no longer owns milestone mapping. Definition/Requirements owns WHAT; Master Plan owns requirement → milestone → planned-work-package/JIT coverage; Execution Prep owns concrete Task Cards.
+- Original Finding 3 — independent plan-review semantics: **GREEN**. New/materially revised plans use independent review when practical; REQUIRED/RECOMMENDED remains a hard independent gate, while a nontrivial `none` requires concrete impracticality plus recorded rationale.
+- Original Finding 4 — broad L3/user-stop wording: **GREEN**. Active root/chatgpt-only authority routes plan-only strategy changes to Planning, Definition changes to Project Definition, evidence gaps to Research, and reserves user stop for unresolved user/product authority or another explicit real gate.
+- RED-01 — plan-review state recoverability outside Task Board: **GREEN**. Root bootstrap delegates mutable review/execution state to the selected route; the ChatGPT-only router separates implementation review in Task Board from pre-execution plan review in `planning/reviews/<plan-revision>.md`; the dedicated fresh-chat handoff uses that review record as durable start pointer.
+- RED-02 — generic L3 → user-stop implication: **GREEN**. No active root/chatgpt-only review/routing path retains that implication. Historical changelog/superseded-audit text does not act as current authority.
+- RED-03 — review-record reuse/subject overwrite: **GREEN**. One plan-review record corresponds to one exact plan revision/subject; substantive correction requires a new revision/record; post-GREEN substantive body change opens a new subject.
+- RED-04 — same-chat author → PLAN_REVIEW path: **GREEN**. The authoritative router now explicitly limits same-chat transitions to cases where no fresh-review boundary intervenes, states that Planning creating REQUIRED/RECOMMENDED review stops the authoring chat before `PLAN_REVIEW`, and defines `PLAN_REVIEW → PLANNING → ...` as beginning in the fresh reviewer chat after its verdict. Root `CHATGPT.md`, `PLANNING.md`, and `PLAN_REVIEW.md` independently enforce the same boundary. No legal authoritative path remains for the chat that authored the exact plan subject to enter `PLAN_REVIEW` directly.
+
+### Regression checks
+
+- duplicate mutable authority source: **GREEN** — Task Board remains sole mutable execution-state authority; plan-review lifecycle is explicitly separate pre-execution review state and does not substitute for Task Board;
+- shared-template policy neutrality: **GREEN**;
+- plan review before Task Board exists: **GREEN** — recoverable/routable from the dedicated plan-review record and handoff;
+- frozen review-subject immutability: **GREEN**;
+- Definition / Planning / Execution Prep ownership: **GREEN**, non-circular;
+- plan-only replan false user stop: **GREEN**;
+- implementation-review independence semantics: **GREEN**;
+- fresh-chat independence for REQUIRED/RECOMMENDED plan review: **GREEN**;
+- previous ChatGPT-only semantics materially affected by this corrective diff: **GREEN / preserved**;
+- new contradictions introduced by RED-04 remediation: **none found**.
+
+The policy dispatcher `workflow/CONTEXT_ROUTING.md` still contains the older compact instruction to recover implementation/review state from Task Board when present. This does not create a competing plan-review state owner or bypass: root `CHATGPT.md` delegates canonical mutable state ownership to the selected policy route, and the selected ChatGPT-only router explicitly scopes Task Board recovery to implementation/implementation-review state while separately loading the plan-review record. The more specific selected route is coherent and operational.
+
+GitHub reported no status checks or workflow runs attached to the reviewed head. This verdict therefore makes no CI/test claim; it is a static/coherence audit of the workflow/documentation subject and its authority graph.
+
+### Fresh-chat independence conclusion
+
+For a REQUIRED/RECOMMENDED plan review, the legal path is:
+
+```text
+PLANNING author chat
+→ persist/freeze exact plan revision
+→ create pending planning/reviews/<plan-revision>.md
+→ router recognizes fresh-review real stop
+→ author chat stops
+→ fresh ChatGPT chat
+→ PLAN_REVIEW
+```
+
+After the fresh reviewer persists GREEN/RED, that reviewer chat may return through the router to the next deterministic role. If it later substantively edits the plan, it becomes author of a new subject and must stop for another fresh independent reviewer.
+
+## Current verdict
+
+**GREEN for the exact corrective subject `23b8c368aea160566abdfd3fbc42bd0facb88bd4...2fbfd80c421b43bf6e7ff0aba4968ae2aef85153`. All four original findings, RED-01, RED-02, RED-03, RED-04 and the durable regression checks pass on that frozen subject.**
+
+Persisting this verdict creates audit-evidence metadata after the reviewed head; the reviewed workflow subject remains frozen at `2fbfd80c421b43bf6e7ff0aba4968ae2aef85153`.
