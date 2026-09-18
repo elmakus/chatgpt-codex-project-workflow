@@ -9,7 +9,7 @@ current_milestone: "M02"
 execution_ref:
   branch: "feat/chatgpt-only-multi-workstream-intake"
   pr: null
-  head: "adba7d1da3641e9bc008483c53246119b20dd066"
+  head: "9fb6ad18cb9cf248b943b8070dc13e2bf8fd196e"
 
 research_obligation: null
 
@@ -28,7 +28,7 @@ milestones:
 
   M02:
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M02--intake-route-issue--feature"
     checkpoint: null
     implementation_head: null
@@ -55,3 +55,20 @@ cards:
     result_pr: null
     evidence: "implementation/evidence/M01-T01.md"
     tests_summary: "GREEN: full M01 diff-check, manifest↔Task Board identity binding/recovery, legacy fallback, workstream-local seriality, no-global-registry and foreign-policy-boundary coherence checks passed; manual template structure checks passed; parser-based YAML validation unavailable in runtime and is not claimed."
+
+  - id: "M02-T01"
+    title: "Explicit #issue / #feature intake routing"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: ["M01-T01"]
+    openspec_change: null
+    contract: "implementation/cards/M02-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
