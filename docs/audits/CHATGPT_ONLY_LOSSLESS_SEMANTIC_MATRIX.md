@@ -171,7 +171,7 @@ No applicable ChatGPT-only semantic row is unowned.
 |---|---|---|---|
 | Card close | executor claim alone insufficient; apply DoD; durable evidence as needed | `EXECUTION.md` + `STATE.md` | PRESERVED |
 | Milestone completion | all Cards done necessary, not sufficient; integrated acceptance | `CLOSE.md` | PRESERVED |
-| Review tiers | required high-risk, recommended major/complex, optional simple | `REVIEW.md` + `TASK_CARDS.md` | PRESERVED |
+| Review requirement | pre-split required/recommended/optional tiering | `REVIEW.md` + `TASK_CARDS.md` now use `REQUIRED | RECOMMENDED | none` | SUPERSEDED by explicit user decision: OPTIONAL removed; `none` means no gate and a later explicit review request promotes it to RECOMMENDED |
 | ChatGPT hard review handoff | freeze subject/evidence, pending, commit/push when possible, stop before verdict, user action + prompt | `EXECUTION.md` + `REVIEW.md` | PRESERVED |
 | Fresh prompt | repo, exact branch, target, durable pointer; no telemetry duplication | `REVIEW.md` + unchanged `prompts/CHATGPT_FRESH_SESSION.md` | PRESERVED |
 | RED auto-remediation | same reviewer chat immediately performs bounded deterministic fix, freezes new pending subject, then stops for fresh re-review | `REVIEW.md` | PRESERVED |
@@ -253,7 +253,8 @@ workflow/common/
 ├── AUTHORITY.md
 ├── BRAINSTORMING.md
 ├── RESEARCH.md
-└── OPENSPEC.md
+├── OPENSPEC.md
+└── USER_STOP.md
 ```
 
 These files contain policy-neutral semantics only.
@@ -289,6 +290,17 @@ Current active ChatGPT-only execution core after restoring lossless semantics:
 Total: approximately **2943 words** before project artifacts.
 
 This remains about **12% smaller** than the pre-split already-optimized core while providing stronger physical policy isolation.
+
+## 16. Later role-transition and review-requirement refinement
+
+A later explicit user decision refined the active ChatGPT-only state machine without reopening the lossless migration itself:
+
+- `OPTIONAL` independent review was removed from ChatGPT-only and replaced by `REQUIRED | RECOMMENDED | none`;
+- both REQUIRED and RECOMMENDED are real independent-review gates once contracted;
+- `none` creates no review state; a later explicit review request first promotes the requirement to RECOMMENDED;
+- completion of REVIEW, EXECUTION_PREP, EXECUTION, CLOSE or RECOVERY returns the same chat to the policy router before any next role is loaded;
+- role completion is not a user stop;
+- all normal-ChatGPT real-stop responses use `workflow/common/USER_STOP.md`.
 
 ## Final verdict
 

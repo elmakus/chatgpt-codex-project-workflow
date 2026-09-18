@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased — router-owned role transitions and explicit review none
+
+- ChatGPT-only role completion is no longer treated as an implicit user-visible checkpoint. REVIEW, EXECUTION_PREP, EXECUTION, CLOSE and RECOVERY persist their result and return to the policy router, which selects the next legal role.
+- A chat may therefore begin as an independent reviewer and later become an executor/closer in the same turn; once it implements a new reviewable subject, it is the implementing chat for that subject and must stop for a fresh independent reviewer.
+- Removed `OPTIONAL` independent review from active ChatGPT-only contracts. Cards now use `REQUIRED | RECOMMENDED | none`.
+- REQUIRED and RECOMMENDED are both real independent-review gates once recorded. `none` creates no review state; a later explicit review request first promotes it to RECOMMENDED.
+- Added `workflow/common/USER_STOP.md` as the shared normal-ChatGPT real-stop response contract: concise result/meaning/next step, explicit `USER ACTION REQUIRED:` only when needed, `No action required.` at completed scope, and an immediate branch-aware `NEW CHAT START PROMPT` for fresh-chat handoffs.
+- Intermediate status-only responses between deterministic legal role transitions are prohibited.
+
 ## Unreleased — lossless ChatGPT-only gap closure
 
 - Re-audited the policy split against the exact pre-split checkpoint instead of relying on the earlier scenario-level audit.

@@ -74,10 +74,16 @@ Runtime start semantics live in `workflow/chatgpt_only/EXECUTION.md` and `STATE.
 
 ## Independent review
 
-Use:
+Use exactly one value:
 - `REQUIRED` for high-risk work;
-- `RECOMMENDED` for major architecture/refactors/complex state;
-- `OPTIONAL` for simple low-risk work.
+- `RECOMMENDED` when an independent review gate is useful but not intrinsically high-risk;
+- `none` when no independent review gate is part of the Card contract.
+
+Both REQUIRED and RECOMMENDED are real independent-review gates once recorded on the Card.
+
+For `none`, do not create review state merely as a routine quality check.
+
+If the user later explicitly requests independent review for a `none` Card, update the durable Card/review requirement to `RECOMMENDED` before activating the gate.
 
 For REQUIRED/RECOMMENDED review, the chat that implemented the exact subject cannot issue its independent verdict.
 

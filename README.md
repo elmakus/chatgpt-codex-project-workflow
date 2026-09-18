@@ -49,7 +49,7 @@ CHATGPT.md
 The first migrated namespace is `workflow/chatgpt_only/`.
 
 For `chatgpt_only`:
-- common authority/brainstorming/research/OpenSpec rules come only from `workflow/common/`;
+- common authority/brainstorming/research/OpenSpec/user-stop rules come only from `workflow/common/`;
 - planning, execution preparation, Task Cards, state, execution, independent review, close/publication and recovery come only from `workflow/chatgpt_only/`;
 - normal project execution handles exactly one READY Task Card at a time;
 - other policy execution/orchestration semantics are outside the route.
@@ -80,9 +80,11 @@ This allows stronger planning models to produce rich durable intent while smalle
 
 Independent means independent from the worker/session that implemented the reviewed subject.
 
-- `chatgpt_only` — a ChatGPT chat that implemented a REQUIRED/RECOMMENDED review subject must freeze exact `review_subject`, persist `review_state: pending`, and **stop**. The user opens a fresh normal ChatGPT chat, which performs the independent review from durable Task Board state. After GREEN it may continue deterministic work. After RED, if remediation is bounded/deterministic/authorized, that same fresh reviewer chat immediately performs the remediation before replying, freezes the corrected subject as a new pending review, and only then stops with the next fresh re-review prompt.
+- `chatgpt_only` — a ChatGPT chat that implemented a REQUIRED/RECOMMENDED review subject must freeze exact `review_subject`, persist `review_state: pending`, and **stop**. The user opens a fresh normal ChatGPT chat, which performs the independent review from durable Task Board state. After GREEN the review role ends and the same chat returns to the policy router for the next legal role. After RED, if remediation is bounded/deterministic/authorized, the review role ends and the router assigns execution preparation/execution to the same chat; once that chat implements the corrected reviewable subject, it freezes a new pending review and stops with the next fresh re-review prompt.
 - `codex_only` — Codex Main obtains an independent reviewer worker/session. When `codex_workflow` is installed/enabled, it owns the internal execute/review-worker orchestration. Project Workflow owns only the project-level review requirement, exact subject, durable verdict/evidence and acceptance boundary. No user handoff is required solely for review independence.
 - `mixed` — reviewer path follows the accepted review contract and must remain independent from implementation.
+
+For `chatgpt_only`, a Task Card uses `REQUIRED | RECOMMENDED | none`. REQUIRED and RECOMMENDED are real independent-review gates; `none` creates no review state. An explicit later request for independent review promotes `none` to RECOMMENDED before the gate is activated.
 
 Task Board records active review state using `review_state`, `review_subject` and `review_evidence`.
 
@@ -165,7 +167,7 @@ Each route separates:
 
 Normal ChatGPT starts with the intentionally small `CHATGPT.md` router, project `PROJECT.md`, and `CONTEXT_ROUTING.md`; when implementation/review/recovery state exists it reads Task Board before final route selection. It then follows one primary route rather than loading neighboring phase modules "just in case."
 
-For a review-only ChatGPT session, the normal workflow module is `workflow/REVIEW_AND_HANDOFF.md`; Task Card/GitHub State/OpenSpec/Project Repository contracts are conditional on their specific triggers. ChatGPT execution/planning modules and all `workflow/codex/*` are outside the default review context.
+For a `chatgpt_only` independent-review obligation, the normal workflow modules are `workflow/chatgpt_only/REVIEW.md` + `STATE.md` with the exact reviewed subject/authority/evidence. When the verdict is persisted, the review role ends and the chat returns to `workflow/chatgpt_only/ROUTER.md`; downstream execution/close modules are loaded only if the router assigns those roles.
 
 Codex starts from `prompts/CODEX_START.md` and its own route. Codex does **not** load `CHATGPT.md` or ChatGPT-specific execution instructions. ChatGPT reads `workflow/codex/HANDOFF.md` only for an actual Codex handoff/return/strategic escalation.
 

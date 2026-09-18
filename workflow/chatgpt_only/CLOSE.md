@@ -90,13 +90,13 @@ After GREEN/finalization, continue automatically when:
 - no explicit user/deployment/live-write authorization gate due.
 
 Then:
-1. update Task Board/current milestone;
-2. load `EXECUTION_PREP.md`;
-3. prepare next deterministic Card(s);
-4. run fresh Refresh Gate;
-5. execute without requiring user “continue”.
+1. reconcile Task Board/current milestone to the finalized checkpoint;
+2. the close role is complete;
+3. return to `workflow/chatgpt_only/ROUTER.md`;
+4. let the router select execution preparation for the next approved milestone;
+5. continue without requiring user “continue”.
 
-Stop only for real strategic/user/authorization/runtime blocker or end of approved scope.
+Stop only for a real strategic/user/authorization/runtime blocker or end of approved scope. At a stop, use root `CHATGPT.md#Real-stop-response-contract`.
 ## System verification and cutover
 
 Independent system verification acts as its own gate when required.

@@ -66,7 +66,9 @@ Delete optional fields that add no value.
 
 ## Independent review
 
-`REQUIRED | RECOMMENDED | OPTIONAL` plus rationale when material.
+`REQUIRED | RECOMMENDED | none` plus rationale when material.
+
+`none` means no independent-review gate. If independent review is later explicitly requested, persist the requirement as `RECOMMENDED` before creating review state.
 
 ## Contract overrides
 
