@@ -33,13 +33,14 @@ Do not mirror live state into Card/milestone/`PROJECT.md`.
 9. Define acceptance and required tests/checks.
 10. Identify material external writes plus required persisted-state verification.
 11. Classify independent review when material.
-12. Mark OpenSpec candidates using `workflow/common/OPENSPEC.md`.
-13. Initialize/reconcile Task Board as sole live execution state.
-14. Confirm requirement coverage, allowing future requirements to point to a durable JIT trigger.
-15. Audit sizing, dependencies, side effects, idempotency, security, migration and explicit authorization gates.
-16. Set exactly the next eligible Card `ready` when dependencies/prerequisites allow execution.
+12. When a Card will use delegated workers, read `workflow/chatgpt_only/DELEGATED_WORKERS.md` and define the stable worker role/profile/input/workspace/result/failure contract without runtime capability preflight.
+13. Mark OpenSpec candidates using `workflow/common/OPENSPEC.md`.
+14. Initialize/reconcile Task Board as sole live execution state.
+15. Confirm requirement coverage, allowing future requirements to point to a durable JIT trigger.
+16. Audit sizing, dependencies, side effects, idempotency, security, migration and explicit authorization gates.
+17. Set exactly the next eligible Card `ready` when dependencies/prerequisites allow execution.
 
-ChatGPT is the fixed executor. Do not run an executor-selection or capability-inventory step.
+ChatGPT is the fixed Task Card executor. A delegated worker, when explicitly contracted by a Card, is a subordinate execution resource and does not change executor provenance. Do not run an executor-selection or capability-inventory step.
 
 ## Incremental JIT preparation
 
