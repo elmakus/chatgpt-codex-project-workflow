@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Unreleased — Project Definition before Planning
+
+- Added policy-neutral `workflow/common/DEFINITION.md` between Brainstorming/Research and strategic Planning.
+- Project Definition now owns promotion of accepted intent/evidence into canonical `requirements/` and `decisions/`; Brainstorming and Research no longer write planning authority directly.
+- ChatGPT-only Planning now consumes an already-approved Definition and owns only execution organization: Master Plan milestones, dependencies, planned work packages, requirement coverage, acceptance/checkpoints, migration/verification strategy and JIT triggers.
+- Missing/contradictory product/system intent routes back to Definition; missing evidence routes to Research; plan-only milestone/sequence changes remain Planning-owned.
+- Requirements no longer require an owner milestone during Definition. Planning assigns milestone/work-package-or-JIT coverage; Execution Prep creates concrete Task Cards before implementation.
+- Master Plan template now distinguishes planned work packages from executable Task Cards and points only to the active `chatgpt_only`/common workflow modules.
+- New-project initialization now follows Brainstorming/Research → Definition → Planning → Execution Prep rather than letting planning implicitly define product intent.
+
 ## Unreleased — ChatGPT context health gate
 
 - Added `workflow/chatgpt_only/CONTEXT_HEALTH.md` for qualitative session-health evaluation at safe durable boundaries.
