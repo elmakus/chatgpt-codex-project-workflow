@@ -44,7 +44,7 @@ Projects may adapt paths, but `PROJECT.md` must identify actual canonical locati
 
 - brainstorming → tentative ideas plus the exact current exploratory-scope/revision promotion record when that phase is active;
 - decisions → accepted decisions;
-- research → evidence;
+- research → evidence plus the exact active/complete/blocked/consumed Research continuation record when such an obligation exists; Research is not decision authority;
 - requirements → authoritative product/system requirements;
 - planning → draft/approved plan authority;
 - planning/reviews → mutable pre-execution independent plan-review lifecycle/evidence; not execution state and never a substitute for Task Board;

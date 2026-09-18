@@ -20,7 +20,8 @@ The workflow deliberately separates contract from state:
 - `implementation/milestones/MXX.md` — optional JIT contract extensions only when the Master Plan needs material execution/acceptance detail;
 - Task Card files — bounded authority/scope/acceptance/test contracts;
 - cumulative handoff — compact summary of what became true at a completed milestone;
-- root `PROJECT.md` — small high-level project router/policy/index, not a live execution tracker; while an exploratory/Definition scope is active it may point to the exact canonical brainstorming record used to recover promotion state.
+- root `PROJECT.md` — small high-level project router/policy/index, not a live execution tracker; while an exploratory/Definition scope is active it may point to the exact canonical brainstorming record used to recover promotion state, and while pre-execution Research/return-role reconciliation is active it may point to the exact canonical Research obligation record;
+- active Research record — owns `active | blocked | complete | consumed` lifecycle plus exact Origin/Return subjects for recoverable pre-execution Research loops; it is evidence/routing state, not accepted decision authority.
 
 This avoids repeatedly synchronizing status, executor, SHA and result pointers across several documents.
 
@@ -87,7 +88,7 @@ EXECUTION
 ```
 
 - **Brainstorming** explores possibilities; it is not authority. Under `chatgpt_only`, becoming ready for Definition does not end exploration automatically: the user explicitly promotes an exact brainstorming scope/revision into Project Definition. `PROJECT.md` points to the active exploratory record so a fresh chat can recover the exact promotion state without guessing.
-- **Research** produces evidence; it is not authority and does not itself authorize that promotion.
+- **Research** produces evidence; it is not accepted decision authority and does not itself authorize promotion. A pre-execution Research loop that may cross sessions is anchored by the PROJECT-pointed exact Research record until the recorded Return target durably consumes the result.
 - **Project Definition** promotes accepted intent into `requirements/` + `decisions/` and keeps unresolved product/strategic questions explicit. Once Definition has been explicitly entered, `Definition Complete = GREEN → Planning` remains automatic when planning is in scope.
 - **Planning** consumes an approved Definition and organizes it into a Master Plan, milestone sequence, planned work packages, acceptance/checkpoints and JIT triggers.
 - **Execution Prep** converts currently knowable planned work into concrete executable Task Cards and Task Board state.
@@ -233,7 +234,7 @@ Each route separates:
 - **CONDITIONAL** files loaded only when a concrete trigger exists;
 - **DO NOT READ BY DEFAULT** files that are outside the normal context set.
 
-Normal ChatGPT starts with the intentionally small `CHATGPT.md` router, project `PROJECT.md`, and `CONTEXT_ROUTING.md`. Under `chatgpt_only`, implementation/implementation-review/recovery state is recovered from Task Board, while pre-execution plan-review state is recovered from its `planning/reviews/<plan-revision>.md` record. It then follows one primary route rather than loading neighboring phase modules "just in case."
+Normal ChatGPT starts with the intentionally small `CHATGPT.md` router, project `PROJECT.md`, and `CONTEXT_ROUTING.md`. Under `chatgpt_only`, implementation/implementation-review/recovery state is recovered from Task Board, pre-execution plan-review state from its `planning/reviews/<plan-revision>.md` record, and an active pre-execution Research loop from the exact `PROJECT.md → Active research obligation` record. It then follows one primary route rather than loading neighboring phase modules "just in case."
 
 For a `chatgpt_only` independent-review obligation, the normal workflow modules are `workflow/chatgpt_only/REVIEW.md` + `STATE.md` with the exact reviewed subject/authority/evidence. When the verdict is persisted, the review role ends and the chat returns to `workflow/chatgpt_only/ROUTER.md`; downstream execution/close modules are loaded only if the router assigns those roles.
 
