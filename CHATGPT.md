@@ -41,7 +41,7 @@ A normal ChatGPT chat should send a final user-facing workflow status message on
 Completing a role is not itself a stop. When the current role finishes and another deterministic route is legal, persist durable state, return to the policy router, assume the next role, load only that role's module(s), and continue before replying to the user.
 
 A real stop includes:
-- this chat implemented a subject that now requires/recommends independent review by a fresh chat;
+- this chat authored or implemented an exact subject that now requires/recommends independent review by a fresh chat;
 - a strategic/L3 decision requires user authority;
 - an explicit user/deployment/live-write authorization gate is due;
 - a concrete runtime/access/input blocker prevents the required operation;
