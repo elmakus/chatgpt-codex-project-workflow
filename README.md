@@ -72,6 +72,11 @@ The durable lifecycle separates exploration, accepted intent and execution organ
 ```text
 BRAINSTORMING ↔ RESEARCH
         ↓
+  ready for Definition
+        ↓
+  explicit user promotion
+  under `chatgpt_only`
+        ↓
 PROJECT DEFINITION
         ↓
 PLANNING
@@ -81,9 +86,9 @@ EXECUTION PREP
 EXECUTION
 ```
 
-- **Brainstorming** explores possibilities; it is not authority.
-- **Research** produces evidence; it is not authority.
-- **Project Definition** promotes accepted intent into `requirements/` + `decisions/` and keeps unresolved product/strategic questions explicit.
+- **Brainstorming** explores possibilities; it is not authority. Under `chatgpt_only`, becoming ready for Definition does not end exploration automatically: the user explicitly promotes the current scope into Project Definition.
+- **Research** produces evidence; it is not authority and does not itself authorize that promotion.
+- **Project Definition** promotes accepted intent into `requirements/` + `decisions/` and keeps unresolved product/strategic questions explicit. Once Definition has been explicitly entered, `Definition Complete = GREEN → Planning` remains automatic when planning is in scope.
 - **Planning** consumes an approved Definition and organizes it into a Master Plan, milestone sequence, planned work packages, acceptance/checkpoints and JIT triggers.
 - **Execution Prep** converts currently knowable planned work into concrete executable Task Cards and Task Board state.
 
