@@ -4,6 +4,8 @@
 
 A card is not done because an executor says it is done. Apply the Task Card Definition of Done contract and GitHub State Contract, then persist terminal state/result pointers in Task Board.
 
+For a simple reproducible card, exact result pointers plus a concise `tests_summary` may be sufficient closure evidence. Create a standalone evidence artifact when the proof is materially richer or independently useful: milestone integrated acceptance, REQUIRED/RECOMMENDED independent review, baseline/authorized exception, material external write/readback, complex multi-stage verification, or an explicit contract requirement.
+
 Do not edit Task Card contract files merely to mirror completion status.
 
 ## Milestone completion
@@ -93,22 +95,17 @@ Publication verification is intentionally lighter than Milestone Acceptance Revi
 
 Canonical location: `project-handoffs/MXX_HANDOFF.md`.
 
-A cumulative handoff is a summary of completed milestone truth, not live execution state. It must be sufficient for a fresh session to understand what became true and where to continue, while Task Board remains authoritative for current execution status.
+A cumulative handoff is a compact summary of completed milestone truth, not live execution state. It must be sufficient for a fresh session to understand what became true and where to continue, while Task Board remains authoritative for current execution status.
 
-Record as applicable:
-- goal/status/checkpoint at completion;
-- implemented behavior;
-- accepted decisions;
-- changed files/packages;
-- schemas/migrations/APIs/contracts;
-- side effects/idempotency/external readback;
-- tests/results and independent review;
-- known issues/deferred items;
-- provenance/exact Git state;
-- architecture reopen assessment;
-- requirements satisfied/outstanding;
-- next durable starting point;
-- exact context needed by next executor/session.
+Record the minimum durable continuation set:
+- completed checkpoint and exact implementation head;
+- achieved behavior/state;
+- accepted authority now in force, preferably by exact requirement/decision/plan/OpenSpec refs;
+- concise verification/review/external-readback results with exact evidence pointers;
+- only material exceptions/deferred items;
+- next durable starting point, required prior checkpoint, authority slice and any explicit authorization gate.
+
+Add schema/API/migration details, changed-package/file notes, idempotency facts or architecture-reopen assessment only when they materially affect later work. Do not copy ordinary Git inventories or mirror Task Board fields simply because a template section exists.
 
 A handoff does not replace Task Board, contracts, specs, evidence or exact Git objects.
 
