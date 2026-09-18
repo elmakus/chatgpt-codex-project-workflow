@@ -30,7 +30,7 @@ A normal ChatGPT chat may continue deterministic work in the same session while 
 
 A casual fresh-chat recommendation for context hygiene is not a workflow gate. However, a selected policy route may define an explicit context-health gate that turns a safe durable boundary into a required session handoff when continuing the accumulated chat creates a concrete material context-risk. REQUIRED/RECOMMENDED independent-review separation remains a separate hard fresh-chat boundary.
 
-Do not impose a fixed token count, turn count or milestone cadence for starting fresh chats.
+Do not impose a fixed token count, turn count, Card count or milestone cadence for starting fresh chats.
 
 A fresh chat reconstructs authority from the durable project repository and current workflow `main`, not from the previous transcript.
 
