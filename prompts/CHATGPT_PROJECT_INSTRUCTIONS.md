@@ -14,7 +14,7 @@ Start by reading:
 
 Follow only the execution-policy route selected by that router. Load only the route's required workflow modules/project artifacts and exact durable authority references.
 
-The project repository is durable project truth. When implementation state exists, `implementation/TASK_BOARD.yaml` is the sole authoritative mutable execution-state record. Accepted durable state outranks stale chat memory.
+The project repository is durable project truth. When implementation state exists, the canonical Task Board selected by the active workflow policy is the sole authoritative mutable Card/milestone execution-state record; `implementation/TASK_BOARD.yaml` remains the default when the selected policy does not define another location. Accepted durable state outranks stale chat memory.
 
 Progressive disclosure is lossless by authority: read less, but never omit an applicable implementation-shaping constraint.
 
