@@ -20,7 +20,7 @@ The record owns at least:
 
 For pre-execution Brainstorming/Definition/Planning research, project `PROJECT.md → Active research obligation` points to that exact record while it is active or awaiting consumption.
 
-For Research triggered from implementation/recovery, the owning Task Board/blocker state points to the exact research record instead. Do not mirror active implementation state into `PROJECT.md`.
+For Research triggered from implementation/recovery, the selected policy's canonical mutable execution state must point to the exact research record instead. Under `chatgpt_only`, that pointer is Task Board `research_obligation`; blocker evidence may be referenced by the record, but `PROJECT.md` must not mirror the execution obligation.
 
 Status semantics:
 - `active` — Research is the exact current obligation;
@@ -80,7 +80,7 @@ When findings are ready to influence target behavior:
 - route to the record's exact Return target; Project Definition is legal only when the selected policy's entry conditions for Definition are satisfied;
 - if research was entered from exploratory Brainstorming and that policy requires explicit user phase promotion, research completion does **not** count as that promotion;
 - Definition promotes verified constraints to `requirements/` and explicit accepted choices to `decisions/` with provenance;
-- after the target role persists that reconciliation, set the research record to `consumed` and clear the pre-execution active pointer.
+- after the target role persists that reconciliation, set the research record to `consumed` and clear the owning pointer (the pre-execution PROJECT pointer or the selected policy's execution-state pointer).
 
 Implementation-time facts discovered for already-approved work may still flow to the current Task Card/OpenSpec/evidence as appropriate without redefining product intent.
 
