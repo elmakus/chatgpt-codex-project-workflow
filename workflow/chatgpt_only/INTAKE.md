@@ -188,16 +188,16 @@ If exact identity cannot be established from durable locators/evidence, do not m
 
 ## Scope boundaries
 
-M02 owns entry/intake semantics and classification.
+Intake owns entry/classification and the durable handoff into the selected downstream route.
 
-It does not yet define:
+It does not itself own:
 
-- the complete micro-fix execution/review lifecycle — M03;
-- full branch-local execution/review/recovery mechanics — M03;
+- the complete micro-fix execution/review lifecycle — use `workflow/chatgpt_only/MICRO_FIX.md` plus normal Execution Prep/Execution/Review/Recovery;
+- branch-local execution/review/recovery state semantics after downstream materialization — use the normal selected-workstream modules;
 - local worktree/equivalent isolation, stacked integration and target-refresh rules — M04;
 - final user-facing handoff/template/migration/E2E closure — M05.
 
-Intake must preserve those accepted future gates rather than pre-empt them.
+Intake must preserve downstream gates rather than pre-empt them.
 
 ## Foreign-policy boundary
 
