@@ -12,6 +12,9 @@ integration_target: "<target-branch>"
 
 parent_workstream: null
 parent_branch: null
+# Required for stacked work: concise durable statement of the parent-only dependency.
+# Must be null for an independent workstream.
+parent_dependency: null
 
 # Intake is routing/workstream-lifecycle metadata only.
 # The pointed record owns intake scope/findings/classification; Card state stays in Task Board.
