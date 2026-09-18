@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## Unreleased — lean documentation and authority-preserving delegation
+
+### Documentation footprint
+
+- Approved Master Plan milestone subsections are now the default milestone contracts.
+- Separate `implementation/milestones/MXX.md` files are optional JIT extensions created only when they add material execution/acceptance detail.
+- Task Cards now have a smaller mandatory core; priority, complexity, phase, code-location hints and similar metadata are optional when they improve execution.
+- Simple reproducible cards may close with exact result pointers + Task Board `tests_summary`; standalone evidence remains expected for milestone acceptance, required/recommended independent review, baseline exceptions, material external writes/readback, complex multi-stage verification or explicit contract requirements.
+- Cumulative handoffs are compact continuation summaries rather than mandatory inventories of files/APIs/schema sections.
+
+### Authority preservation
+
+- Added the project-level rule **lossless by authority, selective by context**.
+- Task Cards identify exact authority slices and must preserve every applicable implementation-shaping constraint.
+- Downstream execution/review packages either carry applicable constraints explicitly or require exact durable authority reads.
+- Planner rationale must survive when dropping it could reasonably lead to a different implementation choice.
+- Executor and independent reviewer evaluate against the same applicable authority slice; summaries/paraphrases never outrank exact durable authority.
+
+### Repository hygiene
+
+- Historical migration and semantic-audit reports moved out of repository root into `docs/history/`; current root remains focused on active workflow entrypoints and changelog.
+
 ## Unreleased — runtime capability discovery and explicit independent-review handoff
 
 ### Fixed-policy capabilities
