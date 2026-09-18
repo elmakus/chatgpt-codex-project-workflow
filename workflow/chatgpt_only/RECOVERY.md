@@ -63,7 +63,7 @@ A persisted RED verdict is already a completed independent-review result. Recove
 2. verify the RED evidence still refers to that exact immutable reviewed subject;
 3. keep the reviewed Card/milestone non-terminal;
 4. read `workflow/chatgpt_only/REVIEW.md#RED → corrective-route transition` and classify the persisted failing evidence against current durable state under that canonical transition;
-5. if the failing condition has already been durably reconciled by a completed correction role, do not repeat that role; recover the next downstream obligation from current authority/state;
+5. if the failing condition has already been durably reconciled by a completed correction role, do not repeat that role; recover the next downstream obligation from current authority/state. If the corrected implementation subject is already durable but its next REQUIRED/RECOMMENDED review attempt has not yet been frozen, the next obligation is Execution reconciliation that freezes the new exact subject as `pending` before any later work;
 6. bounded L1/L2 correction inside accepted authority → return through the router to Execution Prep or Execution;
 7. plan-only correction while Project Definition remains valid → Strategic planning;
 8. accepted requirement/strategic/global-target change → Project Definition;
