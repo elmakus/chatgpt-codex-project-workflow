@@ -9,14 +9,14 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/chatgpt-only-multi-workstream-intake"
   pr: null
-  head: null
+  head: "45e3d0932276cca2ebc1e8bd8c84125d56d98a01"
 
 research_obligation: null
 
 milestones:
   M01:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M01--workstream-state-model-and-routing-foundation"
     checkpoint: null
     implementation_head: null
@@ -31,8 +31,8 @@ cards:
     title: "Workstream state model and routing foundation"
     milestone: "M01"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on: []
     openspec_change: null
     contract: "implementation/cards/M01-T01.md"
