@@ -104,7 +104,7 @@ The lifecycle below is reconstructed from normative files, not copied from READM
 | Context Health FRESH | CONTEXT_HEALTH + router | safe durable boundary, no stronger stop, concrete context risk | no next obligation in same chat | yes | fresh chat for hygiene | exact next durable obligation |
 | interrupted execution recovery | RECOVERY | Task Board + Git/runtime/external state + exact contracts/evidence | yes when coherent | only if unresolved blocker remains | no by itself | recovered role |
 
-This graph is coherent in most post-planning states, but two blocking defects described below prevent a GREEN architecture verdict.
+This graph is coherent in most post-planning states, but three blocking defects described below prevent a GREEN architecture verdict.
 
 ## 4. Authority / state ownership matrix
 
