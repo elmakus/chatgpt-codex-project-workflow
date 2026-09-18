@@ -13,13 +13,16 @@ Do not load legacy/shared execution trees or another policy directory.
 1. Read `workflow/common/AUTHORITY.md`.
 2. Read project root `PROJECT.md`.
 3. If implementation, implementation-review, blocker or execution-recovery state exists or is referenced, read `implementation/TASK_BOARD.yaml` before choosing the route.
-4. A REQUIRED/RECOMMENDED implementation `review_state: pending | in_progress` outranks later implementation.
-5. An `in_progress` Card with `review_state: green` routes to Execution for terminal Post-review Card finalization before later work.
-6. If `PROJECT.md → Active research obligation` points to a pre-execution research record, read that exact record before choosing the route. `Status: active | blocked` routes to Research; `Status: complete` routes to the exact recorded Return target; `Status: consumed` means the pointer is stale and should be cleared at the next safe edit.
-7. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
-8. Select exactly one primary route below.
-9. Read only that route's required project artifacts plus exact authority refs.
-10. Continue deterministic work automatically until a real workflow stop is reached.
+4. A REQUIRED/RECOMMENDED implementation `review_state: pending | in_progress` outranks later implementation and routes to Independent review.
+5. A non-terminal REQUIRED/RECOMMENDED subject with `review_state: red` outranks later implementation and routes to Recovery for the canonical RED corrective-route classification; do not re-run the verdict merely to recover continuation.
+6. An `in_progress` Card with `review_state: green` routes to Execution for terminal Post-review Card finalization before later work.
+7. If Task Board `research_obligation` points to an implementation/recovery Research record, read that exact record before choosing later implementation. `Status: active | blocked` routes to Research; `Status: complete` routes to its exact recorded Return target; `Status: consumed` means the Task Board pointer is stale and should be cleared at the next safe edit.
+8. If `PROJECT.md → Active research obligation` points to a pre-execution research record, read that exact record before choosing the route. `Status: active | blocked` routes to Research; `Status: complete` routes to the exact recorded Return target; `Status: consumed` means the pointer is stale and should be cleared at the next safe edit.
+9. If both Task Board and PROJECT point to different active/blocked/complete Research obligations, treat that as inconsistent state and route to Recovery instead of guessing which obligation owns continuation.
+10. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
+11. Select exactly one primary route below.
+12. Read only that route's required project artifacts plus exact authority refs.
+13. Continue deterministic work automatically until a real workflow stop is reached.
 
 ## Role-transition protocol
 
@@ -125,7 +128,7 @@ Read:
 Read:
 - `workflow/common/RESEARCH.md`;
 - the exact record referenced by `PROJECT.md → Active research obligation` for pre-execution Research when that pointer exists;
-- otherwise the exact implementation/blocker-owned research pointer when Research was triggered from active execution;
+- otherwise the exact Task Board `research_obligation` pointer when Research was triggered from active execution/recovery;
 - the exact research question/material;
 - only relevant accepted requirements/decisions/source state.
 
@@ -246,10 +249,18 @@ Read only:
 - current Card/milestone contract;
 - smallest requirements/decision/research/source slice needed to classify it.
 
+If this route is the exact `execution_resolution:<subject>` Return target of a completed implementation/recovery Research record:
+1. verify that Task Board `research_obligation` still points to that record and that its Origin/Return subjects match the affected durable Card/blocker state;
+2. durably reconcile the findings into the correction/classification state first;
+3. choose the owning continuation below;
+4. only after that reconciliation is durable, set the Research record to `consumed` and clear Task Board `research_obligation`;
+5. return through this router to the chosen continuation.
+
 Then:
+- bounded L1/L2 correction inside accepted authority → route to Execution Prep or Execution;
 - if accepted product/system intent or a strategic decision must change, route to Project Definition;
 - if accepted definition remains valid but milestone sequencing/plan must change, route to Strategic planning;
-- if more evidence is needed before either can be decided, route to Research.
+- if more evidence is still needed before either can be decided, create/persist the next exact implementation-owned Research obligation before routing to Research.
 
 Do not continue affected work until the owning authority is resolved.
 
