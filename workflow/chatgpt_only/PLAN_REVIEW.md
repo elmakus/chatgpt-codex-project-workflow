@@ -29,7 +29,9 @@ Review subject: <exact immutable plan draft commit/blob/ref>
 Review evidence: <concise evidence or pointer>
 ```
 
-The reviewed subject is one exact immutable plan draft. Any corrective plan edit creates a new subject and a new review attempt.
+The reviewed subject is one exact immutable plan draft.
+
+One review record corresponds to one exact plan revision/subject. Any substantive corrective plan edit must create a new plan revision (and therefore a distinct `planning/reviews/<plan-revision>.md` record) before a new review attempt. Do not overwrite a completed RED/GREEN record with another subject.
 
 ## Planner handoff into review
 
@@ -37,10 +39,10 @@ After the planner's own pre-implementation audit is GREEN, when independent revi
 
 1. keep the Master Plan `Status: draft`;
 2. freeze/persist the exact plan draft;
-3. create/update the revision-specific review record as `pending`;
+3. create the revision-specific review record as `pending`; do not reuse a completed review record for a different subject;
 4. commit/push the durable handoff when possible;
 5. stop before issuing an independent verdict;
-6. use the normal fresh-chat user-stop contract with continuation target `pending independent plan review for <plan revision>`.
+6. use the dedicated independent-plan-review fresh-chat variant from `workflow/common/USER_STOP.md`, with durable start pointer `planning/reviews/<plan-revision>.md`.
 
 The authoring chat must not independently review its own exact plan subject.
 
@@ -77,7 +79,7 @@ After GREEN:
 2. review role ends;
 3. return to `workflow/chatgpt_only/ROUTER.md`;
 4. route to Planning;
-5. Planning may mark that exact reviewed plan revision `approved` when no other planning blocker remains;
+5. Planning may mark that reviewed plan revision `approved` when no other planning blocker remains, but only deterministic lifecycle metadata may change after GREEN; any substantive plan-body change requires a new plan revision and a new independent review subject;
 6. continue to Execution Prep automatically when implementation is already authorized.
 
 GREEN itself is not a user stop.
