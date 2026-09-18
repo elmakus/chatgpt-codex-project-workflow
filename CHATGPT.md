@@ -41,6 +41,21 @@ Unless the selected route explicitly says otherwise:
 - do not run Capability Gate unless the selected route requires a new assignment under `execution_policy: mixed`;
 - do not perform fixed-policy capability preflight/inventory.
 
+## Human control surface
+
+These rules apply to **every normal ChatGPT route**, including planning, execution, independent review, blockers and close/publication.
+
+By default, a user-facing response reports only:
+1. what happened / what was found;
+2. what it means;
+3. what happens next or the smallest user action.
+
+Keep durable execution telemetry in the repository. Do not dump SHAs, branch/HEAD pointers, evidence paths, raw Task Board fields, long test inventories/counts, changed-file lists or internal bookkeeping unless the user asks or the exact value is materially required for action/debugging/recovery/security.
+
+Do not end the chat turn merely to announce deterministic work that the current route is authorized to continue. Continue first and respond when a real workflow stop/boundary is reached.
+
+Whenever a fresh ChatGPT chat is required or recommended, include the ready-to-copy branch-aware start prompt in that same response.
+
 ## Route index
 
 The deterministic read sets live in `workflow/CONTEXT_ROUTING.md`:
