@@ -28,9 +28,9 @@ ChatGPT Work is outside this workflow.
 
 A normal ChatGPT chat may continue deterministic work in the same session while context remains useful and the selected route permits continuation.
 
-A fresh chat may be recommended for context hygiene, but that recommendation is not a workflow gate unless the selected route explicitly defines a real boundary such as REQUIRED/RECOMMENDED independent-review separation.
+A casual fresh-chat recommendation for context hygiene is not a workflow gate. However, a selected policy route may define an explicit context-health gate that turns a safe durable boundary into a required session handoff when continuing the accumulated chat creates a concrete material context-risk. REQUIRED/RECOMMENDED independent-review separation remains a separate hard fresh-chat boundary.
 
-Do not impose a fixed token count, turn count or milestone cadence for starting fresh chats.
+Do not impose a fixed token count, turn count, Card count or milestone cadence for starting fresh chats.
 
 A fresh chat reconstructs authority from the durable project repository and current workflow `main`, not from the previous transcript.
 
@@ -45,7 +45,8 @@ A real stop includes:
 - a strategic/L3 decision requires user authority;
 - an explicit user/deployment/live-write authorization gate is due;
 - a concrete runtime/access/input blocker prevents the required operation;
-- approved scope is complete and no deterministic next work is authorized.
+- approved scope is complete and no deterministic next work is authorized;
+- the selected route's Context Health Gate returns `FRESH` at a safe durable boundary.
 
 At a real stop, read `workflow/common/USER_STOP.md` and use its user-facing contract.
 

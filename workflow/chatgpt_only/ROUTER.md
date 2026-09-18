@@ -26,9 +26,11 @@ When that role finishes:
 1. persist the durable state/evidence produced by the role;
 2. re-evaluate Task Board + accepted authority;
 3. return to this router;
-4. select the next legal route;
-5. load that route's module(s);
-6. continue in the same chat without a user-facing stop when the transition is deterministic and authorized.
+4. if durable state already owns a real stop from root `CHATGPT.md#Real-stop-response-contract` — fresh independent review, L3/user decision, explicit authorization, concrete runtime/access/input blocker, or end of approved scope — handle that stop first and do not run a separate hygiene handoff;
+5. only when a deterministic authorized next role exists, perform the context-health trigger check below;
+6. select the next legal route;
+7. load that route's module(s);
+8. continue in the same chat without a user-facing stop when context health remains CONTINUE.
 
 The same chat may therefore move, for example:
 
@@ -41,6 +43,24 @@ Role identity is per obligation, not permanent for the whole chat.
 A reviewer that has completed its verdict is no longer governed by `REVIEW.md` once the router assigns a new route. If the same chat later implements a new reviewable subject, it is the implementing chat for that new subject and cannot independently review it.
 
 Only a real boundary from root `CHATGPT.md#Real-stop-response-contract` ends the turn.
+
+## Context-health trigger check
+
+Do not load context-health machinery after every role by default.
+
+Before starting the next substantial obligation at a safe durable boundary, ask whether the accumulated chat may now materially increase the risk of stale-state carryover, authority confusion or omission.
+
+If there is no concrete signal, continue without loading another module.
+
+If there is a concrete signal — for example materially superseded state in the transcript, major role/authority-area transition, large irrelevant diagnostic/tool history, or uncertainty reconstructing current truth from the conversation — read:
+
+`workflow/chatgpt_only/CONTEXT_HEALTH.md`
+
+Then obey its decision:
+- `CONTEXT_HEALTH: CONTINUE` → select/load the next route now;
+- `CONTEXT_HEALTH: FRESH` → do not start the next obligation; perform the context-hygiene user stop.
+
+Never run a separate context-health handoff when another real stop already owns the boundary. A pending REQUIRED/RECOMMENDED fresh independent review is one such case and already provides the context reset.
 
 ## Routes
 
