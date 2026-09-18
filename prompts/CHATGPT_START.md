@@ -15,7 +15,7 @@ Normal ChatGPT should:
 2. read project root `PROJECT.md`;
 3. read `workflow/CONTEXT_ROUTING.md`;
 4. follow only the execution-policy route selected there;
-5. recover Task Board when implementation/review state exists;
+5. recover mutable review/execution state from the canonical source defined by the selected policy route; under `chatgpt_only`, use Task Board for implementation/implementation-review state and `planning/reviews/<plan-revision>.md` for pre-execution plan review;
 6. treat durable repository authority as stronger than stale chat memory;
 7. persist changed durable truth when current project capabilities allow it.
 
