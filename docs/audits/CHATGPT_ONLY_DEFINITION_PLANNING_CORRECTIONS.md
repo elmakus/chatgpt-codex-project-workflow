@@ -4,7 +4,7 @@ Date: 2026-09-18
 Base: `main@23b8c368aea160566abdfd3fbc42bd0facb88bd4`  
 Implementation branch: `fix/definition-planning-audit-findings`
 
-Status: **REMEDIATION COMPLETE — NEW INDEPENDENT REVIEW PENDING**
+Status: **INDEPENDENT RE-REVIEW RED — BOUNDED REMEDIATION REQUIRED**
 
 ## Review subject
 
@@ -219,6 +219,59 @@ The fresh reviewer should specifically verify:
 8. plan-only replan does not produce a false user stop;
 9. no previous ChatGPT-only semantics were unintentionally lost.
 
+## Fresh independent re-review — 2026-09-18
+
+Reviewed exact subject:
+
+- base: `23b8c368aea160566abdfd3fbc42bd0facb88bd4`
+- head: `cf34c4cb0c85eb8b37d4b8d75a19bce565021702`
+
+Verdict: **RED**
+
+### Re-review results
+
+The original four findings and the three previously recorded RED findings were rechecked independently against the exact branch diff and current workflow authority.
+
+- Finding 1 — shared Master Plan policy neutrality: **GREEN**. The shared template no longer imports `workflow/chatgpt_only/*`, legacy, Codex or mixed-specific execution paths.
+- Finding 2 — requirement coverage ownership: **GREEN**. Canonical Requirements no longer owns milestone mapping; Master Plan owns requirement → milestone/work-package-or-JIT coverage; Execution Prep owns concrete Task Cards.
+- Finding 3 — independent plan-review semantics: **PARTIALLY GREEN, but the integrated routing regression check fails**. `PLANNING.md`, `PLAN_REVIEW.md`, root bootstrap and the dedicated user-stop handoff restore the intended fresh independent review lifecycle, but `ROUTER.md` contains a contradictory same-chat transition example described below.
+- Finding 4 — broad L3/user-stop classification: **GREEN** in the authoritative root/chatgpt-only routing and review paths. Plan-only strategic replans route to Planning; Definition changes route to Project Definition; evidence gaps route to Research; user stop is reserved for unresolved user/product authority or another explicit real gate.
+- RED-01 — plan-review state recoverability outside Task Board: **GREEN**. Plan-review state is separately recoverable from `planning/reviews/<plan-revision>.md`, including a dedicated fresh-chat handoff.
+- RED-02 — remaining generic L3 → user-stop wording: **GREEN** in the authoritative root/chatgpt-only review flow.
+- RED-03 — reuse/overwrite of a review record for a corrected subject: **GREEN**. One review record maps to one exact plan revision/subject and substantive correction requires a new plan revision/review record.
+- Duplicate-authority regression: **GREEN**. Task Board remains sole mutable execution-state authority; pre-execution plan-review state is separate and explicitly not execution state.
+- Review-subject immutability regression: **GREEN** in `PLAN_REVIEW.md` / `PLANNING.md`.
+- Definition / Planning / Execution Prep ownership regression: **GREEN** and non-circular.
+- Plan-only replan false-user-stop regression: **GREEN** in the operational route modules.
+- Previous ChatGPT-only semantics preservation: **RED** because the router now contains an internally contradictory same-chat plan-review example that can defeat the restored independence rule.
+
+### RED-04 — authoritative router example permits an impossible same-chat plan review transition
+
+`workflow/chatgpt_only/ROUTER.md` states:
+
+> “The same chat may therefore move, for example:”
+
+and immediately gives:
+
+`RESEARCH → PROJECT DEFINITION → PLANNING → PLAN_REVIEW → PLANNING → EXECUTION_PREP → EXECUTION`
+
+That contradicts the same corrected subject's hard independence rules:
+
+- root `CHATGPT.md` makes a REQUIRED/RECOMMENDED fresh independent review a real fresh-chat boundary;
+- `PLANNING.md` says the chat that authored the exact plan subject cannot issue its independent verdict;
+- `PLAN_REVIEW.md` requires a fresh normal ChatGPT chat that did not author the exact reviewed Master Plan subject.
+
+Because `ROUTER.md` is authoritative for role transitions, the explicit “same chat” example creates a conflicting legal path in which the plan-authoring chat appears allowed to enter `PLAN_REVIEW` directly. A reviewer/agent following the example rather than the earlier stop clause could self-review the plan subject, which is exactly the independence semantic this corrective package is intended to restore.
+
+Required correction:
+
+- remove `PLANNING → PLAN_REVIEW` from any sequence explicitly described as a same-chat transition;
+- represent the authoring path as `... → PLANNING → [fresh independent-plan-review stop]`;
+- if an example of post-review continuation is desired, show it from the fresh reviewer session, e.g. `PLAN_REVIEW → PLANNING → EXECUTION_PREP → EXECUTION`;
+- keep the existing fresh-review priority and dedicated `planning/reviews/<plan-revision>.md` handoff unchanged.
+
+This is a bounded routing/documentation inconsistency. No GREEN verdict is issued for the reviewed subject.
+
 ## Verdict
 
-**RED for `d769474185218e89c41025d9867cf35db159bfb7`. Remediation is complete; the current branch head is a new review subject and remains PENDING FRESH INDEPENDENT REVIEW.**
+**RED for `cf34c4cb0c85eb8b37d4b8d75a19bce565021702`. Findings 1, 2 and 4 plus RED-01/02/03 are corrected, but RED-04 leaves the restored independent plan-review lifecycle internally contradictory in the authoritative router. A corrected head requires a fresh independent re-review.**
