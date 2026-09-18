@@ -2,7 +2,7 @@
 
 ## Goal
 
-Produce source-grounded findings that can support requirements, accepted decisions and planning without conflating evidence with decisions.
+Produce source-grounded findings that can support Project Definition and later planning without conflating evidence with accepted intent.
 
 ## Canonical location
 
@@ -11,7 +11,7 @@ Research artifacts live in `research/`. Use `templates/RESEARCH.md` when useful.
 ## Research workflow
 
 ```text
-USER GOAL → discovery → research → source verification → alternatives → architecture candidates → accepted decisions → requirements → planning
+USER GOAL → discovery → research → source verification → alternatives → Project Definition → accepted decisions + requirements → planning
 ```
 
 Later arrows occur only after the appropriate user/authority decisions. Research itself does not silently accept an option.
