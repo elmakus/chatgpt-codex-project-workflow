@@ -137,6 +137,20 @@ Use an explicit state:
 - `MILESTONE COMPLETE: <checkpoint>. CONTINUING TO: <next milestone>` when fixed-policy continuation is valid;
 - `MILESTONE COMPLETE: <checkpoint>.` when execution stops at that boundary.
 
+Whenever the response tells the user to open a **fresh ChatGPT chat** — whether mandatory for independent review or merely recommended for context hygiene — the same response must immediately include a **copy-paste-ready fenced Markdown prompt** for that new chat.
+
+Use:
+```text
+NEW CHAT START PROMPT:
+Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
+Repo projektu: <owner/repo>.
+Kontynuuj: <exact card/milestone/review gate or concise goal>.
+Durable start pointer: <implementation/TASK_BOARD.yaml | other exact durable pointer>.
+Odtwórz aktualny stan, exact subject, authority slice i wymagane evidence z repo. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
+```
+
+Prompt is routing only. Do **not** duplicate SHAs, test results, evidence summaries, implementation details or other facts already recoverable from durable repository state. Include a card/milestone/review-gate ID when it helps route the fresh chat. Add only non-durable user intent that the repository cannot recover.
+
 A routine GREEN card is not itself a reason to stop. One parallel lane finishing is not a reason to stop unrelated healthy lanes.
 
 ## Refresh Gate
