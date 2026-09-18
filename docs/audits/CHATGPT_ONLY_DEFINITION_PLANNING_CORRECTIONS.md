@@ -4,7 +4,7 @@ Date: 2026-09-18
 Base: `main@23b8c368aea160566abdfd3fbc42bd0facb88bd4`  
 Implementation branch: `fix/definition-planning-audit-findings`
 
-Status: **INDEPENDENT REVIEW RED — BOUNDED REMEDIATION IN PROGRESS**
+Status: **REMEDIATION COMPLETE — NEW INDEPENDENT REVIEW PENDING**
 
 ## Review subject
 
@@ -158,6 +158,52 @@ Required correction:
 - require a new plan revision (or otherwise distinct durable review record) for any substantive corrective edit;
 - allow post-GREEN approval to change only deterministic lifecycle metadata while keeping the reviewed plan body identical, otherwise require a new review subject.
 
+## Bounded remediation after RED
+
+The RED findings above were corrected on the same branch after the independent reviewer role ended.
+
+### RED-01 remediation
+
+- root bootstrap no longer assumes every review lifecycle is Task-Board-owned;
+- the ChatGPT-only router distinguishes implementation review state in Task Board from pre-execution plan-review state in `planning/reviews/<plan-revision>.md`;
+- the router treats a request/handoff only as a locator and reads the plan-review record as authority;
+- `workflow/common/USER_STOP.md` now distinguishes implementation-review and plan-review fresh-chat handoffs;
+- the plan-review handoff uses `planning/reviews/<plan-revision>.md` as the durable start pointer;
+- Context Health now treats Task Board coherence/reconciliation as conditional on implementation state existing.
+
+### RED-02 remediation
+
+- root `CHATGPT.md` no longer uses generic `L3` stop wording;
+- implementation-review RED flow classifies corrections through Execution/Execution Prep, Planning, Project Definition or Research before deciding whether a user stop exists;
+- State, Execution, Task Cards, Close and Recovery now consistently route plan-only/Definition/evidence changes through the owning role;
+- user stop remains only for unresolved user/product authority or another explicit real gate.
+
+### RED-03 remediation
+
+- one plan-review record now corresponds to one exact plan revision/subject;
+- a substantive correction after a verdict requires a new plan revision and therefore a distinct review record;
+- completed RED/GREEN review records are not reused for another subject;
+- after GREEN, only deterministic lifecycle metadata may change without a new review; any substantive plan-body edit requires a new revision and a new independent review subject.
+
+### Additional semantic preservation check
+
+The earlier rule remains “independent plan review when practical.” A substantive plan may use `none` only when independent review is concretely impractical, no project/user authority requires it, and the planning audit records the concrete reason; convenience alone is insufficient. This avoids silently strengthening “when practical” into an unconditional hard gate.
+
+### Implementer self-check after remediation
+
+Static/coherence checks are GREEN for:
+- shared Master Plan policy neutrality;
+- Requirements/Planning/Execution Prep ownership separation;
+- Task Board remaining the sole mutable execution-state authority;
+- separate plan-review state and recoverable fresh-chat handoff;
+- immutable review subject / distinct review-attempt records;
+- router priorities and GREEN/RED role transitions;
+- Context Health behavior before Task Board exists and at review boundaries;
+- absence of remaining `L3` user-stop shorthand in root/chatgpt-only review flow;
+- plan-only replan routing to Planning while Project Definition remains valid.
+
+These checks are implementer self-checks only. They do not constitute the required fresh independent verdict for the corrected subject.
+
 ## Self-check scope
 
 The implementing chat may run static/coherence checks but must not issue the independent verdict for the corrected subject.
@@ -175,4 +221,4 @@ The fresh reviewer should specifically verify:
 
 ## Verdict
 
-**RED for `d769474185218e89c41025d9867cf35db159bfb7`; bounded remediation is authorized and in progress.**
+**RED for `d769474185218e89c41025d9867cf35db159bfb7`. Remediation is complete; the current branch head is a new review subject and remains PENDING FRESH INDEPENDENT REVIEW.**
