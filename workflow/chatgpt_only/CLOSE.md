@@ -4,16 +4,31 @@ This module owns integrated milestone acceptance, publication verification, bran
 
 ## Entry condition
 
-Enter when:
-- required Cards for milestone are done;
+Enter through exactly one legal close shape.
+
+### Normal milestone close
+
+- required Cards for the milestone are done;
 - required/recommended Card review gates are green;
 - intended final milestone state exists.
 
-If a pending/in-progress review still exists, route to `REVIEW.md` first.
+### Qualified micro-fix workstream close
+
+- the selected branch-isolated issue workstream has a completed Intake with `path: micro_fix`;
+- manifest ↔ Task Board binding is valid;
+- the one bounded fix Card is terminal with all required/recommended Card review gates GREEN;
+- no higher-priority Task Board Research/RED/correction obligation remains;
+- the selected workstream is not already `done`.
+
+A qualified micro-fix does not need a Master Plan or milestone entry merely to enter Close.
+
+If a pending/in-progress Card/milestone review or an already-active manifest final-integration review exists, route to `REVIEW.md` first. A null manifest final-integration review state is not a blocker to entering Close because this role runs target refresh before first coverage reuse/freeze.
 
 ## Integrated milestone acceptance
 
-Evaluate intended final milestone state against:
+This section applies only to the normal milestone-close path. A qualified micro-fix skips milestone acceptance because its bounded fix Card is the direct execution/acceptance contract; proceed to **Branch-isolated integration refresh gate**.
+
+For a normal milestone, evaluate intended final milestone state against:
 - approved milestone outcome/acceptance;
 - applicable requirements/accepted decisions;
 - integrated behavior;
@@ -54,9 +69,15 @@ Required ordering:
 3. Compare the current target with the target state against which the workstream was last reconciled/validated.
 4. If the target moved materially, perform only the smallest authorized rebase/merge/retarget/reconciliation, then rerun affected verification and detect both textual and material semantic conflicts.
 5. Decide final-integration review coverage **after** that refresh:
-   - if exact covered workstream content/behavior and the acceptance surface are unchanged, an existing exact GREEN verdict/stronger coverage may remain valid after affected compatibility verification is GREEN;
-   - if reconciliation materially changes the covered content/behavior or acceptance surface, prior coverage is stale: persist the new exact manifest `review.subject`, set REQUIRED/RECOMMENDED review to `pending`, persist reconciliation evidence and stop at the normal fresh-review boundary;
+   - if `review.requirement: none` is legally allowed by current authority, no final-integration review lifecycle is activated;
+   - if REQUIRED/RECOMMENDED review is already GREEN, preserve it only when exact covered workstream content/behavior and the whole acceptance surface remain unchanged and affected compatibility verification is GREEN;
+   - if REQUIRED/RECOMMENDED review state is null, do exactly one of:
+     - prove an already-independent stronger review covers the identical refreshed immutable integrated subject and whole workstream acceptance surface, then reconcile the distinct manifest gate GREEN with exact `covered_by` evidence; for a one-Card micro-fix apply `MICRO_FIX.md#Workstream-final-integration-review`; or
+     - freeze the exact refreshed integrated subject in manifest `review.subject`, set `review.state: pending`, clear stale `covered_by`, persist refresh evidence, and stop at the normal fresh-review boundary;
+   - if reconciliation materially changes the covered content/behavior or acceptance surface, any prior coverage is stale: persist the new exact manifest `review.subject`, set REQUIRED/RECOMMENDED review to `pending`, clear stale `covered_by`, persist reconciliation evidence and stop at the normal fresh-review boundary;
    - target movement or changed commit ancestry alone is not sufficient reason to invalidate review.
+
+The chat that performs a behavioral reconciliation and freezes the changed subject cannot independently review that new subject.
 6. Immediately before the actual merge/integration, read the target again. If it moved after the comparison/review decision, loop through this gate again.
 
 File overlap alone never blocks this gate. A real dependency, incompatible authority, unresolved semantic conflict or unreconcilable integration conflict does.
@@ -101,6 +122,17 @@ For a branch-isolated workstream:
 - when a child is folded into its parent, treat the parent's integrated subject as changed when the child adds covered behavior/content; the parent must perform its own refresh/review reconciliation before its later final integration;
 - never record a child as independently integrated to main/default merely because it was merged into an unmerged parent;
 - after final-target integration, reconcile durable manifest/result/PR state plus the selected Task Board/handoff as applicable to the actual Git result.
+
+## Qualified micro-fix finalization
+
+For a qualified micro-fix, after the refresh gate is current, any REQUIRED/RECOMMENDED manifest final-integration review gate is GREEN, and the actual final-target integration succeeds:
+
+1. verify the final integration result/readback against the exact target used by the refresh gate;
+2. reconcile the selected manifest `status/result/pr` to the actual integrated result;
+3. reconcile the selected Task Board execution/result pointers needed for recovery without creating a milestone entry;
+4. keep the bounded fix Card terminal and preserve its independent review/evidence history;
+5. do not synthesize an `MXX` cumulative handoff solely for the micro-fix unless project authority separately requires one;
+6. return to the router. If the micro-fix workstream scope is complete and no further deterministic obligation exists, this is end of approved scope.
 
 ## Cumulative handoff
 
