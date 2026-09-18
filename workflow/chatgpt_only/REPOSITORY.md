@@ -135,7 +135,7 @@ Recovery must be possible from:
 - the PROJECT-pointed active pre-execution research record when Research/return-role recovery is active;
 - selected canonical Task Board, including its implementation/recovery `research_obligation` pointer and exact pointed record when present;
 - exact Git/runtime/external state;
-- current milestone/Card contracts;
+- current milestone/Card contracts, or the exact bounded micro-fix Card + completed Intake record for a qualified direct fix;
 - referenced evidence/OpenSpec/handoff as actually needed.
 
 Previous chat narrative is not required authority.
