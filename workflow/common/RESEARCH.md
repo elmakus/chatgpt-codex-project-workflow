@@ -4,17 +4,46 @@
 
 Produce source-grounded findings that can support Project Definition and later planning without conflating evidence with accepted intent.
 
-## Canonical location
+## Canonical location and durable continuation state
 
 Research artifacts live in `research/`. Use `templates/RESEARCH.md` when useful.
+
+Any Research obligation that may cross a chat/session boundary must have one exact durable research record **before** the origin role yields control.
+
+The record owns at least:
+- `Research ID`;
+- `Status: active | complete | blocked | consumed`;
+- `Origin role`;
+- `Origin subject` — exact durable scope/revision/Card/blocker that opened the question;
+- `Return target` — exact role/subject that must consume the findings;
+- the exact research question.
+
+For pre-execution Brainstorming/Definition/Planning research, project `PROJECT.md → Active research obligation` points to that exact record while it is active or awaiting consumption.
+
+For Research triggered from implementation/recovery, the owning Task Board/blocker state points to the exact research record instead. Do not mirror active implementation state into `PROJECT.md`.
+
+Status semantics:
+- `active` — Research is the exact current obligation;
+- `blocked` — Research remains current but cannot proceed until its recorded concrete blocker is resolved;
+- `complete` — evidence/findings are durably complete and the exact recorded Return target is now the next obligation;
+- `consumed` — the Return target durably reconciled the findings; the active pointer may now be cleared.
+
+Do not clear an active research pointer at `complete`. Clear it only after the Return target has durably consumed/reconciled the findings so a crash between research completion and return-role reconciliation is recoverable.
 
 ## Research workflow
 
 ```text
-USER GOAL → discovery → research → source verification → alternatives → selected-policy Definition entry gate → Project Definition → accepted decisions + requirements → planning
+origin role
+→ persist exact research record + active pointer
+→ research/source verification
+→ persist Status: complete
+→ router
+→ exact Return target
+→ durable reconciliation
+→ Status: consumed + clear active pointer
 ```
 
-Later arrows occur only after the appropriate user/authority decisions. Research itself does not silently accept an option.
+Research itself does not silently accept an option or choose a different Return target from chat narrative.
 
 ## Required distinctions
 
@@ -45,10 +74,13 @@ Do not load unrelated implementation history.
 Research does not directly promote itself into accepted product/system authority.
 
 When findings are ready to influence target behavior:
+- persist findings/evidence and set the exact research record to `Status: complete`;
+- preserve its active pointer until the recorded Return target has durably reconciled the result;
 - return to the policy router;
-- route through Project Definition only when the selected policy's entry conditions for Definition are satisfied;
+- route to the record's exact Return target; Project Definition is legal only when the selected policy's entry conditions for Definition are satisfied;
 - if research was entered from exploratory Brainstorming and that policy requires explicit user phase promotion, research completion does **not** count as that promotion;
-- Definition promotes verified constraints to `requirements/` and explicit accepted choices to `decisions/` with provenance.
+- Definition promotes verified constraints to `requirements/` and explicit accepted choices to `decisions/` with provenance;
+- after the target role persists that reconciliation, set the research record to `consumed` and clear the pre-execution active pointer.
 
 Implementation-time facts discovered for already-approved work may still flow to the current Task Card/OpenSpec/evidence as appropriate without redefining product intent.
 

@@ -42,6 +42,7 @@ Read only what is needed to establish accepted intent:
 - project `PROJECT.md`;
 - user/product goal and explicit choices;
 - relevant brainstorming conclusions;
+- the exact completed active-research record when returning from Research to this Definition subject;
 - relevant verified research/evidence;
 - existing accepted requirements and decisions when redefining an active project;
 - current project/source/external baseline only when it materially constrains the definition.
@@ -79,7 +80,7 @@ Do not hide it in planning as an implementation detail.
 ## Definition workflow
 
 1. Recover the current accepted goal and any existing definition authority.
-2. Read only relevant brainstorming/research/evidence.
+2. Read only relevant brainstorming/research/evidence. When `PROJECT.md → Active research obligation` points to a `complete` record whose Return target is this Definition subject, treat reconciliation of that record as the current obligation.
 3. Separate facts, explicit user choices, requirements, strategic decisions and unresolved questions.
 4. Draft/reconcile canonical requirements.
 5. Create/reconcile accepted decision records for material strategic choices.
@@ -111,8 +112,16 @@ Definition is a bounded role.
 
 When more evidence is required:
 - persist the exact open question/evidence need;
+- create/activate one exact research record with `Status: active`, `Origin role: project_definition`, the exact current Definition subject/revision as `Origin subject`, and `Return target: project_definition:<exact subject>`;
+- for pre-execution Definition, set `PROJECT.md → Active research obligation` to that exact record before yielding the role;
 - return to the router;
 - route to Research.
+
+When returning from a `complete` Research record:
+- reconcile its verified findings into requirements/decisions/open questions as appropriate;
+- persist that Definition reconciliation first;
+- then set the research record to `consumed` and clear `PROJECT.md → Active research obligation`;
+- only then continue the remaining Definition obligation.
 
 When the problem space itself needs more option generation/comparison:
 - return to the router;

@@ -44,6 +44,12 @@ Read only already accepted requirements/decisions and source/project context tha
 
 Move to research when claims require verification.
 
+Before yielding Brainstorming to a Research obligation that may cross a session boundary:
+- create/activate one exact research record with `Status: active`, `Origin role: brainstorming`, the exact exploratory `<scope-id>@<revision>` as `Origin subject`, and `Return target: brainstorming:<scope-id>@<revision>`;
+- set `PROJECT.md → Active research obligation` to that exact record.
+
+When the pointed Research record becomes `complete`, return to the exact recorded Brainstorming subject, durably reconcile the findings into the exploratory record, then set the Research record to `consumed` and clear the active research pointer.
+
 When enough facts and accepted choices exist to formalize authoritative requirements/decisions and target state, Brainstorming may become **ready for Project Definition**.
 
 Readiness is not itself authority to leave the exploratory phase. The selected policy route owns the promotion boundary. If that route requires explicit user promotion, persist the ready state and stop until the user authorizes Project Definition.
