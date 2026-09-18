@@ -78,10 +78,10 @@ When Task Board `research_obligation` points to an implementation/recovery Resea
 - read that exact record; Task Board stores only the pointer while the research record owns Status, Origin and Return target;
 - `active | blocked` → route to Research;
 - `complete` → route to the exact recorded current Return target without clearing the pointer first;
-- when that target is `execution_resolution:<subject>`, recover the classifier; it durably refines Return target to the exact final owning role/subject and keeps `Status: complete`, `Return reconciliation: pending` + the Task Board pointer;
+- when that target is `execution_resolution:<subject>`, recover the classifier; it either durably refines Return target to the exact final owning role/subject while keeping `Status: complete`, `Return reconciliation: pending` + the Task Board pointer, or—when classification itself needs more evidence—uses `RESEARCH.md#Intermediate execution-resolution classifier` to atomically consume `R1`, create `R2 active`, and switch the pointer to `R2`;
 - at a final Return target, apply `workflow/chatgpt_only/RESEARCH.md#Final Return-target protocol`; `Return reconciliation: applied` means target work is already durable and recovery is consume/clear-only;
-- only the final owning Return target marks the record `consumed` and clears Task Board `research_obligation`;
-- `consumed` with a leftover pointer → clear the stale pointer at the next safe edit;
+- normally only the final owning Return target marks the record `consumed` and clears Task Board `research_obligation`; classifier-to-Research chaining is the sole exception and must replace the pointer with the exact new active record in the same durable transition;
+- `consumed` with a leftover pointer → if its reconciliation result names an exact active chained Research record, reconcile the pointer to that record; otherwise clear the stale pointer at the next safe edit;
 - missing/mismatched pointer, Origin subject or Return target → preserve as inconsistent state rather than infer from chat.
 
 Thus a fresh session always recovers either Research, the classifier, or the final owning return role from one durable pointer/record.

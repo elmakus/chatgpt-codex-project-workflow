@@ -8,10 +8,12 @@ Research question: `<exact question>`
 Populate these fields when the **selected policy route explicitly requires a durable cross-session Research obligation**. This shared template does not create routing semantics by itself; a policy route that does not define this lifecycle may omit these fields.
 
 Research ID: `<stable-id>`
-Status: `active | complete | blocked | consumed`
-Origin role: `brainstorming | project_definition | strategic_planning | plan_review | execution_resolution | other`
+Status: `active | blocked | complete | consumed`
+Origin role: `brainstorming | project_definition | strategic_planning | plan_review | execution_prep | execution_resolution | other`
 Origin subject: `<exact durable scope/revision/Card/blocker ref>`
 Return target: `<exact role:subject>`
+Return reconciliation: `pending | applied`
+Return reconciliation result: `<exact durable result ref(s) | none>`
 
 ## Scope
 

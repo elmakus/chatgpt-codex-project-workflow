@@ -47,7 +47,7 @@ When Execution Prep needs more evidence before it can legally classify or comple
 4. preserve all already-valid preparation/Card state; do not mark unrelated work ready merely to create the handoff;
 5. return to the router for Research.
 
-When Research completes, `execution_resolution` classifies the findings and keeps the Task Board pointer until an exact final Return target consumes them. A fresh session must therefore recover either Research, the classifier, or the final owner without transcript inference.
+When Research completes, `execution_resolution` classifies the findings. It either keeps the completed record pointed while naming an exact final Return target, or, if classification itself still needs evidence, atomically consumes that record and switches the pointer to one exact next active Research record under the classifier-to-Research chain protocol. A fresh session must therefore recover Research, the classifier, the chained Research obligation, or the final owner without transcript inference.
 
 ## Preparation steps
 

@@ -116,11 +116,11 @@ Never run a separate context-health handoff when another real stop already owns 
 
 For any `complete` Research record, the exact current `Return target` owns continuation and the owning pointer remains until durable consumption.
 
-- `execution_resolution:<subject>` is the only intermediate classifier. It refines the exact final Return target while keeping `Status: complete`, `Return reconciliation: pending`, and the Task Board pointer.
+- `execution_resolution:<subject>` is the only intermediate classifier. Ordinarily it refines the exact final Return target while keeping `Status: complete`, `Return reconciliation: pending`, and the Task Board pointer. If classification itself requires more evidence, it instead uses the explicit classifier-to-Research chain transition in `RESEARCH.md`.
 - Every final target — Brainstorming, Project Definition, Strategic Planning, Execution Prep or Execution — MUST follow `workflow/chatgpt_only/RESEARCH.md#Final Return-target protocol`.
 - Final target mutation and `Return reconciliation: applied` + exact result refs are persisted in the same durable Git transition.
 - If a crash occurs after that transition but before `consumed`/pointer-clear, re-entry is consume/clear-only; target work must not be replayed.
-- Only the final owning Return target consumes/clears.
+- Normally only the final owning Return target consumes/clears. The sole exception is classifier-to-Research chaining, where `execution_resolution` atomically records `R1` reconciliation as the exact new `R2` obligation, consumes `R1`, creates `R2 active`, and switches the Task Board pointer in the same durable Git transition.
 
 Research never selects a different route by itself; only the authorized classifier may refine a Return target.
 
@@ -270,13 +270,13 @@ If this route is the exact `execution_resolution:<subject>` Return target of a c
 2. classify the findings against current durable authority;
 3. persist that classification by replacing the record's Return target with the exact final owning role/subject while keeping `Status: complete`, `Return reconciliation: pending`, and keeping Task Board `research_obligation`;
 4. return through this router; the pointer now deterministically routes to that final target;
-5. do **not** mark the record `consumed` here — the final target consumes it only after its correction/reconciliation is durably complete.
+5. for ordinary classification, do **not** mark the record `consumed` here — the final target consumes it only after its correction/reconciliation is durably complete. If classification itself needs more evidence, use the classifier-to-Research chain transition in `RESEARCH.md` instead.
 
 Then:
 - bounded L1/L2 correction inside accepted authority → refine Return target to Execution Prep or Execution;
 - if accepted product/system intent or a strategic decision must change → refine Return target to Project Definition;
 - if accepted definition remains valid but milestone sequencing/plan must change → refine Return target to Strategic planning;
-- if more evidence is still needed before either can be decided, atomically persist the next exact implementation-owned Research record/pointer before retiring the completed classifier record and route to Research.
+- if more evidence is still needed before either can be decided → in one durable Git transition persist `R1 Return reconciliation: applied` with exact `R2` ref, set `R1 Status: consumed`, create `R2 Status: active`, and switch Task Board `research_obligation` directly from `R1` to `R2`; then route to Research. Never expose `R1 complete` after moving the pointer and never expose a null-pointer gap.
 
 Do not continue affected work until the owning authority is resolved.
 

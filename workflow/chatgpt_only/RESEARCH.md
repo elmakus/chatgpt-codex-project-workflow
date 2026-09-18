@@ -37,14 +37,14 @@ Execution Prep / implementation / recovery Research uses:
 
 Never mirror an implementation/recovery Research obligation into `PROJECT.md`.
 
-Keep the owning pointer through `Status: complete`. Clear it only after final-target reconciliation is durable and the record is `consumed`.
+Keep the owning pointer through `Status: complete`. Normally clear it only after final-target reconciliation is durable and the record is `consumed`. The sole exception is the classifier-to-Research chain transition below: it consumes the completed classifier record and replaces the pointer with the next exact active Research record in one durable Git transition, so recovery never observes a gap or an unowned completed record.
 
 ## Status semantics
 
 - `active` — Research is current.
 - `blocked` — Research is current but concretely blocked.
 - `complete` — findings are durable and the exact Return target owns continuation.
-- `consumed` — final-target reconciliation is durable and the pointer may be cleared.
+- `consumed` — final-target reconciliation is durable and the pointer may be cleared, or the classifier-to-Research chain transition has durably handed ownership to the next exact Research record.
 
 Research cannot choose a different Return target from chat history.
 
@@ -67,15 +67,21 @@ A stale `complete` pointer must never create another semantic revision, Definiti
 
 `execution_resolution:<subject>` is not a final Return target.
 
-It verifies Task Board pointer + subject, classifies findings, replaces `Return target` with the exact final owner, and keeps `Status: complete`, `Return reconciliation: pending` and the Task Board pointer.
+It verifies Task Board pointer + subject and classifies findings. For an ordinary classification, it replaces `Return target` with the exact final owner and keeps `Status: complete`, `Return reconciliation: pending` and the Task Board pointer.
 
-If classification itself proves more Research is needed, atomically retire the completed record and install one exact next `active` implementation-owned Research record/pointer. Never leave a gap.
+If classification itself proves more Research is needed, use this **classifier-to-Research chain transition** instead of pretending that a final owner already exists:
+1. define the next exact Research record `R2` with a new stable Research ID, `Status: active`, `Origin role: execution_resolution`, the same exact affected durable subject as Origin, the exact next research question, `Return target: execution_resolution:<same affected subject>`, `Return reconciliation: pending`, and no reconciliation result yet;
+2. in one durable Git transition, set the completed classifier record `R1` to `Return reconciliation: applied`, set `Return reconciliation result` to the exact `R2` record/pointer ref, set `R1 Status: consumed`, create `R2`, and replace Task Board `research_obligation` from `R1` to `R2`;
+3. do not clear the pointer to `null` between records and do not leave `R1 complete` after the pointer has moved;
+4. after that transition, route to Research for `R2`.
+
+This is the only non-final-target consumption exception. The durable classifier result is the exact next Research obligation itself. A crash before the transition sees `R1 complete` and retries classification; a crash after it sees `R2 active` and must not recreate `R2`.
 
 ## Chained Research
 
 Do not overwrite an active/complete pointer with a new question.
 
-When a final target needs another Research obligation, reconcile the current findings first, then in one repository transition record the old reconciliation result, mark the old record consumed, create the next exact active record and replace the owning pointer. Recovery must always see either the old obligation or the new one.
+When a final target needs another Research obligation, reconcile the current findings first, then in one repository transition record the old reconciliation result, mark the old record consumed, create the next exact active record and replace the owning pointer. When `execution_resolution` itself needs more evidence before it can name a final owner, use the classifier-to-Research chain transition above. Recovery must always see either the old obligation or the new one.
 
 ## Authority boundary
 

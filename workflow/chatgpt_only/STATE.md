@@ -77,7 +77,7 @@ research_obligation: research/<record>.md | null
 
 The pointed Research record owns its `Status`, Origin role/subject, Return target, question, `Return reconciliation` state and exact reconciliation-result refs. Do not duplicate those lifecycle fields into Task Board and do not mirror this execution obligation into `PROJECT.md`.
 
-Before Execution Prep / execution / recovery yields to Research, persist both the exact research record and this pointer. Keep the pointer through Research `complete`; clear it only after the final Return target has durably persisted `Return reconciliation: applied`, then marked the record `consumed`. Recovery from `applied + complete` is consume/clear-only.
+Before Execution Prep / execution / recovery yields to Research, persist both the exact research record and this pointer. Keep the pointer through Research `complete`. Normally clear it only after the final Return target has durably persisted `Return reconciliation: applied`, then marked the record `consumed`. The sole exception is classifier-to-Research chaining: `execution_resolution` may consume completed `R1` only by atomically recording the exact new `R2` obligation as its reconciliation result, creating `R2 active`, and replacing this pointer from `R1` to `R2` in the same durable Git transition. Recovery from ordinary `applied + complete` is consume/clear-only.
 
 ## Incremental Card-set state
 
