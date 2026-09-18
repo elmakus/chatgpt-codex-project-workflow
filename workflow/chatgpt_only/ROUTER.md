@@ -126,7 +126,7 @@ Read Task Board/current handoff only when planning/replanning an active project.
 Read:
 - `workflow/chatgpt_only/EXECUTION_PREP.md`;
 - `workflow/chatgpt_only/TASK_CARDS.md`;
-- `workflow/chatgpt_only/DELEGATED_WORKERS.md` only when the Card being prepared declares delegated workers;
+- `workflow/chatgpt_only/DELEGATED_WORKERS.md` when the work being prepared will declare delegated workers;
 - current milestone/plan authority;
 - Task Board when implementation state exists;
 - exact predecessor evidence needed by current decomposition.
@@ -189,6 +189,7 @@ Do not continue affected work until the owning authority is resolved.
 
 Read:
 - `workflow/chatgpt_only/RECOVERY.md`;
+- `workflow/chatgpt_only/DELEGATED_WORKERS.md` when the affected active Card declares delegated workers;
 - Task Board;
 - exact active branch/HEAD/runtime;
 - affected in-progress/blocked/review state;
