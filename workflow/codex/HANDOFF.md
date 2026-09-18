@@ -17,6 +17,7 @@ Include:
 - required prior checkpoint;
 - durable Task Board pointer;
 - material evidence/readback obligations;
+- exact Task Card authority slice/pointers; the kickoff itself need not paste the referenced material;
 - instruction to run the state/contract Refresh Gate;
 - stop conditions.
 
@@ -30,7 +31,7 @@ Durable start pointer: implementation/TASK_BOARD.yaml
 Assigned milestone/set: <MXX / MXX-TYY[, ...]>
 Required prior checkpoint: <sha/tag>
 
-Recover Task Board/Git state, run the state/contract Refresh Gate and execute only assigned scope. The mixed Capability Gate already handled pre-assignment routing; do not run another capability preflight. If a concrete runtime operation cannot proceed, persist the blocker. Persist tests/evidence/result/review pointers in Task Board. Stop for a real runtime blocker, strategic authority change, explicit user authorization gate or unsatisfied acceptance/evidence.
+Recover Task Board/Git state, current Task Card contract and its exact authority slice; run the state/contract Refresh Gate and execute only assigned scope. The mixed Capability Gate already handled pre-assignment routing; do not run another capability preflight. If a concrete runtime operation cannot proceed, persist the blocker. Persist tests/evidence/result/review pointers in Task Board. Stop for a real runtime blocker, strategic authority change, explicit user authorization gate or unsatisfied acceptance/evidence.
 ```
 
 ### Codex-only continuous execution
@@ -45,14 +46,14 @@ Durable start pointer: implementation/TASK_BOARD.yaml
 Approved plan: <planning/MASTER_PLAN.md>
 Start from: <checkpoint/current milestone>
 
-Recover durable state and execute deterministic READY work. Run state/contract Refresh Gates but do not run Capability Gate or capability preflight/inventory. Attempt concrete operations directly. Self-remediate ordinary non-secret local tooling/dependency gaps when permitted. Ask the user only when a concrete operation requires unavailable MCP/credential/token/access/authorization that Codex cannot obtain itself.
+Recover durable state, resolve each Task Card's exact authority slice and execute deterministic READY work. Run state/contract Refresh Gates but do not run Capability Gate or capability preflight/inventory. Attempt concrete operations directly. Self-remediate ordinary non-secret local tooling/dependency gaps when permitted. Ask the user only when a concrete operation requires unavailable MCP/credential/token/access/authorization that Codex cannot obtain itself.
 
 When installed/enabled, codex_workflow controls internal execute/review-worker orchestration. REQUIRED/RECOMMENDED independent review uses a reviewer worker/session that did not implement the exact subject; do not return to ChatGPT merely for reviewer independence.
 
 After each GREEN milestone, continue automatically into the next already-approved milestone using just-in-time execution prep + fresh state/contract Refresh Gate. Stop only for a real non-self-remediable runtime blocker, strategic/product/architecture blocker, explicit user/deployment/live-write authorization gate, RED requiring strategic resolution, or end of approved scope.
 ```
 
-Do not paste whole plan/history/OpenSpec trees/large diffs into chat.
+Do not paste whole plan/history/OpenSpec trees/large diffs into chat. Point to exact authority instead. Context may be smaller than the planner's original context, but applicable authoritative constraints must survive by explicit carry-forward or mandatory exact-reference read.
 
 ## 2. Codex → ChatGPT normal return
 
