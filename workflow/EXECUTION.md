@@ -66,6 +66,23 @@ This rule applies equally to ChatGPT execution and Codex project-level delegatio
 
 The independent reviewer uses the same applicable authority slice as the executor. Reviewing only the diff while omitting relevant requirements/decisions/plan constraints is insufficient when those constraints can change the verdict.
 
+## JIT planning during execution
+
+The execution orchestrator may perform L2 JIT decomposition/refinement whenever new durable predecessor evidence makes previously deferred execution detail knowable.
+
+Allowed without strategic replan:
+- create real Task Cards after their JIT trigger is satisfied;
+- split/merge/reorder/replace not-yet-started cards;
+- bind exact predecessor-result authority;
+- refine technical scope, interfaces, tests and implementation-level acceptance;
+- create/complete an optional JIT milestone extension.
+
+Before relying on the refinement, persist the updated stable contracts and reconcile Task Board.
+
+This authority stops at L3. If the new evidence requires changing accepted requirements, frozen architecture/decisions, global invariants, milestone outcome/product behavior contract or an explicit authorization boundary, block affected execution and route to strategic replanning.
+
+The execution orchestrator does not need to return to the same model/session that authored the Master Plan for L1/L2 work.
+
 ## Independent review boundary
 
 Task Board may carry `review_state`, `review_subject` and `review_evidence` for a card or milestone review gate.
