@@ -47,10 +47,11 @@ Do not compensate for an incomplete definition by inventing strategic authority 
 When Planning needs evidence before it can make a valid planning decision:
 
 1. persist one exact research record with `Status: active`, `Origin role: strategic_planning`, the current plan revision/planning obligation as `Origin subject`, and `Return target: strategic_planning:<exact subject>`;
-2. set `PROJECT.md → Active research obligation` to that record before yielding Planning;
-3. return to the router and route to Research.
+2. for pre-execution Planning, set `PROJECT.md → Active research obligation` to that record before yielding Planning;
+3. when replanning is the current resolution of active implementation/recovery work, set Task Board `research_obligation` instead and do not mirror the execution obligation into `PROJECT.md`;
+4. return to the router and route to Research.
 
-When that record becomes `complete`, the router returns to the exact recorded Strategic Planning subject. Reconcile the verified findings into planning authority first; then set the research record to `consumed` and clear the active research pointer.
+When that record becomes `complete`, the router returns to the exact recorded Strategic Planning subject. Reconcile the verified findings into planning authority first; then set the research record to `consumed` and clear its owning pointer (PROJECT for pre-execution Planning, Task Board for active implementation/recovery replanning).
 
 ## Inputs
 
