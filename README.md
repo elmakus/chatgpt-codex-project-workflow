@@ -154,7 +154,12 @@ The execution orchestrator may, without returning to the original planner:
 - complete an optional JIT milestone extension;
 - refine implementation-level acceptance/tests/interfaces from actual predecessor results.
 
-This authority is bounded. It must not change accepted requirements, frozen architecture/decisions, global invariants, milestone outcome or explicit user/deployment/authorization gates. If new evidence requires one of those to change, execution stops for strategic replan.
+This authority is bounded. It must not change accepted requirements, strategic/high-level decisions, global product/system invariants, approved milestone strategy/outcomes or explicit user/deployment/authorization gates.
+
+If new evidence requires:
+- accepted product/system intent, strategic decisions, invariants or authorization boundaries to change → return to Project Definition;
+- only milestone structure/order/outcome or execution strategy to change while Definition remains valid → return to Planning;
+- more evidence before either can be resolved → return to Research.
 
 Do not create placeholder cards whose real scope is merely “whatever the previous card reveals.” Persist the dependency/JIT trigger instead and create the real card when the evidence exists.
 
