@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## Unreleased — ChatGPT-only branch-isolated workstreams and intake
+
+- Added branch-isolated `chatgpt_only` workstreams with stable manifests and per-workstream Task Boards while preserving legacy/default `implementation/TASK_BOARD.yaml` projects without forced migration.
+- Scoped serial execution to one `in_progress` Card per selected Task Board so independent workstreams may progress concurrently on distinct branches and mutable state.
+- Added explicit `#issue` and `#feature` intake; issue intake classifies independent versus genuine parent-only stacked dependencies before branch creation, while feature intake preserves the user-owned Definition-promotion gate.
+- Added a bounded micro-fix path that can skip a full Master Plan without dropping durable acceptance/evidence or fresh independent review.
+- Kept Card/milestone review state Task-Board-owned and added a distinct manifest-owned final-integration review gate for behavioral workstreams.
+- Added local worktree/equivalent checkout isolation for concurrent local mutation, with remote-only GitHub execution exempt.
+- Added stacked-parent dependency provenance, legal child integration paths and a final integration refresh gate with affected verification, textual/semantic conflict checks and exact-subject review preservation/invalidation.
+- Fresh-session handoffs now use the smallest canonical workstream pointer: selected Task Board for Card/milestone review and selected manifest for workstream final-integration review, without prompt-state duplication.
+- Added final architecture/coherence regression coverage across legacy mode, concurrent workstreams, issue/feature intake, micro-fix, same-workstream recovery, stacked integration, target refresh, review isolation and fresh-session continuation.
+
+
 ## Unreleased — locator-only fresh-chat continuation
 
 - Fresh normal-ChatGPT handoffs are now explicitly recovery/entry locators rather than bounded one-role task contracts.
