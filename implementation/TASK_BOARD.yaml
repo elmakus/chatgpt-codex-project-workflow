@@ -152,10 +152,10 @@ cards:
     depends_on: ["M04-T01"]
     openspec_change: null
     contract: "implementation/cards/M05-T01.md"
-    review_state: in_progress
+    review_state: green
     review_subject: "13975e34df485fe10d01730613e042e9dab952c7"
-    review_evidence: null
+    review_evidence: "implementation/evidence/M05-T01-review-02.md"
     result_commit: "13975e34df485fe10d01730613e042e9dab952c7"
     result_pr: null
     evidence: "implementation/evidence/M05-T01.md"
-    tests_summary: "GREEN corrected implementation validation: review-01 RED found a no-milestone micro-fix Close/integration gap; bounded correction now routes terminal micro-fix through target refresh before final-integration review reuse/freeze and supports no-milestone finalization; E2E 1-10 re-traced GREEN; correction files have no conflict markers/trailing whitespace/stale old-route refs; workflow main unchanged; fresh REQUIRED re-review pending. See implementation/evidence/M05-T01.md."
+    tests_summary: "GREEN corrected implementation validation plus fresh independent review 02 GREEN on exact subject 13975e34df485fe10d01730613e042e9dab952c7; M05 final architecture/coherence scope and E2E 1-10 reviewed GREEN; no CI status checks reported for the subject, so no CI-execution claim is made."
