@@ -149,6 +149,15 @@ Required correction:
 - remove the generic L3→user-stop implication;
 - classify post-review strategic corrections through Planning / Project Definition / Research, with user stop only for unresolved user/product authority or another explicit real gate.
 
+### RED-03 — one revision path can overwrite a prior review attempt
+
+`PLAN_REVIEW.md` says every corrective plan edit creates a new immutable subject and a new review attempt, but the only canonical record path is `planning/reviews/<plan-revision>.md` and the planner is told to create/update that revision-specific record. Without requiring a new plan revision (or another distinct attempt path), a RED record can be overwritten with a different subject under the same review-state file.
+
+Required correction:
+- make one review record correspond to one exact plan revision/subject;
+- require a new plan revision (or otherwise distinct durable review record) for any substantive corrective edit;
+- allow post-GREEN approval to change only deterministic lifecycle metadata while keeping the reviewed plan body identical, otherwise require a new review subject.
+
 ## Self-check scope
 
 The implementing chat may run static/coherence checks but must not issue the independent verdict for the corrected subject.
