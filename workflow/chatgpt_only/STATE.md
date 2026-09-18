@@ -8,6 +8,8 @@ Resolve that context through `workflow/chatgpt_only/WORKSTREAMS.md` before using
 
 Do not combine Cards from multiple workstream Task Boards into one synthetic execution state.
 
+For a branch-isolated selected board, `workstream_id` and `execution_ref.branch` are binding identity fields. Before any mutable state in that board is trusted, they must exactly match the validated manifest `id` and `branch` under `workflow/chatgpt_only/WORKSTREAMS.md`. A mismatch is invalid state, not a reason to fall back to the legacy/default board.
+
 ## Card states
 
 Allowed `execution_status`:
@@ -225,6 +227,7 @@ Previous chat narrative is not required.
 
 Examples:
 - more than one Card `in_progress` in the same selected Task Board;
+- branch-isolated Task Board `workstream_id` or `execution_ref.branch` does not exactly match its selected manifest, or required branch-isolated implementation/review/recovery state has a null/missing Task Board;
 - `done` Card missing required result/tests provenance;
 - `done` Card with a REQUIRED/RECOMMENDED review still `pending | in_progress | red`;
 - milestone `done` with non-green required review;
