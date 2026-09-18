@@ -81,7 +81,7 @@ Odtwórz aktualny stan i wymagane authority/evidence z repo. Ten punkt wejścia 
 
 The variants below format the handoff only. Canonical review-state ownership is defined by the selected policy route; this response contract does not create a second state source.
 
-For pending implementation independent review, use:
+For pending implementation independent review, use the exact selected Task Board as the durable pointer. In legacy/default mode this is `implementation/TASK_BOARD.yaml`; in a branch-isolated workstream it is the exact manifest-selected workstream Task Board.
 
 ```text
 NEW CHAT START PROMPT:
@@ -89,8 +89,20 @@ Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
 Repo projektu: <owner/repo>.
 Branch projektu: <exact active project/implementation branch>.
 Punkt wejścia: pending independent review dla <MXX-TYY | exact review target>.
-Durable start pointer: implementation/TASK_BOARD.yaml.
+Durable start pointer: <implementation/TASK_BOARD.yaml | implementation/workstreams/<id>/TASK_BOARD.yaml>.
 Odtwórz exact review_subject, authority slice i evidence z repo, wykonaj niezależny review zgodnie z workflow i zapisz verdict/evidence w durable state. Wskazany review jest tylko pierwszą rolą tej sesji: po jej zakończeniu wróć do policy routera i kontynuuj aż do real workflow stop. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
+```
+
+For a pending branch-isolated **workstream final-integration review**, use the exact selected workstream manifest as the durable pointer because that manifest owns this distinct review lifecycle:
+
+```text
+NEW CHAT START PROMPT:
+Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
+Repo projektu: <owner/repo>.
+Branch projektu: <exact workstream branch>.
+Punkt wejścia: pending independent final-integration review dla <workstream-id>.
+Durable start pointer: implementation/workstreams/<id>/WORKSTREAM.yaml.
+Odtwórz exact manifest review subject, workstream authority/acceptance surface i wymagane evidence z repo, wykonaj niezależny review zgodnie z workflow i zapisz verdict/evidence w manifest-owned review state. Wskazany review jest tylko pierwszą rolą tej sesji: po jej zakończeniu wróć do policy routera i kontynuuj aż do real workflow stop. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
 ```
 
 For pending independent plan review, use:
