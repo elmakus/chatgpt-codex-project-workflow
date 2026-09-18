@@ -68,7 +68,7 @@ After RED:
 4. bounded L1/L2 implementation correction inside accepted authority → return to the router for `EXECUTION_PREP` or `EXECUTION`;
 5. plan-only milestone structure/order/outcome or execution-strategy correction while Project Definition remains valid → return to the router for Planning;
 6. correction to accepted requirements/strategic decisions/global target-state authority → return to the router for Project Definition;
-7. missing evidence needed before either can be corrected → before yielding, create/reuse one exact implementation-owned Research record with the RED review subject/evidence as Origin, `Return target: execution_resolution:<exact affected subject>`, and set Task Board `research_obligation`; then return to the router for Research;
+7. missing evidence needed before either can be corrected → before yielding, create/reuse one exact implementation-owned record under `workflow/chatgpt_only/RESEARCH.md#Durable record contract`, with the RED review subject/evidence as Origin, `Return target: execution_resolution:<exact affected subject>`, `Return reconciliation: pending`, and set Task Board `research_obligation`; then return to the router for Research;
 8. only unresolved user/product authority, explicit user/deployment/live-write authorization, or a concrete runtime/access/input blocker creates a real stop.
 
 From the selected route onward, the same chat acts under that role rather than under this review module.
