@@ -16,7 +16,7 @@ Evaluate context health only at a safe durable boundary:
 
 Never interrupt an active Card, active review inspection, in-flight external write/readback sequence or unresolved state transition merely for context hygiene.
 
-If a REQUIRED/RECOMMENDED independent review is already pending and therefore already requires a fresh chat, use that review boundary instead. Do not create a second hygiene handoff.
+If any real stop already owns the boundary — REQUIRED/RECOMMENDED fresh review, L3/user decision, explicit authorization, concrete runtime/access/input blocker, or end of approved scope — use that boundary instead. Do not create a separate hygiene handoff.
 
 ## Decision
 
