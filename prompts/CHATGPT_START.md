@@ -23,9 +23,9 @@ ChatGPT should:
    - `codex_only` → prepare/hand off to Codex or recover Codex stream; no Capability Gate and no capability preflight/inventory;
    - `mixed` → run Capability Gate before new assignment.
 
-Under fixed policy, run state/contract Refresh Gate and attempt the work directly. If a concrete required operation cannot proceed, persist/report the runtime blocker rather than speculating before execution.
+Under fixed policy, run state/contract Refresh Gate and attempt the work directly. When predecessor evidence satisfies a recorded JIT trigger, the execution orchestrator may perform L2 refinement and create/revise not-yet-started cards without returning to the original strategic planner. If a concrete required operation cannot proceed, persist/report the runtime blocker rather than speculating before execution.
 
-Under `chatgpt_only`, if this chat implemented the subject and REQUIRED/RECOMMENDED independent review becomes due, persist exact `review_subject`/`review_state: pending`, stop, and instruct the user to open a fresh normal ChatGPT chat for review. A fresh review chat may continue later deterministic work after GREEN.
+Under `chatgpt_only`, if this chat implemented the subject and REQUIRED/RECOMMENDED independent review becomes due, persist exact `review_subject`/`review_state: pending`, stop, and instruct the user to open a fresh normal ChatGPT chat for review. A fresh review chat may continue later deterministic work after GREEN. Outside this independence boundary, a fresh chat is optional context hygiene, not a workflow gate.
 
 If `mixed`, hand work to Codex only under Capability Gate and use `workflow/codex/HANDOFF.md` for minimal kickoff.
 
