@@ -122,12 +122,14 @@ When Definition Complete is GREEN:
 
 ## Redefinition during active work
 
-If execution/research reveals an L3 issue that changes accepted requirements, strategic decisions, global invariants, milestone outcome/product behavior or an authorization boundary:
+If execution/research reveals evidence that changes accepted requirements, strategic/high-level decisions, global product/system invariants, product/external behavior or an authorization boundary:
 
 1. stop affected downstream work;
 2. route to Definition for the changed product/system authority;
 3. preserve provenance from the triggering evidence/blocker;
-4. after definition is accepted, route to Planning only when the existing Master Plan is no longer valid;
+4. after Definition is accepted, route to Planning when the existing Master Plan is no longer valid;
 5. otherwise return to the appropriate downstream role after reconciling affected contracts.
+
+If accepted Project Definition remains valid and only milestone structure/order/outcome or execution strategy must change, route to Planning rather than reopening Definition.
 
 Do not rewrite completed historical evidence merely because authority evolved.
