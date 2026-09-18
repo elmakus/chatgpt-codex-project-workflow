@@ -196,6 +196,22 @@ PASS:
 - common user-stop contract contains user-action/no-action/fresh-chat variants;
 - start/project-instructions prompts contain no stale OPTIONAL/remediation semantics.
 
+## Later context-health refinement
+
+A later explicit user decision added a policy-specific Context Health Gate without changing the role-transition model.
+
+After each completed Card/role returns to the router:
+1. existing real stops keep priority;
+2. when a deterministic authorized next role exists, the router performs a lightweight context-health trigger check;
+3. when no concrete context-risk signal exists, the next role starts immediately;
+4. when concrete context-risk signals exist, the router loads `chatgpt_only/CONTEXT_HEALTH.md`;
+5. `CONTINUE` resumes normal routing;
+6. `FRESH` creates a real context-hygiene handoff only after the current obligation is fully durable.
+
+Routine Card completion now returns through the router before another Card starts so the gate cannot be bypassed by a long serial execution run.
+
+No fixed token/turn/Card/milestone cadence is used.
+
 ## Final verdict
 
 **GREEN.** Reviewer/executor/close/recovery are now bounded roles selected by one router, and user-visible workflow status is emitted only at real stops through one common response contract.
