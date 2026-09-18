@@ -12,7 +12,7 @@ Do not load legacy/shared execution trees or another policy directory.
 
 1. Read `workflow/common/AUTHORITY.md`.
 2. Read project root `PROJECT.md`.
-3. If implementation, implementation-review, blocker or execution-recovery state exists or is referenced, read `implementation/TASK_BOARD.yaml` before choosing the route.
+3. If implementation, implementation-review, blocker or execution-recovery state exists or is referenced, resolve the state context **before** reading mutable execution state. Read `workflow/chatgpt_only/WORKSTREAMS.md` when a branch-isolated workstream is referenced or present; select its exact manifest + Task Board only after branch/manifest validation. When no branch-isolated workstream is selected, keep the legacy/default `implementation/TASK_BOARD.yaml` fallback. In the rest of this router, `Task Board` means that exact selected canonical board.
 4. A REQUIRED/RECOMMENDED implementation `review_state: pending | in_progress` outranks later implementation and routes to Independent review.
 5. If Task Board `research_obligation` points to an implementation/recovery Research record, read that exact record before choosing later implementation, including when the Research obligation was opened from a RED review. `Status: active | blocked` routes to Research; `Status: complete` routes to its exact recorded Return target; `Status: consumed` means the Task Board pointer is stale and should be cleared at the next safe edit.
 6. A non-terminal REQUIRED/RECOMMENDED subject with `review_state: red` outranks unrelated/later implementation. Read its exact RED evidence and apply the single canonical classification in `REVIEW.md#RED → corrective-route transition` against current durable state: bounded L1/L2 correction → Execution Prep/Execution; plan-only correction → Strategic planning; accepted-authority correction → Project Definition; missing evidence → materialize the implementation-owned Research handoff before Research; unresolved real gate → user stop. If the RED evidence/current state cannot be coherently classified, route to Recovery rather than guessing.
@@ -224,6 +224,7 @@ Do not load the planning-session narrative as review evidence.
 
 Read:
 - `workflow/chatgpt_only/EXECUTION_PREP.md`;
+- `workflow/chatgpt_only/WORKSTREAMS.md` when the current execution context is branch-isolated;
 - `workflow/chatgpt_only/TASK_CARDS.md`;
 - current milestone/plan authority;
 - Task Board when implementation state exists;
@@ -237,6 +238,7 @@ Read `workflow/common/OPENSPEC.md` only when current preparation marks/reconcile
 Read:
 - `workflow/chatgpt_only/EXECUTION.md`;
 - `workflow/chatgpt_only/STATE.md`;
+- `workflow/chatgpt_only/WORKSTREAMS.md` when the current execution context is branch-isolated;
 - Task Board;
 - current milestone/Card;
 - exact authority slice;
@@ -250,6 +252,7 @@ Read `workflow/common/OPENSPEC.md` only when the current card references/require
 Read:
 - `workflow/chatgpt_only/REVIEW.md`;
 - `workflow/chatgpt_only/STATE.md`;
+- `workflow/chatgpt_only/WORKSTREAMS.md` when the reviewed subject belongs to a branch-isolated workstream;
 - Task Board;
 - exact active branch;
 - exact review subject;
