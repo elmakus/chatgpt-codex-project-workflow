@@ -9,7 +9,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/chatgpt-only-multi-workstream-intake"
   pr: null
-  head: "0f24c9053a4e41346b0e14a9d043421057a99767"
+  head: "adba7d1da3641e9bc008483c53246119b20dd066"
 
 research_obligation: null
 
@@ -36,10 +36,10 @@ cards:
     depends_on: []
     openspec_change: null
     contract: "implementation/cards/M01-T01.md"
-    review_state: red
-    review_subject: "0f24c9053a4e41346b0e14a9d043421057a99767"
-    review_evidence: "implementation/evidence/M01-T01-review-01.md"
-    result_commit: "0f24c9053a4e41346b0e14a9d043421057a99767"
+    review_state: pending
+    review_subject: "adba7d1da3641e9bc008483c53246119b20dd066"
+    review_evidence: null
+    result_commit: "adba7d1da3641e9bc008483c53246119b20dd066"
     result_pr: null
     evidence: "implementation/evidence/M01-T01.md"
-    tests_summary: "GREEN: diff-check, ownership/fallback/seriality/no-global-registry coherence assertions and manual template structure checks passed; parser-based YAML validation unavailable in runtime and is not claimed."
+    tests_summary: "GREEN: full M01 diff-check, manifest↔Task Board identity binding/recovery, legacy fallback, workstream-local seriality, no-global-registry and foreign-policy-boundary coherence checks passed; manual template structure checks passed; parser-based YAML validation unavailable in runtime and is not claimed."
