@@ -1,12 +1,17 @@
 # Research — <question>
 
 Date: `<YYYY-MM-DD>`
+Research question: `<exact question>`
+
+## Durable continuation metadata — policy-activated only
+
+Populate these fields when the **selected policy route explicitly requires a durable cross-session Research obligation**. This shared template does not create routing semantics by itself; a policy route that does not define this lifecycle may omit these fields.
+
 Research ID: `<stable-id>`
 Status: `active | complete | blocked | consumed`
 Origin role: `brainstorming | project_definition | strategic_planning | plan_review | execution_resolution | other`
 Origin subject: `<exact durable scope/revision/Card/blocker ref>`
 Return target: `<exact role:subject>`
-Research question: `<exact question>`
 
 ## Scope
 
@@ -52,4 +57,4 @@ Research question: `<exact question>`
 
 Research is evidence, not an accepted requirement/decision/plan by itself. Return to the exact recorded Return target; only changes to accepted product/system authority are promoted through Project Definition under the selected policy's entry rules.
 
-For a pre-execution Research obligation, `PROJECT.md → Active research obligation` points to this record while `Status` is `active | blocked | complete`. Implementation/recovery Research uses the selected policy's execution-state pointer instead (Task Board `research_obligation` under `chatgpt_only`). Keep `complete` through any authorized continuation-classifier step and until the exact final owning Return target durably reconciles these findings; then set `consumed` and clear the owning pointer. Do not infer Origin/Return from chat history.
+Pointer ownership and lifecycle are defined by the selected policy route, **not by this shared template**. Under `chatgpt_only`, pre-execution Research uses `PROJECT.md → Active research obligation` and implementation/recovery Research uses Task Board `research_obligation`; keep `complete` through any authorized continuation-classifier step until the final owning Return target durably reconciles the findings. A legacy/other-policy route that does not define these pointer semantics must not create PROJECT/Task-Board Research routing state merely because this template exposes optional continuation metadata. Do not infer Origin/Return from chat history.

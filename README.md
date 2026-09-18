@@ -20,8 +20,8 @@ The workflow deliberately separates contract from state:
 - `implementation/milestones/MXX.md` — optional JIT contract extensions only when the Master Plan needs material execution/acceptance detail;
 - Task Card files — bounded authority/scope/acceptance/test contracts;
 - cumulative handoff — compact summary of what became true at a completed milestone;
-- root `PROJECT.md` — small high-level project router/policy/index, not a live execution tracker; while an exploratory/Definition scope is active it may point to the exact canonical brainstorming record used to recover promotion state, and while pre-execution Research/return-role reconciliation is active it may point to the exact canonical Research obligation record;
-- active Research record — owns `active | blocked | complete | consumed` lifecycle plus exact Origin/Return subjects; pre-execution routing is located from `PROJECT.md`, while `chatgpt_only` implementation/recovery routing is located from Task Board `research_obligation`. Research is evidence/routing state, not accepted decision authority.
+- root `PROJECT.md` — small high-level project router/policy/index, not a live execution tracker; while an exploratory/Definition scope is active it may point to the exact canonical brainstorming record used to recover promotion state; under the migrated `chatgpt_only` route it may also point to the exact pre-execution Research obligation record while that continuation is active;
+- under migrated `chatgpt_only`, the active Research record owns `active | blocked | complete | consumed` lifecycle plus exact Origin/Return subjects; pre-execution routing is located from `PROJECT.md`, while implementation/recovery routing is located from Task Board `research_obligation`. Other policies retain their existing legacy-route semantics until migrated. Research is evidence/routing state, not accepted decision authority.
 
 This avoids repeatedly synchronizing status, executor, SHA and result pointers across several documents.
 
@@ -88,7 +88,7 @@ EXECUTION
 ```
 
 - **Brainstorming** explores possibilities; it is not authority. Under `chatgpt_only`, becoming ready for Definition does not end exploration automatically: the user explicitly promotes an exact brainstorming scope/revision into Project Definition. `PROJECT.md` points to the active exploratory record so a fresh chat can recover the exact promotion state without guessing.
-- **Research** produces evidence; it is not accepted decision authority and does not itself authorize promotion. A pre-execution Research loop that may cross sessions is anchored by the PROJECT-pointed exact Research record until the recorded Return target durably consumes the result.
+- **Research** produces evidence; it is not accepted decision authority and does not itself authorize promotion. Under the migrated `chatgpt_only` route, a pre-execution Research loop that may cross sessions is anchored by the PROJECT-pointed exact Research record until the recorded Return target durably consumes the result.
 - **Project Definition** promotes accepted intent into `requirements/` + `decisions/` and keeps unresolved product/strategic questions explicit. Once Definition has been explicitly entered, `Definition Complete = GREEN → Planning` remains automatic when planning is in scope.
 - **Planning** consumes an approved Definition and organizes it into a Master Plan, milestone sequence, planned work packages, acceptance/checkpoints and JIT triggers.
 - **Execution Prep** converts currently knowable planned work into concrete executable Task Cards and Task Board state.

@@ -22,6 +22,19 @@ When creating the first Task Board for this policy, scaffold it from `workflow/c
 
 Do not mirror live state into Card/milestone/`PROJECT.md`.
 
+## Completed Research return into Execution Prep
+
+When Task Board `research_obligation` points to `Status: complete` with exact `Return target: execution_prep:<subject>` for the current preparation obligation, Execution Prep is the final owning Return target.
+
+- verify the pointer plus Origin/Return subjects against current durable Card/milestone state;
+- recover whether the intended L2/JIT preparation reconciliation is already durably present before editing;
+- perform only missing preparation/reconciliation work; never recreate or reshuffle already-reconciled Cards merely because the Research pointer survived a crash;
+- persist the resulting Card contracts/Task Board reconciliation first;
+- then set the Research record to `Status: consumed` and clear Task Board `research_obligation`, preferably in the same durable repository transition as the final preparation reconciliation;
+- if a crash leaves preparation durable but the record still `complete` and pointed, re-entry performs only the missing consume/clear transition and then returns to the router.
+
+If the Research record is `active | blocked`, or it is `complete` for a different Return target, do not continue preparation; return to the router.
+
 ## Preparation steps
 
 1. Inspect current project/source/runtime/external state needed by the milestone.

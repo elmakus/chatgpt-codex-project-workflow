@@ -15,7 +15,10 @@ Read with:
 2. Read Task Board.
 3. Recover existing `in_progress` or `blocked` obligation before selecting new work.
 4. If a REQUIRED/RECOMMENDED review is `pending|in_progress`, return to the router so it selects `REVIEW.md` before later dependent implementation.
-5. If Task Board `research_obligation` points to an `active | blocked | complete` implementation/recovery Research record, return to the router before selecting later work.
+5. If Task Board `research_obligation` exists:
+   - `Status: active | blocked` → return to the router before selecting later work;
+   - `Status: complete` whose exact `Return target` is **not** this Execution obligation → return to the router;
+   - `Status: complete` whose exact `Return target` **is** this Execution obligation → do not bounce back to the router; perform **Completed Research return into Execution** below before selecting later work.
 6. If the current non-terminal Card has `review_state: red`, this Execution route is legal only when the router selected bounded L1/L2 corrective work from that exact RED evidence. Continue correction of that affected Card/subject; do not select an unrelated READY Card. If that classification has not been established or is contradictory, return to the router/Recovery.
 7. If an existing `in_progress` Card has `review_state: green` for its exact persisted implementation subject, perform **Post-review Card finalization** below before selecting new work.
 8. Only when no active RED correction exists, select exactly one deterministic READY Card whose dependencies are done.
@@ -74,6 +77,21 @@ Local implementation-detail drift inside accepted authority may be reconciled.
 
 If evidence exceeds current L1/L2 authority, stop affected work and return to the router for classification: Planning when Project Definition remains valid but milestone/plan strategy must change, Project Definition when accepted requirements/strategic decisions/global target-state authority must change, or Research when more evidence is required first. Do not convert plan-only replanning into a user stop.
 
+## Completed Research return into Execution
+
+When Task Board `research_obligation` points to a record with `Status: complete` and exact `Return target: execution:<subject>` for the current affected durable subject, this Execution route is the **final owning Return target**.
+
+1. Verify Task Board still points to that exact record and that its Origin/Return subjects match the affected Card/review/blocker state.
+2. Recover current durable implementation/result/review state before changing anything.
+3. If the required correction/reconciliation is already durably persisted, do **not** repeat it. A matching downstream `pending | in_progress | green | red` review state for the corrected exact subject is downstream evidence that the old Research-return correction has already crossed its review boundary; it does not reactivate the old correction.
+4. Otherwise perform only the bounded correction/reconciliation authorized by that Return target, then persist exact result/tests/evidence.
+5. When REQUIRED/RECOMMENDED review still applies, freeze the corrected exact subject as the next `review_state: pending` boundary before considering the Research return consumed.
+6. After the corrective result **and any required new pending review boundary** are durable, set the Research record to `Status: consumed` and clear Task Board `research_obligation`. Prefer one durable repository transition for the pending-review boundary plus Research consume/clear so a crash cannot expose one without the other.
+7. If a crash nevertheless leaves the correction or pending review durable while the Research record is still `complete` and pointed, re-entry here is consumption/reconciliation only: prove the durable result, perform only the missing consume/clear transition, and do not redo implementation.
+8. Return to the router. If this chat created the new REQUIRED/RECOMMENDED pending subject, the normal fresh-review independence stop applies after the consume/clear transition.
+
+A completed Research return must never produce `ROUTER → EXECUTION → ROUTER` without either performing the owned reconciliation or proving it was already durably performed.
+
 ## Implementation → Research handoff
 
 When execution/recovery needs Research before it can classify or continue affected work, persist the continuation **before** yielding the execution role:
@@ -86,7 +104,7 @@ When execution/recovery needs Research before it can classify or continue affect
 6. `execution_resolution` classifies the findings and durably refines the record's Return target to the exact final owning role/subject while keeping `Status: complete` and the Task Board pointer;
 7. that final target performs its correction/reconciliation; only after the result is durably persisted does it set Research to `consumed` and clear Task Board `research_obligation`.
 
-The research record owns lifecycle Status, Origin and Return target; Task Board stores only the implementation-owned pointer. If this Execution route is the final Return target of a completed Research obligation, keep the pointer until the corrective execution result (and, when required, the new `review_state: pending` subject) is durably persisted, then consume/clear it.
+The research record owns lifecycle Status, Origin and Return target; Task Board stores only the implementation-owned pointer. If this Execution route is the final Return target of a completed Research obligation, follow **Completed Research return into Execution** above. Keep the pointer until the corrective result and, when required, the new `review_state: pending` boundary are durable; then consume/clear it without replaying already-persisted correction work.
 
 ## Runtime-operation rule
 
