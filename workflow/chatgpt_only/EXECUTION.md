@@ -86,8 +86,8 @@ When Task Board `research_obligation` points to a record with `Status: complete`
 3. If the required correction/reconciliation is already durably persisted, do **not** repeat it. A matching downstream `pending | in_progress | green | red` review state for the corrected exact subject is downstream evidence that the old Research-return correction has already crossed its review boundary; it does not reactivate the old correction.
 4. Otherwise perform only the bounded correction/reconciliation authorized by that Return target, then persist exact result/tests/evidence.
 5. When REQUIRED/RECOMMENDED review still applies, freeze the corrected exact subject as the next `review_state: pending` boundary before considering the Research return consumed.
-6. After the corrective result **and any required new pending review boundary** are durable, set the Research record to `Status: consumed` and clear Task Board `research_obligation`. Prefer one durable repository transition for the pending-review boundary plus Research consume/clear so a crash cannot expose one without the other.
-7. If a crash nevertheless leaves the correction or pending review durable while the Research record is still `complete` and pointed, re-entry here is consumption/reconciliation only: prove the durable result, perform only the missing consume/clear transition, and do not redo implementation.
+6. In the **same durable Git transition** as the corrective result and any required new pending review boundary, set `Return reconciliation: applied` and `Return reconciliation result` to the exact durable result/review subject refs.
+7. Only after that applied transition is durable, set the Research record to `Status: consumed` and clear Task Board `research_obligation`. If a crash leaves `applied + complete` pointed, verify the recorded result and perform only consume/clear; do not redo implementation.
 8. Return to the router. If this chat created the new REQUIRED/RECOMMENDED pending subject, the normal fresh-review independence stop applies after the consume/clear transition.
 
 A completed Research return must never produce `ROUTER → EXECUTION → ROUTER` without either performing the owned reconciliation or proving it was already durably performed.
@@ -96,7 +96,7 @@ A completed Research return must never produce `ROUTER → EXECUTION → ROUTER`
 
 When execution/recovery needs Research before it can classify or continue affected work, persist the continuation **before** yielding the execution role:
 
-1. create one exact research record with `Status: active`, `Origin role: execution_resolution`, an exact durable Card/review/blocker subject as `Origin subject`, and `Return target: execution_resolution:<same exact affected subject>`;
+1. create one exact research record under `workflow/chatgpt_only/RESEARCH.md#Durable record contract`, with `Status: active`, `Origin role: execution_resolution`, an exact durable Card/review/blocker subject as `Origin subject`, `Return target: execution_resolution:<same exact affected subject>`, and `Return reconciliation: pending`;
 2. set Task Board `research_obligation` to that record; do not use `PROJECT.md → Active research obligation` for implementation-triggered Research;
 3. keep the affected Card non-terminal and preserve its exact implementation/review/blocker state; mark it `blocked` when the evidence gap itself prevents further Card progress;
 4. return to the router, which routes the active obligation to Research;
