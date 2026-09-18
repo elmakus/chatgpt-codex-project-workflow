@@ -94,6 +94,6 @@ Reviewer must never be the implementing worker/session for the reviewed subject 
 
 ## Contract overrides (optional)
 
-Workflow-standard Refresh Gate, blocker/escalation behavior, evidence rules and Definition of Done are inherited from `workflow/contracts/TASK_CARDS.md` and `workflow/EXECUTION.md`.
+Workflow-standard runtime behavior, Refresh Gate, blocker handling, evidence rules and Definition of Done are inherited from `workflow/contracts/TASK_EXECUTION.md` and `workflow/EXECUTION.md`. `TASK_CARDS.md` governs authoring/decomposition, not ordinary execution.
 
 Record only material card-specific overrides here. Do not copy standard workflow text merely to fill sections.
