@@ -3,6 +3,7 @@
 Revision: `<R#>`
 Status: `draft | approved`
 Updated: `<YYYY-MM-DD>`
+Independent plan review: `REQUIRED | RECOMMENDED | none`
 
 > Planning organizes an already-approved Project Definition. Requirements/accepted decisions remain the product/system authority; this plan does not redefine them.
 
@@ -102,11 +103,10 @@ Only when materially useful. Runtime Context Health Gate remains authoritative f
 
 ## 14. Workflow references
 
+- Policy router: `workflow/CONTEXT_ROUTING.md`
 - Project Definition: `workflow/common/DEFINITION.md`
-- ChatGPT-only planning: `workflow/chatgpt_only/PLANNING.md`
-- Execution prep: `workflow/chatgpt_only/EXECUTION_PREP.md`
-- Task Cards: `workflow/chatgpt_only/TASK_CARDS.md`
 - OpenSpec: `workflow/common/OPENSPEC.md`
-- State: `workflow/chatgpt_only/STATE.md`
+
+Policy-specific Planning, plan-review, Execution Prep, Task Card and state modules are selected by the active execution-policy router. Do not hard-code one policy namespace into this shared template.
 
 The Master Plan is not the live task tracker. Mutable execution state belongs only in `implementation/TASK_BOARD.yaml`.

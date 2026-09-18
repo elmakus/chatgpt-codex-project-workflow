@@ -10,13 +10,13 @@ Evaluate context health only at a safe durable boundary:
 
 - the current role/obligation has finished;
 - all material results/evidence/state changes are persisted;
-- Task Board is coherent;
+- Task Board, when implementation state exists, is coherent;
 - there is no half-completed external mutation or other operation that requires same-session continuity;
 - the exact next legal obligation is recoverable from durable repository state.
 
 Never interrupt an active Card, active review inspection, in-flight external write/readback sequence or unresolved state transition merely for context hygiene.
 
-If any real stop already owns the boundary — REQUIRED/RECOMMENDED fresh review, L3/user decision, explicit authorization, concrete runtime/access/input blocker, or end of approved scope — use that boundary instead. Do not create a separate hygiene handoff.
+If any real stop already owns the boundary — required fresh-review handoff, unresolved strategic/product decision requiring user authority, explicit authorization, concrete runtime/access/input blocker, or end of approved scope — use that boundary instead. Do not create a separate hygiene handoff.
 
 ## Decision
 
@@ -57,7 +57,7 @@ When uncertain and there is no concrete material context risk, choose CONTINUE.
 Before stopping:
 
 1. confirm the current obligation is fully persisted;
-2. reconcile Task Board and exact active branch/state needed for recovery;
+2. reconcile Task Board when implementation state exists, plus the exact active branch/state needed for recovery;
 3. identify the exact next legal obligation;
 4. verify that a fresh chat can recover everything needed from durable state without this transcript;
 5. do not start the next obligation;

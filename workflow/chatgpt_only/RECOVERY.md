@@ -69,4 +69,4 @@ Return to `workflow/chatgpt_only/ROUTER.md`. The router selects execution, revie
 
 Do not end the turn simply because recovery succeeded if deterministic legal work can immediately continue.
 
-If recovery cannot establish a coherent legal next state without user/strategic/runtime input, use root `CHATGPT.md#Real-stop-response-contract`.
+Strategic uncertainty that is classifiable from durable authority returns to the router for Planning / Project Definition / Research. Use root `CHATGPT.md#Real-stop-response-contract` only when recovery still requires unresolved user/product authority, explicit authorization, or concrete runtime/access/input.

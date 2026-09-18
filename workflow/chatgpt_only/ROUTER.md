@@ -12,11 +12,12 @@ Do not load legacy/shared execution trees or another policy directory.
 
 1. Read `workflow/common/AUTHORITY.md`.
 2. Read project root `PROJECT.md`.
-3. If implementation/review/blocker/recovery state exists or is referenced, read `implementation/TASK_BOARD.yaml` before choosing the route.
-4. A REQUIRED/RECOMMENDED `review_state: pending | in_progress` outranks later implementation.
-5. Select exactly one primary route below.
-6. Read only that route's required project artifacts plus exact authority refs.
-7. Continue deterministic work automatically until a real workflow stop is reached.
+3. If implementation, implementation-review, blocker or execution-recovery state exists or is referenced, read `implementation/TASK_BOARD.yaml` before choosing the route.
+4. A REQUIRED/RECOMMENDED implementation `review_state: pending | in_progress` outranks later implementation.
+5. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
+6. Select exactly one primary route below.
+7. Read only that route's required project artifacts plus exact authority refs.
+8. Continue deterministic work automatically until a real workflow stop is reached.
 
 ## Role-transition protocol
 
@@ -24,20 +25,23 @@ A route module owns only its current role.
 
 When that role finishes:
 1. persist the durable state/evidence produced by the role;
-2. re-evaluate Task Board + accepted authority;
+2. re-evaluate the applicable durable state (plan-review record and/or Task Board) + accepted authority;
 3. return to this router;
-4. if durable state already owns a real stop from root `CHATGPT.md#Real-stop-response-contract` — fresh independent review, L3/user decision, explicit authorization, concrete runtime/access/input blocker, or end of approved scope — handle that stop first and do not run a separate hygiene handoff;
+4. if durable state already owns a real stop from root `CHATGPT.md#Real-stop-response-contract` — fresh-review handoff, unresolved strategic/product decision requiring user authority, explicit authorization, concrete runtime/access/input blocker, or end of approved scope — handle that stop first and do not run a separate hygiene handoff;
 5. only when a deterministic authorized next role exists, perform the context-health trigger check below;
 6. select the next legal route;
 7. load that route's module(s);
 8. continue in the same chat without a user-facing stop when context health remains CONTINUE.
 
-The same chat may therefore move, for example:
+The same chat may therefore move across deterministic role transitions when no fresh-review boundary intervenes, for example:
 
 ```text
 RESEARCH → PROJECT DEFINITION → PLANNING → EXECUTION_PREP → EXECUTION
+PLAN_REVIEW → PLANNING → EXECUTION_PREP → EXECUTION
 REVIEW → EXECUTION_PREP → EXECUTION → CLOSE → EXECUTION_PREP → EXECUTION
 ```
+
+The first line applies when Planning does not create a REQUIRED/RECOMMENDED independent plan-review gate. When Planning does create one, the authoring chat stops at the fresh independent-plan-review boundary before entering `PLAN_REVIEW`. The `PLAN_REVIEW → PLANNING → ...` line begins in the fresh reviewer chat after that reviewer has completed its verdict and the router assigns the next legal role.
 
 Role identity is per obligation, not permanent for the whole chat.
 
@@ -120,6 +124,21 @@ Read:
 Planning assumes Project Definition is complete. If requirements/strategic decisions are missing or contradictory, return to Project Definition instead of silently deciding them.
 
 Read Task Board/current handoff only when planning/replanning an active project. Do not load execution files merely to organize strategy.
+
+### Independent plan review
+
+Read:
+- `workflow/chatgpt_only/PLAN_REVIEW.md`;
+- exact `planning/reviews/<plan-revision>.md` record;
+- exact immutable Master Plan review subject;
+- approved canonical requirements;
+- accepted decisions;
+- relevant Definition authority;
+- only research/baseline/source evidence materially referenced by the plan.
+
+Read Task Board/current handoff only when reviewing a replan whose correctness materially depends on active execution state.
+
+Do not load the planning-session narrative as review evidence.
 
 ### Execution preparation / JIT refinement
 

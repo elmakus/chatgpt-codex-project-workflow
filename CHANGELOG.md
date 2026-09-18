@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased — Definition/Planning audit corrections
+
+- Removed `chatgpt_only`-specific workflow paths from the shared `templates/MASTER_PLAN.md`; shared templates now point only to policy-neutral/common routing and let the selected policy namespace provide planning/execution modules.
+- Removed milestone ownership from canonical Requirements. Requirement → milestone → planned-work-package/JIT coverage now lives only in the Master Plan; concrete Task Card mapping remains Execution Prep responsibility.
+- Restored the earlier independent-plan-review semantics: new/materially revised plans use independent review when practical, with a fresh ChatGPT plan reviewer under `chatgpt_only`.
+- Added `workflow/chatgpt_only/PLAN_REVIEW.md`; mutable plan-review state lives outside the frozen Master Plan subject under `planning/reviews/<plan-revision>.md`.
+- Narrowed old `L3/user decision` stop wording: plan-only replans route automatically to Planning when accepted Project Definition remains valid; only unresolved strategic/product choices that require user authority are user stops.
+- Marked the prior Definition/Planning GREEN self-audit as superseded by the corrective review package pending fresh independent audit.
+
 ## Unreleased — Project Definition before Planning
 
 - Added policy-neutral `workflow/common/DEFINITION.md` between Brainstorming/Research and strategic Planning.

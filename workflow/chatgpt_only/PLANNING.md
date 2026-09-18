@@ -167,7 +167,7 @@ The Master Plan does not need speculative future Task Card IDs.
 
 ## Pre-implementation planning audit
 
-Before approving the plan, audit:
+Before plan review/approval, the planner performs its own audit:
 - false assumptions and P0/P1 risks;
 - consistency with approved requirements/decisions;
 - milestone boundaries/order;
@@ -186,13 +186,36 @@ Resolve deterministic planning defects directly.
 
 If a material gap belongs to Project Definition or requires user/product authority, route there instead of approving around it.
 
-A separate independent plan review is not an implicit lifecycle gate. If project/user authority explicitly requires one, freeze the exact plan revision and treat that review requirement as a real boundary rather than pretending the planner independently reviewed its own plan.
+## Independent plan review
+
+Preserve the workflow rule: perform an independent plan review when practical.
+
+Classify the Master Plan:
+- `REQUIRED` when project/user authority explicitly requires independent plan review;
+- `RECOMMENDED` for a new or materially revised Master Plan when independent review is practical;
+- `none` for trivial/editorial plan changes that do not alter execution strategy, milestone structure, requirement coverage or accepted gates, or when independent review is concretely impractical and no project/user authority requires it. For a nontrivial `none`, record the concrete reason in the planning audit; convenience alone is not enough.
+
+Record the classification in the Master Plan.
+
+For REQUIRED/RECOMMENDED review, one review record corresponds to one exact plan revision/subject. Any substantive correction after a verdict must create a new plan revision before opening the next review attempt; do not reuse a completed review record for a different subject.
+
+For REQUIRED/RECOMMENDED review:
+1. keep the plan `Status: draft`;
+2. freeze the exact reviewed plan subject;
+3. create the separate `planning/reviews/<plan-revision>.md` record as `pending`;
+4. return to the router and stop at the fresh independent-plan-review boundary.
+
+Use `workflow/chatgpt_only/PLAN_REVIEW.md` for the independent review lifecycle.
+
+The chat that authored the exact plan subject cannot issue its independent verdict.
 
 ## Plan approval
 
 Mark the Master Plan `approved` only when:
 - Preconditions still hold;
-- the planning audit is GREEN;
+- the planner's own planning audit is GREEN;
+- REQUIRED/RECOMMENDED independent plan review is GREEN, or review classification is `none`;
+- after GREEN, the approved plan body still matches the exact reviewed subject; only deterministic lifecycle metadata may change without opening a new review subject;
 - requirement coverage is complete at milestone/work-package-or-JIT level;
 - no unresolved Definition-owned choice is hidden in the plan;
 - explicit gates are represented;

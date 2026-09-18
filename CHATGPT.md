@@ -16,7 +16,7 @@ For every normal ChatGPT project task:
 2. Read `workflow/CONTEXT_ROUTING.md`.
 3. Let that router select the execution-policy namespace.
 4. Follow only the selected route plus explicitly referenced policy-neutral common modules.
-5. When implementation/review state exists, recover it from `implementation/TASK_BOARD.yaml`.
+5. Recover mutable review/execution state from the canonical source defined by the selected policy route. Do not assume every review lifecycle lives in `implementation/TASK_BOARD.yaml`.
 6. Follow exact durable authority refs rather than loading whole trees "just in case".
 7. Persist accepted changes to project truth when the task changes durable state.
 
@@ -41,8 +41,8 @@ A normal ChatGPT chat should send a final user-facing workflow status message on
 Completing a role is not itself a stop. When the current role finishes and another deterministic route is legal, persist durable state, return to the policy router, assume the next role, load only that role's module(s), and continue before replying to the user.
 
 A real stop includes:
-- this chat implemented a subject that now requires/recommends independent review by a fresh chat;
-- a strategic/L3 decision requires user authority;
+- this chat authored or implemented an exact subject that now requires/recommends independent review by a fresh chat;
+- an unresolved strategic/product decision requires user authority;
 - an explicit user/deployment/live-write authorization gate is due;
 - a concrete runtime/access/input blocker prevents the required operation;
 - approved scope is complete and no deterministic next work is authorized;

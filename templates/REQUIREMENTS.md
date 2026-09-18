@@ -10,9 +10,9 @@ Updated: `<YYYY-MM-DD>`
 
 ## Product / system requirements
 
-| ID | Requirement | Priority | Source / decision | Owner milestone | Status |
-|---|---|---|---|---|---|
-| REQ-001 | ... | MUST | ... | `unassigned` during Definition; set by Planning | accepted |
+| ID | Requirement | Priority | Source / decision | Status |
+|---|---|---|---|---|
+| REQ-001 | ... | MUST | ... | accepted |
 
 ## Constraints
 
@@ -47,10 +47,10 @@ Before `Status: approved`:
 - strategic choices needed before planning exist as accepted decision records;
 - no unresolved user/product choice can materially alter the target definition.
 
-## Coverage
+## Downstream coverage
 
-Project Definition does not need to invent milestone ownership.
+This canonical requirements artifact does not own milestone or Task Card mapping.
 
-Planning maps every accepted requirement to at least one owner milestone and a planned work package or JIT trigger.
+Planning records requirement → milestone → planned-work-package/JIT coverage in the Master Plan.
 
-Execution Prep creates at least one concrete Task Card before implementation of that requirement. Link OpenSpec where the behavior-contract policy requires it.
+Execution Prep creates concrete Task Cards before implementation of each requirement-owned scope. Link OpenSpec where the behavior-contract policy requires it.
