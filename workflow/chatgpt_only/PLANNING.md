@@ -193,7 +193,7 @@ Preserve the workflow rule: perform an independent plan review when practical.
 Classify the Master Plan:
 - `REQUIRED` when project/user authority explicitly requires independent plan review;
 - `RECOMMENDED` for a new or materially revised Master Plan when independent review is practical;
-- `none` only for trivial/editorial plan changes that do not alter execution strategy, milestone structure, requirement coverage or accepted gates.
+- `none` for trivial/editorial plan changes that do not alter execution strategy, milestone structure, requirement coverage or accepted gates, or when independent review is concretely impractical and no project/user authority requires it. For a nontrivial `none`, record the concrete reason in the planning audit; convenience alone is not enough.
 
 Record the classification in the Master Plan.
 
