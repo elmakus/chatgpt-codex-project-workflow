@@ -4,15 +4,16 @@ Normal ChatGPT is the fixed executor for this route.
 
 Read with:
 - `workflow/chatgpt_only/STATE.md`;
-- Task Board;
-- current milestone/Card;
+- `workflow/chatgpt_only/WORKSTREAMS.md` when branch-isolated;
+- the selected canonical Task Board;
+- current milestone/Card, or the bounded micro-fix Card plus its exact completed Intake record;
 - exact Card authority slice;
 - only source/runtime/evidence needed by current scope.
 
 ## Deterministic execution loop
 
-1. Establish exact project repository, active branch, HEAD and relevant runtime/external baseline.
-2. Read Task Board.
+1. Establish exact project repository, active branch, HEAD and relevant runtime/external baseline. When branch-isolated, resolve the exact manifest and validate manifest ↔ Task Board binding before interpreting mutable state.
+2. Read only the selected canonical Task Board. Do not inspect another workstream Task Board to select or recover execution.
 3. Recover existing `in_progress` or `blocked` obligation before selecting new work.
 4. If a REQUIRED/RECOMMENDED review is `pending|in_progress`, return to the router so it selects `REVIEW.md` before later dependent implementation.
 5. If Task Board `research_obligation` exists:
@@ -22,7 +23,7 @@ Read with:
 6. If the current non-terminal Card has `review_state: red`, this Execution route is legal only when the router selected bounded L1/L2 corrective work from that exact RED evidence. Continue correction of that affected Card/subject; do not select an unrelated READY Card. If that classification has not been established or is contradictory, return to the router/Recovery.
 7. If an existing `in_progress` Card has `review_state: green` for its exact persisted implementation subject, perform **Post-review Card finalization** below before selecting new work.
 8. Only when no active RED correction exists, select exactly one deterministic READY Card whose dependencies are done.
-9. Read its exact milestone/Card authority slice.
+9. Read its exact milestone/Card authority slice. For `current_milestone: micro-fix`, read the bounded fix Card + exact completed Intake authority under `MICRO_FIX.md` instead of requiring a Master Plan/milestone contract.
 10. Persist start transition from `STATE.md`.
 11. Run Refresh Gate.
 12. Reconcile OpenSpec JIT only when current Card requires it.
@@ -51,18 +52,31 @@ When the router returns an `in_progress` Card with `review_state: green`:
 2. verify that the implementation/result being finalized is still exactly the subject that received GREEN;
 3. verify all remaining Definition of Done conditions;
 4. if no implementation/behavioral change occurred after the GREEN subject, set `execution_status: done` and persist terminal result state;
-5. return to the router before selecting later work.
+5. when this is a selected branch-isolated micro-fix, perform **Micro-fix final-review reconciliation** below before returning;
+6. return to the router before selecting later work.
 
 Do not re-run implementation merely because review completed.
 
 If the implementation/result changed after the GREEN subject, that verdict does not cover the new subject. Keep the Card non-terminal, freeze the changed subject and create the next REQUIRED/RECOMMENDED review attempt before `done`.
+
+## Micro-fix final-review reconciliation
+
+After the bounded micro-fix Card has an independent GREEN verdict and is otherwise terminal:
+
+1. read the selected manifest `review` block and `workflow/chatgpt_only/MICRO_FIX.md#Workstream-final-integration-review`;
+2. prove whether the GREEN Card review covers the entire immutable behavioral workstream subject and whole workstream acceptance surface;
+3. when exact coverage is proven, reconcile the distinct manifest final-integration gate to `green` with the same subject/evidence and an exact `covered_by` pointer; this is coverage reuse, not a new verdict by this chat;
+4. when exact coverage is not proven, freeze the exact workstream final subject in manifest `review.subject`, set `review.state: pending`, keep `covered_by: null`, persist the boundary and return to the router;
+5. do not mark the workstream `done` or integrate it while its REQUIRED/RECOMMENDED final-integration gate is non-green.
+
+Never copy Card lifecycle state into manifest review fields merely because both gates exist.
 
 ## Refresh Gate
 
 Before implementation compare only state that can affect current Card:
 - exact branch/HEAD + relevant runtime/external state;
 - Task Board Card/milestone pointers;
-- milestone + Card contracts;
+- milestone + Card contracts, or for qualified micro-fix the bounded fix Card + exact completed Intake record;
 - exact requirements/accepted decisions/plan constraints in authority slice;
 - required dependency results;
 - relevant actual source/interfaces;
@@ -97,7 +111,7 @@ A completed Research return must never produce `ROUTER → EXECUTION → ROUTER`
 When execution/recovery needs Research before it can classify or continue affected work, persist the continuation **before** yielding the execution role:
 
 1. create one exact research record under `workflow/chatgpt_only/RESEARCH.md#Durable record contract`, with `Status: active`, `Origin role: execution_resolution`, an exact durable Card/review/blocker subject as `Origin subject`, `Return target: execution_resolution:<same exact affected subject>`, and `Return reconciliation: pending`;
-2. set Task Board `research_obligation` to that record; do not use `PROJECT.md → Active research obligation` for implementation-triggered Research;
+2. set the selected canonical Task Board `research_obligation` to that record; do not use `PROJECT.md → Active research obligation` for implementation-triggered Research and never place the pointer in another workstream's board;
 3. keep the affected Card non-terminal and preserve its exact implementation/review/blocker state; mark it `blocked` when the evidence gap itself prevents further Card progress;
 4. return to the router, which routes the active obligation to Research;
 5. when Research becomes `complete`, keep the Task Board pointer in place and return through the router to the exact `execution_resolution` target;
