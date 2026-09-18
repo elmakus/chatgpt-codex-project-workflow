@@ -34,6 +34,32 @@ Do not impose a fixed token count, turn count or milestone cadence for starting 
 
 A fresh chat reconstructs authority from the durable project repository and current workflow `main`, not from the previous transcript.
 
+## Real-stop response contract
+
+A normal ChatGPT chat should send a final user-facing workflow status message only when the current chat has reached a real stop/boundary or the approved scope is complete.
+
+Completing a role is not itself a stop. When the current role finishes and another deterministic route is legal, persist durable state, return to the policy router, assume the next role, load only that role's module(s), and continue before replying to the user.
+
+A real stop includes:
+- this chat implemented a subject that now requires/recommends independent review by a fresh chat;
+- a strategic/L3 decision requires user authority;
+- an explicit user/deployment/live-write authorization gate is due;
+- a concrete runtime/access/input blocker prevents the required operation;
+- approved scope is complete and no deterministic next work is authorized.
+
+At a real stop, use this user-facing shape:
+1. what was completed/found;
+2. what it means now;
+3. the exact next step.
+
+If user action is required, include an explicit `USER ACTION REQUIRED:` line with the smallest action.
+
+If a fresh ChatGPT chat is required or recommended, include the ready-to-copy branch-aware `NEW CHAT START PROMPT` in the same response.
+
+If no user action is required because approved scope is complete, say so plainly.
+
+Do not emit an intermediate status-only response between legal deterministic role transitions.
+
 ## Human control surface
 
 These rules apply to every normal ChatGPT route.
