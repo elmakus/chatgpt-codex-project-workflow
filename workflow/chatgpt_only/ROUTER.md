@@ -35,6 +35,7 @@ When that role finishes:
 The same chat may therefore move, for example:
 
 ```text
+RESEARCH → PROJECT DEFINITION → PLANNING → EXECUTION_PREP → EXECUTION
 REVIEW → EXECUTION_PREP → EXECUTION → CLOSE → EXECUTION_PREP → EXECUTION
 ```
 
