@@ -248,6 +248,10 @@ If integrated milestone acceptance or independent review is RED:
 - preserve dependencies, execution policy and strategic escalation rules;
 - after corrective work changes the subject, run a fresh independent review when still required/recommended.
 
+Under `chatgpt_only`, when a fresh reviewer produces RED and the corrective work is bounded, deterministic, authorized and unblocked, the same chat immediately switches into the normal ChatGPT execution route and performs that remediation **before ending the user turn**. It then freezes the corrected exact subject as `review_state: pending`, stops before self-review, and gives the ready-to-copy fresh re-review prompt.
+
+A RED verdict becomes a user stop only when corrective work needs a real strategic/user/authorization/runtime decision or cannot yet be bounded safely.
+
 ## 15. Cumulative handoff and recovery
 
 `project-handoffs/MXX_HANDOFF.md` is the canonical summary for a completed milestone, but Task Board remains the live execution-state authority.

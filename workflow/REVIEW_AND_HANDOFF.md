@@ -74,6 +74,32 @@ The fresh review chat:
 4. persists a GREEN/RED review verdict and evidence;
 5. sets `review_state: green | red` and `review_evidence` in Task Board.
 
+### RED review → automatic bounded remediation under `chatgpt_only`
+
+A RED verdict is **not itself a user stop** when corrective work is already bounded, deterministic and authorized by durable project state.
+
+After persisting RED, the fresh reviewer chat must immediately continue in the **same chat turn** when all are true:
+- `execution_policy: chatgpt_only`;
+- Task Board / accepted authority identifies bounded corrective work, or the reviewer can create/reopen a bounded corrective card without changing strategic authority;
+- remediation is L1/L2 implementation detail, not an L3 strategic/product/architecture decision;
+- no explicit user/deployment/live-write/authorization gate is due;
+- no concrete runtime blocker prevents the remediation.
+
+In that case:
+1. persist the RED review evidence/state first;
+2. leave review-only mode and route into normal ChatGPT execution;
+3. load the normal ChatGPT execution route/contracts required by the corrective card;
+4. perform the remediation immediately;
+5. run required checks and persist the corrected result;
+6. freeze the **new exact remediation subject**;
+7. set the required/recommended review gate back to `review_state: pending` with the new subject/evidence;
+8. stop **only now**, before re-reviewing the subject this chat just implemented;
+9. in the same final user-facing response, explain the result concisely and include the ready-to-copy branch-aware `NEW CHAT START PROMPT` for fresh independent re-review.
+
+Do **not** end the turn after RED merely to say that remediation is next or that it has not been started. A user response at that intermediate point would unnecessarily require the user to send “continue”.
+
+If remediation hits a real strategic/user/authorization/runtime blocker, stop there and report the smallest required action instead.
+
 After GREEN, that fresh chat may continue subsequent deterministic `chatgpt_only` execution if normal continuation conditions hold. If it later implements a new subject that itself requires/recommends independent review, another fresh ChatGPT chat is required for that later review.
 
 ### `codex_only` review continuity

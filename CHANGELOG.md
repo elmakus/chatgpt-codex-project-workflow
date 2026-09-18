@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Unreleased — reviewer auto-remediation and global ChatGPT control surface
+
+- Normal ChatGPT human-facing output rules now live in the global `CHATGPT.md` bootstrap, so independent reviewers use the same concise control-surface behavior as executors.
+- A `chatgpt_only` RED independent review is no longer an automatic user stop when corrective work is bounded, deterministic, authorized and unblocked.
+- The fresh reviewer chat persists RED, switches into normal ChatGPT execution in the same turn, performs remediation, verifies/persists the corrected result, freezes the new exact subject as `review_state: pending`, then stops before self-review.
+- That final response includes the branch-aware ready-to-copy fresh-chat prompt for independent re-review.
+- The reviewer must not end the turn merely to announce that remediation is next; it stops earlier only for a real strategic/user/authorization/runtime blocker.
+
 ## Unreleased — lean executor runtime and runtime-discovered tools
 
 - Added `workflow/contracts/TASK_EXECUTION.md` as the small shared runtime contract for already-defined Task Cards.

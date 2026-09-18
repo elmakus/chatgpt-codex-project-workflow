@@ -59,7 +59,7 @@ This allows stronger planning models to produce rich durable intent while smalle
 
 Independent means independent from the worker/session that implemented the reviewed subject.
 
-- `chatgpt_only` — a ChatGPT chat that implemented a REQUIRED/RECOMMENDED review subject must freeze exact `review_subject`, persist `review_state: pending`, and **stop**. The user opens a fresh normal ChatGPT chat, which performs the independent review from durable Task Board state. After GREEN, that fresh chat may continue later deterministic work.
+- `chatgpt_only` — a ChatGPT chat that implemented a REQUIRED/RECOMMENDED review subject must freeze exact `review_subject`, persist `review_state: pending`, and **stop**. The user opens a fresh normal ChatGPT chat, which performs the independent review from durable Task Board state. After GREEN it may continue deterministic work. After RED, if remediation is bounded/deterministic/authorized, that same fresh reviewer chat immediately performs the remediation before replying, freezes the corrected subject as a new pending review, and only then stops with the next fresh re-review prompt.
 - `codex_only` — Codex Main obtains an independent reviewer worker/session. When `codex_workflow` is installed/enabled, it owns the internal execute/review-worker orchestration. Project Workflow owns only the project-level review requirement, exact subject, durable verdict/evidence and acceptance boundary. No user handoff is required solely for review independence.
 - `mixed` — reviewer path follows the accepted review contract and must remain independent from implementation.
 
