@@ -12,6 +12,7 @@ ChatGPT Work is outside this workflow.
 - When implementation state exists, `implementation/TASK_BOARD.yaml` is the sole authoritative mutable execution-state record.
 - Accepted durable repository state outranks stale chat memory.
 - Workflow roles are model-agnostic; this router does not choose models or reasoning levels.
+- `execution_policy` comes from project `PROJECT.md` and never changes automatically; changing it requires an explicit user decision.
 
 ## Bootstrap
 
