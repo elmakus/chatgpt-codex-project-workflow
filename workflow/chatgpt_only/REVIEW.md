@@ -83,21 +83,11 @@ After GREEN, perform the authorized write plus required post-write readback/veri
 
 Do not create a permanent review role or independently review every trivial Card.
 
-## Fresh-review prompt
+## Fresh-review handoff
 
-Whenever this chat reaches a real boundary requiring a fresh independent review, the final response follows root `CHATGPT.md#Real-stop-response-contract` and includes:
+When this chat later reaches a real boundary requiring a fresh independent reviewer, use the independent-review prompt variant from `workflow/common/USER_STOP.md`.
 
-```text
-NEW CHAT START PROMPT:
-Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
-Repo projektu: <owner/repo>.
-Branch projektu: <exact active project/implementation branch>.
-Kontynuuj: pending independent review dla <MXX-TYY | exact review target>.
-Durable start pointer: implementation/TASK_BOARD.yaml.
-Odtwórz exact review_subject, authority slice i evidence z repo, wykonaj niezależny review zgodnie z workflow i zapisz verdict/evidence w durable state. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
-```
-
-Prompt is a router into durable truth. Do not duplicate SHAs, test counts/results, evidence prose or implementation summary when Task Board/repo already contains them.
+The review module does not own a separate user-response format.
 
 ## User-facing response
 
