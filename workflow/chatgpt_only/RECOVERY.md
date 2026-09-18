@@ -31,7 +31,7 @@ Apply this priority only inside the selected default/workstream Task Board. An u
 6. Existing `blocked` Card must be re-evaluated before dependent work.
 7. When no higher-priority Task Board obligation remains, a selected manifest final-integration `review.state: pending | in_progress` routes to Independent review before new/later implementation for that workstream.
 8. A selected manifest final-integration `review.state: red` routes through the same RED corrective classification, with any corrective execution/Research confined to this selected workstream Task Board.
-9. A qualified micro-fix whose bounded Card is terminal but whose REQUIRED/RECOMMENDED manifest final-review gate is still null routes to Execution for micro-fix final-review reconciliation; do not start another Card.
+9. A qualified micro-fix whose bounded Card is terminal and whose selected workstream is not done routes to Close once higher-priority Task Board or manifest pending/RED review obligations are absent; Close runs target refresh before final-review reuse/freeze and integration. Do not start another Card and do not synthesize a milestone.
 10. Only when no active obligation exists may next READY Card be selected.
 
 ## In-progress Card
@@ -86,7 +86,7 @@ For a selected branch-isolated workstream, manifest final-integration review is 
 - `pending | in_progress` → route to `REVIEW.md` with the exact manifest as review owner and exact manifest `review.subject`;
 - `green` → do not replay review; continue only if the GREEN subject still equals the exact integrated subject;
 - `red` → keep the manifest gate RED and classify deterministic correction under `REVIEW.md#RED → corrective-route transition`; bounded correction and implementation-owned Research stay on the selected Task Board;
-- qualified micro-fix with terminal GREEN-reviewed fix Card but manifest gate not yet reconciled → route to Execution's **Micro-fix final-review reconciliation**;
+- qualified micro-fix with terminal GREEN-reviewed fix Card and no active pending/RED manifest gate → route to Close for integration refresh first, then exact coverage reuse or a newly frozen manifest review subject;
 - a manifest review subject that no longer matches the integrated subject is not GREEN coverage; freeze/review the changed exact subject before integration.
 
 Never inspect or mutate another workstream Task Board to recover or repair this gate.
