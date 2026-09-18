@@ -116,11 +116,11 @@ The following are **not** sufficient by themselves:
 - convenience;
 - avoiding a future rebase.
 
-For stacked work, record `parent_workstream`, `parent_branch`, `base_ref` and `integration_target` in the manifest and record the dependency rationale in the intake record.
+For stacked work, record `parent_workstream`, `parent_branch`, `parent_dependency`, `base_ref` and `integration_target` in the manifest. `parent_dependency` is a concise routing/integration statement of the parent-only state the child requires; the Intake record keeps the fuller evidence/rationale.
 
-For independent work, parent fields remain null and the branch is created from the normal integration target/base.
+For independent work, parent fields and `parent_dependency` remain null and the branch is created from the normal integration target/base.
 
-Detailed stacked integration/refresh rules remain owned by M04.
+Intake owns this initial base/dependency classification. Final stacked integration, parent-satisfaction and target-refresh behavior is governed by `workflow/chatgpt_only/WORKSTREAMS.md` plus `CLOSE.md`; Intake must not pre-empt those gates.
 
 ## Issue intake
 
@@ -194,7 +194,7 @@ It does not itself own:
 
 - the complete micro-fix execution/review lifecycle — use `workflow/chatgpt_only/MICRO_FIX.md` plus normal Execution Prep/Execution/Review/Recovery;
 - branch-local execution/review/recovery state semantics after downstream materialization — use the normal selected-workstream modules;
-- local worktree/equivalent isolation, stacked integration and target-refresh rules — M04;
+- local worktree/equivalent isolation, stacked integration and target-refresh rules — `workflow/chatgpt_only/WORKSTREAMS.md` + `CLOSE.md`;
 - final user-facing handoff/template/migration/E2E closure — M05.
 
 Intake must preserve downstream gates rather than pre-empt them.
