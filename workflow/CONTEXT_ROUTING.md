@@ -47,10 +47,28 @@ Read `workflow/PLANNING.md`, requirements, accepted decisions, relevant verified
 Read `workflow/EXECUTION_PREP.md`, current plan/milestone authority, Task Board when present, predecessor handoff/evidence when relevant and current source/runtime needed for realistic preparation. Load `TASK_CARDS`, `OPENSPEC` and `GITHUB_STATE` contracts only when their specific semantics are being created/reconciled. Capability Gate is `mixed`-only.
 
 ### CHATGPT EXECUTION
-Read `workflow/EXECUTION.md`, `workflow/chatgpt/EXECUTION.md`, Task Board, current milestone/Card contracts, exact authority slices and required current source/runtime. Load other shared contracts only when the current card/state triggers them. Do not load `workflow/codex/*`.
+Read `workflow/EXECUTION.md`, `workflow/contracts/TASK_EXECUTION.md`, `workflow/chatgpt/EXECUTION.md`, Task Board, current milestone/Card contracts, exact authority slices and required current source/runtime.
+
+Load conditionally:
+- `OPENSPEC.md` only when the current card references/requires OpenSpec;
+- `TASK_CARDS.md` only for JIT card creation/revision or parallel metadata semantics;
+- `GITHUB_STATE.md` only for bounded-parallel/coordinator state, state inconsistency, milestone close/publication or recovery;
+- `EXECUTION_PREP.md` only for allowed L2 JIT refinement;
+- `REVIEW_AND_HANDOFF.md` only when review/acceptance/close is actually reached.
+
+Do not load `workflow/codex/*`.
 
 ### CODEX EXECUTION
-Read `workflow/EXECUTION.md`, `workflow/codex/EXECUTION.md`, `workflow/codex/CODEX_ORCHESTRATION.md`, Task Board, current contracts/authority slices and required source/runtime. Load `workflow/EXECUTION_PREP.md` only for allowed JIT refinement/next-milestone prep. Do not load `CHATGPT.md` or `workflow/chatgpt/*`.
+Read `workflow/EXECUTION.md`, `workflow/contracts/TASK_EXECUTION.md`, `workflow/codex/EXECUTION.md`, `workflow/codex/CODEX_ORCHESTRATION.md`, Task Board, current contracts/authority slices and required source/runtime.
+
+Load conditionally:
+- `GITHUB_STATE.md` for bounded-parallel/coordinator state, state inconsistency, milestone close/publication or recovery;
+- `TASK_CARDS.md` for JIT card creation/revision or project-level parallel metadata;
+- `OPENSPEC.md` only when current scope references/requires it;
+- `EXECUTION_PREP.md` only for allowed JIT refinement/next-milestone prep;
+- `REVIEW_AND_HANDOFF.md` only at project review/acceptance/close boundaries.
+
+Do not load `CHATGPT.md` or `workflow/chatgpt/*`.
 
 ### MILESTONE CLOSE / PUBLICATION
 Read `workflow/REVIEW_AND_HANDOFF.md`, Task Board, milestone contract, required card/review evidence and intended final branch/state. Load `GITHUB_STATE` when closing/reconciling state; load repository/OpenSpec contracts only when their specific semantics are material.
@@ -84,7 +102,7 @@ Project/Git:
 
 ### CONDITIONAL — load only on trigger
 
-- `workflow/contracts/TASK_CARDS.md` — verdict depends on generic Task Card/DoD semantics not already explicit.
+- `workflow/contracts/TASK_EXECUTION.md` — verdict depends on generic runtime/DoD semantics not already explicit in the reviewed card/review module.
 - `workflow/contracts/GITHUB_STATE.md` — task includes closure/state-consistency questions beyond review-state transitions already defined in `REVIEW_AND_HANDOFF.md`.
 - `workflow/contracts/OPENSPEC.md` — reviewed authority slice points to OpenSpec or verdict depends on its contract.
 - `workflow/contracts/PROJECT_REPOSITORY.md` — authority conflict, topology/layout, legacy state or detailed branch-policy question.
