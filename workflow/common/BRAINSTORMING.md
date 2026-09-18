@@ -44,6 +44,10 @@ Read only already accepted requirements/decisions and source/project context tha
 
 Move to research when claims require verification.
 
-Move to Project Definition when enough facts and accepted choices exist to formalize authoritative requirements/decisions and target state.
+When enough facts and accepted choices exist to formalize authoritative requirements/decisions and target state, Brainstorming may become **ready for Project Definition**.
 
-Do not create implementation Task Cards or detailed OpenSpec prematurely merely because ideas are becoming concrete.
+Readiness is not itself authority to leave the exploratory phase. The selected policy route owns the promotion boundary. If that route requires explicit user promotion, persist the ready state and stop until the user authorizes Project Definition.
+
+Do not treat research completion, repeated agreement in discussion, or the assistant's confidence that the idea is mature as implicit phase-promotion authority.
+
+Do not create canonical requirements/decisions, a Master Plan, implementation Task Cards or detailed OpenSpec merely because ideas are becoming concrete.
