@@ -19,10 +19,10 @@ Do not load legacy/shared execution trees or another policy directory.
 7. A REQUIRED/RECOMMENDED Task Board `review_state: pending | in_progress` outranks later implementation and routes to Independent review.
 8. If Task Board `research_obligation` points to an implementation/recovery Research record, read that exact record before choosing later implementation, including when the Research obligation was opened from a RED review. `Status: active | blocked` routes to Research; `Status: complete` routes to its exact recorded Return target; `Status: consumed` means the Task Board pointer is stale and should be cleared at the next safe edit.
 9. A non-terminal REQUIRED/RECOMMENDED Task Board subject with `review_state: red` outranks unrelated/later implementation. Read its exact RED evidence and apply the single canonical classification in `REVIEW.md#RED → corrective-route transition` against current durable state: bounded L1/L2 correction → Execution Prep/Execution; plan-only correction → Strategic planning; accepted-authority correction → Project Definition; missing evidence → materialize the implementation-owned Research handoff before Research; unresolved real gate → user stop. If the RED evidence/current state cannot be coherently classified, route to Recovery rather than guessing.
-10. An `in_progress` Card with `review_state: green` routes to Execution for terminal Post-review Card finalization before later work, including micro-fix final-review reconciliation when applicable.
+10. An `in_progress` Card with `review_state: green` routes to Execution for terminal Post-review Card finalization before later work.
 11. When no higher-priority Task Board obligation remains, a selected manifest final-integration `review.state: pending | in_progress` routes to Independent review before later implementation/integration for that workstream.
 12. A selected manifest final-integration `review.state: red` outranks unrelated/later implementation in that workstream and uses the same RED corrective-route classification; bounded correction/Research stays on the selected Task Board.
-13. A qualified micro-fix with terminal fix Card but REQUIRED/RECOMMENDED manifest final-review state still null routes to Execution for **Micro-fix final-review reconciliation** before any integration.
+13. A qualified micro-fix with a terminal fix Card and an unfinished selected workstream routes to Close for current-target refresh, final-integration review coverage/freeze and integration once no higher-priority Task Board or manifest pending/RED review obligation remains. Do not synthesize a milestone and do not reuse/freeze the manifest final-review gate before Close runs the refresh.
 14. If `PROJECT.md → Active research obligation` points to a pre-execution research record, read that exact record before choosing the route. `Status: active | blocked` routes to Research; `Status: complete` routes to the exact recorded Return target; `Status: consumed` means the pointer is stale and should be cleared at the next safe edit.
 15. If both Task Board and PROJECT point to different active/blocked/complete Research obligations, treat that as inconsistent state and route to Recovery instead of guessing which obligation owns continuation.
 16. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
@@ -286,15 +286,17 @@ Read:
 
 Do not load implementing-session narrative as review evidence and do not inspect another workstream Task Board.
 
-### Milestone close / publication
+### Milestone close / publication / workstream integration
 
 Read:
 - `workflow/chatgpt_only/CLOSE.md`;
 - `workflow/chatgpt_only/STATE.md`;
+- `workflow/chatgpt_only/WORKSTREAMS.md` when branch-isolated;
 - Task Board;
-- milestone contract;
-- required card/review evidence;
-- intended final branch/state.
+- for normal milestone close: milestone contract + required Card/review evidence;
+- for qualified micro-fix close: exact completed micro-fix Intake + bounded fix Card + `MICRO_FIX.md` + required Card review evidence, with no milestone contract required;
+- selected manifest final-integration review state when branch-isolated;
+- intended final branch/state and current integration target.
 
 ### Strategic blocker
 
