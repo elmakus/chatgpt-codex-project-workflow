@@ -33,6 +33,8 @@ review:
   state: null # pending | in_progress | green | red | null
   subject: null
   evidence: null
+  # Optional proof that an already-independent exact Card/milestone review covers this distinct final-integration gate.
+  covered_by: null
 
 pr: null
 result: null
