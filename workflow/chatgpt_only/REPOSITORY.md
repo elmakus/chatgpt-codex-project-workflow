@@ -26,6 +26,7 @@ Do not duplicate project truth into the workflow repository.
 ├── research/
 ├── requirements/
 ├── planning/
+│   └── reviews/
 ├── implementation/
 │   ├── TASK_BOARD.yaml
 │   ├── milestones/
@@ -45,7 +46,8 @@ Projects may adapt paths, but `PROJECT.md` must identify actual canonical locati
 - decisions → accepted decisions;
 - research → evidence;
 - requirements → authoritative product/system requirements;
-- planning → approved plan/architecture;
+- planning → draft/approved plan authority;
+- planning/reviews → mutable pre-execution independent plan-review lifecycle/evidence; not execution state and never a substitute for Task Board;
 - Task Board → sole mutable execution state;
 - milestone/Card files → stable contracts, not status mirrors;
 - evidence → durable proof when materially useful/required;
