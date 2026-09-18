@@ -20,7 +20,7 @@ The workflow deliberately separates contract from state:
 - `implementation/milestones/MXX.md` — optional JIT contract extensions only when the Master Plan needs material execution/acceptance detail;
 - Task Card files — bounded authority/scope/acceptance/test contracts;
 - cumulative handoff — compact summary of what became true at a completed milestone;
-- root `PROJECT.md` — small high-level project router/policy/index, not a live tracker.
+- root `PROJECT.md` — small high-level project router/policy/index, not a live execution tracker; while an exploratory/Definition scope is active it may point to the exact canonical brainstorming record used to recover promotion state.
 
 This avoids repeatedly synchronizing status, executor, SHA and result pointers across several documents.
 
@@ -72,6 +72,11 @@ The durable lifecycle separates exploration, accepted intent and execution organ
 ```text
 BRAINSTORMING ↔ RESEARCH
         ↓
+  ready for Definition
+        ↓
+  explicit user promotion
+  under `chatgpt_only`
+        ↓
 PROJECT DEFINITION
         ↓
 PLANNING
@@ -81,9 +86,9 @@ EXECUTION PREP
 EXECUTION
 ```
 
-- **Brainstorming** explores possibilities; it is not authority.
-- **Research** produces evidence; it is not authority.
-- **Project Definition** promotes accepted intent into `requirements/` + `decisions/` and keeps unresolved product/strategic questions explicit.
+- **Brainstorming** explores possibilities; it is not authority. Under `chatgpt_only`, becoming ready for Definition does not end exploration automatically: the user explicitly promotes an exact brainstorming scope/revision into Project Definition. `PROJECT.md` points to the active exploratory record so a fresh chat can recover the exact promotion state without guessing.
+- **Research** produces evidence; it is not authority and does not itself authorize that promotion.
+- **Project Definition** promotes accepted intent into `requirements/` + `decisions/` and keeps unresolved product/strategic questions explicit. Once Definition has been explicitly entered, `Definition Complete = GREEN → Planning` remains automatic when planning is in scope.
 - **Planning** consumes an approved Definition and organizes it into a Master Plan, milestone sequence, planned work packages, acceptance/checkpoints and JIT triggers.
 - **Execution Prep** converts currently knowable planned work into concrete executable Task Cards and Task Board state.
 

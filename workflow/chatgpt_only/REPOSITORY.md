@@ -42,7 +42,7 @@ Projects may adapt paths, but `PROJECT.md` must identify actual canonical locati
 
 ## State ownership
 
-- brainstorming → tentative ideas;
+- brainstorming → tentative ideas plus the exact current exploratory-scope/revision promotion record when that phase is active;
 - decisions → accepted decisions;
 - research → evidence;
 - requirements → authoritative product/system requirements;
@@ -63,13 +63,14 @@ Keep it small. It should identify:
 - project/repository;
 - high-level goal/status;
 - `execution_policy: chatgpt_only`;
+- active exploratory-scope pointer when Brainstorming/Definition recovery currently needs one;
 - canonical requirements/plan;
 - Task Board path when implementation exists;
 - latest cumulative handoff when one exists;
 - accepted-decision pointers;
 - workflow repository/ref.
 
-It is a router, not a live tracker.
+It is a router, not a live execution tracker. An `Active exploratory scope` pointer is allowed because it locates the canonical Brainstorming/Definition promotion record; promotion authorization/revision remains in that pointed record rather than being duplicated into `PROJECT.md`.
 
 ## Durable state versus local convenience
 
@@ -110,6 +111,7 @@ Material external mutations require meaningful persisted-state readback when ava
 
 Recovery must be possible from:
 - `PROJECT.md`;
+- the PROJECT-pointed active exploratory record when Brainstorming/Definition promotion or recovery is active;
 - Task Board;
 - exact Git/runtime/external state;
 - current milestone/Card contracts;
@@ -143,9 +145,10 @@ From an empty project shell:
 1. create a small `PROJECT.md` with the accepted `execution_policy: chatgpt_only`;
 2. create only phase-appropriate knowledge directories;
 3. begin with brainstorming/research rather than fake implementation state;
-4. use Project Definition to promote accepted intent into `requirements/` + `decisions/`;
-5. create an approved Master Plan only after Definition Complete is GREEN;
-6. create Task Board and Task Cards just-in-time through Execution Prep;
-7. create separate milestone contracts, standalone evidence and OpenSpec only when their material criteria are met.
+4. when substantial exploratory work has a canonical brainstorming record, point `PROJECT.md → Active exploratory scope` to it; do not create a placeholder record merely for the pointer;
+5. use Project Definition to promote accepted intent into `requirements/` + `decisions/` only after the chatgpt_only promotion gate is satisfied;
+6. create an approved Master Plan only after Definition Complete is GREEN;
+7. create Task Board and Task Cards just-in-time through Execution Prep;
+8. create separate milestone contracts, standalone evidence and OpenSpec only when their material criteria are met.
 
 Do not populate placeholder artifacts merely to satisfy a directory checklist.

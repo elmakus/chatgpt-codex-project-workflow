@@ -25,7 +25,7 @@ Brainstorming may contain:
 
 Nothing in `brainstorming/` becomes authoritative merely because it was written down or discussed repeatedly.
 
-When the user explicitly accepts a choice, preserve that acceptance and route it through Project Definition so canonical requirements/decision authority is reconciled in one place. Do not make Brainstorming a second requirements/planning writer.
+When the user explicitly accepts an individual choice during exploration, preserve it in the active brainstorming record as an explicit user/product choice to be reconciled by Project Definition later. Acceptance of one choice does **not** by itself authorize leaving Brainstorming when the selected policy owns a separate phase-promotion gate. Do not make Brainstorming a second requirements/planning writer.
 
 Do not rewrite history to make old brainstorming look settled.
 
@@ -44,6 +44,10 @@ Read only already accepted requirements/decisions and source/project context tha
 
 Move to research when claims require verification.
 
-Move to Project Definition when enough facts and accepted choices exist to formalize authoritative requirements/decisions and target state.
+When enough facts and accepted choices exist to formalize authoritative requirements/decisions and target state, Brainstorming may become **ready for Project Definition**.
 
-Do not create implementation Task Cards or detailed OpenSpec prematurely merely because ideas are becoming concrete.
+Readiness is not itself authority to leave the exploratory phase. The selected policy route owns the promotion boundary. If that route requires explicit user promotion, persist the ready state and stop until the user authorizes Project Definition.
+
+Do not treat research completion, repeated agreement in discussion, or the assistant's confidence that the idea is mature as implicit phase-promotion authority.
+
+Do not create canonical requirements/decisions, a Master Plan, implementation Task Cards or detailed OpenSpec merely because ideas are becoming concrete.

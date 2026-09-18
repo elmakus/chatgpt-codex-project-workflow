@@ -11,7 +11,7 @@ Research artifacts live in `research/`. Use `templates/RESEARCH.md` when useful.
 ## Research workflow
 
 ```text
-USER GOAL → discovery → research → source verification → alternatives → Project Definition → accepted decisions + requirements → planning
+USER GOAL → discovery → research → source verification → alternatives → selected-policy Definition entry gate → Project Definition → accepted decisions + requirements → planning
 ```
 
 Later arrows occur only after the appropriate user/authority decisions. Research itself does not silently accept an option.
@@ -46,7 +46,8 @@ Research does not directly promote itself into accepted product/system authority
 
 When findings are ready to influence target behavior:
 - return to the policy router;
-- route through Project Definition;
+- route through Project Definition only when the selected policy's entry conditions for Definition are satisfied;
+- if research was entered from exploratory Brainstorming and that policy requires explicit user phase promotion, research completion does **not** count as that promotion;
 - Definition promotes verified constraints to `requirements/` and explicit accepted choices to `decisions/` with provenance.
 
 Implementation-time facts discovered for already-approved work may still flow to the current Task Card/OpenSpec/evidence as appropriate without redefining product intent.

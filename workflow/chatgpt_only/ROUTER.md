@@ -27,27 +27,67 @@ When that role finishes:
 1. persist the durable state/evidence produced by the role;
 2. re-evaluate the applicable durable state (plan-review record and/or Task Board) + accepted authority;
 3. return to this router;
-4. if durable state already owns a real stop from root `CHATGPT.md#Real-stop-response-contract` — fresh-review handoff, unresolved strategic/product decision requiring user authority, explicit authorization, concrete runtime/access/input blocker, or end of approved scope — handle that stop first and do not run a separate hygiene handoff;
+4. if durable state/current phase already owns a real stop — including a root `CHATGPT.md#Real-stop-response-contract` boundary or the `chatgpt_only` Brainstorming → Project Definition promotion gate below — handle that stop first and do not run a separate hygiene handoff;
 5. only when a deterministic authorized next role exists, perform the context-health trigger check below;
 6. select the next legal route;
 7. load that route's module(s);
 8. continue in the same chat without a user-facing stop when context health remains CONTINUE.
 
-The same chat may therefore move across deterministic role transitions when no fresh-review boundary intervenes, for example:
+The same chat may therefore move across deterministic role transitions when no real boundary intervenes, for example:
 
 ```text
-RESEARCH → PROJECT DEFINITION → PLANNING → EXECUTION_PREP → EXECUTION
+PROJECT DEFINITION → PLANNING → EXECUTION_PREP → EXECUTION
 PLAN_REVIEW → PLANNING → EXECUTION_PREP → EXECUTION
 REVIEW → EXECUTION_PREP → EXECUTION → CLOSE → EXECUTION_PREP → EXECUTION
 ```
 
-The first line applies when Planning does not create a REQUIRED/RECOMMENDED independent plan-review gate. When Planning does create one, the authoring chat stops at the fresh independent-plan-review boundary before entering `PLAN_REVIEW`. The `PLAN_REVIEW → PLANNING → ...` line begins in the fresh reviewer chat after that reviewer has completed its verdict and the router assigns the next legal role.
+The first line begins only after Project Definition has been legally entered. For a new exploratory `chatgpt_only` scope, Brainstorming/Research cannot enter Project Definition until the user-owned promotion gate below is satisfied. Once Definition is entered, `Definition Complete = GREEN → Planning` remains deterministic. When Planning creates a REQUIRED/RECOMMENDED independent plan-review gate, the authoring chat stops before entering `PLAN_REVIEW`. The `PLAN_REVIEW → PLANNING → ...` line begins in the fresh reviewer chat after that reviewer has completed its verdict and the router assigns the next legal role.
 
 Role identity is per obligation, not permanent for the whole chat.
 
 A reviewer that has completed its verdict is no longer governed by `REVIEW.md` once the router assigns a new route. If the same chat later implements a new reviewable subject, it is the implementing chat for that new subject and cannot independently review it.
 
-Only a real boundary from root `CHATGPT.md#Real-stop-response-contract` ends the turn.
+Only a real boundary from root `CHATGPT.md#Real-stop-response-contract` or an explicit policy-specific boundary defined by this router ends the turn.
+
+## Brainstorming → Project Definition promotion gate
+
+Under `chatgpt_only`, the first transition from exploratory Brainstorming into Project Definition for a definition scope is **user-owned**.
+
+Brainstorming may reach `ready_for_definition`, but that state is only a recommendation that formalization is now possible. It is not permission to start Definition.
+
+The active exploratory scope is discovered from project `PROJECT.md → Active exploratory scope`. That pointer identifies the exact brainstorming record used for recovery. The record carries a stable `Scope ID`, `Revision`, and `Definition promotion subject`.
+
+Before entering Project Definition from an exploratory Brainstorming/Research path, require one of:
+- an explicit current user instruction to promote the current scope into Project Definition; or
+- durable `Definition promotion authorization: user_authorized` in the PROJECT-pointed brainstorming record, with `Definition promotion subject` exactly matching that record's current `<scope-id>@<revision>`.
+
+A durable `user_authorized` value without an exact matching promotion subject is stale/insufficient and must not authorize Definition.
+
+Examples of sufficient user intent include “przejdź do Definition”, “formalizuj wymagania/decyzje”, or another unambiguous instruction to leave exploration and begin Project Definition. Mere agreement with an individual idea, answering a brainstorming question, or asking for more research is not phase-promotion authority.
+
+When Brainstorming is ready but promotion is not authorized:
+1. persist the useful brainstorming state;
+2. ensure `PROJECT.md → Active exploratory scope` points to that exact record;
+3. set `Status: ready_for_definition`, `Definition promotion authorization: pending`, and `Definition promotion subject: none`;
+4. do **not** enter Project Definition or Planning;
+5. treat this as a policy-specific real user stop;
+6. use `workflow/common/USER_STOP.md` and ask only whether to continue brainstorming/research or promote the current scope into Project Definition.
+
+When the user explicitly authorizes promotion:
+1. ensure the current exploratory record and its PROJECT pointer are persisted;
+2. persist `Definition promotion authorization: user_authorized` plus `Definition promotion subject: <scope-id>@<revision>` before entering Definition;
+3. route to Project Definition;
+4. continue normally from there.
+
+If substantive exploratory scope changes after authorization but before Definition begins, increment/change the brainstorming revision and reset authorization to `pending` with promotion subject `none`. Never carry authorization across a materially changed revision.
+
+Research completion does not bypass this gate. If Research was entered from an unpromoted exploratory scope, return to Brainstorming/promotion handling rather than entering Definition automatically.
+
+The authorization applies only to the exact promoted scope/revision. Once Definition has begun, keep the active exploratory pointer/record available so bounded Research ↔ Definition recovery for that same promoted subject does not require repeated authorization. If Definition deliberately returns to open-ended Brainstorming because the product/problem space has materially reopened, create a new brainstorming revision (or a new scope when appropriate) and reset authorization to `pending` with promotion subject `none`.
+
+When Definition Complete becomes GREEN, the exploratory promotion obligation is complete. Clear `PROJECT.md → Active exploratory scope` when it no longer represents an active exploratory/Definition recovery pointer, then continue to Planning.
+
+This gate does **not** apply to `Definition Complete = GREEN → Planning`; that transition remains deterministic and automatic when planning is in scope.
 
 ## Context-health trigger check
 
@@ -73,7 +113,8 @@ Never run a separate context-health handoff when another real stop already owns 
 
 Read:
 - `workflow/common/BRAINSTORMING.md`;
-- current brainstorming material;
+- the exact record referenced by `PROJECT.md → Active exploratory scope` when that pointer exists;
+- otherwise the current brainstorming material needed to establish/create that pointer;
 - only accepted constraints already relevant.
 
 ### Research
@@ -88,6 +129,7 @@ Read:
 Read:
 - `workflow/common/DEFINITION.md`;
 - current user/product goal and explicit accepted choices;
+- the exact `PROJECT.md → Active exploratory scope` record when Definition was entered through the promotion gate and the pointer is still active;
 - relevant brainstorming conclusions;
 - relevant verified research/evidence;
 - existing requirements/decisions when redefining accepted authority;

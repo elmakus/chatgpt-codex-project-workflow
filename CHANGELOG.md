@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased — user-owned Brainstorming promotion
+
+- Under `chatgpt_only`, Brainstorming may become `ready_for_definition` but cannot enter Project Definition until the user explicitly promotes the current scope.
+- The active brainstorming record persists a stable scope ID, revision, exact promotion subject and `Definition promotion authorization: pending | user_authorized`; `PROJECT.md` points to that record while the exploratory/Definition scope is active so fresh-chat recovery is deterministic.
+- Promotion authorization applies only to the exact authorized scope/revision; material exploratory change before Definition begins creates a new revision and resets authorization.
+- Research completion does not count as implicit promotion from an exploratory scope.
+- Once Project Definition has been explicitly authorized for the current scope, bounded Research ↔ Definition loops do not repeatedly ask for promotion; reopening open-ended Brainstorming resets the gate.
+- `Definition Complete = GREEN → Planning` remains deterministic and automatic when planning is in scope.
+
 ## Unreleased — Definition/Planning audit corrections
 
 - Removed `chatgpt_only`-specific workflow paths from the shared `templates/MASTER_PLAN.md`; shared templates now point only to policy-neutral/common routing and let the selected policy namespace provide planning/execution modules.

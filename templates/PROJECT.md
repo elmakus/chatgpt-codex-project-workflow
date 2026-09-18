@@ -21,6 +21,7 @@ Changing execution policy requires explicit user decision. Default for new proje
 
 ## Canonical authority pointers
 
+- Active exploratory scope: `brainstorming/<record>.md | none`
 - Requirements: `requirements/REQUIREMENTS.md | none`
 - Approved plan: `planning/MASTER_PLAN.md | none`
 - Task Board: `implementation/TASK_BOARD.yaml | none`
@@ -36,5 +37,7 @@ Changing execution policy requires explicit user decision. Default for new proje
 ## Context note
 
 This file is a high-level router/policy/index, not live execution state.
+
+`Active exploratory scope` is a routing pointer to the current brainstorming record when one exists; it is not implementation execution state. Clear or replace it when that exploratory scope is closed/superseded.
 
 Do not record current milestone/card, assigned executor, active branch/HEAD, checkpoint, current OpenSpec or blocker status here. Read `implementation/TASK_BOARD.yaml` for all mutable execution state. The approved Master Plan milestone subsection is the default milestone contract; follow any optional JIT milestone extension, referenced Task Card authority slices, required evidence and handoffs.

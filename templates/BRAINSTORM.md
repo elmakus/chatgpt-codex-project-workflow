@@ -1,7 +1,9 @@
 # Brainstorm — <topic>
 
 Date: `<YYYY-MM-DD>`
-Status: `tentative`
+Scope ID: `<stable-scope-id>`
+Revision: `<R#>`
+Status: `tentative | ready_for_definition`
 
 ## Problem / goal
 
@@ -49,6 +51,8 @@ Status: `tentative`
 - Explicit user/product choices to promote through Project Definition: ...
 - Research still needed: ...
 - Open questions: ...
-- Next phase/action: `research | definition | continue brainstorming`
+- Next phase/action: `research | ready for definition | continue brainstorming`
+- Definition promotion authorization: `pending | user_authorized | not-applicable`
+- Definition promotion subject: `none | <scope-id>@<revision>`
 
-> Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`.
+> Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. When the selected policy requires explicit user phase promotion, only an explicit user instruction may set `Definition promotion authorization: user_authorized`, and the authorization must name the exact current `<scope-id>@<revision>`. Any material change to the exploratory scope before Definition starts creates a new revision and resets authorization to `pending`.
