@@ -47,16 +47,36 @@ Do not imply that Definition or Planning has already started. Do not require a f
 
 Whenever a fresh normal ChatGPT chat is required or recommended at the real stop, include a ready-to-copy prompt in the same response.
 
-Generic shape:
+### Locator-only invariant
+
+The fresh-session prompt is a **routing locator, not a task contract or session-scope boundary**.
+
+Use the bounded forms below. Do not improvise a larger handoff by copying:
+- review/audit checklists;
+- prior findings or remediation proposals;
+- acceptance/test inventories;
+- implementation summaries;
+- changed-file/diff inventories;
+- SHAs already recoverable from durable state;
+- GREEN/RED outcome branches or downstream workflow logic;
+- previous-chat narrative.
+
+The only allowed addition is the smallest non-durable user intent that cannot be recovered from repository authority.
+
+If a nonstandard review/audit scope is materially required and cannot be reconstructed from existing durable authority, **persist that scope first** in the owning Task Card, review record, audit-scope artifact or other appropriate project file. Then point `Durable start pointer` at that artifact instead of serializing the scope into the chat prompt.
+
+The named entry target identifies only the first obligation to recover. After that role completes, the new chat returns to the selected policy router and continues deterministic authorized transitions until a real workflow stop.
+
+### Generic shape
 
 ```text
 NEW CHAT START PROMPT:
 Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
 Repo projektu: <owner/repo>.
 Branch projektu: <exact active project/implementation branch>.
-Kontynuuj: <exact concise continuation target>.
+Punkt wejścia: <exact concise continuation target>.
 Durable start pointer: <implementation/TASK_BOARD.yaml | exact durable pointer>.
-Odtwórz aktualny stan i wymagane authority/evidence z repo, a następnie wykonaj tylko legalny następny krok. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
+Odtwórz aktualny stan i wymagane authority/evidence z repo. Ten punkt wejścia jest tylko locator-em, nie granicą zakresu sesji. Po zakończeniu wskazanej roli wróć do policy routera i kontynuuj legalne deterministyczne przejścia aż do real workflow stop. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
 ```
 
 The variants below format the handoff only. Canonical review-state ownership is defined by the selected policy route; this response contract does not create a second state source.
@@ -68,9 +88,9 @@ NEW CHAT START PROMPT:
 Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
 Repo projektu: <owner/repo>.
 Branch projektu: <exact active project/implementation branch>.
-Kontynuuj: pending independent review dla <MXX-TYY | exact review target>.
+Punkt wejścia: pending independent review dla <MXX-TYY | exact review target>.
 Durable start pointer: implementation/TASK_BOARD.yaml.
-Odtwórz exact review_subject, authority slice i evidence z repo, wykonaj niezależny review zgodnie z workflow i zapisz verdict/evidence w durable state. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
+Odtwórz exact review_subject, authority slice i evidence z repo, wykonaj niezależny review zgodnie z workflow i zapisz verdict/evidence w durable state. Wskazany review jest tylko pierwszą rolą tej sesji: po jej zakończeniu wróć do policy routera i kontynuuj aż do real workflow stop. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
 ```
 
 For pending independent plan review, use:
@@ -80,14 +100,12 @@ NEW CHAT START PROMPT:
 Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
 Repo projektu: <owner/repo>.
 Branch projektu: <exact active project/planning branch>.
-Kontynuuj: pending independent plan review dla <plan revision>.
+Punkt wejścia: pending independent plan review dla <plan revision>.
 Durable start pointer: planning/reviews/<plan-revision>.md.
-Odtwórz exact Review subject, approved Definition, canonical requirements/decisions i wymagane evidence z repo, wykonaj niezależny plan review zgodnie z workflow i zapisz verdict/evidence w tym review record. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
+Odtwórz exact Review subject, approved Definition, canonical requirements/decisions i wymagane evidence z repo, wykonaj niezależny plan review zgodnie z workflow i zapisz verdict/evidence w tym review record. Wskazany review jest tylko pierwszą rolą tej sesji: po jej zakończeniu wróć do policy routera i kontynuuj aż do real workflow stop. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
 ```
 
 The branch is always included because it is a routing locator.
-
-Do not duplicate review subject SHA, test counts/results, evidence prose, changed-file inventories or implementation summaries when durable state already contains them.
 
 ## Context-hygiene fresh-chat handoff
 
@@ -106,9 +124,9 @@ NEW CHAT START PROMPT:
 Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
 Repo projektu: <owner/repo>.
 Branch projektu: <exact active project/implementation branch>.
-Kontynuuj: <exact next legal obligation>.
+Punkt wejścia: <exact next legal obligation>.
 Durable start pointer: <implementation/TASK_BOARD.yaml | exact durable pointer>.
-Odtwórz aktualny stan i wymagane authority/evidence z repo, a następnie wykonaj tylko legalny następny krok. Ten handoff służy wyłącznie odświeżeniu kontekstu; nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
+Odtwórz aktualny stan i wymagane authority/evidence z repo. Ten punkt wejścia jest tylko locator-em, nie granicą zakresu sesji. Po zakończeniu wskazanej roli wróć do policy routera i kontynuuj legalne deterministyczne przejścia aż do real workflow stop. Ten handoff służy wyłącznie odświeżeniu kontekstu; nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
 ```
 
 Keep the explanation short: the completed work is safely persisted and a clean context is preferable before the next obligation.
@@ -117,6 +135,6 @@ Do not mention guessed token counts, context-window percentages or internal budg
 
 ## No intermediate status stop
 
-Do not use this contract merely because a role completed.
+Do not use this contract merely because a role completed, because the role named by a fresh-session prompt completed, or because a GREEN/RED verdict was persisted.
 
 A role completion followed by a deterministic legal transition goes back through the policy router and continues in the same chat before any final user-facing status response.
