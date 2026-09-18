@@ -1,5 +1,7 @@
 # Audit — Project Definition / Planning Boundary
 
+> **Superseded self-audit notice (2026-09-18):** the original GREEN verdict below was later found incomplete by a post-merge self-audit. Four bounded findings were identified: shared-template policy leakage, duplicated requirement coverage ownership, accidental loss of independent plan review semantics, and overly broad L3/user-stop wording. Corrections are implemented on `fix/definition-planning-audit-findings` and documented in `docs/audits/CHATGPT_ONLY_DEFINITION_PLANNING_CORRECTIONS.md`. A fresh independent verdict is still required before merge.
+
 Date: 2026-09-18  
 Base: `main@a6ac7fdd431fb80ebd095313e3ed89f11be560ef`  
 Audited branch: `refactor/definition-planning-boundary@58c45994358808596978480ece0ad1357ab41c16`
