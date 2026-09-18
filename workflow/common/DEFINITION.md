@@ -31,7 +31,7 @@ Use `templates/REQUIREMENTS.md` and `templates/DECISION.md` when useful.
 
 Project Definition may begin only after the selected policy route's entry conditions are satisfied.
 
-If the selected route requires explicit user promotion from exploratory Brainstorming, Definition must verify that authorization instead of inferring it from brainstorming maturity, research completion or the existence of tentative conclusions.
+If the selected route requires explicit user promotion from exploratory Brainstorming, Definition must verify the exact promotion subject/revision required by that route instead of inferring authorization from brainstorming maturity, research completion or the existence of tentative conclusions.
 
 Once Definition has been explicitly authorized for the current definition scope, ordinary Research ↔ Definition evidence loops do not require repeated promotion unless the work deliberately returns to open-ended Brainstorming and reopens that scope.
 
