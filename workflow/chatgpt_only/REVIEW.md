@@ -64,11 +64,11 @@ RED is not itself a user stop when corrective work can be bounded deterministica
 After RED:
 1. persist the RED verdict/evidence/state; a Card-completion subject remains non-terminal;
 2. do not mutate the reviewed subject while still acting as reviewer;
-3. classify the correction before deciding whether a stop exists;
+3. classify the correction against current durable state before deciding whether a stop exists; on recovery from an already-persisted RED verdict, use this same classification and do not repeat a correction role whose failing condition is already durably reconciled;
 4. bounded L1/L2 implementation correction inside accepted authority → return to the router for `EXECUTION_PREP` or `EXECUTION`;
 5. plan-only milestone structure/order/outcome or execution-strategy correction while Project Definition remains valid → return to the router for Planning;
 6. correction to accepted requirements/strategic decisions/global target-state authority → return to the router for Project Definition;
-7. missing evidence needed before either can be corrected → return to the router for Research;
+7. missing evidence needed before either can be corrected → before yielding, create/reuse one exact implementation-owned Research record with the RED review subject/evidence as Origin, `Return target: execution_resolution:<exact affected subject>`, and set Task Board `research_obligation`; then return to the router for Research;
 8. only unresolved user/product authority, explicit user/deployment/live-write authorization, or a concrete runtime/access/input blocker creates a real stop.
 
 From the selected route onward, the same chat acts under that role rather than under this review module.
