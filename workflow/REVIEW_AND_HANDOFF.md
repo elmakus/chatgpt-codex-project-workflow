@@ -46,7 +46,7 @@ When an implementing ChatGPT chat reaches such a review boundary it must:
 
 ### Fresh Chat start prompt
 
-Any mandatory or recommended fresh-ChatGPT handoff must be self-contained for the user's copy/paste action but **must not duplicate durable state**.
+Any mandatory or recommended fresh-ChatGPT handoff must be self-contained for the user's copy/paste action but **must not duplicate durable state**. Canonical reusable shape: `prompts/CHATGPT_FRESH_SESSION.md`.
 
 Use this shape:
 
