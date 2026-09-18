@@ -10,7 +10,7 @@ Evaluate context health only at a safe durable boundary:
 
 - the current role/obligation has finished;
 - all material results/evidence/state changes are persisted;
-- Task Board is coherent;
+- Task Board, when implementation state exists, is coherent;
 - there is no half-completed external mutation or other operation that requires same-session continuity;
 - the exact next legal obligation is recoverable from durable repository state.
 
@@ -57,7 +57,7 @@ When uncertain and there is no concrete material context risk, choose CONTINUE.
 Before stopping:
 
 1. confirm the current obligation is fully persisted;
-2. reconcile Task Board and exact active branch/state needed for recovery;
+2. reconcile Task Board when implementation state exists, plus the exact active branch/state needed for recovery;
 3. identify the exact next legal obligation;
 4. verify that a fresh chat can recover everything needed from durable state without this transcript;
 5. do not start the next obligation;
