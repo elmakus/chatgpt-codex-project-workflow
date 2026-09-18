@@ -26,6 +26,10 @@ Each Card defines:
 
 Priority, complexity, phase and code-location hints are optional.
 
+A Card may also include an optional `## Delegated workers` section. When present, follow `workflow/chatgpt_only/DELEGATED_WORKERS.md` and identify each required worker step's role, project-defined profile, invocation point/order, authority/task input, workspace boundary, normalized result contract and any non-default failure/retry rule.
+
+Delegation never changes Task Board executor provenance: the Card is still executed by normal ChatGPT.
+
 ## Authority preservation
 
 The authority slice should identify as precisely as practical:
@@ -71,6 +75,10 @@ A Card may become `ready` only when:
 - no explicit authorization gate prevents start.
 
 Runtime start semantics live in `workflow/chatgpt_only/EXECUTION.md` and `STATE.md`.
+
+## Delegated worker verification versus Independent Review
+
+A delegated tester/verifier may provide required Card evidence, but it is not the workflow Independent Review role. REQUIRED/RECOMMENDED Independent Review under `chatgpt_only` still requires a fresh normal ChatGPT chat over the frozen exact subject.
 
 ## Independent review
 
