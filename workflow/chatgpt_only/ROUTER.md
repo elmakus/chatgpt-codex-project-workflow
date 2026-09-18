@@ -168,6 +168,7 @@ Read:
 - `workflow/chatgpt_only/PLANNING.md`;
 - approved canonical requirements;
 - accepted decisions;
+- the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Strategic Planning subject;
 - only verified research/baseline that the accepted definition or plan actually references;
 - current approved plan when replanning.
 

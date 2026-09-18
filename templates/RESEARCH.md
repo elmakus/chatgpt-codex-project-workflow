@@ -3,7 +3,7 @@
 Date: `<YYYY-MM-DD>`
 Research ID: `<stable-id>`
 Status: `active | complete | blocked | consumed`
-Origin role: `brainstorming | project_definition | strategic_planning | execution_resolution | other`
+Origin role: `brainstorming | project_definition | strategic_planning | plan_review | execution_resolution | other`
 Origin subject: `<exact durable scope/revision/Card/blocker ref>`
 Return target: `<exact role:subject>`
 Research question: `<exact question>`

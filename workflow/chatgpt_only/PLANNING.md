@@ -36,11 +36,21 @@ Before planning:
 
 If these conditions fail:
 - missing/contradictory accepted intent → return to Project Definition;
-- missing evidence → return to Research;
+- missing evidence → use the durable Research handoff below, then return to Research;
 - broader option generation/comparison needed → return to Brainstorming;
 - explicit user/product decision needed → real user stop.
 
 Do not compensate for an incomplete definition by inventing strategic authority inside the plan.
+
+## Research handoff from Planning
+
+When Planning needs evidence before it can make a valid planning decision:
+
+1. persist one exact research record with `Status: active`, `Origin role: strategic_planning`, the current plan revision/planning obligation as `Origin subject`, and `Return target: strategic_planning:<exact subject>`;
+2. set `PROJECT.md → Active research obligation` to that record before yielding Planning;
+3. return to the router and route to Research.
+
+When that record becomes `complete`, the router returns to the exact recorded Strategic Planning subject. Reconcile the verified findings into planning authority first; then set the research record to `consumed` and clear the active research pointer.
 
 ## Inputs
 
