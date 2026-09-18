@@ -4,7 +4,7 @@ This router applies only after root `CHATGPT.md` confirms project `execution_pol
 
 Once here, stay inside:
 - `workflow/common/*` for genuinely policy-neutral rules;
-- `workflow/chatgpt_only/*` for Brainstorming/Research/Definition plus planning/execution/review/state/recovery.
+- `workflow/chatgpt_only/*` for Intake/Brainstorming/Research/Definition plus planning/execution/review/state/recovery.
 
 Do not load legacy/shared execution trees or another policy directory.
 
