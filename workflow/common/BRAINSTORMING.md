@@ -1,36 +1,52 @@
 # Brainstorming
 
-## Purpose
+## Goal
 
-Brainstorming explores possibilities before commitment.
+Explore the problem space without accidentally converting possibilities into requirements or decisions.
 
-Store tentative ideas, alternatives, hypotheses, rough architecture directions, experiments and unresolved questions under `brainstorming/`.
+## Canonical location
 
-Brainstorming is not accepted authority. Do not silently promote an idea into requirements, decisions or implementation scope.
+Project brainstorming lives in `brainstorming/`.
 
-## Inputs
+Use `templates/BRAINSTORM.md` for substantial sessions and `templates/OPEN_QUESTIONS.md` for unresolved questions when those templates are useful.
 
-Read only:
-- current user goal/problem;
-- already accepted requirements/decisions that constrain the exploration;
-- relevant existing project/source context when needed.
+## Non-negotiable distinction
 
-Do not load implementation-state machinery unless the brainstorming question actually depends on current execution state.
+**BRAINSTORMING != DECISION.**
 
-## Outputs
+Brainstorming may contain:
+- ideas;
+- alternatives;
+- hypotheses;
+- experiments;
+- pros/cons;
+- assumptions to verify;
+- rejected or merely considered directions.
 
-Useful outputs may include:
-- candidate approaches;
-- trade-offs;
-- risks/unknowns;
-- questions requiring research;
-- prototype ideas;
-- explicit recommendation candidates.
+Nothing in `brainstorming/` becomes authoritative merely because it was written down or discussed repeatedly.
 
-When the user accepts a real decision, persist it under `decisions/` or the appropriate authoritative artifact. Keep rejected/alternative ideas clearly tentative.
+When the user explicitly accepts a choice:
+1. create/update the accepted decision record;
+2. update canonical requirements or planning if that decision changes them;
+3. update `PROJECT.md` pointers/high-level status when material.
 
-## Transition
+Do not rewrite history to make old brainstorming look settled.
 
-Move to research when evidence is needed.
+## Working method
 
-Move to requirements/planning only after the relevant user/product intent is sufficiently clear. Do not create Task Cards/OpenSpec merely because brainstorming exists.
+1. Clarify the problem, current state, target state and constraints.
+2. Separate known facts, user decisions, assumptions and implementation-time choices.
+3. Identify open questions and research needs.
+4. Compare options only at the level justified by current evidence.
+5. Delay freezing architecture until adequate verification exists.
+6. Persist useful tentative work in the project repository so chat length is not project memory.
+
+Read only already accepted requirements/decisions and source/project context that actually constrain the exploration. Do not load implementation-state machinery unless the question depends on current execution state.
+
+## Exit conditions
+
+Move to research when claims require verification.
+
+Move to requirements/planning only when enough facts and accepted decisions exist to define authoritative requirements and target state.
+
+Do not create implementation Task Cards or detailed OpenSpec prematurely merely because ideas are becoming concrete.
