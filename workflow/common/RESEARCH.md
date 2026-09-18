@@ -11,7 +11,7 @@ Research artifacts live in `research/`. Use `templates/RESEARCH.md` when useful.
 ## Research workflow
 
 ```text
-USER GOAL → discovery → research → source verification → alternatives → Project Definition → accepted decisions + requirements → planning
+USER GOAL → discovery → research → source verification → alternatives → selected-policy Definition entry gate → Project Definition → accepted decisions + requirements → planning
 ```
 
 Later arrows occur only after the appropriate user/authority decisions. Research itself does not silently accept an option.
