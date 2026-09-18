@@ -197,6 +197,8 @@ Classify the Master Plan:
 
 Record the classification in the Master Plan.
 
+For REQUIRED/RECOMMENDED review, one review record corresponds to one exact plan revision/subject. Any substantive correction after a verdict must create a new plan revision before opening the next review attempt; do not reuse a completed review record for a different subject.
+
 For REQUIRED/RECOMMENDED review:
 1. keep the plan `Status: draft`;
 2. freeze the exact reviewed plan subject;
@@ -213,6 +215,7 @@ Mark the Master Plan `approved` only when:
 - Preconditions still hold;
 - the planner's own planning audit is GREEN;
 - REQUIRED/RECOMMENDED independent plan review is GREEN, or review classification is `none`;
+- after GREEN, the approved plan body still matches the exact reviewed subject; only deterministic lifecycle metadata may change without opening a new review subject;
 - requirement coverage is complete at milestone/work-package-or-JIT level;
 - no unresolved Definition-owned choice is hidden in the plan;
 - explicit gates are represented;
