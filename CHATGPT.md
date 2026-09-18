@@ -17,9 +17,10 @@ ChatGPT Work is outside this workflow. Do not route project work through ChatGPT
 
 1. Read project root `PROJECT.md` when it exists.
 2. Read `workflow/CONTEXT_ROUTING.md`.
-3. Load only the shared phase module and project artifacts required for the current task.
+3. Load only the shared phase module and project artifacts required for the current task, while preserving the full applicable authority slice defined by requirements/accepted decisions/approved plan and Task Card refs.
 4. Respect `execution_policy` in `PROJECT.md`.
 5. Persist accepted project knowledge and execution truth in the project repository.
+6. Progressive disclosure may reduce context volume but must never replace richer durable authority with a lossy summary.
 
 Do not load execution contracts during ordinary brainstorming/research unless the current task requires them.
 
