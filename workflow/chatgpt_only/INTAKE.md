@@ -47,6 +47,7 @@ This is workstream routing/lifecycle metadata, not Card/milestone execution stat
 
 The intake record should contain only durable material needed to recover the intake and downstream choice, including as applicable:
 
+- exact workstream ID and intake kind, matching the selected manifest;
 - original operator intent or a faithful bounded scope statement;
 - reproduction/diagnostic evidence references;
 - discovered relevant branch/PR/workstream references;
