@@ -28,6 +28,7 @@ implementation/
 └── workstreams/
     └── <workstream-id>/
         ├── WORKSTREAM.yaml
+        ├── INTAKE.md              # when created through explicit intake
         ├── TASK_BOARD.yaml
         ├── cards/
         ├── evidence/
@@ -49,12 +50,15 @@ It owns:
 - coarse workstream lifecycle status;
 - exact branch, base and integration target;
 - optional stacked parent identity/branch;
+- active/completed Intake lifecycle + exact intake-record location when the workstream was created/recovered through explicit intake;
 - exact Task Board location when implementation state exists;
 - workstream authority pointers;
 - workstream-level final-integration review state when such a gate is active;
 - PR/result pointer when applicable.
 
 The manifest does **not** own Card/milestone execution state.
+
+For intake-created workstreams, manifest `intake.state` + `intake.record` are routing/workstream-lifecycle metadata. The pointed `INTAKE.md` owns durable intake scope/findings/classification. Neither may mirror Card/milestone execution/review/result state.
 
 When a Task Board exists, it alone owns mutable Card/milestone readiness, execution, executor, implementation/recovery Research pointer, Card/milestone review state, result and evidence fields.
 
@@ -117,6 +121,34 @@ If exact branch/manifest/state cannot be resolved from durable project/Git state
 - route to Recovery when evidence can resolve it;
 - otherwise stop only for the smallest genuinely required user input.
 
+## Intake identity, naming and recovery
+
+Explicit `#issue` / `#feature` creation semantics are owned by `workflow/chatgpt_only/INTAKE.md`.
+
+For intake-created workstreams:
+
+- issue IDs use `issue-<slug>` and branches use `fix/<slug>`;
+- feature IDs use `feature-<slug>` and branches use `feat/<slug>`;
+- collisions use the smallest available shared numeric suffix (`-2`, `-3`, ...);
+- an existing exact branch/manifest/PR locator for the same workstream is recovered rather than duplicated;
+- durable workstream IDs are never recycled merely because old work is done/superseded.
+
+Naming is a creation convention, not a replacement for identity. After creation, `WORKSTREAM.yaml.id` and `WORKSTREAM.yaml.branch` are authoritative.
+
+When a selected manifest has:
+
+```yaml
+intake:
+  state: active
+  record: <exact intake record>
+```
+
+the intake record must exist on that exact branch and the router resumes Intake before later Task Board execution for that workstream.
+
+When `intake.state: complete`, Intake must not be replayed. The completed intake must already have materialized the canonical downstream state (for example the exploratory Brainstorming record/pointer or later implementation state) needed for normal router recovery.
+
+A missing active intake record, an intake record that belongs to another workstream, or contradictory branch/manifest identity is inconsistent state and routes to Recovery rather than guessing.
+
 ## No mutable global registry
 
 Correctness must not depend on a repository-global mutable workstream registry.
@@ -146,11 +178,12 @@ M01 defines the fields only. Rules for choosing a parent, local worktrees, refre
 
 ## Recovery invariant
 
-A branch-isolated implementation/review/recovery obligation is recoverable from:
+A branch-isolated intake/implementation/review/recovery obligation is recoverable from:
 - current workflow main;
 - project `PROJECT.md`;
 - exact workstream branch;
 - exact workstream manifest;
+- exact manifest-pointed intake record when `intake.state: active`;
 - manifest-selected Task Board when implementation exists;
 - exact authority/evidence/review pointers.
 
