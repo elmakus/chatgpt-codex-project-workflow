@@ -64,7 +64,7 @@ RED is not itself a user stop when corrective work can be bounded deterministica
 After RED:
 1. persist the RED verdict/evidence/state; a Card-completion subject remains non-terminal;
 2. do not mutate the reviewed subject while still acting as reviewer;
-3. classify the correction against current durable state before deciding whether a stop exists; on recovery from an already-persisted RED verdict, use this same classification and do not repeat a correction role whose failing condition is already durably reconciled;
+3. classify the correction against current durable state before deciding whether a stop exists; on recovery from an already-persisted RED verdict, use this same classification and do not repeat a correction role whose failing condition is already durably reconciled. If a corrected implementation subject is already durable but the next REQUIRED/RECOMMENDED `pending` attempt was not yet frozen, route to Execution only to reconcile/freeze that new exact subject and review boundary before any later work;
 4. bounded L1/L2 implementation correction inside accepted authority → return to the router for `EXECUTION_PREP` or `EXECUTION`;
 5. plan-only milestone structure/order/outcome or execution-strategy correction while Project Definition remains valid → return to the router for Planning;
 6. correction to accepted requirements/strategic decisions/global target-state authority → return to the router for Project Definition;
