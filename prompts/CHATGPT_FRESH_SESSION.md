@@ -28,6 +28,18 @@ Durable start pointer: implementation/TASK_BOARD.yaml.
 Odtwórz exact review_subject, authority slice i evidence z repo, wykonaj niezależny review zgodnie z workflow i zapisz verdict/evidence w durable state. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
 ```
 
+For a pending independent plan review, prefer:
+
+```text
+NEW CHAT START PROMPT:
+Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
+Repo projektu: <owner/repo>.
+Branch projektu: <exact active project/planning branch>.
+Kontynuuj: pending independent plan review dla <plan revision>.
+Durable start pointer: planning/reviews/<plan-revision>.md.
+Odtwórz exact Review subject, approved Definition, canonical requirements/decisions i wymagane evidence z repo, wykonaj niezależny plan review zgodnie z workflow i zapisz verdict/evidence w tym review record. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
+```
+
 ## Inclusion rule
 
 Include:

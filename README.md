@@ -181,9 +181,9 @@ If new evidence requires:
 
 Do not create placeholder cards whose real scope is merely “whatever the previous card reveals.” Persist the dependency/JIT trigger instead and create the real card when the evidence exists.
 
-## Lean executor runtime
+## Executor runtime outside the migrated ChatGPT-only namespace
 
-Ordinary execution of an already-defined Task Card uses a small shared runtime path:
+The older/common execution core remains available to policies that still route through the shared/legacy execution stack:
 
 ```text
 workflow/EXECUTION.md
@@ -192,21 +192,17 @@ workflow/EXECUTION.md
 → current Task Card + exact authority slice + required source/runtime
 ```
 
-`TASK_CARDS.md` is an authoring/decomposition contract, not a mandatory executor read. `GITHUB_STATE.md` is the extended coordinator/parallel/review/milestone/recovery state contract, not a mandatory serial-card read.
+This is **not** the active runtime path for `chatgpt_only`. The migrated `chatgpt_only` policy follows `workflow/chatgpt_only/ROUTER.md` and its namespaced Execution/State/Review contracts, and executes exactly one READY project Card at a time.
 
-Conditional material is loaded only on trigger:
-- OpenSpec when current scope references/requires it;
-- Task Card authoring + Execution Prep for JIT decomposition/refinement;
-- full GitHub State for bounded parallel/coordinator state, close/publication, inconsistency or recovery;
-- Review and Handoff only when review/acceptance/close is reached.
+For policies that still use the shared execution core, `TASK_CARDS.md` is an authoring/decomposition contract rather than a mandatory serial-executor read, and `GITHUB_STATE.md` supplies extended coordinator/parallel/review/milestone/recovery semantics only when that route requires them.
 
 Project Workflow does not teach ChatGPT or Codex a catalog of their tools/capabilities. Executors attempt concrete operations with their actual runtime; fixed-policy capability inventory/preflight is not part of normal execution.
 
-## Task execution
+## Task execution outside `chatgpt_only`
 
-Task Cards are serial by default. A prepared milestone may opt into **bounded parallel** execution when multiple READY cards have completed dependencies, explicit `parallel_safe` ownership, non-overlapping mutable `write_scope` and no shared `exclusive_resources`.
+The shared/legacy execution stack may support serial execution plus explicitly contracted **bounded parallel** execution when its policy route permits it. Those parallel-card semantics do not apply to the active `chatgpt_only` namespace.
 
-Task Board plus ordinary Git lane branches/worktrees remain the durable coordination mechanism; there is no generic DAG/scheduler service.
+Under `chatgpt_only`, execution is serial: exactly one project Card may be `in_progress`, and completed Card boundaries return through the ChatGPT-only router before the next obligation starts.
 
 ## Roles
 
@@ -232,7 +228,7 @@ Each route separates:
 - **CONDITIONAL** files loaded only when a concrete trigger exists;
 - **DO NOT READ BY DEFAULT** files that are outside the normal context set.
 
-Normal ChatGPT starts with the intentionally small `CHATGPT.md` router, project `PROJECT.md`, and `CONTEXT_ROUTING.md`; when implementation/review/recovery state exists it reads Task Board before final route selection. It then follows one primary route rather than loading neighboring phase modules "just in case."
+Normal ChatGPT starts with the intentionally small `CHATGPT.md` router, project `PROJECT.md`, and `CONTEXT_ROUTING.md`. Under `chatgpt_only`, implementation/implementation-review/recovery state is recovered from Task Board, while pre-execution plan-review state is recovered from its `planning/reviews/<plan-revision>.md` record. It then follows one primary route rather than loading neighboring phase modules "just in case."
 
 For a `chatgpt_only` independent-review obligation, the normal workflow modules are `workflow/chatgpt_only/REVIEW.md` + `STATE.md` with the exact reviewed subject/authority/evidence. When the verdict is persisted, the review role ends and the chat returns to `workflow/chatgpt_only/ROUTER.md`; downstream execution/close modules are loaded only if the router assigns those roles.
 
