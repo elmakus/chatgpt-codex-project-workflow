@@ -138,13 +138,13 @@ After Common intake flow step 7 has created/recovered the issue workstream and p
    - no accepted requirement/architecture/product decision must change;
    - acceptance can be stated directly;
    - no substantial migration/deployment strategy is needed.
-5. If all micro-fix criteria hold, record `path: micro_fix`. M03 owns the actual durable micro-fix execution/review contract; Intake must not weaken or substitute for it.
+5. If all micro-fix criteria hold, record `path: micro_fix`, persist the evidence for each qualifying criterion, and record `next_route: execution_prep:micro_fix`. The completed Intake record plus selected manifest are the durable starting state for `workflow/chatgpt_only/MICRO_FIX.md`; do not create a Master Plan merely to leave Intake.
 6. Otherwise record the smallest normal route justified by evidence:
    - Research when material evidence is still missing;
    - Project Definition when accepted product/system intent must be established/changed;
    - Planning when approved Definition remains valid but execution strategy/milestone organization is required;
    - Execution Prep only when accepted authority/plan already exists and the work is a bounded legal continuation.
-7. Materialize the selected route's canonical durable starting state before marking intake complete.
+7. Materialize the selected route's canonical durable starting state before marking intake complete. For `path: micro_fix`, the exact completed Intake classification/qualification record plus manifest is sufficient to route deterministically into micro-fix Execution Prep before a Task Board exists; Execution Prep owns creation of the bounded fix Card and selected workstream Task Board.
 8. Return to the router.
 
 An unrelated active workstream may continue independently. Intake must not modify that workstream merely because it exposed the symptom.
