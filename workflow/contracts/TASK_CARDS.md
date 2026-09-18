@@ -8,23 +8,42 @@ Live card status, assigned executor, lane/base pointers, review state and result
 
 ## 2. Required contract fields
 
-Each Task Card should define:
+Keep the mandatory card contract small. Each Task Card defines:
 - `id`, `title`, `milestone`;
-- priority, complexity, phase;
-- expected/relevant `code_locations`;
 - `depends_on`;
-- outcome, included/excluded scope and constraints;
+- exact durable **authority refs / authority slice**;
+- outcome and bounded included/excluded scope;
 - acceptance criteria and required tests/checks;
-- relevant Master Plan/requirement/decision refs;
-- OpenSpec candidate/ref;
-- Refresh Gate requirements;
-- blocker/escalation rule;
-- independent-review requirement when material;
-- Definition of Done contract.
+- every material constraint, external-write/readback obligation, authorization gate or independent-review requirement that applies.
+
+Priority, complexity, phase, expected/relevant `code_locations`, capability hints and parallel metadata are optional and should exist only when they improve execution/routing/recovery.
+
+Workflow-standard Refresh Gate, blocker/escalation behavior and Definition of Done are inherited from this contract and `workflow/EXECUTION.md`; do not repeat them in every card unless the card has a material override.
 
 Do **not** put mutable `execution_status`, assigned executor, `result_commit`, `result_pr`, review state, evidence status or current branch/HEAD into the Task Card file.
 
 Use `templates/TASK_CARD.md`.
+
+### Authority Preservation Rule
+
+Delegation may reduce context volume, but it must not reduce authoritative constraints applicable to the delegated scope.
+
+The card's authority slice should point as precisely as practical to requirements, accepted decisions, Master Plan/milestone sections, relevant OpenSpec and accepted dependency results. For each downstream execution or review package, the coordinator must either:
+1. carry every applicable implementation-shaping constraint explicitly without changing its meaning; or
+2. require the worker/reviewer to read the exact durable authority before acting.
+
+Must-carry information includes, when applicable:
+- invariants and accepted behavior/architecture choices;
+- failure semantics and compatibility requirements;
+- explicit exclusions or rejected paths that constrain implementation;
+- external-write, security, migration and data-integrity boundaries;
+- acceptance/test obligations;
+- dependency-result contracts;
+- rationale when omitting it could reasonably lead to a different implementation choice.
+
+A summary, title or coordinator paraphrase never outranks exact referenced authority. If the package and authority conflict, stop and reconcile the conflict rather than guessing.
+
+Executor and independent reviewer should evaluate the same applicable authority slice. Worker completion should identify satisfied authority/acceptance and surface material deviation or conflicting evidence; reviewer checks the result against the same authority rather than reviewing only the diff in isolation.
 
 ## 3. Optional capability requirements
 
@@ -168,7 +187,7 @@ A Task Board card may be marked `done` only when all applicable items hold:
 9. Task Board state/result pointers reconciled;
 10. assigned executor and result commit recorded in Task Board;
 11. result PR recorded when applicable, otherwise `null`;
-12. durable evidence identifies exact checks/review;
+12. Task Board `tests_summary` and, when required, standalone durable evidence identify exact checks/review;
 13. relevant external side effects/idempotency/reconciliation/readback verified where required;
 14. when parallel, the accepted lane result has been integrated and required post-integration checks are green;
 15. no unassigned TODO remains inside accepted scope.
@@ -184,11 +203,13 @@ execution_status: done
 executor: chatgpt | codex
 result_commit: <sha>
 result_pr: <number-or-null>
-evidence: <repo-relative-path>
-tests_summary: <concise summary or evidence pointer>
+evidence: <repo-relative-path-or-null>
+tests_summary: <concise exact summary or evidence pointer>
 ```
 
-For a parallel lane, evidence also identifies the exact lane base/branch or equivalent isolated workspace and integrated verification target.
+For a parallel lane, the durable result record identifies the exact lane base/branch or equivalent isolated workspace and integrated verification target.
+
+A standalone evidence file is optional for a simple reproducible card. It is expected for integrated milestone acceptance, required/recommended independent review, baseline exceptions, material external writes/readback, complex multi-stage verification, or when a contract explicitly requires it.
 
 ## 12. Dependency and parallel-set handling
 
@@ -200,7 +221,7 @@ For `bounded_parallel`, select a deterministic set of READY cards up to `paralle
 
 ## 13. Near-term versus distant cards
 
-Near-term cards may contain detailed implementation expectations. Distant cards stay functionally precise without freezing interfaces that do not yet exist. Refresh Gate is mandatory before execution.
+Near-term cards may contain detailed implementation expectations. Distant cards stay functionally precise without freezing interfaces that do not yet exist. Refresh Gate is mandatory before execution. Detail may be deferred, but accepted planner intent must remain reachable through exact authority refs; do not replace richer durable authority with a thinner card summary.
 
 ## 14. Scope discipline
 
