@@ -9,7 +9,7 @@ current_milestone: "M04"
 execution_ref:
   branch: "feat/chatgpt-only-multi-workstream-intake"
   pr: null
-  head: "85d6d0953f664f6513f8417a58f5b21324503d13"
+  head: "38955588da57039183b0c15a3cd55fbf8b384e80"
 
 research_obligation: null
 
@@ -123,10 +123,10 @@ cards:
     depends_on: ["M03-T01"]
     openspec_change: null
     contract: "implementation/cards/M04-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "38955588da57039183b0c15a3cd55fbf8b384e80"
     review_evidence: null
-    result_commit: null
+    result_commit: "38955588da57039183b0c15a3cd55fbf8b384e80"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/evidence/M04-T01.md"
+    tests_summary: "GREEN implementation verification: R8 local worktree isolation with remote-only exemption; R9 stacked parent/dependency/legal integration paths; R10 target refresh with affected verification and exact-subject review preservation/invalidation; R11 overlap vs real textual/semantic conflict semantics; legacy/default and foreign-policy boundaries preserved; exact details in implementation/evidence/M04-T01.md."
