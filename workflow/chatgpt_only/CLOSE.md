@@ -91,7 +91,7 @@ Verify as applicable:
 - branch-isolated integration refresh is current for the target actually being merged;
 - any stacked parent dependency is satisfied for this exact integration path;
 - expected PR head/publication state is correct;
-- PR/publication artifact matches accepted milestone state and cumulative handoff;
+- PR/publication artifact matches the owning acceptance state: accepted milestone state + cumulative handoff for normal milestone close, or the qualified micro-fix bounded Card/workstream acceptance + evidence for micro-fix close;
 - commits after the reviewed implementation head are only authorized closure/publication changes;
 - no unreviewed behavioral/scope drift after accepted subject;
 - required status checks/mergeability understood;
