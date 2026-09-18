@@ -220,7 +220,7 @@ If review/acceptance is RED:
 
 When a fresh reviewer produces RED and corrective work is bounded, deterministic, authorized and unblocked, the reviewer role ends and the same chat returns to the router. The router assigns execution preparation/execution for the correction. After that chat implements the corrected reviewable subject, it freezes the new exact subject as `pending` and stops before self-review.
 
-For qualified micro-fix there is no milestone GREEN transition. After its Card is terminal, reconcile the selected manifest's final-integration review gate under `MICRO_FIX.md` before any workstream integration or `done` lifecycle summary.
+For qualified micro-fix there is no milestone GREEN transition. After its Card is terminal, return through the router to Close. Close runs current-target integration refresh first, then reconciles or freezes the selected manifest's final-integration review gate under `WORKSTREAMS.md` / `MICRO_FIX.md`, and only then may integrate or record the workstream `done`. Do not synthesize a milestone.
 
 ## Next milestone
 
