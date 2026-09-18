@@ -10,6 +10,7 @@ The user-facing response must include the completed prompt immediately in a fenc
 NEW CHAT START PROMPT:
 Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
 Repo projektu: <owner/repo>.
+Branch projektu: <exact active project/implementation branch>.
 Kontynuuj: <exact card/milestone/review gate or concise goal>.
 Durable start pointer: <implementation/TASK_BOARD.yaml | other exact durable pointer>.
 Odtwórz aktualny stan, exact subject, authority slice i wymagane evidence z repo. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
@@ -21,6 +22,7 @@ For a pending independent review, prefer:
 NEW CHAT START PROMPT:
 Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
 Repo projektu: <owner/repo>.
+Branch projektu: <exact active project/implementation branch>.
 Kontynuuj: pending independent review dla <MXX-TYY>.
 Durable start pointer: implementation/TASK_BOARD.yaml.
 Odtwórz exact review_subject, authority slice i evidence z repo, wykonaj niezależny review zgodnie z workflow i zapisz verdict/evidence w durable state. Nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
@@ -30,6 +32,7 @@ Odtwórz exact review_subject, authority slice i evidence z repo, wykonaj niezal
 
 Include:
 - project repository;
+- exact active project/implementation branch, even when it is `main`;
 - exact continuation target;
 - smallest durable start pointer;
 - one instruction to recover authoritative state from repository;
@@ -41,6 +44,8 @@ Do not duplicate:
 - evidence prose;
 - changed files/blobs;
 - implementation summary;
-- branch/HEAD details already recoverable from durable state.
+- HEAD/SHA details already recoverable from durable state.
+
+The branch is the one deliberate exception: always include the exact active branch because it is a routing locator, not redundant execution telemetry.
 
 The prompt is a router into durable project truth, not a second handoff document.
