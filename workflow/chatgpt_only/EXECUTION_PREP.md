@@ -27,6 +27,7 @@ Do not mirror live state into Card/milestone/`PROJECT.md`.
 When Task Board `research_obligation` points to `Status: complete` with exact `Return target: execution_prep:<subject>` for the current preparation obligation, Execution Prep is the final owning Return target.
 
 - verify the pointer plus Origin/Return subjects against current durable Card/milestone state;
+- read `Return reconciliation` before editing; if it is `applied`, verify the exact result refs, perform only consume/clear, return to the router, and do not reshape Cards;
 - recover whether the intended L2/JIT preparation reconciliation is already durably present before editing;
 - perform only missing preparation/reconciliation work; never recreate or reshuffle already-reconciled Cards merely because the Research pointer survived a crash;
 - follow `workflow/chatgpt_only/RESEARCH.md#Final Return-target protocol`;
