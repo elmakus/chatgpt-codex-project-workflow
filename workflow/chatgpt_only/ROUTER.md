@@ -49,6 +49,36 @@ A reviewer that has completed its verdict is no longer governed by `REVIEW.md` o
 
 Only a real boundary from root `CHATGPT.md#Real-stop-response-contract` ends the turn.
 
+## Brainstorming → Project Definition promotion gate
+
+Under `chatgpt_only`, the first transition from exploratory Brainstorming into Project Definition for a definition scope is **user-owned**.
+
+Brainstorming may reach `ready_for_definition`, but that state is only a recommendation that formalization is now possible. It is not permission to start Definition.
+
+Before entering Project Definition from an exploratory Brainstorming/Research path, require one of:
+- an explicit current user instruction to promote the current scope into Project Definition; or
+- durable `Definition promotion authorization: user_authorized` in the active brainstorming record for that same scope.
+
+Examples of sufficient user intent include “przejdź do Definition”, “formalizuj wymagania/decyzje”, or another unambiguous instruction to leave exploration and begin Project Definition. Mere agreement with an individual idea, answering a brainstorming question, or asking for more research is not phase-promotion authority.
+
+When Brainstorming is ready but promotion is not authorized:
+1. persist the useful brainstorming state;
+2. set `Status: ready_for_definition` and `Definition promotion authorization: pending` in the active brainstorming record;
+3. do **not** enter Project Definition or Planning;
+4. treat this as a policy-specific real user stop;
+5. use `workflow/common/USER_STOP.md` and ask only whether to continue brainstorming/research or promote the current scope into Project Definition.
+
+When the user explicitly authorizes promotion:
+1. persist `Definition promotion authorization: user_authorized` before entering Definition;
+2. route to Project Definition;
+3. continue normally from there.
+
+Research completion does not bypass this gate. If Research was entered from an unpromoted exploratory scope, return to Brainstorming/promotion handling rather than entering Definition automatically.
+
+The authorization applies to the current Definition scope. Once Definition has begun, bounded Research ↔ Definition loops for that same scope do not require repeated authorization. If Definition deliberately returns to open-ended Brainstorming because the product/problem space has materially reopened, reset the promotion authorization to `pending` for that reopened scope.
+
+This gate does **not** apply to `Definition Complete = GREEN → Planning`; that transition remains deterministic and automatic when planning is in scope.
+
 ## Context-health trigger check
 
 Do not load context-health machinery after every role by default.
