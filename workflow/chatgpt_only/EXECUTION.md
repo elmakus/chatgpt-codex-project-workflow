@@ -25,9 +25,9 @@ Read with:
 12. Perform material external readback/verification when meaningful.
 13. Apply Definition of Done.
 14. Persist exact result/tests/evidence pointers and mark Card done.
-15. If a JIT trigger is now satisfied, run `EXECUTION_PREP.md` immediately when refinement is deterministic.
-16. Continue with next READY Card automatically.
-17. At review/close/strategic/user/runtime/end-of-scope boundary, route to the owning module.
+15. If a JIT trigger is now satisfied, persist current execution state, end the execution-role obligation, return to the router and let it select execution preparation.
+16. If another READY Card is already legal, continue execution automatically.
+17. At review/close/strategic/user/runtime/end-of-scope boundary, persist state and return to the router so it selects the owning route.
 
 Do not ask the user to choose among equivalent deterministic next Cards.
 
