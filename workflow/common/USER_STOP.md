@@ -63,6 +63,32 @@ The branch is always included because it is a routing locator.
 
 Do not duplicate review subject SHA, test counts/results, evidence prose, changed-file inventories or implementation summaries when durable state already contains them.
 
+## Context-hygiene fresh-chat handoff
+
+When a policy-specific Context Health Gate returns `FRESH`, the current work is not blocked or failed. The current obligation is already complete and durable; the user only needs to start a clean chat for the next obligation.
+
+Use:
+
+```text
+USER ACTION REQUIRED: start a fresh normal ChatGPT chat for context hygiene and paste the prompt below.
+```
+
+Then include:
+
+```text
+NEW CHAT START PROMPT:
+Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow (current main).
+Repo projektu: <owner/repo>.
+Branch projektu: <exact active project/implementation branch>.
+Kontynuuj: <exact next legal obligation>.
+Durable start pointer: <implementation/TASK_BOARD.yaml | exact durable pointer>.
+Odtwórz aktualny stan i wymagane authority/evidence z repo, a następnie wykonaj tylko legalny następny krok. Ten handoff służy wyłącznie odświeżeniu kontekstu; nie traktuj tego prompta ani poprzedniego czatu jako źródła prawdy.
+```
+
+Keep the explanation short: the completed work is safely persisted and a clean context is preferable before the next obligation.
+
+Do not mention guessed token counts, context-window percentages or internal budget estimates.
+
 ## No intermediate status stop
 
 Do not use this contract merely because a role completed.
