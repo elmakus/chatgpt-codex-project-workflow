@@ -4,6 +4,7 @@ Normal ChatGPT is the fixed executor for this route.
 
 Read with:
 - `workflow/chatgpt_only/STATE.md`;
+- `workflow/chatgpt_only/DELEGATED_WORKERS.md` only when the active Card declares delegated workers;
 - Task Board;
 - current milestone/Card;
 - exact Card authority slice;
@@ -20,19 +21,22 @@ Read with:
 7. Persist start transition from `STATE.md`.
 8. Run Refresh Gate.
 9. Reconcile OpenSpec JIT only when current Card requires it.
-10. Execute bounded scope.
-11. Run required tests/checks and verify acceptance.
-12. Perform material external readback/verification when meaningful.
-13. Apply Definition of Done.
-14. Persist exact result/tests/evidence pointers and mark Card done.
-15. The current execution-role obligation ends at the durable Card boundary.
-16. Persist the completed Card/result state and return to the router before starting any next Card.
-17. The router performs its context-health trigger check, then:
+10. If the Card declares delegated workers, apply `DELEGATED_WORKERS.md` at each concrete worker step: invoke the project-defined profile, await completion, validate the normalized result and keep raw transcript/log detail outside normal main context.
+11. Execute the remaining bounded scope owned directly by ChatGPT.
+12. Run required tests/checks and verify acceptance.
+13. Perform material external readback/verification when meaningful.
+14. Apply Definition of Done.
+15. Persist exact result/tests/evidence pointers and mark Card done.
+16. The current execution-role obligation ends at the durable Card boundary.
+17. Persist the completed Card/result state and return to the router before starting any next Card.
+18. The router performs its context-health trigger check, then:
    - selects execution preparation when a JIT trigger is satisfied;
    - selects execution again when another READY Card is legal;
    - selects review/close/strategic/recovery/user-stop handling when that state owns the next obligation.
 
 Do not ask the user to choose among equivalent deterministic next Cards.
+
+A delegated worker is not another Task Card executor. ChatGPT remains accountable for the active Card, acceptance, state transitions, review boundaries and user/live authorization gates.
 
 ## Refresh Gate
 
@@ -69,6 +73,8 @@ Do not stop merely because some capability might be needed later.
 
 Do not treat an isolated local test as proof of a materially different external/production environment.
 
+For a declared delegated-worker step, profile/runtime availability is discovered at the concrete invocation point, not through speculative preflight. If the required worker cannot be invoked/awaited, use the same exact-blocker rule; do not silently perform the delegated task inline.
+
 ## Scope / authority
 
 Preserve every implementation-shaping constraint in exact authority slice.
@@ -100,11 +106,12 @@ Card may become `done` only when all applicable conditions hold:
 2. acceptance satisfied;
 3. required tests/checks GREEN or authorized baseline exception exists;
 4. applicable OpenSpec consistent;
-5. REQUIRED/RECOMMENDED independent review GREEN when review is a Card-completion requirement;
-6. no hidden blocker/unassigned TODO inside accepted scope;
-7. accepted result exists durably;
-8. material external side effects/readback verified;
-9. Task Board result state reconciled.
+5. every required delegated-worker step, when present, completed with a valid normalized result or an explicitly accepted exception; worker success alone does not replace Card tests/acceptance;
+6. REQUIRED/RECOMMENDED independent review GREEN when review is a Card-completion requirement;
+7. no hidden blocker/unassigned TODO inside accepted scope;
+8. accepted result exists durably;
+9. material external side effects/readback verified;
+10. Task Board result state reconciled.
 
 ## Review boundary
 
