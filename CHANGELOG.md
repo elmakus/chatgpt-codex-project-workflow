@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Unreleased — ChatGPT context health gate
+
+- Added `workflow/chatgpt_only/CONTEXT_HEALTH.md` for qualitative session-health evaluation at safe durable boundaries.
+- Completed ChatGPT-only Cards now return through the policy router before another Card starts, allowing context-health evaluation without creating a user-visible status stop.
+- Existing real stops have priority: pending fresh review, L3/user decision, authorization gate, concrete runtime/access/input blocker or end of approved scope suppresses a separate hygiene handoff.
+- A pending REQUIRED/RECOMMENDED independent review remains the preferred natural fresh-context reset.
+- Context health uses no fixed token, turn, Card or milestone-count threshold.
+- `CONTEXT_HEALTH: FRESH` is permitted only after the current obligation is fully persisted and the exact next obligation is recoverable from durable repository state.
+- Added a context-hygiene fresh-chat variant to the common normal-ChatGPT user-stop contract.
+
 ## Unreleased — router-owned role transitions and explicit review none
 
 - ChatGPT-only role completion is no longer treated as an implicit user-visible checkpoint. REVIEW, EXECUTION_PREP, EXECUTION, CLOSE and RECOVERY persist their result and return to the policy router, which selects the next legal role.
