@@ -38,6 +38,14 @@ A fresh chat reconstructs authority from the durable project repository and curr
 
 A normal ChatGPT chat should send a final user-facing workflow status message only when the current chat has reached a real stop/boundary or the approved scope is complete.
 
+Before any final user-facing workflow status response, perform a **pre-response router check**:
+1. re-evaluate current durable state through the selected policy router;
+2. verify that no deterministic authorized role transition remains;
+3. treat completion of the role/obligation named in the user request or fresh-session handoff as non-terminal unless the router proves a real stop;
+4. if a next legal route exists, continue in the same chat before replying.
+
+A fresh-session continuation target is an entry locator, not a session-scope boundary. Finishing that target does not by itself authorize a user-facing response.
+
 Completing a role is not itself a stop. When the current role finishes and another deterministic route is legal, persist durable state, return to the policy router, assume the next role, load only that role's module(s), and continue before replying to the user.
 
 A real stop includes:

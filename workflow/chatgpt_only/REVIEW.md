@@ -89,6 +89,8 @@ Do not create a permanent review role or independently review every trivial Card
 
 When this chat later reaches a real boundary requiring a fresh independent reviewer, use the independent-review prompt variant from `workflow/common/USER_STOP.md`.
 
+The handoff names the pending review only as an entry locator. Do not append review checklists, prior findings, remediation proposals, verdict branches or recoverable telemetry to the prompt. If a nonstandard review scope is required, persist it durably first in the reviewed Card/review evidence/other exact scope artifact and reference it from canonical review state/authority; keep Task Board as the implementation-review start pointer.
+
 The review module does not own a separate user-response format.
 
 ## User-facing response

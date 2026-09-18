@@ -42,7 +42,8 @@ After the planner's own pre-implementation audit is GREEN, when independent revi
 3. create the revision-specific review record as `pending`; do not reuse a completed review record for a different subject;
 4. commit/push the durable handoff when possible;
 5. stop before issuing an independent verdict;
-6. use the dedicated independent-plan-review fresh-chat variant from `workflow/common/USER_STOP.md`, with durable start pointer `planning/reviews/<plan-revision>.md`.
+6. use the dedicated independent-plan-review fresh-chat variant from `workflow/common/USER_STOP.md`, with durable start pointer `planning/reviews/<plan-revision>.md`;
+7. keep the prompt locator-only; any material nonstandard review scope belongs in the durable plan-review record or another exact durable scope artifact, not in an expanded handoff prompt.
 
 The authoring chat must not independently review its own exact plan subject.
 
