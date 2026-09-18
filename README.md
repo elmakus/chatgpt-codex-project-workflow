@@ -120,6 +120,18 @@ Agents read the smallest applicable path:
 - Codex starts at `prompts/CODEX_START.md`, then project `PROJECT.md`, then shared execution modules and Codex-specific modules. Codex does **not** load `CHATGPT.md` or ChatGPT-specific execution instructions.
 - ChatGPT reads `workflow/codex/HANDOFF.md` only when preparing/interpreting a Codex handoff.
 
+## Fresh Chat handoff UX
+
+Whenever Project Workflow requires or recommends that the user open a fresh normal ChatGPT chat, the current response must also provide the ready-to-copy start prompt immediately.
+
+The prompt is intentionally thin:
+- project repository;
+- exact continuation target (for example pending independent review for one card);
+- smallest durable start pointer;
+- instruction to recover exact state/subject/authority/evidence from the repository.
+
+Do not duplicate SHAs, test summaries, changed-file lists or evidence prose that already exist in durable state. The user should be able to press **Copy**, open a new chat and paste once.
+
 ## Bootstrap prompts
 
 - normal ChatGPT start: `prompts/CHATGPT_START.md`
