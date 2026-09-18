@@ -50,6 +50,16 @@ After GREEN, that fresh review chat may continue subsequent deterministic `chatg
 
 OPTIONAL review does not force a fresh-chat stop unless the project/card explicitly chooses to perform it.
 
+## Chat/session continuity
+
+Workflow roles are not tied to a specific ChatGPT chat. Under `chatgpt_only`, the same current chat may continue from planning/JIT orchestration into execution when durable authority is clear and context remains useful.
+
+A **fresh chat is mandatory only** for REQUIRED/RECOMMENDED independent review of a subject implemented by the current chat.
+
+Outside that independence boundary, a fresh chat is optional context hygiene. Recommend one when prior conversational context has become stale, contradictory, overly broad, or otherwise likely to obscure the durable project state, especially at a clean checkpoint where recovery is deterministic. Do not impose a fixed token count or “every N milestones” rule.
+
+A fresh chat must recover from `PROJECT.md`, Task Board and exact referenced durable authority. It must not require the previous chat transcript to reconstruct execution truth. Account/project-level context may still exist, but durable repository authority outranks it.
+
 ## Continuation
 
 Under `chatgpt_only`, continue deterministic READY work and cross GREEN milestone boundaries automatically when next milestone is already approved, required/recommended review gates are GREEN and shared continuation conditions hold. Do not run Capability Gate or capability preflight at each card/milestone.
