@@ -243,3 +243,102 @@ Result: **22/22 PASS**.
 Because this hardening changes workflow semantics after the previous independent review, merge must wait for a fresh independent re-review of the new exact subject `5585bec4dc2d70a803ce2a6e83d0e2719b4c50ad`.
 
 Persisting this section is audit evidence after the frozen semantic subject and does not itself change workflow semantics.
+
+
+
+## Fresh independent re-review of hardened subject — 2026-09-18
+
+Reviewed exact GitHub state reconstructed directly from repository authority:
+
+- current workflow authority: `main@b8dbe46e8160a0442ffea2216c9c33fbf230a4d3`
+- merge base: `b8dbe46e8160a0442ffea2216c9c33fbf230a4d3`
+- frozen semantic subject: `5585bec4dc2d70a803ce2a6e83d0e2719b4c50ad`
+- review-branch HEAD at re-review start: `3069b08d6aa0d22d86a9d57990cadc0203a5d3c4`
+- PR: `#25`
+- branch: `fix/chatgpt-only-brainstorm-promotion-gate`
+
+Verdict: **GREEN**
+
+This re-review was reconstructed from the current GitHub repository, exact frozen subject, current branch state, complete PR diff and applicable workflow authority. The handoff prompt, PR body, prior GREEN and earlier audit prose were treated only as locators/history, not as evidence for the verdict.
+
+### Subject freeze / post-subject delta
+
+`main` is still exactly `b8dbe46e8160a0442ffea2216c9c33fbf230a4d3`.
+
+The current review branch at re-review start is exactly one commit ahead of the frozen semantic subject. The complete delta:
+
+`5585bec4dc2d70a803ce2a6e83d0e2719b4c50ad...3069b08d6aa0d22d86a9d57990cadc0203a5d3c4`
+
+changes only:
+
+- `docs/audits/CHATGPT_ONLY_BRAINSTORM_PROMOTION_GATE.md`
+
+with audit evidence only. No workflow/template/router semantic file changed after the frozen subject.
+
+### Full semantic diff coverage
+
+The complete `main...5585bec4dc2d70a803ce2a6e83d0e2719b4c50ad` semantic diff was inspected. It changes:
+
+- `CHANGELOG.md`
+- `README.md`
+- `docs/audits/CHATGPT_ONLY_BRAINSTORM_PROMOTION_GATE.md`
+- `templates/BRAINSTORM.md`
+- `templates/PROJECT.md`
+- `workflow/chatgpt_only/REPOSITORY.md`
+- `workflow/chatgpt_only/ROUTER.md`
+- `workflow/common/BRAINSTORMING.md`
+- `workflow/common/DEFINITION.md`
+- `workflow/common/RESEARCH.md`
+- `workflow/common/USER_STOP.md`
+
+The audit file is evidence/history. The remaining changed files contain the reviewed workflow/documentation semantics.
+
+### Independent hardening invariant review
+
+1. **PROJECT deterministically identifies the active exploratory scope — GREEN.**  
+   `templates/PROJECT.md` defines the exact `Active exploratory scope: brainstorming/<record>.md | none` pointer. The ChatGPT-only repository contract defines that pointer as the recovery locator, while authorization/revision remains in the pointed record.
+
+2. **Fresh-chat recovery can locate the exact brainstorming record — GREEN.**  
+   `workflow/chatgpt_only/ROUTER.md` discovers the active exploratory scope from `PROJECT.md → Active exploratory scope` and reads that exact record for Brainstorming/Definition recovery. No prior chat narrative is needed.
+
+3. **Authorization is bound to exact `scope-id@revision` — GREEN.**  
+   `templates/BRAINSTORM.md` adds stable `Scope ID`, `Revision`, and `Definition promotion subject`. The router requires `user_authorized` plus a promotion subject exactly matching the record's current `<scope-id>@<revision>`.
+
+4. **Stale authorization cannot authorize Definition — GREEN.**  
+   The router explicitly states that `user_authorized` without an exact matching current promotion subject is stale/insufficient and must not authorize Definition. `workflow/common/DEFINITION.md` independently requires verification of the exact subject/revision required by the selected route.
+
+5. **Material exploratory change before Definition resets authorization — GREEN.**  
+   The Brainstorm template and router both require a new/incremented revision for material pre-Definition scope change and reset authorization to `pending` with promotion subject `none`.
+
+6. **Bounded Definition ↔ Research preserves legal authorization — GREEN.**  
+   After Definition has legally begun, the router keeps the active exploratory pointer/record available and the common Definition contract permits ordinary bounded Research ↔ Definition evidence loops without re-promotion for the same promoted subject.
+
+7. **Return to open-ended Brainstorming resets the gate — GREEN.**  
+   If Definition materially reopens the product/problem space, the router requires a new brainstorming revision or new scope and resets authorization to `pending` with promotion subject `none`.
+
+8. **Accepting one idea is not phase promotion — GREEN.**  
+   `workflow/common/BRAINSTORMING.md` explicitly separates acceptance of an individual exploratory choice from authorization to leave Brainstorming. The router likewise excludes agreement with an individual idea, answering a brainstorming question, or requesting more research from sufficient promotion intent.
+
+9. **Research no longer implies unconditional Definition entry — GREEN.**  
+   `workflow/common/RESEARCH.md` routes through the selected-policy Definition entry gate and explicitly states that research completion from exploratory Brainstorming does not count as promotion. The router returns unpromoted research to Brainstorming/promotion handling.
+
+10. **Definition Complete = GREEN → Planning remains automatic — GREEN.**  
+    The router explicitly excludes this transition from the promotion gate. `workflow/common/DEFINITION.md` returns GREEN Definition to the router with Planning as the next normal role, and `workflow/chatgpt_only/PLANNING.md` still requires approved Definition-owned authority.
+
+11. **The promotion stop remains same-chat and user-owned — GREEN.**  
+    `workflow/common/USER_STOP.md` only formats the policy-owned gate, asks for continue-exploration versus explicit promotion, and explicitly does not require a fresh chat solely for this boundary.
+
+12. **No policy leakage to legacy/other execution policies — GREEN.**  
+    Root policy routing sends non-`chatgpt_only` policies to `workflow/legacy/CONTEXT_ROUTING.md`. That legacy route continues to use its own `workflow/BRAINSTORMING.md` and `workflow/RESEARCH.md`. Shared/common changes only defer to whatever Definition-entry gate the selected policy owns; they do not impose the ChatGPT-only user-promotion rule globally.
+
+### Regression / evidence note
+
+GitHub reports no combined status checks and no pull-request workflow runs for either the frozen subject `5585bec4dc2d70a803ce2a6e83d0e2719b4c50ad` or the review-start HEAD `3069b08d6aa0d22d86a9d57990cadc0203a5d3c4`.
+
+This verdict therefore makes **no CI/test-execution claim**. It is an independent static/coherence review of the complete semantic diff, recovery model, route transitions and policy-isolation boundaries.
+
+## Hardened independent verdict
+
+**GREEN for the frozen semantic subject `5585bec4dc2d70a803ce2a6e83d0e2719b4c50ad` against current `main@b8dbe46e8160a0442ffea2216c9c33fbf230a4d3`. The hardened ChatGPT-only Brainstorming → Project Definition promotion gate is durably recoverable, exact-revision-bound, stale-authorization-safe, preserves bounded Definition ↔ Research continuation, resets on reopened exploration, preserves automatic Definition GREEN → Planning, and introduces no legacy-policy leakage found in the reviewed authority graph.**
+
+Persisting this section is audit evidence only and does not modify the frozen workflow semantic subject.
