@@ -66,6 +66,32 @@ The manifest `review` block is reserved for a **workstream-level final integrati
 
 Do not infer a Card/milestone state from the coarse manifest `status`. If manifest status and the selected Task Board appear inconsistent, recover the exact durable facts and reconcile the manifest only at a safe workstream-lifecycle boundary; never overwrite Task Board truth to make the summary match.
 
+## Workstream final-integration review
+
+The manifest `review` block is a distinct workstream-level integration gate.
+
+For intake-created issue/feature work that changes code, runtime configuration, external behavior or system behavior:
+- set `review.requirement` to at least `RECOMMENDED`; use `REQUIRED` when existing risk authority requires it;
+- keep `review.state/subject/evidence` null until an exact final/integrated subject is ready to freeze or until exact coverage by a stronger existing independent review is proven;
+- when active, `pending | in_progress | green | red` has the normal fresh-chat independence semantics, but the selected manifest—not the Task Board—owns this workstream-level review lifecycle;
+- `covered_by` may name an exact Task Board Card/milestone review only when that already-independent verdict covers the identical immutable integrated subject and the whole workstream acceptance surface;
+- coverage reuse records a distinct gate conclusion; it must not copy ongoing Card/milestone review lifecycle state into the manifest.
+
+If a workstream final review is RED, corrective execution/research remains inside that selected workstream and its selected Task Board. Do not mutate or inspect another workstream Task Board to find a correction lane.
+
+For one-Card qualified micro-fixes, apply `workflow/chatgpt_only/MICRO_FIX.md#Workstream-final-integration-review`.
+
+## Micro-fix state context
+
+A completed issue Intake may select `path: micro_fix`. Execution Prep then applies `workflow/chatgpt_only/MICRO_FIX.md` and materializes one bounded fix Card plus this manifest's selected Task Board.
+
+In micro-fix mode:
+- manifest `authority.plan` may remain null because no full Master Plan is required;
+- Task Board `plan_revision` and `current_milestone` are `micro-fix`;
+- Task Board `milestones` remains empty;
+- the bounded fix Card is the direct execution/acceptance contract;
+- manifest ↔ Task Board identity binding remains mandatory before any mutable execution/review/Research state is trusted.
+
 ## Manifest ↔ Task Board binding validation
 
 For a branch-isolated workstream, the manifest `task_board` value is only a location pointer until the pointed board is proven to belong to that exact workstream.
