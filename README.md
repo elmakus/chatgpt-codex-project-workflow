@@ -76,6 +76,24 @@ Progressive disclosure reduces context volume, not accepted intent. Planning/dec
 
 This allows stronger planning models to produce rich durable intent while smaller execution/review contexts remain bounded without semantic loss.
 
+## ChatGPT context health
+
+Under `chatgpt_only`, completed role/Card boundaries return through the policy router before the next substantial obligation starts.
+
+A REQUIRED/RECOMMENDED fresh-review boundary is the preferred natural context reset when one is already due.
+
+Otherwise, the router may conditionally load `workflow/chatgpt_only/CONTEXT_HEALTH.md` only when the accumulated chat shows a concrete material risk of stale-state carryover, authority confusion or irrelevant-history overload.
+
+Context health:
+- is evaluated only after the current obligation is durably complete;
+- never interrupts an active Card/review/write/readback sequence;
+- uses no fixed token, turn, Card or milestone-count threshold;
+- defaults to continuing when no concrete material context risk exists;
+- may return `CONTEXT_HEALTH: FRESH`, which creates a context-hygiene session handoff before the next obligation starts;
+- never overrides an existing review/user/authorization/runtime/strategic/end-of-scope stop.
+
+A hygiene handoff is session continuity only. It does not change requirements, execution policy, review state or project authority.
+
 ## Independent review
 
 Independent means independent from the worker/session that implemented the reviewed subject.
