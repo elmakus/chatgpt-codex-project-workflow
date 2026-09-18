@@ -46,7 +46,7 @@ Durable start pointer: implementation/TASK_BOARD.yaml
 Approved plan: <planning/MASTER_PLAN.md>
 Start from: <checkpoint/current milestone>
 
-Recover durable state, resolve each Task Card's exact authority slice and execute deterministic READY work. Run state/contract Refresh Gates but do not run Capability Gate or capability preflight/inventory. Attempt concrete operations directly. Self-remediate ordinary non-secret local tooling/dependency gaps when permitted. Ask the user only when a concrete operation requires unavailable MCP/credential/token/access/authorization that Codex cannot obtain itself.
+Recover durable state, resolve each Task Card's exact authority slice and execute deterministic READY work. Run state/contract Refresh Gates but do not run Capability Gate or capability inventory/preflight. Project Workflow does not prescribe Codex's tool inventory: attempt concrete operations with the actual runtime, handle ordinary executor-local remediation when permitted, and ask the user only when a concrete required operation still needs user-provided input/access/authorization.
 
 When installed/enabled, codex_workflow controls internal execute/review-worker orchestration. REQUIRED/RECOMMENDED independent review uses a reviewer worker/session that did not implement the exact subject; do not return to ChatGPT merely for reviewer independence.
 

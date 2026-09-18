@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## Unreleased — lean executor runtime and runtime-discovered tools
+
+- Added `workflow/contracts/TASK_EXECUTION.md` as the small shared runtime contract for already-defined Task Cards.
+- Normal serial ChatGPT/Codex execution no longer requires the full Task Card authoring contract or full GitHub State contract.
+- `TASK_CARDS.md` now owns authoring/decomposition/parallel metadata; runtime readiness/Refresh/DoD/result semantics moved to `TASK_EXECUTION.md`.
+- `GITHUB_STATE.md` remains the extended coordinator/parallel/review/milestone/recovery state contract and is conditional for ordinary serial execution.
+- Slimmed `workflow/EXECUTION.md` into the common execution loop with explicit conditional routes for parallel, JIT, review, close and recovery.
+- Slimmed `workflow/chatgpt/EXECUTION.md` to ChatGPT-specific runtime/session/human-control behavior.
+- Preserved Codex Main, worker, bounded-parallel, JIT and independent-review semantics in `workflow/codex/*`; ChatGPT simply no longer loads them.
+- Project Workflow no longer enumerates executor tool catalogs in active runtime instructions. ChatGPT/Codex use their actual runtime and surface a blocker only when a concrete required operation cannot proceed.
+- Mixed-policy Capability Gate remains pre-assignment routing and is not changed by this refactor.
+
 ## Unreleased — deterministic context read sets
 
 - Slimmed `CHATGPT.md` into a true bootstrap/router instead of duplicating execution-policy and milestone-continuation semantics owned by phase modules.

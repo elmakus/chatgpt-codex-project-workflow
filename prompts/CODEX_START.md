@@ -14,9 +14,9 @@ Required prior checkpoint: <checkpoint/current Task Board state>.
 
 Read project PROJECT.md and workflow/CONTEXT_ROUTING.md. Load shared execution contracts and workflow/codex modules only. Do not load CHATGPT.md or workflow/chatgpt/*.
 
-Recover Task Board/Git/runtime/review state, resolve the current milestone contract and each READY Task Card's exact authority slice, run the state/contract Refresh Gate and execute deterministic READY work. Do NOT run Capability Gate or capability preflight/inventory. Attempt concrete operations directly.
+Recover Task Board/Git/runtime/review state, resolve the current milestone contract and each READY Task Card's exact authority slice, then read `workflow/EXECUTION.md`, `workflow/contracts/TASK_EXECUTION.md` and the required `workflow/codex/*` modules. Run the state/contract Refresh Gate and execute deterministic READY work. Do NOT run Capability Gate or capability inventory/preflight.
 
-If ordinary non-secret local tooling/dependencies are missing, self-remediate them when the environment permits and accepted security/reproducibility constraints allow it. Ask the user only when a concrete operation requires unavailable MCP/credential/token/access/authorization that Codex cannot obtain itself.
+Project Workflow does not tell Codex which tools/capabilities it has. Attempt concrete operations with the actual runtime, handle ordinary executor-local remediation when permitted, and ask the user only when a concrete required operation still needs user-provided input/access/authorization.
 
 When installed/enabled, codex_workflow controls internal orchestration, including execute/review workers, delegation, role/model routing, lifecycle and runtime recovery. REQUIRED/RECOMMENDED independent review uses a reviewer worker/session that did not implement the subject; do not return to ChatGPT merely for reviewer independence.
 
@@ -35,7 +35,7 @@ Assigned milestone/set: <MXX / MXX-TYY[, ...]>.
 Required prior checkpoint: <checkpoint>.
 Durable start pointer: implementation/TASK_BOARD.yaml.
 
-Read project PROJECT.md and workflow/CONTEXT_ROUTING.md. Load shared execution contracts and workflow/codex modules only. Recover assigned Task Board/Git/review state, resolve the assigned Task Card authority slice, run state/contract Refresh Gate and execute assigned scope. Persist result/review pointers/tests/evidence/readback.
+Read project PROJECT.md and workflow/CONTEXT_ROUTING.md. Load `workflow/EXECUTION.md`, `workflow/contracts/TASK_EXECUTION.md` and required `workflow/codex/*` modules only. Recover assigned Task Board/Git/review state, resolve the assigned Task Card authority slice, run state/contract Refresh Gate and execute assigned scope. Persist result/review pointers/tests/evidence/readback.
 
 The mixed-policy Capability Gate already performed pre-assignment routing. After assignment, do not rerun it because of a runtime capability problem; persist the blocker instead.
 

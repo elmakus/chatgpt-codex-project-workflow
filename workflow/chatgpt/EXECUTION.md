@@ -1,123 +1,72 @@
 # ChatGPT Execution Adapter
 
-Read this when:
-- project policy is `chatgpt_only`; or
-- project policy is `mixed` and Capability Gate selected `EXECUTE IN CHATGPT`; or
-- recovering already ChatGPT-assigned in-progress work or a pending independent ChatGPT review.
+Read this only when ChatGPT is the assigned executor or is recovering ChatGPT-assigned work.
 
-ChatGPT executes the shared `workflow/EXECUTION.md` loop using tools/plugins/connectors available in the current **normal ChatGPT chat**.
+Shared execution semantics live in:
+- `workflow/EXECUTION.md`;
+- `workflow/contracts/TASK_EXECUTION.md`.
 
-ChatGPT Work is not part of this workflow.
+This adapter adds only ChatGPT-specific runtime/session/user-surface behavior.
 
-## Fixed-policy capability rule
+## Runtime behavior
 
-Under `chatgpt_only`, do **not** perform a capability preflight, inventory or checklist before starting a Task Card. The policy already selected ChatGPT as executor.
+Do not inventory or describe ChatGPT's tools/capabilities before work.
 
-Run the normal state/contract Refresh Gate, then attempt the actual work. If a concrete required operation cannot be performed with the current chat's tools/plugins/connectors, persist the runtime blocker and tell the user the smallest remedy. Do not speculate about capabilities that might be needed later.
+Attempt the concrete operation with the runtime available in the current normal ChatGPT chat. Ordinary local remediation is implementation detail when permitted. If a required operation cannot proceed, use shared runtime-blocker semantics and ask only for the smallest user input/access/authorization actually needed.
 
-A missing capability does not change policy automatically. The user may provide the missing access/tooling or explicitly change `execution_policy`, after which durable Task Board state is reconciled before reassignment.
+Do not infer production/runtime success from an isolated local test when they are materially different environments.
 
-## Repository execution
+If Task Board uses `bounded_parallel`, load the conditional parallel contracts from the shared router. ChatGPT may execute a compatible subset or one card when needed; it does not manufacture concurrency merely because parallel mode is allowed.
 
-When GitHub write capabilities exist, ChatGPT may create branches, modify files, commit, open/update PRs and inspect CI/diffs according to branch policy. After material writes, read back relevant refs/files/status when meaningful.
+ChatGPT Work is outside Project Workflow.
 
-When executing multiple project-level cards in parallel, isolate mutable lanes, keep Task Board/global state coordinator-owned, integrate one lane at a time and verify post-integration state.
+## Human-facing control summary
 
-Bounded-parallel Task Board state does not require ChatGPT to manufacture concurrency it does not have. Execute a compatible subset or one card when needed.
+Normal ChatGPT output is a human control surface, not execution telemetry.
 
-## Local execution
+By default tell the user:
+1. what happened / what errors or blockers were found;
+2. what it means;
+3. what happens next / smallest user action.
 
-Use available Python/container/file-processing capabilities for tests, simulations, transformations and artifacts when they validly exercise target. Do not misrepresent isolated ChatGPT runtime as user's local/production runtime.
+Keep internal provenance in durable state rather than dumping it into chat. Do not show SHAs, blob IDs, branch/HEAD pointers, evidence paths, raw Task Board fields, long test inventories, changed-file lists or agent-internal bookkeeping unless:
+- the user asks;
+- the exact value is needed for an action;
+- debugging/recovery/security materially requires it.
 
-## Plugins/external systems
+If no user action is required, say so plainly.
 
-ChatGPT may perform external reads/writes through connected plugins/connectors when contract permits. Follow provider prerequisites and shared `WRITE → READBACK → VERIFY` contract. Shared mutable external targets remain serialized.
+## Review boundary
 
-## Human-facing ChatGPT control summary
+When this chat implemented a subject that reaches REQUIRED/RECOMMENDED independent review:
 
-Normal ChatGPT responses to the user are a **human control surface**, not a dump of durable execution telemetry.
+1. apply `workflow/contracts/TASK_EXECUTION.md` review-boundary persistence;
+2. load `workflow/REVIEW_AND_HANDOFF.md`;
+3. stop before issuing the verdict;
+4. require a fresh normal ChatGPT chat for the independent review;
+5. include the ready-to-copy fresh-chat prompt in the same response.
 
-By default, report only what the user needs to understand or act:
+The fresh-chat prompt includes project repo, exact active branch, continuation target and durable start pointer, but does not duplicate durable evidence.
 
-1. **What happened / what was found** — plain-language result, especially any actual errors, risks or blockers.
-2. **What it means** — one short explanation of impact.
-3. **What happens next** — whether ChatGPT continues automatically, needs a user decision, or requires/recommends a fresh chat.
-4. **Fresh-chat prompt** — when a fresh chat is required or recommended, include the ready-to-copy prompt immediately as required by the shared workflow.
+OPTIONAL review does not force a new chat unless explicitly activated.
 
-Prefer ELI5-style operational language over internal workflow jargon when both convey the same meaning.
+## Session continuity
 
-Do **not** include by default:
-- commit/review SHAs, blob IDs or tree IDs;
-- exact branch/HEAD pointers;
-- internal evidence file paths;
-- raw Task Board fields;
-- long test inventories or exact test counts;
-- changed-file lists;
-- internal OpenSpec/task bookkeeping;
-- worker/session orchestration details.
+Workflow roles are not tied to one ChatGPT chat.
 
-Those facts must still be persisted correctly in durable project state. Omit them only from the default human-facing response.
+Outside REQUIRED/RECOMMENDED independence:
+- the same chat may continue deterministic execution while context remains useful;
+- a fresh chat is optional context hygiene, not a workflow gate;
+- if recommending a fresh chat, include its copy-paste-ready start prompt immediately.
 
-Show technical identifiers/details when:
-- the user explicitly asks for them;
-- the user must copy/use the exact value to perform an action;
-- a blocker/ambiguity cannot be explained safely without the exact identifier;
-- a security/recovery/debugging situation makes the exact pointer materially useful.
+Do not impose a fixed token count or milestone cadence for fresh sessions.
 
-If no user action is required, say that plainly. If there is a blocker, describe the blocker in ordinary language and ask only for the smallest concrete decision/input.
-
-Example review-boundary UX:
-
-```text
-Implementacja tej karty jest gotowa i testy nie wykazały problemów.
-
-Teraz potrzebny jest niezależny review w nowym czacie, bo ten czat wykonywał implementację. Nie uruchamiam kolejnej karty przed review.
-
-USER ACTION REQUIRED: otwórz nowy czat i wklej poniższy prompt.
-
-<copy-paste NEW CHAT START PROMPT>
-```
-
-Exact review subject, evidence, test details and Git pointers remain in the repository and are recovered by the next chat.
-
-## Independent review handoff
-
-Under `chatgpt_only`, a chat that implemented a subject must **not** issue that subject's REQUIRED or RECOMMENDED independent-review verdict.
-
-At the review boundary:
-1. freeze/persist exact `review_subject` and implementation/test evidence;
-2. set Task Board `review_state: pending` plus pointers;
-3. commit/push durable state when possible;
-4. stop execution for this chat;
-5. report exactly that user action is required to start a **fresh normal ChatGPT chat** from `implementation/TASK_BOARD.yaml` for independent review;
-6. include in the same response a minimal copy-paste-ready fenced `NEW CHAT START PROMPT` pointing to the project repo, exact active project/implementation branch, pending review target and durable start pointer.
-
-The fresh review chat independently reads the exact subject and durable evidence, sets `review_state: in_progress`, persists GREEN/RED evidence, and sets `review_state: green | red`.
-
-After GREEN, that fresh review chat may continue subsequent deterministic `chatgpt_only` work. If it later implements a new subject requiring/recommending review, a further fresh chat is required at that new review boundary.
-
-OPTIONAL review does not force a fresh-chat stop unless the project/card explicitly chooses to perform it.
-
-## Chat/session continuity
-
-Workflow roles are not tied to a specific ChatGPT chat. Under `chatgpt_only`, the same current chat may continue from planning/JIT orchestration into execution when durable authority is clear and context remains useful.
-
-A **fresh chat is mandatory only** for REQUIRED/RECOMMENDED independent review of a subject implemented by the current chat.
-
-Outside that independence boundary, a fresh chat is optional context hygiene. Recommend one when prior conversational context has become stale, contradictory, overly broad, or otherwise likely to obscure the durable project state, especially at a clean checkpoint where recovery is deterministic. Do not impose a fixed token count or “every N milestones” rule. If recommending one, include its copy-paste-ready minimal start prompt immediately; never make the user ask separately for it. The prompt always includes the exact active branch, even when it is `main`.
-
-A fresh chat must recover from `PROJECT.md`, Task Board and exact referenced durable authority. It must not require the previous chat transcript to reconstruct execution truth. Account/project-level context may still exist, but durable repository authority outranks it.
+A fresh chat recovers from durable repository state, not from the previous transcript.
 
 ## Continuation
 
-Under `chatgpt_only`, continue deterministic READY work and cross GREEN milestone boundaries automatically when next milestone is already approved, required/recommended review gates are GREEN and shared continuation conditions hold. Do not run Capability Gate or capability preflight at each card/milestone.
+Under `chatgpt_only`, continue deterministic READY work automatically until a real review/strategic/user/authorization/runtime/end-of-scope boundary occurs.
 
-Under `mixed`, a new assignment is routed through Capability Gate as required by shared execution semantics.
+Under `mixed`, execute only the assignment established by Capability Gate; route a genuinely new assignment through the gate after assigned scope ends.
 
-A fresh ChatGPT chat may be **recommended** for context hygiene at clean boundaries; that is different from the **mandatory** fresh-chat handoff required for independent review of a subject implemented by the current chat.
-
-## Runtime blocker
-
-Do not claim completion when a concrete required operation is unavailable. Persist evidence and mark the affected Task Board card blocked when its contract cannot be met.
-
-Under `chatgpt_only`, ask for the smallest missing capability/access or let the user explicitly change policy. Under `mixed`, do not silently reroute an already-started card.
+Milestone close/next-milestone rules are evaluated through `workflow/REVIEW_AND_HANDOFF.md`, not duplicated here.

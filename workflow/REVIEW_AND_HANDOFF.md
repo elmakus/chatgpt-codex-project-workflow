@@ -2,7 +2,7 @@
 
 ## Card close
 
-A card is not done because an executor says it is done. Apply the Task Card Definition of Done contract and GitHub State Contract, then persist terminal state/result pointers in Task Board.
+A card is not done because an executor says it is done. Apply `workflow/contracts/TASK_EXECUTION.md` Definition of Done. Load `GITHUB_STATE.md` additionally only when coordinator/parallel/milestone-close/state-consistency semantics are involved, then persist terminal state/result pointers in Task Board.
 
 For a simple reproducible card, exact result pointers plus a concise `tests_summary` may be sufficient closure evidence. Create a standalone evidence artifact when the proof is materially richer or independently useful: milestone integrated acceptance, REQUIRED/RECOMMENDED independent review, baseline/authorized exception, material external write/readback, complex multi-stage verification, or an explicit contract requirement.
 

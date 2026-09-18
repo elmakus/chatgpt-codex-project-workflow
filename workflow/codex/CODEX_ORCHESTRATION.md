@@ -41,13 +41,15 @@ Delegation does not transfer project-level accountability.
 
 Under `codex_only`, Codex Main also owns deterministic continuation across approved milestone boundaries when `workflow/EXECUTION.md` conditions are satisfied. It may perform allowed just-in-time execution prep but may not invent strategic authority.
 
-## 4. Runtime capability behavior
+## 4. Runtime-operation behavior
 
-Under `codex_only`, Project Workflow does not ask Codex Main to preflight/inventory capabilities before execution. Codex starts the approved work and lets installed `codex_workflow`/runtime mechanics handle ordinary environment/tooling needs.
+Project Workflow does not maintain a catalog of Codex tools/capabilities and does not ask Codex Main to inventory them before execution.
 
-Ordinary non-secret local tooling/dependency gaps should be self-remediated when the environment permits and accepted security/reproducibility constraints allow it. Project Workflow becomes involved only when a concrete operation cannot proceed and requires user-provided MCP/credential/token/access/authorization or another non-self-remediable capability.
+Codex starts the approved work with its actual runtime. Ordinary executor-local remediation is handled by Codex/`codex_workflow` when permitted by the environment and accepted constraints.
 
-Under `mixed`, pre-assignment executor routing remains owned by ChatGPT Capability Gate; after Codex assignment, runtime capability failures follow the same concrete-operation blocker rule.
+Project Workflow becomes involved when a concrete required operation still cannot proceed. Persist the exact blocker and request only the smallest user-provided input/access/authorization actually required.
+
+Under `mixed`, pre-assignment executor routing remains owned by ChatGPT Capability Gate; after Codex assignment, a runtime failure does not silently reroute the work.
 
 ## 5. Parallel Task Card mapping
 
@@ -82,7 +84,7 @@ Workers/subagents do not independently change product requirements, frozen strat
 
 ## 8. Completion boundary
 
-Worker completion is not Task Card completion. Main integrates/verifies delegated output against Task Card, relevant OpenSpec and `workflow/contracts/GITHUB_STATE.md` before Task Board card becomes `done`.
+Worker completion is not Task Card completion. Main integrates/verifies delegated output against the Task Card, relevant OpenSpec and `workflow/contracts/TASK_EXECUTION.md`; load `GITHUB_STATE.md` additionally when coordinator/parallel/milestone state semantics are involved.
 
 Reviewer-worker completion is not milestone acceptance until Main persists the exact verdict/evidence against the exact review subject.
 

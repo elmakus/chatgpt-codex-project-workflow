@@ -28,7 +28,7 @@ This avoids repeatedly synchronizing status, executor, SHA and result pointers a
 Every project chooses exactly one:
 
 - `chatgpt_only` — ChatGPT is the fixed Task Card executor. No Capability Gate and no capability preflight. Start the work; if a concrete required operation cannot be performed, persist the runtime blocker and ask for the smallest remedy or an explicit policy change.
-- `codex_only` — Codex is the fixed Task Card executor. No Capability Gate and no capability preflight. Codex starts directly, self-remediates ordinary installable non-secret tooling/dependencies when permitted, and asks the user only when a concrete operation requires unavailable user-provided MCP/credential/token/access/authorization.
+- `codex_only` — Codex is the fixed Task Card executor. No Capability Gate and no capability inventory/preflight. Project Workflow does not prescribe Codex's tool inventory; Codex starts with its actual runtime, handles ordinary executor-local remediation when permitted, and asks the user only when a concrete required operation still needs user-provided input/access/authorization.
 - `mixed` — ChatGPT remains project router and uses the Capability Gate before new execution assignment to choose ChatGPT, Codex or BLOCKED.
 
 Project routing assumes `ChatGPT capabilities ⊆ Codex capabilities`.
@@ -39,7 +39,7 @@ Changing policy requires an explicit user decision.
 
 For fixed policies, capability availability is **runtime discovery**, not a recurring planning gate.
 
-Execution Prep and Refresh Gate do not inventory tools/MCPs or attempt to prove that the fixed executor can perform every future operation. Refresh Gate checks current state, contracts, dependencies, interfaces, tests/evidence obligations and drift.
+Execution Prep and Refresh Gate do not inventory executor tools/capabilities or attempt to prove that the fixed executor can perform every future operation. Refresh Gate checks current state, contracts, dependencies, interfaces, tests/evidence obligations and drift.
 
 A capability becomes a blocker only when the active card reaches a concrete required operation that cannot proceed. No automatic executor/policy switch occurs. The user may provide the missing capability or explicitly change policy, after which Task Board is reconciled before reassignment.
 
@@ -92,6 +92,27 @@ The execution orchestrator may, without returning to the original planner:
 This authority is bounded. It must not change accepted requirements, frozen architecture/decisions, global invariants, milestone outcome or explicit user/deployment/authorization gates. If new evidence requires one of those to change, execution stops for strategic replan.
 
 Do not create placeholder cards whose real scope is merely “whatever the previous card reveals.” Persist the dependency/JIT trigger instead and create the real card when the evidence exists.
+
+## Lean executor runtime
+
+Ordinary execution of an already-defined Task Card uses a small shared runtime path:
+
+```text
+workflow/EXECUTION.md
+→ workflow/contracts/TASK_EXECUTION.md
+→ executor adapter
+→ current Task Card + exact authority slice + required source/runtime
+```
+
+`TASK_CARDS.md` is an authoring/decomposition contract, not a mandatory executor read. `GITHUB_STATE.md` is the extended coordinator/parallel/review/milestone/recovery state contract, not a mandatory serial-card read.
+
+Conditional material is loaded only on trigger:
+- OpenSpec when current scope references/requires it;
+- Task Card authoring + Execution Prep for JIT decomposition/refinement;
+- full GitHub State for bounded parallel/coordinator state, close/publication, inconsistency or recovery;
+- Review and Handoff only when review/acceptance/close is reached.
+
+Project Workflow does not teach ChatGPT or Codex a catalog of their tools/capabilities. Executors attempt concrete operations with their actual runtime; fixed-policy capability inventory/preflight is not part of normal execution.
 
 ## Task execution
 
@@ -146,6 +167,7 @@ Whenever Project Workflow requires or recommends that the user open a fresh norm
 
 The prompt is intentionally thin:
 - project repository;
+- exact active project/implementation branch;
 - exact continuation target (for example pending independent review for one card);
 - smallest durable start pointer;
 - instruction to recover exact state/subject/authority/evidence from the repository.

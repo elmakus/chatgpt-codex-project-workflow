@@ -101,7 +101,7 @@ A Task Card is a bounded global work package. An OpenSpec `tasks.md` item is a s
 
 Executor is fixed to ChatGPT. **Do not run Capability Gate or capability preflight/inventory.**
 
-Prepare the card, assign ChatGPT in Task Board and start execution. If a concrete required operation later cannot be performed with current ChatGPT tools/plugins/connectors, persist a runtime blocker and ask for the smallest remedy. The user may instead explicitly change execution policy, after which Task Board is reconciled before reassignment.
+Prepare the card, assign ChatGPT in Task Board and start execution. Project Workflow does not prescribe ChatGPT's tool inventory. If a concrete required operation later cannot be performed with the actual runtime, persist a runtime blocker and ask only for the smallest user-provided input/access/authorization actually required. The user may instead explicitly change execution policy, after which Task Board is reconciled before reassignment.
 
 ### `codex_only`
 
@@ -109,7 +109,7 @@ Executor is fixed to Codex. **Do not run Capability Gate or capability preflight
 
 ChatGPT may prepare the initial package and hand it to Codex. Once a Codex-only execution stream is active, the execution orchestrator may perform just-in-time execution preparation both **within the active milestone** and for a subsequent already-approved milestone when durable authority plus predecessor evidence determine the required L1/L2 refinement and no new strategic decision is required.
 
-Codex may refresh implementation details against actual state; it may not invent or revise product requirements/frozen architecture merely to continue. Ordinary installable local tooling/dependency gaps are runtime implementation detail when Codex can safely self-remediate them. User-provided MCP/credential/token/access becomes a blocker only when concretely needed and unavailable.
+Codex may refresh implementation details against actual state; it may not invent or revise product requirements/frozen architecture merely to continue. Project Workflow does not prescribe Codex's tool inventory. Ordinary executor-local remediation is runtime implementation detail when permitted; a blocker exists only when a concrete required operation still cannot proceed and needs user-provided input/access/authorization.
 
 ### `mixed`
 
