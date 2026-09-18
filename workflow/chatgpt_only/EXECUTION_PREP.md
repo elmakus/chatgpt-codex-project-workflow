@@ -14,7 +14,7 @@ Before creating executable work:
 ## State ownership
 
 Execution prep writes:
-- Task Card contracts under `implementation/cards/`;
+- Task Card contracts in the selected state context: legacy/default `implementation/cards/`, or the selected workstream's manifest-bound cards location/conventional `implementation/workstreams/<id>/cards/`;
 - optional JIT milestone extension only when it adds material detail beyond the approved Master Plan milestone section; qualified micro-fixes do not create one merely to imitate milestone shape;
 - mutable readiness/status/result/review state only to the **selected canonical Task Board** resolved by `workflow/chatgpt_only/WORKSTREAMS.md`.
 
