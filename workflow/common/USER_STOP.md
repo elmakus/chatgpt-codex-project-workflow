@@ -63,7 +63,7 @@ Use the bounded forms below. Do not improvise a larger handoff by copying:
 
 The only allowed addition is the smallest non-durable user intent that cannot be recovered from repository authority.
 
-If a nonstandard review/audit scope is materially required and cannot be reconstructed from existing durable authority, **persist that scope first** in the owning Task Card, review record, audit-scope artifact or other appropriate project file. Then point `Durable start pointer` at that artifact instead of serializing the scope into the chat prompt.
+If a nonstandard review/audit scope is materially required and cannot be reconstructed from existing durable authority, **persist that scope first** in the owning Task Card, review record, audit-scope artifact or other appropriate project file. When the selected route already has a canonical state pointer (for example Task Board), keep that canonical pointer and make its owning contract/state reference the durable scope artifact. Otherwise the handoff may point directly to the durable scope artifact. Never serialize the scope into the chat prompt.
 
 The named entry target identifies only the first obligation to recover. After that role completes, the new chat returns to the selected policy router and continues deterministic authorized transitions until a real workflow stop.
 
