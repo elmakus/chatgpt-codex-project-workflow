@@ -2,9 +2,22 @@
 
 Plan revision: `<R#>`
 
-> This file is the milestone **contract**, not live state. Current decision/execution status, checkpoint, implementation head, handoff and acceptance-evidence pointers live in `implementation/TASK_BOARD.yaml`.
+> Create this file only when the approved Master Plan milestone section is insufficient for deterministic execution/integrated acceptance. It extends that milestone **contract**; it must not merely duplicate or weaken it. Current decision/execution status, checkpoint, implementation head, handoff and acceptance-evidence pointers live in `implementation/TASK_BOARD.yaml`.
+
+## Authority inherited
+
+- Master Plan milestone section: `<planning/MASTER_PLAN.md#...>`
+- Requirements / accepted decisions: `<exact IDs/paths>`
+
+## Additional must-preserve constraints / rationale
+
+Only detail that materially extends the approved plan.
+
+...
 
 ## Outcome
+
+Only restate when the JIT contract materially sharpens the approved milestone outcome.
 
 ...
 
