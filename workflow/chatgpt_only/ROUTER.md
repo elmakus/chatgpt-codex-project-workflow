@@ -112,6 +112,17 @@ Then obey its decision:
 
 Never run a separate context-health handoff when another real stop already owns the boundary. A pending REQUIRED/RECOMMENDED fresh independent review is one such case and already provides the context reset.
 
+## Implementation/recovery Research return consumption
+
+For a Task Board `research_obligation` whose record is `Status: complete`:
+
+- the exact current `Return target` owns continuation and the pointer remains in Task Board while that obligation is unfinished;
+- when the current Return target is `execution_resolution:<subject>`, Strategic blocker is an intermediate classifier: it must persist an exact final Return target such as `execution:<subject>`, `execution_prep:<subject>`, `strategic_planning:<subject>`, or `project_definition:<subject>` while keeping `Status: complete` and keeping Task Board `research_obligation`;
+- only the final owning Return target marks the record `consumed` and clears Task Board `research_obligation`, and only after its reconciliation/correction is durably persisted;
+- therefore a crash before, during, or after classification always leaves one exact durable continuation target.
+
+Research never selects that final route by itself; the authorized classifier does.
+
 ## Routes
 
 ### Brainstorming
@@ -141,6 +152,7 @@ Read:
 - current user/product goal and explicit accepted choices;
 - the exact `PROJECT.md → Active exploratory scope` record when Definition was entered through the promotion gate and the pointer is still active;
 - the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Project Definition subject;
+- the exact `complete` record referenced by Task Board `research_obligation` when its final Return target is this Project Definition subject;
 - relevant brainstorming conclusions;
 - relevant verified research/evidence;
 - existing requirements/decisions when redefining accepted authority;
@@ -172,6 +184,7 @@ Read:
 - approved canonical requirements;
 - accepted decisions;
 - the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Strategic Planning subject;
+- the exact `complete` record referenced by Task Board `research_obligation` when its final Return target is this Strategic Planning subject;
 - only verified research/baseline that the accepted definition or plan actually references;
 - current approved plan when replanning.
 
@@ -201,7 +214,8 @@ Read:
 - `workflow/chatgpt_only/TASK_CARDS.md`;
 - current milestone/plan authority;
 - Task Board when implementation state exists;
-- exact predecessor evidence needed by current decomposition.
+- exact predecessor evidence needed by current decomposition;
+- the exact `complete` record referenced by Task Board `research_obligation` when its final Return target is this Execution Prep subject.
 
 Read `workflow/common/OPENSPEC.md` only when current preparation marks/reconciles an OpenSpec-relevant contract.
 
@@ -213,7 +227,8 @@ Read:
 - Task Board;
 - current milestone/Card;
 - exact authority slice;
-- only source/runtime/evidence needed for that card.
+- only source/runtime/evidence needed for that card;
+- the exact `complete` record referenced by Task Board `research_obligation` when its final Return target is this Execution subject.
 
 Read `workflow/common/OPENSPEC.md` only when the current card references/requires it.
 
@@ -251,16 +266,16 @@ Read only:
 
 If this route is the exact `execution_resolution:<subject>` Return target of a completed implementation/recovery Research record:
 1. verify that Task Board `research_obligation` still points to that record and that its Origin/Return subjects match the affected durable Card/blocker state;
-2. durably reconcile the findings into the correction/classification state first;
-3. choose the owning continuation below;
-4. only after that reconciliation is durable, set the Research record to `consumed` and clear Task Board `research_obligation`;
-5. return through this router to the chosen continuation.
+2. classify the findings against current durable authority;
+3. persist that classification by replacing the record's Return target with the exact final owning role/subject while keeping `Status: complete` and keeping Task Board `research_obligation`;
+4. return through this router; the pointer now deterministically routes to that final target;
+5. do **not** mark the record `consumed` here — the final target consumes it only after its correction/reconciliation is durably complete.
 
 Then:
-- bounded L1/L2 correction inside accepted authority → route to Execution Prep or Execution;
-- if accepted product/system intent or a strategic decision must change, route to Project Definition;
-- if accepted definition remains valid but milestone sequencing/plan must change, route to Strategic planning;
-- if more evidence is still needed before either can be decided, create/persist the next exact implementation-owned Research obligation before routing to Research.
+- bounded L1/L2 correction inside accepted authority → refine Return target to Execution Prep or Execution;
+- if accepted product/system intent or a strategic decision must change → refine Return target to Project Definition;
+- if accepted definition remains valid but milestone sequencing/plan must change → refine Return target to Strategic planning;
+- if more evidence is still needed before either can be decided, atomically persist the next exact implementation-owned Research record/pointer before retiring the completed classifier record and route to Research.
 
 Do not continue affected work until the owning authority is resolved.
 
