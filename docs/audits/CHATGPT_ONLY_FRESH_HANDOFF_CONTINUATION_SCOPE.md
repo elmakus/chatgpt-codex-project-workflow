@@ -37,7 +37,8 @@ At minimum verify:
 
 4. **Durable special scope**
    - a nonstandard review/audit scope that cannot be reconstructed from existing authority is persisted before handoff in an appropriate durable artifact;
-   - the prompt points to that artifact rather than serializing it into chat text.
+   - when the selected route already owns a canonical durable state/start pointer, that pointer is preserved and its owning state/contract references the scope artifact;
+   - only when no canonical pointer exists may the prompt point directly to the scope artifact; in all cases the scope itself is not serialized into chat text.
 
 5. **Single canonical prompt owner**
    - `workflow/common/USER_STOP.md` remains the canonical user-facing fresh-session format;
