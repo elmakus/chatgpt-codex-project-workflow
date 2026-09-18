@@ -129,7 +129,7 @@ When a concrete required operation or accepted contract cannot proceed:
 
 A runtime blocker does not silently redefine accepted requirements or execution authority.
 
-If blocker is strategic, route to strategic decision and persist the accepted resolution before resuming.
+If a blocker exceeds L1/L2 authority, return to the router for strategic classification: Planning when Project Definition remains valid but plan strategy must change, Project Definition when accepted product/system authority must change, or Research when more evidence is required. A user stop exists only when that classification reaches unresolved user/product authority or another explicit real gate.
 
 ## Independent review lifecycle
 
