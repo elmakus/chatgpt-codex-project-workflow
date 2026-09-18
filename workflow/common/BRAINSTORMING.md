@@ -25,10 +25,7 @@ Brainstorming may contain:
 
 Nothing in `brainstorming/` becomes authoritative merely because it was written down or discussed repeatedly.
 
-When the user explicitly accepts a choice:
-1. create/update the accepted decision record;
-2. update canonical requirements or planning if that decision changes them;
-3. update `PROJECT.md` pointers/high-level status when material.
+When the user explicitly accepts a choice, preserve that acceptance and route it through Project Definition so canonical requirements/decision authority is reconciled in one place. Do not make Brainstorming a second requirements/planning writer.
 
 Do not rewrite history to make old brainstorming look settled.
 
@@ -47,6 +44,6 @@ Read only already accepted requirements/decisions and source/project context tha
 
 Move to research when claims require verification.
 
-Move to requirements/planning only when enough facts and accepted decisions exist to define authoritative requirements and target state.
+Move to Project Definition when enough facts and accepted choices exist to formalize authoritative requirements/decisions and target state.
 
 Do not create implementation Task Cards or detailed OpenSpec prematurely merely because ideas are becoming concrete.
