@@ -83,9 +83,10 @@ When execution/recovery needs Research before it can classify or continue affect
 3. keep the affected Card non-terminal and preserve its exact implementation/review/blocker state; mark it `blocked` when the evidence gap itself prevents further Card progress;
 4. return to the router, which routes the active obligation to Research;
 5. when Research becomes `complete`, keep the Task Board pointer in place and return through the router to the exact `execution_resolution` target;
-6. only after that target durably reconciles/classifies the findings may it set Research to `consumed` and clear Task Board `research_obligation`.
+6. `execution_resolution` classifies the findings and durably refines the record's Return target to the exact final owning role/subject while keeping `Status: complete` and the Task Board pointer;
+7. that final target performs its correction/reconciliation; only after the result is durably persisted does it set Research to `consumed` and clear Task Board `research_obligation`.
 
-The research record owns lifecycle Status, Origin and Return target; Task Board stores only the implementation-owned pointer.
+The research record owns lifecycle Status, Origin and Return target; Task Board stores only the implementation-owned pointer. If this Execution route is the final Return target of a completed Research obligation, keep the pointer until the corrective execution result (and, when required, the new `review_state: pending` subject) is durably persisted, then consume/clear it.
 
 ## Runtime-operation rule
 
