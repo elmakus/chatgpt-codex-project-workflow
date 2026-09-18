@@ -158,7 +158,7 @@ Under `chatgpt_only`:
 - GREEN returns through the router to Planning for final approval;
 - RED routes to Planning, Project Definition or Research according to the defect.
 
-Trivial/editorial plan changes may use `Independent plan review: none`.
+Trivial/editorial plan changes may use `Independent plan review: none`. A substantive change may also use `none` only when independent review is concretely impractical, no project/user authority requires it, and the planning audit records why; convenience alone is not enough.
 
 The reviewed Master Plan itself does not carry mutable review-state fields, so review lifecycle updates cannot accidentally change the frozen review subject.
 
