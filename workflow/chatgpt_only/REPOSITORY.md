@@ -114,6 +114,22 @@ Default:
 
 Never force-push `main` as a normal workflow action.
 
+## Local concurrent checkout isolation
+
+Branch isolation and filesystem isolation are separate requirements.
+
+When two or more ChatGPT-only workstreams are actively executing against the same local repository storage at the same time:
+- each actively mutating workstream must use its own Git worktree or equivalent isolated checkout;
+- each checkout must remain on the exact branch/workstream it owns while that execution is active;
+- one executor must not switch, reset or otherwise repurpose a checkout underneath another active workstream;
+- sharing the same `.git` object database through normal Git worktree mechanics is allowed; the mutable working tree/index must be isolated.
+
+A branch name by itself is not local isolation. Sequential work may reuse one checkout once no other executor is actively relying on that mutable checkout and the exact branch/state is reconciled before reuse.
+
+Remote-only GitHub operations do not require creation of a local worktree because they do not share a mutable local checkout. A local worktree is therefore a runtime isolation precondition when concurrent local mutation exists, not a new durable execution-state source.
+
+Worktree presence does not authorize concurrency inside one workstream. The selected Task Board still permits at most one `in_progress` Card.
+
 ## In-flight branch/runtime state
 
 The project repository remains canonical while execution is happening on an implementation branch or external runtime.
