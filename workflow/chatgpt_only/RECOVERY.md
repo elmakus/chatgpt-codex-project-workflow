@@ -20,9 +20,9 @@ Previous chat narrative is not authority.
 ## Recovery priority
 
 1. REQUIRED/RECOMMENDED `review_state: pending | in_progress` outranks later implementation.
-2. A non-terminal REQUIRED/RECOMMENDED subject with `review_state: red` routes to **RED review recovery** below before any new Card.
-3. An `in_progress` Card with `review_state: green` and complete persisted implementation/result evidence routes to Execution for terminal Post-review Card finalization before any new Card.
-4. Task Board `research_obligation` with research `Status: active | blocked | complete` outranks selecting new implementation and recovers through **Implementation-owned Research** below.
+2. Task Board `research_obligation` with research `Status: active | blocked | complete` outranks selecting new implementation, including when opened from a RED verdict, and recovers through **Implementation-owned Research** below.
+3. A non-terminal REQUIRED/RECOMMENDED subject with `review_state: red` and no already-materialized Research continuation routes to **RED review recovery** below before any unrelated/new Card.
+4. An `in_progress` Card with `review_state: green` and complete persisted implementation/result evidence routes to Execution for terminal Post-review Card finalization before any new Card.
 5. Any other existing `in_progress` Card outranks selecting a new Card.
 6. Existing `blocked` Card must be re-evaluated before dependent work.
 7. Only when no active obligation exists may next READY Card be selected.
@@ -62,12 +62,13 @@ A persisted RED verdict is already a completed independent-review result. Recove
 1. recover the exact `review_subject`, RED review evidence and the reviewed Card/milestone authority;
 2. verify the RED evidence still refers to that exact immutable reviewed subject;
 3. keep the reviewed Card/milestone non-terminal;
-4. read `workflow/chatgpt_only/REVIEW.md#RED → corrective-route transition` and classify the persisted failing evidence under that canonical transition;
-5. bounded L1/L2 correction inside accepted authority → return through the router to Execution Prep or Execution;
-6. plan-only correction while Project Definition remains valid → Strategic planning;
-7. accepted requirement/strategic/global-target change → Project Definition;
-8. missing evidence needed before classification/correction → create the exact implementation-owned Research record + Task Board `research_obligation` before yielding, with `Return target: execution_resolution:<exact affected subject>`, then route to Research;
-9. unresolved user/product authority or another explicit real gate → use the normal user-stop contract.
+4. read `workflow/chatgpt_only/REVIEW.md#RED → corrective-route transition` and classify the persisted failing evidence against current durable state under that canonical transition;
+5. if the failing condition has already been durably reconciled by a completed correction role, do not repeat that role; recover the next downstream obligation from current authority/state;
+6. bounded L1/L2 correction inside accepted authority → return through the router to Execution Prep or Execution;
+7. plan-only correction while Project Definition remains valid → Strategic planning;
+8. accepted requirement/strategic/global-target change → Project Definition;
+9. missing evidence needed before classification/correction → if no matching Research continuation exists, create the exact implementation-owned Research record + Task Board `research_obligation` before yielding, with `Return target: execution_resolution:<exact affected subject>`; if it already exists, reuse it instead of creating another; then route to Research;
+10. unresolved user/product authority or another explicit real gate → use the normal user-stop contract.
 
 When correction changes the reviewable implementation subject, preserve the old RED evidence, freeze the new exact subject as a new `pending` review attempt, and require a fresh independent reviewer before terminal Card completion.
 
