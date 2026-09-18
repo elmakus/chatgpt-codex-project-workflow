@@ -9,7 +9,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/chatgpt-only-multi-workstream-intake"
   pr: null
-  head: "6a865fada4a30cbd0938c51627a8d0d864959526"
+  head: "4c5a2b50f37199b5038fccb89a02b696a2514c11"
 
 research_obligation: null
 
@@ -94,10 +94,10 @@ cards:
     depends_on: ["M02-T01"]
     openspec_change: null
     contract: "implementation/cards/M03-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "fe447d4e0322b8b4f1ef5a5f1fd46b703877a75b"
     review_evidence: null
-    result_commit: null
+    result_commit: "fe447d4e0322b8b4f1ef5a5f1fd46b703877a75b"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/evidence/M03-T01.md"
+    tests_summary: "GREEN implementation verification recorded in implementation/evidence/M03-T01.md; M03 subject frozen for RECOMMENDED independent review."
