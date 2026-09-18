@@ -133,15 +133,20 @@ If blocker is strategic, route to strategic decision and persist the accepted re
 
 ## Independent review lifecycle
 
-For REQUIRED/RECOMMENDED review:
+For a Card/milestone contracted as REQUIRED or RECOMMENDED:
 1. implementing chat freezes exact subject/evidence;
 2. set `review_state: pending`;
 3. persist durable state;
 4. fresh independent chat sets `in_progress`;
 5. reviewer persists GREEN/RED evidence;
-6. set `review_state: green | red`.
+6. set `review_state: green | red`;
+7. completed reviewer role returns to the router for the next legal obligation.
 
-The implementing chat never issues its own required/recommended verdict.
+For `independent_review: none`, do not create review state as routine workflow.
+
+If independent review is later explicitly requested for `none`, persist the requirement as RECOMMENDED before creating `review_state`.
+
+The implementing chat never issues its own REQUIRED/RECOMMENDED verdict.
 
 ## Milestone GREEN
 
@@ -165,7 +170,7 @@ If review/acceptance is RED:
 - preserve dependencies and strategic boundaries;
 - changed subject receives a new independent review when still required/recommended.
 
-When fresh reviewer produces RED and corrective work is bounded, deterministic, authorized and unblocked, that same chat performs remediation before ending the turn, then freezes corrected subject as new `pending` review and stops before self-review.
+When a fresh reviewer produces RED and corrective work is bounded, deterministic, authorized and unblocked, the reviewer role ends and the same chat returns to the router. The router assigns execution preparation/execution for the correction. After that chat implements the corrected reviewable subject, it freezes the new exact subject as `pending` and stops before self-review.
 
 ## Next milestone
 
