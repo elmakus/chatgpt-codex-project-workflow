@@ -42,7 +42,8 @@ At the review boundary:
 2. set Task Board `review_state: pending` plus pointers;
 3. commit/push durable state when possible;
 4. stop execution for this chat;
-5. report exactly that user action is required to start a **fresh normal ChatGPT chat** from `implementation/TASK_BOARD.yaml` for independent review.
+5. report exactly that user action is required to start a **fresh normal ChatGPT chat** from `implementation/TASK_BOARD.yaml` for independent review;
+6. include in the same response a minimal copy-paste-ready fenced `NEW CHAT START PROMPT` pointing to the project repo, pending review target and durable start pointer.
 
 The fresh review chat independently reads the exact subject and durable evidence, sets `review_state: in_progress`, persists GREEN/RED evidence, and sets `review_state: green | red`.
 
@@ -56,7 +57,7 @@ Workflow roles are not tied to a specific ChatGPT chat. Under `chatgpt_only`, th
 
 A **fresh chat is mandatory only** for REQUIRED/RECOMMENDED independent review of a subject implemented by the current chat.
 
-Outside that independence boundary, a fresh chat is optional context hygiene. Recommend one when prior conversational context has become stale, contradictory, overly broad, or otherwise likely to obscure the durable project state, especially at a clean checkpoint where recovery is deterministic. Do not impose a fixed token count or “every N milestones” rule.
+Outside that independence boundary, a fresh chat is optional context hygiene. Recommend one when prior conversational context has become stale, contradictory, overly broad, or otherwise likely to obscure the durable project state, especially at a clean checkpoint where recovery is deterministic. Do not impose a fixed token count or “every N milestones” rule. If recommending one, include its copy-paste-ready minimal start prompt immediately; never make the user ask separately for it.
 
 A fresh chat must recover from `PROJECT.md`, Task Board and exact referenced durable authority. It must not require the previous chat transcript to reconstruct execution truth. Account/project-level context may still exist, but durable repository authority outranks it.
 
