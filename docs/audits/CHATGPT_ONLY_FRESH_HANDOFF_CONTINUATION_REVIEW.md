@@ -60,3 +60,20 @@ All other reviewed continuation semantics may remain unchanged unless the correc
 The frozen subject `3631cfa8d969f4914618c9313d45cccd60869689` is rejected.
 
 The RED evidence must be persisted before remediation. After bounded correction, the corrected branch subject requires a fresh independent re-review; the correcting chat must not self-review it.
+
+
+## Bounded remediation completed
+
+The RED finding was corrected without changing the intended continuation model:
+
+- `README.md` now preserves a route-owned canonical durable state/start pointer and allows direct handoff-to-scope only when no canonical pointer exists.
+- `prompts/CHATGPT_FRESH_SESSION.md` now states the same rule while remaining a convenience entrypoint with no duplicate concrete template.
+- `docs/audits/CHATGPT_ONLY_FRESH_HANDOFF_CONTINUATION_SCOPE.md` now makes the same distinction in the durable special-scope objective.
+
+No GREEN verdict is issued by this correcting chat.
+
+## Next review state
+
+**PENDING fresh independent re-review.**
+
+The corrected exact subject is the final branch HEAD after this remediation/evidence-state update. A fresh independent reviewer must freeze that HEAD at review entry, reconstruct current workflow authority from current `main`, and perform the review again. This chat must not self-review the corrected subject.
