@@ -16,12 +16,12 @@ research_obligation: null
 milestones:
   M01:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M01--workstream-state-model-and-routing-foundation"
-    checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    checkpoint: "adba7d1da3641e9bc008483c53246119b20dd066"
+    implementation_head: "adba7d1da3641e9bc008483c53246119b20dd066"
+    handoff: "project-handoffs/M01_HANDOFF.md"
+    acceptance_evidence: "implementation/evidence/M01-T01-review-02.md"
     review_state: null
     review_subject: null
     review_evidence: null
