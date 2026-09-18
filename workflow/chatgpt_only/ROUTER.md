@@ -18,6 +18,30 @@ Do not load legacy/shared execution trees or another policy directory.
 6. Read only that route's required project artifacts plus exact authority refs.
 7. Continue deterministic work automatically until a real workflow stop is reached.
 
+## Role-transition protocol
+
+A route module owns only its current role.
+
+When that role finishes:
+1. persist the durable state/evidence produced by the role;
+2. re-evaluate Task Board + accepted authority;
+3. return to this router;
+4. select the next legal route;
+5. load that route's module(s);
+6. continue in the same chat without a user-facing stop when the transition is deterministic and authorized.
+
+The same chat may therefore move, for example:
+
+```text
+REVIEW → EXECUTION_PREP → EXECUTION → CLOSE → EXECUTION_PREP → EXECUTION
+```
+
+Role identity is per obligation, not permanent for the whole chat.
+
+A reviewer that has completed its verdict is no longer governed by `REVIEW.md` once the router assigns a new route. If the same chat later implements a new reviewable subject, it is the implementing chat for that new subject and cannot independently review it.
+
+Only a real boundary from root `CHATGPT.md#Real-stop-response-contract` ends the turn.
+
 ## Routes
 
 ### Brainstorming
