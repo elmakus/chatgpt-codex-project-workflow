@@ -35,6 +35,27 @@ Project routing assumes `ChatGPT capabilities ⊆ Codex capabilities`.
 
 Changing policy requires an explicit user decision.
 
+## Policy-first routing
+
+Normal ChatGPT now enters through a small policy dispatcher:
+
+```text
+CHATGPT.md
+→ project PROJECT.md
+→ workflow/CONTEXT_ROUTING.md
+→ one execution-policy namespace
+```
+
+The first migrated namespace is `workflow/chatgpt_only/`.
+
+For `chatgpt_only`:
+- common authority/brainstorming/research/OpenSpec rules come only from `workflow/common/`;
+- planning, execution preparation, Task Cards, state, execution, independent review, close/publication and recovery come only from `workflow/chatgpt_only/`;
+- normal project execution handles exactly one READY Task Card at a time;
+- other policy execution/orchestration semantics are outside the route.
+
+The prior multi-policy router is preserved at `workflow/legacy/CONTEXT_ROUTING.md` for policies not yet migrated. This is a staged migration: legacy shared execution/contracts remain in place until those policies receive their own namespaces.
+
 ## Capability semantics
 
 For fixed policies, capability availability is **runtime discovery**, not a recurring planning gate.
