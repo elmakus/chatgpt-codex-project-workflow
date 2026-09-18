@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased — branch-aware fresh-ChatGPT prompts
+
+- Every fresh-ChatGPT start prompt now includes the exact active project/implementation branch, including `main` when applicable.
+- Branch is treated as a routing locator rather than noisy execution telemetry.
+- Exact HEAD/SHA remains omitted when recoverable from durable state.
+
 ## Unreleased — concise human-facing ChatGPT control summaries
 
 - Normal ChatGPT status responses are now treated as a human control surface rather than an execution-telemetry dump.
