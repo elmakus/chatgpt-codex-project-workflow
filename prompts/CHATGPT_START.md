@@ -14,7 +14,7 @@ ChatGPT should:
 1. read current workflow `main`, starting with `CHATGPT.md`;
 2. read project root `PROJECT.md`;
 3. determine phase and `execution_policy`;
-4. apply progressive disclosure;
+4. apply progressive disclosure without semantic loss: resolve the exact applicable authority slice rather than replacing richer durable authority with a summary;
 5. treat accepted durable repository knowledge as authority over stale chat memory;
 6. when implementation state exists, read Task Board as sole live execution-state authority, including any pending/in-progress review gate;
 7. persist accepted state when current GitHub/project capabilities allow it;
