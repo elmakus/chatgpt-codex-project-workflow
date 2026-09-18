@@ -63,10 +63,10 @@ Do not create synchronization edits merely to make documents look consistent.
 
 ## Resume
 
-After durable state is coherent, route to:
-- `EXECUTION.md` for implementation;
-- `REVIEW.md` for review;
-- `CLOSE.md` for accepted milestone close;
-- strategic resolution for L3 blocker.
+After durable state is coherent, the recovery role is complete.
+
+Return to `workflow/chatgpt_only/ROUTER.md`. The router selects execution, review, close or strategic resolution from the recovered state.
 
 Do not end the turn simply because recovery succeeded if deterministic legal work can immediately continue.
+
+If recovery cannot establish a coherent legal next state without user/strategic/runtime input, use root `CHATGPT.md#Real-stop-response-contract`.
