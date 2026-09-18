@@ -9,7 +9,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/chatgpt-only-multi-workstream-intake"
   pr: null
-  head: "85c268bc3931902de265c2dba3d749732d2ceec4"
+  head: "0905157277b4f2f72bccb4099dd0ea36102cea0c"
 
 research_obligation: null
 
@@ -40,7 +40,7 @@ milestones:
 
   M03:
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M03--micro-fix-execution-review-and-recovery-semantics"
     checkpoint: null
     implementation_head: null
@@ -84,3 +84,20 @@ cards:
     result_pr: null
     evidence: "implementation/evidence/M02-T01.md"
     tests_summary: "GREEN correction validation: original M02 checks remain applicable; corrected intake now requires route-specific pre-creation discovery/diagnosis before base selection, removes duplicate create/select ordering, preserves feature promotion and prior routing/state semantics; exact details in implementation/evidence/M02-T01.md."
+
+  - id: "M03-T01"
+    title: "Micro-fix and branch-local execution/review/recovery semantics"
+    milestone: "M03"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: ["M02-T01"]
+    openspec_change: null
+    contract: "implementation/cards/M03-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
