@@ -1,6 +1,6 @@
 id: "issue-workstream-finalization-semantics"
 kind: "issue"
-status: "review"
+status: "done"
 
 branch: "fix/workstream-finalization-semantics"
 base_ref: "elmakus/chatgpt-codex-project-workflow@6b0445256b417f82431fb7b2704f56691eb4e7ae"
@@ -30,4 +30,4 @@ review:
   covered_by: "implementation/workstreams/issue-workstream-finalization-semantics/evidence/M05_T02_REVIEW_R2_2026-09-19.md"
 
 pr: 29
-result: null
+result: "54688545314c0decd91e768c2ebddcd94ddd7544"
