@@ -6,7 +6,7 @@ current_milestone: "micro-fix"
 execution_ref:
   branch: "fix/private-infrastructure-last-resort"
   pr: null
-  head: "4f51036570e1961357433bb670d7110e640c517e"
+  head: "88a212da3c70f1dbd33af74ded4e42dfba7fff5b"
 
 research_obligation: null
 
@@ -17,8 +17,8 @@ cards:
     title: "Make private infrastructure a last-resort execution surface"
     milestone: "micro-fix"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/issue-private-infrastructure-last-resort/cards/MF-T01.md"
     review_state: null
