@@ -11,6 +11,8 @@
 - Added stacked-parent dependency provenance, legal child integration paths and a final integration refresh gate with affected verification, textual/semantic conflict checks and exact-subject review preservation/invalidation.
 - Fresh-session handoffs now use the smallest canonical workstream pointer: selected Task Board for Card/milestone review and selected manifest for workstream final-integration review, without prompt-state duplication.
 - Added final architecture/coherence regression coverage across legacy mode, concurrent workstreams, issue/feature intake, micro-fix, same-workstream recovery, stacked integration, target refresh, review isolation and fresh-session continuation.
+- Completed finalization semantics for branch-isolated workstreams: milestone handoffs are workstream-namespaced, project-global latest-handoff/root Task Board remain legacy/default-only, terminal state must survive on the integration target before source-branch deletion, and completed workstreams can recover from the target-side durable package after deletion.
+- Added bounded migration rules for long-lived pre-workstream branches so branch-owned Task Board/cards/evidence/handoffs are namespaced at a GREEN boundary without overwriting the integration target's unrelated root legacy/default state.
 
 
 ## Unreleased — locator-only fresh-chat continuation

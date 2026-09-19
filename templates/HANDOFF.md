@@ -1,12 +1,12 @@
 # MXX Cumulative Handoff
 
-> Compact summary of completed milestone truth. This is **not** live execution state; `implementation/TASK_BOARD.yaml` remains authoritative for current status/next work. Do not copy Git file inventories or Task Board fields unless they are materially needed for understanding the completed result.
+> Compact summary of completed milestone truth. This is **not** live execution state; the selected canonical Task Board remains authoritative for current status/next work. Legacy/default handoffs live under `project-handoffs/`; branch-isolated handoffs live under `implementation/workstreams/<id>/handoffs/`. Do not copy Git file inventories or Task Board fields unless they are materially needed for understanding the completed result.
 
 - Milestone: `MXX`
 - Completed checkpoint: `<checkpoint/tag>`
 - Implementation head: `<exact sha>`
-- Acceptance evidence: `<implementation/evidence/MXX_ACCEPTANCE.md | exact Task Board/result pointer>`
-- Previous handoff: `<project-handoffs/MYY_HANDOFF.md | none>`
+- Acceptance evidence: `<selected-context evidence path | exact Task Board/result pointer>`
+- Previous handoff: `<selected-context previous handoff path | none>`
 
 ## Achieved state
 

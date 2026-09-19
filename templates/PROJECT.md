@@ -27,7 +27,7 @@ Changing execution policy requires explicit user decision. Default for new proje
 - Approved plan: `planning/MASTER_PLAN.md | none`
 - Task Board: `implementation/TASK_BOARD.yaml | none` (legacy/default state context; branch-isolated Task Boards are selected through their manifests)
 - Workstream root: `implementation/workstreams/ | none` (optional non-live locator convention; never a registry of active state)
-- Latest cumulative handoff: `project-handoffs/MXX_HANDOFF.md | none`
+- Latest cumulative handoff: `project-handoffs/MXX_HANDOFF.md | none` (legacy/default state context only; branch-isolated handoffs are selected through that workstream's Task Board)
 - Accepted decisions index / key pointers:
   - `<decisions/... | none>`
 

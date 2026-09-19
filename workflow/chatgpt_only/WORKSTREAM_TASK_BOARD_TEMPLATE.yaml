@@ -10,6 +10,7 @@ current_milestone: "<MXX | micro-fix | none>"
 # Do not add foreign scheduling, lane or executor-routing metadata.
 
 # Binding identity: branch MUST exactly match WORKSTREAM.yaml `branch`.
+# It remains the original workstream branch as provenance after integration; do not rewrite it to the target branch.
 execution_ref:
   branch: "<exact-workstream-branch>"
   pr: null
