@@ -196,4 +196,3 @@ Deployment, cutover and migration should be runbook- or Task-Card-driven rather 
 Runbooks/checklists do not automatically require OpenSpec unless they change a behavior contract.
 
 Explicit deployment/live-write authorization remains a hard stop.
-
