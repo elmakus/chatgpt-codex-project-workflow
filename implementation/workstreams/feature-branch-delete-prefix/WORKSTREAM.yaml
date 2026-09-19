@@ -1,0 +1,32 @@
+id: "feature-branch-delete-prefix"
+kind: "feature"
+status: "discovery"
+
+branch: "feat/branch-delete-prefix"
+base_ref: "elmakus/chatgpt-codex-project-workflow@d64d8c1d7f05ce2a2584ffcb3ade4634263bbc95"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: active
+  record: "implementation/workstreams/feature-branch-delete-prefix/INTAKE.md"
+
+task_board: null
+
+authority:
+  requirements: null
+  decisions: []
+  plan: null
+
+review:
+  requirement: null
+  state: null
+  subject: null
+  evidence: null
+  covered_by: null
+
+pr: null
+result: null
