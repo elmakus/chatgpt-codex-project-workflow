@@ -68,5 +68,3 @@ M04 determines the complete branch-isolated workstream close/integration flow. A
 Recover intra-workstream batch state only from the selected canonical Task Board plus exact Git/evidence refs. Never inspect another workstream's Task Board or runtime worker list to reconstruct this batch.
 
 Returned/integrated member results survive worker loss and are never replayed merely because runtime state disappeared.
-
-[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
