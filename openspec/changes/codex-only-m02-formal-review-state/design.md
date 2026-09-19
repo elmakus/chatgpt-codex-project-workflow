@@ -2,7 +2,7 @@
 
 ## Chosen representation
 
-Use one Task-Board-local `review` block per Card/milestone with a resolved requirement, a `current_attempt` pointer and append-only attempt entries. Keep semantic production ownership in `implementation_owner_role`.
+Use one Task-Board-local `review` block per Card/milestone with a resolved requirement, a `current_attempt` pointer and append-only attempt entries. Keep semantic production ownership in `implementation_owner_role` on the reviewed Card or milestone. A milestone owner role is aggregate project provenance; RED milestone repair is materialized as bounded corrective Card(s) through Execution Prep rather than inferred from runtime identity.
 
 This avoids two failure modes:
 
