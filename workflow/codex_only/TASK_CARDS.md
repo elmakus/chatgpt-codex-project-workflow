@@ -1,6 +1,6 @@
 # Codex-only Task Card Contract
 
-> M03 contract. This namespace remains non-routable from root policy routing until M04.
+> Live Codex-only Task Card contract. M03 safety metadata is optional; Cards remain serial-valid when it is absent.
 
 ## Meaning
 
