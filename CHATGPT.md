@@ -34,6 +34,20 @@ Do not impose a fixed token count, turn count, Card count or milestone cadence f
 
 A fresh chat reconstructs authority from the durable project repository and current workflow `main`, not from the previous transcript.
 
+## Execution-surface selection
+
+For every concrete operation, prefer a permitted native ChatGPT runtime/tool or an appropriate purpose-built connector/plugin when it can perform the required work and verification materially equivalently.
+
+User-owned/private remote infrastructure — including hosts reached through general remote desktop, terminal or filesystem bridges — is a **last-resort execution surface**. Do not use it merely because it provides convenient shell access, compute, temporary storage or another shortcut when a materially equivalent native or purpose-built path exists.
+
+Use user-owned/private remote infrastructure only when at least one is true:
+- the task intrinsically depends on that specific host, its local state, devices, services or environment; or
+- no materially equivalent permitted native or purpose-built path can perform the required operation and verification.
+
+This is an execution-surface selection rule, not a capability inventory. Do not enumerate tools or probe private infrastructure merely to discover whether it could be useful. Escalate to it only from a concrete task need.
+
+When private infrastructure is required, limit access, reads, writes and temporary artifacts to the smallest scope needed for the operation.
+
 ## Real-stop response contract
 
 A normal ChatGPT chat should send a final user-facing workflow status message only when the current chat has reached a real stop/boundary or the approved scope is complete.

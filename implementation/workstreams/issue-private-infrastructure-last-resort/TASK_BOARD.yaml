@@ -1,0 +1,30 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "issue-private-infrastructure-last-resort"
+plan_revision: "micro-fix"
+current_milestone: "micro-fix"
+
+execution_ref:
+  branch: "fix/private-infrastructure-last-resort"
+  pr: null
+  head: "40eeea0239e3c5828ca22395cf90f607471ac5c4"
+
+research_obligation: null
+
+milestones: {}
+
+cards:
+  - id: "MF-T01"
+    title: "Make private infrastructure a last-resort execution surface"
+    milestone: "micro-fix"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: []
+    contract: "implementation/workstreams/issue-private-infrastructure-last-resort/cards/MF-T01.md"
+    review_state: green
+    review_subject: "CHATGPT.md@blob:72fc6277f0cfef3a1f1f99c74b3beaf7a37b3557 + MF-T01 acceptance"
+    review_evidence: "implementation/workstreams/issue-private-infrastructure-last-resort/evidence/MF-T01_REVIEW_2026-09-19.md"
+    result_commit: "184cdee6171eaf6453484816965a8017841f7a3b"
+    result_pr: null
+    evidence: "implementation/workstreams/issue-private-infrastructure-last-resort/evidence/MF-T01_IMPLEMENTATION_2026-09-19.md"
+    tests_summary: "GREEN implementation-owned readback: global bootstrap rule present; native/purpose-built preference and last-resort private-host escape hatch verified; capability gate and Project Instructions unchanged; base-to-subject diff limited to CHATGPT.md plus this workstream's durable state."
