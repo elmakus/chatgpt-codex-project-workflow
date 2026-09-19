@@ -1,6 +1,6 @@
 # Codex-only Execution
 
-> M03 contract. This namespace remains non-routable from root policy routing until M04.
+> Live Codex-only execution contract. M02 formal-review ownership and M03 bounded-parallel invariants apply throughout the complete lifecycle.
 
 ## Fixed project coordinator
 
@@ -196,6 +196,6 @@ A Card may become `done` only when:
 7. result/evidence/readback is durable;
 8. shared Task Board state is reconciled by Main.
 
-## M04 boundary
+## Lifecycle integration
 
-M03 supplies bounded Card execution/integration mechanics only. M04 reconciles complete lifecycle routing, final workstream integration/Close and root cutover.
+Card/batch execution returns through `ROUTER.md`; final workstream target refresh, final-integration review and publication belong to `CLOSE.md` + `WORKSTREAMS.md`. Internal M03 batch integration never substitutes for final workstream integration.
