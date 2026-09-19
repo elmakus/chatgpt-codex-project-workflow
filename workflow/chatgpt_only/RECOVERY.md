@@ -7,8 +7,9 @@ Recovery reconstructs execution truth from durable project state without prior c
 Read:
 - project `PROJECT.md`;
 - `workflow/chatgpt_only/WORKSTREAMS.md` when branch-isolated;
-- exact active branch/HEAD;
-- validated workstream manifest + its selected canonical Task Board when branch-isolated, otherwise legacy/default `implementation/TASK_BOARD.yaml`;
+- for non-terminal work, exact active workstream branch/HEAD;
+- for an integrated terminal `done` workstream whose source branch was deleted, the exact target-side namespaced workstream package plus manifest integration result;
+- validated workstream manifest + its selected canonical Task Board/history source when branch-isolated, otherwise legacy/default `implementation/TASK_BOARD.yaml`;
 - relevant runtime/external state;
 - current milestone/Card contracts;
 - active Card/milestone review state from the selected Task Board;
@@ -78,6 +79,19 @@ A persisted RED verdict is already a completed independent-review result. Recove
 10. unresolved user/product authority or another explicit real gate → use the normal user-stop contract.
 
 When correction changes the reviewable implementation subject, preserve the old RED evidence, freeze the new exact subject as a new `pending` review attempt, and require a fresh independent reviewer before terminal Card completion.
+
+## Integrated terminal workstream recovery
+
+When an exact durable locator points to a branch-isolated manifest with `status: done` and non-null exact `result`, and finalization evidence shows the workstream reached its final `integration_target`:
+
+- if the original source branch still exists, it may supply additional Git provenance but is not required for terminal history;
+- if the source branch was deleted, recover from the integration-target copy of `implementation/workstreams/<id>/` and validate manifest ↔ Task Board identity there;
+- require Task Board `workstream_id` and `execution_ref.branch` to remain equal to the original manifest identity; do not rewrite them to the target branch;
+- verify referenced terminal Card/evidence/handoff state exists on the target and that manifest `result`/PR plus Task Board final checkpoint/result pointers agree with the recorded integration outcome;
+- do not route a terminal workstream Task Board as active target-branch execution state;
+- if required terminal artifacts exist only on a deleted branch, preserve the inconsistency as a finalization defect rather than falling back to root `implementation/TASK_BOARD.yaml`.
+
+`PROJECT.md -> Latest cumulative handoff` is not a branch-isolated recovery pointer. Resolve branch-isolated milestone handoffs through the selected terminal Task Board.
 
 ## Workstream final-integration review recovery
 
