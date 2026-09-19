@@ -1,0 +1,32 @@
+id: "issue-private-infrastructure-last-resort"
+kind: "issue"
+status: "discovery"
+
+branch: "fix/private-infrastructure-last-resort"
+base_ref: "d64d8c1d7f05ce2a2584ffcb3ade4634263bbc95"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: active
+  record: "implementation/workstreams/issue-private-infrastructure-last-resort/INTAKE.md"
+
+task_board: null
+
+authority:
+  requirements: null
+  decisions: []
+  plan: null
+
+review:
+  requirement: null
+  state: null
+  subject: null
+  evidence: null
+  covered_by: null
+
+pr: null
+result: null
