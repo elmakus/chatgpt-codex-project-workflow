@@ -6,7 +6,7 @@
 - Repository: `elmakus/chatgpt-codex-project-workflow`
 - Lifecycle: `active`
 - High-level goal: maintain and evolve the repository-backed Project Workflow contracts used by ChatGPT/Codex project execution.
-- High-level status: `MW-R1` multi-workstream/intake scope completed and integrated; repository remains active for future workflow evolution.
+- High-level status: `CUBC-R1` Codex-only terminal-unmerged branch cleanup Definition approved; strategic planning is next.
 
 ## Execution policy
 
@@ -16,14 +16,15 @@ Changing execution policy requires an explicit user decision.
 
 ## Canonical authority pointers
 
-- Active exploratory scope: `brainstorming/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP.md`
+- Active exploratory scope: `none`
 - Active research obligation: `none`
-- Requirements: `requirements/CHATGPT_ONLY_MULTI_WORKSTREAM_INTAKE.md`
+- Requirements: `requirements/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP.md`
 - Approved plan: `planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md`
 - Task Board: `implementation/TASK_BOARD.yaml`
 - Latest cumulative handoff: `project-handoffs/M05_HANDOFF.md`
 - Accepted decisions index / key pointers:
   - `decisions/ADR_CHATGPT_ONLY_BRANCH_ISOLATED_WORKSTREAMS.md`
+  - `decisions/ADR_CODEX_ONLY_TERMINAL_UNMERGED_BRANCH_DELETE.md`
 
 ## Workflow
 
