@@ -7,8 +7,10 @@ Recovery reconstructs execution truth from durable project state without prior c
 Read:
 - project `PROJECT.md`;
 - `workflow/chatgpt_only/WORKSTREAMS.md` when branch-isolated;
-- for non-terminal work, exact active workstream branch/HEAD;
+- for ordinary pre-integration non-terminal work, exact active workstream branch/HEAD;
+- for a successful final-target merge whose closure is not yet terminal, the exact merge-result target-side namespaced workstream package plus immutable PR/merge evidence; the source branch may already be absent;
 - for an integrated terminal `done` workstream whose source branch was deleted, the exact target-side namespaced workstream package plus manifest integration result;
+- for terminal-unmerged cleanup history after source-branch deletion, the exact durable closure package plus manifest `branch_cleanup` evidence;
 - validated workstream manifest + its selected canonical Task Board/history source when branch-isolated, otherwise legacy/default `implementation/TASK_BOARD.yaml`;
 - relevant runtime/external state;
 - current milestone/Card contracts;
@@ -32,8 +34,9 @@ Apply this priority only inside the selected default/workstream Task Board. An u
 6. Existing `blocked` Card must be re-evaluated before dependent work.
 7. When no higher-priority Task Board obligation remains, a selected manifest final-integration `review.state: pending | in_progress` routes to Independent review before new/later implementation for that workstream.
 8. A selected manifest final-integration `review.state: red` routes through the same RED corrective classification, with any corrective execution/Research confined to this selected workstream Task Board.
-9. A qualified micro-fix whose bounded Card is terminal and whose selected workstream is not done routes to Close once higher-priority Task Board or manifest pending/RED review obligations are absent; Close runs target refresh before final-review reuse/freeze and integration. Do not start another Card and do not synthesize a milestone.
-10. Only when no active obligation exists may next READY Card be selected.
+9. Exact immutable PR/merge evidence proving final-target integration while target-side closure/result reconciliation is unfinished routes to Close using the post-merge target-side package, even when the source branch has already disappeared.
+10. A qualified micro-fix whose bounded Card is terminal and whose selected workstream is not done routes to Close once higher-priority Task Board or manifest pending/RED review obligations are absent; Close runs target refresh before final-review reuse/freeze and integration. Do not start another Card and do not synthesize a milestone.
+11. Only when no active obligation exists may next READY Card be selected.
 
 ## In-progress Card
 
@@ -79,6 +82,34 @@ A persisted RED verdict is already a completed independent-review result. Recove
 10. unresolved user/product authority or another explicit real gate → use the normal user-stop contract.
 
 When correction changes the reviewable implementation subject, preserve the old RED evidence, freeze the new exact subject as a new `pending` review attempt, and require a fresh independent reviewer before terminal Card completion.
+
+## Post-merge closure recovery
+
+When immutable Git/PR evidence proves that the selected workstream's exact source head was merged into its declared final `integration_target`, but terminal target-side reconciliation/readback is incomplete:
+
+- recover the exact namespaced workstream package from the merge-result target state;
+- validate manifest ↔ Task Board identity there under `WORKSTREAMS.md#Post-merge-closure-workstream`; keep manifest `branch` and Task Board `execution_ref.branch` as the original source provenance;
+- do not require or recreate the source ref merely because GitHub deleted the merged head automatically;
+- verify the target-side package is the package carried by that exact merge using immutable PR/merge evidence, not only a matching workstream ID from an unrelated/stale target state;
+- do not route that Task Board as active target-branch implementation state;
+- route unfinished merge-result bookkeeping/readback to Close;
+- if the exact required target-side package is missing, preserve a finalization defect. Never fall back to root `implementation/TASK_BOARD.yaml` and never manufacture a replacement source ref.
+
+This transition ends when target-side closure reconciliation/readback records coherent terminal result state.
+
+## Terminal unmerged cleanup recovery
+
+When a workstream was intentionally closed/superseded without final-target integration and its source branch is cleanup-eligible or already deleted:
+
+- recover from an exact durable closure package independent of that source ref;
+- require explicit terminal workstream state and exact `branch_cleanup.ref == manifest.branch`, `verified_head` and durable cleanup evidence;
+- require no live Card, Research, review, stacked-dependency or integration obligation;
+- a closed PR by itself never establishes deletion safety;
+- if `state: safe_to_delete` and the source ref still exists, re-read its HEAD before physical deletion; a mismatch with `verified_head` makes readiness stale and deletion is forbidden until revalidated;
+- if `state: deleted`, require durable readback evidence that the exact ref is absent;
+- do not import rejected/superseded implementation content into the integration target merely to preserve cleanup history.
+
+A cleanup marker that exists only on the source branch it authorizes deleting is not durable terminal recovery state.
 
 ## Integrated terminal workstream recovery
 
@@ -126,6 +157,8 @@ When Task Board, Git/runtime or evidence disagree:
 - inspect exact durable evidence;
 - reconcile only facts that can be proven;
 - preserve unresolved contradiction as blocker.
+
+A `branch_cleanup: safe_to_delete` record is inconsistent when its ref differs from manifest `branch`, required exact head/evidence is missing, current surviving ref HEAD differs from `verified_head`, or terminal-unmerged cleanup truth exists only on the source ref. A missing post-merge target-side package after automatic source deletion is a finalization defect, not permission to select the legacy/default Task Board.
 
 Do not create synchronization edits merely to make documents look consistent.
 
