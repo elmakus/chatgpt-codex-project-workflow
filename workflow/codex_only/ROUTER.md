@@ -1,108 +1,346 @@
 # Codex-only Router
 
-> M03 contract. Root policy routing MUST NOT select this namespace before M04.
+This router applies only after root `workflow/CONTEXT_ROUTING.md` selects project `execution_policy: codex_only`.
 
-## Policy boundary
+Once here, stay inside:
+- `workflow/common/*` for genuinely policy-neutral rules;
+- `workflow/codex_only/*` for Intake/Brainstorming/Research/Definition plus planning/execution/review/state/recovery.
 
-This is the future `codex_only` project router. It uses genuinely policy-neutral common authority plus policy-local `workflow/codex_only/*` contracts. It does not depend on another policy namespace or the legacy shared execution core.
+Do not load legacy/shared execution trees or another policy directory.
 
-Codex Main is the fixed Project Workflow coordinator. `codex_workflow` owns runtime worker realization.
+## Bootstrap
 
-## State-selection prerequisite
+1. Read `workflow/common/AUTHORITY.md` and project root `PROJECT.md`.
+2. An explicit current `#issue` / `#feature` operator directive routes to `INTAKE.md` before unrelated mutable execution state.
+3. Otherwise resolve an explicitly/current-branch selected branch-isolated workstream through `WORKSTREAMS.md`; validate manifest identity before trusting its Task Board.
+4. Resume `intake.state: active` before later work. A completed `micro_fix` Intake with no Task Board routes directly to Execution Prep + `MICRO_FIX.md`.
+5. When implementation/review/recovery state exists, resolve exactly one canonical Task Board. Branch-isolated binding mismatch is Recovery; do not fall back to the default board.
+6. Resolve the current Card/milestone review attempt from the selected Task Board's `review.current_attempt`. An integrated member of the exact unresolved `parallel.current_batch` may have only a frozen `pending` attempt; that attempt is deferred until batch closure. Any `in_progress | red | green` verdict on such an unresolved member is inconsistent and routes to Recovery.
+7. Then route the highest applicable obligation:
+   - inconsistent durable state -> Recovery;
+   - non-deferred REQUIRED/RECOMMENDED current review attempt `pending | in_progress` -> Independent review;
+   - Task Board `research_obligation` `active | blocked` -> Research; `complete` -> exact Return target;
+   - non-deferred current review attempt `red` -> RED corrective classification in `REVIEW.md`;
+   - `in_progress` Card whose current attempt is `green` -> Execution post-review finalization;
+   - exact current M03 batch `prepared | running | integrating | blocked` or member `returned` -> Execution/Recovery for that batch before deferred member review;
+   - other existing `in_progress | blocked` Card -> Execution/Recovery;
+   - selected manifest final-integration review `pending | in_progress | red` -> Review/corrective handling;
+   - terminal qualified micro-fix in unfinished workstream -> Close;
+   - PROJECT-level pre-execution Research obligation -> Research/exact Return target;
+   - pending/in-progress plan-review record -> Independent plan review;
+   - deterministic READY set -> Execution Prep; M03 JIT may freeze one finite compatible batch, otherwise serial Execution;
+   - milestone/workstream Close when prerequisites hold;
+   - Planning/Definition/Research when accepted authority requires it.
+8. After a current batch closes, its frozen member reviews are no longer deferred. Drain review/finalization/correction in canonical Task Board order before unrelated implementation.
+9. Read only the chosen route's required artifacts and exact authority slice.
+10. Continue deterministic authorized role transitions until a real strategic/product decision, explicit live/deployment authorization, concrete unremediable runtime/input blocker, context-hygiene boundary, or end of approved scope.
 
-Before interpreting implementation/review/recovery state:
+Fixed `codex_only` never changes execution policy because a runtime realization or concurrency path is unavailable. Runtime loss is recovered/resumed/replaced from durable project state; unsafe parallelism falls back to serial execution when the Card remains executable.
 
-1. resolve exact default/workstream context;
-2. for branch-isolated work, validate manifest ID/branch binding before trusting its Task Board;
-3. recover exact branch/result/review/batch evidence needed for the obligation;
-4. never choose another workstream's Task Board to repair this one.
+## Fresh-session entry semantics
 
-Full lifecycle/intake/stacked-workstream reconciliation is completed in M04.
+A fresh-session handoff target is a **recovery/entry locator only**. It identifies the first obligation to recover; it does not narrow the approved project scope to one role, one verdict, one Card or one milestone.
 
-## M03 durable priority model
+After the located obligation completes:
+- persist its durable result/state;
+- return to this router;
+- continue all deterministic authorized role transitions under the normal protocol below;
+- stop only when durable state reaches a real workflow boundary.
 
-Within the selected context, first classify whether a Card review belongs to an integrated member of the exact unresolved `current_batch`. Such an attempt may be frozen only as `pending`; it is a deferred batch-member review and does not outrank completion of that same batch. If that attempt is already `in_progress | red | green` while the batch is unresolved, route Recovery because production review/correction was allowed to interleave with frozen integration.
+Do not interpret wording such as `Kontynuuj`, `Punkt wejścia`, a review target, a Card ID or a milestone ID as an implicit instruction to reply immediately after that obligation. Only explicit user/project authority can deliberately narrow the approved scope.
 
-Then route the highest applicable obligation:
+## Role-transition protocol
 
-1. inconsistent durable project state -> Recovery;
-2. active Intake/manifest binding obligation when applicable;
-3. non-deferred Card/milestone current review attempt `pending | in_progress` -> Independent Review;
-4. implementation-owned Research `active | blocked | complete` -> Research/exact Return target;
-5. non-deferred current review attempt `red` -> RED corrective classification;
-6. in-progress Card whose non-deferred current attempt is `green` -> Execution post-review finalization;
-7. existing current parallel batch `prepared | running | integrating | blocked` or member `returned`, including batches with deferred pending member reviews -> Execution/Recovery for that exact batch;
-8. other existing `in_progress | blocked` Card -> Execution/Recovery;
-9. manifest final-integration review obligation -> Review/RED handling as applicable;
-10. deterministic READY set -> Execution Prep to evaluate a bounded compatible batch; when no batch of at least two is safe, deterministic serial Execution;
-11. milestone/workstream Close when prerequisites are satisfied;
-12. Planning/Definition/Research when accepted authority requires escalation.
+A route module owns only its current role.
 
-Outside the exact deferred-review exception, Review/Research/RED obligations keep their normal priority. After `current_batch` is cleared, any frozen member reviews are no longer deferred and are dispatched deterministically in canonical Task Board order. Durable returned/integrated lane results remain preserved throughout.
+When that role finishes:
+1. persist the durable state/evidence produced by the role;
+2. re-evaluate the applicable durable state (plan-review record, selected Task Board and selected manifest review state as applicable) + accepted authority;
+3. return to this router;
+4. if durable state/current phase already owns a real stop — including a root `CHATGPT.md#Real-stop-response-contract` boundary or the `codex_only` Brainstorming → Project Definition promotion gate below — handle that stop first and do not run a separate hygiene handoff;
+5. only when a deterministic authorized next role exists, perform the context-health trigger check below;
+6. select the next legal route;
+7. load that route's module(s);
+8. continue in the same coordinating context without a user-facing stop when context health remains CONTINUE.
 
-## Bounded READY selection
+The same coordinating context may therefore move across deterministic role transitions when no real boundary intervenes, for example:
 
-Parallelism is optional and per selected Task Board.
+```text
+PROJECT DEFINITION → PLANNING → EXECUTION_PREP → EXECUTION
+PLAN_REVIEW → PLANNING → EXECUTION_PREP → EXECUTION
+REVIEW → EXECUTION_PREP → EXECUTION → CLOSE → EXECUTION_PREP → EXECUTION
+```
 
-- Planning candidate overlap is not runnable authority.
-- Execution Prep evaluates current READY Cards in canonical Task Board order.
-- A batch is legal only after exact M03 eligibility proof and freeze.
-- Batch membership is finite and never dynamically refilled.
-- Missing/unsafe parallel proof means serial fallback, not policy switching or a user stop.
-- No repository-global scheduler/queue is introduced.
+The first line begins only after Project Definition has been legally entered. For a new exploratory `codex_only` scope, Brainstorming/Research cannot enter Project Definition until the user-owned promotion gate below is satisfied. Once Definition is entered, `Definition Complete = GREEN → Planning` remains deterministic. When Planning creates a REQUIRED/RECOMMENDED independent plan-review gate, Codex Main freezes the exact plan subject and routes to `PLAN_REVIEW`; `codex_workflow` realizes an independent Tester. A qualifying verdict returns to this router without a mandatory normal-ChatGPT stop.
 
-## RED corrective classification
+Role identity is per obligation, not permanent for the whole chat.
 
-For exact RED evidence:
+A Tester that completed its verdict has completed that review role. If the same concrete worker later contributes production to a changed subject, it joins that subject's implementation-owner set and cannot independently review that exact subject.
 
-A RED verdict for a Card's original batch-integrated subject is legal only after that batch is complete/current-null under the M03 deferral rule. If durable state shows such RED while the originating batch is still current, route Recovery before any correction.
+Only a real boundary from root `CHATGPT.md#Real-stop-response-contract` or an explicit policy-specific boundary defined by this router ends the turn.
 
-- bounded Card-owned production correction inside accepted L1/L2 authority -> Execution, returning through Main to that Card's owning `executor` role;
-- bounded milestone-owned production correction -> Execution Prep to reopen/create exact affected corrective Card(s);
-- other execution decomposition/detail correction -> Execution Prep;
-- plan-only strategy/milestone defect while Definition remains valid -> Planning;
-- accepted requirement/strategic/global-target defect -> Definition;
-- missing evidence -> materialize exact implementation-owned Research continuation, then Research;
-- unresolved user/product authority, explicit live/deployment authorization, or concrete unremediable runtime/input gate -> real stop;
-- incoherent evidence/state -> Recovery.
+## Brainstorming → Project Definition promotion gate
 
-A Card that was formerly a parallel member does not make its RED correction automatically parallel-safe. JIT must re-evaluate new concurrency.
+Under `codex_only`, the first transition from exploratory Brainstorming into Project Definition for a definition scope is **user-owned**.
 
-Tester/reviewer never becomes the repair role.
+Brainstorming may reach `ready_for_definition`, but that state is only a recommendation that formalization is now possible. It is not permission to start Definition.
 
-## Parallel blocker classification
+The active exploratory scope is discovered from project `PROJECT.md → Active exploratory scope`. That pointer identifies the exact brainstorming record used for recovery. The record carries a stable `Scope ID`, `Revision`, and `Definition promotion subject`.
 
-For current batch evidence:
+Before entering Project Definition from an exploratory Brainstorming/Research path, require one of:
+- an explicit current user instruction to promote the current scope into Project Definition; or
+- durable `Definition promotion authorization: user_authorized` in the PROJECT-pointed brainstorming record, with `Definition promotion subject` exactly matching that record's current `<scope-id>@<revision>`.
 
-- missing/false opt-in, incompatible scope/resource or unavailable isolation discovered before launch -> use the prepared-batch abandonment transition: record blocked history/evidence, reconcile every batch-owned `in_progress` Card back to legal READY/serial state, then clear `current_batch`; rebuild with a new batch ID or fall back serially;
-- returned diff outside write scope, reserved-state mutation, post-launch lane failure or integration conflict -> Recovery for that exact current batch; preserve every returned/integrated sibling and frozen order;
-- when the affected member can be corrected under the unchanged frozen Card/base/scope/resource contract -> Execution may perform the bounded same-member retry defined by State/Execution, preserving the failed result/evidence before replacing the active result pointer;
-- when such retry is not legal -> Recovery performs terminal post-launch reconciliation: quiesce active lanes, set non-integrated member history + corresponding Cards to durable `blocked` while preserving result/evidence, record terminal-reconciliation evidence, then clear `current_batch`; integrated pending reviews become the post-batch drain before serial blocked-Card recovery;
-- a post-launch blocker that requires Planning, Definition, Research or a real stop MUST first reach that terminal reconciliation safe boundary unless the exact same-member retry is the chosen continuation;
-- conflict requiring milestone strategy change -> Planning;
-- conflict requiring accepted product/system authority change -> Definition;
-- missing evidence needed to classify -> Research;
-- concrete unremediable runtime/access/input gate -> real stop.
+A durable `user_authorized` value without an exact matching promotion subject is stale/insufficient and must not authorize Definition.
 
-Runtime worker loss alone is not a project blocker when the member can be resumed/replaced from durable batch state.
+Examples of sufficient user intent include “przejdź do Definition”, “formalizuj wymagania/decyzje”, or another unambiguous instruction to leave exploration and begin Project Definition. Mere agreement with an individual idea, answering a brainstorming question, or asking for more research is not phase-promotion authority.
 
-## Formal-review continuation
+When Brainstorming is ready but promotion is not authorized:
+1. persist the useful brainstorming state;
+2. ensure `PROJECT.md → Active exploratory scope` points to that exact record;
+3. set `Status: ready_for_definition`, `Definition promotion authorization: pending`, and `Definition promotion subject: none`;
+4. do **not** enter Project Definition or Planning;
+5. treat this as a policy-specific real user stop;
+6. use `workflow/common/USER_STOP.md` and ask only whether to continue brainstorming/research or promote the current scope into Project Definition.
 
-Completion of one review role is not a user stop.
+When the user explicitly authorizes promotion:
+1. ensure the current exploratory record and its PROJECT pointer are persisted;
+2. persist `Definition promotion authorization: user_authorized` plus `Definition promotion subject: <scope-id>@<revision>` before entering Definition;
+3. route to Project Definition;
+4. continue normally from there.
 
-- GREEN -> post-review finalization/continuation.
-- RED -> preserve verdict and route deterministic correction.
-- corrected subject -> freeze a new pending attempt.
-- runtime reviewer reuse/replacement does not change project attempt identity.
+If substantive exploratory scope changes after authorization but before Definition begins, increment/change the brainstorming revision and reset authorization to `pending` with promotion subject `none`. Never carry authorization across a materially changed revision.
 
-A qualifying Codex-managed formal review never requires a second normal-ChatGPT review solely for independence.
+Research completion does not bypass this gate. If Research was entered from an unpromoted exploratory scope, return to Brainstorming/promotion handling rather than entering Definition automatically.
 
-## No capability policy switching
+The authorization applies only to the exact promoted scope/revision. Once Definition has begun, keep the active exploratory pointer/record available so bounded Research ↔ Definition recovery for that same promoted subject does not require repeated authorization. If Definition deliberately returns to open-ended Brainstorming because the product/problem space has materially reopened, create a new brainstorming revision (or a new scope when appropriate) and reset authorization to `pending` with promotion subject `none`.
 
-Fixed `codex_only` does not change execution policy because concurrency or a particular worker realization is unavailable. Parallel-safety failure falls back to serial execution when the Card itself remains executable.
+When Definition Complete becomes GREEN, the exploratory promotion obligation is complete. Clear `PROJECT.md → Active exploratory scope` when it no longer represents an active exploratory/Definition recovery pointer, then continue to Planning.
 
-## Continuation
+This gate does **not** apply to `Definition Complete = GREEN → Planning`; that transition remains deterministic and automatic when planning is in scope.
 
-Completing a role is not a stop. Continue deterministic authorized transitions through Codex Main until a real strategic/product decision, explicit authorization, concrete unremediable runtime/input blocker, end of approved scope, or policy-defined safe context handoff owns the boundary.
+## Context-health trigger check
 
-M04 reconciles the complete lifecycle router and performs root cutover only after namespace completeness is proven.
+Do not load context-health machinery after every role by default.
+
+Before starting the next substantial obligation at a safe durable boundary, ask whether the accumulated chat may now materially increase the risk of stale-state carryover, authority confusion or omission.
+
+If there is no concrete signal, continue without loading another module.
+
+If there is a concrete signal — for example materially superseded state in the transcript, major role/authority-area transition, large irrelevant diagnostic/tool history, or uncertainty reconstructing current truth from the conversation — read:
+
+`workflow/codex_only/CONTEXT_HEALTH.md`
+
+Then obey its decision:
+- `CONTEXT_HEALTH: CONTINUE` → select/load the next route now;
+- `CONTEXT_HEALTH: FRESH` → do not start the next obligation; perform the context-hygiene user stop.
+
+Never use coordinator context hygiene as a substitute for formal independent review. Tester context/resume/replacement is runtime-owned; coordinator hygiene is evaluated only at a safe durable project boundary.
+
+## Research return ownership and crash recovery
+
+For any `complete` Research record, the exact current `Return target` owns continuation and the owning pointer remains until durable consumption.
+
+- `execution_resolution:<subject>` is the only intermediate classifier. Ordinarily it refines the exact final Return target while keeping `Status: complete`, `Return reconciliation: pending`, and the Task Board pointer. If classification itself requires more evidence, it instead uses the explicit classifier-to-Research chain transition in `RESEARCH.md`.
+- Every final target — Brainstorming, Project Definition, Strategic Planning, Execution Prep or Execution — MUST follow `workflow/codex_only/RESEARCH.md#Final Return-target protocol`.
+- Final target mutation and `Return reconciliation: applied` + exact result refs are persisted in the same durable Git transition.
+- If a crash occurs after that transition but before `consumed`/pointer-clear, re-entry is consume/clear-only; target work must not be replayed.
+- Normally only the final owning Return target consumes/clears. The sole exception is classifier-to-Research chaining, where `execution_resolution` atomically records `R1` reconciliation as the exact new `R2` obligation, consumes `R1`, creates `R2 active`, and switches the Task Board pointer in the same durable Git transition.
+
+Research never selects a different route by itself; only the authorized classifier may refine a Return target.
+
+## Routes
+
+### Intake
+
+Read:
+- `workflow/codex_only/INTAKE.md`;
+- `workflow/codex_only/WORKSTREAMS.md`;
+- the explicit current `#issue` / `#feature` directive, or the exact active intake record from the selected workstream manifest;
+- project `PROJECT.md`;
+- only repository branch/PR/workstream/source/runtime evidence needed to establish identity, reproduce/diagnose when practical, choose base/dependency and materialize the smallest legal downstream route.
+
+For a new explicit directive, do not load an unrelated active Task Board merely because it is the current/default execution state. Intake discovers relevant workstreams without adopting their mutable state.
+
+When Intake completes, it must first materialize the canonical durable state owned by the selected downstream route, then set its manifest intake state complete, return to this router and continue. A completed intake is not a user/session stop by itself.
+
+### Brainstorming
+
+Read:
+- `workflow/codex_only/BRAINSTORMING.md`;
+- the exact record referenced by `PROJECT.md → Active exploratory scope` when that pointer exists;
+- the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Brainstorming subject;
+- otherwise the current brainstorming material needed to establish/create that pointer;
+- only accepted constraints already relevant.
+
+### Research
+
+Read:
+- `workflow/codex_only/RESEARCH.md`;
+- the exact record referenced by `PROJECT.md → Active research obligation` for pre-execution Research when that pointer exists;
+- otherwise the exact Task Board `research_obligation` pointer when Research was triggered from active execution/recovery;
+- the exact research question/material;
+- only relevant accepted requirements/decisions/source state.
+
+The durable research record owns its `Status`, Origin subject and Return target. Do not infer the return role from chat history.
+
+### Project Definition
+
+Read:
+- `workflow/codex_only/DEFINITION.md`;
+- current user/product goal and explicit accepted choices;
+- the exact `PROJECT.md → Active exploratory scope` record when Definition was entered through the promotion gate and the pointer is still active;
+- the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Project Definition subject;
+- the exact `complete` record referenced by Task Board `research_obligation` when its final Return target is this Project Definition subject;
+- relevant brainstorming conclusions;
+- relevant verified research/evidence;
+- existing requirements/decisions when redefining accepted authority;
+- only current source/external baseline needed to constrain the definition.
+
+Do not load Planning or execution modules merely to define product/system intent.
+
+
+### Repository / project initialization
+
+Read:
+- `workflow/codex_only/REPOSITORY.md`;
+- `workflow/common/AUTHORITY.md`;
+- existing `PROJECT.md` when present;
+- only project artifacts needed for topology/layout/state-ownership/legacy-migration or detailed Git/branch questions.
+
+Use this route for:
+- new project initialization;
+- repository topology/layout;
+- split-repository questions;
+- detailed branch policy;
+- state-ownership ambiguity;
+- legacy repository/state migration.
+
+### Strategic planning
+
+Read:
+- `workflow/codex_only/PLANNING.md`;
+- approved canonical requirements;
+- accepted decisions;
+- the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Strategic Planning subject;
+- the exact `complete` record referenced by Task Board `research_obligation` when its final Return target is this Strategic Planning subject;
+- only verified research/baseline that the accepted definition or plan actually references;
+- current approved plan when replanning.
+
+Planning assumes Project Definition is complete. If requirements/strategic decisions are missing or contradictory, return to Project Definition instead of silently deciding them.
+
+Read Task Board/current handoff only when planning/replanning an active project. Do not load execution files merely to organize strategy.
+
+### Independent plan review
+
+Read:
+- `workflow/codex_only/PLAN_REVIEW.md`;
+- exact `planning/reviews/<plan-revision>.md` record;
+- exact immutable Master Plan review subject;
+- approved canonical requirements;
+- accepted decisions;
+- relevant Definition authority;
+- only research/baseline/source evidence materially referenced by the plan.
+
+Read Task Board/current handoff only when reviewing a replan whose correctness materially depends on active execution state.
+
+Do not load the planning-session narrative as review evidence.
+
+### Execution preparation / JIT refinement
+
+Read:
+- `workflow/codex_only/EXECUTION_PREP.md`;
+- `workflow/codex_only/WORKSTREAMS.md` when the current execution context is branch-isolated;
+- `workflow/codex_only/TASK_CARDS.md`;
+- current milestone/plan authority, or exact completed micro-fix Intake + `MICRO_FIX.md` when that direct path is selected;
+- Task Board when implementation state exists;
+- exact predecessor evidence needed by current decomposition;
+- the exact `complete` record referenced by Task Board `research_obligation` when its final Return target is this Execution Prep subject.
+
+Read `workflow/codex_only/MICRO_FIX.md` when the exact selected Intake route is `micro_fix`.
+
+Read `workflow/common/OPENSPEC.md` only when current preparation marks/reconciles an OpenSpec-relevant contract.
+
+### Execution
+
+Read:
+- `workflow/codex_only/EXECUTION.md`;
+- `workflow/codex_only/STATE.md`;
+- `workflow/codex_only/WORKSTREAMS.md` when the current execution context is branch-isolated;
+- Task Board;
+- current milestone/Card, or bounded micro-fix Card + completed Intake record;
+- exact authority slice;
+- only source/runtime/evidence needed for that card;
+- the exact `complete` record referenced by Task Board `research_obligation` when its final Return target is this Execution subject.
+
+Read `workflow/common/OPENSPEC.md` only when the current card references/requires it.
+
+### Independent review
+
+Read:
+- `workflow/codex_only/REVIEW.md`;
+- `workflow/codex_only/STATE.md`;
+- `workflow/codex_only/WORKSTREAMS.md` when the reviewed subject belongs to a branch-isolated workstream;
+- exact active branch;
+- the exact review owner: selected Task Board for Card/milestone review, or selected manifest for workstream final-integration review;
+- selected Task Board when implementation/corrective state exists;
+- exact immutable review subject;
+- reviewed Card/milestone contract, or exact workstream final-integration authority/acceptance surface;
+- `workflow/codex_only/MICRO_FIX.md` when the subject is a qualified micro-fix;
+- the same authority slice that governed implementation;
+- required review evidence;
+- actual subject/source/runtime needed to judge it.
+
+Do not load implementing-session narrative as review evidence and do not inspect another workstream Task Board.
+
+### Milestone close / publication / workstream integration
+
+Read:
+- `workflow/codex_only/CLOSE.md`;
+- `workflow/codex_only/STATE.md`;
+- `workflow/codex_only/WORKSTREAMS.md` when branch-isolated;
+- Task Board;
+- for normal milestone close: milestone contract + required Card/review evidence;
+- for qualified micro-fix close: exact completed micro-fix Intake + bounded fix Card + `MICRO_FIX.md` + required Card review evidence, with no milestone contract required;
+- selected manifest final-integration review state when branch-isolated;
+- intended final branch/state and current integration target.
+
+### Strategic blocker
+
+Read only:
+- exact blocker/evidence;
+- current Card/milestone contract;
+- smallest requirements/decision/research/source slice needed to classify it.
+
+If this route is the exact `execution_resolution:<subject>` Return target of a completed implementation/recovery Research record:
+1. verify that Task Board `research_obligation` still points to that record and that its Origin/Return subjects match the affected durable Card/blocker state;
+2. classify the findings against current durable authority;
+3. if classification identifies an exact final owning role/subject, persist that classification by replacing the record's Return target with that final owner while keeping `Status: complete`, `Return reconciliation: pending`, and keeping Task Board `research_obligation`;
+4. for that ordinary final-owner case, return through this router; the pointer now deterministically routes to the final target and the classifier does **not** mark the record `consumed`;
+5. if classification instead proves that more evidence is needed before any final owner can be named, do not invent or persist a final Return target; use the classifier-to-Research chain transition in `RESEARCH.md`.
+
+Then:
+- bounded L1/L2 correction inside accepted authority → refine Return target to Execution Prep or Execution;
+- if accepted product/system intent or a strategic decision must change → refine Return target to Project Definition;
+- if accepted definition remains valid but milestone sequencing/plan must change → refine Return target to Strategic planning;
+- if more evidence is still needed before either can be decided → in one durable Git transition persist `R1 Return reconciliation: applied` with exact `R2` ref, set `R1 Status: consumed`, create `R2 Status: active`, and switch Task Board `research_obligation` directly from `R1` to `R2`; then route to Research. Never expose `R1 complete` after moving the pointer and never expose a null-pointer gap.
+
+Do not continue affected work until the owning authority is resolved.
+
+### Recovery
+
+Read:
+- `workflow/codex_only/RECOVERY.md`;
+- selected manifest when branch-isolated;
+- selected Task Board;
+- exact active branch/HEAD/runtime;
+- affected in-progress/blocked/Card-review/workstream-review state;
+- referenced contracts/evidence.
+
+After recovery, route to the recovered obligation above.
+
+## Human-facing behavior
+
+Use the global normal-ChatGPT control-surface rules from root `CHATGPT.md`.
+
+Do not end a turn merely to announce deterministic work that this route already authorizes. Continue first; respond at a real review/user/authorization/runtime/strategic/end-of-scope boundary.
