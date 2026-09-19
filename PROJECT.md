@@ -6,7 +6,7 @@
 - Repository: `elmakus/chatgpt-codex-project-workflow`
 - Lifecycle: `active`
 - High-level goal: maintain and evolve the repository-backed Project Workflow contracts used by ChatGPT/Codex project execution.
-- High-level status: `CUBC-R1` Codex-only terminal-unmerged branch cleanup Definition approved; strategic planning is next.
+- High-level status: `CUBC-P1` Codex-only terminal-unmerged branch cleanup plan drafted; independent plan review is pending.
 
 ## Execution policy
 
