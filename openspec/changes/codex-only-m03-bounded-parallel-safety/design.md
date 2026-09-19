@@ -1,0 +1,117 @@
+# Design — codex_only M03 bounded parallel safety
+
+## Card safety contract
+
+Parallel execution is opt-in. A stable Card may declare:
+
+```yaml
+parallel_safe: false
+write_scope: []
+exclusive_resources: []
+```
+
+Absent fields are equivalent to `parallel_safe: false` and remain valid serial behavior.
+
+For `parallel_safe: true`:
+
+- `write_scope` is a non-empty finite list of normalized repository-relative path prefixes covering every repository mutation, including lane-owned evidence;
+- absolute paths, parent traversal and globs are invalid for parallel eligibility;
+- scopes conflict when equal or when one is an ancestor of the other on a path-segment boundary; `.` claims the whole repository;
+- `exclusive_resources` is a finite list of stable semantic tokens; exact token equality conflicts;
+- the live selected Task Board, workstream manifest and shared integration bookkeeping are Main-owned reserved state and cannot be delegated through a lane scope.
+
+These fields permit JIT evaluation; they never guarantee concurrency by themselves.
+
+## Deterministic JIT compatible set
+
+Execution Prep evaluates current READY Cards in canonical Task Board order. A Card joins the compatible set only when:
+
+1. all dependencies are complete;
+2. `parallel_safe: true`;
+3. its write scope is valid and bounded;
+4. its write scope is disjoint from every selected member;
+5. its exclusive resources do not conflict with every selected member;
+6. runtime can provide a separate mutable worktree/equivalent workspace for every concurrent local mutation;
+7. all members can start from one exact current Git integration base and return an exact result that Main can reconcile.
+
+Selection is a deterministic greedy pass in Task Board order. Membership and integration order are frozen before launch and never refilled. Fewer than two compatible members means serial execution.
+
+Failure of parallel eligibility does not block an otherwise READY Card; it falls back to serial execution.
+
+## Durable batch model
+
+Serial/no-batch state may use:
+
+```yaml
+parallel: null
+```
+
+A frozen batch uses:
+
+```yaml
+parallel:
+  current_batch: B01
+  batches:
+    - id: B01
+      state: prepared
+      integration_base: "<exact-git-commit>"
+      members:
+        - card_id: M03-T01
+          lane: L01
+          state: prepared
+          result_commit: null
+          integrated_commit: null
+          evidence: null
+```
+
+Batch states are `prepared | running | integrating | complete | blocked`.
+Member states are `prepared | in_progress | returned | integrated | blocked`.
+
+Batch IDs and lane IDs are stable project-local labels, not concrete runtime identities. Completed batch entries remain durable history. `current_batch` becomes null after the batch is complete or its blocked outcome is reconciled. A later batch gets a new ID rather than refilling an old batch.
+
+## Runtime boundary and workspace isolation
+
+Before parallel members become `in_progress`, runtime must establish isolated mutable workspaces. Project Workflow stores no concrete workspace path, worker/session identity or lease.
+
+Each lane receives one Card plus the frozen integration base, must not mutate reserved shared coordination state, and returns an exact result commit plus evidence to Main.
+
+Runtime may replace a concrete worker while the project keeps the same batch/member identity. A member with no durable returned result may be resumed/re-realized; a durable returned result is never replayed because runtime state was lost.
+
+## Main-owned validation and integration
+
+For each returned member, Main verifies:
+
+- an exact base-to-result diff can be derived from the frozen integration base;
+- every repository mutation is within the Card write scope;
+- reserved shared coordination state was not mutated;
+- required Card evidence/tests are present;
+- integration into current workstream state remains inside accepted authority.
+
+Scope escape is a fail-closed blocker and is never silently widened.
+
+Main integrates returned members sequentially in frozen member order. It records the lane result under `result_commit`, the shared-branch result under `integrated_commit`, and the integrated commit as the Card implementation result. Reviewable Cards then use ordinary M02 exact-subject review on that integrated result.
+
+A material integration conflict preserves returned results/evidence and routes Recovery/current authority. Successful lanes are not rerun and integration order is not improvised.
+
+## Recovery
+
+Recovery reconstructs from repository state only:
+
+- batch/member state;
+- exact integration base;
+- returned result/evidence refs;
+- integrated refs;
+- Card/review state.
+
+At durable boundaries:
+
+- `prepared`: revalidate base/safety before launch; stale proof causes serial fallback or a newly frozen batch, not reuse of stale eligibility;
+- `in_progress` without result: runtime may resume/replace the same project member;
+- `returned`: do not rerun; validate/integrate once;
+- partial integration: preserve integrated members and continue next frozen member in order;
+- `blocked`: recover exact evidence and classify the smallest correction/fallback;
+- `complete`: no batch work remains; Card review/finalization proceeds normally.
+
+## M02 preservation
+
+Parallelism changes dispatch/integration only. M02 immutable review attempts, Tester non-repair, owning-Executor correction, Main-only shared-state writes and runtime-identity prohibition remain authoritative.
