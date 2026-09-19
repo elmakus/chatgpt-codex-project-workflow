@@ -25,6 +25,7 @@ Do not load legacy/shared execution trees or another policy directory.
    - exact current M03 batch `prepared | running | integrating | blocked` or member `returned` -> Execution/Recovery for that batch before deferred member review;
    - other existing `in_progress | blocked` Card -> Execution/Recovery;
    - selected manifest final-integration review `pending | in_progress | red` -> Review/corrective handling;
+   - selected branch-isolated workstream intentionally terminal without final integration/merge, with terminal closure/delete unfinished -> Close/Recovery using exact manifest branch + target-side closure history;
    - terminal qualified micro-fix in unfinished workstream -> Close;
    - PROJECT-level pre-execution Research obligation -> Research/exact Return target;
    - pending/in-progress plan-review record -> Independent plan review;

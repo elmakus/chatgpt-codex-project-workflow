@@ -185,6 +185,21 @@ When an exact durable locator points to a branch-isolated manifest with `status:
 
 Branch-isolated handoffs are recovered through the selected terminal Task Board, not `PROJECT.md -> Latest cumulative handoff`.
 
+## Terminal-unmerged workstream recovery
+
+When a target-side namespaced closure package proves that a branch-isolated Codex-only workstream intentionally reached a terminal state without final integration/merge:
+
+1. validate the package's manifest identity and selected Task Board/history binding when implementation state exists;
+2. verify accepted authority for the terminal state and prove no live Card, Research, review, stacked-dependency, integration or other workstream obligation still requires the source branch;
+3. use only the exact manifest `branch` as the cleanup target;
+4. read current GitHub state for that exact branch:
+   - branch exists → Codex Main completes the already-authorized cleanup through authenticated `gh`, then reads back exact absence;
+   - branch absent → cleanup is already complete;
+5. never recreate the branch, synthesize an alias ref, infer another target from naming/PR state, or create separate cleanup lifecycle/state;
+6. preserve terminal history from the target-side closure package even though rejected/superseded implementation content was never integrated.
+
+An interruption after durable closure but before deletion therefore resumes only the delete/readback step. An interruption after deletion resumes as a no-op success. Runtime worker/session identity is never required to decide either case.
+
 ## Workstream final-integration review recovery
 
 Manifest final-integration review is independent from Card/milestone Task Board review:
@@ -199,6 +214,6 @@ Never inspect or mutate another workstream Task Board to recover this gate.
 
 ## Full lifecycle resume
 
-Recovery may also restore active Intake, PROJECT-level exploratory/Research pointers, plan review, default-board state, stacked dependency/refresh state and Close obligations through the exact owning modules referenced by `ROUTER.md`.
+Recovery may also restore active Intake, PROJECT-level exploratory/Research pointers, plan review, default-board state, stacked dependency/refresh state, terminal-unmerged closure/delete obligations and other Close obligations through the exact owning modules referenced by `ROUTER.md`.
 
 After durable state is coherent, return to `workflow/codex_only/ROUTER.md`. Do not stop merely because recovery succeeded when deterministic legal work can continue. Use the normal human-facing stop contract only for unresolved user/product authority, explicit authorization or a concrete unremediable runtime/input blocker.

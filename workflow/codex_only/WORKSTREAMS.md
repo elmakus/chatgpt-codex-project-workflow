@@ -106,13 +106,13 @@ For a branch-isolated workstream, the manifest `task_board` value is only a loca
 Before interpreting any Card/milestone/review/Research state from a branch-isolated Task Board:
 1. require an exact non-null `task_board` path whenever implementation/review/recovery state exists;
 2. for a non-terminal workstream, require the pointed board to exist on the exact manifest `branch`;
-3. for an integrated terminal workstream with `status: done` and a non-null exact `result`, terminal-history recovery MAY instead read the target-side durable copy of that same manifest/board after final integration and closure reconciliation; the deleted source branch is no longer a prerequisite;
+3. for a terminal workstream whose source branch is no longer required, terminal-history recovery MAY instead read the target-side durable copy of that same manifest/board after the applicable closure contract has made the namespaced history package self-sufficient; this covers both integrated `status: done` + exact `result` and an intentionally terminal-unmerged workstream whose closure package was persisted before deletion; the deleted source branch is no longer a prerequisite;
 4. read only the pointed board's binding identity first;
 5. require Task Board `workstream_id` to exactly equal manifest `id`;
 6. require Task Board `execution_ref.branch` to exactly equal manifest `branch`; this remains the original workstream identity/provenance and MUST NOT be rewritten to the integration-target branch merely because the workstream is done;
 7. only after those checks pass may the pointed board become the selected canonical Task Board/history source.
 
-A missing board, null board pointer when implementation/review/recovery state is required, mismatched `workstream_id`, or mismatched/null `execution_ref.branch` is inconsistent branch-isolated state. For non-terminal work, route to Recovery rather than falling back to the legacy/default board. For a terminal `done` workstream whose source branch was deleted, a missing target-side durable package is likewise inconsistent finalization state.
+A missing board, null board pointer when implementation/review/recovery state is required, mismatched `workstream_id`, or mismatched/null `execution_ref.branch` is inconsistent branch-isolated state. For non-terminal work, route to Recovery rather than falling back to the legacy/default board. For either an integrated terminal workstream or an intentionally terminal-unmerged workstream whose source branch was deleted, a missing required target-side durable package is likewise inconsistent finalization state.
 
 This binding check does not create a global registry. It validates only the exact manifest/board pair selected by the current durable locator and lifecycle state.
 
@@ -124,7 +124,7 @@ Before reading implementation/review/recovery state, resolve exactly one state c
 
 When the durable handoff/current request identifies an exact workstream manifest or an exact workstream branch + canonical workstream pointer:
 1. read that exact manifest;
-2. when the locator names a live/source workstream branch, verify manifest `branch` matches it; when the locator names an integrated terminal target-side manifest with `status: done` + exact `result`, keep manifest `branch` as provenance and use **Integrated terminal workstream** below instead of requiring the current checkout branch to equal it;
+2. when the locator names a live/source workstream branch, verify manifest `branch` matches it; when the locator names a target-side terminal package, keep manifest `branch` as provenance and use **Integrated terminal workstream** or **Terminal-unmerged workstream** below as applicable instead of requiring the current checkout branch to equal it;
 3. apply **Manifest ↔ Task Board binding validation** to the manifest's exact `task_board` before interpreting mutable or terminal state;
 4. if implementation state exists, read only that successfully bound Task Board;
 5. do not inspect another workstream Task Board merely because it exists.
@@ -150,14 +150,25 @@ When an explicit durable locator identifies a workstream manifest already integr
 
 This terminal-history path is valid only after the finalization/readback rules below proved that the workstream package survived on the integration target.
 
-### 4. Legacy/default fallback
+### 4. Terminal-unmerged workstream
+
+When an explicit durable locator identifies a branch-isolated workstream that intentionally reached a terminal state without final integration/merge and the applicable closure evidence proves that no live obligation still requires its source branch:
+- recover terminal history from the target-side namespaced closure package persisted before deletion;
+- keep manifest `branch` and Task Board `execution_ref.branch` as original source-workstream provenance even if that source branch is absent;
+- do not treat rejected/superseded implementation content as integrated merely because its lifecycle/history package was preserved;
+- do not fall back to or mutate root `implementation/TASK_BOARD.yaml`;
+- derive cleanup completion only from the terminal-unmerged durable state plus exact current existence/absence of the manifest-owned branch.
+
+This path must not require any separate cleanup lifecycle/field. A missing required target-side closure package after source-branch deletion is inconsistent finalization state.
+
+### 5. Legacy/default fallback
 
 When no branch-isolated workstream is selected:
 - if the project uses `implementation/TASK_BOARD.yaml`, that file remains the canonical mutable implementation state;
 - existing active/default state is never moved merely because multi-workstream support exists;
 - absence of a workstream manifest never makes a legacy/default project invalid.
 
-### 5. Ambiguity
+### 6. Ambiguity
 
 Do not choose among multiple plausible workstreams from chat history.
 
@@ -322,6 +333,10 @@ Immediately before the actual merge/integration, re-read the current integration
 
 ## Terminal durable package and branch deletion
 
+Deleting a source workstream branch is legal only after the applicable terminal history is durable independently of that source ref and no live Card, Research, review, stacked-dependency or integration obligation still requires it.
+
+### Integrated final-target workstream
+
 A final-target integration is not durably closed merely because source/code merged successfully.
 
 For a branch-isolated workstream that reaches its final `integration_target`:
@@ -330,8 +345,21 @@ For a branch-isolated workstream that reaches its final `integration_target`:
 - branch-isolated cumulative milestone handoffs use the collision-free canonical path `implementation/workstreams/<workstream-id>/handoffs/MXX_HANDOFF.md`; the selected Task Board owns the exact milestone handoff pointer;
 - if the actual merge result cannot be recorded until after merge, perform a closure-only target-side commit/PR that reconciles manifest `status/result/pr`, selected Task Board final checkpoint/result/handoff pointers, and other required bookkeeping without changing the accepted implementation subject;
 - read back the final integration target after that reconciliation and verify that every unique referenced workstream-owned durable artifact needed for recovery is present there;
-- only after that readback is GREEN and no active Card/Research/review/integration obligation remains may the source workstream branch be deleted;
-- deleting the source branch MUST NOT make terminal recovery depend on chat history or on a now-missing branch.
+- only after that readback is GREEN and no active obligation remains may the source workstream branch disappear;
+- normal merged-workstream cleanup remains repository-owned automatic branch deletion; Codex-only does not add a merged-branch fallback lifecycle here.
+
+### Intentional terminal-unmerged workstream
+
+When accepted authority makes a branch-isolated Codex-only workstream intentionally terminal without final integration/merge, including `superseded` where applicable:
+
+- first prove all existing terminal-safety conditions: no live Card, Research, review, stacked-dependency, integration or other workstream obligation may still require the source branch;
+- before deletion, persist a namespaced closure/history package independently of the source ref, normally on the manifest `integration_target`; preserve the manifest, selected Task Board/history, relevant Card/evidence/blocker material and terminal rationale/provenance needed for later recovery;
+- the closure-only package MUST NOT merge or publish rejected/superseded implementation content merely to preserve lifecycle history;
+- read back that target-side package and verify it is self-sufficient for terminal history/recovery;
+- the only cleanup target is the exact `WORKSTREAM.yaml.branch`; do not derive it from branch prefixes, naming patterns, PR closure or other heuristics;
+- Codex Main performs the physical branch deletion through authenticated `gh` only after the durable readback and existing safety gates are GREEN;
+- after deletion, read back exact branch absence. If Recovery later finds the exact branch already absent, cleanup is complete and the ref MUST NOT be recreated;
+- do not introduce any separate cleanup lifecycle/field, cleanup registry, alias ref or runtime worker/session state for this behavior.
 
 Workstream terminal state remains durable history unless a later explicit archival policy defines a different lifecycle. Do not collapse completed workstream state into the root legacy/default Task Board or a project-global mutable registry.
 
@@ -345,7 +373,8 @@ A branch-isolated intake/implementation/review/recovery obligation is recoverabl
 - the exact manifest-pointed intake record when `intake.state: active`;
 - the manifest-selected Task Board when implementation exists;
 - exact authority/evidence/review pointers;
-- for an integrated terminal `done` workstream after source-branch deletion, the target-side durable workstream package plus exact manifest `result`/integration evidence.
+- for an integrated terminal `done` workstream after source-branch deletion, the target-side durable workstream package plus exact manifest `result`/integration evidence;
+- for an intentionally terminal-unmerged workstream after source-branch deletion, the target-side closure/history package plus exact manifest terminal state and closure/delete readback evidence.
 
 Previous chat narrative is never required.
 
