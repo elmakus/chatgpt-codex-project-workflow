@@ -6,33 +6,48 @@
 - Integration target: `main`
 - Base: `d64d8c1d7f05ce2a2584ffcb3ade4634263bbc95`
 - Classification: independent
-- Path: pending
-- Next route: pending
+- Path: `micro_fix`
+- Next route: `execution_prep:micro_fix`
 
 ## Operator intent
 
 Prevent normal ChatGPT from using user-owned private infrastructure (for example an Unraid host reached through Remote Desktop Commander) merely as a convenient shell/compute shortcut when the same required operation can be performed with ChatGPT's native runtime/tools or an appropriate purpose-built connector/plugin.
 
-Private infrastructure should be a last-resort execution surface: use it only when the task intrinsically depends on that private host/state, or when the required operation cannot be completed through a materially equivalent native or purpose-built path.
+Private infrastructure is a last-resort execution surface: use it only when the task intrinsically depends on that private host/state, or when the required operation cannot be completed through a materially equivalent permitted native or purpose-built path.
 
-The rule must be expressed as an environment-selection invariant, not as a static capability inventory.
+The rule is an environment-selection invariant, not a static capability inventory.
 
 ## Problem / diagnostic evidence
 
 A reported project chat copied G-code/code-map material to the user's Unraid host only to hash and parse it. The same hashing/parsing was available in ChatGPT's native isolated environment, so private infrastructure use was unnecessary.
 
-Current `CHATGPT.md` is the mandatory bootstrap for every normal ChatGPT project task, but it does not define a native-first/private-infrastructure-last selection rule.
+Current `CHATGPT.md` is the mandatory bootstrap for every normal ChatGPT project task, but it has no native-first/private-infrastructure-last rule.
 
-Current `workflow/chatgpt_only/EXECUTION.md#Runtime-operation-rule` explicitly avoids capability inventories and instructs the executor to attempt concrete operations with actual runtime, but it likewise does not prohibit escalating an otherwise local operation to user-owned private infrastructure for convenience.
+Current `workflow/chatgpt_only/EXECUTION.md#Runtime-operation-rule` deliberately avoids capability inventories and says to attempt concrete operations with actual runtime, but it does not forbid escalating an otherwise local operation to user-owned private infrastructure merely for convenience.
 
-`workflow/chatgpt/CAPABILITY_GATE.md` is intentionally scoped to `mixed` policy only and must not be reused for this issue.
+`workflow/chatgpt/CAPABILITY_GATE.md` is mixed-policy-only and is not authority for this issue.
 
 ## Base / dependency classification
 
-Independent from current unmerged workstreams. The required behavior applies to normal ChatGPT bootstrap semantics on current `main`; no parent-only code or contract is required to diagnose or implement it.
+Independent from current unmerged workstreams. The behavior belongs to normal ChatGPT bootstrap semantics on current `main`; no parent-only source or contract is required.
 
-## Candidate correction
+## Micro-fix qualification
 
-Put the short invariant in root `CHATGPT.md`, because that file is read before policy routing on every normal ChatGPT project task. Keep it generic: native/runtime and purpose-built paths first; user-owned private hosts only when intrinsically required or no materially equivalent permitted path exists.
+- Root cause and intended behavior are concrete: the mandatory bootstrap lacks an environment-selection invariant; intended behavior is native/purpose-built first and private infrastructure only when intrinsically required or no materially equivalent permitted path exists.
+- Bounded and low strategic risk: one bootstrap policy addition; no executor, policy router, state model or orchestration change.
+- No accepted requirement/architecture/product decision must change: this constrains tool/environment choice inside existing normal-ChatGPT execution and does not change accepted execution policy.
+- Acceptance can be stated directly: `CHATGPT.md` must establish the selection hierarchy, prohibit convenience escalation to user-owned private infrastructure, retain a real-necessity escape hatch, and avoid capability inventory semantics.
+- No substantial migration/deployment strategy is needed: repository text contract only.
 
-Do not introduce a capability table or route this through the mixed-policy Capability Gate.
+## Correction target
+
+Add the short invariant to root `CHATGPT.md`, because that file is read before policy routing on every normal ChatGPT project task.
+
+Do not:
+- introduce a capability table;
+- route the behavior through the mixed-policy Capability Gate;
+- name Unraid as the only protected host class. The rule covers user-owned/private remote infrastructure generally.
+
+## Durable continuation
+
+This completed Intake record plus `WORKSTREAM.yaml` is the canonical pre-Task-Board continuation anchor for `workflow/chatgpt_only/MICRO_FIX.md`.
