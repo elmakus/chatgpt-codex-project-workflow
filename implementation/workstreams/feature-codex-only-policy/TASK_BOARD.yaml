@@ -93,7 +93,7 @@ cards:
     title: "Establish codex_only namespace foundation and static boundary checks"
     milestone: "M01"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: ["M01-T01"]
     openspec_change: null
