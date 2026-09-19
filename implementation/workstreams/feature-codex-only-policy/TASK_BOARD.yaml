@@ -61,12 +61,12 @@ milestones:
 
   M05:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M05--end-to-end-regression-architecture-audit-and-publication-readiness"
-    checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    checkpoint: "3d72fdec89027b0b20fe54577e5a40cd162c14b1"
+    implementation_head: "3d72fdec89027b0b20fe54577e5a40cd162c14b1"
+    handoff: "implementation/workstreams/feature-codex-only-policy/handoffs/M05_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M05-acceptance.md"
     review_state: null
     review_subject: null
     review_evidence: null
