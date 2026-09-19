@@ -1,8 +1,6 @@
 # Codex-only Task Card Contract
 
-> M01 foundation contract. This namespace is not selected by root routing before M04.
-
-Classification: **adapt**.
+> M03 contract. This namespace remains non-routable from root policy routing until M04.
 
 ## Meaning
 
@@ -20,10 +18,39 @@ Each Card identifies:
 - authorization gates;
 - independent-review requirement when applicable.
 
-Mutable execution/review/result state belongs to the selected canonical Task Board, not the stable Card contract.
+Mutable execution/review/result/batch state belongs to the selected canonical Task Board, not the stable Card contract.
 
-## JIT and parallel foundation
+## Optional parallel-safety contract
 
-Do not create speculative Cards before their real contract is knowable. Serial execution is valid by default.
+Serial execution is valid by default. Absence of M03 parallel fields is equivalent to:
 
-M03 defines optional project-level `parallel_safe`, `write_scope`, `exclusive_resources` and isolated-lane requirements plus current-state JIT eligibility. Those fields describe project safety/ownership, not runtime worker configuration.
+```yaml
+parallel_safe: false
+write_scope: []
+exclusive_resources: []
+```
+
+A Card may be considered for concurrent execution only when it explicitly declares `parallel_safe: true`.
+
+For an opted-in Card:
+
+- `write_scope` is a non-empty finite list of normalized repository-relative path prefixes covering every repository mutation the lane may make, including lane-owned evidence;
+- absolute paths, `..` traversal and glob semantics are invalid for parallel eligibility;
+- `.` claims the whole repository;
+- two path claims conflict when equal or when one is an ancestor prefix of the other on a path-segment boundary;
+- `exclusive_resources` is a finite list of stable project-level resource tokens; exact token equality conflicts;
+- the live selected Task Board, workstream manifest and shared integration bookkeeping are reserved Main-owned state and cannot be delegated to a worker lane through a broad write scope.
+
+These fields are JIT inputs, not a planning-time concurrency guarantee.
+
+## JIT rule
+
+Planning may identify candidate overlap, but only Execution Prep may freeze a current compatible batch after current dependencies, scopes/resources, workspace isolation and exact integration base are proven.
+
+If any required safety fact is missing or incompatible, the Card remains eligible for deterministic serial execution unless a separate blocker exists.
+
+## Runtime boundary
+
+Project Card metadata describes project safety and ownership only. Do not encode concrete worker/session/model/profile/invocation/lease/resume identity or concrete worktree paths in the Card contract.
+
+A lane may produce bounded implementation/evidence under its Card authority. It never becomes an independent writer of shared Task Board/integration state.
