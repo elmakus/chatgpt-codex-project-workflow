@@ -9,3 +9,4 @@
 - [x] Update default and workstream Task Board templates with optional M03 state.
 - [x] Add positive/negative scenario audit and static boundary checks.
 - [x] Verify root routing, chatgpt_only tree and repository execution policy remain unchanged.
+- [x] Repair independent-review RED-01: deterministic pre-launch prepared-batch abandonment restores Card readiness before clearing current_batch and distinguishes Main bookkeeping from implementation-base drift.
