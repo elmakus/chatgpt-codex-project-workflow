@@ -16,7 +16,7 @@ Changing execution policy requires an explicit user decision.
 
 ## Canonical authority pointers
 
-- Active exploratory scope: `brainstorming/BRANCH_DELETE_PREFIX.md`
+- Active exploratory scope: `none`
 - Active research obligation: `none`
 - Requirements: `requirements/CHATGPT_ONLY_MULTI_WORKSTREAM_INTAKE.md`
 - Approved plan: `planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md`
