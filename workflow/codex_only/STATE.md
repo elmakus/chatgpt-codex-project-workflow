@@ -23,7 +23,7 @@ planned -> ready -> in_progress -> done
 
 `superseded` requires accepted authority. Reviewable Cards remain non-terminal until the current REQUIRED/RECOMMENDED review attempt is GREEN.
 
-Multiple `in_progress` Cards are legal only in one of two bounded states: (1) every such Card is a member of the selected Task Board's exact current parallel batch and that batch satisfies the M03 invariants below; or (2) `current_batch` has just been cleared after one completed batch and every remaining `in_progress` Card is an integrated member of that same completed batch with an outstanding REQUIRED/RECOMMENDED review, finalization or RED-correction obligation. The second state is a post-batch review drain: it authorizes only those review/finalization/correction transitions, not unrelated new implementation, until those Cards leave `in_progress`.
+Multiple `in_progress` Cards are legal only in one of two bounded states: (1) every such Card is a member of the selected Task Board's exact current parallel batch and that batch satisfies the M03 invariants below; or (2) `current_batch` has just been cleared after one batch reached a closed durable boundary — either `complete` or terminally reconciled `blocked` — and every remaining `in_progress` Card is an integrated member of that same closed batch with an outstanding REQUIRED/RECOMMENDED review, finalization or RED-correction obligation. The second state is a post-batch review drain: it authorizes only those review/finalization/correction transitions, not unrelated new implementation, until those Cards leave `in_progress`.
 
 ## Semantic implementation provenance
 
@@ -97,6 +97,8 @@ prepared -> in_progress -> returned -> integrated
                     \-----------------> blocked
 ```
 
+Recovery-only retry edges exist only for the bounded post-launch rule below: an affected member may move `blocked -> in_progress` after its failed result is preserved and active result slot cleared, and its batch may move `blocked -> running | integrating` according to whether an integrated prefix already exists. These edges do not reopen terminally reconciled blocked history.
+
 ### Batch invariants
 
 - `current_batch` is null or identifies exactly one unresolved active batch entry; completed batches and reconciled historical `blocked` batches may remain in history with no current pointer;
@@ -113,6 +115,9 @@ prepared -> in_progress -> returned -> integrated
 - a `blocked` batch/member requires durable evidence for the blocker or reconciled abandonment outcome;
 - a pre-launch prepared-batch abandonment is legal only while every member is still `prepared`, no member has a durable result/integrated ref and no member entered runtime-active state; its batch/member history becomes `blocked`, its affected Card statuses are reconciled back to legal READY/serial state, and only then may `current_batch` be cleared;
 - once any member left `prepared`, the pre-launch unwind is forbidden; recover the actual running/returned/integrated state instead of resetting Cards;
+- a post-launch `blocked` current batch has exactly two bounded recovery shapes: retry only the affected member under the unchanged frozen contract, or terminally reconcile the launched batch into blocked history;
+- same-member retry is legal only when the Card authority, `integration_base`, frozen member order, `write_scope` and `exclusive_resources` remain valid and the correction is bounded to that member; Main first preserves the prior failed result/ref and failure evidence durably, then clears the member's active `result_commit` slot as part of `blocked -> in_progress`; the corrected return repopulates it on `returned` under the same batch/lane/base while successful siblings are never rerun;
+- terminal post-launch reconciliation may clear `current_batch` only after runtime-active lanes are quiesced/reconciled, every integrated member/ref remains immutable history, every non-integrated member history entry is durably set to `blocked` while preserving any returned result/evidence, and every corresponding Card is moved out of batch-owned `in_progress` into `blocked` with exact blocker/result/evidence linkage; batch evidence must identify this as terminal post-launch reconciliation; reviewable integrated members may remain `in_progress` only as the resulting post-batch review drain;
 - live Task Board, workstream manifest and shared integration bookkeeping remain reserved Main-owned state;
 - concrete worker/worktree/session identity never appears as required batch state;
 - completed batch entries remain durable history; a later batch gets a new stable ID;
@@ -173,9 +178,11 @@ Treat as inconsistent and recover before unrelated work:
 - Task Board GREEN subject/result mismatch;
 - runtime-only identity used as required project authority;
 - worker acting as competing Task Board writer;
-- more than one `in_progress` Card without either one valid current parallel batch covering all of them or one exact completed-batch review-drain set in which every such Card is an integrated member with an outstanding review/finalization/RED-correction obligation;
+- more than one `in_progress` Card without either one valid current parallel batch covering all of them or one exact post-batch review-drain set from the same closed `complete` or terminally reconciled `blocked` batch, in which every such Card is an integrated member with an outstanding review/finalization/RED-correction obligation;
 - clearing/abandoning a prepared batch while any member Card remains `in_progress` solely because that batch froze it;
 - using the pre-launch unwind after any member entered runtime-active state or acquired a returned/integrated result;
+- clearing a post-launch blocked batch while runtime-active work is unresolved or while any non-integrated member Card remains batch-owned `in_progress` rather than durably reconciled to `blocked`;
+- retrying a post-launch blocked member after its frozen authority/base/scope/resource contract changed, or replacing its failed result pointer without preserving the prior failed result/evidence lineage;
 - active batch member/order/base mutation after launch;
 - duplicate/reused batch IDs or lane labels inside one batch;
 - active batch member not matching a Card/current lifecycle state;
