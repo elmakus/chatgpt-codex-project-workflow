@@ -70,7 +70,7 @@ Tester/reviewer never becomes the repair role.
 
 For current batch evidence:
 
-- missing/false opt-in, incompatible scope/resource or unavailable isolation discovered before launch -> dissolve/rebuild current prepared candidate state and fall back serially;
+- missing/false opt-in, incompatible scope/resource or unavailable isolation discovered before launch -> use the prepared-batch abandonment transition: record blocked history/evidence, reconcile every batch-owned `in_progress` Card back to legal READY/serial state, then clear `current_batch`; rebuild with a new batch ID or fall back serially;
 - returned diff outside write scope or touching reserved shared state -> blocked Recovery/correction; do not integrate;
 - integration conflict inside accepted technical authority -> Recovery/Execution reconciliation while preserving returned results and frozen order;
 - conflict requiring milestone strategy change -> Planning;
