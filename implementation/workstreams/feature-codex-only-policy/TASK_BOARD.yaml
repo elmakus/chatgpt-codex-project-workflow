@@ -61,7 +61,7 @@ milestones:
 
   M05:
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M05--end-to-end-regression-architecture-audit-and-publication-readiness"
     checkpoint: null
     implementation_head: null
@@ -157,3 +157,20 @@ cards:
     result_pr: null
     evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M04-T01.md"
     tests_summary: "GREEN author verification on 48a56cbd: explicit isolated root codex_only routing; 22/22 live namespace; full lifecycle/default+workstream/stacked/target-refresh/final-review/terminal-package semantics present; M02/M03 invariants preserved; feature-side chatgpt_only diff zero against current-main merge base; no forbidden cross-policy execution refs or runtime-identity/scheduler YAML keys; M04 OpenSpec complete; conflict scan and full M03..subject diff-check GREEN after bounded whitespace repair. YAML structural sanity GREEN; parser-based YAML validation not claimed because no parser is available."
+
+  - id: "M05-T01"
+    title: "Run final regression, architecture audit and integration-readiness verification"
+    milestone: "M05"
+    decision_state: accepted
+    execution_status: ready
+    executor: chatgpt
+    depends_on: ["M04-T01"]
+    openspec_change: null
+    contract: "implementation/workstreams/feature-codex-only-policy/cards/M05-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
