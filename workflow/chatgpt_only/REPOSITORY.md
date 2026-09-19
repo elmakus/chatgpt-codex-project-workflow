@@ -100,7 +100,9 @@ The validated manifest owns the canonical Task Board path. The legacy/default `i
 
 A branch-isolated workstream also owns its cumulative milestone handoffs under `implementation/workstreams/<id>/handoffs/`. It MUST NOT update `PROJECT.md -> Latest cumulative handoff`; that pointer belongs only to the legacy/default state context. Milestone-local handoff truth is recovered from the selected workstream Task Board.
 
-After final-target integration, the target branch must retain the terminal namespaced workstream package required by `WORKSTREAMS.md#Terminal durable package and branch deletion`. A closure-only target-side commit/PR may reconcile actual merge/result metadata. Source-branch deletion is safe only after target readback proves that terminal package is durable and no workstream obligation remains.
+For final-target integration, the exact merge subject must already carry the closure-ready namespaced workstream package required by `WORKSTREAMS.md#Terminal-durable-package-and-branch-cleanup`. After merge, the source branch may already be gone; closure/recovery continues from the target-side copy plus immutable PR/merge evidence, and a closure-only target-side commit/PR may reconcile actual merge/result metadata without recreating the source ref.
+
+When a merged branch survives or a terminal unmerged branch later becomes cleanup-eligible, use only the manifest-local exact `branch_cleanup` fallback from `WORKSTREAMS.md`. A terminal-unmerged cleanup marker must itself be durable independently of the ref it authorizes deleting, normally via a closure-only namespaced target-side package that excludes rejected/superseded implementation content.
 
 Correctness must not require a mutable repository-global workstream registry.
 
@@ -118,6 +120,8 @@ Default:
 - next milestone starts from the GREEN checkpoint.
 
 Never force-push `main` as a normal workflow action.
+
+For normal GitHub merged-PR cleanup, repository-level automatic deletion of merged head branches is preferred when repository policy/rules permit it. Workflow correctness MUST NOT depend on that setting: immediate head disappearance is normal, while surviving/terminal-unmerged refs use the exact `branch_cleanup` fallback only after terminal safety. Do not emulate rename by creating `delete/*` or another same-SHA alias ref. Enabling/changing repository auto-delete and physically deleting a fallback ref are separate external configuration/ref writes and follow normal authorization/capability handling.
 
 ## Local concurrent checkout isolation
 
@@ -151,7 +155,7 @@ Material external mutations require meaningful persisted-state readback when ava
 
 Recovery must be possible from:
 - `PROJECT.md`;
-- for non-terminal branch-isolated work, exact workstream branch + validated `WORKSTREAM.yaml`; for integrated terminal `done` history after source-branch deletion, the target-side namespaced workstream package + exact manifest result;
+- for ordinary pre-integration non-terminal branch-isolated work, exact workstream branch + validated `WORKSTREAM.yaml`; for post-merge closure before terminal reconciliation, the merge-result target-side namespaced package + immutable PR/merge evidence; for integrated terminal `done` history after source-branch deletion, the target-side namespaced workstream package + exact manifest result; for terminal-unmerged cleanup history after deletion, the durable closure package + exact `branch_cleanup` evidence;
 - the PROJECT-pointed active exploratory record when Brainstorming/Definition promotion or recovery is active;
 - the PROJECT-pointed active pre-execution research record when Research/return-role recovery is active;
 - selected canonical Task Board, including its implementation/recovery `research_obligation` pointer and exact pointed record when present;
