@@ -55,6 +55,7 @@ parallel:
     - id: B01
       state: prepared
       integration_base: "<exact-git-commit>"
+      evidence: null
       members:
         - card_id: M03-T01
           lane: L01
@@ -67,7 +68,7 @@ parallel:
 Batch states are `prepared | running | integrating | complete | blocked`.
 Member states are `prepared | in_progress | returned | integrated | blocked`.
 
-Batch IDs and lane IDs are stable project-local labels, not concrete runtime identities. Completed batch entries remain durable history. `current_batch` becomes null after the batch is complete or its blocked outcome is reconciled. A later batch gets a new ID rather than refilling an old batch.
+Batch IDs and lane IDs are stable project-local labels, not concrete runtime identities. Completed batch entries and reconciled blocked/abandoned entries remain durable history. `current_batch` becomes null after the batch is complete or its blocked outcome is reconciled. A later batch gets a new ID rather than refilling an old batch.
 
 ## Runtime boundary and workspace isolation
 
@@ -105,7 +106,7 @@ Recovery reconstructs from repository state only:
 
 At durable boundaries:
 
-- `prepared`: revalidate base/safety before launch; stale proof causes serial fallback or a newly frozen batch, not reuse of stale eligibility;
+- `prepared`: revalidate base/safety before launch; Main-only batch-control commits after the frozen implementation base are allowed, but any implementation/safety drift invalidates the proof. If stale while every member is still prepared and result-free, persist blocked abandonment evidence, restore batch-owned Card statuses to READY, then clear `current_batch`; never reuse that batch ID. If any member became runtime-active, this pre-launch unwind is forbidden;
 - `in_progress` without result: runtime may resume/replace the same project member;
 - `returned`: do not rerun; validate/integrate once;
 - partial integration: preserve integrated members and continue next frozen member in order;
