@@ -5,7 +5,7 @@ current_milestone: "M01"
 
 execution_ref:
   branch: "feat/branch-delete-prefix"
-  pr: null
+  pr: 34
   head: "6441fa08a6a6e94fc568ec4804e12582e2adcd96"
 
 research_obligation: null
@@ -16,9 +16,9 @@ milestones:
     execution_status: in_progress
     contract: "planning/CHATGPT_ONLY_BRANCH_CLEANUP_MASTER_PLAN.md#M01--Source-branch-independent-finalization-and-cleanup"
     checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    implementation_head: "6441fa08a6a6e94fc568ec4804e12582e2adcd96"
+    handoff: "implementation/workstreams/feature-branch-delete-prefix/handoffs/M01_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01_FINAL_INTEGRATION_REFRESH_2026-09-19.md"
     review_state: null
     review_subject: null
     review_evidence: null
@@ -37,6 +37,6 @@ cards:
     review_subject: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01-T01_IMPLEMENTATION_2026-09-19.md@blob:ea89c8c415516acbfd829d90482e7dea7d00df29 + M01-T01 acceptance"
     review_evidence: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01-T01_REVIEW_2026-09-19.md"
     result_commit: "6441fa08a6a6e94fc568ec4804e12582e2adcd96"
-    result_pr: null
+    result_pr: 34
     evidence: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01-T01_IMPLEMENTATION_2026-09-19.md"
-    tests_summary: "GREEN: implementation contract/scenario audit against main@92e9f162 plus fresh independent M01-T01 review GREEN on the exact frozen behavior/evidence subject; BC-R1..BC-R12 covered; no Codex-only policy changes; no CI/status checks or PR workflow runs reported for behavioral head 6441fa08."
+    tests_summary: "GREEN: implementation contract/scenario audit plus fresh independent M01-T01 review GREEN on the exact frozen behavior/acceptance subject; final integration refresh against current main is GREEN with no covered ChatGPT-only behavior drift; BC-R1..BC-R12 covered; no Codex-only policy changes attributable to this workstream."
