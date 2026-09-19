@@ -28,7 +28,7 @@ cards:
     title: "Make terminal branch cleanup source-branch-independent"
     milestone: "M01"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     openspec_change: null
@@ -39,4 +39,4 @@ cards:
     result_commit: "6441fa08a6a6e94fc568ec4804e12582e2adcd96"
     result_pr: null
     evidence: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01-T01_IMPLEMENTATION_2026-09-19.md"
-    tests_summary: "GREEN implementation-owned contract/scenario audit against refreshed main@92e9f162; 0 behind baseline; BC-R1..BC-R12 covered; no Codex-only policy files changed; no CI/status checks were reported for exact behavioral head."
+    tests_summary: "GREEN: implementation contract/scenario audit against main@92e9f162 plus fresh independent M01-T01 review GREEN on the exact frozen behavior/evidence subject; BC-R1..BC-R12 covered; no Codex-only policy changes; no CI/status checks or PR workflow runs reported for behavioral head 6441fa08."
