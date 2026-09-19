@@ -111,7 +111,7 @@ cards:
     title: "Finalize formal review state, provenance and runtime-decoupled recovery"
     milestone: "M02"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: ["M01-T02"]
     openspec_change: "openspec/changes/codex-only-m02-formal-review-state"
