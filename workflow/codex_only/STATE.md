@@ -1,6 +1,6 @@
 # Codex-only State Contract
 
-> M02 contract. This namespace remains non-routable from root policy routing until M04.
+> M03 contract. This namespace remains non-routable from root policy routing until M04.
 
 ## Project-state ownership
 
@@ -12,16 +12,18 @@ Runtime worker identity and lifecycle are not Project Workflow state.
 
 ## Card and milestone lifecycle
 
-Serial execution remains the valid/default M02 execution shape. M03 owns bounded-parallel readiness/lane semantics.
+Serial execution remains valid by default.
 
-Use normal lifecycle states:
+Normal Card lifecycle is:
 
 ```text
 planned -> ready -> in_progress -> done
                      \-> blocked
 ```
 
-`superseded` requires accepted authority. Reviewable Cards remain non-terminal until the current required/recommended review attempt is GREEN.
+`superseded` requires accepted authority. Reviewable Cards remain non-terminal until the current REQUIRED/RECOMMENDED review attempt is GREEN.
+
+Multiple `in_progress` Cards are legal only when every such Card is a member of the one selected Task Board's exact current parallel batch and that batch satisfies the M03 invariants below. Without such a batch, more than one `in_progress` Card is inconsistent state.
 
 ## Semantic implementation provenance
 
@@ -31,13 +33,87 @@ A reviewable implementation records:
 implementation_owner_role: executor
 ```
 
-This is a Project Workflow role slot, not a runtime worker identity. It answers which project role owns production repair after RED.
+This is a Project Workflow role slot, not a runtime worker identity.
 
-For a reviewable Card, `implementation_owner_role` lives on that Card. For a reviewable milestone/checkpoint subject, the milestone records the same semantic field when its review subject is frozen. `executor` then represents the aggregate production-owner role for the exact milestone subject; it is not a list of concrete workers.
-
-A runtime may resume or fail-closed replace the concrete worker realizing a Card owner role without changing `implementation_owner_role`. For a milestone review, runtime independence must be established against every concrete Executor realization that contributed production to the exact reviewed checkpoint; those concrete identities remain runtime-owned.
+For a reviewable Card, the field lives on that Card. For a reviewable milestone/checkpoint subject, the milestone records the same field as aggregate production provenance. Runtime may resume/replace concrete realizations without changing semantic owner state.
 
 Do not persist worker/session/model/profile/invocation/lease identifiers or resume protocol in Project Workflow state.
+
+## M03 Card safety metadata
+
+Stable Card authority may define:
+
+```yaml
+parallel_safe: true
+write_scope:
+  - "workflow/codex_only/EXECUTION.md"
+exclusive_resources: []
+```
+
+Absence of these fields is equivalent to serial-only behavior.
+
+Parallel eligibility requires `parallel_safe: true` plus current JIT proof under `EXECUTION_PREP.md`. The metadata never authorizes concurrent execution by itself.
+
+## Parallel batch state
+
+The Task Board may omit parallel state or use:
+
+```yaml
+parallel: null
+```
+
+Both mean no active/history ledger has been initialized and serial execution remains valid.
+
+When bounded parallelism is used:
+
+```yaml
+parallel:
+  current_batch: B01
+  batches:
+    - id: B01
+      state: prepared
+      integration_base: "<exact-git-commit>"
+      members:
+        - card_id: M03-T01
+          lane: L01
+          state: prepared
+          result_commit: null
+          integrated_commit: null
+          evidence: null
+```
+
+Batch states:
+
+```text
+prepared -> running -> integrating -> complete
+                           \-> blocked
+```
+
+Member states:
+
+```text
+prepared -> in_progress -> returned -> integrated
+                    \-----------------> blocked
+```
+
+### Batch invariants
+
+- `current_batch` is null or identifies exactly one non-complete batch entry;
+- batch IDs are stable and never reused;
+- membership, member order, lane labels and `integration_base` are immutable after launch;
+- membership is finite/frozen; an existing batch is never dynamically refilled;
+- every member names exactly one Card that was READY/dependency-complete when frozen;
+- every member Card contract was explicitly `parallel_safe: true` and passed the same current JIT safety proof;
+- all member `write_scope` claims are pairwise disjoint and all `exclusive_resources` pairwise non-conflicting;
+- the exact `integration_base` is recoverable Git/project state, not a runtime session locator;
+- lane labels are project-local semantic provenance only;
+- `result_commit` is the returned lane result; `integrated_commit` is the exact shared-workstream result after Main integration;
+- terminal/returned result refs require durable evidence sufficient for their state;
+- live Task Board, workstream manifest and shared integration bookkeeping remain reserved Main-owned state;
+- concrete worker/worktree/session identity never appears as required batch state;
+- completed batch entries remain durable history; a later batch gets a new stable ID.
+
+If a batch cannot meet these invariants, fail closed to Recovery/serial fallback rather than guessing.
 
 ## Review block
 
@@ -45,85 +121,64 @@ For Card/milestone review, Task Board owns:
 
 ```yaml
 review:
-  requirement: REQUIRED # REQUIRED | RECOMMENDED | none
-  current_attempt: R01  # null before activation
+  requirement: REQUIRED
+  current_attempt: R01
   attempts:
     - id: R01
-      state: pending    # pending | in_progress | green | red
+      state: pending
       subject: "<exact-immutable-subject>"
       reviewer_role: tester
       evidence: null
 ```
 
-The stable Card/milestone contract remains authority for the review requirement. The Task Board records the resolved requirement for recovery. A mismatch between the stable contract and Task Board is inconsistent state and must be reconciled before execution continues.
+The stable Card/milestone contract remains authority for review requirement. The Task Board records the resolved requirement for recovery.
 
-### Attempt invariants
+Attempt invariants remain:
 
-- attempt IDs are stable within their owning review block and never reused;
-- one attempt covers exactly one immutable subject;
-- `current_attempt` is null before activation, otherwise it points to exactly one existing attempt;
-- at most one attempt may be non-terminal (`pending | in_progress`);
-- prior attempts are append-only project history;
-- `green | red` requires durable evidence;
-- `reviewer_role: tester` is semantic project provenance only;
-- setting `in_progress` requires runtime proof that the reviewer is independent from the exact subject's implementation owner;
-- changing implementation after RED appends a new attempt for the new exact subject; it never edits the old attempt;
-- replacing/resuming a runtime reviewer for the same unchanged subject does not create a new attempt.
+- attempt IDs are stable and never reused;
+- one attempt covers one immutable subject;
+- `current_attempt` points to an existing attempt when non-null;
+- at most one attempt in an owning review block is non-terminal;
+- prior attempts are append-only;
+- GREEN/RED requires durable evidence;
+- `reviewer_role: tester` is semantic project provenance;
+- `in_progress` requires runtime proof of reviewer independence from the exact implementation owner;
+- changed implementation after RED appends a new attempt;
+- reviewer replacement for an unchanged subject does not create a new attempt.
 
-The manifest-owned workstream final-integration review remains a distinct lifecycle. M04 reconciles its full Close/target-refresh representation; it must never be mirrored into a Card/milestone review block.
+A reviewable parallel Card freezes its review subject only after Main has integrated that Card's returned result and persisted the exact integrated Card result. Parallel lane result identity does not replace the M02 review subject.
 
-## Canonical RED -> repair -> recheck sequence
+The manifest-owned workstream final-integration review remains distinct and is reconciled in M04.
 
-```text
-S1 durable
-  -> R01 pending
-  -> R01 in_progress
-  -> R01 red + evidence
-  -> owning executor repairs
-  -> S2 durable
-  -> R02 pending (R01 remains red)
-  -> R02 in_progress
-  -> R02 green + evidence
-  -> post-review finalization
-```
+## RED -> repair -> recheck
 
-Every new reviewable implementation subject gets a distinct attempt. A later review is a full applicable authority/acceptance review, not merely a check of the previously failing line/item.
+Card RED returns through Main to the Card's `implementation_owner_role`. Milestone RED routes through Execution Prep to exact bounded corrective Card(s). Tester never repairs production.
 
-For a Card-owned RED, correction returns through Main to that Card's `implementation_owner_role`. For a milestone-owned RED, Main routes the exact RED evidence through Execution Prep to reopen or create the bounded affected corrective Card(s), each with `implementation_owner_role: executor`; after those Cards produce a corrected checkpoint, Main freezes that new milestone subject as the next attempt. Do not infer a concrete repair worker from transcript/runtime identity.
-
-The same logical Tester may perform R02 when independence remains intact and runtime resume is safe. Runtime may fail closed to a replacement Tester without Project Workflow state changing beyond ordinary attempt progress/verdict.
-
-## Review completion
-
-GREEN is a precondition for terminal Card completion when review is REQUIRED/RECOMMENDED. The verdict itself does not mutate the production subject.
-
-After GREEN, Codex Main verifies the finalized result is still exactly the reviewed subject, then performs normal terminal state reconciliation.
+A corrected reviewable result is a new exact subject/attempt and prior RED/GREEN evidence remains unchanged. Runtime replacement remains transparent project-wise.
 
 ## Recovery integrity
 
-Treat these as inconsistent and fail closed before unrelated work:
+Treat as inconsistent and recover before unrelated work:
 
-- `current_attempt` references no attempt;
-- an active reviewable Card/milestone subject lacks the required semantic `implementation_owner_role`;
-- more than one `pending | in_progress` attempt exists;
-- an existing attempt's subject changed;
-- a terminal review attempt lacks evidence;
-- Task Board claims GREEN for a subject different from the result being finalized;
-- runtime-only identity appears as required project-state authority;
-- a worker directly becomes a competing Task Board writer.
+- invalid/missing review attempt pointers or terminal evidence;
+- active reviewable subject lacking semantic implementation owner;
+- Task Board GREEN subject/result mismatch;
+- runtime-only identity used as required project authority;
+- worker acting as competing Task Board writer;
+- more than one `in_progress` Card without one valid current parallel batch covering all of them;
+- active batch member/order/base mutation after launch;
+- duplicate/reused batch IDs or lane labels inside one batch;
+- active batch member not matching a Card/current lifecycle state;
+- returned/integrated member missing required result/evidence;
+- integrated result not reconcilable with the corresponding Card result;
+- more than one non-complete batch pointed as current.
 
-If a corrected implementation is durably present but interruption occurred before the next pending attempt was appended, recovery may append exactly one new attempt for that proven subject. It must not redo the correction merely to recreate bookkeeping.
+A corrected implementation or returned lane result already durable before a partial Main write is reconciled exactly once; recovery never reruns work merely to recreate bookkeeping.
 
 ## Implementation-owned Research
 
-Implementation/recovery Research continues to use one Task Board routing pointer:
+Task Board `research_obligation` remains the single implementation/recovery Research pointer. Research lifecycle/Origin/Return target lives in the pointed record. Parallel state does not create separate research schedulers.
 
-```yaml
-research_obligation: <exact-record-path> | null
-```
+## M04 boundary
 
-The research record owns its lifecycle/Origin/Return target. Runtime worker identity is never part of the pointer.
-
-## M03 boundary
-
-M02 does not define `parallel_safe`, `write_scope`, `exclusive_resources`, compatible-ready-set, lane/worktree or recoverable integration-base schema. M03 adds only the project-level concurrency metadata required by accepted authority while preserving this review-attempt model and runtime-identity prohibition.
+M03 defines bounded compatible Card dispatch/integration only. M04 reconciles full Intake/Brainstorming/Research/Definition/Planning/Micro-fix/Close routing, stacked-workstream integration, final target refresh and root cutover.
