@@ -1,6 +1,6 @@
 # Codex-only State Contract
 
-> M03 contract. This namespace remains non-routable from root policy routing until M04.
+> Live Codex-only state contract. M02 review/provenance and M03 bounded-parallel invariants apply across the complete routed lifecycle.
 
 ## Project-state ownership
 
@@ -161,7 +161,7 @@ A reviewable parallel Card freezes its review subject only after Main has integr
 
 After the batch closes, normal M02 review may produce RED. A later owning-Executor correction is outside the completed batch: it advances the Card's current result and creates a new review attempt, while the completed batch member's original `result_commit` / `integrated_commit` and the original batch-subject review attempt remain immutable lineage.
 
-The manifest-owned workstream final-integration review remains distinct and is reconciled in M04.
+The manifest-owned workstream final-integration review remains distinct from Task Board Card/milestone attempts. Its `requirement/state/subject/evidence/covered_by` lifecycle is owned by the selected `WORKSTREAM.yaml`; `WORKSTREAMS.md`, `REVIEW.md` and `CLOSE.md` govern refresh, formal Tester review and exact coverage reuse.
 
 ## RED -> repair -> recheck
 
@@ -197,6 +197,6 @@ A corrected implementation or returned lane result already durable before a part
 
 Task Board `research_obligation` remains the single implementation/recovery Research pointer. Research lifecycle/Origin/Return target lives in the pointed record. Parallel state does not create separate research schedulers.
 
-## M04 boundary
+## Full lifecycle state boundary
 
-M03 defines bounded compatible Card dispatch/integration only. M04 reconciles full Intake/Brainstorming/Research/Definition/Planning/Micro-fix/Close routing, stacked-workstream integration, final target refresh and root cutover.
+Intake/exploratory/pre-execution Research and plan-review state remain in their owning durable records. Once implementation exists, the selected canonical Task Board owns Card/milestone execution, M02 review attempts, implementation-owned Research and M03 parallel state. The selected manifest owns only workstream routing/lifecycle identity plus the distinct final-integration review gate. Close/target integration never mirrors those owners into one another.
