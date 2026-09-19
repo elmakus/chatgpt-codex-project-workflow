@@ -44,6 +44,7 @@ For each active Card/milestone review block require:
 - immutable subject per existing attempt;
 - terminal `green | red` attempt has durable evidence;
 - result finalized under GREEN still equals the GREEN subject;
+- semantic `implementation_owner_role` is present for every active reviewable Card/milestone subject; for a milestone it represents aggregate `executor` production ownership;
 - semantic roles only; no required runtime worker/session identity.
 
 A contradiction routes to Recovery rather than guessing.
@@ -67,10 +68,11 @@ A durable RED verdict is already a completed review result.
 1. Recover the exact RED attempt, subject, evidence and implementation-owner role.
 2. Preserve that attempt unchanged.
 3. Classify the correction through `REVIEW.md#RED -> owning-Executor repair`.
-4. Bounded production repair returns through Main to the owning `executor` role.
-5. If correction is not yet durable, resume/replace the runtime Executor as needed and produce it once.
-6. If corrected subject S2 is already durably proven but interruption happened before its next pending attempt was frozen, append exactly one new attempt for S2 and point `current_attempt` to it. Do not redo the correction.
-7. If the next attempt already exists, follow its state instead of repeating any prior role.
+4. For Card-owned RED, bounded production repair returns through Main to that Card's owning `executor` role.
+5. For milestone-owned RED, route through Execution Prep to reopen/create the exact affected corrective Card(s) with `implementation_owner_role: executor`; do not infer a concrete repair worker from runtime/transcript state.
+6. If correction is not yet durable, resume/replace the runtime Executor realization as needed and produce it once.
+7. If corrected Card result or milestone checkpoint S2 is already durably proven but interruption happened before its next pending attempt was frozen, append exactly one new attempt for S2 and point `current_attempt` to it. Do not redo the correction.
+8. If the next attempt already exists, follow its state instead of repeating any prior role.
 
 A runtime replacement that realizes the same project `executor` role does not alter accepted authority or create a review attempt by itself.
 
