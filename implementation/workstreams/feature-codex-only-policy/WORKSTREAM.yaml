@@ -1,0 +1,34 @@
+# Branch-isolated feature workstream manifest.
+
+id: "feature-codex-only-policy"
+kind: "feature"
+status: "discovery"
+
+branch: "feat/codex-only-policy"
+base_ref: "6b0445256b417f82431fb7b2704f56691eb4e7ae"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: "active"
+  record: "implementation/workstreams/feature-codex-only-policy/INTAKE.md"
+
+task_board: null
+
+authority:
+  requirements: null
+  decisions: []
+  plan: null
+
+review:
+  requirement: "RECOMMENDED"
+  state: null
+  subject: null
+  evidence: null
+  covered_by: null
+
+pr: null
+result: null
