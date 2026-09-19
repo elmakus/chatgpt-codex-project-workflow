@@ -18,7 +18,7 @@ One project repository owns durable project truth. Project Workflow state is rec
 
 ## M03 lane base and result contract
 
-Every frozen parallel batch records one exact Git `integration_base`.
+Every frozen parallel batch records one exact Git `integration_base`. This is the implementation/result base for lane diffs, not a claim that the coordinating branch HEAD can never advance: Main-owned Task Board/manifest/integration bookkeeping used to freeze or reconcile the batch may be committed after that base and is validated separately as reserved control-plane state.
 
 Each member lane:
 
