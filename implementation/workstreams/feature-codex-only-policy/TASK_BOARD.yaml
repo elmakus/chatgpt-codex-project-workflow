@@ -81,7 +81,7 @@ cards:
     depends_on: []
     openspec_change: null
     contract: "implementation/workstreams/feature-codex-only-policy/cards/M01-T01.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "ad1cf4626816a83ca2d3ed47bbd0b3344154014b"
     review_evidence: null
     result_commit: "ad1cf4626816a83ca2d3ed47bbd0b3344154014b"
