@@ -124,8 +124,8 @@ Before reading implementation/review/recovery state, resolve exactly one state c
 
 When the durable handoff/current request identifies an exact workstream manifest or an exact workstream branch + canonical workstream pointer:
 1. read that exact manifest;
-2. verify its `branch` matches the intended exact branch;
-3. apply **Manifest ↔ Task Board binding validation** to the manifest's exact `task_board` before interpreting mutable state;
+2. when the locator names a live/source workstream branch, verify manifest `branch` matches it; when the locator names an integrated terminal target-side manifest with `status: done` + exact `result`, keep manifest `branch` as provenance and use **Integrated terminal workstream** below instead of requiring the current checkout branch to equal it;
+3. apply **Manifest ↔ Task Board binding validation** to the manifest's exact `task_board` before interpreting mutable or terminal state;
 4. if implementation state exists, read only that successfully bound Task Board;
 5. do not inspect another workstream Task Board merely because it exists.
 
