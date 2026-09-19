@@ -23,7 +23,7 @@ planned -> ready -> in_progress -> done
 
 `superseded` requires accepted authority. Reviewable Cards remain non-terminal until the current REQUIRED/RECOMMENDED review attempt is GREEN.
 
-Multiple `in_progress` Cards are legal only when every such Card is a member of the one selected Task Board's exact current parallel batch and that batch satisfies the M03 invariants below. Without such a batch, more than one `in_progress` Card is inconsistent state.
+Multiple `in_progress` Cards are legal only in one of two bounded states: (1) every such Card is a member of the selected Task Board's exact current parallel batch and that batch satisfies the M03 invariants below; or (2) `current_batch` has just been cleared after one completed batch and every remaining `in_progress` Card is an integrated member of that same completed batch with an outstanding REQUIRED/RECOMMENDED review, finalization or RED-correction obligation. The second state is a post-batch review drain: it authorizes only those review/finalization/correction transitions, not unrelated new implementation, until those Cards leave `in_progress`.
 
 ## Semantic implementation provenance
 
@@ -108,14 +108,16 @@ prepared -> in_progress -> returned -> integrated
 - all member `write_scope` claims are pairwise disjoint and all `exclusive_resources` pairwise non-conflicting;
 - the exact `integration_base` is recoverable Git/project state, not a runtime session locator;
 - lane labels are project-local semantic provenance only;
-- `result_commit` is the returned lane result; `integrated_commit` is the exact shared-workstream result after Main integration;
+- `result_commit` is the returned lane result; `integrated_commit` is the immutable exact shared-workstream result produced by that batch member's original Main integration; a later post-batch review repair may advance the Card's current result but MUST NOT rewrite this historical batch ref;
 - terminal/returned result refs require durable evidence sufficient for their state;
 - a `blocked` batch/member requires durable evidence for the blocker or reconciled abandonment outcome;
 - a pre-launch prepared-batch abandonment is legal only while every member is still `prepared`, no member has a durable result/integrated ref and no member entered runtime-active state; its batch/member history becomes `blocked`, its affected Card statuses are reconciled back to legal READY/serial state, and only then may `current_batch` be cleared;
 - once any member left `prepared`, the pre-launch unwind is forbidden; recover the actual running/returned/integrated state instead of resetting Cards;
 - live Task Board, workstream manifest and shared integration bookkeeping remain reserved Main-owned state;
 - concrete worker/worktree/session identity never appears as required batch state;
-- completed batch entries remain durable history; a later batch gets a new stable ID.
+- completed batch entries remain durable history; a later batch gets a new stable ID;
+- when a reviewable member is integrated, Main freezes the ordinary M02 exact subject immediately, but while that batch remains `current_batch` the attempt stays `pending` and formal Tester dispatch is deferred;
+- an integrated member of the current unresolved batch MUST NOT have its review attempt enter `in_progress | red | green`; batch integration/closure owns continuation first.
 
 If a batch cannot meet these invariants, fail closed to Recovery/serial fallback rather than guessing.
 
@@ -150,7 +152,9 @@ Attempt invariants remain:
 - changed implementation after RED appends a new attempt;
 - reviewer replacement for an unchanged subject does not create a new attempt.
 
-A reviewable parallel Card freezes its review subject only after Main has integrated that Card's returned result and persisted the exact integrated Card result. Parallel lane result identity does not replace the M02 review subject.
+A reviewable parallel Card freezes its review subject only after Main has integrated that Card's returned result and persisted the exact integrated Card result. Parallel lane result identity does not replace the M02 review subject. If the Card belongs to the current unresolved batch, the exact attempt is frozen as `pending` but reviewer dispatch is deferred until that batch is `complete` and `current_batch: null`.
+
+After the batch closes, normal M02 review may produce RED. A later owning-Executor correction is outside the completed batch: it advances the Card's current result and creates a new review attempt, while the completed batch member's original `result_commit` / `integrated_commit` and the original batch-subject review attempt remain immutable lineage.
 
 The manifest-owned workstream final-integration review remains distinct and is reconciled in M04.
 
@@ -169,14 +173,15 @@ Treat as inconsistent and recover before unrelated work:
 - Task Board GREEN subject/result mismatch;
 - runtime-only identity used as required project authority;
 - worker acting as competing Task Board writer;
-- more than one `in_progress` Card without one valid current parallel batch covering all of them;
+- more than one `in_progress` Card without either one valid current parallel batch covering all of them or one exact completed-batch review-drain set in which every such Card is an integrated member with an outstanding review/finalization/RED-correction obligation;
 - clearing/abandoning a prepared batch while any member Card remains `in_progress` solely because that batch froze it;
 - using the pre-launch unwind after any member entered runtime-active state or acquired a returned/integrated result;
 - active batch member/order/base mutation after launch;
 - duplicate/reused batch IDs or lane labels inside one batch;
 - active batch member not matching a Card/current lifecycle state;
 - returned/integrated member missing required result/evidence;
-- integrated result not reconcilable with the corresponding Card result;
+- integrated member missing immutable provenance to its original Main-integrated Card result / original batch-subject review attempt; a later post-batch RED repair may legitimately make the current Card result differ from the historical member `integrated_commit` when that append-only review/correction lineage is exact;
+- an integrated member of `current_batch` whose review attempt has already entered `in_progress | red | green`; formal review must remain deferred while that batch is unresolved;
 - more than one non-complete batch pointed as current.
 
 A corrected implementation or returned lane result already durable before a partial Main write is reconciled exactly once; recovery never reruns work merely to recreate bookkeeping.
@@ -188,3 +193,5 @@ Task Board `research_obligation` remains the single implementation/recovery Rese
 ## M04 boundary
 
 M03 defines bounded compatible Card dispatch/integration only. M04 reconciles full Intake/Brainstorming/Research/Definition/Planning/Micro-fix/Close routing, stacked-workstream integration, final target refresh and root cutover.
+
+[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
