@@ -1,0 +1,20 @@
+# Codex-only branch-isolated Task Board foundation.
+# Bind workstream_id and execution_ref.branch to the owning manifest.
+# M02 refines review/provenance state; M03 adds optional bounded-parallel project metadata.
+# Runtime worker identity/lifecycle does not belong in this project-state schema.
+
+project: "<owner/repository>"
+workstream_id: "<stable-workstream-id>"
+plan_revision: null
+current_milestone: null
+
+execution_ref:
+  branch: "<exact-workstream-branch>"
+  pr: null
+  head: null
+
+research_obligation: null
+
+milestones: {}
+
+cards: []
