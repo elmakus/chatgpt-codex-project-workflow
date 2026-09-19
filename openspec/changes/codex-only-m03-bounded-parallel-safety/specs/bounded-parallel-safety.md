@@ -99,5 +99,3 @@ A reviewable parallel Card MUST enter ordinary M02 review only after its exact M
 ### Scenario: integrated review subject
 
 Main integrates L02 to exact shared-branch commit S2, records S2 as the Card result, then freezes the Card review attempt for S2. If B01 is still current, that attempt remains pending until B01 completes. Later unrelated commits or a later post-batch RED repair do not rewrite the historical S2 batch member ref/subject.
-
-[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
