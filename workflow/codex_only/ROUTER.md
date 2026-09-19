@@ -21,22 +21,24 @@ Full lifecycle/intake/stacked-workstream reconciliation is completed in M04.
 
 ## M03 durable priority model
 
-Within the selected context, route the highest applicable obligation:
+Within the selected context, first classify whether a Card review belongs to an integrated member of the exact unresolved `current_batch`. Such an attempt may be frozen only as `pending`; it is a deferred batch-member review and does not outrank completion of that same batch. If that attempt is already `in_progress | red | green` while the batch is unresolved, route Recovery because production review/correction was allowed to interleave with frozen integration.
+
+Then route the highest applicable obligation:
 
 1. inconsistent durable project state -> Recovery;
 2. active Intake/manifest binding obligation when applicable;
-3. Card/milestone current review attempt `pending | in_progress` -> Independent Review;
+3. non-deferred Card/milestone current review attempt `pending | in_progress` -> Independent Review;
 4. implementation-owned Research `active | blocked | complete` -> Research/exact Return target;
-5. current review attempt `red` -> RED corrective classification;
-6. in-progress Card whose current attempt is `green` -> Execution post-review finalization;
-7. existing current parallel batch `prepared | running | integrating | blocked` or member `returned` -> Execution/Recovery for that exact batch;
+5. non-deferred current review attempt `red` -> RED corrective classification;
+6. in-progress Card whose non-deferred current attempt is `green` -> Execution post-review finalization;
+7. existing current parallel batch `prepared | running | integrating | blocked` or member `returned`, including batches with deferred pending member reviews -> Execution/Recovery for that exact batch;
 8. other existing `in_progress | blocked` Card -> Execution/Recovery;
 9. manifest final-integration review obligation -> Review/RED handling as applicable;
 10. deterministic READY set -> Execution Prep to evaluate a bounded compatible batch; when no batch of at least two is safe, deterministic serial Execution;
 11. milestone/workstream Close when prerequisites are satisfied;
 12. Planning/Definition/Research when accepted authority requires escalation.
 
-Review/Research/RED obligations outrank continuing sibling batch integration. A durable returned lane result is preserved while those higher-priority obligations resolve.
+Outside the exact deferred-review exception, Review/Research/RED obligations keep their normal priority. After `current_batch` is cleared, any frozen member reviews are no longer deferred and are dispatched deterministically in canonical Task Board order. Durable returned/integrated lane results remain preserved throughout.
 
 ## Bounded READY selection
 
@@ -52,6 +54,8 @@ Parallelism is optional and per selected Task Board.
 ## RED corrective classification
 
 For exact RED evidence:
+
+A RED verdict for a Card's original batch-integrated subject is legal only after that batch is complete/current-null under the M03 deferral rule. If durable state shows such RED while the originating batch is still current, route Recovery before any correction.
 
 - bounded Card-owned production correction inside accepted L1/L2 authority -> Execution, returning through Main to that Card's owning `executor` role;
 - bounded milestone-owned production correction -> Execution Prep to reopen/create exact affected corrective Card(s);
@@ -100,3 +104,5 @@ Fixed `codex_only` does not change execution policy because concurrency or a par
 Completing a role is not a stop. Continue deterministic authorized transitions through Codex Main until a real strategic/product decision, explicit authorization, concrete unremediable runtime/input blocker, end of approved scope, or policy-defined safe context handoff owns the boundary.
 
 M04 reconciles the complete lifecycle router and performs root cutover only after namespace completeness is proven.
+
+[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
