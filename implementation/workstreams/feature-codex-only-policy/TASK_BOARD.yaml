@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/codex-only-policy"
   pr: null
-  head: "3d72fdec89027b0b20fe54577e5a40cd162c14b1"
+  head: "b3392532ab2b67bb08e1fa2c2fe4a3935078a65b"
 
 research_obligation: null
 
@@ -179,8 +179,8 @@ cards:
     title: "Remove contradictory intra-workstream concurrency prohibition"
     milestone: "M05"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on: ["M05-T01"]
     openspec_change: null
     contract: "implementation/workstreams/feature-codex-only-policy/cards/M05-T02.md"
