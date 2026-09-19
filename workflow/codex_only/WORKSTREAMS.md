@@ -20,7 +20,7 @@ M04 completes stacked integration, target refresh, final-review coverage and ful
 
 ## Intra-workstream bounded parallelism
 
-One selected workstream may temporarily have multiple `in_progress` Cards through one valid current M03 batch, or during the bounded post-batch review drain for integrated members of one just-completed batch. The drain permits only review/finalization/correction and blocks unrelated new implementation until resolved.
+One selected workstream may temporarily have multiple `in_progress` Cards through one valid current M03 batch, or during the bounded post-batch review drain for integrated members of one just-closed batch. A closed batch is either `complete` or a post-launch `blocked` batch that has been terminally reconciled and removed from `current_batch`. The drain permits only review/finalization/correction and blocks unrelated new implementation until resolved.
 
 The batch:
 
