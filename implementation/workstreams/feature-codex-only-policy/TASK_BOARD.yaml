@@ -61,7 +61,7 @@ milestones:
 
   M05:
     decision_state: accepted
-    execution_status: done
+    execution_status: in_progress
     contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M05--end-to-end-regression-architecture-audit-and-publication-readiness"
     checkpoint: "3d72fdec89027b0b20fe54577e5a40cd162c14b1"
     implementation_head: "3d72fdec89027b0b20fe54577e5a40cd162c14b1"
@@ -174,3 +174,21 @@ cards:
     result_pr: null
     evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M05-T01.md"
     tests_summary: "GREEN M05 verification: 29/29 semantic matrix; 22/22 namespace-owner parity; no active forbidden cross-policy refs/runtime-ID schema; feature-side chatgpt_only diff zero; full feature-range diff-check/conflict scan GREEN; README/CHANGELOG/migration docs updated; trial merge exposes the expected target-owned PROJECT.md semantic reconciliation obligation for Close. PyYAML parser validation not claimed."
+
+  - id: "M05-T02"
+    title: "Remove contradictory intra-workstream concurrency prohibition"
+    milestone: "M05"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: ["M05-T01"]
+    openspec_change: null
+    contract: "implementation/workstreams/feature-codex-only-policy/cards/M05-T02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
