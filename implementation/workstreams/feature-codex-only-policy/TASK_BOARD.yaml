@@ -116,7 +116,7 @@ cards:
     depends_on: ["M01-T02"]
     openspec_change: "openspec/changes/codex-only-m02-formal-review-state"
     contract: "implementation/workstreams/feature-codex-only-policy/cards/M02-T01.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "b901d1cfa5ca26074b363b0c8980f7a7aaa223f1"
     review_evidence: null
     result_commit: "b901d1cfa5ca26074b363b0c8980f7a7aaa223f1"
