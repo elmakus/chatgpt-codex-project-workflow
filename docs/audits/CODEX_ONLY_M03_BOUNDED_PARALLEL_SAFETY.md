@@ -53,12 +53,13 @@ When results R1/R2/R3 return, Codex Main alone:
 
 1. persists each returned result/evidence;
 2. verifies `S0..R#` stays inside that Card scope and does not touch reserved shared state;
-3. integrates in L01, L02, L03 order;
-4. records each exact `integrated_commit` and Card result;
-5. freezes ordinary M02 review only on each exact integrated result when review applies;
-6. marks B01 complete/current null after every member is integrated.
+3. sets B01 to `integrating` before the first shared application and integrates in L01, L02, L03 order;
+4. records each exact immutable historical `integrated_commit` and Card result;
+5. freezes ordinary M02 review on each exact integrated result when review applies, but keeps those attempts pending/deferred while B01 remains current;
+6. marks B01 complete/current null after every member is integrated;
+7. only then dispatches frozen member reviews in canonical Task Board order.
 
-Returned/integrated refs remain durable in B01 history.
+Returned/integrated refs remain durable in B01 history. A later post-batch RED repair may advance a Card's current result/new review attempt but never rewrites the B01 member's original refs.
 
 ## Negative eligibility matrix
 
@@ -105,10 +106,10 @@ If a returned result was valid against S0 but a material semantic/textual confli
 | B01 prepared, no lane launched | revalidate base/safety; expected Main-only freeze bookkeeping after S0 is allowed. If proof is stale while every member is still prepared/result-free, persist blocked abandonment evidence, restore batch-owned Card statuses to READY, then clear current_batch; never reuse B01 |
 | L02 in_progress, no result | runtime may resume/replace realization of same B01/L02 |
 | L02 returned | do not rerun; validate/integrate once when prior frozen members resolved |
-| L01 integrated, L02 returned | verify L01 shared result, continue L02; never restart B01 from S0 |
+| L01 integrated, L01 review frozen pending, L02 returned | keep L01 review deferred; verify L01 shared result and continue L02 in frozen order; never restart B01 from S0 |
 | integrated Git result exists, board pointer stale | verify exact Git/result relationship and reconcile Main bookkeeping only |
 | all members integrated, batch still integrating | verify all refs, set complete, clear current_batch |
-| complete batch, review freeze missing | freeze exact integrated Card subject once when review applies |
+| complete batch, review freeze missing | freeze exact integrated Card subject once when review applies, then dispatch pending member reviews now that current_batch is null |
 | runtime worker/session state lost | no Project Workflow identity change; use durable batch/member/result state |
 
 ### Pre-launch abandonment invariant
@@ -133,9 +134,15 @@ Parallelism does not create a second review model.
 
 - Card implementation owner remains semantic `executor`.
 - Review subject is the exact Main-integrated Card result.
+- Main freezes that subject when the member is integrated, but the attempt remains pending/deferred until the current batch is complete/current-null.
 - Tester remains non-repairing and independent under M02.
-- RED correction produces a new exact subject/attempt.
-- Sibling returned/integrated batch results remain durable while RED/Review/Research outranks continued batch integration.
+- RED correction therefore occurs only after batch closure and produces a new exact subject/attempt.
+- The corrected Card result does not overwrite the completed member's original `result_commit` / `integrated_commit`; original review attempt + batch refs preserve lineage.
+- Sibling returned/integrated batch results remain durable and are never replayed.
+
+### Active-batch RED-repair trace
+
+Given B01 with L01 and L02, Main integrates L01 to S1 and freezes its review attempt as pending while L02 is returned. Router MUST continue B01 rather than dispatch review. Main integrates L02, records its immutable integration ref, completes B01 and clears `current_batch`. Reviewable members may now coexist as `in_progress` only in the exact completed-batch review drain, which blocks unrelated new implementation. Only then may the S1 review run. If it is RED, Executor repairs the Card to S1c outside B01 and Main appends a new review attempt for S1c. B01 still records L01 `integrated_commit: S1`, the original S1 attempt remains durable, and no sibling result is replayed.
 
 ## Forbidden project state
 
@@ -165,6 +172,9 @@ M03 verification must prove:
 9. root `workflow/CONTEXT_ROUTING.md` and `workflow/chatgpt_only/` remain identical to current workflow main;
 10. root `PROJECT.md` remains `execution_policy: chatgpt_only`;
 11. exact implementation diff has no conflict markers or added-line trailing whitespace;
-12. stale prepared-batch fallback cannot leave batch-owned Cards `in_progress` after `current_batch` is cleared, and the abandoned batch ID remains durable history.
+12. stale prepared-batch fallback cannot leave batch-owned Cards `in_progress` after `current_batch` is cleared, and the abandoned batch ID remains durable history;
+13. integrated-member reviews remain pending/deferred until active-batch closure, and later RED repair cannot overwrite historical member integration provenance or make sibling continuation ambiguous.
 
 Parser-based YAML validation is reported only if an actual parser is available.
+
+[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
