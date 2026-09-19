@@ -55,6 +55,8 @@ Scope escape is preserved as evidence but not integrated.
 
 Main integrates valid results in the frozen member order onto the selected workstream branch. A material conflict is recovered fail-closed; returned results are preserved and successful members are not replayed.
 
-The resulting `integrated_commit` becomes the Card's exact shared implementation result and, when review applies, the M02 review subject.
+The resulting `integrated_commit` becomes that batch member's immutable exact shared implementation result and, when review applies, the M02 review subject. Main may freeze that subject immediately, but formal Tester dispatch is deferred until the current batch is complete/current-null so a RED repair cannot perturb the frozen integration chain. A later post-batch correction advances the Card's current result/new review attempt without rewriting the completed member's historical `result_commit` / `integrated_commit`.
 
 M04 reconciles stacked-workstream and final target-refresh behavior. M03 does not treat internal lane integration as workstream publication.
+
+[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
