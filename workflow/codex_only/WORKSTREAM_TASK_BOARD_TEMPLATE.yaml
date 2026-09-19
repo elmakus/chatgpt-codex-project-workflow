@@ -1,12 +1,12 @@
-# Codex-only branch-isolated Task Board foundation.
-# Bind workstream_id and execution_ref.branch to the owning manifest.
-# M02 refines review/provenance state; M03 adds optional bounded-parallel project metadata.
-# Runtime worker identity/lifecycle does not belong in this project-state schema.
+# Codex-only branch-isolated Task Board.
+# Bind workstream_id and execution_ref.branch exactly to the owning manifest.
+# M02 formal-review/provenance state is project-level and runtime-identity-free.
+# M03 may add optional bounded-parallel project metadata; do not add runtime worker/session identity.
 
 project: "<owner/repository>"
 workstream_id: "<stable-workstream-id>"
-plan_revision: null
-current_milestone: null
+plan_revision: "<R# | micro-fix | none>"
+current_milestone: "<MXX | micro-fix | none>"
 
 execution_ref:
   branch: "<exact-workstream-branch>"
@@ -15,6 +15,40 @@ execution_ref:
 
 research_obligation: null
 
+# Qualified micro-fix keeps this mapping empty and uses one bounded Card directly.
 milestones: {}
 
-cards: []
+cards:
+  - id: "M01-T01"
+    title: "<title>"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: planned
+    implementation_owner_role: null # executor when production implementation starts
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/workstreams/<id>/cards/M01-T01.md"
+    review:
+      requirement: none # REQUIRED | RECOMMENDED | none; must match stable Card contract
+      current_attempt: null
+      attempts: []
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+# Card/milestone review attempt shape:
+#
+# review:
+#   requirement: RECOMMENDED
+#   current_attempt: R01
+#   attempts:
+#     - id: R01
+#       state: pending # pending | in_progress | green | red
+#       subject: "<exact-immutable-subject>"
+#       reviewer_role: tester
+#       evidence: null
+#
+# Workstream final-integration review remains manifest-owned and is not mirrored here.
+# Append changed-subject attempts; preserve all prior RED/GREEN attempts/evidence.
+# Concrete worker/session/model/profile/invocation/resume/replacement identity is forbidden here.
