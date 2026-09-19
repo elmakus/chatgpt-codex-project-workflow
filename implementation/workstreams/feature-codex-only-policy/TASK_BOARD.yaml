@@ -6,7 +6,7 @@ current_milestone: "M02"
 execution_ref:
   branch: "feat/codex-only-policy"
   pr: null
-  head: "ae70f7b34b875a5cafc58d4058b9f4913108d997"
+  head: "af08ef755cb846118c9dbe1a6edf7f5f139cf0e8"
 
 research_obligation: null
 
@@ -116,10 +116,10 @@ cards:
     depends_on: ["M01-T02"]
     openspec_change: "openspec/changes/codex-only-m02-formal-review-state"
     contract: "implementation/workstreams/feature-codex-only-policy/cards/M02-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "af08ef755cb846118c9dbe1a6edf7f5f139cf0e8"
     review_evidence: null
-    result_commit: null
+    result_commit: "af08ef755cb846118c9dbe1a6edf7f5f139cf0e8"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M02-T01.md"
+    tests_summary: "GREEN author verification: executable R01 RED -> owning-Executor repair -> R02 GREEN state-machine trace; prior RED preserved; unchanged-subject reviewer replacement preserves attempt identity; runtime-ID and M03 schema-key scans GREEN; root routing/chatgpt_only/project-policy non-regression GREEN; diff-check/conflict scan GREEN. YAML parser validation not claimed because PyYAML is unavailable."
