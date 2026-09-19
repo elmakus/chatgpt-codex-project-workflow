@@ -24,10 +24,10 @@ authority:
 
 review:
   requirement: REQUIRED
-  state: null
-  subject: null
-  evidence: null
-  covered_by: null
+  state: green
+  subject: "f5d26158de2b45abba12a09d623c3343a5120eb9"
+  evidence: "implementation/workstreams/issue-workstream-finalization-semantics/evidence/M05_FINAL_INTEGRATION_REFRESH_2026-09-19.md"
+  covered_by: "implementation/workstreams/issue-workstream-finalization-semantics/evidence/M05_T02_REVIEW_R2_2026-09-19.md"
 
 pr: 29
 result: null
