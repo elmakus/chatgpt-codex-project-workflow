@@ -1,6 +1,6 @@
 # Codex-only Execution Preparation
 
-> M03 contract. This namespace remains non-routable from root policy routing until M04.
+> Live Codex-only Execution Preparation contract. Serial/default and M03 bounded-parallel preparation apply to normal milestones and qualified micro-fixes.
 
 ## Ownership
 
@@ -133,6 +133,6 @@ If execution preparation lacks evidence needed to classify exact Card scope/safe
 
 Execution Prep never performs the Card review. If implementation later produces a REQUIRED/RECOMMENDED reviewable subject, `EXECUTION.md` freezes the exact integrated result under the M02 review model.
 
-## M04 boundary
+## Lifecycle integration
 
-M04 reconciles the complete lifecycle/intake/micro-fix/Close preparation route before root activation. M03 does not cut over root routing.
+Execution Prep is entered only through `ROUTER.md`. Qualified micro-fix materialization follows `MICRO_FIX.md`; normal planning/JIT follows accepted milestone authority. Final workstream integration remains owned by `CLOSE.md`/`WORKSTREAMS.md`.
