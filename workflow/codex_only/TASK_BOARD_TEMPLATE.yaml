@@ -1,6 +1,6 @@
 # Codex-only default Task Board.
 # M02 formal-review/provenance state is project-level and runtime-identity-free.
-# M03 may add optional bounded-parallel project metadata; do not add runtime worker/session identity.
+# M03 bounded-parallel state is optional; serial behavior remains valid. Do not add runtime worker/session identity.
 
 project: "<owner/repository>"
 plan_revision: "<R#>"
@@ -12,6 +12,9 @@ execution_ref:
   head: null
 
 research_obligation: null
+
+# null means ordinary serial execution; see commented batch shape below.
+parallel: null
 
 milestones:
   M01:
@@ -61,3 +64,23 @@ cards:
 #
 # Append new attempts for changed subjects. Never overwrite prior RED/GREEN attempts.
 # Concrete worker/session/model/profile/invocation/resume/replacement identity is forbidden here.
+
+# Parallel batch shape when JIT freezes two or more compatible READY Cards:
+#
+# parallel:
+#   current_batch: B01
+#   batches:
+#     - id: B01
+#       state: prepared # prepared | running | integrating | complete | blocked
+#       integration_base: "<exact-git-commit>"
+#       members:
+#         - card_id: M01-T01
+#           lane: L01
+#           state: prepared # prepared | in_progress | returned | integrated | blocked
+#           result_commit: null
+#           integrated_commit: null
+#           evidence: null
+#
+# Batch membership/order/base are frozen after launch; completed entries remain durable.
+# Lane labels are semantic project provenance, never concrete worker/session/worktree identity.
+# Stable Card contracts, not this mutable board, own parallel_safe/write_scope/exclusive_resources.
