@@ -104,16 +104,16 @@ Publication verification is lighter than substantive milestone acceptance. Re-ru
 
 When milestone uses PR:
 1. milestone acceptance GREEN;
-2. open/update PR as appropriate;
-3. verify actual PR artifact;
-4. merge/finalize after required approval/checks;
-5. reconcile Task Board to actual final state;
-6. write/update cumulative handoff;
-7. persist acceptance evidence;
-8. record final implementation head/checkpoint;
-9. set milestone `done`.
+2. for a branch-isolated **final-target** integration, persist the closure-ready namespaced workstream package before merge, including the cumulative handoff/checkpoint/evidence content already knowable at this boundary; fields inherently dependent on the actual merge result remain explicitly pending for target-side reconciliation;
+3. open/update PR as appropriate and verify that its exact subject carries that closure-ready package when the branch-isolated final-target rule applies;
+4. verify actual PR artifact;
+5. merge/finalize after required approval/checks;
+6. reconcile Task Board and manifest to the actual final result from target-side state;
+7. write/update only merge-result-dependent cumulative handoff/result fields that could not be known before merge, using target-side closure reconciliation when required;
+8. persist/read back acceptance evidence and final implementation checkpoint;
+9. set milestone `done` only after the required target-side terminal readback is GREEN.
 
-A small closure documentation commit is allowed when required.
+For legacy/default PR finalization, or branch-isolated integration into an unmerged parent rather than the final target, use the normal handoff timing required by that state context. A small closure documentation commit is allowed when required.
 
 ### Branch-isolated workstream final integration
 
@@ -160,6 +160,8 @@ Record minimum continuation truth:
 - concise acceptance/review/external-readback results + evidence pointers;
 - only material exceptions/deferred items;
 - next durable starting point and explicit gate.
+
+For a branch-isolated final-target merge, materialize the handoff content that is already knowable **before** merge as part of the closure-ready package. After merge, reconcile only the exact result/readback fields that necessarily depended on the merge outcome. Do not defer an otherwise unique recovery artifact merely because historical Close ordering wrote handoffs after merge.
 
 Do not turn handoff into a duplicate Task Board/history dump.
 
