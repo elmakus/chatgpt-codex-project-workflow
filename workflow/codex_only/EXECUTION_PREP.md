@@ -78,6 +78,7 @@ parallel:
     - id: B01
       state: prepared
       integration_base: "<exact-git-commit>"
+      evidence: null
       members:
         - card_id: M01-T01
           lane: L01
@@ -94,26 +95,31 @@ Then:
 - keep non-member READY Cards unchanged;
 - persist this Main-owned state before runtime launch.
 
+The frozen `integration_base` is the exact implementation/result base for lane diffs. The commit(s) used by Main to persist this batch-control state may advance the workstream branch after that base; those Main-only bookkeeping writes do not by themselves stale the implementation base.
+
 Batch/lane labels are project provenance only; they never identify a concrete worker.
 
 ## Refresh immediately before launch
 
 After freezing but before changing a member to runtime-active, re-read only state capable of invalidating safety:
 
-- current branch/HEAD versus frozen integration base;
+- current branch/HEAD versus frozen integration base, distinguishing expected Main-only batch bookkeeping from implementation/source drift;
 - member Card authority/contracts;
 - dependency terminal state;
 - normalized write/resource compatibility;
 - reserved shared-state exclusions;
 - runtime ability to provide isolated mutable workspaces.
 
+Expected Main-owned Task Board/manifest/integration bookkeeping written solely to freeze this batch may exist after `integration_base`; it is not lane input and does not by itself invalidate the base. Any other branch/source change that can affect a member contract, dependency, write/resource proof or integration result does invalidate the prepared proof.
+
 If the base or safety proof became stale before launch:
 
 - do not start the stale batch;
-- preserve/dissolve its durable prepared evidence according to Recovery;
-- either form a new batch from current truth or fall back serially.
+- use `RECOVERY.md#Prepared` pre-launch abandonment only if every member is still `prepared`, has no durable result/integrated ref and never entered runtime-active state;
+- in one recoverable Main-owned transition, record the abandoned batch/member outcome as `blocked` with evidence, reconcile every affected Card from batch-owned `in_progress` back to legal READY/serial state, and only then clear `current_batch`;
+- never reuse the abandoned batch ID; either form a new batch from current truth or fall back serially.
 
-Do not silently mutate membership/base on an already-launched batch.
+Do not silently mutate membership/base on an already-launched batch, and never use the pre-launch unwind after any member left `prepared`.
 
 ## RED corrective preparation
 
