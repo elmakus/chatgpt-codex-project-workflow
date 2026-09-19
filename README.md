@@ -49,13 +49,20 @@ CHATGPT.md
 → one execution-policy namespace
 ```
 
-The first migrated namespace is `workflow/chatgpt_only/`.
+The dedicated migrated namespaces are `workflow/chatgpt_only/` and `workflow/codex_only/`.
 
 For `chatgpt_only`:
 - genuinely policy-neutral authority/OpenSpec/user-stop rules come from `workflow/common/`;
 - Brainstorming, Research, Project Definition, planning, execution preparation, Task Cards, state, execution, independent review, close/publication and recovery semantics come from `workflow/chatgpt_only/`;
 - normal project execution handles exactly one READY Task Card at a time **per selected Task Board**; independent branch-isolated workstreams may each progress on distinct branches/state;
 - other policy execution/orchestration semantics are outside the route.
+
+For `codex_only`:
+- genuinely policy-neutral rules still come only from `workflow/common/`, while migrated lifecycle/execution semantics come from `workflow/codex_only/`;
+- Codex Main is the sole shared Task Board/integration-state writer; concrete worker/session/model/profile/invocation/wait/resume/concurrency realization remains owned by `codex_workflow`;
+- serial execution remains valid by default, with only finite current-state/JIT-proven bounded Card batches eligible for concurrency;
+- formal independent review is exact-subject/role based: Tester does not repair production, and a qualifying Codex-managed verdict does not require a second normal-ChatGPT review;
+- branch-isolated/default Task Boards, stacked dependencies, target refresh, terminal durable packages and source-branch-deletion safety are policy-local contracts.
 
 The prior multi-policy router is preserved at `workflow/legacy/CONTEXT_ROUTING.md` for policies not yet migrated. This is a staged migration: legacy shared execution/contracts remain in place until those policies receive their own namespaces.
 
@@ -217,17 +224,19 @@ workflow/EXECUTION.md
 → current Task Card + exact authority slice + required source/runtime
 ```
 
-This is **not** the active runtime path for `chatgpt_only`. The migrated `chatgpt_only` policy follows `workflow/chatgpt_only/ROUTER.md` and its namespaced Execution/State/Review contracts, and executes exactly one READY project Card at a time per selected Task Board.
+This is **not** the active runtime path for either migrated fixed policy. `chatgpt_only` follows `workflow/chatgpt_only/ROUTER.md` with serial execution per selected Task Board. `codex_only` follows `workflow/codex_only/ROUTER.md`, keeps Codex Main as the shared-state/integration owner and delegates concrete worker/runtime realization to `codex_workflow`.
 
 For policies that still use the shared execution core, `TASK_CARDS.md` is an authoring/decomposition contract rather than a mandatory serial-executor read, and `GITHUB_STATE.md` supplies extended coordinator/parallel/review/milestone/recovery semantics only when that route requires them.
 
 Project Workflow does not teach ChatGPT or Codex a catalog of their tools/capabilities. Executors attempt concrete operations with their actual runtime; fixed-policy capability inventory/preflight is not part of normal execution.
 
-## Task execution outside `chatgpt_only`
+## Task execution by policy
 
-The shared/legacy execution stack may support serial execution plus explicitly contracted **bounded parallel** execution when its policy route permits it. Those parallel-card semantics do not apply to the active `chatgpt_only` namespace.
+The shared/legacy execution stack remains only for accepted policies not yet migrated to a dedicated namespace.
 
 Under `chatgpt_only`, execution is serial **inside each selected state context**: exactly one Card may be `in_progress` per selected Task Board. Independent branch-isolated workstreams may each have their own one in-progress Card when branch/state isolation and their own gates are satisfied. Completed Card boundaries return through the ChatGPT-only router before the next obligation in that workstream starts.
+
+Under `codex_only`, serial execution is also the default. Bounded parallel Cards are legal only after Execution Prep/JIT proves current dependencies, explicit `parallel_safe`, disjoint mutable `write_scope`, non-conflicting `exclusive_resources`, isolated local mutable workspaces where applicable, and one recoverable integration base. Codex Main alone integrates returned lane results and updates shared project state.
 
 ## Roles
 

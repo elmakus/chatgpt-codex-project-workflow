@@ -1,0 +1,96 @@
+# Codex-only branch-isolated Task Board.
+# Bind workstream_id and execution_ref.branch exactly to the owning manifest.
+# M02 formal-review/provenance state is project-level and runtime-identity-free.
+# M03 bounded-parallel state is optional; serial behavior remains valid. Do not add runtime worker/session identity.
+
+project: "<owner/repository>"
+workstream_id: "<stable-workstream-id>"
+plan_revision: "<R# | micro-fix | none>"
+current_milestone: "<MXX | micro-fix | none>"
+
+execution_ref:
+  branch: "<exact-workstream-branch>"
+  pr: null
+  head: null
+
+research_obligation: null
+
+# null means ordinary serial execution; see commented batch shape below.
+parallel: null
+
+# Qualified micro-fix keeps this mapping empty and uses one bounded Card directly.
+# Normal milestone entries use the same M02 provenance/review shape as the default board:
+# milestones:
+#   M01:
+#     decision_state: accepted
+#     execution_status: planned
+#     contract: "planning/MASTER_PLAN.md#M01"
+#     checkpoint: null
+#     implementation_head: null
+#     handoff: null
+#     acceptance_evidence: null
+#     implementation_owner_role: null # executor when a reviewable milestone/checkpoint subject is frozen
+#     review:
+#       requirement: none
+#       current_attempt: null
+#       attempts: []
+milestones: {}
+
+cards:
+  - id: "M01-T01"
+    title: "<title>"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: planned
+    implementation_owner_role: null # executor when production implementation starts
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/workstreams/<id>/cards/M01-T01.md"
+    review:
+      requirement: none # REQUIRED | RECOMMENDED | none; must match stable Card contract
+      current_attempt: null
+      attempts: []
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+# Card/milestone review attempt shape:
+#
+# review:
+#   requirement: RECOMMENDED
+#   current_attempt: R01
+#   attempts:
+#     - id: R01
+#       state: pending # pending | in_progress | green | red
+#       subject: "<exact-immutable-subject>"
+#       reviewer_role: tester
+#       evidence: null
+#
+# Workstream final-integration review remains manifest-owned and is not mirrored here.
+# Append changed-subject attempts; preserve all prior RED/GREEN attempts/evidence.
+# Concrete worker/session/model/profile/invocation/resume/replacement identity is forbidden here.
+
+# Parallel batch shape when JIT freezes two or more compatible READY Cards:
+#
+# parallel:
+#   current_batch: B01
+#   batches:
+#     - id: B01
+#       state: prepared # prepared | running | integrating | complete | blocked
+#       integration_base: "<exact-git-commit>"
+#       evidence: null # required when batch state is blocked/reconciled
+#       members:
+#         - card_id: M01-T01
+#           lane: L01
+#           state: prepared # prepared | in_progress | returned | integrated | blocked
+#           result_commit: null
+#           integrated_commit: null
+#           evidence: null
+#
+# Batch membership/order/base are frozen after launch; completed and reconciled blocked entries remain durable.
+# integrated_commit is immutable original batch-integration provenance; a later post-batch review repair advances Card review/result state without overwriting it.
+# After current_batch clears from a complete or terminally reconciled blocked batch, integrated reviewable Cards may remain in_progress only as one post-batch review drain; drain review/finalization/correction precedes unrelated new implementation.
+# A pre-launch abandoned prepared batch is kept as blocked history with evidence; its Cards are restored to READY before current_batch is cleared.
+# Lane labels are semantic project provenance, never concrete worker/session/worktree identity.
+# Stable Card contracts, not this mutable board, own parallel_safe/write_scope/exclusive_resources.

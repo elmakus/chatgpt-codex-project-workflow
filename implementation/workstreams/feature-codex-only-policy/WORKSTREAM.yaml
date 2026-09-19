@@ -1,0 +1,37 @@
+# Branch-isolated feature workstream manifest.
+
+id: "feature-codex-only-policy"
+kind: "feature"
+status: "in_progress"
+
+branch: "feat/codex-only-policy"
+base_ref: "6b0445256b417f82431fb7b2704f56691eb4e7ae"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: "complete"
+  record: "implementation/workstreams/feature-codex-only-policy/INTAKE.md"
+
+task_board: "implementation/workstreams/feature-codex-only-policy/TASK_BOARD.yaml"
+
+authority:
+  requirements: "requirements/CODEX_ONLY_POLICY.md"
+  decisions:
+    - "decisions/ADR_CODEX_ONLY_DEDICATED_NAMESPACE.md"
+    - "decisions/ADR_CODEX_ONLY_RUNTIME_BOUNDARY.md"
+    - "decisions/ADR_CODEX_ONLY_BOUNDED_PARALLEL_CARDS.md"
+  plan: "planning/CODEX_ONLY_MASTER_PLAN.md"
+
+review:
+  requirement: "RECOMMENDED"
+  state: green
+  subject: "feature@2e724967c8daf8623f93fd8775a1535ba2188d9c + target@92e9f162c3d2fe4b178b04f07edc439c12a33ce8 + M01-M05 acceptance"
+  evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M05-final-integration-review-02.md"
+  covered_by: null
+
+pr: null
+result: null

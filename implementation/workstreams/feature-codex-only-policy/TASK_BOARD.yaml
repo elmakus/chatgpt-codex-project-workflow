@@ -1,0 +1,194 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "feature-codex-only-policy"
+plan_revision: "CO-P1"
+current_milestone: "M05"
+
+execution_ref:
+  branch: "feat/codex-only-policy"
+  pr: null
+  head: "f9bd74aa4fd9ddfff4af62a4e476587b5ac2a7cd"
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: done
+    contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M01--dedicated-namespace-foundation-and-semantic-parity-inventory"
+    checkpoint: "8ded26f50275ab04e35a07438ca1abd2836901c2"
+    implementation_head: "8ded26f50275ab04e35a07438ca1abd2836901c2"
+    handoff: "project-handoffs/CODEX_ONLY_M01_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M01-acceptance.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M02:
+    decision_state: accepted
+    execution_status: done
+    contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M02--projectruntime-boundary-formal-independent-review-state-and-recovery"
+    checkpoint: "b901d1cfa5ca26074b363b0c8980f7a7aaa223f1"
+    implementation_head: "b901d1cfa5ca26074b363b0c8980f7a7aaa223f1"
+    handoff: "project-handoffs/CODEX_ONLY_M02_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M02-acceptance.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M03:
+    decision_state: accepted
+    execution_status: done
+    contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M03--bounded-parallel-task-cards-and-jit-safety"
+    checkpoint: "1fbb601461604fe07151478e017cb94bf60de47b"
+    implementation_head: "1fbb601461604fe07151478e017cb94bf60de47b"
+    handoff: "implementation/workstreams/feature-codex-only-policy/handoffs/M03_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M03-acceptance.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M04:
+    decision_state: accepted
+    execution_status: done
+    contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M04--full-lifecycle-integration-routing-cutover-and-compatibility"
+    checkpoint: "48a56cbd5554b1378fa3727449bfce94e2f7f1df"
+    implementation_head: "48a56cbd5554b1378fa3727449bfce94e2f7f1df"
+    handoff: "implementation/workstreams/feature-codex-only-policy/handoffs/M04_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M04-acceptance.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M05:
+    decision_state: accepted
+    execution_status: done
+    contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M05--end-to-end-regression-architecture-audit-and-publication-readiness"
+    checkpoint: "f9bd74aa4fd9ddfff4af62a4e476587b5ac2a7cd"
+    implementation_head: "f9bd74aa4fd9ddfff4af62a4e476587b5ac2a7cd"
+    handoff: "implementation/workstreams/feature-codex-only-policy/handoffs/M05_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M05-acceptance-R2.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Build codex_only semantic parity and legacy behavior matrix"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/workstreams/feature-codex-only-policy/cards/M01-T01.md"
+    review_state: green
+    review_subject: "ad1cf4626816a83ca2d3ed47bbd0b3344154014b"
+    review_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M01-T01-review-01.md"
+    result_commit: "ad1cf4626816a83ca2d3ed47bbd0b3344154014b"
+    result_pr: null
+    evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M01-T01.md"
+    tests_summary: "GREEN author verification: exact current-main chatgpt_only inventory 22/22 present exactly once; legacy evidence families and all nine CO-REQ-026 properties covered; Card diff adds only the baseline matrix; no routing/production workflow changes; conflict-marker scan GREEN."
+
+  - id: "M01-T02"
+    title: "Establish codex_only namespace foundation and static boundary checks"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: ["M01-T01"]
+    openspec_change: null
+    contract: "implementation/workstreams/feature-codex-only-policy/cards/M01-T02.md"
+    review_state: green
+    review_subject: "8ded26f50275ab04e35a07438ca1abd2836901c2"
+    review_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M01-T02-review-01.md"
+    result_commit: "8ded26f50275ab04e35a07438ca1abd2836901c2"
+    result_pr: null
+    evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M01-T02.md"
+    tests_summary: "GREEN author verification: exact 22/22 codex_only parity owner set; no forbidden policy/legacy execution dependencies; no runtime identity schema keys; root routing and chatgpt_only tree identical to current main; repository execution policy remains chatgpt_only; implementation-range diff-check and conflict scan GREEN. YAML templates structurally inspected; parser-based YAML validation not claimed because no parser was available."
+
+
+  - id: "M02-T01"
+    title: "Finalize formal review state, provenance and runtime-decoupled recovery"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: ["M01-T02"]
+    openspec_change: "openspec/changes/codex-only-m02-formal-review-state"
+    contract: "implementation/workstreams/feature-codex-only-policy/cards/M02-T01.md"
+    review_state: green
+    review_subject: "b901d1cfa5ca26074b363b0c8980f7a7aaa223f1"
+    review_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M02-T01-review-02.md"
+    result_commit: "b901d1cfa5ca26074b363b0c8980f7a7aaa223f1"
+    result_pr: null
+    evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M02-T01.md"
+    tests_summary: "Attempt 1 RED found milestone-review provenance/recovery gap. Bounded repair GREEN author verification on b901d1cf: milestone aggregate implementation_owner_role + milestone RED -> Execution Prep corrective-Card routing are coherent across State/Review/Execution/Recovery/Router/OpenSpec/audit/templates; prior RED evidence preserved; runtime-ID and M03 schema-key scans GREEN; root routing/chatgpt_only/project-policy non-regression GREEN; diff-check/conflict scan GREEN. YAML parser validation not claimed because no parser is available."
+
+  - id: "M03-T01"
+    title: "Finalize bounded parallel Card safety, lane return and deterministic integration"
+    milestone: "M03"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: ["M02-T01"]
+    openspec_change: "openspec/changes/codex-only-m03-bounded-parallel-safety"
+    contract: "implementation/workstreams/feature-codex-only-policy/cards/M03-T01.md"
+    review_state: green
+    review_subject: "1fbb601461604fe07151478e017cb94bf60de47b"
+    review_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M03-T01-review-04.md"
+    result_commit: "1fbb601461604fe07151478e017cb94bf60de47b"
+    result_pr: null
+    evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M03-T01.md"
+    tests_summary: "Attempt 1 RED fixed stale prepared-batch unwind. Attempt 2 RED fixed active-batch review/repair provenance ambiguity. Attempt 3 RED found missing post-launch blocked-batch continuation. RED-03 repair GREEN on 1fbb6014: bounded same-member retry preserves failed-result lineage and successful siblings; terminal launched-batch reconciliation marks non-integrated member history + Cards blocked before current_batch clears; integrated members may form the closed-batch review drain. Exact remote-tree, diff-check, semantic scenario, runtime-ID, policy-boundary and conflict scans GREEN; prior RED evidence preserved."
+
+  - id: "M04-T01"
+    title: "Complete codex_only lifecycle integration and root routing cutover"
+    milestone: "M04"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: ["M03-T01"]
+    openspec_change: "openspec/changes/codex-only-m04-lifecycle-cutover"
+    contract: "implementation/workstreams/feature-codex-only-policy/cards/M04-T01.md"
+    review_state: green
+    review_subject: "48a56cbd5554b1378fa3727449bfce94e2f7f1df"
+    review_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M04-T01-review-01.md"
+    result_commit: "48a56cbd5554b1378fa3727449bfce94e2f7f1df"
+    result_pr: null
+    evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M04-T01.md"
+    tests_summary: "GREEN author verification on 48a56cbd: explicit isolated root codex_only routing; 22/22 live namespace; full lifecycle/default+workstream/stacked/target-refresh/final-review/terminal-package semantics present; M02/M03 invariants preserved; feature-side chatgpt_only diff zero against current-main merge base; no forbidden cross-policy execution refs or runtime-identity/scheduler YAML keys; M04 OpenSpec complete; conflict scan and full M03..subject diff-check GREEN after bounded whitespace repair. YAML structural sanity GREEN; parser-based YAML validation not claimed because no parser is available."
+
+  - id: "M05-T01"
+    title: "Run final regression, architecture audit and integration-readiness verification"
+    milestone: "M05"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: ["M04-T01"]
+    openspec_change: null
+    contract: "implementation/workstreams/feature-codex-only-policy/cards/M05-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: "3d72fdec89027b0b20fe54577e5a40cd162c14b1"
+    result_pr: null
+    evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M05-T01.md"
+    tests_summary: "GREEN M05 verification: 29/29 semantic matrix; 22/22 namespace-owner parity; no active forbidden cross-policy refs/runtime-ID schema; feature-side chatgpt_only diff zero; full feature-range diff-check/conflict scan GREEN; README/CHANGELOG/migration docs updated; trial merge exposes the expected target-owned PROJECT.md semantic reconciliation obligation for Close. PyYAML parser validation not claimed."
+
+  - id: "M05-T02"
+    title: "Remove contradictory intra-workstream concurrency prohibition"
+    milestone: "M05"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: ["M05-T01"]
+    openspec_change: null
+    contract: "implementation/workstreams/feature-codex-only-policy/cards/M05-T02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: "f9bd74aa4fd9ddfff4af62a4e476587b5ac2a7cd"
+    result_pr: null
+    evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M05-T02.md"
+    tests_summary: "GREEN bounded RED correction: one production sentence changed in workflow/codex_only/WORKSTREAMS.md; 22/22 owner stale-wording scan clean; serial-default plus explicit bounded M03 exception coherent; current main target unchanged at 92e9f162; feature PROJECT.md equals target and remains chatgpt_only; distinct manifest final-integration review still required."
+
