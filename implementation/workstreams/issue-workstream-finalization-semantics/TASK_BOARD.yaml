@@ -1,0 +1,41 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "issue-workstream-finalization-semantics"
+plan_revision: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md@MW-R1"
+current_milestone: "M05"
+
+execution_ref:
+  branch: "fix/workstream-finalization-semantics"
+  pr: 29
+  head: "f5d26158de2b45abba12a09d623c3343a5120eb9"
+
+research_obligation: null
+
+milestones:
+  M05:
+    decision_state: accepted
+    execution_status: in_progress
+    contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M05--ux-templates-migration-and-regression-coverage"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M05-T02"
+    title: "Complete branch-isolated finalization and legacy migration semantics"
+    milestone: "M05"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: []
+    contract: "implementation/workstreams/issue-workstream-finalization-semantics/cards/M05-T02.md"
+    review_state: green
+    review_subject: "f5d26158de2b45abba12a09d623c3343a5120eb9"
+    review_evidence: "implementation/workstreams/issue-workstream-finalization-semantics/evidence/M05_T02_REVIEW_R2_2026-09-19.md"
+    result_commit: "f5d26158de2b45abba12a09d623c3343a5120eb9"
+    result_pr: 29
+    evidence: "implementation/workstreams/issue-workstream-finalization-semantics/evidence/M05_T02_FINALIZATION_SEMANTICS_R2_2026-09-19.md"
+    tests_summary: "GREEN corrected implementation verification: scope/target baseline, namespaced handoff state-context, full active ChatGPT-only terminal-recovery coherence scan, legacy migration preservation, and template/readme coherence; exact details in implementation/workstreams/issue-workstream-finalization-semantics/evidence/M05_T02_FINALIZATION_SEMANTICS_R2_2026-09-19.md."

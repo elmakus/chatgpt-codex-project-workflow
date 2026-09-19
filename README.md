@@ -71,9 +71,11 @@ Existing projects may continue in legacy/default single-workstream mode with `im
 - a bounded issue may use the micro-fix path without a full Master Plan while retaining durable acceptance/evidence and independent review;
 - different local workstreams executing concurrently require separate Git worktrees/equivalent isolated checkouts; remote-only GitHub execution does not;
 - stacked children cannot masquerade as independent while they still require parent-only state;
-- before final integration, the selected workstream refreshes against the current target, reruns affected verification, checks textual and semantic conflicts, and re-freezes independent review only when the exact covered subject/acceptance surface materially changes.
+- before final integration, the selected workstream refreshes against the current target, reruns affected verification, checks textual and semantic conflicts, and re-freezes independent review only when the exact covered subject/acceptance surface materially changes;
+- branch-isolated milestone handoffs are namespaced under `implementation/workstreams/<id>/handoffs/`; root `project-handoffs/` and `PROJECT.md -> Latest cumulative handoff` remain legacy/default-context conventions;
+- after final-target integration, the target retains the terminal namespaced workstream package; the source branch may be deleted only after closure/readback proves that package is durable, after which terminal recovery no longer requires the deleted branch.
 
-There is no required mutable repository-global workstream registry or scheduler. Exact branch/manifests/PRs plus branch-local durable state are the recovery anchors.
+There is no required mutable repository-global workstream registry or scheduler. Exact live branches/manifests/PRs plus namespaced durable state are the active recovery anchors; integrated terminal workstreams recover from their target-side durable package and exact result provenance.
 
 ## Capability semantics
 
