@@ -37,9 +37,10 @@ After a reviewable implementation result is durable, Codex Main:
 
 1. verifies the Card/milestone stable contract requires/recommends review;
 2. verifies the exact production result/subject and implementation evidence;
-3. records/resolves `implementation_owner_role` (normally `executor`);
-4. appends the next stable attempt ID with exact immutable `subject`, `state: pending`, `reviewer_role: tester`, and null evidence;
-5. points `current_attempt` to that attempt.
+3. records/resolves `implementation_owner_role` on the reviewed Card or milestone (normally `executor`);
+4. for a milestone subject, treats that role as aggregate production ownership and requires runtime independence from every concrete Executor realization that contributed production to the exact checkpoint;
+5. appends the next stable attempt ID with exact immutable `subject`, `state: pending`, `reviewer_role: tester`, and null evidence;
+6. points `current_attempt` to that attempt.
 
 Do not mutate an existing attempt to point at a different subject.
 
@@ -83,11 +84,12 @@ After RED:
 1. preserve the RED attempt/evidence;
 2. Tester role ends and must not repair production;
 3. Main classifies the failing evidence against accepted authority;
-4. bounded L1/L2 production correction returns through Main to the Card's `implementation_owner_role: executor`;
-5. plan-only defects route to Planning; accepted product/system authority defects route to Definition; missing evidence routes through Research; unresolved real user/authorization/runtime input gates stop normally;
-6. the owning Executor produces the corrected implementation;
-7. Main freezes the corrected exact subject as a new pending attempt while the RED attempt remains unchanged;
-8. the next Tester performs a full recheck of the new subject.
+4. bounded Card-owned L1/L2 production correction returns through Main to that Card's `implementation_owner_role: executor`;
+5. bounded milestone-owned production correction returns through Main to Execution Prep, which reopens or creates the exact affected corrective Card(s) with `implementation_owner_role: executor`;
+6. plan-only defects route to Planning; accepted product/system authority defects route to Definition; missing evidence routes through Research; unresolved real user/authorization/runtime input gates stop normally;
+7. the owning Executor role produces the corrected Card implementation(s), after which Main derives the corrected reviewed owner subject (Card result or milestone checkpoint);
+8. Main freezes that corrected exact subject as a new pending attempt while the RED attempt remains unchanged;
+9. the next Tester performs a full recheck of the new subject.
 
 The same logical Tester may perform the new attempt when independence remains valid and runtime resume is safe. Runtime may fail closed to a replacement Tester. Neither choice is Project Workflow identity/state.
 
