@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "fix/workstream-finalization-semantics"
   pr: 29
-  head: "8ff477b62e104f5a632a7f7546c3afa245bd953b"
+  head: "f5d26158de2b45abba12a09d623c3343a5120eb9"
 
 research_obligation: null
 
@@ -32,10 +32,10 @@ cards:
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/issue-workstream-finalization-semantics/cards/M05-T02.md"
-    review_state: red
-    review_subject: "8ff477b62e104f5a632a7f7546c3afa245bd953b"
-    review_evidence: "implementation/workstreams/issue-workstream-finalization-semantics/evidence/M05_T02_REVIEW_2026-09-19.md"
-    result_commit: "8ff477b62e104f5a632a7f7546c3afa245bd953b"
+    review_state: pending
+    review_subject: "f5d26158de2b45abba12a09d623c3343a5120eb9"
+    review_evidence: null
+    result_commit: "f5d26158de2b45abba12a09d623c3343a5120eb9"
     result_pr: 29
-    evidence: "implementation/workstreams/issue-workstream-finalization-semantics/evidence/M05_T02_FINALIZATION_SEMANTICS_2026-09-19.md"
-    tests_summary: "GREEN implementation verification: scope/diff, namespaced handoff collision, lifecycle-aware terminal recovery, legacy migration preservation, template/readme coherence; exact details in implementation/workstreams/issue-workstream-finalization-semantics/evidence/M05_T02_FINALIZATION_SEMANTICS_2026-09-19.md."
+    evidence: "implementation/workstreams/issue-workstream-finalization-semantics/evidence/M05_T02_FINALIZATION_SEMANTICS_R2_2026-09-19.md"
+    tests_summary: "GREEN corrected implementation verification: scope/target baseline, namespaced handoff state-context, full active ChatGPT-only terminal-recovery coherence scan, legacy migration preservation, and template/readme coherence; exact details in implementation/workstreams/issue-workstream-finalization-semantics/evidence/M05_T02_FINALIZATION_SEMANTICS_R2_2026-09-19.md."
