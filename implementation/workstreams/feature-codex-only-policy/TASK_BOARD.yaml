@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/codex-only-policy"
   pr: null
-  head: "a1e2e9e8d639b15273df873cf8b48ba50fe3bff2"
+  head: "3d72fdec89027b0b20fe54577e5a40cd162c14b1"
 
 research_obligation: null
 
@@ -162,7 +162,7 @@ cards:
     title: "Run final regression, architecture audit and integration-readiness verification"
     milestone: "M05"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: ["M04-T01"]
     openspec_change: null
@@ -170,7 +170,7 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
+    result_commit: "3d72fdec89027b0b20fe54577e5a40cd162c14b1"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M05-T01.md"
+    tests_summary: "GREEN M05 verification: 29/29 semantic matrix; 22/22 namespace-owner parity; no active forbidden cross-policy refs/runtime-ID schema; feature-side chatgpt_only diff zero; full feature-range diff-check/conflict scan GREEN; README/CHANGELOG/migration docs updated; trial merge exposes the expected target-owned PROJECT.md semantic reconciliation obligation for Close. PyYAML parser validation not claimed."
