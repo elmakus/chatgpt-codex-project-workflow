@@ -150,9 +150,9 @@ cards:
     depends_on: ["M03-T01"]
     openspec_change: "openspec/changes/codex-only-m04-lifecycle-cutover"
     contract: "implementation/workstreams/feature-codex-only-policy/cards/M04-T01.md"
-    review_state: pending
+    review_state: green
     review_subject: "48a56cbd5554b1378fa3727449bfce94e2f7f1df"
-    review_evidence: null
+    review_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M04-T01-review-01.md"
     result_commit: "48a56cbd5554b1378fa3727449bfce94e2f7f1df"
     result_pr: null
     evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M04-T01.md"
