@@ -1,6 +1,6 @@
 id: "issue-private-infrastructure-last-resort"
 kind: "issue"
-status: "review"
+status: "done"
 
 branch: "fix/private-infrastructure-last-resort"
 base_ref: "d64d8c1d7f05ce2a2584ffcb3ade4634263bbc95"
@@ -28,5 +28,5 @@ review:
   evidence: "implementation/workstreams/issue-private-infrastructure-last-resort/evidence/MF-T01_REVIEW_2026-09-19.md"
   covered_by: "task_board:MF-T01"
 
-pr: null
-result: null
+pr: 31
+result: "1735dcf7948ca2d86e3216dce43a1565a30700fa"
