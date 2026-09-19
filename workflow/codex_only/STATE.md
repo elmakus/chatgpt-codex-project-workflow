@@ -33,7 +33,9 @@ implementation_owner_role: executor
 
 This is a Project Workflow role slot, not a runtime worker identity. It answers which project role owns production repair after RED.
 
-A runtime may resume or fail-closed replace the concrete worker realizing that role without changing `implementation_owner_role`.
+For a reviewable Card, `implementation_owner_role` lives on that Card. For a reviewable milestone/checkpoint subject, the milestone records the same semantic field when its review subject is frozen. `executor` then represents the aggregate production-owner role for the exact milestone subject; it is not a list of concrete workers.
+
+A runtime may resume or fail-closed replace the concrete worker realizing a Card owner role without changing `implementation_owner_role`. For a milestone review, runtime independence must be established against every concrete Executor realization that contributed production to the exact reviewed checkpoint; those concrete identities remain runtime-owned.
 
 Do not persist worker/session/model/profile/invocation/lease identifiers or resume protocol in Project Workflow state.
 
@@ -87,6 +89,8 @@ S1 durable
 
 Every new reviewable implementation subject gets a distinct attempt. A later review is a full applicable authority/acceptance review, not merely a check of the previously failing line/item.
 
+For a Card-owned RED, correction returns through Main to that Card's `implementation_owner_role`. For a milestone-owned RED, Main routes the exact RED evidence through Execution Prep to reopen or create the bounded affected corrective Card(s), each with `implementation_owner_role: executor`; after those Cards produce a corrected checkpoint, Main freezes that new milestone subject as the next attempt. Do not infer a concrete repair worker from transcript/runtime identity.
+
 The same logical Tester may perform R02 when independence remains intact and runtime resume is safe. Runtime may fail closed to a replacement Tester without Project Workflow state changing beyond ordinary attempt progress/verdict.
 
 ## Review completion
@@ -100,6 +104,7 @@ After GREEN, Codex Main verifies the finalized result is still exactly the revie
 Treat these as inconsistent and fail closed before unrelated work:
 
 - `current_attempt` references no attempt;
+- an active reviewable Card/milestone subject lacks the required semantic `implementation_owner_role`;
 - more than one `pending | in_progress` attempt exists;
 - an existing attempt's subject changed;
 - a terminal review attempt lacks evidence;
