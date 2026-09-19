@@ -72,6 +72,18 @@ Main MUST validate each returned result against the frozen base, Card write scop
 
 A lane returns a commit changing a file outside its write scope. Main preserves result/evidence for diagnosis, marks the affected member/batch blocked and does not integrate it.
 
+## Requirement: post-launch blocker has deterministic continuation
+
+Once any batch member has become runtime-active, a blocked member/batch MUST NOT use the pre-launch abandonment/reset path. Recovery MUST either retry only the affected member under the unchanged frozen Card/base/scope/resource contract with prior failed result/evidence preserved, or terminally reconcile the launched batch by quiescing active work, preserving all returned/integrated refs, marking every non-integrated member history entry plus corresponding Card durably blocked with exact terminal-reconciliation evidence, and only then clearing `current_batch`.
+
+### Scenario: bounded same-member retry
+
+B01 has integrated L01 and L02 returns a scope-invalid result R2bad. Main preserves R2bad plus blocker evidence. If T2 can be corrected without changing its frozen authority/base/scope/resources, B01/L02 remains the same project member, Main clears L02's active result slot as it transitions blocked to in-progress, runtime re-realizes only L02 from the original base, and a corrected R2 repopulates the active result pointer only after R2bad remains durably recoverable. L01 is not replayed.
+
+### Scenario: terminal blocked-batch reconciliation
+
+B01 has integrated L01 and L02 cannot be corrected within its frozen contract. Main quiesces any active lanes, preserves L01 and all returned refs, marks L02 member history and T2 Card durable blocked with exact terminal-reconciliation evidence, keeps B01 as blocked history, then clears `current_batch`. L01 review may proceed as post-batch drain; T2 is recovered serially afterward. No launched Card is reset to READY.
+
 ### Scenario: partial integration interruption
 
 L01 is integrated and L02 is returned when Main is interrupted. Recovery keeps L01 integrated, does not rerun L02, and resumes validation/integration of L02.
