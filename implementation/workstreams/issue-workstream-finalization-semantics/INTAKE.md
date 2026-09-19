@@ -6,7 +6,7 @@
 - Base: `elmakus/chatgpt-codex-project-workflow@6b0445256b417f82431fb7b2704f56691eb4e7ae`
 - Classification: independent
 - Parent workstream: none
-- Status: active
+- Status: complete
 
 ## Operator intent
 
@@ -43,11 +43,21 @@ This issue is present on current workflow `main`; it does not require unmerged s
 
 ## Path classification
 
-This is not a micro-fix because it changes durable state ownership/finalization semantics across repository, workstream, close, recovery and template contracts.
+The initial diagnosis considered reopening Project Definition because the missing rules affect durable state ownership. Authority reconciliation against the already-approved multi-workstream scope proves that no new product/system intent is required:
 
-- Path: normal
-- Next route: `project_definition:workstream-finalization-semantics`
-- Definition starting artifact: `requirements/CHATGPT_ONLY_WORKSTREAM_FINALIZATION.md`
+- R2 already requires durable, isolated workstream identity/state;
+- R3 preserves the legacy/default root board;
+- R12 requires transcript-independent durable recovery;
+- R15 requires safe migration rather than implicit reinterpretation;
+- the accepted ADR makes branch-isolated state durable history and rejects global mutable workstream state;
+- approved M05 explicitly owns templates, migration and regression closure.
+
+Therefore the missing finalization/namespace rules are a corrective completion of already-approved M05 authority, not a new Definition choice.
+
+- Path: normal corrective continuation
+- Next route: `execution_prep:M05-T02`
+- Materialized downstream state: `implementation/workstreams/issue-workstream-finalization-semantics/TASK_BOARD.yaml`
+- Card: `implementation/workstreams/issue-workstream-finalization-semantics/cards/M05-T02.md`
 
 ## Boundaries
 
@@ -65,6 +75,6 @@ Excluded:
 - rewriting already-completed historical evidence solely for cosmetic consistency;
 - changes to Codex/mixed execution policy.
 
-## Unresolved material question
+## Resolved classification
 
-Definition must choose one collision-free canonical location for branch-isolated cumulative milestone handoffs and specify compatibility behavior for existing legacy/global handoffs.
+The collision-free canonical convention to implement is workstream-local handoff ownership under the same workstream namespace as its Task Board/cards/evidence. Legacy/default global handoffs remain valid in place. This is an implementation-level completion of the accepted branch-isolation model, not a new global registry or product-level choice.
