@@ -1,6 +1,6 @@
 id: "feature-branch-delete-prefix"
 kind: "feature"
-status: "planning"
+status: "ready"
 
 branch: "feat/branch-delete-prefix"
 base_ref: "elmakus/chatgpt-codex-project-workflow@d64d8c1d7f05ce2a2584ffcb3ade4634263bbc95"
@@ -14,7 +14,7 @@ intake:
   state: complete
   record: "implementation/workstreams/feature-branch-delete-prefix/INTAKE.md"
 
-task_board: null
+task_board: "implementation/workstreams/feature-branch-delete-prefix/TASK_BOARD.yaml"
 
 authority:
   requirements: "requirements/CHATGPT_ONLY_BRANCH_CLEANUP.md"
@@ -23,7 +23,7 @@ authority:
   plan: "planning/CHATGPT_ONLY_BRANCH_CLEANUP_MASTER_PLAN.md"
 
 review:
-  requirement: null
+  requirement: RECOMMENDED
   state: null
   subject: null
   evidence: null
