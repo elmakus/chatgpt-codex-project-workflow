@@ -24,10 +24,10 @@ authority:
 
 review:
   requirement: RECOMMENDED
-  state: null
-  subject: null
-  evidence: null
-  covered_by: null
+  state: green
+  subject: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01-T01_IMPLEMENTATION_2026-09-19.md@blob:ea89c8c415516acbfd829d90482e7dea7d00df29 + M01-T01 acceptance"
+  evidence: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01_FINAL_INTEGRATION_REFRESH_2026-09-19.md"
+  covered_by: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01-T01_REVIEW_2026-09-19.md"
 
-pr: null
+pr: 34
 result: null
