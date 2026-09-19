@@ -40,6 +40,7 @@ parallel:
     - id: B01
       state: prepared
       integration_base: S0
+      evidence: null
       members:
         - {card_id: T1, lane: L01, state: prepared, result_commit: null, integrated_commit: null, evidence: null}
         - {card_id: T2, lane: L02, state: prepared, result_commit: null, integrated_commit: null, evidence: null}
@@ -101,7 +102,7 @@ If a returned result was valid against S0 but a material semantic/textual confli
 
 | Durable boundary | Recovery |
 | --- | --- |
-| B01 prepared, no lane launched | revalidate base/safety; launch same batch if current, otherwise record stale prepared outcome and form new batch/serial fallback |
+| B01 prepared, no lane launched | revalidate base/safety; expected Main-only freeze bookkeeping after S0 is allowed. If proof is stale while every member is still prepared/result-free, persist blocked abandonment evidence, restore batch-owned Card statuses to READY, then clear current_batch; never reuse B01 |
 | L02 in_progress, no result | runtime may resume/replace realization of same B01/L02 |
 | L02 returned | do not rerun; validate/integrate once when prior frozen members resolved |
 | L01 integrated, L02 returned | verify L01 shared result, continue L02; never restart B01 from S0 |
@@ -109,6 +110,22 @@ If a returned result was valid against S0 but a material semantic/textual confli
 | all members integrated, batch still integrating | verify all refs, set complete, clear current_batch |
 | complete batch, review freeze missing | freeze exact integrated Card subject once when review applies |
 | runtime worker/session state lost | no Project Workflow identity change; use durable batch/member/result state |
+
+### Pre-launch abandonment invariant
+
+A frozen batch moves its Cards to `in_progress` before runtime launch. Therefore a stale prepared batch cannot be cleared by pointer-only cleanup.
+
+Legal unwind requires all of the following:
+
+1. every member is still `prepared`;
+2. no member has `result_commit` or `integrated_commit`;
+3. no member entered runtime-active state;
+4. Main records the batch/member outcome as `blocked` with durable evidence;
+5. each Card whose `in_progress` state came solely from B01 is restored to `ready` when normal serial prerequisites still hold;
+6. only after that reconciliation may `current_batch` become null;
+7. a later batch uses a new ID.
+
+If any member left `prepared`, Recovery must reconstruct the actual running/returned/integrated state instead of applying this unwind.
 
 ## Review preservation
 
@@ -147,6 +164,7 @@ M03 verification must prove:
 8. modified M03 contracts contain no active dependency on another policy namespace or legacy/shared execution contracts;
 9. root `workflow/CONTEXT_ROUTING.md` and `workflow/chatgpt_only/` remain identical to current workflow main;
 10. root `PROJECT.md` remains `execution_policy: chatgpt_only`;
-11. exact implementation diff has no conflict markers or added-line trailing whitespace.
+11. exact implementation diff has no conflict markers or added-line trailing whitespace;
+12. stale prepared-batch fallback cannot leave batch-owned Cards `in_progress` after `current_batch` is cleared, and the abandoned batch ID remains durable history.
 
 Parser-based YAML validation is reported only if an actual parser is available.
