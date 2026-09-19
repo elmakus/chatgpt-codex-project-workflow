@@ -16,9 +16,9 @@ milestones:
     execution_status: in_progress
     contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M05--ux-templates-migration-and-regression-coverage"
     checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    implementation_head: "f5d26158de2b45abba12a09d623c3343a5120eb9"
+    handoff: "implementation/workstreams/issue-workstream-finalization-semantics/handoffs/M05_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/issue-workstream-finalization-semantics/evidence/M05_FINAL_INTEGRATION_REFRESH_2026-09-19.md"
     review_state: null
     review_subject: null
     review_evidence: null
