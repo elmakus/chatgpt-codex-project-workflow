@@ -237,9 +237,10 @@ Use fresh JIT preparation + Refresh Gate.
 
 Fresh-session recovery uses:
 - `PROJECT.md`;
-- exact workstream branch + validated manifest when branch-isolated;
-- the selected canonical Task Board;
-- exact branch/HEAD/runtime/external state;
+- for non-terminal branch-isolated work, the exact source-workstream branch + validated manifest;
+- for an integrated terminal `done` workstream after source-branch deletion, the integration-target copy of the namespaced workstream package + exact manifest result under `WORKSTREAMS.md` / `RECOVERY.md`;
+- the selected canonical Task Board/history source;
+- exact branch/HEAD/runtime/external state when applicable to non-terminal work, or exact integration-result/target readback for terminal history;
 - current milestone/Card contracts;
 - referenced OpenSpec/evidence/result/review pointers;
 - Task Board `research_obligation` + exact pointed Research record when present;
