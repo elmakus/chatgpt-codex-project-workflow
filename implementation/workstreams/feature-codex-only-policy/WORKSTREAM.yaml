@@ -2,7 +2,7 @@
 
 id: "feature-codex-only-policy"
 kind: "feature"
-status: "in_progress"
+status: "done"
 
 branch: "feat/codex-only-policy"
 base_ref: "6b0445256b417f82431fb7b2704f56691eb4e7ae"
@@ -33,5 +33,5 @@ review:
   evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M05-final-integration-review-02.md"
   covered_by: null
 
-pr: null
-result: null
+pr: 33
+result: "600e01e4a910acef2d3e26fc03341e8ea137a46e"

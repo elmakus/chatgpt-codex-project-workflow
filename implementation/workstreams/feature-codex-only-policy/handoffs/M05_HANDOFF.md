@@ -28,17 +28,16 @@ The existing runtime/project separation, Tester non-repair model, JIT finite-bat
 - Final architecture/readiness audit: `docs/audits/CODEX_ONLY_M05_FINAL_AUDIT.md`
 - Migration notes: `docs/CODEX_ONLY_MIGRATION_NOTES.md`
 
-## Continuation
+## Final integration
 
-No later milestone exists in approved CO-P1.
+- Distinct manifest-owned final-integration review: **GREEN**.
+- Review evidence: `implementation/workstreams/feature-codex-only-policy/evidence/M05-final-integration-review-02.md`.
+- Integration PR: `#33`.
+- Final-target merge result: `600e01e4a910acef2d3e26fc03341e8ea137a46e`.
+- The merge was performed against the exact frozen target `main@92e9f162c3d2fe4b178b04f07edc439c12a33ce8` after immediate target re-read.
+- This closure-only reconciliation records terminal manifest/result/PR state and Task Board publication provenance without changing the accepted implementation subject.
 
-The remaining deterministic obligation is workstream final integration through normal Close semantics:
-1. refresh the corrected whole-workstream state against current `main`;
-2. preserve target-owned root `PROJECT.md` state and verify affected compatibility;
-3. freeze the corrected exact workstream subject under the manifest-owned `RECOMMENDED` final-integration review gate;
-4. obtain fresh independent GREEN review;
-5. integrate only after final target reread confirms the refresh is still current;
-6. reconcile terminal manifest/Task Board/result state and verify the namespaced durable package on target before any source-branch deletion.
+No later milestone exists in approved CO-P1. Terminal recovery remains anchored by this namespaced workstream package on `main`.
 
 Durable workstream locator:
 `implementation/workstreams/feature-codex-only-policy/WORKSTREAM.yaml`
