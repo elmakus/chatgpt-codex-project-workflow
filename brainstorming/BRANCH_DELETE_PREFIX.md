@@ -171,8 +171,8 @@ Definition should preserve a fallback cleanup marker only for terminal branches 
 - Keep a bounded durable cleanup state only for terminal non-merged branches that still require manual/ref-delete cleanup.
 - The workflow should explicitly forbid “rename by duplicate branch creation”.
 - Explicit user/product direction: prefer changing Project Workflow to accommodate the clean auto-delete path rather than retaining branches for post-merge bookkeeping.
-- Definition promotion authorization: `pending`
-- Definition promotion subject: `none`
+- Definition promotion authorization: `user_authorized`
+- Definition promotion subject: `branch-delete-prefix@R3`
 - Next phase/action: continue brainstorming until the cleanup marker choice is accepted.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`.
