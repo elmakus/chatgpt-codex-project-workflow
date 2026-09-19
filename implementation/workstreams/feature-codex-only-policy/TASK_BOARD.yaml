@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/codex-only-policy"
   pr: null
-  head: "88282bfea1c59d8df3dc4c56db56c1585baf9ae3"
+  head: "66e5946c0f320a528f0bea8ee94bb5e849918281"
 
 research_obligation: null
 
@@ -81,10 +81,10 @@ cards:
     depends_on: []
     openspec_change: null
     contract: "implementation/workstreams/feature-codex-only-policy/cards/M01-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "ad1cf4626816a83ca2d3ed47bbd0b3344154014b"
     review_evidence: null
-    result_commit: null
+    result_commit: "ad1cf4626816a83ca2d3ed47bbd0b3344154014b"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M01-T01.md"
+    tests_summary: "GREEN author verification: exact current-main chatgpt_only inventory 22/22 present exactly once; legacy evidence families and all nine CO-REQ-026 properties covered; Card diff adds only the baseline matrix; no routing/production workflow changes; conflict-marker scan GREEN."
