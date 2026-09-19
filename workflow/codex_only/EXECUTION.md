@@ -1,97 +1,173 @@
 # Codex-only Execution
 
-> M02 contract. This namespace remains non-routable from root policy routing until M04.
+> M03 contract. This namespace remains non-routable from root policy routing until M04.
 
 ## Fixed project coordinator
 
 Codex Main is the fixed Project Workflow execution coordinator for `codex_only`.
 
-Project Workflow defines Card authority, durable state, acceptance, review attempts and continuation boundaries. `codex_workflow` owns concrete worker realization, model/profile/reasoning selection, invocation, waiting, worker lifecycle, resume/replacement and runtime concurrency.
+Project Workflow defines Card authority, durable state, acceptance, review attempts, bounded batch/lane semantics and continuation boundaries. `codex_workflow` owns concrete worker realization, model/profile/reasoning selection, invocation, waiting, worker lifecycle, resume/replacement and runtime concurrency.
 
 Codex Main alone writes shared Task Board/integration state.
 
-## Serial M02 execution loop
+## Execution priority
 
-1. Resolve the exact project/workstream state context and canonical Task Board.
-2. Recover existing inconsistent/review/Research/RED/in-progress obligations before selecting new work.
-3. Select one authority-valid READY Card whose dependencies are complete.
-4. Persist start state and semantic `implementation_owner_role` for the Card production obligation. When a reviewable milestone/checkpoint subject is later frozen, Main also records milestone `implementation_owner_role: executor` as aggregate production provenance for that exact subject.
-5. Run the state/contract Refresh Gate against current repository/runtime evidence.
-6. Execute the bounded Card through the runtime. For reviewable production implementation the owning project role is `executor`; concrete worker identity is runtime-owned.
-7. Persist exact implementation result/tests/evidence through Codex Main.
-8. If review is REQUIRED/RECOMMENDED, freeze a new exact review attempt under `STATE.md`/`REVIEW.md`; do not mark the Card terminal.
-9. Obtain the independent Tester through runtime orchestration and let Review run to a durable verdict.
-10. GREEN returns here for post-review finalization. RED returns here only after the router classifies bounded owning-Executor correction.
-11. Return through the policy router after each durable project obligation; deterministic authorized continuation is not a user/normal-ChatGPT stop.
+Before selecting new work:
 
-Fixed-policy execution does not run a capability inventory or switch execution policy because a capability might be needed.
+1. recover inconsistent durable state;
+2. resolve pending/in-progress Review;
+3. resolve implementation-owned Research;
+4. resolve RED correction;
+5. finalize GREEN reviewed Cards;
+6. recover/continue an existing current parallel batch;
+7. recover other in-progress/blocked serial work;
+8. only then select new READY work or ask Execution Prep to freeze a compatible batch.
 
-## Production owner
+Runtime liveness never outranks a durable project verdict/result.
 
-`implementation_owner_role` is project provenance, not runtime identity.
+## Serial execution
 
-For ordinary reviewable implementation:
+When no current parallel batch applies, ordinary serial execution remains valid:
 
-```yaml
-implementation_owner_role: executor
-```
+1. choose one deterministic READY Card with complete dependencies;
+2. persist `in_progress` and semantic `implementation_owner_role` when applicable;
+3. run Refresh Gate against exact current authority/source/evidence;
+4. execute the bounded Card through runtime;
+5. persist exact result/tests/evidence through Main;
+6. freeze REQUIRED/RECOMMENDED review for the exact result, or finalize when review does not apply;
+7. return to the router after the durable Card boundary.
 
-If runtime cannot safely resume the previous concrete Executor, `codex_workflow` may fail closed to a replacement that realizes the same project role. The Task Board does not store that worker/session transition.
+No capability inventory or policy switching is performed.
 
-Codex Main may perform coordination/integration/bookkeeping without becoming the production owner merely because it writes shared state.
+## Bounded parallel execution
 
-## Review boundary
+A current batch is executable only when it was frozen by `EXECUTION_PREP.md` and still satisfies `STATE.md`.
 
-After implementation of subject S1:
+### Launch
 
-1. Main verifies the exact persisted result and evidence.
-2. Main appends R01 `pending` for S1 and points `current_attempt` to R01.
-3. Runtime supplies an independent Tester.
-4. Main marks R01 `in_progress`.
-5. Tester performs the full review and returns verdict/evidence without repairing production.
-6. Main persists GREEN/RED.
+For a `prepared` batch:
 
-Under `codex_only`, this formal review does not require returning to the user or a fresh normal-ChatGPT session solely for independence.
+1. reverify exact current branch state against `integration_base`;
+2. reverify dependencies, Card contracts, scope/resource compatibility and reserved shared-state exclusions;
+3. require runtime proof that every concurrent local mutation has a separate worktree/equivalent isolated mutable workspace;
+4. Main transitions the batch to `running` and prepared members to `in_progress`;
+5. runtime realizes the finite frozen member set concurrently.
+
+Do not persist concrete worker/session/worktree identity. Do not add newly READY Cards to the running batch.
+
+### Worker-lane contract
+
+Each runtime lane receives:
+
+- one exact Card contract/authority slice;
+- the frozen `integration_base`;
+- the Card's bounded `write_scope`;
+- required tests/evidence/readback;
+- prohibition on modifying live selected Task Board, workstream manifest or shared integration bookkeeping.
+
+The lane returns to Main:
+
+- exact result commit/ref derivable from the frozen base;
+- required Card evidence/tests;
+- any bounded failure/blocker.
+
+A worker never writes shared project coordination state directly.
+
+### Persist returned result
+
+When runtime returns a member result, Main verifies that the result/evidence refers to that exact batch/member/base and then writes only project state:
+
+- member `state: returned`;
+- exact `result_commit`;
+- exact durable evidence pointer.
+
+Returned state does not mean integrated/accepted.
+
+A runtime replacement for an unchanged member does not create a new batch/lane. If `result_commit` is already durable, never rerun the lane merely because runtime state disappeared.
+
+## Main-owned validation and deterministic integration
+
+Returned members are integrated sequentially in the batch's frozen member order.
+
+For the next returned member:
+
+1. derive exact `integration_base..result_commit` changes;
+2. verify every mutation lies within the Card's normalized `write_scope`;
+3. verify no live selected Task Board, workstream manifest or shared integration bookkeeping was mutated by the lane;
+4. verify required Card tests/evidence and accepted authority;
+5. verify the current shared workstream head contains only already-integrated earlier members/authorized Main bookkeeping relative to the batch base;
+6. perform the smallest normal Git reconciliation needed to apply the result in frozen order;
+7. verify the integrated state/readback;
+8. Main records exact `integrated_commit`, reconciles the Card `result_commit` to that shared-branch implementation result and persists tests/evidence.
+
+Scope escape is fail-closed: preserve the returned result/evidence, mark the affected member/batch blocked, and route Recovery. Do not widen the Card scope silently.
+
+A material textual/semantic integration conflict is also fail-closed. Preserve every returned result; do not rerun successful members or improvise another integration order.
+
+After successful member integration:
+
+- set the member `state: integrated`;
+- if that Card has REQUIRED/RECOMMENDED review, freeze the ordinary M02 exact review subject on the integrated Card result and return to the router before further work;
+- otherwise finalize the Card when Definition of Done is satisfied and return to the router.
+
+The router may therefore interleave ordinary review/finalization between deterministic batch integrations. Remaining returned lane results stay durable and are not rerun.
+
+When all members are integrated, set batch `state: complete` and `current_batch: null`. Preserve the completed batch entry as recovery history.
+
+## Production owner and review boundary
+
+`implementation_owner_role: executor` remains semantic project provenance, not a lane/worker identity.
+
+Parallel execution does not weaken M02 review rules:
+
+1. review is frozen only after the exact Main-integrated Card result is durable;
+2. one immutable integrated subject belongs to one review attempt;
+3. Tester is independent from the implementation owner for that subject and does not repair production;
+4. RED returns through Main to the owning Executor role;
+5. corrected implementation is a new review subject/attempt;
+6. prior attempt evidence remains immutable.
+
+A later unrelated integration commit does not rewrite an already-frozen historical Card result/subject.
 
 ## Post-review finalization
 
 When the current REQUIRED/RECOMMENDED attempt is GREEN:
 
-- verify result being finalized is still exactly the GREEN subject;
-- verify required acceptance/tests/evidence;
+- verify the Card result pointer still identifies the exact GREEN subject;
+- verify acceptance/tests/evidence;
 - keep prior attempts/evidence unchanged;
-- mark the Card terminal only when all Definition-of-Done conditions are satisfied;
-- return to the router before selecting later work.
+- mark the Card `done`;
+- return to the router.
 
-If production changed after GREEN, the verdict does not cover the changed subject. Freeze a new exact attempt when review still applies.
+If the reviewed Card belongs to a still-active batch, return to batch continuation rather than selecting unrelated new READY work.
 
 ## RED correction
 
-Execution after RED is legal only when the router selected bounded production correction from that exact RED evidence.
+RED outranks continuing unrelated batch work.
 
-- keep the RED attempt/evidence immutable;
-- for Card-owned RED, Main routes the correction to that Card's `implementation_owner_role: executor`;
-- for milestone-owned RED, Main routes through Execution Prep to reopen/create the exact affected corrective Card(s), each owned by `executor`;
-- Tester/reviewer does not repair production;
-- owning Executor produces the correction;
-- Main persists corrected Card result/tests/evidence and, for milestone review, the corrected checkpoint subject;
-- append a new pending review attempt for the corrected exact Card or milestone subject;
-- the next review is a full applicable review;
-- do not select unrelated READY work while this non-terminal RED obligation exists.
+- preserve RED attempt/evidence;
+- Card-owned bounded correction returns through Main to that Card's `implementation_owner_role: executor`;
+- milestone RED routes through Execution Prep to exact bounded corrective Cards;
+- Tester does not repair production;
+- corrected Card result is persisted by Main and receives a new review attempt;
+- already-returned/integrated sibling batch results remain durable and are not replayed.
 
-If the correction requires plan/Definition/Research/user authority, return to the router rather than silently expanding execution authority.
+A correction is not automatically parallel-safe merely because the original Card was a batch member. Re-evaluate any new concurrency at JIT.
 
-## Recovery-aware result freeze
+## Recovery-aware execution
 
-If a crash occurs after corrected implementation is durable but before Main appends the new attempt, recovery verifies the exact corrected result and appends the missing attempt once. It does not rerun production repair merely to recreate project-state bookkeeping.
+For current batch recovery use `RECOVERY.md`. In particular:
 
-If a reviewer runtime disappears during an unchanged attempt, keep the same attempt and let runtime resume/replace the Tester. Runtime replacement alone never freezes a new subject.
+- `prepared`: revalidate before launch;
+- `in_progress` without durable result: runtime may resume/replace realization;
+- `returned`: validate/integrate once, never rerun;
+- partial integration: continue the next frozen member in order;
+- `blocked`: classify exact evidence;
+- `complete`: no batch execution remains.
 
 ## Research
 
-Implementation-triggered evidence gaps use the Task Board `research_obligation` pointer and an exact durable Research record. Research is evidence, not authority.
-
-On return, reconcile only the affected durable obligation. Preserve all review attempt history.
+Implementation-triggered evidence gaps use one Task Board `research_obligation` and exact Research record. Research evidence never becomes a second scheduler or lane state store.
 
 ## Definition of Done
 
@@ -100,11 +176,12 @@ A Card may become `done` only when:
 1. bounded scope/acceptance are satisfied;
 2. required tests/checks are GREEN or an authorized exception exists;
 3. relevant OpenSpec is coherent;
-4. REQUIRED/RECOMMENDED current review attempt is GREEN;
-5. finalized result still equals the GREEN subject;
-6. result/evidence/readback is durable;
-7. shared Task Board state is reconciled by Main.
+4. if executed through a batch, its returned diff passed scope/reserved-state validation and exact integrated result is durable;
+5. REQUIRED/RECOMMENDED current review attempt is GREEN when applicable;
+6. finalized Card result still equals the reviewed subject when review applies;
+7. result/evidence/readback is durable;
+8. shared Task Board state is reconciled by Main.
 
-## M03 boundary
+## M04 boundary
 
-This M02 loop is serial. M03 introduces bounded compatible Card sets, project lane provenance and workspace isolation while preserving Main-only shared-state writes and the M02 review-attempt lifecycle.
+M03 supplies bounded Card execution/integration mechanics only. M04 reconciles complete lifecycle routing, final workstream integration/Close and root cutover.
