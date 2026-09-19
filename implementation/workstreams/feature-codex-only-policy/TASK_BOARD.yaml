@@ -128,7 +128,7 @@ cards:
     title: "Finalize bounded parallel Card safety, lane return and deterministic integration"
     milestone: "M03"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: ["M02-T01"]
     openspec_change: "openspec/changes/codex-only-m03-bounded-parallel-safety"
