@@ -1,7 +1,7 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 workstream_id: "feature-codex-only-policy"
 plan_revision: "CO-P1"
-current_milestone: "M04"
+current_milestone: "M05"
 
 execution_ref:
   branch: "feat/codex-only-policy"
@@ -49,12 +49,12 @@ milestones:
 
   M04:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M04--full-lifecycle-integration-routing-cutover-and-compatibility"
-    checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    checkpoint: "48a56cbd5554b1378fa3727449bfce94e2f7f1df"
+    implementation_head: "48a56cbd5554b1378fa3727449bfce94e2f7f1df"
+    handoff: "implementation/workstreams/feature-codex-only-policy/handoffs/M04_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M04-acceptance.md"
     review_state: null
     review_subject: null
     review_evidence: null
