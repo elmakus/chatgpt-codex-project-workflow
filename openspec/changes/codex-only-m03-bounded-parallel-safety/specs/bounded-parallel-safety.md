@@ -36,6 +36,18 @@ Execution Prep MUST construct the batch deterministically from READY Cards in ca
 
 A Card that becomes READY after B01 was frozen cannot be appended to B01. It may run serially or join a later newly frozen batch after B01 resolves.
 
+### Scenario: prepared proof becomes stale before launch
+
+B01 has been durably frozen and its member Cards were moved to `in_progress`, but before any member becomes runtime-active the isolation/base/safety proof becomes stale. Main MUST persist B01/member abandonment as blocked history with evidence, reconcile every batch-owned member Card back to legal READY/serial state, and only then clear `current_batch`. B01 MUST NOT be reused. If any member already left `prepared` or has a durable result, this unwind MUST NOT be used.
+
+## Requirement: frozen implementation base tolerates Main bookkeeping
+
+The batch `integration_base` MUST identify the exact implementation/result base used by lanes. Main-owned Task Board/manifest/integration bookkeeping written to freeze or reconcile the batch MAY advance the coordinating branch after that base and MUST NOT by itself invalidate the lane base; any other relevant source/safety drift MUST trigger the prepared-batch recovery rule.
+
+### Scenario: freeze commit advances branch
+
+Main records B01 on the selected Task Board in a commit after implementation base S0. Lanes still use S0 as their exact result base, while launch verification accepts only the expected Main-owned control-plane delta and rejects unrelated source drift.
+
 ## Requirement: one shared-state writer
 
 Codex Main MUST be the only writer of selected Task Board and shared integration state. Worker lanes MUST return result/evidence and MUST NOT mutate shared coordination artifacts.
