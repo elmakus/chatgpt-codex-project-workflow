@@ -2,7 +2,7 @@
 
 id: "feature-codex-only-policy"
 kind: "feature"
-status: "discovery"
+status: "definition"
 
 branch: "feat/codex-only-policy"
 base_ref: "6b0445256b417f82431fb7b2704f56691eb4e7ae"
@@ -13,7 +13,7 @@ parent_branch: null
 parent_dependency: null
 
 intake:
-  state: "active"
+  state: "complete"
   record: "implementation/workstreams/feature-codex-only-policy/INTAKE.md"
 
 task_board: null
