@@ -2,7 +2,7 @@
 
 id: "feature-codex-only-policy"
 kind: "feature"
-status: "definition"
+status: "planning"
 
 branch: "feat/codex-only-policy"
 base_ref: "6b0445256b417f82431fb7b2704f56691eb4e7ae"
@@ -19,8 +19,11 @@ intake:
 task_board: null
 
 authority:
-  requirements: null
-  decisions: []
+  requirements: "requirements/CODEX_ONLY_POLICY.md"
+  decisions:
+    - "decisions/ADR_CODEX_ONLY_DEDICATED_NAMESPACE.md"
+    - "decisions/ADR_CODEX_ONLY_RUNTIME_BOUNDARY.md"
+    - "decisions/ADR_CODEX_ONLY_BOUNDED_PARALLEL_CARDS.md"
   plan: null
 
 review:
