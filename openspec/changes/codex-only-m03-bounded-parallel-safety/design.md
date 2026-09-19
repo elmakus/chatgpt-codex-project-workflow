@@ -68,7 +68,7 @@ parallel:
 Batch states are `prepared | running | integrating | complete | blocked`.
 Member states are `prepared | in_progress | returned | integrated | blocked`.
 
-Batch IDs and lane IDs are stable project-local labels, not concrete runtime identities. Completed batch entries and reconciled blocked/abandoned entries remain durable history. `current_batch` becomes null after the batch is complete or its blocked outcome is reconciled. Reviewable integrated members may then remain `in_progress` only as one bounded completed-batch review drain; that drain resolves before unrelated new implementation. A later batch gets a new ID rather than refilling an old batch.
+Batch IDs and lane IDs are stable project-local labels, not concrete runtime identities. Completed batch entries and reconciled blocked/abandoned entries remain durable history. `current_batch` becomes null after the batch is complete or its blocked outcome is reconciled. Reviewable integrated members may then remain `in_progress` only as one bounded post-batch review drain from the same closed `complete` or terminally reconciled `blocked` batch; that drain resolves before unrelated new implementation. A later batch gets a new ID rather than refilling an old batch.
 
 ## Runtime boundary and workspace isolation
 
@@ -95,6 +95,15 @@ Main transitions the batch to `integrating` before applying the first returned m
 If a later review is RED, owning-Executor correction is post-batch. The Card's current result/new review attempt may advance, but the completed batch member's original `result_commit` / `integrated_commit` and original batch-subject attempt remain immutable lineage.
 
 A material integration conflict preserves returned results/evidence and routes Recovery/current authority. Successful lanes are not rerun and integration order is not improvised.
+
+## Post-launch blocked reconciliation
+
+After any member has left `prepared`, the pre-launch abandonment/reset transition is permanently unavailable. A post-launch blocked batch has exactly two recovery shapes:
+
+1. **same-member retry** — allowed only when the affected Card's accepted authority, frozen integration base/order, write scope and exclusive resources remain unchanged. Main preserves the failed result/ref plus blocker evidence, clears the active member result slot while transitioning only the affected member back to `in_progress`, keeps the same batch/lane/base, and re-realizes it from the original base. A corrected return repopulates the active member result pointer only after the prior failed result remains durably recoverable. Integrated/returned siblings are never replayed.
+2. **terminal launched-batch reconciliation** — when the correction cannot stay inside the frozen member contract, Main quiesces/reconciles active lanes, preserves all returned/integrated refs, sets every non-integrated member history entry plus corresponding Card to durable `blocked` with exact evidence linkage, records terminal-reconciliation evidence, keeps the batch as immutable blocked history, and only then clears `current_batch`. Integrated reviewable members become the normal post-batch review drain; non-integrated blocked Cards resume later under serial Recovery.
+
+Neither shape widens scope, changes frozen order/base, or discards successful results.
 
 ## Recovery
 
