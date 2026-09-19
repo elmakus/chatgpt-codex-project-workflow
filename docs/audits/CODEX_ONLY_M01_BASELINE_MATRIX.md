@@ -1,9 +1,9 @@
 # Audit — CODEX_ONLY M01 baseline parity and legacy behavior matrix
 
-Status: implementation evidence for `M01-T01`  
-Baseline: Project Workflow `main` / workstream base `6b0445256b417f82431fb7b2704f56691eb4e7ae`  
-Plan: `planning/CODEX_ONLY_MASTER_PLAN.md` (`CO-P1`, approved)  
-Requirements: `requirements/CODEX_ONLY_POLICY.md` (`CO-R1`)  
+Status: implementation evidence for `M01-T01`
+Baseline: Project Workflow `main` / workstream base `6b0445256b417f82431fb7b2704f56691eb4e7ae`
+Plan: `planning/CODEX_ONLY_MASTER_PLAN.md` (`CO-P1`, approved)
+Requirements: `requirements/CODEX_ONLY_POLICY.md` (`CO-R1`)
 Purpose: prevent semantic loss while migrating `codex_only` out of the legacy shared stack.
 
 ## 1. Binding rules for this inventory

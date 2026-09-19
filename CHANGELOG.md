@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased — dedicated codex_only policy namespace
+
+- Added a complete dedicated `workflow/codex_only/` namespace and explicit root routing for `execution_policy: codex_only`, while keeping `chatgpt_only` isolated and non-migrated accepted policies on legacy routing.
+- Kept Project Workflow project authority/state separate from `codex_workflow` runtime mechanics: Codex Main owns shared Task Board/integration state while worker/session/model/profile/invocation/resume/concurrency realization remains runtime-owned.
+- Added immutable-subject, role-based independent review with Tester non-repair, RED → owning-Executor correction, reviewer reuse/replacement transparency, and no mandatory second normal-ChatGPT review after a qualifying Codex-managed verdict.
+- Added serial-default bounded parallel Task Cards with current-state JIT safety proof, isolated local mutation, finite frozen batches, deterministic Main-owned integration and repository-first recovery.
+- Completed policy-local Intake, Brainstorming, Research, Definition, Planning/plan review, micro-fix, default/branch-isolated workstreams, stacked dependencies, target refresh, final-integration review, Close and terminal target-side recovery semantics.
+- Added M01–M05 migration/audit evidence, compatibility checks against current `main`, and final integration-readiness guidance.
+
 ## Unreleased — ChatGPT-only branch-isolated workstreams and intake
 
 - Added branch-isolated `chatgpt_only` workstreams with stable manifests and per-workstream Task Boards while preserving legacy/default `implementation/TASK_BOARD.yaml` projects without forced migration.
