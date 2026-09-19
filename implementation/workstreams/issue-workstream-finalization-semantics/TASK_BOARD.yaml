@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "fix/workstream-finalization-semantics"
   pr: null
-  head: null
+  head: "41e782d55adaa14039b2b37c033cac17a4fd61ae"
 
 research_obligation: null
 
@@ -28,7 +28,7 @@ cards:
     title: "Complete branch-isolated finalization and legacy migration semantics"
     milestone: "M05"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/issue-workstream-finalization-semantics/cards/M05-T02.md"
