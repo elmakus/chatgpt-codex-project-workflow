@@ -193,5 +193,3 @@ Task Board `research_obligation` remains the single implementation/recovery Rese
 ## M04 boundary
 
 M03 defines bounded compatible Card dispatch/integration only. M04 reconciles full Intake/Brainstorming/Research/Definition/Planning/Micro-fix/Close routing, stacked-workstream integration, final target refresh and root cutover.
-
-[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
