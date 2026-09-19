@@ -6,7 +6,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/codex-only-policy"
   pr: null
-  head: "20dd6e7827ab249b3884ab7e10cb49ba61d40c60"
+  head: "c571e1d3516dae53ef76bdff855e9563009b0081"
 
 research_obligation: null
 
@@ -133,10 +133,10 @@ cards:
     depends_on: ["M02-T01"]
     openspec_change: "openspec/changes/codex-only-m03-bounded-parallel-safety"
     contract: "implementation/workstreams/feature-codex-only-policy/cards/M03-T01.md"
-    review_state: red
-    review_subject: "20dd6e7827ab249b3884ab7e10cb49ba61d40c60"
-    review_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M03-T01-review-02.md"
-    result_commit: "20dd6e7827ab249b3884ab7e10cb49ba61d40c60"
+    review_state: pending
+    review_subject: "c571e1d3516dae53ef76bdff855e9563009b0081"
+    review_evidence: null
+    result_commit: "c571e1d3516dae53ef76bdff855e9563009b0081"
     result_pr: null
     evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M03-T01.md"
-    tests_summary: "Attempt 1 RED found stale prepared-batch Card-state unwind gap. Bounded repair GREEN author verification on 20dd6e78: pre-launch abandonment now records blocked history/evidence, restores batch-owned Cards to READY before clearing current_batch, forbids unwind after runtime-active/result state, distinguishes Main bookkeeping from the lane integration base, preserves no-reuse semantics; repair diff-check/conflict/runtime-ID/policy-boundary scans GREEN. Prior RED evidence preserved."
+    tests_summary: "Attempt 1 RED fixed stale prepared-batch unwind. Attempt 2 RED found active-batch review/repair provenance ambiguity. RED-02 repair GREEN author verification on c571e1d3: integrated member review is frozen pending but deferred until batch complete/current-null; batch enters integrating before shared integration; post-batch review drain blocks unrelated work; later repair preserves original lane/integrated refs and append-only review lineage. Repair diff-check, semantic scenario, runtime-ID, policy-boundary and remote-tree equivalence checks GREEN; prior RED evidence preserved."
