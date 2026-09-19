@@ -2,7 +2,7 @@
 
 id: "feature-codex-only-policy"
 kind: "feature"
-status: "in_progress"
+status: "review"
 
 branch: "feat/codex-only-policy"
 base_ref: "6b0445256b417f82431fb7b2704f56691eb4e7ae"
