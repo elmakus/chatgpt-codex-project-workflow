@@ -49,7 +49,7 @@ Before integration, Codex Main derives the exact `integration_base..result` chan
 - required evidence/tests are present;
 - the result remains inside accepted authority.
 
-Scope escape is preserved as evidence but not integrated.
+Scope escape is preserved as evidence but not integrated. For a launched batch, that blocked member can be retried only from the same frozen base under the unchanged Card/scope/resource contract after the failed result/evidence is durably preserved. Otherwise Main terminally reconciles the launched batch into blocked history: quiesce active lanes, preserve all returned/integrated refs, mark non-integrated member history plus corresponding Cards blocked with exact evidence, record terminal-reconciliation evidence, then clear the current batch pointer. Successful siblings are never replayed merely to escape the blocker.
 
 ## Deterministic integration
 
