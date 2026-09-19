@@ -33,7 +33,7 @@ cards:
     depends_on: []
     openspec_change: null
     contract: "implementation/workstreams/feature-branch-delete-prefix/cards/M01-T01.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01-T01_IMPLEMENTATION_2026-09-19.md@blob:ea89c8c415516acbfd829d90482e7dea7d00df29 + M01-T01 acceptance"
     review_evidence: null
     result_commit: "6441fa08a6a6e94fc568ec4804e12582e2adcd96"
