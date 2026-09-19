@@ -68,7 +68,7 @@ parallel:
 Batch states are `prepared | running | integrating | complete | blocked`.
 Member states are `prepared | in_progress | returned | integrated | blocked`.
 
-Batch IDs and lane IDs are stable project-local labels, not concrete runtime identities. Completed batch entries and reconciled blocked/abandoned entries remain durable history. `current_batch` becomes null after the batch is complete or its blocked outcome is reconciled. A later batch gets a new ID rather than refilling an old batch.
+Batch IDs and lane IDs are stable project-local labels, not concrete runtime identities. Completed batch entries and reconciled blocked/abandoned entries remain durable history. `current_batch` becomes null after the batch is complete or its blocked outcome is reconciled. Reviewable integrated members may then remain `in_progress` only as one bounded completed-batch review drain; that drain resolves before unrelated new implementation. A later batch gets a new ID rather than refilling an old batch.
 
 ## Runtime boundary and workspace isolation
 
@@ -90,7 +90,9 @@ For each returned member, Main verifies:
 
 Scope escape is a fail-closed blocker and is never silently widened.
 
-Main integrates returned members sequentially in frozen member order. It records the lane result under `result_commit`, the shared-branch result under `integrated_commit`, and the integrated commit as the Card implementation result. Reviewable Cards then use ordinary M02 exact-subject review on that integrated result.
+Main transitions the batch to `integrating` before applying the first returned member, then integrates returned members sequentially in frozen member order. It records the lane result under `result_commit`, the shared-branch result under immutable historical `integrated_commit`, and the integrated commit as the Card implementation result. Reviewable Cards freeze the ordinary M02 exact subject on that integrated result, but the attempt remains `pending` and Tester dispatch is deferred while this exact batch is unresolved. After every member is integrated, Main marks the batch complete/current-null; only then are frozen member reviews dispatched in canonical Task Board order.
+
+If a later review is RED, owning-Executor correction is post-batch. The Card's current result/new review attempt may advance, but the completed batch member's original `result_commit` / `integrated_commit` and original batch-subject attempt remain immutable lineage.
 
 A material integration conflict preserves returned results/evidence and routes Recovery/current authority. Successful lanes are not rerun and integration order is not improvised.
 
@@ -109,10 +111,12 @@ At durable boundaries:
 - `prepared`: revalidate base/safety before launch; Main-only batch-control commits after the frozen implementation base are allowed, but any implementation/safety drift invalidates the proof. If stale while every member is still prepared and result-free, persist blocked abandonment evidence, restore batch-owned Card statuses to READY, then clear `current_batch`; never reuse that batch ID. If any member became runtime-active, this pre-launch unwind is forbidden;
 - `in_progress` without result: runtime may resume/replace the same project member;
 - `returned`: do not rerun; validate/integrate once;
-- partial integration: preserve integrated members and continue next frozen member in order;
+- partial integration: preserve integrated members and continue next frozen member in order; frozen pending reviews for those integrated members remain deferred until batch closure;
 - `blocked`: recover exact evidence and classify the smallest correction/fallback;
 - `complete`: no batch work remains; Card review/finalization proceeds normally.
 
 ## M02 preservation
 
 Parallelism changes dispatch/integration only. M02 immutable review attempts, Tester non-repair, owning-Executor correction, Main-only shared-state writes and runtime-identity prohibition remain authoritative.
+
+[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
