@@ -1,7 +1,7 @@
 # ChatGPT-only Branch Cleanup — Master Plan
 
 Revision: BC-R1
-Status: draft
+Status: approved
 Updated: 2026-09-19
 Independent plan review: RECOMMENDED
 
