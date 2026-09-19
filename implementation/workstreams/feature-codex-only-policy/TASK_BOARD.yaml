@@ -133,7 +133,7 @@ cards:
     depends_on: ["M02-T01"]
     openspec_change: "openspec/changes/codex-only-m03-bounded-parallel-safety"
     contract: "implementation/workstreams/feature-codex-only-policy/cards/M03-T01.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "b03225ac0b92a87a938f9cd79c70ee1715eecd33"
     review_evidence: null
     result_commit: "b03225ac0b92a87a938f9cd79c70ee1715eecd33"
