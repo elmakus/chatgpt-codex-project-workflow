@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/codex-only-policy"
   pr: null
-  head: "b3392532ab2b67bb08e1fa2c2fe4a3935078a65b"
+  head: "f9bd74aa4fd9ddfff4af62a4e476587b5ac2a7cd"
 
 research_obligation: null
 
@@ -61,12 +61,12 @@ milestones:
 
   M05:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M05--end-to-end-regression-architecture-audit-and-publication-readiness"
-    checkpoint: "3d72fdec89027b0b20fe54577e5a40cd162c14b1"
-    implementation_head: "3d72fdec89027b0b20fe54577e5a40cd162c14b1"
+    checkpoint: "f9bd74aa4fd9ddfff4af62a4e476587b5ac2a7cd"
+    implementation_head: "f9bd74aa4fd9ddfff4af62a4e476587b5ac2a7cd"
     handoff: "implementation/workstreams/feature-codex-only-policy/handoffs/M05_HANDOFF.md"
-    acceptance_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M05-acceptance.md"
+    acceptance_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M05-acceptance-R2.md"
     review_state: null
     review_subject: null
     review_evidence: null
@@ -179,7 +179,7 @@ cards:
     title: "Remove contradictory intra-workstream concurrency prohibition"
     milestone: "M05"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: ["M05-T01"]
     openspec_change: null
@@ -187,8 +187,8 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
+    result_commit: "f9bd74aa4fd9ddfff4af62a4e476587b5ac2a7cd"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M05-T02.md"
+    tests_summary: "GREEN bounded RED correction: one production sentence changed in workflow/codex_only/WORKSTREAMS.md; 22/22 owner stale-wording scan clean; serial-default plus explicit bounded M03 exception coherent; current main target unchanged at 92e9f162; feature PROJECT.md equals target and remains chatgpt_only; distinct manifest final-integration review still required."
 
