@@ -6,7 +6,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/codex-only-policy"
   pr: null
-  head: "b03225ac0b92a87a938f9cd79c70ee1715eecd33"
+  head: "20dd6e7827ab249b3884ab7e10cb49ba61d40c60"
 
 research_obligation: null
 
@@ -133,10 +133,10 @@ cards:
     depends_on: ["M02-T01"]
     openspec_change: "openspec/changes/codex-only-m03-bounded-parallel-safety"
     contract: "implementation/workstreams/feature-codex-only-policy/cards/M03-T01.md"
-    review_state: red
-    review_subject: "b03225ac0b92a87a938f9cd79c70ee1715eecd33"
-    review_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M03-T01-review-01.md"
-    result_commit: "b03225ac0b92a87a938f9cd79c70ee1715eecd33"
+    review_state: pending
+    review_subject: "20dd6e7827ab249b3884ab7e10cb49ba61d40c60"
+    review_evidence: null
+    result_commit: "20dd6e7827ab249b3884ab7e10cb49ba61d40c60"
     result_pr: null
     evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M03-T01.md"
-    tests_summary: "GREEN author verification on b03225ac: finite frozen batch/JIT/lane-result/Main-integration/recovery scenarios GREEN; both codex_only Task Board templates parse with PyYAML 6.0.3; runtime-ID/global-scheduler schema scans GREEN; root routing/chatgpt_only/current execution-policy non-regression GREEN; exact implementation diff whitespace/conflict scan GREEN."
+    tests_summary: "Attempt 1 RED found stale prepared-batch Card-state unwind gap. Bounded repair GREEN author verification on 20dd6e78: pre-launch abandonment now records blocked history/evidence, restores batch-owned Cards to READY before clearing current_batch, forbids unwind after runtime-active/result state, distinguishes Main bookkeeping from the lane integration base, preserves no-reuse semantics; repair diff-check/conflict/runtime-ID/policy-boundary scans GREEN. Prior RED evidence preserved."
