@@ -6,7 +6,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/codex-only-policy"
   pr: null
-  head: "c571e1d3516dae53ef76bdff855e9563009b0081"
+  head: "1fbb601461604fe07151478e017cb94bf60de47b"
 
 research_obligation: null
 
@@ -133,10 +133,10 @@ cards:
     depends_on: ["M02-T01"]
     openspec_change: "openspec/changes/codex-only-m03-bounded-parallel-safety"
     contract: "implementation/workstreams/feature-codex-only-policy/cards/M03-T01.md"
-    review_state: red
-    review_subject: "c571e1d3516dae53ef76bdff855e9563009b0081"
-    review_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M03-T01-review-03.md"
-    result_commit: "c571e1d3516dae53ef76bdff855e9563009b0081"
+    review_state: pending
+    review_subject: "1fbb601461604fe07151478e017cb94bf60de47b"
+    review_evidence: null
+    result_commit: "1fbb601461604fe07151478e017cb94bf60de47b"
     result_pr: null
     evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M03-T01.md"
-    tests_summary: "Attempt 1 RED fixed stale prepared-batch unwind. Attempt 2 RED found active-batch review/repair provenance ambiguity. RED-02 repair GREEN author verification on c571e1d3: integrated member review is frozen pending but deferred until batch complete/current-null; batch enters integrating before shared integration; post-batch review drain blocks unrelated work; later repair preserves original lane/integrated refs and append-only review lineage. Repair diff-check, semantic scenario, runtime-ID, policy-boundary and remote-tree equivalence checks GREEN; prior RED evidence preserved."
+    tests_summary: "Attempt 1 RED fixed stale prepared-batch unwind. Attempt 2 RED fixed active-batch review/repair provenance ambiguity. Attempt 3 RED found missing post-launch blocked-batch continuation. RED-03 repair GREEN on 1fbb6014: bounded same-member retry preserves failed-result lineage and successful siblings; terminal launched-batch reconciliation marks non-integrated member history + Cards blocked before current_batch clears; integrated members may form the closed-batch review drain. Exact remote-tree, diff-check, semantic scenario, runtime-ID, policy-boundary and conflict scans GREEN; prior RED evidence preserved."
