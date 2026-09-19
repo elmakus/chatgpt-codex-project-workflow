@@ -98,6 +98,15 @@ GREEN result:
 
 Main may then perform post-review Card finalization if the finalized result still equals S2.
 
+## Milestone-owned review variant
+
+When the exact reviewed subject is a milestone/checkpoint rather than one Card:
+
+- the milestone review block carries `implementation_owner_role: executor` as aggregate production provenance;
+- runtime independence for Tester covers every concrete Executor realization that contributed production to that exact checkpoint without persisting those identities in Project Workflow;
+- milestone RED routes through Main to Execution Prep, which reopens or creates the exact affected corrective Card(s) with Card-level `implementation_owner_role: executor`;
+- after those corrections produce a new checkpoint subject, Main appends a new milestone review attempt and preserves the prior RED attempt/evidence.
+
 ## Recovery matrix
 
 | Durable boundary | Runtime condition | Required Project Workflow continuation |
@@ -136,7 +145,7 @@ M02 also must not introduce M03-owned `parallel_safe`, `write_scope`, `exclusive
 
 M02 verification must prove:
 
-1. default and branch-isolated Task Board templates expose `implementation_owner_role` plus review requirement/current-attempt/attempt-list/subject/state/reviewer-role/evidence;
+1. default and branch-isolated Task Board templates expose Card-level `implementation_owner_role`, milestone-level aggregate owner provenance when milestone review is active, plus review requirement/current-attempt/attempt-list/subject/state/reviewer-role/evidence;
 2. no forbidden runtime identity appears as a required schema key;
 3. no M03 parallel field appears as a schema key;
 4. `workflow/CONTEXT_ROUTING.md` and `workflow/chatgpt_only/` are unchanged versus current `main`;
