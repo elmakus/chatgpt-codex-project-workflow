@@ -6,7 +6,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/codex-only-policy"
   pr: null
-  head: "3d29b5a604311adae59e511e81276c97e8bcc3a3"
+  head: "b03225ac0b92a87a938f9cd79c70ee1715eecd33"
 
 research_obligation: null
 
@@ -133,10 +133,10 @@ cards:
     depends_on: ["M02-T01"]
     openspec_change: "openspec/changes/codex-only-m03-bounded-parallel-safety"
     contract: "implementation/workstreams/feature-codex-only-policy/cards/M03-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "b03225ac0b92a87a938f9cd79c70ee1715eecd33"
     review_evidence: null
-    result_commit: null
+    result_commit: "b03225ac0b92a87a938f9cd79c70ee1715eecd33"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M03-T01.md"
+    tests_summary: "GREEN author verification on b03225ac: finite frozen batch/JIT/lane-result/Main-integration/recovery scenarios GREEN; both codex_only Task Board templates parse with PyYAML 6.0.3; runtime-ID/global-scheduler schema scans GREEN; root routing/chatgpt_only/current execution-policy non-regression GREEN; exact implementation diff whitespace/conflict scan GREEN."
