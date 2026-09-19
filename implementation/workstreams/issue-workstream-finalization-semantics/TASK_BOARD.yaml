@@ -32,7 +32,7 @@ cards:
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/issue-workstream-finalization-semantics/cards/M05-T02.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "f5d26158de2b45abba12a09d623c3343a5120eb9"
     review_evidence: null
     result_commit: "f5d26158de2b45abba12a09d623c3343a5120eb9"
