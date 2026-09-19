@@ -103,7 +103,17 @@ For the next returned member:
 
 Scope escape is fail-closed: preserve the returned result/evidence, mark the affected member/batch blocked, and route Recovery. Do not widen the Card scope silently.
 
-A material textual/semantic integration conflict is also fail-closed. Preserve every returned result; do not rerun successful members or improvise another integration order.
+A material textual/semantic integration conflict or other post-launch member failure is also fail-closed. Preserve every returned/integrated result; do not rerun successful members or improvise another integration order.
+
+### Post-launch blocked batch reconciliation
+
+Recovery of a launched batch uses one of two explicit shapes.
+
+**Bounded same-member retry** is legal only when the affected Card can be corrected without changing its accepted authority, frozen `integration_base`, member order, `write_scope` or `exclusive_resources`. Main first preserves the failed result/ref and blocker evidence durably. It then clears that member's active `result_commit` slot while transitioning only that member `blocked -> in_progress`, keeps the same batch/lane/base, and resumes the batch as `running` when no prefix is integrated or `integrating` when an integrated prefix already exists. Runtime re-realizes only that member from the original frozen base. A corrected return repopulates the member's active `result_commit` after the prior failed result is recoverable from evidence, then passes the ordinary validation/integration path in frozen order. Successful siblings are never rerun.
+
+If correction cannot remain inside that frozen member contract, Main performs **terminal post-launch reconciliation** rather than mutating the batch contract. Main quiesces/reconciles every runtime-active member, preserves all returned/integrated refs and blocker evidence, sets every non-integrated member history entry to `blocked` while retaining any returned result/evidence, moves every corresponding Card out of batch-owned `in_progress` into durable `blocked` state with exact batch/member/result/evidence linkage, records terminal-reconciliation evidence on the batch, leaves the batch as immutable `blocked` history, and only then clears `current_batch`. Integrated reviewable Cards may remain `in_progress` as the bounded post-batch review drain; that drain resolves before the now-serial blocked Cards or unrelated work. A preserved non-integrated returned result may later be reused only after serial Recovery revalidates it against current authority/head; otherwise only that affected Card is re-executed.
+
+Neither path may reset launched Cards to READY or use the prepared-batch abandonment transition.
 
 After successful member integration:
 
