@@ -42,6 +42,16 @@
 
 - <check>
 
+## Parallel safety
+
+```yaml
+parallel_safe: false
+write_scope: []
+exclusive_resources: []
+```
+
+Leave `parallel_safe: false` unless current Card authority can bound every repository mutation and resource claim. These fields are JIT inputs only; Execution Prep must still prove current compatible eligibility before concurrency.
+
 ## External write/readback needs
 
 <none or exact write/readback contract>
