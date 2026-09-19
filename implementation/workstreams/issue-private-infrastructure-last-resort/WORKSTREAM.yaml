@@ -14,15 +14,15 @@ intake:
   state: complete
   record: "implementation/workstreams/issue-private-infrastructure-last-resort/INTAKE.md"
 
-task_board: null
+task_board: "implementation/workstreams/issue-private-infrastructure-last-resort/TASK_BOARD.yaml"
 
 authority:
-  requirements: null
+  requirements: "implementation/workstreams/issue-private-infrastructure-last-resort/INTAKE.md"
   decisions: []
   plan: null
 
 review:
-  requirement: null
+  requirement: RECOMMENDED
   state: null
   subject: null
   evidence: null
