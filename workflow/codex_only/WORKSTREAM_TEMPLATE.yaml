@@ -1,35 +1,45 @@
-# Codex-only branch-isolated workstream manifest foundation.
-# Card/milestone execution state belongs only to the selected Task Board.
+# Codex-only branch-isolated workstream manifest template.
+# Routing/workstream-lifecycle metadata only.
+# Card/milestone execution/review state belongs only to the selected Task Board.
 
 id: "<stable-workstream-id>"
 kind: "issue" # issue | feature | maintenance
 status: "discovery" # discovery | definition | planning | ready | in_progress | review | blocked | done | superseded
 
+# Stable source-workstream identity/provenance. Keep this value after final integration even if the source branch is later deleted.
 branch: "<exact-workstream-branch>"
 base_ref: "<exact-ref-used-to-create-workstream>"
 integration_target: "<target-branch>"
 
 parent_workstream: null
 parent_branch: null
+# Required for stacked work: concise durable statement of the parent-only dependency.
+# Must be null for an independent workstream.
 parent_dependency: null
 
+# Intake is routing/workstream-lifecycle metadata only.
+# The pointed record owns intake scope/findings/classification; Card state stays in Task Board.
 intake:
   state: null # active | complete | null
-  record: null
+  record: null # implementation/workstreams/<id>/INTAKE.md | null
 
-task_board: null
+task_board: null # implementation/workstreams/<id>/TASK_BOARD.yaml | null
 
 authority:
   requirements: null
   decisions: []
   plan: null
 
+# Workstream-level final-integration review only.
+# Never mirror Card/milestone review state from the Task Board here.
 review:
   requirement: null # REQUIRED | RECOMMENDED | none | null
   state: null # pending | in_progress | green | red | null
   subject: null
   evidence: null
+  # Optional proof that an already-independent exact Card/milestone review covers this distinct final-integration gate.
   covered_by: null
 
 pr: null
+# Exact final integration result when status becomes done; terminal target-side recovery may use this after source-branch deletion.
 result: null
