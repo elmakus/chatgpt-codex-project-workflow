@@ -1,7 +1,7 @@
 # Audit — CODEX_ONLY M04 lifecycle integration and routing cutover
 
-Status: implementation verification for `M04-T01`  
-Plan: `planning/CODEX_ONLY_MASTER_PLAN.md#M04--full-lifecycle-integration-routing-cutover-and-compatibility`  
+Status: implementation verification for `M04-T01`
+Plan: `planning/CODEX_ONLY_MASTER_PLAN.md#M04--full-lifecycle-integration-routing-cutover-and-compatibility`
 Requirements: CO-REQ-001..006, CO-REQ-024, CO-REQ-026..028 plus lifecycle integration of prior requirements.
 
 ## 1. Root routing split
