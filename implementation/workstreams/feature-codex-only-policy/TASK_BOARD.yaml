@@ -6,7 +6,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/codex-only-policy"
   pr: null
-  head: "b901d1cfa5ca26074b363b0c8980f7a7aaa223f1"
+  head: "83055bff44c4106e26de22af586bac3ec5c5556b"
 
 research_obligation: null
 
@@ -37,7 +37,7 @@ milestones:
 
   M03:
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M03--bounded-parallel-task-cards-and-jit-safety"
     checkpoint: null
     implementation_head: null
@@ -123,3 +123,20 @@ cards:
     result_pr: null
     evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M02-T01.md"
     tests_summary: "Attempt 1 RED found milestone-review provenance/recovery gap. Bounded repair GREEN author verification on b901d1cf: milestone aggregate implementation_owner_role + milestone RED -> Execution Prep corrective-Card routing are coherent across State/Review/Execution/Recovery/Router/OpenSpec/audit/templates; prior RED evidence preserved; runtime-ID and M03 schema-key scans GREEN; root routing/chatgpt_only/project-policy non-regression GREEN; diff-check/conflict scan GREEN. YAML parser validation not claimed because no parser is available."
+
+  - id: "M03-T01"
+    title: "Finalize bounded parallel Card safety, lane return and deterministic integration"
+    milestone: "M03"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: ["M02-T01"]
+    openspec_change: "openspec/changes/codex-only-m03-bounded-parallel-safety"
+    contract: "implementation/workstreams/feature-codex-only-policy/cards/M03-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
