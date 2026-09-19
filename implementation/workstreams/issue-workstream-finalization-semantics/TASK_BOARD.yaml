@@ -5,7 +5,7 @@ current_milestone: "M05"
 
 execution_ref:
   branch: "fix/workstream-finalization-semantics"
-  pr: null
+  pr: 29
   head: "8ff477b62e104f5a632a7f7546c3afa245bd953b"
 
 research_obligation: null
@@ -36,6 +36,6 @@ cards:
     review_subject: "8ff477b62e104f5a632a7f7546c3afa245bd953b"
     review_evidence: null
     result_commit: "8ff477b62e104f5a632a7f7546c3afa245bd953b"
-    result_pr: null
+    result_pr: 29
     evidence: "implementation/workstreams/issue-workstream-finalization-semantics/evidence/M05_T02_FINALIZATION_SEMANTICS_2026-09-19.md"
     tests_summary: "GREEN implementation verification: scope/diff, namespaced handoff collision, lifecycle-aware terminal recovery, legacy migration preservation, template/readme coherence; exact details in implementation/workstreams/issue-workstream-finalization-semantics/evidence/M05_T02_FINALIZATION_SEMANTICS_2026-09-19.md."
