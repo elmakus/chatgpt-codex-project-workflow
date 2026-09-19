@@ -75,8 +75,10 @@ Tester/reviewer never becomes the repair role.
 For current batch evidence:
 
 - missing/false opt-in, incompatible scope/resource or unavailable isolation discovered before launch -> use the prepared-batch abandonment transition: record blocked history/evidence, reconcile every batch-owned `in_progress` Card back to legal READY/serial state, then clear `current_batch`; rebuild with a new batch ID or fall back serially;
-- returned diff outside write scope or touching reserved shared state -> blocked Recovery/correction; do not integrate;
-- integration conflict inside accepted technical authority -> Recovery/Execution reconciliation while preserving returned results and frozen order;
+- returned diff outside write scope, reserved-state mutation, post-launch lane failure or integration conflict -> Recovery for that exact current batch; preserve every returned/integrated sibling and frozen order;
+- when the affected member can be corrected under the unchanged frozen Card/base/scope/resource contract -> Execution may perform the bounded same-member retry defined by State/Execution, preserving the failed result/evidence before replacing the active result pointer;
+- when such retry is not legal -> Recovery performs terminal post-launch reconciliation: quiesce active lanes, set non-integrated member history + corresponding Cards to durable `blocked` while preserving result/evidence, record terminal-reconciliation evidence, then clear `current_batch`; integrated pending reviews become the post-batch drain before serial blocked-Card recovery;
+- a post-launch blocker that requires Planning, Definition, Research or a real stop MUST first reach that terminal reconciliation safe boundary unless the exact same-member retry is the chosen continuation;
 - conflict requiring milestone strategy change -> Planning;
 - conflict requiring accepted product/system authority change -> Definition;
 - missing evidence needed to classify -> Research;
