@@ -88,3 +88,20 @@ cards:
     result_pr: null
     evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M01-T01.md"
     tests_summary: "GREEN author verification: exact current-main chatgpt_only inventory 22/22 present exactly once; legacy evidence families and all nine CO-REQ-026 properties covered; Card diff adds only the baseline matrix; no routing/production workflow changes; conflict-marker scan GREEN."
+
+  - id: "M01-T02"
+    title: "Establish codex_only namespace foundation and static boundary checks"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: ["M01-T01"]
+    openspec_change: null
+    contract: "implementation/workstreams/feature-codex-only-policy/cards/M01-T02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
