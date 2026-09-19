@@ -1,0 +1,41 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "issue-workstream-finalization-semantics"
+plan_revision: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md@MW-R1"
+current_milestone: "M05"
+
+execution_ref:
+  branch: "fix/workstream-finalization-semantics"
+  pr: null
+  head: null
+
+research_obligation: null
+
+milestones:
+  M05:
+    decision_state: accepted
+    execution_status: in_progress
+    contract: "planning/CHATGPT_ONLY_MULTI_WORKSTREAM_MASTER_PLAN.md#M05--ux-templates-migration-and-regression-coverage"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M05-T02"
+    title: "Complete branch-isolated finalization and legacy migration semantics"
+    milestone: "M05"
+    decision_state: accepted
+    execution_status: ready
+    executor: chatgpt
+    depends_on: []
+    contract: "implementation/workstreams/issue-workstream-finalization-semantics/cards/M05-T02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
