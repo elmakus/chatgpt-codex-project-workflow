@@ -35,12 +35,13 @@ Do not duplicate project truth into the workflow repository.
 │   │       ├── TASK_BOARD.yaml
 │   │       ├── cards/
 │   │       ├── evidence/
+│   │       ├── handoffs/
 │   │       └── blockers/
 │   ├── milestones/
 │   ├── cards/
 │   ├── evidence/
 │   └── blockers/
-├── project-handoffs/
+├── project-handoffs/          # legacy/default single-workstream cumulative handoffs
 ├── openspec/
 └── <project source/code>
 ```
@@ -60,7 +61,7 @@ Projects may adapt paths, but `PROJECT.md` must identify actual canonical locati
 - milestone/Card files → stable contracts, not status mirrors;
 - evidence → durable proof when materially useful/required;
 - blockers → durable blocker evidence;
-- handoffs → completed milestone summaries;
+- handoffs → completed milestone summaries; legacy/default handoffs use `project-handoffs/`, while branch-isolated handoffs are workstream-owned under `implementation/workstreams/<id>/handoffs/`;
 - OpenSpec → selected behavior/design contracts.
 
 Do not mirror current card/milestone/result/branch/review state into `PROJECT.md` or stable contract files. `PROJECT.md` may document the workstream-root convention but is not a mutable global workstream registry.
@@ -75,7 +76,7 @@ Keep it small. It should identify:
 - active pre-execution research-obligation pointer when Research/return-role recovery currently needs one;
 - canonical requirements/plan;
 - legacy/default Task Board path when the project uses that mode; branch-isolated Task Boards are located from their validated workstream manifests rather than mirrored into `PROJECT.md`;
-- latest cumulative handoff when one exists;
+- latest legacy/default cumulative handoff when one exists; branch-isolated handoffs are resolved from the selected workstream Task Board and are not mirrored into a project-global "latest" pointer;
 - accepted-decision pointers;
 - workflow repository/ref.
 
@@ -96,6 +97,10 @@ Recovery must be possible from Task Board plus referenced contracts/evidence/Git
 When the current branch is a branch-isolated ChatGPT-only workstream, apply `workflow/chatgpt_only/WORKSTREAMS.md` before loading implementation/review/recovery state.
 
 The validated manifest owns the canonical Task Board path. The legacy/default `implementation/TASK_BOARD.yaml` remains untouched unless that default state itself is the selected context.
+
+A branch-isolated workstream also owns its cumulative milestone handoffs under `implementation/workstreams/<id>/handoffs/`. It MUST NOT update `PROJECT.md -> Latest cumulative handoff`; that pointer belongs only to the legacy/default state context. Milestone-local handoff truth is recovered from the selected workstream Task Board.
+
+After final-target integration, the target branch must retain the terminal namespaced workstream package required by `WORKSTREAMS.md#Terminal durable package and branch deletion`. A closure-only target-side commit/PR may reconcile actual merge/result metadata. Source-branch deletion is safe only after target readback proves that terminal package is durable and no workstream obligation remains.
 
 Correctness must not require a mutable repository-global workstream registry.
 
@@ -173,6 +178,21 @@ Existing standalone evidence and cumulative handoffs remain durable history/evid
 A legacy Task Board without an explicit milestone contract pointer may recover from its existing plan/milestone references; add the pointer at the next safe execution-prep/state edit rather than performing repository-wide churn.
 
 Do not move active project topology mid-milestone. A legacy split-repository migration occurs only at a GREEN boundary with provenance.
+
+### Legacy branch → branch-isolated finalization migration
+
+A long-lived branch created before branch-isolated layout may have continued mutating root `implementation/TASK_BOARD.yaml`, root `implementation/cards|evidence|blockers/`, root `project-handoffs/`, or the project-global latest-handoff pointer. When that branch must now integrate alongside an independently evolved target-side legacy/default context, migrate only at a GREEN/safe boundary before final integration:
+
+1. create/recover one exact workstream manifest and namespaced Task Board for the long-lived branch;
+2. preserve the branch's original exact branch as manifest/Task Board identity;
+3. move or copy only branch-owned post-divergence Card/evidence/blocker/handoff artifacts into that workstream namespace and reconcile their pointers; branch-isolated milestone handoffs go under `implementation/workstreams/<id>/handoffs/`;
+4. shared historical root artifacts that already exist on the integration target MAY remain referenced in place and MUST NOT be duplicated or rewritten merely for layout consistency;
+5. reconcile the branch's root `implementation/TASK_BOARD.yaml` to the current integration-target version so the workstream merge does not overwrite the target's unrelated legacy/default board, unless changing that default context is itself explicitly accepted scope;
+6. likewise preserve the target's `PROJECT.md -> Latest cumulative handoff` legacy/default pointer; workstream-specific handoffs stay discoverable from the namespaced Task Board;
+7. keep genuinely project-wide accepted requirements/decisions/plan/source changes from the workstream when they are part of the integrated result; do not discard them merely because live execution state is being namespaced;
+8. run normal target refresh/review/final integration, then perform target-side terminal closure/readback before deleting the source branch.
+
+This is a bounded state-topology reconciliation, not permission to rewrite completed historical evidence or to infer ownership from filenames alone.
 
 Use current lean JIT rules for newly prepared work.
 
