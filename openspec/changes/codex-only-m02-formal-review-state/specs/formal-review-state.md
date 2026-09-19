@@ -10,7 +10,9 @@ A branch-isolated workstream final-integration review remains manifest-owned and
 
 A reviewable implementation records a semantic project `implementation_owner_role`. For ordinary production implementation this is `executor`. This is a Project Workflow role slot, not a runtime worker/session identifier.
 
-Codex Main is the only writer of shared Task Board/integration state. The runtime may realize or replace the Executor behind the role slot without changing project semantics.
+Card review stores the role on the Card. When a milestone/checkpoint becomes an exact review subject, the milestone stores `implementation_owner_role: executor` as aggregate production provenance for that subject. Runtime independence for milestone review must hold against every concrete Executor realization that contributed production to the exact checkpoint; those identities remain runtime-owned.
+
+Codex Main is the only writer of shared Task Board/integration state. The runtime may realize or replace an Executor behind the role slot without changing project semantics.
 
 ## Review block
 
@@ -47,8 +49,8 @@ For subject S1:
 1. Main freezes S1 and appends R01 `pending`.
 2. An independent Tester performs a full review of S1; Main records R01 `in_progress`.
 3. If RED, Main persists R01 `red` + evidence.
-4. Main routes the correction to the Card's owning `executor` role. The Tester does not repair it.
-5. The owning Executor produces corrected subject S2.
+4. For Card review, Main routes the correction to that Card's owning `executor` role. For milestone review, Main routes through Execution Prep to reopen/create the exact affected corrective Card(s), each with `implementation_owner_role: executor`. The Tester does not repair production.
+5. The owning Executor role produces the corrected Card implementation(s); for milestone review Main then derives the corrected checkpoint subject S2.
 6. Main appends R02 `pending` for S2 and points `current_attempt` to R02. R01 remains immutable RED history.
 7. An independent Tester performs the full applicable authority/acceptance review of S2. It may be the same logical Tester if independence remains valid and runtime resume is safe.
 8. GREEN is persisted on R02 with evidence; only then may the normal post-review completion path finalize the Card/milestone.
@@ -73,7 +75,7 @@ If an implementation Executor cannot be safely resumed, runtime replacement may 
 Recovery is repository-first and fail-closed:
 
 - a missing/nonexistent `current_attempt`, more than one non-terminal attempt, mutable subject within an existing attempt, or terminal verdict without evidence is inconsistent state;
-- a durable RED verdict outranks unrelated implementation and routes correction to the owning Executor role;
+- a durable RED verdict outranks unrelated implementation; Card RED routes to its owning Executor role, while milestone RED routes through Execution Prep to exact bounded corrective Card(s) owned by `executor`;
 - if corrected implementation S2 is already durably proven but its next attempt was not frozen before interruption, Execution recovery appends exactly one new pending attempt for S2 instead of redoing the correction;
 - if complete verdict evidence for the exact current attempt is durable but Task Board still says `in_progress`, Main may reconcile the matching verdict only after verifying the evidence identifies the same attempt/subject; otherwise perform a full review again on the same attempt/subject;
 - a durable GREEN verdict is not replayed merely because runtime worker state is gone;
