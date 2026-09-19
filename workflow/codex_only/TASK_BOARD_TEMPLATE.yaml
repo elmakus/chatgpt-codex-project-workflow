@@ -1,10 +1,10 @@
-# Codex-only default Task Board foundation.
-# M02 refines review/provenance state; M03 adds optional bounded-parallel project metadata.
-# Runtime worker identity/lifecycle does not belong in this project-state schema.
+# Codex-only default Task Board.
+# M02 formal-review/provenance state is project-level and runtime-identity-free.
+# M03 may add optional bounded-parallel project metadata; do not add runtime worker/session identity.
 
 project: "<owner/repository>"
-plan_revision: null
-current_milestone: null
+plan_revision: "<R#>"
+current_milestone: "M01"
 
 execution_ref:
   branch: null
@@ -13,6 +13,50 @@ execution_ref:
 
 research_obligation: null
 
-milestones: {}
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: planned
+    contract: "planning/MASTER_PLAN.md#M01"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review:
+      requirement: none # REQUIRED | RECOMMENDED | none
+      current_attempt: null
+      attempts: []
 
-cards: []
+cards:
+  - id: "M01-T01"
+    title: "<title>"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: planned
+    implementation_owner_role: null # executor when production implementation starts
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/cards/M01-T01.md"
+    review:
+      requirement: none # MUST match the stable Card review contract
+      current_attempt: null
+      attempts: []
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+# Review attempt shape when activated:
+#
+# review:
+#   requirement: RECOMMENDED
+#   current_attempt: R01
+#   attempts:
+#     - id: R01
+#       state: pending # pending | in_progress | green | red
+#       subject: "<exact-immutable-subject>"
+#       reviewer_role: tester
+#       evidence: null
+#
+# Append new attempts for changed subjects. Never overwrite prior RED/GREEN attempts.
+# Concrete worker/session/model/profile/invocation/resume/replacement identity is forbidden here.
