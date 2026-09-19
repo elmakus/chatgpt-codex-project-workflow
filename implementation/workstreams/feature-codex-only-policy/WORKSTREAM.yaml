@@ -28,9 +28,9 @@ authority:
 
 review:
   requirement: "RECOMMENDED"
-  state: in_progress
+  state: red
   subject: "feature@15cb08a74fbb50e54bf7f99dfdf3d32f354f6383 + target@92e9f162c3d2fe4b178b04f07edc439c12a33ce8 + M01-M05 acceptance"
-  evidence: null
+  evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M05-final-integration-review-01.md"
   covered_by: null
 
 pr: null
