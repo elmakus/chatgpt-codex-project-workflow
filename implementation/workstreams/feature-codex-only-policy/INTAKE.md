@@ -3,14 +3,14 @@
 Workstream ID: `feature-codex-only-policy`
 Kind: `feature`
 Branch: `feat/codex-only-policy`
-Status: active
+Status: complete
 Date: 2026-09-19
 
 ## Operator intent
 
 Create a complete dedicated `workflow/codex_only/` policy namespace for projects that select `execution_policy: codex_only`, using current `workflow/chatgpt_only/` lifecycle semantics as the reference baseline while adapting execution/review semantics to Codex Main + `codex_workflow`.
 
-The workflow repository itself remains on `execution_policy: chatgpt_only`. This scope must not change that project execution policy.
+The workflow repository itself remains on `execution_policy: chatgpt_only`. This scope does not change that project execution policy.
 
 ## Accepted scope boundaries
 
@@ -24,12 +24,12 @@ The workflow repository itself remains on `execution_policy: chatgpt_only`. This
 - Project Workflow owns project semantics/state; `codex_workflow` owns worker/runtime mechanics.
 - Project Workflow must not own session IDs, invocation IDs, Muse leases, worker resume protocol, model/reasoning/profile selection, worker waiting, or worker concurrency mechanics.
 - `codex_workflow` must not own Project Workflow Task Board/review/router state.
-- A Codex-managed independent Tester may satisfy the formal Project Workflow independent-review obligation. Do not add a mandatory normal-ChatGPT review after a qualifying Tester verdict.
-- Tester cannot implement or repair production changes; RED returns findings through Main to the owning Executor, and the corrected implementation is a new immutable review subject.
-- Reusing the same logically independent Tester for the new exact subject is allowed when the independence contract remains valid; replacement is fail-closed/runtime-owned when reuse is unsafe.
-- Add bounded parallel Task Card support inside one `codex_only` workstream. Serial remains the default. Planning may identify candidate dependency/parallel structure; Execution Prep/JIT must re-verify runtime safety from current repository state before parallel execution.
-- Required JIT safety dimensions include dependency completion, `parallel_safe`, disjoint mutable `write_scope`, no conflicting `exclusive_resources`, isolated lane/worktree/equivalent workspace, recoverable integration base, and Codex Main ownership of shared Task Board/integration state.
-- Legacy `workflow/codex/*`, shared `workflow/EXECUTION.md`, `workflow/contracts/*`, and legacy routing are compatibility/evidence inventory only, not the architectural base.
+- A qualifying independent Codex reviewer may satisfy the formal Project Workflow independent-review obligation; no additional mandatory normal-ChatGPT review is added merely because the formal reviewer is managed through `codex_workflow`.
+- Implementation Tester cannot implement or repair production changes; RED returns findings through Main to the owning Executor, and a corrected implementation is a new immutable review subject.
+- Reusing the same logically independent Tester for the new exact subject is allowed when independence remains valid; replacement is runtime-owned when resume/reuse is unsafe.
+- Add bounded parallel Task Card support inside one `codex_only` workstream. Serial remains the default. Planning may identify candidate dependency/parallel structure; Execution Prep/JIT must verify current-state safety before concurrent execution.
+- JIT safety includes dependency completion, `parallel_safe`, disjoint mutable `write_scope`, no conflicting `exclusive_resources`, isolated lane/worktree/equivalent workspace, recoverable integration base, and Codex Main ownership of shared Task Board/integration state.
+- Legacy `workflow/codex/*`, shared `workflow/EXECUTION.md`, `workflow/contracts/*`, and legacy routing are compatibility/evidence inventory only.
 
 ## Pre-creation discovery
 
@@ -40,9 +40,9 @@ Repository baseline:
 - open PRs: none
 
 Existing potentially related branch evidence:
-- `feat/bounded-parallel-task-cards` exists, but it is 433 commits behind current `main`, diverged by 13 commits, and its relevant changes target the former shared/legacy execution stack.
-- therefore it is evidence inventory only and does not provide required parent-only state for this feature.
-- no existing `codex_only` dedicated workstream/branch/PR was found.
+- `feat/bounded-parallel-task-cards` is 433 commits behind current `main`, diverged by 13 commits, and targets the former shared/legacy execution stack.
+- it is evidence inventory only and does not provide required parent-only state.
+- no existing dedicated `codex_only` branch/workstream/PR was found.
 
 Base classification: independent.
 Parent workstream: none.
@@ -55,18 +55,33 @@ Verified external baseline:
 - release/tag: `v1.1.17-private.12`
 - release source commit: `d285aa1a271258052d23e3a2d3b585117fc1e862`
 - published: 2026-09-19
-- release explicitly includes stateful Muse logical worker sessions plus fail-closed session/workspace reservation and resume-conflict handling.
+- release includes stateful Muse logical worker sessions and fail-closed reservation/resume handling.
 
-This is runtime capability evidence only, not Project Workflow authority.
+Runtime capability is evidence only, not Project Workflow authority.
 
-## Post-creation route
+## Policy-delta discovery result
 
-The feature requires normal exploratory materialization before Definition.
-
-Planned canonical exploratory record:
+Exact policy-specific deltas are durably captured in:
 `brainstorming/CODEX_ONLY_POLICY.md`
 
-Definition promotion is initially recorded as pending and may only become `user_authorized` for the exact ready revision. The initiating user request already contains explicit authorization to promote the conforming discovered scope after required discovery, provided no unresolved strategic contradiction remains.
+The principal deltas from `chatgpt_only` are:
+- explicit `codex_only` namespace routing;
+- project-role contracts instead of fixed normal-ChatGPT executor identity;
+- semantic independent-review contracts that can be fulfilled by Codex-managed independent workers;
+- bounded intra-workstream parallel Cards with serial default and JIT safety verification;
+- intra-workstream lane/worktree isolation when parallel local mutation exists;
+- runtime-agnostic recovery/provenance that excludes worker/session mechanics.
+
+No Definition-blocking research or unresolved strategic contradiction remains.
+
+## Post-creation classification
+
+Canonical exploratory record:
+`brainstorming/CODEX_ONLY_POLICY.md`
 
 Path classification: `brainstorming`
 Next route: `brainstorming:codex-only-policy@R1`
+
+The exploratory record is `ready_for_definition`. The initiating user explicitly authorized promotion of the conforming discovered scope if discovery found no unresolved strategic contradiction; the exact `codex-only-policy@R1` record therefore persists `Definition promotion authorization: user_authorized`.
+
+Intake is complete. Router continuation is Project Definition for `codex-only-policy@R1`.
