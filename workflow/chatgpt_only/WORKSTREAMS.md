@@ -274,6 +274,7 @@ A stacked child has two legal ways forward:
 
 2. **Integrate the parent first, then reconcile the child.**
    - After the required parent commits are present in the child's `integration_target`, rebase/merge/retarget/reconcile the child against that current target as appropriate.
+   - The parent source branch may already have been automatically deleted; child dependency satisfaction is proven from the integration target plus exact Git/PR evidence and never requires that deleted parent ref.
    - Run the Integration refresh contract below before the child's final integration.
    - Preserve parent metadata as dependency provenance; parent satisfaction is proven from exact Git/integration evidence, not merely a coarse parent status string.
 
