@@ -73,6 +73,7 @@ cards:
 #     - id: B01
 #       state: prepared # prepared | running | integrating | complete | blocked
 #       integration_base: "<exact-git-commit>"
+#       evidence: null # required when batch state is blocked/reconciled
 #       members:
 #         - card_id: M01-T01
 #           lane: L01
@@ -81,6 +82,7 @@ cards:
 #           integrated_commit: null
 #           evidence: null
 #
-# Batch membership/order/base are frozen after launch; completed entries remain durable.
+# Batch membership/order/base are frozen after launch; completed and reconciled blocked entries remain durable.
+# A pre-launch abandoned prepared batch is kept as blocked history with evidence; its Cards are restored to READY before current_batch is cleared.
 # Lane labels are semantic project provenance, never concrete worker/session/worktree identity.
 # Stable Card contracts, not this mutable board, own parallel_safe/write_scope/exclusive_resources.
