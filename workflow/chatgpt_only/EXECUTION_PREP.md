@@ -136,7 +136,7 @@ Do not change project topology during active milestone work.
 
 ## Prior handoff
 
-Read the latest cumulative handoff only when it materially supplies predecessor truth needed by current preparation.
+Read the latest applicable cumulative handoff for the **selected state context** only when it materially supplies predecessor truth needed by current preparation. Legacy/default context may use `PROJECT.md -> Latest cumulative handoff`; branch-isolated context resolves handoffs from its selected Task Board and must not use the project-global pointer as workstream state.
 
 ## Automatic transition into execution
 
