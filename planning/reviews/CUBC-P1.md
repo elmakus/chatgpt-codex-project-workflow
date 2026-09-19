@@ -2,13 +2,13 @@
 
 Plan revision: CUBC-P1
 Review requirement: RECOMMENDED
-Review state: in_progress
+Review state: green
 Review subject: 175ed4128740f2024da1baf30605939f9f55b114
 Plan: planning/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP_MASTER_PLAN.md
 Requirements: requirements/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP.md
 Accepted decision: decisions/ADR_CODEX_ONLY_TERMINAL_UNMERGED_BRANCH_DELETE.md
 Project branch: feat/codex-only-unmerged-branch-cleanup
-Review evidence: in progress — independent audit against CUBC-R1 Definition and current main lifecycle contracts
+Review evidence: GREEN — exact plan blob 175ed4128740f2024da1baf30605939f9f55b114 matches CUBC-R1 and the accepted ADR; CUBC-REQ-001..008 are covered; current main confirms the planned terminal-unmerged durability, exact-ref cleanup and Recovery changes are the missing contract surface while merged cleanup remains repository-owned. Existing terminal-safety/stacked gates, exact manifest identity, Codex Main ownership, idempotent Recovery and no-cleanup-state constraints remain explicit. No Definition or Research blocker found.
 
 ## Review objective
 
