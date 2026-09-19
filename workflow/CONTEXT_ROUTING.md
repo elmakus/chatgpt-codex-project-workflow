@@ -20,6 +20,20 @@ After selecting this route:
 - do not load another policy namespace;
 - recover mutable state from the canonical source defined by the selected policy route; for `chatgpt_only`, resolve the selected workstream state context first, then use that workstream's canonical Task Board for implementation/implementation-review state, with `implementation/TASK_BOARD.yaml` retained as the legacy/default fallback. Pre-execution plan-review state lives under `planning/reviews/`.
 
+### `codex_only`
+
+Read:
+
+`workflow/codex_only/ROUTER.md`
+
+After selecting this route:
+- use only `workflow/common/*` and `workflow/codex_only/*` for migrated Project Workflow semantics;
+- do not load `workflow/chatgpt_only/*`, legacy/shared execution contracts, or another policy namespace;
+- Codex Main is the fixed Project Workflow coordinator and sole shared Task Board/integration-state writer; concrete worker/session/model/profile/invocation/wait/resume/concurrency realization belongs to `codex_workflow`;
+- resolve branch-isolated/default state through the Codex-only router and validated workstream manifest/Task Board rules;
+- serial execution remains valid by default; bounded concurrency is legal only through the Codex-only JIT/batch contracts;
+- a missing runtime realization or failed parallel-safety proof does not change execution policy.
+
 ### Other accepted policy
 
 Until its dedicated policy namespace is migrated, read:
