@@ -22,6 +22,7 @@ milestones:
     implementation_head: null
     handoff: null
     acceptance_evidence: null
+    implementation_owner_role: null # executor when a reviewable milestone/checkpoint subject is frozen
     review:
       requirement: none # REQUIRED | RECOMMENDED | none
       current_attempt: null
