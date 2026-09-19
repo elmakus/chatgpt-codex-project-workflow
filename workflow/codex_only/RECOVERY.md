@@ -57,6 +57,7 @@ For `parallel.current_batch` and every batch history entry require:
 - current pointer identifies at most one non-complete batch;
 - exact immutable `integration_base` once launched;
 - immutable finite member list/order after launch;
+- durable batch-level evidence for any `blocked`/abandoned outcome;
 - unique semantic lane label per member inside the batch;
 - each member Card exists and was eligible under its frozen Card contract/current proof;
 - all frozen member write scopes are pairwise disjoint and resource tokens non-conflicting;
@@ -74,12 +75,17 @@ Contradiction routes to Recovery; never infer the missing fact from runtime memo
 
 A `prepared` batch has no guaranteed runtime work yet.
 
-1. re-read current branch HEAD and exact frozen base;
+1. re-read current branch HEAD and exact frozen base, allowing only the expected Main-owned batch-control bookkeeping committed after that base;
 2. revalidate dependencies, Card safety metadata, scope/resource compatibility and workspace-isolation availability;
 3. if still current, launch the same frozen batch;
-4. if proof/base is stale before launch, do not mutate/reuse it as if current: record/reconcile the stale prepared outcome, clear it from `current_batch`, then form a new batch or execute serially from current truth.
+4. if proof/base is stale before launch, use the pre-launch abandonment transition only when every member is still `prepared`, every `result_commit`/`integrated_commit` is null and no member entered runtime-active state;
+5. persist one abandonment evidence record, set the batch plus its member history entries to `blocked`, and reconcile each member Card whose `in_progress` status came solely from this freeze back to `ready` when its ordinary serial prerequisites still hold;
+6. persist those Card reconciliations before or atomically with clearing `current_batch`; after the transition no Card may remain `in_progress` solely because the abandoned batch once owned it;
+7. never reuse that batch ID; form a new batch or execute serially from current truth.
 
-No worker result is assumed.
+If any member left `prepared`, has a durable result, or runtime-active work may exist, this unwind is illegal. Recover the actual running/returned/integrated state instead.
+
+No worker result is assumed for a legally abandoned prepared batch.
 
 ### In progress
 
@@ -113,6 +119,7 @@ If earlier members are `integrated` and later members are `returned | in_progres
 For member/batch `blocked`:
 
 - recover exact blocker/result/evidence;
+- a reconciled historical pre-launch abandonment may remain `blocked` with `current_batch: null`; its member Cards must already have been returned to legal READY/serial state and the batch ID is never reused;
 - scope escape or reserved-state mutation is not integrated;
 - material integration conflict preserves returned result;
 - classify smallest correction, serial fallback, Planning/Definition/Research or real input/runtime gate through Router;
@@ -132,6 +139,7 @@ Examples:
 - `result_commit` is durable but member still `in_progress` -> verify exact matching evidence, then reconcile to `returned`; do not execute again;
 - integrated Git commit is durable but member/Card pointers are stale -> prove exact commit/result relationship and reconcile bookkeeping, not implementation;
 - member says integrated but `integrated_commit` is absent/mismatched -> inconsistent; recover Git evidence before continuation;
+- stale prepared batch was cleared but one of its Cards is still `in_progress` solely from the abandoned freeze -> restore the exact pre-launch abandonment reconciliation before any new work;
 - all members integrated but batch still `integrating` -> verify each integrated ref, mark complete and clear `current_batch`;
 - batch complete but Card review freeze is missing -> freeze the exact integrated Card subject once when review still applies.
 
