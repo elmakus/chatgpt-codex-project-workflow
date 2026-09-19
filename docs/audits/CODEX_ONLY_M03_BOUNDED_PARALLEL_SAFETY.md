@@ -176,5 +176,3 @@ M03 verification must prove:
 13. integrated-member reviews remain pending/deferred until active-batch closure, and later RED repair cannot overwrite historical member integration provenance or make sibling continuation ambiguous.
 
 Parser-based YAML validation is reported only if an actual parser is available.
-
-[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
