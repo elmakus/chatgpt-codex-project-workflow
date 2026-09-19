@@ -7,9 +7,9 @@ current_milestone: "CUBC-M01"
 # M01 changes workflow semantics so future projects may instead select a workstream-local board.
 
 execution_ref:
-  branch: "feat/codex-only-unmerged-branch-cleanup"
+  branch: "main"
   pr: 35
-  head: "4ead7a4a7c0ed13bc82a504a8b038dc20b788217"
+  head: "3062786dea216296672bc059bbdc58320b6434cb"
 
 research_obligation: null
 
@@ -76,12 +76,12 @@ milestones:
 
   CUBC-M01:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP_MASTER_PLAN.md#M01--terminal-unmerged-closure-and-branch-deletion"
-    checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    checkpoint: "3062786dea216296672bc059bbdc58320b6434cb"
+    implementation_head: "4ead7a4a7c0ed13bc82a504a8b038dc20b788217"
+    handoff: "project-handoffs/CUBC-M01_HANDOFF.md"
+    acceptance_evidence: "implementation/evidence/CUBC-M01-acceptance.md"
     review_state: null
     review_subject: null
     review_evidence: null
