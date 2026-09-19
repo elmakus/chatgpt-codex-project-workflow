@@ -11,3 +11,4 @@
 - [x] Verify root routing, chatgpt_only tree and repository execution policy remain unchanged.
 - [x] Repair independent-review RED-01: deterministic pre-launch prepared-batch abandonment restores Card readiness before clearing current_batch and distinguishes Main bookkeeping from implementation-base drift.
 - [x] Repair independent-review RED-02: defer formal member review until active-batch closure, preserve immutable original integration provenance, and keep post-batch RED repair outside the completed batch.
+- [x] Repair independent-review RED-03: define deterministic post-launch blocked-member retry and terminal launched-batch reconciliation without replaying successful siblings or reusing pre-launch reset.
