@@ -28,7 +28,7 @@ cards:
     title: "Complete branch-isolated finalization and legacy migration semantics"
     milestone: "M05"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/issue-workstream-finalization-semantics/cards/M05-T02.md"
