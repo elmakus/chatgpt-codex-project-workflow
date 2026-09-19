@@ -2,13 +2,13 @@
 
 Plan revision: CUBC-P1
 Review requirement: RECOMMENDED
-Review state: pending
+Review state: in_progress
 Review subject: 175ed4128740f2024da1baf30605939f9f55b114
 Plan: planning/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP_MASTER_PLAN.md
 Requirements: requirements/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP.md
 Accepted decision: decisions/ADR_CODEX_ONLY_TERMINAL_UNMERGED_BRANCH_DELETE.md
 Project branch: feat/codex-only-unmerged-branch-cleanup
-Review evidence: pending
+Review evidence: in progress — independent audit against CUBC-R1 Definition and current main lifecycle contracts
 
 ## Review objective
 
