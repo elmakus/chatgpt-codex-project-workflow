@@ -8,7 +8,7 @@ current_milestone: "CUBC-M01"
 
 execution_ref:
   branch: "feat/codex-only-unmerged-branch-cleanup"
-  pr: null
+  pr: 35
   head: "4ead7a4a7c0ed13bc82a504a8b038dc20b788217"
 
 research_obligation: null
@@ -185,6 +185,6 @@ cards:
     review_subject: "4ead7a4a7c0ed13bc82a504a8b038dc20b788217"
     review_evidence: "implementation/evidence/CUBC-M01-T01-review-01.md"
     result_commit: "4ead7a4a7c0ed13bc82a504a8b038dc20b788217"
-    result_pr: null
+    result_pr: 35
     evidence: "implementation/evidence/CUBC-M01-T01.md"
     tests_summary: "GREEN implementation verification: CUBC-REQ-001..008 mapped; terminal-unmerged durable closure/delete/recovery scenarios pass contract audit; merged path unchanged; branch was behind_by=0 at verification; no branch_cleanup/safe_to_delete/schema/runtime-state lifecycle introduced."
