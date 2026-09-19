@@ -1,6 +1,6 @@
 # Codex-only Recovery
 
-> M03 contract. Recovery reconstructs project obligations from durable Project Workflow state, never from runtime session identity.
+> Live Codex-only recovery contract. Recovery reconstructs project obligations from durable Project Workflow state, never from runtime session identity.
 
 ## Inputs
 
@@ -172,6 +172,33 @@ Task Board `research_obligation` remains the single implementation/recovery Rese
 
 Project Workflow does not own concrete worker/session/model/profile/reasoning/invocation/lease/wait/resume/replacement/worktree-path state. Runtime may resume or replace a realization fail-closed; durable Card/batch/lane/result/review semantics remain unchanged.
 
-## M04 boundary
+## Integrated terminal workstream recovery
 
-M03 recovery covers bounded intra-workstream Card batches. M04 reconciles full lifecycle, stacked-workstream/target-refresh/final-integration recovery and root cutover.
+When an exact durable locator points to a branch-isolated manifest with `status: done` and non-null exact `result`, and finalization evidence shows the workstream reached its final `integration_target`:
+
+- the original source branch may supply provenance but is not required for terminal history;
+- after source-branch deletion, recover from the integration-target copy of `implementation/workstreams/<id>/` and validate manifest ↔ Task Board identity there;
+- keep Task Board `workstream_id` and `execution_ref.branch` equal to original workstream identity, never the target branch;
+- verify referenced terminal Card/evidence/handoff state exists on target and agrees with manifest `result`/PR plus final checkpoint/result pointers;
+- do not route a terminal workstream Task Board as active target-branch execution state;
+- missing target-side artifacts after source-branch deletion are a finalization defect, never a reason to fall back to root `implementation/TASK_BOARD.yaml`.
+
+Branch-isolated handoffs are recovered through the selected terminal Task Board, not `PROJECT.md -> Latest cumulative handoff`.
+
+## Workstream final-integration review recovery
+
+Manifest final-integration review is independent from Card/milestone Task Board review:
+
+- `pending | in_progress` -> route to `REVIEW.md` with manifest review owner and exact subject;
+- `green` -> do not replay review; continue only while exact coverage remains valid under `WORKSTREAMS.md#Integration-refresh-contract`;
+- `red` -> preserve the manifest gate/evidence and route deterministic correction; bounded implementation/Research stays on the selected Task Board;
+- qualified micro-fix with terminal reviewed Card and no active manifest pending/RED gate -> Close runs target refresh before coverage reuse/freeze;
+- changed integrated subject invalidates stale coverage and requires a new immutable formal-review subject.
+
+Never inspect or mutate another workstream Task Board to recover this gate.
+
+## Full lifecycle resume
+
+Recovery may also restore active Intake, PROJECT-level exploratory/Research pointers, plan review, default-board state, stacked dependency/refresh state and Close obligations through the exact owning modules referenced by `ROUTER.md`.
+
+After durable state is coherent, return to `workflow/codex_only/ROUTER.md`. Do not stop merely because recovery succeeded when deterministic legal work can continue. Use the normal human-facing stop contract only for unresolved user/product authority, explicit authorization or a concrete unremediable runtime/input blocker.
