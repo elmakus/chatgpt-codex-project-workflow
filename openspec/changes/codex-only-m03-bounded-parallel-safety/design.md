@@ -118,5 +118,3 @@ At durable boundaries:
 ## M02 preservation
 
 Parallelism changes dispatch/integration only. M02 immutable review attempts, Tester non-repair, owning-Executor correction, Main-only shared-state writes and runtime-identity prohibition remain authoritative.
-
-[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
