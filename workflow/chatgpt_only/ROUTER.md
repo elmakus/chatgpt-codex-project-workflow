@@ -13,22 +13,23 @@ Do not load legacy/shared execution trees or another policy directory.
 1. Read `workflow/common/AUTHORITY.md`.
 2. Read project root `PROJECT.md`.
 3. If the current user request intentionally invokes `#issue` or `#feature` as an operator directive, read `workflow/chatgpt_only/INTAKE.md` and route to Intake **before** ordinary phase/implementation/review selection for any previously active default/workstream state. Quoted/example/incidental marker text is not a directive. Intake owns discovery of an existing matching workstream or creation of a new one; do not preselect an unrelated Task Board first.
-4. Otherwise, when the current request/handoff or exact current branch identifies a branch-isolated workstream, read `workflow/chatgpt_only/WORKSTREAMS.md` and resolve its exact manifest first. This pre-execution manifest selection does not require a Task Board to exist.
+4. Otherwise, when the current request/handoff, exact current branch, or exact immutable PR/merge + target-side closure evidence identifies a branch-isolated workstream, read `workflow/chatgpt_only/WORKSTREAMS.md` and resolve its exact manifest first. A successful final-target merge may be recovered from the merge-result target-side package even when GitHub already deleted the source branch. This pre-execution manifest selection does not require a Task Board to exist.
 5. When that exact selected manifest has `intake.state: active`, read its exact `intake.record` and route to Intake before later work for that workstream. When `intake.state: complete`, do not replay Intake. If its exact record has `path: micro_fix` + `next_route: execution_prep:micro_fix` and no Task Board has yet been materialized, read `workflow/chatgpt_only/MICRO_FIX.md` and route directly to Execution Prep; this is the canonical micro-fix pre-Task-Board continuation.
-6. If implementation, implementation-review, blocker or execution-recovery state exists or is referenced, resolve the canonical Task Board **before** reading its mutable execution state. For a selected branch-isolated manifest, apply manifest ↔ Task Board binding validation (`workstream_id` + `execution_ref.branch`); a failed binding routes to Recovery and must not fall back to the default board. When no branch-isolated workstream is selected, keep the legacy/default `implementation/TASK_BOARD.yaml` fallback. In the rest of this router, `Task Board` means that exact selected canonical board.
+6. If implementation, implementation-review, blocker or execution-recovery state exists or is referenced, resolve the canonical Task Board **before** reading its mutable execution state. For a selected branch-isolated manifest, apply manifest ↔ Task Board binding validation (`workstream_id` + `execution_ref.branch`) from the exact source branch for ordinary pre-integration work, or from the exact target-side closure/history package when `WORKSTREAMS.md` explicitly permits that post-merge/terminal path. A failed binding routes to Recovery and must not fall back to the default board. When no branch-isolated workstream is selected, keep the legacy/default `implementation/TASK_BOARD.yaml` fallback. In the rest of this router, `Task Board` means that exact selected canonical board.
 7. A REQUIRED/RECOMMENDED Task Board `review_state: pending | in_progress` outranks later implementation and routes to Independent review.
 8. If Task Board `research_obligation` points to an implementation/recovery Research record, read that exact record before choosing later implementation, including when the Research obligation was opened from a RED review. `Status: active | blocked` routes to Research; `Status: complete` routes to its exact recorded Return target; `Status: consumed` means the Task Board pointer is stale and should be cleared at the next safe edit.
 9. A non-terminal REQUIRED/RECOMMENDED Task Board subject with `review_state: red` outranks unrelated/later implementation. Read its exact RED evidence and apply the single canonical classification in `REVIEW.md#RED → corrective-route transition` against current durable state: bounded L1/L2 correction → Execution Prep/Execution; plan-only correction → Strategic planning; accepted-authority correction → Project Definition; missing evidence → materialize the implementation-owned Research handoff before Research; unresolved real gate → user stop. If the RED evidence/current state cannot be coherently classified, route to Recovery rather than guessing.
 10. An `in_progress` Card with `review_state: green` routes to Execution for terminal Post-review Card finalization before later work.
 11. When no higher-priority Task Board obligation remains, a selected manifest final-integration `review.state: pending | in_progress` routes to Independent review before later implementation/integration for that workstream.
 12. A selected manifest final-integration `review.state: red` outranks unrelated/later implementation in that workstream and uses the same RED corrective-route classification; bounded correction/Research stays on the selected Task Board.
-13. A qualified micro-fix with a terminal fix Card and an unfinished selected workstream routes to Close for current-target refresh, final-integration review coverage/freeze and integration once no higher-priority Task Board or manifest pending/RED review obligation remains. Do not synthesize a milestone and do not reuse/freeze the manifest final-review gate before Close runs the refresh.
-14. If `PROJECT.md → Active research obligation` points to a pre-execution research record, read that exact record before choosing the route. `Status: active | blocked` routes to Research; `Status: complete` routes to the exact recorded Return target; `Status: consumed` means the pointer is stale and should be cleared at the next safe edit.
-15. If both Task Board and PROJECT point to different active/blocked/complete Research obligations, treat that as inconsistent state and route to Recovery instead of guessing which obligation owns continuation.
-16. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
-17. Select exactly one primary route below.
-18. Read only that route's required project artifacts plus exact authority refs.
-19. Continue deterministic work automatically until a real workflow stop is reached.
+13. When immutable PR/merge evidence proves the selected workstream's final-target merge succeeded but target-side closure/result reconciliation is unfinished, route to Close using `WORKSTREAMS.md#Post-merge-closure-workstream` before unrelated work. Source-branch disappearance does not block this route and must not cause ref recreation.
+14. A qualified micro-fix with a terminal fix Card and an unfinished selected workstream routes to Close for current-target refresh, final-integration review coverage/freeze and integration once no higher-priority Task Board or manifest pending/RED review obligation remains. Do not synthesize a milestone and do not reuse/freeze the manifest final-review gate before Close runs the refresh.
+15. If `PROJECT.md → Active research obligation` points to a pre-execution research record, read that exact record before choosing the route. `Status: active | blocked` routes to Research; `Status: complete` routes to the exact recorded Return target; `Status: consumed` means the pointer is stale and should be cleared at the next safe edit.
+16. If both Task Board and PROJECT point to different active/blocked/complete Research obligations, treat that as inconsistent state and route to Recovery instead of guessing which obligation owns continuation.
+17. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
+18. Select exactly one primary route below.
+19. Read only that route's required project artifacts plus exact authority refs.
+20. Continue deterministic work automatically until a real workflow stop is reached.
 
 ## Fresh-session entry semantics
 
@@ -296,7 +297,8 @@ Read:
 - for normal milestone close: milestone contract + required Card/review evidence;
 - for qualified micro-fix close: exact completed micro-fix Intake + bounded fix Card + `MICRO_FIX.md` + required Card review evidence, with no milestone contract required;
 - selected manifest final-integration review state when branch-isolated;
-- intended final branch/state and current integration target.
+- intended final branch/state and current integration target;
+- when recovering an already-merged workstream whose source branch may be absent, the exact merge-result target-side namespaced package plus immutable PR/merge evidence needed by `WORKSTREAMS.md#Post-merge-closure-workstream`.
 
 ### Strategic blocker
 
@@ -325,9 +327,9 @@ Do not continue affected work until the owning authority is resolved.
 Read:
 - `workflow/chatgpt_only/RECOVERY.md`;
 - selected manifest when branch-isolated;
-- selected Task Board;
-- exact active branch/HEAD/runtime;
-- affected in-progress/blocked/Card-review/workstream-review state;
+- selected Task Board/history source;
+- exact active branch/HEAD/runtime for ordinary pre-integration work, or exact post-merge target package + immutable PR/merge evidence / terminal-unmerged closure package when source-branch existence is no longer required;
+- affected in-progress/blocked/Card-review/workstream-review/closure-cleanup state;
 - referenced contracts/evidence.
 
 After recovery, route to the recovered obligation above.
