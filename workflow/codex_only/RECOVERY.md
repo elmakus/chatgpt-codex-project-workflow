@@ -166,5 +166,3 @@ Project Workflow does not own concrete worker/session/model/profile/reasoning/in
 ## M04 boundary
 
 M03 recovery covers bounded intra-workstream Card batches. M04 reconciles full lifecycle, stacked-workstream/target-refresh/final-integration recovery and root cutover.
-
-[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
