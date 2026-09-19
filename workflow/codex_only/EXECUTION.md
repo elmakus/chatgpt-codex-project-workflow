@@ -15,7 +15,7 @@ Codex Main alone writes shared Task Board/integration state.
 1. Resolve the exact project/workstream state context and canonical Task Board.
 2. Recover existing inconsistent/review/Research/RED/in-progress obligations before selecting new work.
 3. Select one authority-valid READY Card whose dependencies are complete.
-4. Persist start state and semantic `implementation_owner_role` for the production obligation.
+4. Persist start state and semantic `implementation_owner_role` for the Card production obligation. When a reviewable milestone/checkpoint subject is later frozen, Main also records milestone `implementation_owner_role: executor` as aggregate production provenance for that exact subject.
 5. Run the state/contract Refresh Gate against current repository/runtime evidence.
 6. Execute the bounded Card through the runtime. For reviewable production implementation the owning project role is `executor`; concrete worker identity is runtime-owned.
 7. Persist exact implementation result/tests/evidence through Codex Main.
@@ -70,11 +70,12 @@ If production changed after GREEN, the verdict does not cover the changed subjec
 Execution after RED is legal only when the router selected bounded production correction from that exact RED evidence.
 
 - keep the RED attempt/evidence immutable;
-- Main routes the correction to the Card's `implementation_owner_role: executor`;
+- for Card-owned RED, Main routes the correction to that Card's `implementation_owner_role: executor`;
+- for milestone-owned RED, Main routes through Execution Prep to reopen/create the exact affected corrective Card(s), each owned by `executor`;
 - Tester/reviewer does not repair production;
 - owning Executor produces the correction;
-- Main persists corrected result/tests/evidence;
-- append a new pending review attempt for the corrected exact subject;
+- Main persists corrected Card result/tests/evidence and, for milestone review, the corrected checkpoint subject;
+- append a new pending review attempt for the corrected exact Card or milestone subject;
 - the next review is a full applicable review;
 - do not select unrelated READY work while this non-terminal RED obligation exists.
 
