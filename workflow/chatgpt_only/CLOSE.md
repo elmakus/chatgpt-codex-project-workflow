@@ -92,6 +92,7 @@ Verify as applicable:
 - any stacked parent dependency is satisfied for this exact integration path;
 - expected PR head/publication state is correct;
 - PR/publication artifact matches the owning acceptance state: accepted milestone state + cumulative handoff for normal milestone close, or the qualified micro-fix bounded Card/workstream acceptance + evidence for micro-fix close;
+- for a branch-isolated final-target merge, the exact PR/merge subject already carries every unique workstream-owned recovery artifact that can be known before merge; only inherently merge-result-dependent bookkeeping may remain for target-side closure;
 - commits after the reviewed implementation head are only authorized closure/publication changes;
 - no unreviewed behavioral/scope drift after accepted subject;
 - required status checks/mergeability understood;
@@ -121,9 +122,13 @@ For a branch-isolated workstream:
 - integrate only into the manifest `integration_target`, or into the declared parent branch when intentionally using the legal child → parent path;
 - when a child is folded into its parent, treat the parent's integrated subject as changed when the child adds covered behavior/content; the parent must perform its own refresh/review reconciliation before its later final integration;
 - never record a child as independently integrated to main/default merely because it was merged into an unmerged parent;
-- after final-target integration, reconcile durable manifest/result/PR state plus the selected Task Board/handoff as applicable to the actual Git result;
-- ensure the terminal namespaced workstream package is present on the final integration target and read it back before source-branch deletion; use a closure-only target-side commit/PR when actual merge-result metadata could not be known before merge;
-- keep the original workstream branch in manifest/Task Board identity as provenance even after deletion; do not rewrite terminal workstream identity to the target branch.
+- **before a final-target merge**, persist the closure-ready namespaced workstream package in the exact merge subject: manifest, selected Task Board, Card contracts, required evidence/material blockers and any namespaced handoff file/pointer already knowable. Do not plan to create a unique recovery artifact only on the source branch after merge;
+- freeze exact source ref/head + integrated/reviewed subject evidence sufficient to prove which package the PR carries;
+- after final-target integration, assume the source branch may already have been deleted automatically. Resolve the workstream from the merge-result target-side package + immutable PR/merge evidence under `WORKSTREAMS.md#Post-merge-closure-workstream`;
+- reconcile durable manifest/result/PR state plus selected Task Board/handoff/checkpoint metadata on the target side. When the actual merge result was unknowable pre-merge, use a closure-only target-side commit/PR; never recreate the source ref for bookkeeping;
+- read back the reconciled final integration target and verify that the terminal namespaced package is complete and self-sufficient for recovery;
+- if the source branch still exists after terminal safety is proven, activate the exact `branch_cleanup: safe_to_delete` fallback instead of renaming/duplicating it; if GitHub already removed it, treat that as normal success and do not require a fallback marker;
+- keep the original workstream branch in manifest/Task Board identity as provenance after deletion; do not rewrite terminal workstream identity to the target branch.
 
 ## Qualified micro-fix finalization
 
@@ -134,7 +139,7 @@ For a qualified micro-fix, after the refresh gate is current, any REQUIRED/RECOM
 3. reconcile the selected Task Board execution/result pointers needed for recovery without creating a milestone entry;
 4. keep the bounded fix Card terminal and preserve its independent review/evidence history;
 5. do not synthesize an `MXX` cumulative handoff solely for the micro-fix unless project authority separately requires one; when one is required for a branch-isolated micro-fix, use that workstream's namespaced handoff location;
-6. verify the target-side terminal durable package before deleting the source branch;
+6. verify the target-side terminal durable package after merge even if the source branch has already disappeared; when the branch survives, use the exact `branch_cleanup: safe_to_delete` fallback only after terminal safety rather than alias/rename emulation;
 7. return to the router. If the micro-fix workstream scope is complete and no further deterministic obligation exists, this is end of approved scope.
 
 ## Cumulative handoff
@@ -158,16 +163,26 @@ Record minimum continuation truth:
 
 Do not turn handoff into a duplicate Task Board/history dump.
 
-## Source-branch deletion gate
+## Source-branch cleanup gate
 
-Deleting a completed branch-isolated workstream branch is allowed only after:
-- final-target integration succeeded and exact result/readback is known;
-- any closure-only target-side reconciliation is complete;
-- manifest status/result/PR and selected Task Board terminal checkpoint/result/handoff pointers match the actual integration outcome;
-- every unique referenced workstream-owned Card/evidence/handoff/blocker artifact needed for recovery exists on the final integration target;
-- no Card, Research, review, stacked-dependency or integration obligation remains active.
+A completed final-target merge does **not** wait for source-branch survival. If GitHub deletes the merged head immediately, Close continues from target-side state and immutable PR/merge evidence.
 
-Read back the target copy before deletion. If any required durable state exists only on the source branch, branch deletion is blocked until it is preserved on the target. After deletion, terminal recovery follows `WORKSTREAMS.md#Integrated-terminal-workstream` and MUST NOT require the deleted branch.
+Before merge, verify that every unique recovery-critical workstream artifact that can be known is already in the exact merge subject or otherwise durable independently of the source ref. After merge:
+- reconcile merge-result-dependent manifest/Task Board/handoff metadata target-side;
+- read back the exact target copy;
+- require no active Card, Research, review, stacked-dependency or integration obligation.
+
+If the source ref is already absent after successful merge, that is normal success. Do not recreate it and do not create a `delete/*` alias.
+
+If the merged source ref still exists after terminal safety:
+1. re-read its exact current HEAD;
+2. set manifest `branch_cleanup.state: safe_to_delete` only with `ref == manifest.branch`, exact `verified_head`, and durable target-side terminal-safety evidence;
+3. a cleanup-capable actor MUST re-read the ref before deletion; if HEAD moved, the marker is stale and deletion is forbidden until revalidated;
+4. after physical deletion, `deleted` may be recorded only from durable target-side state after readback proves the exact ref is absent.
+
+For a terminal unmerged branch, closed PR state is insufficient. Before `safe_to_delete`, preserve required closure/recovery/history independently of the source ref, normally as a closure-only namespaced package on the integration target that excludes rejected/superseded implementation content. The durable target-side package owns the cleanup marker.
+
+Never emulate rename by creating a second ref at the same SHA. Physical fallback deletion and repository auto-delete configuration are separate external operations, not prerequisites for successful workflow finalization.
 
 ## Automatic next milestone
 
