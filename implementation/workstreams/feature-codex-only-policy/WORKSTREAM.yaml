@@ -16,7 +16,7 @@ intake:
   state: "complete"
   record: "implementation/workstreams/feature-codex-only-policy/INTAKE.md"
 
-task_board: null
+task_board: "implementation/workstreams/feature-codex-only-policy/TASK_BOARD.yaml"
 
 authority:
   requirements: "requirements/CODEX_ONLY_POLICY.md"
