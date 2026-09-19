@@ -13,7 +13,7 @@ A **workstream** is one branch-isolated unit of project change with:
 - at most one canonical Task Board when implementation state exists;
 - its own authority/evidence/review pointers as applicable.
 
-Concurrency exists **between workstreams**, not between Cards inside one workstream.
+Independent workstreams may execute concurrently. Inside one workstream, execution is serial by default; multiple Cards may execute concurrently only through the explicit bounded M03 batch exception below.
 
 Ordinary execution has one `in_progress` Card. Multiple `in_progress` Cards are legal only when `STATE.md` proves one exact current M03 batch covers them, or when they are integrated members of one just-closed batch in the bounded post-batch review drain.
 
