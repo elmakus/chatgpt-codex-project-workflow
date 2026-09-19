@@ -73,6 +73,7 @@ parallel:
     - id: B01
       state: prepared
       integration_base: "<exact-git-commit>"
+      evidence: null
       members:
         - card_id: M03-T01
           lane: L01
@@ -98,7 +99,7 @@ prepared -> in_progress -> returned -> integrated
 
 ### Batch invariants
 
-- `current_batch` is null or identifies exactly one non-complete batch entry;
+- `current_batch` is null or identifies exactly one unresolved active batch entry; completed batches and reconciled historical `blocked` batches may remain in history with no current pointer;
 - batch IDs are stable and never reused;
 - membership, member order, lane labels and `integration_base` are immutable after launch;
 - membership is finite/frozen; an existing batch is never dynamically refilled;
@@ -109,6 +110,9 @@ prepared -> in_progress -> returned -> integrated
 - lane labels are project-local semantic provenance only;
 - `result_commit` is the returned lane result; `integrated_commit` is the exact shared-workstream result after Main integration;
 - terminal/returned result refs require durable evidence sufficient for their state;
+- a `blocked` batch/member requires durable evidence for the blocker or reconciled abandonment outcome;
+- a pre-launch prepared-batch abandonment is legal only while every member is still `prepared`, no member has a durable result/integrated ref and no member entered runtime-active state; its batch/member history becomes `blocked`, its affected Card statuses are reconciled back to legal READY/serial state, and only then may `current_batch` be cleared;
+- once any member left `prepared`, the pre-launch unwind is forbidden; recover the actual running/returned/integrated state instead of resetting Cards;
 - live Task Board, workstream manifest and shared integration bookkeeping remain reserved Main-owned state;
 - concrete worker/worktree/session identity never appears as required batch state;
 - completed batch entries remain durable history; a later batch gets a new stable ID.
@@ -166,6 +170,8 @@ Treat as inconsistent and recover before unrelated work:
 - runtime-only identity used as required project authority;
 - worker acting as competing Task Board writer;
 - more than one `in_progress` Card without one valid current parallel batch covering all of them;
+- clearing/abandoning a prepared batch while any member Card remains `in_progress` solely because that batch froze it;
+- using the pre-launch unwind after any member entered runtime-active state or acquired a returned/integrated result;
 - active batch member/order/base mutation after launch;
 - duplicate/reused batch IDs or lane labels inside one batch;
 - active batch member not matching a Card/current lifecycle state;
