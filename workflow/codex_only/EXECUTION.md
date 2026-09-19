@@ -47,11 +47,12 @@ A current batch is executable only when it was frozen by `EXECUTION_PREP.md` and
 
 For a `prepared` batch:
 
-1. reverify exact current branch state against `integration_base`;
+1. reverify exact current branch state against `integration_base`, allowing only expected Main-owned batch-control bookkeeping committed after that implementation base;
 2. reverify dependencies, Card contracts, scope/resource compatibility and reserved shared-state exclusions;
 3. require runtime proof that every concurrent local mutation has a separate worktree/equivalent isolated mutable workspace;
-4. Main transitions the batch to `running` and prepared members to `in_progress`;
-5. runtime realizes the finite frozen member set concurrently.
+4. if any safety fact is stale, return to the explicit pre-launch abandonment transition in `RECOVERY.md#Prepared`; do not partially launch;
+5. only while every member remains `prepared`, Main transitions the batch to `running` and member states to `in_progress`;
+6. runtime realizes the finite frozen member set concurrently.
 
 Do not persist concrete worker/session/worktree identity. Do not add newly READY Cards to the running batch.
 
