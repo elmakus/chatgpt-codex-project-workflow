@@ -1,0 +1,18 @@
+# Codex-only default Task Board foundation.
+# M02 refines review/provenance state; M03 adds optional bounded-parallel project metadata.
+# Runtime worker identity/lifecycle does not belong in this project-state schema.
+
+project: "<owner/repository>"
+plan_revision: null
+current_milestone: null
+
+execution_ref:
+  branch: null
+  pr: null
+  head: null
+
+research_obligation: null
+
+milestones: {}
+
+cards: []
