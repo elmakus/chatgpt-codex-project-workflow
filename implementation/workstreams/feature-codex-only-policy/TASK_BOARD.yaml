@@ -49,7 +49,7 @@ milestones:
 
   M04:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M04--full-lifecycle-integration-routing-cutover-and-compatibility"
     checkpoint: null
     implementation_head: null
@@ -145,8 +145,8 @@ cards:
     title: "Complete codex_only lifecycle integration and root routing cutover"
     milestone: "M04"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on: ["M03-T01"]
     openspec_change: "openspec/changes/codex-only-m04-lifecycle-cutover"
     contract: "implementation/workstreams/feature-codex-only-policy/cards/M04-T01.md"
