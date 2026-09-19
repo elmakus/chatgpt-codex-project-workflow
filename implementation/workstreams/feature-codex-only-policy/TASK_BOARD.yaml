@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/codex-only-policy"
   pr: null
-  head: "48a56cbd5554b1378fa3727449bfce94e2f7f1df"
+  head: "a1e2e9e8d639b15273df873cf8b48ba50fe3bff2"
 
 research_obligation: null
 
@@ -61,7 +61,7 @@ milestones:
 
   M05:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M05--end-to-end-regression-architecture-audit-and-publication-readiness"
     checkpoint: null
     implementation_head: null
@@ -162,7 +162,7 @@ cards:
     title: "Run final regression, architecture audit and integration-readiness verification"
     milestone: "M05"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on: ["M04-T01"]
     openspec_change: null
