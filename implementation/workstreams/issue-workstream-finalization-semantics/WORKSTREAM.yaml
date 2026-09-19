@@ -1,6 +1,6 @@
 id: "issue-workstream-finalization-semantics"
 kind: "issue"
-status: "ready"
+status: "in_progress"
 
 branch: "fix/workstream-finalization-semantics"
 base_ref: "elmakus/chatgpt-codex-project-workflow@6b0445256b417f82431fb7b2704f56691eb4e7ae"
