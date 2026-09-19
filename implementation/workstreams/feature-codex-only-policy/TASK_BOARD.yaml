@@ -145,7 +145,7 @@ cards:
     title: "Complete codex_only lifecycle integration and root routing cutover"
     milestone: "M04"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: ["M03-T01"]
     openspec_change: "openspec/changes/codex-only-m04-lifecycle-cutover"
