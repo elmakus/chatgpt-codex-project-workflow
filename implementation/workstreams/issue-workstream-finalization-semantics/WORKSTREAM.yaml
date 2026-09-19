@@ -1,0 +1,33 @@
+id: "issue-workstream-finalization-semantics"
+kind: "issue"
+status: "definition"
+
+branch: "fix/workstream-finalization-semantics"
+base_ref: "elmakus/chatgpt-codex-project-workflow@6b0445256b417f82431fb7b2704f56691eb4e7ae"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: active
+  record: "implementation/workstreams/issue-workstream-finalization-semantics/INTAKE.md"
+
+task_board: null
+
+authority:
+  requirements: "requirements/CHATGPT_ONLY_WORKSTREAM_FINALIZATION.md"
+  decisions:
+    - "decisions/ADR_CHATGPT_ONLY_BRANCH_ISOLATED_WORKSTREAMS.md"
+  plan: null
+
+review:
+  requirement: REQUIRED
+  state: null
+  subject: null
+  evidence: null
+  covered_by: null
+
+pr: null
+result: null
