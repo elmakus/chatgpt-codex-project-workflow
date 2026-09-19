@@ -63,7 +63,7 @@ For `parallel.current_batch` and every batch history entry require:
 - all frozen member write scopes are pairwise disjoint and resource tokens non-conflicting;
 - returned/integrated states have exact required result/evidence refs;
 - integrated member has immutable exact `integrated_commit` coherent with its original Main-integrated Card result and original batch-subject review lineage; a later post-batch RED repair may advance the Card's current result without rewriting this historical member ref;
-- multiple `in_progress` Cards occur only when covered by this exact current batch or by one exact completed-batch post-batch review drain in which every remaining `in_progress` Card is an integrated member with an outstanding review/finalization/RED-correction obligation;
+- multiple `in_progress` Cards occur only when covered by this exact current batch or by one exact post-batch review drain from the same closed `complete` or terminally reconciled `blocked` batch, in which every remaining `in_progress` Card is an integrated member with an outstanding review/finalization/RED-correction obligation;
 - no concrete worker/session/model/profile/invocation/lease/resume/worktree-path key is project authority;
 - no worker mutated shared Task Board/manifest/integration state.
 
@@ -116,14 +116,21 @@ If earlier members are `integrated` and later members are `returned | in_progres
 
 ### Blocked
 
-For member/batch `blocked`:
+For member/batch `blocked`, first distinguish pre-launch abandonment from post-launch failure.
 
-- recover exact blocker/result/evidence;
-- a reconciled historical pre-launch abandonment may remain `blocked` with `current_batch: null`; its member Cards must already have been returned to legal READY/serial state and the batch ID is never reused;
-- scope escape or reserved-state mutation is not integrated;
-- material integration conflict preserves returned result;
-- classify smallest correction, serial fallback, Planning/Definition/Research or real input/runtime gate through Router;
-- do not silently widen write scope, reorder members or discard completed evidence.
+A reconciled historical pre-launch abandonment may remain `blocked` with `current_batch: null`; its member Cards must already have been returned to legal READY/serial state and the batch ID is never reused.
+
+For a post-launch blocker such as scope escape, reserved-state mutation, lane failure or material integration conflict:
+
+1. preserve the exact failed/returned result, blocker evidence, every integrated prefix and every unaffected returned sibling;
+2. never use the prepared-batch unwind, reset launched members to READY, widen scope or reorder members;
+3. if accepted authority plus the frozen Card/base/scope/resource contract are unchanged and the correction is bounded to only the affected member, use same-member retry: preserve the old failed result/ref in durable evidence, clear the member's active `result_commit` while transitioning that member `blocked -> in_progress` under the same batch/lane/base, set the batch back to `running` when no integrated prefix exists or `integrating` when one does, and re-realize only that member from the original base;
+4. when the corrected return is durable, repopulate the member's active `result_commit` after the prior failed ref remains recoverable, then validate/integrate it once in the original frozen order;
+5. if same-member retry is not legal, terminally reconcile the launched batch: first quiesce/reconcile all runtime-active members, then set every non-integrated member history entry to `blocked` while preserving any returned result/evidence and move every corresponding Card out of batch-owned `in_progress` into durable `blocked` state with exact batch/member/result/evidence linkage;
+6. record batch evidence that identifies terminal post-launch reconciliation; after those member/Card transitions are durable, keep the batch as immutable `blocked` history and clear `current_batch`; integrated reviewable members may remain `in_progress` only as the resulting post-batch review drain;
+7. after the drain resolves, recover each blocked non-integrated Card serially. A preserved returned result may be reused only after exact revalidation against current authority/head; otherwise re-execute only that affected Card.
+
+This transition is the only legal terminal escape from a launched blocked batch. It preserves successful work without inventing a new batch lineage.
 
 ### Complete
 
@@ -140,6 +147,8 @@ Examples:
 - integrated Git commit is durable but member/Card pointers are stale -> prove exact commit/result relationship and reconcile bookkeeping, not implementation;
 - member says integrated but `integrated_commit` is absent or cannot be proven as that member's original batch integration result -> inconsistent; recover Git/review lineage before continuation; do not overwrite history with a later repair result;
 - stale prepared batch was cleared but one of its Cards is still `in_progress` solely from the abandoned freeze -> restore the exact pre-launch abandonment reconciliation before any new work;
+- post-launch batch is `blocked` and its affected member is still batch-owned `in_progress` -> recover whether a same-member retry was durably started; if not, either start the bounded retry under the unchanged frozen contract or perform terminal post-launch reconciliation before clearing `current_batch`;
+- post-launch batch was cleared while a non-integrated member Card remained `in_progress` -> restore the missing terminal reconciliation by proving runtime quiescence, preserving result/evidence, and moving that Card to `blocked` before later work;
 - all members integrated but batch still `integrating` -> verify each integrated ref, mark complete and clear `current_batch`;
 - batch complete but Card review freeze is missing -> freeze the exact integrated Card subject once when review still applies.
 
