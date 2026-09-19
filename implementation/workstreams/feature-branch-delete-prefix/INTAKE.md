@@ -6,7 +6,7 @@
 - Base: `elmakus/chatgpt-codex-project-workflow@d64d8c1d7f05ce2a2584ffcb3ade4634263bbc95`
 - Classification: independent
 - Parent workstream: none
-- Status: active
+- Status: complete
 
 ## Operator intent
 
@@ -33,12 +33,21 @@ Independent workstream based directly on current `main`.
 
 This is a workflow-policy feature, not a micro-fix. Preserve the normal feature exploratory lifecycle.
 
-Expected exploration subjects:
+Exploration covered:
 - exact eligibility gate for applying `delete/`;
 - merged/integrated terminal branches versus intentionally closed/superseded unmerged branches;
-- whether the transition is a rename/move preserving the same commit SHA rather than a new implementation mutation;
-- collision/idempotency behavior when `delete/<old-name>` already exists;
-- where ChatGPT-only finalization/close/repository contracts must enforce the transition;
+- rename/move semantics preserving exact source HEAD identity;
+- collision/idempotency behavior for `delete/<old-name>`;
+- ChatGPT-only finalization/close/repository policy surfaces;
 - explicit boundary that this workstream does not port the rule into Codex-only policy.
 
-Next route after durable discovery materialization: `brainstorming:branch-delete-prefix@R1`.
+## Downstream materialization
+
+- Canonical Brainstorming record: `brainstorming/BRANCH_DELETE_PREFIX.md`
+- Scope/revision: `branch-delete-prefix@R1`
+- Brainstorming status: `ready_for_definition`
+- Definition promotion authorization: `pending`
+- Definition promotion subject: `none`
+- `PROJECT.md -> Active exploratory scope` points to that exact record.
+
+Next route: ChatGPT-only Brainstorming promotion gate.
