@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/branch-delete-prefix"
   pr: null
-  head: "ceabb1ece9ada04d281afe8dffa9097d83861efc"
+  head: "6441fa08a6a6e94fc568ec4804e12582e2adcd96"
 
 research_obligation: null
 
@@ -33,10 +33,10 @@ cards:
     depends_on: []
     openspec_change: null
     contract: "implementation/workstreams/feature-branch-delete-prefix/cards/M01-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01-T01_IMPLEMENTATION_2026-09-19.md@blob:ea89c8c415516acbfd829d90482e7dea7d00df29 + M01-T01 acceptance"
     review_evidence: null
-    result_commit: null
+    result_commit: "6441fa08a6a6e94fc568ec4804e12582e2adcd96"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01-T01_IMPLEMENTATION_2026-09-19.md"
+    tests_summary: "GREEN implementation-owned contract/scenario audit against refreshed main@92e9f162; 0 behind baseline; BC-R1..BC-R12 covered; no Codex-only policy files changed; no CI/status checks were reported for exact behavioral head."
