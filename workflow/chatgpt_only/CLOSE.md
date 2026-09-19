@@ -121,7 +121,9 @@ For a branch-isolated workstream:
 - integrate only into the manifest `integration_target`, or into the declared parent branch when intentionally using the legal child → parent path;
 - when a child is folded into its parent, treat the parent's integrated subject as changed when the child adds covered behavior/content; the parent must perform its own refresh/review reconciliation before its later final integration;
 - never record a child as independently integrated to main/default merely because it was merged into an unmerged parent;
-- after final-target integration, reconcile durable manifest/result/PR state plus the selected Task Board/handoff as applicable to the actual Git result.
+- after final-target integration, reconcile durable manifest/result/PR state plus the selected Task Board/handoff as applicable to the actual Git result;
+- ensure the terminal namespaced workstream package is present on the final integration target and read it back before source-branch deletion; use a closure-only target-side commit/PR when actual merge-result metadata could not be known before merge;
+- keep the original workstream branch in manifest/Task Board identity as provenance even after deletion; do not rewrite terminal workstream identity to the target branch.
 
 ## Qualified micro-fix finalization
 
@@ -131,12 +133,20 @@ For a qualified micro-fix, after the refresh gate is current, any REQUIRED/RECOM
 2. reconcile the selected manifest `status/result/pr` to the actual integrated result;
 3. reconcile the selected Task Board execution/result pointers needed for recovery without creating a milestone entry;
 4. keep the bounded fix Card terminal and preserve its independent review/evidence history;
-5. do not synthesize an `MXX` cumulative handoff solely for the micro-fix unless project authority separately requires one;
-6. return to the router. If the micro-fix workstream scope is complete and no further deterministic obligation exists, this is end of approved scope.
+5. do not synthesize an `MXX` cumulative handoff solely for the micro-fix unless project authority separately requires one; when one is required for a branch-isolated micro-fix, use that workstream's namespaced handoff location;
+6. verify the target-side terminal durable package before deleting the source branch;
+7. return to the router. If the micro-fix workstream scope is complete and no further deterministic obligation exists, this is end of approved scope.
 
 ## Cumulative handoff
 
-Canonical location: `project-handoffs/MXX_HANDOFF.md`.
+Canonical location is state-context-specific:
+
+- legacy/default single-workstream context → `project-handoffs/MXX_HANDOFF.md`;
+- branch-isolated workstream → `implementation/workstreams/<workstream-id>/handoffs/MXX_HANDOFF.md`.
+
+The selected canonical Task Board owns the exact milestone `handoff` pointer. Independent workstreams may therefore each have their own `M01`, `M02`, etc. without filename collision.
+
+`PROJECT.md -> Latest cumulative handoff` is only the legacy/default-context convenience pointer. Branch-isolated Close MUST NOT update it; the workstream's Task Board is the locator for its latest applicable handoff.
 
 Record minimum continuation truth:
 - completed checkpoint/final implementation head;
@@ -147,6 +157,17 @@ Record minimum continuation truth:
 - next durable starting point and explicit gate.
 
 Do not turn handoff into a duplicate Task Board/history dump.
+
+## Source-branch deletion gate
+
+Deleting a completed branch-isolated workstream branch is allowed only after:
+- final-target integration succeeded and exact result/readback is known;
+- any closure-only target-side reconciliation is complete;
+- manifest status/result/PR and selected Task Board terminal checkpoint/result/handoff pointers match the actual integration outcome;
+- every unique referenced workstream-owned Card/evidence/handoff/blocker artifact needed for recovery exists on the final integration target;
+- no Card, Research, review, stacked-dependency or integration obligation remains active.
+
+Read back the target copy before deletion. If any required durable state exists only on the source branch, branch deletion is blocked until it is preserved on the target. After deletion, terminal recovery follows `WORKSTREAMS.md#Integrated-terminal-workstream` and MUST NOT require the deleted branch.
 
 ## Automatic next milestone
 
