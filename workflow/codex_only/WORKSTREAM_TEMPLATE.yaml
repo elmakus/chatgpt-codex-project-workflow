@@ -1,0 +1,35 @@
+# Codex-only branch-isolated workstream manifest foundation.
+# Card/milestone execution state belongs only to the selected Task Board.
+
+id: "<stable-workstream-id>"
+kind: "issue" # issue | feature | maintenance
+status: "discovery" # discovery | definition | planning | ready | in_progress | review | blocked | done | superseded
+
+branch: "<exact-workstream-branch>"
+base_ref: "<exact-ref-used-to-create-workstream>"
+integration_target: "<target-branch>"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: null # active | complete | null
+  record: null
+
+task_board: null
+
+authority:
+  requirements: null
+  decisions: []
+  plan: null
+
+review:
+  requirement: null # REQUIRED | RECOMMENDED | none | null
+  state: null # pending | in_progress | green | red | null
+  subject: null
+  evidence: null
+  covered_by: null
+
+pr: null
+result: null
