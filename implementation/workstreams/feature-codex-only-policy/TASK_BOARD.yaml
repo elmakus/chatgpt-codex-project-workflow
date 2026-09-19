@@ -1,0 +1,90 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "feature-codex-only-policy"
+plan_revision: "CO-P1"
+current_milestone: "M01"
+
+execution_ref:
+  branch: "feat/codex-only-policy"
+  pr: null
+  head: null
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M01--dedicated-namespace-foundation-and-semantic-parity-inventory"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M02:
+    decision_state: accepted
+    execution_status: planned
+    contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M02--projectruntime-boundary-formal-independent-review-state-and-recovery"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M03:
+    decision_state: accepted
+    execution_status: planned
+    contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M03--bounded-parallel-task-cards-and-jit-safety"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M04:
+    decision_state: accepted
+    execution_status: planned
+    contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M04--full-lifecycle-integration-routing-cutover-and-compatibility"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M05:
+    decision_state: accepted
+    execution_status: planned
+    contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M05--end-to-end-regression-architecture-audit-and-publication-readiness"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Build codex_only semantic parity and legacy behavior matrix"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/workstreams/feature-codex-only-policy/cards/M01-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
