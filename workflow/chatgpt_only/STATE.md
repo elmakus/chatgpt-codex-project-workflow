@@ -202,7 +202,7 @@ A milestone is not done merely because all Cards are done.
 
 After integrated milestone acceptance is GREEN:
 - finalize publication/merge as required;
-- write/reconcile cumulative handoff;
+- write/reconcile cumulative handoff at the canonical location for the selected state context from `CLOSE.md`;
 - persist acceptance evidence;
 - record exact final implementation head/checkpoint;
 - set milestone `done`;
