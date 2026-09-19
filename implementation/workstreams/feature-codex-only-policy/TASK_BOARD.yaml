@@ -6,7 +6,7 @@ current_milestone: "M02"
 execution_ref:
   branch: "feat/codex-only-policy"
   pr: null
-  head: "8ded26f50275ab04e35a07438ca1abd2836901c2"
+  head: "ae70f7b34b875a5cafc58d4058b9f4913108d997"
 
 research_obligation: null
 
@@ -25,7 +25,7 @@ milestones:
 
   M02:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M02--projectruntime-boundary-formal-independent-review-state-and-recovery"
     checkpoint: null
     implementation_head: null
@@ -111,8 +111,8 @@ cards:
     title: "Finalize formal review state, provenance and runtime-decoupled recovery"
     milestone: "M02"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on: ["M01-T02"]
     openspec_change: "openspec/changes/codex-only-m02-formal-review-state"
     contract: "implementation/workstreams/feature-codex-only-policy/cards/M02-T01.md"
