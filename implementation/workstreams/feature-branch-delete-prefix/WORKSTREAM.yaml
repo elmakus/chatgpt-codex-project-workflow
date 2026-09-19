@@ -1,6 +1,6 @@
 id: "feature-branch-delete-prefix"
 kind: "feature"
-status: "ready"
+status: "review"
 
 branch: "feat/branch-delete-prefix"
 base_ref: "elmakus/chatgpt-codex-project-workflow@d64d8c1d7f05ce2a2584ffcb3ade4634263bbc95"
