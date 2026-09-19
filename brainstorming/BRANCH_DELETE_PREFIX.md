@@ -1,141 +1,165 @@
-# Brainstorm — Deletion-ready branch prefix
+# Brainstorm — Branch deletion readiness
 
 Date: `2026-09-19`
 Scope ID: `branch-delete-prefix`
-Revision: `R1`
-Status: `ready_for_definition`
+Revision: `R2`
+Status: `tentative`
 
 ## Problem / goal
 
-Terminal merged/closed workstream branches currently may remain under ordinary active-looking names after the workflow has proven them safe for removal. This leaves humans and agents unable to distinguish active work from branches that can be deleted.
+Terminal merged/closed workstream branches need an unambiguous cleanup signal so agents and humans can tell which branch refs are safe to remove.
 
-The requested convention is to move every branch that has passed the applicable terminal safety gate to a `delete/`-prefixed name, for example:
-
-`feat/example` → `delete/feat/example`
-
-The prefix is a deletion-readiness marker, not the deletion itself.
+The first idea was to rename `feat/x` to `delete/feat/x`. Current ChatGPT GitHub connector capability makes that unsafe to express directly: it exposes branch creation/ref movement but not a true branch-rename or ref-delete action. Creating `delete/feat/x` at the same SHA therefore creates a second branch rather than renaming the original.
 
 ## Current understanding
 
 ### Verified facts
 
-- Current ChatGPT-only workstream finalization already has a strict safety gate for integrated workstreams: terminal durable package retained on the integration target, closure reconciliation/readback GREEN, and no active Card/Research/review/integration obligation.
-- Current repository policy says the source branch may be deleted only after that gate.
-- Current workflow does not define an intermediate naming/marking transition before physical deletion.
-- The repository currently contains multiple manually renamed `delete/*` branches, so the requested naming convention already exists operationally but is not normative.
-- The active `feat/codex-only-policy` branch is not required as a dependency for this feature.
+- GitHub itself supports true branch rename and Git-ref deletion.
+- The currently available ChatGPT GitHub connector surface does not expose either operation.
+- Creating a new branch with the same SHA is only an alias/duplicate ref and MUST NOT be treated as a rename.
+- GitHub branch objects do not have a native label/description surface comparable to issue/PR labels.
+- Pull requests can carry labels through the connector.
+- Current ChatGPT-only workstream finalization already defines the safety gate after which a source branch can be removed.
 
-### Existing accepted decisions
+### Existing accepted user direction
 
-Explicit user choices to carry into Project Definition:
-- use the exact `delete/` prefix to mark branches that are safe to remove;
-- add the rule to ChatGPT-only policy first;
-- do not modify the Codex-only feature branch in this workstream; it will port the accepted rule later.
+- ChatGPT-only policy should gain an explicit branch-cleanup convention.
+- Codex-only should port the accepted convention later rather than being modified by this workstream.
 
-### Assumptions to formalize
+The earlier preference for a `delete/` prefix is reopened because the current connector cannot implement it safely without creating duplicate refs.
 
-- Applying `delete/` should be a branch-name transition preserving the exact source HEAD/content identity, not a new implementation change.
-- The original active-looking branch ref should cease to exist after a successful rename/move; merely creating a second `delete/*` alias while leaving the old ref would not solve the ambiguity.
-- Physical deletion of the `delete/*` branch is a separate cleanup action and is not automatically required by workstream close.
-- The marker must be applied only after the branch is already proven deletion-safe; it must never be used as a shortcut around review, readback, durable-history, or integration obligations.
+## Alternatives
 
-## Ideas / alternatives considered
+### Option A — Durable cleanup state + PR label (recommended)
 
-### Option A — Delete terminal branches immediately
+Use durable workstream state as authority, for example:
 
-Use the existing safety gate and physically delete the source branch as part of close.
+```yaml
+branch_cleanup:
+  ref: "feat/example"
+  state: "safe_to_delete"
+  verified_head: "<sha>"
+  evidence: "<exact evidence pointer>"
+```
 
-Trade-off: clean repository, but removes the visible human/automation cue the user wants and makes cleanup timing less controllable.
+Optionally add a human-visible PR label such as `branch-safe-to-delete` when a PR exists.
 
-Not selected.
+Rules:
+- `safe_to_delete` may be set only after the existing terminal safety gate passes.
+- The ChatGPT connector MUST NOT create a `delete/*` alias as a substitute for rename.
+- Physical branch deletion is performed only by a surface that actually supports ref deletion (GitHub UI/API/CLI or a future connector capability).
+- After successful deletion, durable cleanup state may advance to `deleted` with exact readback/evidence.
+- A closed PR alone never proves cleanup safety.
 
-### Option B — Rename/move deletion-safe branches to `delete/<original>`
+Advantages:
+- no duplicate branches;
+- recoverable and auditable;
+- filterable in PR UI when the optional label is used;
+- independent of connector limitations;
+- future deletion automation can consume the same durable state.
 
-After the existing terminal safety gate passes, move the source branch ref to `delete/<original-name>` while preserving the same exact head SHA, then remove the original ref.
+Trade-off:
+- the GitHub Branches page itself does not visually show the marker.
 
-This creates a stable, machine-visible queue of branches that are safe for later physical deletion.
+### Option B — True rename to `delete/<original>`
 
-This matches the requested behavior.
+Use only when the executing surface exposes a real branch-rename operation.
 
-### Option C — Record deletion readiness only in durable state
+Rules:
+- never emulate rename by creating a second branch;
+- preserve exact head identity;
+- old ref must no longer exist after successful rename;
+- collision/readback failures route to Recovery.
 
-Keep the branch name unchanged and add a manifest/evidence flag.
+Advantage:
+- visible directly in the branch list.
 
-Trade-off: durable state can express readiness, but stale branches still look active in ordinary GitHub branch lists. This does not address the operational problem.
+Trade-off:
+- unavailable through the current ChatGPT connector.
 
-Not selected.
+### Option C — Automatic deletion after merge
+
+GitHub can automatically delete PR head branches after merge.
+
+This is useful for repositories whose workflow can tolerate deletion immediately at merge time, but current ChatGPT-only finalization requires terminal durable-package/readback proof before source-branch deletion. Therefore automatic deletion must not be enabled as the workflow solution unless Definition deliberately changes that ordering.
+
+### Option D — Cleanup issue/checklist only
+
+Maintain one cleanup issue containing branch names.
+
+Useful as an operator dashboard, but weaker than workstream-owned durable state and easy to drift. Not preferred as authority.
 
 ## Proposed eligibility semantics
 
-### Integrated / merged terminal workstream
+### Merged/integrated workstream
 
-A source branch becomes eligible for the `delete/` transition only after the existing ChatGPT-only finalization gate is GREEN:
-- accepted implementation is integrated into the final target;
-- target-side terminal durable package exists and has been read back;
-- closure-only metadata reconciliation is complete where required;
-- no active Card, Research, review, integration, or other workstream obligation remains.
+Set `branch_cleanup.state: safe_to_delete` only when:
+- accepted implementation reached the final integration target;
+- target-side terminal durable package exists;
+- closure/result reconciliation is complete where required;
+- final readback is GREEN;
+- no Card, Research, review, integration, blocker-recovery or other workstream obligation remains.
 
-The prefix transition occurs after those proofs, not before them.
+### Closed/superseded/non-integrated workstream
 
-### Closed / intentionally non-integrated workstream
-
-A branch associated with an intentionally closed, abandoned, or superseded workstream is eligible only when:
-- the workstream has an explicit terminal durable state/reason;
+Set `safe_to_delete` only when:
+- terminal closure/supersession is explicit and durable;
 - no live obligation remains;
-- any unique durable evidence/history required for recovery has been preserved somewhere that does not depend on the branch surviving;
-- closure does not represent an unresolved blocker or merely a closed PR with still-active work.
+- unique history/evidence required for recovery no longer depends on the branch;
+- the branch is not merely attached to a closed PR whose work remains unresolved.
 
-A closed PR alone is not sufficient evidence of deletion safety.
+## Connector capability rule
 
-## Rename/move semantics
+When cleanup is proven but the current executor lacks real rename/delete capability:
 
-- Normal mapping: `<branch>` → `delete/<branch>`.
-- Preserve the exact source head SHA.
-- Do not force-overwrite an existing `delete/<branch>` that points elsewhere.
-- If `delete/<branch>` already exists at the same exact SHA and the original branch is absent, treat the transition as already complete.
-- If both refs exist or the deletion target exists at a different SHA, route to Recovery/reconciliation rather than guessing or silently overwriting.
-- The manifest's stable `branch` provenance should continue to name the original workstream branch identity unless Definition decides otherwise; terminal target-side recovery must not depend on the deletion-ready branch existing.
+1. persist `safe_to_delete` with exact branch ref/head/evidence;
+2. optionally label the associated PR `branch-safe-to-delete`;
+3. do not create any replacement/alias branch;
+4. report the exact cleanup action only at a real user/runtime boundary;
+5. a later cleanup-capable actor deletes the original ref directly.
+
+## Current duplicate-ref incident
+
+If an earlier agent created `delete/<original>` at the same SHA while leaving `<original>` in place:
+- treat the `delete/*` ref as an accidental duplicate, not as successful cleanup marking;
+- verify exact SHA pairing and terminal safety before deletion;
+- do not create further marker branches;
+- cleanup should ultimately remove the redundant refs rather than preserve both names.
 
 ## Likely policy surfaces
 
-Primary ChatGPT-only policy:
-- `workflow/chatgpt_only/WORKSTREAMS.md` — terminal durable package / deletion-readiness transition;
-- `workflow/chatgpt_only/CLOSE.md` — close/finalization action ordering;
-- `workflow/chatgpt_only/REPOSITORY.md` — Git/branch policy and recovery semantics.
+Primary:
+- `workflow/chatgpt_only/WORKSTREAMS.md`
+- `workflow/chatgpt_only/CLOSE.md`
+- `workflow/chatgpt_only/REPOSITORY.md`
+- `workflow/chatgpt_only/WORKSTREAM_TEMPLATE.yaml`
 
-Potentially:
-- `workflow/chatgpt_only/STATE.md` or templates only if Definition proves a new durable field is necessary. Current preference is to avoid inventing a second readiness state when branch naming itself is sufficient and existing terminal state already proves safety.
-- regression/audit docs and CHANGELOG during implementation.
+Potential:
+- `workflow/chatgpt_only/STATE.md` if the cleanup field needs explicit validation/recovery rules;
+- regression/audit evidence and CHANGELOG.
 
 Out of scope:
 - direct Codex-only policy changes;
-- automatic physical deletion of `delete/*` branches;
-- broad repository cleanup of existing historical branches unless separately requested;
-- weakening any current terminal durability/review gate.
-
-## Trade-offs / questions
-
-- The prefix should be a visible operational marker while durable terminal state remains the source of truth for why deletion is safe.
-- Closed-but-unmerged branches need stricter interpretation than “PR state = closed”; terminal workstream state and durable recovery must prove safety.
-- The transition must be idempotent and collision-safe.
-- No new global mutable branch registry appears necessary.
+- automatically deleting historical repository branches in this feature;
+- weakening existing terminal safety gates.
 
 ## Research needed
 
-None at this stage. Current workflow contracts and Git branch/ref semantics are sufficient to formalize the feature.
+None. Official GitHub capabilities and the current connector surface are sufficient to define the problem.
 
 ## Open questions
 
-None requiring user input before Project Definition. Definition should formalize the exact normative wording and acceptance criteria.
+User choice before Definition:
+- prefer **Option A** (durable `safe_to_delete` + optional PR label; no branch rename in ChatGPT-only), or
+- keep `delete/` as the desired visible convention but make it conditional on a future/alternate executor that supports true rename.
 
 ## Outcome of this session
 
-- Tentative conclusions: adopt `delete/<original-branch>` as the post-safety-gate branch-name transition; preserve head identity; remove the old active-looking ref; keep physical deletion separate; require durable terminal proof for both merged and intentionally closed workstreams.
-- Explicit user/product choices to promote through Project Definition: `delete/` prefix; ChatGPT-only first; Codex-only port later.
-- Research still needed: none.
-- Open questions: none blocking Definition.
-- Next phase/action: `ready for definition`
+- Tentative recommendation: Option A.
+- The workflow should explicitly forbid “rename by duplicate branch creation”.
 - Definition promotion authorization: `pending`
 - Definition promotion subject: `none`
+- Next phase/action: continue brainstorming until the cleanup marker choice is accepted.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`.
