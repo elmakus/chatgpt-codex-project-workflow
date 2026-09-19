@@ -20,7 +20,7 @@ M04 completes stacked integration, target refresh, final-review coverage and ful
 
 ## Intra-workstream bounded parallelism
 
-One selected workstream may temporarily have multiple `in_progress` Cards only through one valid current M03 batch.
+One selected workstream may temporarily have multiple `in_progress` Cards through one valid current M03 batch, or during the bounded post-batch review drain for integrated members of one just-completed batch. The drain permits only review/finalization/correction and blocks unrelated new implementation until resolved.
 
 The batch:
 
@@ -53,7 +53,7 @@ Lane work does not directly become shared workstream state.
 - Main validates the base-to-result diff against the Card's write scope and reserved shared-state rule;
 - Main integrates members sequentially in frozen order;
 - `integrated_commit` is the durable shared-workstream result for that member;
-- Card review/finalization uses that integrated result under M02 semantics.
+- Card review/finalization uses that integrated result under M02 semantics; for a reviewable member, Main freezes the exact subject at integration but defers Tester dispatch until the current batch is complete/current-null, then drains those reviews before unrelated new implementation.
 
 A lane cannot update the workstream manifest, selected Task Board or shared integration bookkeeping. Those remain Main-only even when their file paths would otherwise match a broad Card scope.
 
@@ -68,3 +68,5 @@ M04 determines the complete branch-isolated workstream close/integration flow. A
 Recover intra-workstream batch state only from the selected canonical Task Board plus exact Git/evidence refs. Never inspect another workstream's Task Board or runtime worker list to reconstruct this batch.
 
 Returned/integrated member results survive worker loss and are never replayed merely because runtime state disappeared.
+
+[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
