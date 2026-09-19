@@ -1,7 +1,7 @@
 # Master Plan — dedicated codex_only policy namespace
 
 Revision: CO-P1
-Status: draft
+Status: approved
 Updated: 2026-09-19
 Independent plan review: RECOMMENDED
 
