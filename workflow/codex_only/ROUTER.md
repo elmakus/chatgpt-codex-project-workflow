@@ -41,8 +41,9 @@ M03 replaces only the serial READY selection with bounded compatible-ready-set s
 
 For the exact current RED attempt/evidence:
 
-- bounded production correction inside accepted L1/L2 authority -> Execution, returning through Main to the Card's owning `executor` role;
-- execution decomposition/detail correction -> Execution Prep;
+- bounded Card-owned production correction inside accepted L1/L2 authority -> Execution, returning through Main to that Card's owning `executor` role;
+- bounded milestone-owned production correction -> Execution Prep to reopen/create the exact affected corrective Card(s) under the semantic `executor` owner role;
+- other execution decomposition/detail correction -> Execution Prep;
 - plan-only strategy/milestone defect while Definition remains valid -> Planning;
 - accepted requirement/strategic/global-target defect -> Definition;
 - missing evidence before classification/correction -> materialize exact implementation-owned Research continuation, then Research;
