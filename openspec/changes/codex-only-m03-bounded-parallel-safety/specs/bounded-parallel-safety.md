@@ -76,13 +76,21 @@ A lane returns a commit changing a file outside its write scope. Main preserves 
 
 L01 is integrated and L02 is returned when Main is interrupted. Recovery keeps L01 integrated, does not rerun L02, and resumes validation/integration of L02.
 
+## Requirement: active-batch review cannot perturb frozen integration
+
+A reviewable integrated member MUST have its exact M02 subject frozen when the integrated result is durable, but formal Tester dispatch MUST remain deferred while that batch is the unresolved `current_batch`. Main MUST finish deterministic batch integration/closure before any member review can reach GREEN/RED or trigger production repair.
+
+### Scenario: integrated member awaits review while sibling is returned
+
+L01 is integrated to S1 and its review subject S1 is frozen `pending`; L02 is already returned. Router continues B01, integrates L02 in frozen order, marks B01 complete/current-null, and only then dispatches L01 review. Multiple integrated reviewable Cards may remain `execution_status: in_progress` only as this exact completed-batch review drain, which blocks unrelated new implementation. If L01 later receives RED and is corrected to S1c, the completed B01 member keeps its original lane result and `integrated_commit: S1`; the Card records S1c as the new current result under a new review attempt.
+
 ## Requirement: lane history survives integration
 
-Returned and integrated refs/evidence MUST remain recoverable after batch completion; a completed batch is not rewritten into a different membership/base.
+Returned and integrated refs/evidence MUST remain recoverable after batch completion; a completed batch is not rewritten into a different membership/base or post-batch repair result.
 
 ### Scenario: later batch
 
-After B01 completes, `current_batch` becomes null. B01 remains durable history and a later compatible set receives B02.
+After B01 completes, `current_batch` becomes null and B01 remains durable history. Any exact post-batch review drain resolves before unrelated new implementation; only then may a later compatible set receive B02.
 
 ## Requirement: M02 review semantics remain intact
 
@@ -90,4 +98,6 @@ A reviewable parallel Card MUST enter ordinary M02 review only after its exact M
 
 ### Scenario: integrated review subject
 
-Main integrates L02 to exact shared-branch commit S2, records S2 as the Card result, then freezes the Card review attempt for S2. Later unrelated commits do not rewrite that historical subject.
+Main integrates L02 to exact shared-branch commit S2, records S2 as the Card result, then freezes the Card review attempt for S2. If B01 is still current, that attempt remains pending until B01 completes. Later unrelated commits or a later post-batch RED repair do not rewrite the historical S2 batch member ref/subject.
+
+[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
