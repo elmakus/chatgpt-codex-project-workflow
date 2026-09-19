@@ -6,7 +6,7 @@ current_milestone: "M04"
 execution_ref:
   branch: "feat/codex-only-policy"
   pr: null
-  head: "1fbb601461604fe07151478e017cb94bf60de47b"
+  head: "48a56cbd5554b1378fa3727449bfce94e2f7f1df"
 
 research_obligation: null
 
@@ -150,10 +150,10 @@ cards:
     depends_on: ["M03-T01"]
     openspec_change: "openspec/changes/codex-only-m04-lifecycle-cutover"
     contract: "implementation/workstreams/feature-codex-only-policy/cards/M04-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "48a56cbd5554b1378fa3727449bfce94e2f7f1df"
     review_evidence: null
-    result_commit: null
+    result_commit: "48a56cbd5554b1378fa3727449bfce94e2f7f1df"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M04-T01.md"
+    tests_summary: "GREEN author verification on 48a56cbd: explicit isolated root codex_only routing; 22/22 live namespace; full lifecycle/default+workstream/stacked/target-refresh/final-review/terminal-package semantics present; M02/M03 invariants preserved; feature-side chatgpt_only diff zero against current-main merge base; no forbidden cross-policy execution refs or runtime-identity/scheduler YAML keys; M04 OpenSpec complete; conflict scan and full M03..subject diff-check GREEN after bounded whitespace repair. YAML structural sanity GREEN; parser-based YAML validation not claimed because no parser is available."
