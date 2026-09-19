@@ -6,6 +6,7 @@ id: "<stable-workstream-id>"
 kind: "issue" # issue | feature | maintenance
 status: "discovery" # discovery | definition | planning | ready | in_progress | review | blocked | done | superseded
 
+# Stable source-workstream identity/provenance. Keep this value after final integration even if the source branch is later deleted.
 branch: "<exact-workstream-branch>"
 base_ref: "<exact-ref-used-to-create-workstream>"
 integration_target: "<target-branch>"
@@ -40,4 +41,5 @@ review:
   covered_by: null
 
 pr: null
+# Exact final integration result when status becomes done; terminal target-side recovery may use this after source-branch deletion.
 result: null
