@@ -151,7 +151,7 @@ Material external mutations require meaningful persisted-state readback when ava
 
 Recovery must be possible from:
 - `PROJECT.md`;
-- exact workstream branch + validated `WORKSTREAM.yaml` when branch-isolated;
+- for non-terminal branch-isolated work, exact workstream branch + validated `WORKSTREAM.yaml`; for integrated terminal `done` history after source-branch deletion, the target-side namespaced workstream package + exact manifest result;
 - the PROJECT-pointed active exploratory record when Brainstorming/Definition promotion or recovery is active;
 - the PROJECT-pointed active pre-execution research record when Research/return-role recovery is active;
 - selected canonical Task Board, including its implementation/recovery `research_obligation` pointer and exact pointed record when present;
