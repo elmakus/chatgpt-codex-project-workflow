@@ -22,6 +22,17 @@ Enter through exactly one legal close shape.
 
 A qualified micro-fix does not need a Master Plan or milestone entry merely to enter Close.
 
+### Intentional terminal-unmerged workstream close
+
+This close shape applies only when accepted authority has already made the selected branch-isolated Codex-only workstream intentionally terminal without final integration/merge, such as an authorized `superseded` workstream.
+
+Before proceeding:
+- manifest identity and any selected Task Board binding are coherent;
+- no live Card, Research, review, stacked-dependency, integration or other workstream obligation still requires the source branch;
+- the terminal-unmerged closure/history package is not yet proven durable independently of the source ref, or that package is durable but the exact manifest branch still exists and deletion remains unfinished.
+
+This route preserves lifecycle/history only. It MUST NOT integrate rejected/superseded implementation content merely to make cleanup possible.
+
 If a Card/milestone review or manifest final-integration review is `pending | in_progress`, route to `REVIEW.md` first. A GREEN manifest final-integration review may proceed to Close subject to refresh-preservation checks; a null manifest final-integration review state is also not a blocker to entering Close because this role runs target refresh before first coverage reuse/freeze.
 
 ## Integrated milestone acceptance
@@ -160,14 +171,30 @@ Do not turn handoff into a duplicate Task Board/history dump.
 
 ## Source-branch deletion gate
 
-Deleting a completed branch-isolated workstream branch is allowed only after:
+### Integrated final-target workstream
+
+Deleting a completed integrated branch-isolated workstream branch is allowed only after:
 - final-target integration succeeded and exact result/readback is known;
 - any closure-only target-side reconciliation is complete;
 - manifest status/result/PR and selected Task Board terminal checkpoint/result/handoff pointers match the actual integration outcome;
 - every unique referenced workstream-owned Card/evidence/handoff/blocker artifact needed for recovery exists on the final integration target;
 - no Card, Research, review, stacked-dependency or integration obligation remains active.
 
-Read back the target copy before deletion. If any required durable state exists only on the source branch, branch deletion is blocked until it is preserved on the target. After deletion, terminal recovery follows `WORKSTREAMS.md#Integrated-terminal-workstream` and MUST NOT require the deleted branch.
+Read back the target copy before deletion. If any required durable state exists only on the source branch, deletion is blocked until it is preserved on the target. Normal merged-workstream cleanup remains repository-owned automatic branch deletion; this contract adds no Codex-only merged-branch fallback lifecycle. After deletion, terminal recovery follows `WORKSTREAMS.md#Integrated-terminal-workstream` and MUST NOT require the deleted branch.
+
+### Intentional terminal-unmerged workstream
+
+For a workstream intentionally terminal without final integration/merge:
+
+1. Prove the terminal state is authorized and all existing terminal-safety gates are GREEN. A closed PR or coarse terminal label alone is insufficient while any live obligation still requires the branch.
+2. Persist a namespaced closure/history package independently of the source ref, normally on the manifest `integration_target`. Preserve lifecycle/recovery truth only; do not merge rejected/superseded implementation content.
+3. Read back that target-side package and verify it contains the manifest, selected Task Board/history when applicable, relevant Card/evidence/blocker material and terminal rationale/provenance needed for future recovery.
+4. Resolve the cleanup target only from the exact manifest `branch`. Never infer it from a prefix, naming heuristic or PR state.
+5. Codex Main re-reads the exact branch and performs physical deletion through authenticated `gh` only after steps 1–4 are durable and GREEN.
+6. Read back exact branch absence. If the exact branch is already absent, cleanup is complete; never recreate it.
+7. Do not create a separate cleanup lifecycle/field, cleanup registry, alias ref, CAS/lease protocol or runtime worker/session state.
+
+After this close shape completes, terminal recovery follows `WORKSTREAMS.md#Terminal-unmerged-workstream`.
 
 ## Automatic next milestone
 
