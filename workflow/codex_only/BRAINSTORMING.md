@@ -57,4 +57,3 @@ Readiness is not itself authority to leave the exploratory phase. The selected p
 Do not treat research completion, repeated agreement in discussion, or the assistant's confidence that the idea is mature as implicit phase-promotion authority.
 
 Do not create canonical requirements/decisions, a Master Plan, implementation Task Cards or detailed OpenSpec merely because ideas are becoming concrete.
-
