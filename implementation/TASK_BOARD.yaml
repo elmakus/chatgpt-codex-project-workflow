@@ -181,9 +181,9 @@ cards:
     depends_on: []
     openspec_change: null
     contract: "implementation/cards/CUBC-M01-T01.md"
-    review_state: in_progress
+    review_state: green
     review_subject: "4ead7a4a7c0ed13bc82a504a8b038dc20b788217"
-    review_evidence: null
+    review_evidence: "implementation/evidence/CUBC-M01-T01-review-01.md"
     result_commit: "4ead7a4a7c0ed13bc82a504a8b038dc20b788217"
     result_pr: null
     evidence: "implementation/evidence/CUBC-M01-T01.md"
