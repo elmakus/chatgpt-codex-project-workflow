@@ -104,5 +104,3 @@ Fixed `codex_only` does not change execution policy because concurrency or a par
 Completing a role is not a stop. Continue deterministic authorized transitions through Codex Main until a real strategic/product decision, explicit authorization, concrete unremediable runtime/input blocker, end of approved scope, or policy-defined safe context handoff owns the boundary.
 
 M04 reconciles the complete lifecycle router and performs root cutover only after namespace completeness is proven.
-
-[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
