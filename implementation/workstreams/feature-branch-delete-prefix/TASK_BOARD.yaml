@@ -1,0 +1,42 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "feature-branch-delete-prefix"
+plan_revision: "BC-R1"
+current_milestone: "M01"
+
+execution_ref:
+  branch: "feat/branch-delete-prefix"
+  pr: 34
+  head: "6441fa08a6a6e94fc568ec4804e12582e2adcd96"
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: in_progress
+    contract: "planning/CHATGPT_ONLY_BRANCH_CLEANUP_MASTER_PLAN.md#M01--Source-branch-independent-finalization-and-cleanup"
+    checkpoint: null
+    implementation_head: "6441fa08a6a6e94fc568ec4804e12582e2adcd96"
+    handoff: "implementation/workstreams/feature-branch-delete-prefix/handoffs/M01_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01_FINAL_INTEGRATION_REFRESH_2026-09-19.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Make terminal branch cleanup source-branch-independent"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/workstreams/feature-branch-delete-prefix/cards/M01-T01.md"
+    review_state: green
+    review_subject: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01-T01_IMPLEMENTATION_2026-09-19.md@blob:ea89c8c415516acbfd829d90482e7dea7d00df29 + M01-T01 acceptance"
+    review_evidence: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01-T01_REVIEW_2026-09-19.md"
+    result_commit: "6441fa08a6a6e94fc568ec4804e12582e2adcd96"
+    result_pr: 34
+    evidence: "implementation/workstreams/feature-branch-delete-prefix/evidence/M01-T01_IMPLEMENTATION_2026-09-19.md"
+    tests_summary: "GREEN: implementation contract/scenario audit plus fresh independent M01-T01 review GREEN on the exact frozen behavior/acceptance subject; final integration refresh against current main is GREEN with no covered ChatGPT-only behavior drift; BC-R1..BC-R12 covered; no Codex-only policy changes attributable to this workstream."

@@ -195,6 +195,7 @@ For a branch-isolated intake-created workstream, the distinct final-integration 
 - Behavioral issue/feature workstreams require at least RECOMMENDED final-integration review unless exact coverage by a stronger already-independent review is proven under `WORKSTREAMS.md` / `MICRO_FIX.md`.
 - RED workstream review correction uses this same selected Task Board for corrective execution/Research; it must not create or select another mutable board.
 - A non-green REQUIRED/RECOMMENDED manifest review blocks workstream integration even if all Task Board Cards are terminal.
+- Manifest `branch_cleanup` is separate workstream-level fallback cleanup state. It must not be mirrored into Task Board Card/milestone state, does not replace terminal result/review state, and is valid only under the exact ref/head/evidence rules in `WORKSTREAMS.md#Fallback-branch_cleanup-lifecycle`.
 
 ## Milestone GREEN
 
@@ -237,10 +238,12 @@ Use fresh JIT preparation + Refresh Gate.
 
 Fresh-session recovery uses:
 - `PROJECT.md`;
-- for non-terminal branch-isolated work, the exact source-workstream branch + validated manifest;
+- for ordinary pre-integration non-terminal branch-isolated work, the exact source-workstream branch + validated manifest;
+- for a successful final-target merge whose closure is not yet terminal, the merge-result target-side namespaced package + immutable PR/merge evidence even when the source branch has disappeared;
 - for an integrated terminal `done` workstream after source-branch deletion, the integration-target copy of the namespaced workstream package + exact manifest result under `WORKSTREAMS.md` / `RECOVERY.md`;
+- for terminal-unmerged cleanup history after source-branch deletion, the durable closure package + exact manifest `branch_cleanup` evidence;
 - the selected canonical Task Board/history source;
-- exact branch/HEAD/runtime/external state when applicable to non-terminal work, or exact integration-result/target readback for terminal history;
+- exact branch/HEAD/runtime/external state for ordinary pre-integration work, exact PR/merge + target readback for post-merge closure, or exact cleanup/target readback for terminal history;
 - current milestone/Card contracts;
 - referenced OpenSpec/evidence/result/review pointers;
 - Task Board `research_obligation` + exact pointed Research record when present;
@@ -258,6 +261,9 @@ Examples:
 - milestone `done` with non-green required review;
 - branch-isolated behavioral issue/feature final integration attempted while manifest `review.requirement` is REQUIRED/RECOMMENDED and its distinct final-integration gate is not GREEN;
 - manifest workstream review fields used as a mirror of Card/milestone Task Board review lifecycle;
+- post-merge closure after automatic source deletion falling back to root `implementation/TASK_BOARD.yaml` instead of the exact merge-result target-side workstream package;
+- `branch_cleanup.state: safe_to_delete` with `ref != manifest.branch`, missing exact `verified_head`/evidence, current surviving ref HEAD different from `verified_head`, or terminal-unmerged cleanup truth durable only on the source branch;
+- `branch_cleanup.state: deleted` without durable readback proving the exact original ref is absent;
 - dependent Card started before dependency `done`;
 - review verdict attached to wrong subject;
 - non-terminal REQUIRED/RECOMMENDED `review_state: red` bypassed in favor of later implementation;

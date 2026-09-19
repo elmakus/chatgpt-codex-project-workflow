@@ -40,6 +40,14 @@ review:
   # Optional proof that an already-independent exact Card/milestone review covers this distinct final-integration gate.
   covered_by: null
 
+# Optional fallback cleanup lifecycle for a surviving merged branch or terminal unmerged branch.
+# Normal GitHub auto-deletion of a merged head branch does not require this lifecycle to be activated.
+branch_cleanup:
+  state: null # safe_to_delete | deleted | null
+  ref: null # exact original source ref; when non-null this MUST equal `branch`
+  verified_head: null # exact source HEAD proven safe; required for safe_to_delete/deleted
+  evidence: null # durable target-side/immutable terminal-safety or deletion evidence
+
 pr: null
 # Exact final integration result when status becomes done; terminal target-side recovery may use this after source-branch deletion.
 result: null

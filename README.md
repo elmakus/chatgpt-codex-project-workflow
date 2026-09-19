@@ -80,9 +80,11 @@ Existing projects may continue in legacy/default single-workstream mode with `im
 - stacked children cannot masquerade as independent while they still require parent-only state;
 - before final integration, the selected workstream refreshes against the current target, reruns affected verification, checks textual and semantic conflicts, and re-freezes independent review only when the exact covered subject/acceptance surface materially changes;
 - branch-isolated milestone handoffs are namespaced under `implementation/workstreams/<id>/handoffs/`; root `project-handoffs/` and `PROJECT.md -> Latest cumulative handoff` remain legacy/default-context conventions;
-- after final-target integration, the target retains the terminal namespaced workstream package; the source branch may be deleted only after closure/readback proves that package is durable, after which terminal recovery no longer requires the deleted branch.
+- before final-target merge, the exact merge subject already carries every unique workstream artifact needed for recovery that can be known before merge;
+- GitHub may automatically delete a merged PR head immediately; post-merge closure/reconciliation then continues from the target-side namespaced package plus immutable PR/merge evidence without recreating the source ref;
+- merged branches that survive and terminal unmerged branches use an exact manifest-local `branch_cleanup: safe_to_delete` fallback only after terminal safety/ref-head proof is durable independently of the source branch; no `delete/*` alias or repository-global cleanup registry is used.
 
-There is no required mutable repository-global workstream registry or scheduler. Exact live branches/manifests/PRs plus namespaced durable state are the active recovery anchors; integrated terminal workstreams recover from their target-side durable package and exact result provenance.
+There is no required mutable repository-global workstream registry or scheduler. Exact live branches/manifests/PRs plus namespaced durable state are the active recovery anchors; post-merge closure and integrated terminal recovery use the target-side durable package and exact result provenance when the source branch is already absent.
 
 ## Capability semantics
 
