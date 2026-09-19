@@ -2,8 +2,8 @@
 
 Date: `2026-09-19`
 Scope ID: `branch-delete-prefix`
-Revision: `R2`
-Status: `tentative`
+Revision: `R3`
+Status: `ready_for_definition`
 
 ## Problem / goal
 
@@ -78,11 +78,22 @@ Advantage:
 Trade-off:
 - unavailable through the current ChatGPT connector.
 
-### Option C — Automatic deletion after merge
+### Option C — Automatic deletion after merge (preferred for merged PR workstreams)
 
 GitHub can automatically delete PR head branches after merge.
 
-This is useful for repositories whose workflow can tolerate deletion immediately at merge time, but current ChatGPT-only finalization requires terminal durable-package/readback proof before source-branch deletion. Therefore automatic deletion must not be enabled as the workflow solution unless Definition deliberately changes that ordering.
+User direction now prefers changing Project Workflow so normal merged workstreams are compatible with this clean repository behavior rather than preserving source branches merely for post-merge bookkeeping.
+
+Proposed contract:
+- before merge, everything uniquely required for terminal recovery must already be part of the PR/workstream package;
+- merge is allowed only after the existing review/integration gates are GREEN;
+- after merge, the source branch is disposable and GitHub may delete it immediately;
+- post-merge verification/readback operates from the integration target plus immutable PR/merge metadata, never from the source branch;
+- any merge-result fields that cannot exist pre-merge are reconciled by a target-side closure commit/PR, without recreating the source branch;
+- terminal recovery uses the target-side workstream package;
+- stacked children must refresh/reconcile after their parent merges/branch disappears.
+
+This removes the need for a deletion-ready marker for the normal merged-PR path.
 
 ### Option D — Cleanup issue/checklist only
 
@@ -150,14 +161,16 @@ None. Official GitHub capabilities and the current connector surface are suffici
 
 ## Open questions
 
-User choice before Definition:
-- prefer **Option A** (durable `safe_to_delete` + optional PR label; no branch rename in ChatGPT-only), or
-- keep `delete/` as the desired visible convention but make it conditional on a future/alternate executor that supports true rename.
+No product-choice blocker remains for the normal merged-PR path.
+
+Definition should preserve a fallback cleanup marker only for terminal branches that are intentionally closed/superseded without merge, because GitHub's automatic head-branch deletion applies to merged PRs rather than every closed branch.
 
 ## Outcome of this session
 
-- Tentative recommendation: Option A.
+- Tentative recommendation: make GitHub automatic head-branch deletion the normal merged-PR cleanup path and change Project Workflow ordering so source-branch survival is never required after merge.
+- Keep a bounded durable cleanup state only for terminal non-merged branches that still require manual/ref-delete cleanup.
 - The workflow should explicitly forbid “rename by duplicate branch creation”.
+- Explicit user/product direction: prefer changing Project Workflow to accommodate the clean auto-delete path rather than retaining branches for post-merge bookkeeping.
 - Definition promotion authorization: `pending`
 - Definition promotion subject: `none`
 - Next phase/action: continue brainstorming until the cleanup marker choice is accepted.
