@@ -1,6 +1,6 @@
 # Codex-only Independent Review
 
-> M02 contract. Root policy routing does not select this namespace before M04.
+> Live Codex-only independent-review contract. M02 immutable-subject/role independence applies to Card, milestone, plan and workstream final-integration review.
 
 ## Formal review semantics
 
@@ -22,7 +22,7 @@ Concrete worker/session/model/profile/invocation/wait/resume/replacement mechani
 Resolve exactly one project review owner before judging:
 
 - Card/milestone review -> selected canonical Task Board review block;
-- workstream final-integration review -> selected manifest review state, with full representation/Close reconciliation completed in M04;
+- workstream final-integration review -> selected manifest `review.requirement/state/subject/evidence/covered_by`; the manifest owns this distinct gate and `WORKSTREAMS.md`/`CLOSE.md` own refresh/coverage reconciliation;
 - plan review -> revision-specific plan-review record under `PLAN_REVIEW.md`.
 
 Never mirror one review lifecycle into another.
@@ -107,6 +107,10 @@ Prior RED/GREEN attempts remain addressable in the Task Board attempt list. Neve
 
 Review evidence must not include a runtime identifier as a required project key. It may state semantic facts such as `implementation owner role: executor`, `reviewer role: tester`, `independence: verified`.
 
-## M03/M04 boundaries
+## Workstream final-integration review
 
-M03 may add project lane provenance/parallel safety while preserving these attempt semantics. M04 reconciles full lifecycle routing, workstream final-integration review representation and root cutover.
+For a REQUIRED/RECOMMENDED manifest gate, run target refresh before first freeze/reuse. If an already-independent Card/milestone verdict covers the identical refreshed workstream subject and complete acceptance surface, `CLOSE.md` may reconcile the manifest gate GREEN with exact `covered_by` evidence. Otherwise freeze exact manifest `review.subject`, set `review.state: pending`, and dispatch an independent Tester.
+
+Target movement alone does not invalidate GREEN. Material change to covered workstream content/behavior or acceptance surface does; preserve prior evidence and freeze a new exact subject. Any concrete production worker that contributed to the changed subject cannot be its Tester.
+
+M03 lane/batch provenance remains immutable under these rules. Internal batch review never replaces this distinct final-integration gate unless exact stronger coverage is proven.
