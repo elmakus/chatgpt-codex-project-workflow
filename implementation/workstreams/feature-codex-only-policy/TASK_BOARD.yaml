@@ -1,7 +1,7 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 workstream_id: "feature-codex-only-policy"
 plan_revision: "CO-P1"
-current_milestone: "M02"
+current_milestone: "M03"
 
 execution_ref:
   branch: "feat/codex-only-policy"
@@ -25,12 +25,12 @@ milestones:
 
   M02:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M02--projectruntime-boundary-formal-independent-review-state-and-recovery"
-    checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    checkpoint: "b901d1cfa5ca26074b363b0c8980f7a7aaa223f1"
+    implementation_head: "b901d1cfa5ca26074b363b0c8980f7a7aaa223f1"
+    handoff: "project-handoffs/CODEX_ONLY_M02_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M02-acceptance.md"
     review_state: null
     review_subject: null
     review_evidence: null
