@@ -1,121 +1,160 @@
 # Codex-only Recovery
 
-> M02 contract. Recovery reconstructs project obligations from durable Project Workflow state, never from runtime session identity.
+> M03 contract. Recovery reconstructs project obligations from durable Project Workflow state, never from runtime session identity.
 
 ## Inputs
 
-Recover only the project truth needed for the selected obligation:
+Recover only truth needed for the selected obligation:
 
 - project `PROJECT.md`;
 - exact workstream/branch + validated manifest when branch-isolated;
 - selected canonical Task Board;
 - exact Git/integration/result state;
 - current Card/milestone/plan authority;
-- current review block/attempt history and referenced evidence;
+- current review history/evidence;
+- current parallel batch/history and referenced result evidence;
 - implementation/recovery Research pointer + exact record when present;
 - selected manifest final-integration review state when applicable;
-- relevant runtime/external readback only as evidence, not durable project identity.
+- relevant runtime/external readback as evidence only.
 
-Previous chat narrative and runtime session handles are not authority.
+Previous chat narrative, worker/session handles and concrete worktree paths are not authority.
 
 ## Priority
 
-Inside the selected state context:
+Inside the selected context:
 
-1. inconsistent project state -> reconcile/fail closed before unrelated work;
-2. current review attempt `pending | in_progress` -> formal Review;
+1. inconsistent project state -> reconcile/fail closed;
+2. current review attempt `pending | in_progress` -> Review;
 3. active/blocked/complete implementation-owned Research -> exact Research/return owner;
-4. current attempt `red` -> RED correction classification;
-5. in-progress implementation with current attempt `green` -> post-review finalization;
-6. other existing in-progress/blocked implementation -> recover it;
-7. manifest final-integration review obligation -> review/correction as applicable;
-8. only then select new work.
+4. current review `red` -> RED correction classification;
+5. in-progress implementation with current review GREEN -> post-review finalization;
+6. current parallel batch/member returned or non-terminal -> batch recovery/integration;
+7. other in-progress/blocked implementation -> recover it;
+8. manifest final-integration review obligation -> review/correction;
+9. only then select new work.
 
-Runtime liveness never outranks a durable project verdict.
+Runtime liveness never outranks a durable project verdict or returned lane result.
 
-## Review-attempt consistency
+## Review consistency
 
-For each active Card/milestone review block require:
+Preserve all M02 invariants:
 
-- resolved requirement coherent with the stable contract;
-- `current_attempt` null only before activation, otherwise pointing to an existing attempt;
-- unique stable attempt IDs;
-- no more than one non-terminal attempt;
-- immutable subject per existing attempt;
-- terminal `green | red` attempt has durable evidence;
-- result finalized under GREEN still equals the GREEN subject;
-- semantic `implementation_owner_role` is present for every active reviewable Card/milestone subject; for a milestone it represents aggregate `executor` production ownership;
-- semantic roles only; no required runtime worker/session identity.
+- resolved review requirement matches stable contract;
+- current attempt points to an existing immutable-subject attempt;
+- no more than one non-terminal attempt per review owner;
+- terminal verdict has durable evidence;
+- finalized result equals GREEN subject;
+- semantic implementation owner is present;
+- runtime identity is not required state.
 
-A contradiction routes to Recovery rather than guessing.
+Reviewer loss does not create a new attempt. Complete matching verdict evidence may be reconciled exactly; otherwise re-run full review of the same subject.
 
-## Pending/in-progress attempt recovery
+## Parallel batch consistency
 
-If the current attempt is `pending | in_progress`:
+For `parallel.current_batch` and every batch history entry require:
 
-- keep the same exact attempt/subject;
-- do not create a new attempt merely because worker runtime state was lost;
-- Main asks `codex_workflow` to safely resume or fail-closed replace the reviewer;
-- the reviewer performs/reperforms the full review of the same subject;
-- Main persists only ordinary attempt progress/verdict/evidence.
+- stable unique batch ID;
+- current pointer identifies at most one non-complete batch;
+- exact immutable `integration_base` once launched;
+- immutable finite member list/order after launch;
+- unique semantic lane label per member inside the batch;
+- each member Card exists and was eligible under its frozen Card contract/current proof;
+- all frozen member write scopes are pairwise disjoint and resource tokens non-conflicting;
+- returned/integrated states have exact required result/evidence refs;
+- integrated member has exact `integrated_commit` coherent with Card result state;
+- multiple in-progress Cards occur only when covered by this exact current batch;
+- no concrete worker/session/model/profile/invocation/lease/resume/worktree-path key is project authority;
+- no worker mutated shared Task Board/manifest/integration state.
 
-If exact complete verdict evidence is already durable while Task Board still says `in_progress`, Main may reconcile the matching verdict after verifying attempt ID + subject + evidence. If that proof is not exact, rerun the full review on the same subject instead of inventing a verdict.
+Contradiction routes to Recovery; never infer the missing fact from runtime memory.
 
-## RED recovery
+## Batch recovery by durable boundary
 
-A durable RED verdict is already a completed review result.
+### Prepared
 
-1. Recover the exact RED attempt, subject, evidence and implementation-owner role.
-2. Preserve that attempt unchanged.
-3. Classify the correction through `REVIEW.md#RED -> owning-Executor repair`.
-4. For Card-owned RED, bounded production repair returns through Main to that Card's owning `executor` role.
-5. For milestone-owned RED, route through Execution Prep to reopen/create the exact affected corrective Card(s) with `implementation_owner_role: executor`; do not infer a concrete repair worker from runtime/transcript state.
-6. If correction is not yet durable, resume/replace the runtime Executor realization as needed and produce it once.
-7. If corrected Card result or milestone checkpoint S2 is already durably proven but interruption happened before its next pending attempt was frozen, append exactly one new attempt for S2 and point `current_attempt` to it. Do not redo the correction.
-8. If the next attempt already exists, follow its state instead of repeating any prior role.
+A `prepared` batch has no guaranteed runtime work yet.
 
-A runtime replacement that realizes the same project `executor` role does not alter accepted authority or create a review attempt by itself.
+1. re-read current branch HEAD and exact frozen base;
+2. revalidate dependencies, Card safety metadata, scope/resource compatibility and workspace-isolation availability;
+3. if still current, launch the same frozen batch;
+4. if proof/base is stale before launch, do not mutate/reuse it as if current: record/reconcile the stale prepared outcome, clear it from `current_batch`, then form a new batch or execute serially from current truth.
 
-## GREEN recovery
+No worker result is assumed.
 
-A durable GREEN verdict is not replayed because a Tester/session disappeared.
+### In progress
 
-If the implementation/result still equals the GREEN subject, route to Execution for terminal post-review finalization. If production changed after GREEN, do not reuse the verdict; freeze the changed exact subject as a new attempt when review still applies.
+For a member `in_progress` with no durable `result_commit`:
+
+- runtime may resume or fail-closed replace the concrete realization for the same batch/member;
+- Project Workflow lane/card identity does not change;
+- if runtime evidence cannot prove safe continuation, re-run that member from the same frozen base rather than inventing a result;
+- do not restart members that already have returned/integrated results.
+
+### Returned
+
+A `returned` member is durable completed lane work.
+
+- never rerun it because runtime disappeared;
+- verify result/evidence against frozen base, write scope and reserved-state rule;
+- integrate it exactly once in frozen member order when preceding members are resolved;
+- if a prior member still owns a review/RED/Research obligation, preserve this returned result until that higher-priority state resolves.
+
+### Partially integrated
+
+If earlier members are `integrated` and later members are `returned | in_progress`:
+
+- verify current shared branch contains the recorded integrated commits/authorized Main bookkeeping;
+- preserve every completed member/result;
+- resume the first unresolved member in frozen order;
+- never restart the batch from the original base merely to reconstruct already-integrated work.
+
+### Blocked
+
+For member/batch `blocked`:
+
+- recover exact blocker/result/evidence;
+- scope escape or reserved-state mutation is not integrated;
+- material integration conflict preserves returned result;
+- classify smallest correction, serial fallback, Planning/Definition/Research or real input/runtime gate through Router;
+- do not silently widen write scope, reorder members or discard completed evidence.
+
+### Complete
+
+A complete batch is history. `current_batch` must be null. Card review/finalization or later READY work proceeds normally. Never reopen a complete batch to add members.
 
 ## Partial Main writes
 
-Project Workflow fails closed around partial shared-state transitions.
+Fail closed around partial transitions.
 
 Examples:
 
-- implementation result exists, but Task Board result pointer is stale -> reconcile proven result before review;
-- corrected result exists after RED, but new attempt is missing -> append one attempt for the proven corrected subject;
-- review evidence exists, but terminal state write is missing -> reconcile only when evidence exactly matches current attempt/subject;
-- terminal state claims verdict but evidence is missing/mismatched -> inconsistent; do not proceed;
-- multiple non-terminal attempts -> inconsistent; preserve evidence and reconcile before continuing.
+- worker result exists externally but member state lacks exact proof -> verify the result against batch/card/base before reconciling; otherwise re-realize only that member;
+- `result_commit` is durable but member still `in_progress` -> verify exact matching evidence, then reconcile to `returned`; do not execute again;
+- integrated Git commit is durable but member/Card pointers are stale -> prove exact commit/result relationship and reconcile bookkeeping, not implementation;
+- member says integrated but `integrated_commit` is absent/mismatched -> inconsistent; recover Git evidence before continuation;
+- all members integrated but batch still `integrating` -> verify each integrated ref, mark complete and clear `current_batch`;
+- batch complete but Card review freeze is missing -> freeze the exact integrated Card subject once when review still applies.
 
-Never repair inconsistency by consulting a runtime session ID.
+## RED recovery
+
+Durable RED is a completed review result and outranks continuing sibling batch work.
+
+Card RED returns through Main to the owning `executor` role. Milestone RED routes through Execution Prep to exact corrective Card(s). Preserve sibling returned/integrated batch results and do not replay them.
+
+Corrective work is serial unless a new current-state JIT proof independently forms a legal batch.
+
+## GREEN recovery
+
+A durable GREEN verdict is never replayed because a Tester/session disappeared. If Card result still equals the GREEN subject, finalize it. If implementation changed, freeze a new subject/attempt when review still applies.
 
 ## Implementation-owned Research
 
-Task Board `research_obligation` remains the sole implementation/recovery Research pointer. The pointed record owns lifecycle/Origin/Return target/reconciliation.
-
-Research completion does not erase RED review history. After return, the owning role performs only the authorized correction/classification and then continuation follows the current review attempt/result state.
+Task Board `research_obligation` remains the single implementation/recovery Research pointer. Research completion never erases review or batch history.
 
 ## Runtime boundary
 
-Project Workflow does not own:
+Project Workflow does not own concrete worker/session/model/profile/reasoning/invocation/lease/wait/resume/replacement/worktree-path state. Runtime may resume or replace a realization fail-closed; durable Card/batch/lane/result/review semantics remain unchanged.
 
-- worker/session IDs;
-- invocation IDs;
-- model/profile/reasoning selection;
-- Muse leases;
-- wait/poll mechanics;
-- worker resume protocol;
-- worker replacement mechanics.
+## M04 boundary
 
-Runtime may resume or replace Executor/Tester realization fail-closed. Durable project role, subject, attempt and verdict semantics remain unchanged.
-
-## M03 boundary
-
-Lane-result/integration recovery and bounded-parallel active-set semantics are M03-owned. M02 remains serial-safe and must not infer parallel lanes from runtime worker concurrency.
+M03 recovery covers bounded intra-workstream Card batches. M04 reconciles full lifecycle, stacked-workstream/target-refresh/final-integration recovery and root cutover.
