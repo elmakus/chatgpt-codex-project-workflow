@@ -25,7 +25,7 @@ milestones:
 
   M02:
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     contract: "planning/CODEX_ONLY_MASTER_PLAN.md#M02--projectruntime-boundary-formal-independent-review-state-and-recovery"
     checkpoint: null
     implementation_head: null
@@ -105,3 +105,21 @@ cards:
     result_pr: null
     evidence: "implementation/workstreams/feature-codex-only-policy/evidence/M01-T02.md"
     tests_summary: "GREEN author verification: exact 22/22 codex_only parity owner set; no forbidden policy/legacy execution dependencies; no runtime identity schema keys; root routing and chatgpt_only tree identical to current main; repository execution policy remains chatgpt_only; implementation-range diff-check and conflict scan GREEN. YAML templates structurally inspected; parser-based YAML validation not claimed because no parser was available."
+
+
+  - id: "M02-T01"
+    title: "Finalize formal review state, provenance and runtime-decoupled recovery"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: ["M01-T02"]
+    openspec_change: "openspec/changes/codex-only-m02-formal-review-state"
+    contract: "implementation/workstreams/feature-codex-only-policy/cards/M02-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
