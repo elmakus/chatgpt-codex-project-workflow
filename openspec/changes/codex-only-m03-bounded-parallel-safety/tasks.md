@@ -10,3 +10,6 @@
 - [x] Add positive/negative scenario audit and static boundary checks.
 - [x] Verify root routing, chatgpt_only tree and repository execution policy remain unchanged.
 - [x] Repair independent-review RED-01: deterministic pre-launch prepared-batch abandonment restores Card readiness before clearing current_batch and distinguishes Main bookkeeping from implementation-base drift.
+- [x] Repair independent-review RED-02: defer formal member review until active-batch closure, preserve immutable original integration provenance, and keep post-batch RED repair outside the completed batch.
+
+[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
