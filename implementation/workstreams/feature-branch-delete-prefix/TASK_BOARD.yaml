@@ -1,0 +1,42 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "feature-branch-delete-prefix"
+plan_revision: "BC-R1"
+current_milestone: "M01"
+
+execution_ref:
+  branch: "feat/branch-delete-prefix"
+  pr: null
+  head: "c7dbe54462ee402c2de729b55a6cd05f54f76e24"
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/CHATGPT_ONLY_BRANCH_CLEANUP_MASTER_PLAN.md#M01--Source-branch-independent-finalization-and-cleanup"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Make terminal branch cleanup source-branch-independent"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/workstreams/feature-branch-delete-prefix/cards/M01-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
