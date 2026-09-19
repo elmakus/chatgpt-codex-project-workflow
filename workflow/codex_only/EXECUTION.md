@@ -189,5 +189,3 @@ A Card may become `done` only when:
 ## M04 boundary
 
 M03 supplies bounded Card execution/integration mechanics only. M04 reconciles complete lifecycle routing, final workstream integration/Close and root cutover.
-
-[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
