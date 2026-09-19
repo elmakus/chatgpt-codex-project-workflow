@@ -17,7 +17,7 @@ cards:
     title: "Make private infrastructure a last-resort execution surface"
     milestone: "micro-fix"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/issue-private-infrastructure-last-resort/cards/MF-T01.md"
