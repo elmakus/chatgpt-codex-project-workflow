@@ -99,6 +99,14 @@ If a returned result was valid against S0 but a material semantic/textual confli
 - route Recovery/current authority;
 - do not reorder members or restart the batch to hide the conflict.
 
+## Post-launch blocked recovery trace
+
+Given B01 where L01 is already integrated and L02 is blocked by scope escape or integration conflict, the pre-launch unwind is illegal.
+
+If T2's correction remains inside the unchanged accepted Card/base/scope/resource contract, Main preserves the failed result/ref and evidence, clears L02's active result slot while moving only L02 `blocked -> in_progress`, keeps B01/L02 identity, re-realizes L02 from S0, and validates/integrates the corrected return in the original frozen order. L01 and any other successful member are not rerun.
+
+If T2 cannot be corrected inside that frozen contract, Main quiesces/reconciles active lanes, preserves every integrated/returned ref, marks each non-integrated member history entry plus corresponding Card durable `blocked` with terminal-reconciliation evidence, keeps B01 as blocked history and only then clears `current_batch`. Integrated reviewable Cards form the post-batch review drain; blocked non-integrated Cards recover serially afterward. This terminal transition never resets launched Cards to READY.
+
 ## Crash/recovery matrix
 
 | Durable boundary | Recovery |
@@ -110,6 +118,8 @@ If a returned result was valid against S0 but a material semantic/textual confli
 | integrated Git result exists, board pointer stale | verify exact Git/result relationship and reconcile Main bookkeeping only |
 | all members integrated, batch still integrating | verify all refs, set complete, clear current_batch |
 | complete batch, review freeze missing | freeze exact integrated Card subject once when review applies, then dispatch pending member reviews now that current_batch is null |
+| post-launch member blocked, frozen contract unchanged | preserve failed result/evidence; retry only that member under same batch/lane/base; never replay successful siblings |
+| post-launch member blocked, frozen contract cannot be preserved | quiesce active work; mark non-integrated member history + Cards blocked with terminal evidence; keep batch blocked history; clear current_batch only after reconciliation |
 | runtime worker/session state lost | no Project Workflow identity change; use durable batch/member/result state |
 
 ### Pre-launch abandonment invariant
