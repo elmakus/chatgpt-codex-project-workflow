@@ -194,7 +194,7 @@ A long-lived branch created before branch-isolated layout may have continued mut
 5. reconcile the branch's root `implementation/TASK_BOARD.yaml` to the current integration-target version so the workstream merge does not overwrite the target's unrelated legacy/default board, unless changing that default context is itself explicitly accepted scope;
 6. likewise preserve the target's `PROJECT.md -> Latest cumulative handoff` legacy/default pointer; workstream-specific handoffs stay discoverable from the namespaced Task Board;
 7. keep genuinely project-wide accepted requirements/decisions/plan/source changes from the workstream when they are part of the integrated result; do not discard them merely because live execution state is being namespaced;
-8. run normal target refresh/review/final integration, then perform target-side terminal closure/readback before deleting the source branch.
+8. run normal target refresh/review/final integration with the closure-ready namespaced package in the merge subject; after merge perform target-side terminal closure/readback even if GitHub already deleted the source branch, and when the ref survives use the exact `branch_cleanup` fallback only after terminal safety.
 
 This is a bounded state-topology reconciliation, not permission to rewrite completed historical evidence or to infer ownership from filenames alone.
 
