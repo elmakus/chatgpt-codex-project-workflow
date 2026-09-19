@@ -83,6 +83,10 @@ cards:
 #           evidence: null
 #
 # Batch membership/order/base are frozen after launch; completed and reconciled blocked entries remain durable.
+# integrated_commit is immutable original batch-integration provenance; a later post-batch review repair advances Card review/result state without overwriting it.
+# After current_batch clears, integrated reviewable Cards may remain in_progress only as one completed-batch review drain; drain review/finalization/correction precedes unrelated new implementation.
 # A pre-launch abandoned prepared batch is kept as blocked history with evidence; its Cards are restored to READY before current_batch is cleared.
 # Lane labels are semantic project provenance, never concrete worker/session/worktree identity.
 # Stable Card contracts, not this mutable board, own parallel_safe/write_scope/exclusive_resources.
+
+[executed on device: Tower (b030638f-5714-4775-aa64-5babf6677db4)]
