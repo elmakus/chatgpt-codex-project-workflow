@@ -1,6 +1,6 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 workstream_id: "feature-project-workflow-codex-plugin"
-plan_revision: "PWCP-P1"
+plan_revision: "PWCP-P2"
 current_milestone: "M01"
 
 execution_ref:
@@ -13,7 +13,7 @@ research_obligation: null
 milestones:
   M01:
     decision_state: accepted
-    execution_status: blocked
+    execution_status: ready
     contract: "planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md#milestone-m01--current-runtime-plugin-and-activation-contract"
     checkpoint: null
     implementation_head: null
@@ -28,7 +28,7 @@ cards:
     title: "Verify current Codex plugin activation contract"
     milestone: "M01"
     decision_state: accepted
-    execution_status: blocked
+    execution_status: ready
     executor: chatgpt
     depends_on: []
     openspec_change: null
@@ -38,5 +38,5 @@ cards:
     review_evidence: null
     result_commit: null
     result_pr: null
-    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/blockers/M01-T01-definition-naming-constraint-2026-09-20.md"
-    tests_summary: "Runtime delta verification GREEN for same-repo plugin install, PLUGIN_ROOT canonical path resolution, bounded SessionStart activation/trust, per-repo enabled/control isolation, and bundled Skill discovery. Definition R2 now accepts the verified pw:pw command. Card remains BLOCKED only while revised plan PWCP-P2 is independently reviewed and the Card/Task Board contract is reconciled afterward; see blocker evidence."
+    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M01-T01-runtime-contract-2026-09-20.md"
+    tests_summary: "Prior runtime delta verification is GREEN for same-repo plugin install, PLUGIN_ROOT canonical path resolution, bounded SessionStart activation/trust, per-repo enabled/control isolation, and bundled Skill discovery. Definition R2 plus approved plan PWCP-P2 accept the verified pw:pw command; Card is READY for bounded result reconciliation without rerunning unchanged runtime probes."
