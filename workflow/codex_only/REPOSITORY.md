@@ -61,7 +61,7 @@ Projects may adapt paths, but `PROJECT.md` must identify actual canonical locati
 - milestone/Card files → stable contracts, not status mirrors;
 - evidence → durable proof when materially useful/required;
 - blockers → durable blocker evidence;
-- handoffs → completed milestone summaries; legacy/default handoffs use `project-handoffs/`, while branch-isolated handoffs are workstream-owned under `implementation/workstreams/<id>/handoffs/`;
+- handoffs → completed milestone summaries; historical legacy/default handoffs remain under `project-handoffs/` as recovery/history evidence, while all active managed workstream handoffs are workstream-owned under `implementation/workstreams/<id>/handoffs/`;
 - OpenSpec → selected behavior/design contracts.
 
 Do not mirror current card/milestone/result/branch/review state into `PROJECT.md` or stable contract files. `PROJECT.md` may document the workstream-root convention but is not a mutable global workstream registry.
@@ -96,7 +96,7 @@ When the current branch is a branch-isolated Codex-only workstream, apply `workf
 
 The validated manifest owns the canonical Task Board path for managed work. Historical root/default `implementation/TASK_BOARD.yaml` remains untouched as recovery/migration input and must not become the selected mutable destination.
 
-A branch-isolated workstream also owns its cumulative milestone handoffs under `implementation/workstreams/<id>/handoffs/`. It MUST NOT update `PROJECT.md -> Latest cumulative handoff`; that pointer belongs only to the legacy/default state context. Milestone-local handoff truth is recovered from the selected workstream Task Board.
+A branch-isolated workstream also owns its cumulative milestone handoffs under `implementation/workstreams/<id>/handoffs/`. It MUST NOT update `PROJECT.md -> Latest cumulative handoff`; any such root pointer is historical/default navigation only. Milestone-local handoff truth is recovered from the selected workstream Task Board.
 
 After final-target integration, the target branch must retain the terminal namespaced workstream package required by `WORKSTREAMS.md#Terminal durable package and branch deletion`. A closure-only target-side commit/PR may reconcile actual merge/result metadata. For an intentionally terminal-unmerged workstream, preserve the namespaced closure/history package independently of the source ref before deletion, without integrating rejected/superseded implementation content. Source-branch deletion is safe only after target readback proves the applicable terminal package is durable and no workstream obligation remains.
 
@@ -150,9 +150,9 @@ Material external mutations require meaningful persisted-state readback when ava
 Recovery must be possible from:
 - `PROJECT.md`;
 - for non-terminal branch-isolated work, exact workstream branch + validated `WORKSTREAM.yaml`; for integrated terminal `done` history after source-branch deletion, the target-side namespaced workstream package + exact manifest result; for intentionally terminal-unmerged history after deletion, the target-side namespaced closure package + exact manifest terminal state and delete/readback evidence;
-- the PROJECT-pointed active exploratory record when Brainstorming/Definition promotion or recovery is active;
-- the PROJECT-pointed active pre-execution research record when Research/return-role recovery is active;
-- selected canonical Task Board, including its implementation/recovery `research_obligation` pointer and exact pointed record when present;
+- the exact exploratory record referenced by selected manifest `routing.exploratory_scope` when Brainstorming/Definition promotion or recovery is active;
+- the exact pre-execution Research record referenced by selected manifest `routing.research_obligation` when Research/return-role recovery is active;
+- the selected manifest-bound workstream Task Board, including its implementation/recovery `research_obligation` pointer and exact pointed record when present; historical root/default Task Board and PROJECT routing pointers are read only as Recovery migration input;
 - exact Git/runtime/external state;
 - current milestone/Card contracts, or the exact bounded micro-fix Card + completed Intake record for a qualified direct fix;
 - referenced evidence/OpenSpec/handoff as actually needed.
@@ -173,7 +173,7 @@ Existing milestone files remain valid durable contracts even though separate mil
 
 Existing standalone evidence and cumulative handoffs remain durable history/evidence.
 
-A legacy Task Board without an explicit milestone contract pointer may recover from its existing plan/milestone references; add the pointer at the next safe execution-prep/state edit rather than performing repository-wide churn.
+A historical root/default Task Board without an explicit milestone contract pointer may recover that authority from its existing plan/milestone references during migration. Carry the exact recovered contract pointer into the new workstream Task Board; do not patch the root/default board merely to normalize legacy shape.
 
 Do not move active project topology mid-milestone. A legacy split-repository migration occurs only at a GREEN boundary with provenance.
 
