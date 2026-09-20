@@ -2,10 +2,10 @@
 
 Plan revision: `FRV-P2`
 Review requirement: `RECOMMENDED`
-Review state: `pending`
+Review state: `in_progress`
 Review subject: `planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md@blob:90e25672f22299500d3c1086870eb587414ff345`
 Review subject commit: `e1bccdfc641f63cf52b8d799b925a18cd9ac7831`
-Review evidence: `pending`
+Review evidence: `in progress — independent review recovered exact immutable FRV-P2 subject and is validating it against R1, ADR-FRV-001, intake, current OpenSpec authority, and current publication/routing surfaces.`
 
 ## Scope
 
