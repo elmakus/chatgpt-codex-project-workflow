@@ -55,7 +55,7 @@ cards:
     title: "Implement same-repo Codex plugin package"
     milestone: "M02"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M01-T01"
@@ -67,4 +67,4 @@ cards:
     result_commit: "6e16ba11293bbdb7bbc8d96167e8280273d77304"
     result_pr: null
     evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M02-T01-plugin-package-2026-09-20.md"
-    tests_summary: "GREEN implementation on exact subject 6e16ba11293bbdb7bbc8d96167e8280273d77304. 14/14 repository tests passed; official Codex 0.155.0-alpha.9.2 plugin validator passed; isolated local and Git-backed marketplace install/readback returned pw@project-workflow installed+enabled; native skills/list returned pw:project-workflow; hooks/list returned the production SessionStart hook from installed cache; installed bootstrap routed through PROJECT.md + canonical workflow/CONTEXT_ROUTING.md; no live Codex state was mutated. Pending fresh independent review."
+    tests_summary: "GREEN terminal result on exact implementation subject 6e16ba11293bbdb7bbc8d96167e8280273d77304. 14/14 repository tests passed; official Codex 0.155.0-alpha.9.2 plugin validator passed; isolated marketplace install/readback returned pw@project-workflow installed+enabled; native skills/list and hooks/list matched the production package; no live Codex state was mutated. Independent review GREEN with a fresh 14/14 test rerun plus isolated current-runtime install/bootstrap/hash readback."
