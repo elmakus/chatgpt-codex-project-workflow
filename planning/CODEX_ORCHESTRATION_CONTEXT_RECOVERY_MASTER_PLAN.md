@@ -1,7 +1,7 @@
 # Master Plan — Codex orchestration recovery after context loss
 
 Plan revision: CCOR-P2
-Status: draft
+Status: approved
 Review requirement: RECOMMENDED
 
 ## Authority
