@@ -1,7 +1,7 @@
 # Project Workflow Codex Plugin — Master Plan
 
 Revision: `PWCP-P3`
-Status: `draft`
+Status: `approved`
 Updated: `2026-09-20`
 Review requirement: `RECOMMENDED`
 
@@ -266,6 +266,7 @@ Planning audit result: `GREEN`.
 - Review requirement: `RECOMMENDED`
 - Reason: `PWCP-P3` materially revises the user-facing explicit bundled-Skill identity after user/product Definition R3 reconciliation. Milestone architecture is intentionally unchanged, but independent confirmation is practical before the active M01 contract is reconciled again.
 - Review record: `planning/reviews/PWCP-P3.md`
-- Review state: `pending`
-- Review subject: frozen in the separate revision-specific review record.
+- Review state: `GREEN`
+- Reviewed subject: `blob:634806af9a3325d2c1078317d20f94cd842b0451`
+- Plan approved after GREEN independent review; reviewed plan body is unchanged apart from deterministic lifecycle metadata.
 
