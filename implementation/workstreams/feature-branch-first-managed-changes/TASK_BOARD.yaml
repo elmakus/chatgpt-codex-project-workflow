@@ -49,9 +49,9 @@ milestones:
 
   M04:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md#M04--migration-documentation-dogfood-and-integrated-regression-closure"
-    checkpoint: null
+    checkpoint: "82f1bc386fc54d7e6b743a3d90352e9679e9ed4e"
     implementation_head: "7273d292a1e77559f66b84f811e0ae6195d357ab"
     handoff: "implementation/workstreams/feature-branch-first-managed-changes/handoffs/M04_HANDOFF.md"
     acceptance_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M04_FINAL_INTEGRATION_REFRESH_2026-09-20.md"

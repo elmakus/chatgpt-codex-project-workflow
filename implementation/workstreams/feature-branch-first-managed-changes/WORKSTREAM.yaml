@@ -2,7 +2,7 @@
 
 id: "feature-branch-first-managed-changes"
 kind: "feature"
-status: "ready"
+status: "done"
 
 branch: "feat/branch-first-managed-changes"
 base_ref: "808084a4c7989715f7ee4889a31bce28f778d597"
@@ -40,4 +40,4 @@ branch_cleanup:
   evidence: null
 
 pr: 39
-result: null
+result: "82f1bc386fc54d7e6b743a3d90352e9679e9ed4e"
