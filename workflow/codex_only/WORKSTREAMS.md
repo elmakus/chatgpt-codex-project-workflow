@@ -53,6 +53,7 @@ It owns:
 - optional stacked parent identity/branch plus the exact parent-only dependency relation;
 - active/completed Intake lifecycle + exact intake-record location when the workstream was created/recovered through explicit intake;
 - exact nullable pre-execution routing locators for exploratory scope, pre-execution Research and active plan review;
+- compact workstream-local `orchestration` policy binding used for Codex runtime recovery;
 - exact Task Board location when implementation state exists;
 - workstream authority pointers;
 - workstream-level final-integration review state when such a gate is active;
@@ -61,6 +62,31 @@ It owns:
 The manifest does **not** own Card/milestone execution state.
 
 For intake-created workstreams, manifest `intake.state` + `intake.record` are routing/workstream-lifecycle metadata. The pointed `INTAKE.md` owns durable intake scope/findings/classification. Neither may mirror Card/milestone execution/review/result state.
+
+### Orchestration policy binding
+
+For branch-first `codex_only` work, the selected manifest owns one compact orchestration-policy binding:
+
+```yaml
+orchestration:
+  runtime_owner: null
+  policy_ref: null
+  contract_fingerprint: null
+```
+
+This block is **workstream-local routing/recovery metadata**, not Card/milestone execution state.
+
+- `runtime_owner` is an opaque owner identifier for the installed/enabled runtime contract.
+- `policy_ref` is the opaque selected orchestration/compute-policy or profile reference interpreted by that runtime owner.
+- `contract_fingerprint` is an optional opaque runtime-supplied contract version/epoch/fingerprint used only for stale-binding detection.
+- A usable established binding requires non-null/non-empty `runtime_owner` and `policy_ref`; the fingerprint may remain null when no stable runtime fingerprint exists.
+- A newly materialized manifest may contain null orchestration fields only during its initial materialization. Before Intake can complete, and before any policy-dependent runtime realization after the manifest exists, the binding must be successfully resolved through the runtime owner and persisted.
+- A selected pre-schema branch-first manifest with no `orchestration` block is a distinct bounded Recovery migration case. When the block already exists but required values are missing, unknown or contradictory, the binding is invalid and fails closed rather than being treated as legacy schema absence.
+- The binding may differ between workstreams and must not be mirrored into root `PROJECT.md`, Task Board, Task Cards or a repository-global mutable registry.
+- Concrete worker/session/process/model-instance/invocation/lease/resume/worktree identity and concrete role→harness/model mappings remain forbidden manifest state.
+- The current-context binding latch defined by `ORCHESTRATION_KERNEL.md` is deliberately non-durable and is never serialized into this block or any other Project Workflow state.
+
+Project Workflow owns persistence/recovery of this opaque selection and the re-bind gate. The active runtime remains authoritative for interpreting `policy_ref` and realizing concrete worker roles/models/harnesses.
 
 ### Pre-execution routing locators
 

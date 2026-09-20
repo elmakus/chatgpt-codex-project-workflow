@@ -46,7 +46,7 @@ Do not mutate an existing attempt to point at a different subject.
 
 ### Start
 
-Before changing an attempt to `in_progress`, runtime must supply a Tester that is independent from the worker that realized the exact subject's implementation-owner role.
+Before asking runtime to realize or re-realize the Tester, Codex Main satisfies `workflow/codex/CODEX_ORCHESTRATION.md#Codex-only pre-dispatch binding gate`. Only after that gate is satisfied may runtime supply a Tester that is independent from the worker that realized the exact subject's implementation-owner role and Main change the attempt to `in_progress`.
 
 Project Workflow records only the semantic reviewer role. Main persists the state transition; the Tester does not write the shared Task Board.
 
@@ -97,7 +97,7 @@ The same logical Tester may perform the new attempt when independence remains va
 
 A lost/replaced reviewer does not create a new project attempt when the subject is unchanged.
 
-Main keeps the same attempt/subject and lets `codex_workflow` safely resume or replace the runtime reviewer. The resumed/replacement reviewer performs the full review required for that subject.
+Main keeps the same attempt/subject. Before runtime resume/replacement of the reviewer, Main re-applies the shared pre-dispatch binding gate; `codex_workflow` then safely resumes or replaces the runtime reviewer. The resumed/replacement reviewer performs the full review required for that subject.
 
 If complete durable verdict evidence exists but Task Board still says `in_progress`, Recovery may reconcile that exact verdict only after proving evidence matches the same attempt/subject. Otherwise perform the full review again on the same attempt.
 
@@ -109,7 +109,7 @@ Review evidence must not include a runtime identifier as a required project key.
 
 ## Workstream final-integration review
 
-For a REQUIRED/RECOMMENDED manifest gate, run target refresh before first freeze/reuse. If an already-independent Card/milestone verdict covers the identical refreshed workstream subject and complete acceptance surface, `CLOSE.md` may reconcile the manifest gate GREEN with exact `covered_by` evidence. Otherwise freeze exact manifest `review.subject`, set `review.state: pending`, and dispatch an independent Tester.
+For a REQUIRED/RECOMMENDED manifest gate, run target refresh before first freeze/reuse. If an already-independent Card/milestone verdict covers the identical refreshed workstream subject and complete acceptance surface, `CLOSE.md` may reconcile the manifest gate GREEN with exact `covered_by` evidence. Otherwise freeze exact manifest `review.subject`, set `review.state: pending`, and enter this module's **Start** transition, which applies the shared pre-dispatch binding gate before runtime realizes an independent Tester.
 
 Target movement alone does not invalidate GREEN. Material change to covered workstream content/behavior or acceptance surface does; preserve prior evidence and freeze a new exact subject. Any concrete production worker that contributed to the changed subject cannot be its Tester.
 

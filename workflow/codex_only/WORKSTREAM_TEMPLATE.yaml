@@ -31,6 +31,13 @@ routing:
   research_obligation: null # exact pre-execution Research record | null
   plan_review: null # exact planning/reviews/<plan-revision>.md record | null
 
+# Workstream-local opaque runtime-policy selection used only for Codex orchestration recovery.
+# Null fields are legal only during initial manifest materialization before binding establishment.
+orchestration:
+  runtime_owner: null
+  policy_ref: null
+  contract_fingerprint: null
+
 task_board: null # implementation/workstreams/<id>/TASK_BOARD.yaml | null
 
 authority:

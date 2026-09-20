@@ -107,6 +107,8 @@ The frozen `integration_base` is the exact implementation/result base for lane d
 
 Batch/lane labels are project provenance only; they never identify a concrete worker.
 
+Execution Prep may ask runtime whether isolated mutable workspaces can be provided, but it does not realize batch workers. Actual policy-dependent member launch occurs only in `EXECUTION.md` and must pass `workflow/codex/CODEX_ORCHESTRATION.md#Codex-only pre-dispatch binding gate`.
+
 ## Refresh immediately before launch
 
 After freezing but before changing a member to runtime-active, re-read only state capable of invalidating safety:

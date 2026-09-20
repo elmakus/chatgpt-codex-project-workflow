@@ -213,7 +213,11 @@ class CodexOnlyBranchFirstExecutionStateTests(unittest.TestCase):
         recovery = FILES["RECOVERY.md"]
         state = FILES["STATE.md"]
         self.assertIn(
-            "Runtime worker/session/model/profile/invocation/worktree identity is never migrated",
+            "Concrete worker/session/model-instance/invocation/worktree identity is never migrated",
+            recovery,
+        )
+        self.assertIn(
+            "opaque manifest policy/profile selection is established through the runtime owner",
             recovery,
         )
         self.assertIn(

@@ -100,9 +100,10 @@ A stable workstream ID is not inferred from a branch name alone after creation; 
 5. Choose a stable workstream ID/branch under **Workstream identity and naming**.
 6. Create the branch from the selected base. Steps 1–5 are read-only: no change-specific durable Project Workflow artifact may be authored before this branch exists.
 7. Persist the first change-specific durable Project Workflow state — the workstream manifest plus `INTAKE.md` with `intake.state: active` — on that created branch before any implementation mutation.
-8. Perform the route-specific **post-creation classification/materialization** below.
-9. Before setting `intake.state: complete`, materialize the canonical durable state required by the chosen downstream route so recovery never depends on the just-finished chat.
-10. Set intake complete, persist the final intake classification/result, return to the router and continue through the normal selected route.
+8. Immediately after the manifest exists, establish its usable orchestration binding before any policy-dependent worker realization: through the active runtime owner and the initial-establishment rule in `workflow/codex/CODEX_ORCHESTRATION.md`, resolve the currently selected opaque policy/profile and persist `runtime_owner + policy_ref` plus optional `contract_fingerprint`. Read back the manifest. If resolution/readback fails, keep Intake active and fail closed; do not select another harness or invent a policy reference.
+9. Perform the route-specific **post-creation classification/materialization** below.
+10. Before setting `intake.state: complete`, require the usable read-back orchestration binding and materialize the canonical durable state required by the chosen downstream route so recovery never depends on the just-finished chat.
+11. Set intake complete, persist the final intake classification/result, return to the router and continue through the normal selected route.
 
 Branch creation itself is not implementation mutation. If branch creation succeeds but the manifest/intake record write fails, do not continue normal Intake or start implementation. Route the deterministic orphan branch to Recovery; Recovery verifies provenance/conflicting state and may idempotently complete or abandon the partial intake setup. Likewise, if Intake discovers the deterministic candidate branch already exists without a coherent matching manifest, route to Recovery rather than guessing ownership or creating a duplicate.
 
@@ -141,7 +142,7 @@ For a genuinely new generic change, complete these **read-only** steps before Co
 2. discover exact matching workstream/branch/PR identity and only the source/dependency evidence needed to distinguish the normal integration target from a real parent-only stacked dependency;
 3. if the deterministic `work/<slug>` candidate exists without a coherent matching manifest, fail closed to Recovery rather than claiming it or choosing a suffix merely to bypass the inconsistency.
 
-After Common intake flow step 7 has created/recovered the neutral workstream and persisted durable active intake state:
+After Common intake flow step 8 has created/recovered the neutral workstream, persisted durable active intake state and established/read back its usable orchestration binding:
 
 4. record intake kind `change` and preserve the user's authorized bounded scope;
 5. classify the smallest legal downstream route from that scope under the normal policy contracts, without reclassifying the workstream to `issue` or `feature` merely to reuse a lifecycle path;
@@ -157,7 +158,7 @@ For a genuinely new `#issue`, complete these **before Common intake flow step 4 
 2. Discover relevant active branches/PRs/workstreams only far enough to decide whether the problem/fix depends on unmerged parent-only state.
 3. Classify the issue as independent versus stacked from that evidence and supply the exact base decision to the common flow. Do not create the new workstream branch before this classification.
 
-After Common intake flow step 7 has created/recovered the issue workstream and persisted durable active intake state:
+After Common intake flow step 8 has created/recovered the issue workstream, persisted durable active intake state and established/read back its usable orchestration binding:
 
 4. Determine whether the issue qualifies for the micro-fix path using the accepted R6 criteria:
    - root cause and intended behavior are concrete;
@@ -183,7 +184,7 @@ For a genuinely new `#feature`, complete these **before Common intake flow step 
 1. Discover existing workstreams/PRs far enough to avoid duplicate identity and to determine whether the feature genuinely depends on parent-only state.
 2. Classify the feature against the normal integration target versus a real stacked dependency and supply that exact base decision to the common flow.
 
-After Common intake flow step 7 has created/recovered the feature workstream and persisted durable active intake state:
+After Common intake flow step 8 has created/recovered the feature workstream, persisted durable active intake state and established/read back its usable orchestration binding:
 
 3. Preserve the existing exploratory lifecycle. Before marking intake complete, create/reconcile the exact canonical Brainstorming starting record/pointer required by the Codex-only Brainstorming contract on this workstream branch.
 4. Initialize/retain Definition promotion authorization as `pending` with promotion subject `none` unless the user separately and explicitly authorizes promotion for the exact current brainstorming scope/revision under the normal router gate.

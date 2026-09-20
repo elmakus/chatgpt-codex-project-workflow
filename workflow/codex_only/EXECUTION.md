@@ -10,6 +10,8 @@ Project Workflow defines Card authority, durable state, acceptance, review attem
 
 Codex Main alone writes shared Task Board/integration state.
 
+Before every actual policy-dependent runtime realization or re-realization initiated by this module — serial Executor launch, bounded-parallel member launch, same-member retry, or recovery-time resume/replacement — satisfy the single pre-dispatch binding gate in `workflow/codex/CODEX_ORCHESTRATION.md#Codex-only pre-dispatch binding gate`. This module does not interpret the opaque policy reference or duplicate runtime role routing.
+
 ## Execution priority
 
 Before selecting new work:

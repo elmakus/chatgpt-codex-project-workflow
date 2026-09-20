@@ -24,6 +24,23 @@ Source/update channel for runtime workflow is `elmakus/codex_workflow`; Project 
 
 If `codex_workflow` is not installed/enabled, Codex may use native runtime mechanisms while all project-level obligations here still apply.
 
+### Codex-only pre-dispatch binding gate
+
+For a selected branch-first `codex_only` workstream, this file is the single generic Project Workflow boundary before any policy-dependent worker/role realization or re-realization.
+
+Before asking the active runtime to realize, resume, replace or re-realize such a role, Codex Main must:
+
+1. validate the selected manifest's `orchestration.runtime_owner + policy_ref` binding under `workflow/codex_only/ORCHESTRATION_KERNEL.md`;
+2. treat runtime-contract drift as stale binding and re-resolve it before dispatch;
+3. require the non-durable current-context binding latch to be positively established;
+4. when the latch is absent/uncertain, ask the bound `runtime_owner` to resolve/re-bind the opaque `policy_ref`; only success establishes the latch for this coordinator context.
+
+A matching durable fingerprint never establishes the latch after reconstruction. A missing/stale/contradictory/unresolvable established binding fails closed to the owning route's normal runtime-blocker handling. When an installed/enabled runtime owner is bound, transient context loss does not authorize native/internal fallback.
+
+Initial binding establishment is the one pre-binding exception: immediately after a new Codex-only manifest is materialized with the template's null orchestration fields, Intake asks the active runtime owner to resolve the currently selected opaque policy/profile, persists `runtime_owner + policy_ref` plus optional fingerprint, and reads it back before Intake completion or any policy-dependent worker realization.
+
+This gate is role-agnostic. Route modules reference this boundary instead of encoding a role→harness/model map. Runtime interpretation of `policy_ref`, concrete model/harness selection and worker/session lifecycle remain runtime-owned.
+
 ## 2. Conflict rule
 
 Apply authority by domain:
