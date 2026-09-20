@@ -32,9 +32,9 @@ cards:
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/change-codex-only-continuous-orchestration/cards/M01-T01.md"
-    review_state: in_progress
+    review_state: red
     review_subject: "291e4628444c97bbb4ab645108d94161eaf036e8"
-    review_evidence: null
+    review_evidence: "implementation/workstreams/change-codex-only-continuous-orchestration/evidence/M01-T01_REVIEW_A1_2026-09-20.md"
     result_commit: "291e4628444c97bbb4ab645108d94161eaf036e8"
     result_pr: null
     evidence: "implementation/workstreams/change-codex-only-continuous-orchestration/evidence/M01-T01_IMPLEMENTATION_2026-09-20.md"
