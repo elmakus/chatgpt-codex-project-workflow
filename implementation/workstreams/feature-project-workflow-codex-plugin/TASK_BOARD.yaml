@@ -38,5 +38,5 @@ cards:
     review_evidence: null
     result_commit: null
     result_pr: null
-    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M01-T01-runtime-contract-2026-09-20.md"
+    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/blockers/M01-T01-definition-naming-constraint-2026-09-20.md"
     tests_summary: "Runtime delta verification GREEN for same-repo plugin install, PLUGIN_ROOT canonical path resolution, bounded SessionStart activation/trust, per-repo enabled/control isolation, and bundled Skill discovery. BLOCKED: native App Server exposes bundled Skill as <plugin>:<skill>; shortest verified ID is pw:pw, while accepted PWCP authority still requires literal $pw. Definition/user decision required; see blocker evidence."
