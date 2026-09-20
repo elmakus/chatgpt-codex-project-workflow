@@ -35,12 +35,12 @@ milestones:
     review_evidence: null
   M03:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md#milestone-m03--always-on-lifecycle-intake-ux-and-progressive-disclosure-acceptance"
-    checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    checkpoint: "1cab806a17d076f56023b80f15a5214e0a16edd0"
+    implementation_head: "54e142f46571db110a155e0b1efdf5c7afcdfac3"
+    handoff: "implementation/workstreams/feature-project-workflow-codex-plugin/handoffs/M03_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M03-acceptance-2026-09-20.md"
     review_state: null
     review_subject: null
     review_evidence: null
