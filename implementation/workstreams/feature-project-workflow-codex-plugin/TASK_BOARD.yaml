@@ -5,7 +5,7 @@ current_milestone: "M04"
 
 execution_ref:
   branch: "feat/project-workflow-codex-plugin"
-  pr: null
+  pr: 44
   head: "bde88f919c0d26326949a757223f146e9b1e6976"
 
 research_obligation: null
