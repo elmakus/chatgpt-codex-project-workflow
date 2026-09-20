@@ -6,7 +6,7 @@ Merged source head: `b7354024faaa8a981976cd37b82bf014e361b647`
 Integration merge result: `82f1bc386fc54d7e6b743a3d90352e9679e9ed4e`
 Integration target: `main`
 Closure-only reconciliation branch: `close/branch-first-managed-changes`
-Closure-only pull request: pending
+Closure-only pull request: `#41`
 Verdict: **GREEN**
 
 ## Merge and package readback
