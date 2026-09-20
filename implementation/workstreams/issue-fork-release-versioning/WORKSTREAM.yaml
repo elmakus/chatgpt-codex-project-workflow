@@ -2,7 +2,7 @@
 
 id: "issue-fork-release-versioning"
 kind: "issue"
-status: "ready"
+status: "done"
 
 branch: "fix/fork-release-versioning"
 base_ref: "f3cdb60367da3e978397409b51c37faa181d613f"
@@ -43,4 +43,4 @@ branch_cleanup:
   evidence: null
 
 pr: 40
-result: null
+result: "47c3cae3c1e1eb0ea8065a10b1e5dd052b96ce12"
