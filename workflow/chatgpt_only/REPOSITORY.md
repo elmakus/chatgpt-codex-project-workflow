@@ -61,7 +61,7 @@ Projects may adapt paths, but `PROJECT.md` must identify actual canonical locati
 - milestone/Card files → stable contracts, not status mirrors;
 - evidence → durable proof when materially useful/required;
 - blockers → durable blocker evidence;
-- handoffs → completed milestone summaries; legacy/default handoffs use `project-handoffs/`, while branch-isolated handoffs are workstream-owned under `implementation/workstreams/<id>/handoffs/`;
+- handoffs → completed milestone summaries; historical legacy/default handoffs remain under `project-handoffs/` as recovery/history evidence, while all active managed workstream handoffs are workstream-owned under `implementation/workstreams/<id>/handoffs/`;
 - OpenSpec → selected behavior/design contracts.
 
 Do not mirror current card/milestone/result/branch/review state into `PROJECT.md` or stable contract files. `PROJECT.md` may document the workstream-root convention but is not a mutable global workstream registry.
@@ -96,7 +96,7 @@ When the current branch is a branch-isolated ChatGPT-only workstream, apply `wor
 
 The validated manifest owns the canonical Task Board path for managed work. Historical root/default `implementation/TASK_BOARD.yaml` remains untouched as recovery/migration input and must not become the selected mutable destination.
 
-A branch-isolated workstream also owns its cumulative milestone handoffs under `implementation/workstreams/<id>/handoffs/`. It MUST NOT update `PROJECT.md -> Latest cumulative handoff`; that pointer belongs only to the legacy/default state context. Milestone-local handoff truth is recovered from the selected workstream Task Board.
+A branch-isolated workstream also owns its cumulative milestone handoffs under `implementation/workstreams/<id>/handoffs/`. It MUST NOT update `PROJECT.md -> Latest cumulative handoff`; any such root pointer is historical/default navigation only. Milestone-local handoff truth is recovered from the selected workstream Task Board.
 
 For final-target integration, the exact merge subject must already carry the closure-ready namespaced workstream package required by `WORKSTREAMS.md#Terminal-durable-package-and-branch-cleanup`. After merge, the source branch may already be gone; closure/recovery continues from the target-side copy plus immutable PR/merge evidence, and a closure-only target-side commit/PR may reconcile actual merge/result metadata without recreating the source ref.
 
