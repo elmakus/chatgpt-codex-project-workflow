@@ -81,6 +81,7 @@ For `chatgpt_only`, the workstream lifecycle is:
 - the manifest-selected `TASK_BOARD.yaml` owns Card/milestone execution, Card/milestone review and implementation/recovery Research state for that workstream;
 - `#issue` starts diagnosis/repair intake and chooses independent versus genuinely parent-dependent stacked work before implementation;
 - `#feature` starts feature discovery but does **not** bypass the user-owned Brainstorming → Project Definition promotion gate;
+- `#grill` is **not Intake**: inside an already active Brainstorming scope it forces dependency-aware grilling without creating/recovering a workstream or exploratory scope;
 - a bounded issue may use the micro-fix path without a full Master Plan while retaining durable acceptance/evidence and independent review;
 - different local workstreams executing concurrently require separate Git worktrees/equivalent isolated checkouts; remote-only GitHub execution does not;
 - stacked children cannot masquerade as independent while they still require parent-only state;
