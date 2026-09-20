@@ -14,6 +14,8 @@ Intake has three entry forms:
 
 Treat a marker as an intake directive only when the current user request intentionally uses it as an operator command. A quoted marker, code/example text, documentation discussion, or incidental mention is not an intake directive.
 
+`#grill` is explicitly **not** an Intake directive. It may only force the grilling interaction method after the router has resolved an already active Brainstorming scope; it never creates or recovers a workstream or exploratory scope.
+
 Read-only inspect/compare/analyze requests do not create a workstream merely because they may reveal a possible change. They remain branch-free until the user clearly authorizes repository/project mutation. When that authorization arrives without `#issue` or `#feature`, use neutral `kind: change`; do not guess a narrower classification.
 
 An explicit marker selects `issue` or `feature` even when the same request also contains ordinary implementation language. If one request intentionally supplies conflicting `#issue` and `#feature` directives for the same new work and the intended kind cannot be determined, do not guess; request only the smallest clarification.
