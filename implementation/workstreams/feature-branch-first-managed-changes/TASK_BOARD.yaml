@@ -48,9 +48,9 @@ cards:
     executor: chatgpt
     depends_on: ["M01-T01"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M01-T02.md"
-    review_state: in_progress
+    review_state: green
     review_subject: "4ec2c68b68c282a10f8c5275799d8bcabec1be95"
-    review_evidence: null
+    review_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M01-T02_REVIEW.md"
     result_commit: "4ec2c68b68c282a10f8c5275799d8bcabec1be95"
     result_pr: null
     evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M01-T02.md"
