@@ -13,7 +13,7 @@ research_obligation: null
 milestones:
   M01:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/CODEX_ORCHESTRATION_CONTEXT_RECOVERY_MASTER_PLAN.md#M01 — Token-light orchestration recovery boundary"
     checkpoint: null
     implementation_head: null
@@ -28,8 +28,8 @@ cards:
     title: "Establish orchestration binding schema and recovery kernel"
     milestone: "M01"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/issue-codex-compaction-routing-recovery/cards/M01-T01.md"
     review_state: null
