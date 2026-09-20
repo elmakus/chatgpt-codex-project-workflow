@@ -21,7 +21,7 @@ cards:
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/issue-context-health-bounce/cards/MF-T01.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "main@808084a4c7989715f7ee4889a31bce28f778d597..e0d4beebb466f70e87ad0d4f2aa209c80e55f74f + MF-T01 acceptance"
     review_evidence: null
     result_commit: "e0d4beebb466f70e87ad0d4f2aa209c80e55f74f"
