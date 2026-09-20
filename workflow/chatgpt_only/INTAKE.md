@@ -1,31 +1,34 @@
 # ChatGPT-only Intake
 
-This contract owns explicit operator intake for new branch-isolated ChatGPT-only workstreams.
+This contract owns managed-change intake for new branch-isolated ChatGPT-only workstreams. Explicit markers are shortcuts; clear natural-language authorization for a new managed repository change is also a first-class entry.
 
 It applies only after root routing selected `execution_policy: chatgpt_only`.
 
 ## Entry directives
 
-The explicit operator directives are:
+Intake has three entry forms:
 
 - `#issue <problem>` — diagnose/classify a problem and create or recover an issue workstream;
-- `#feature <goal>` — create or recover a feature workstream and enter discovery.
+- `#feature <goal>` — create or recover a feature workstream and enter discovery;
+- clear natural-language authorization to implement, apply or adopt a **new managed repository change** without a marker — create or recover a neutral `change` workstream.
 
 Treat a marker as an intake directive only when the current user request intentionally uses it as an operator command. A quoted marker, code/example text, documentation discussion, or incidental mention is not an intake directive.
 
-Exactly one intake directive owns one intake entry. If one request intentionally supplies conflicting `#issue` and `#feature` directives for the same new work and the intended kind cannot be determined, do not guess; request only the smallest clarification.
+Read-only inspect/compare/analyze requests do not create a workstream merely because they may reveal a possible change. They remain branch-free until the user clearly authorizes repository/project mutation. When that authorization arrives without `#issue` or `#feature`, use neutral `kind: change`; do not guess a narrower classification.
 
-The marker selects the **entry route only**. After intake has durably established the workstream and downstream state, return to `workflow/chatgpt_only/ROUTER.md`. The marker is not a permanent session-scope boundary.
+An explicit marker selects `issue` or `feature` even when the same request also contains ordinary implementation language. If one request intentionally supplies conflicting `#issue` and `#feature` directives for the same new work and the intended kind cannot be determined, do not guess; request only the smallest clarification.
+
+The intake trigger selects the **entry route only**. After intake has durably established the workstream and downstream state, return to `workflow/chatgpt_only/ROUTER.md`. The trigger is not a permanent session-scope boundary.
 
 ## Precedence
 
-An explicit current `#issue` / `#feature` directive is evaluated before ordinary implementation/review route selection for whatever default/workstream state happened to be active before the request.
+A current intake trigger — explicit `#issue` / `#feature` or clear natural-language authorization for a new managed change — is evaluated before ordinary implementation/review route selection for whatever unrelated default/workstream state happened to be active before the request.
 
 Reason: a new independent workstream must not be blocked merely because another unrelated workstream has an `in_progress` Card, pending review or other mutable state.
 
 This precedence does not authorize mutation of unrelated state. Intake discovers relevant branches/PRs/manifests only far enough to classify identity, base/dependency and conflicts. It must not adopt another workstream's Task Board as the new workstream's mutable state.
 
-Without an explicit directive, normal router precedence is unchanged. An already-created workstream whose manifest records active intake is recovered through that durable intake state.
+Generic natural-language precedence applies only to a **new** managed change, not to an exact continuation/handoff already bound to an existing workstream/PR/manifest. Read-only requests without change authorization leave normal router precedence unchanged. An already-created workstream whose manifest records active intake is recovered through that durable intake state.
 
 ## Durable intake state
 
@@ -68,8 +71,10 @@ For an intake-created workstream:
 
 - issue ID: `issue-<slug>`;
 - feature ID: `feature-<slug>`;
+- generic change ID: `change-<slug>`;
 - issue branch: `fix/<slug>`;
-- feature branch: `feat/<slug>`.
+- feature branch: `feat/<slug>`;
+- generic change branch: `work/<slug>`.
 
 `<slug>` is a short lowercase hyphenated identifier derived from the durable subject. Use ASCII letters/digits/hyphens where practical, collapse repeated separators, and keep it concise enough to remain readable in branch names.
 
@@ -77,8 +82,9 @@ Collision handling is deterministic:
 
 1. discover existing relevant branch names and workstream IDs before creation;
 2. if the exact discovered branch/manifest is already the same durable workstream, recover it instead of creating another lane;
-3. if the candidate ID or branch belongs to different work, append the smallest available numeric suffix (`-2`, `-3`, ...) to the slug and use the same suffixed slug for both ID and branch;
-4. never recycle an existing durable workstream ID merely because that workstream is done/superseded.
+3. if the deterministic candidate branch exists but has no coherent matching manifest, or its manifest is missing/inconsistent with that branch/workstream identity, fail closed to Recovery; normal Intake must not claim, overwrite or silently suffix past an unresolved orphan/inconsistent candidate;
+4. if the candidate ID or branch is coherently owned by different durable work, append the smallest available numeric suffix (`-2`, `-3`, ...) to the slug and use the same suffixed slug for both ID and branch;
+5. never recycle an existing durable workstream ID merely because that workstream is done/superseded.
 
 A stable workstream ID is not inferred from a branch name alone after creation; the manifest remains the identity authority.
 
@@ -86,16 +92,16 @@ A stable workstream ID is not inferred from a branch name alone after creation; 
 
 1. Recover the exact repository and default/current integration target.
 2. Detect whether the request already targets an existing exact workstream through a durable locator such as branch, workstream ID, manifest or PR. If yes, recover that workstream instead of creating a duplicate. Resume its durable active intake from the recorded stage; do not replay already-completed discovery/diagnosis merely to satisfy the new-workstream sequence below.
-3. For a genuinely new intake, perform the route-specific **pre-creation discovery/diagnosis** required by the Issue or Feature section below. This step must establish the evidence needed for independent-versus-stacked base classification before a new base/branch is chosen.
+3. For a genuinely new intake, perform the route-specific **pre-creation discovery/diagnosis** required by the Issue, Feature or Generic managed-change section below. This step is read-only and must establish only the evidence needed for durable subject/identity plus independent-versus-stacked base classification before a new base/branch is chosen.
 4. Choose the exact integration target and base under **Base and dependency classification** below using that route-specific evidence.
 5. Choose a stable workstream ID/branch under **Workstream identity and naming**.
-6. Create the branch from the selected base.
-7. Persist the workstream manifest plus `INTAKE.md` with `intake.state: active` before any implementation mutation.
+6. Create the branch from the selected base. Steps 1–5 are read-only: no change-specific durable Project Workflow artifact may be authored before this branch exists.
+7. Persist the first change-specific durable Project Workflow state — the workstream manifest plus `INTAKE.md` with `intake.state: active` — on that created branch before any implementation mutation.
 8. Perform the route-specific **post-creation classification/materialization** below.
 9. Before setting `intake.state: complete`, materialize the canonical durable state required by the chosen downstream route so recovery never depends on the just-finished chat.
 10. Set intake complete, persist the final intake classification/result, return to the router and continue through the normal selected route.
 
-Branch creation itself is not implementation mutation. If branch creation succeeds but the manifest/intake record write fails, do not start implementation; recover the orphan branch, verify that it contains no conflicting implementation, and idempotently complete or abandon that intake setup.
+Branch creation itself is not implementation mutation. If branch creation succeeds but the manifest/intake record write fails, do not continue normal Intake or start implementation. Route the deterministic orphan branch to Recovery; Recovery verifies provenance/conflicting state and may idempotently complete or abandon the partial intake setup. Likewise, if Intake discovers the deterministic candidate branch already exists without a coherent matching manifest, route to Recovery rather than guessing ownership or creating a duplicate.
 
 ## Base and dependency classification
 
@@ -121,6 +127,24 @@ For stacked work, record `parent_workstream`, `parent_branch`, `parent_dependenc
 For independent work, parent fields and `parent_dependency` remain null and the branch is created from the normal integration target/base.
 
 Intake owns this initial base/dependency classification. Final stacked integration, parent-satisfaction and target-refresh behavior is governed by `workflow/chatgpt_only/WORKSTREAMS.md` plus `CLOSE.md`; Intake must not pre-empt those gates.
+
+## Generic managed-change intake
+
+A clear natural-language request to implement, apply or adopt a **new managed repository change** without `#issue` or `#feature` enters Intake as `kind: change`.
+
+For a genuinely new generic change, complete these **read-only** steps before Common intake flow step 4 chooses a base:
+
+1. derive a bounded durable subject and `<slug>` from the authorized change without guessing issue-versus-feature classification;
+2. discover exact matching workstream/branch/PR identity and only the source/dependency evidence needed to distinguish the normal integration target from a real parent-only stacked dependency;
+3. if the deterministic `work/<slug>` candidate exists without a coherent matching manifest, fail closed to Recovery rather than claiming it or choosing a suffix merely to bypass the inconsistency.
+
+After Common intake flow step 7 has created/recovered the neutral workstream and persisted durable active intake state:
+
+4. record intake kind `change` and preserve the user's authorized bounded scope;
+5. classify the smallest legal downstream route from that scope under the normal policy contracts, without reclassifying the workstream to `issue` or `feature` merely to reuse a lifecycle path;
+6. materialize that route's canonical durable recovery anchor before marking intake complete, then return to the router.
+
+Generic Intake does not bypass any normal Definition-promotion, Research, Planning, review, authorization or execution gate owned by the selected downstream route.
 
 ## Issue intake
 
@@ -183,6 +207,8 @@ When `intake.state: active`, resume Intake before interpreting later Task Board 
 When `intake.state: complete`, do not replay intake. Recover the canonical downstream artifact recorded/materialized by the completed intake and let the router select that route.
 
 If a second chat explicitly targets the same exact branch/workstream while intake is active, it recovers that intake. It does not create a second lane inside the same workstream.
+
+A deterministic candidate branch with a missing, malformed or identity-inconsistent manifest is not a valid reusable workstream and not an ordinary collision. Route to Recovery, preserve the branch, and resolve the partial-creation/provenance state before any change-specific write or alternate workstream creation.
 
 If exact identity cannot be established from durable locators/evidence, do not merge two plausible workstreams based on fuzzy similarity. Preserve both and request the smallest clarification only when evidence cannot resolve the ambiguity.
 
