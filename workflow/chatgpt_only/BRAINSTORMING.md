@@ -42,6 +42,12 @@ Do not rewrite history to make old brainstorming look settled.
 
 Read only already accepted requirements/decisions and source/project context that actually constrain the exploration. Do not load implementation-state machinery unless the question depends on current execution state.
 
+## Durable active scope
+
+Once exploration is durable managed-change state, an exact selected workstream manifest already exists under the branch-first entry contract. Create/reconcile the exact brainstorming record first, then set manifest `routing.exploratory_scope` to that repository-relative record path in the same durable transition when practical. The record owns `Scope ID`, `Revision`, status and Definition-promotion fields; the manifest is locator-only.
+
+A fresh session recovers the active exploratory scope from selected manifest `routing.exploratory_scope`, validates that locator through `WORKSTREAMS.md`, then reads only the pointed record. Never mirror this locator into root `PROJECT.md`. A missing/mismatched locator for otherwise-live exploratory state is Recovery, not permission to guess another record.
+
 ## Exit conditions
 
 Move to Research when claims require verification.
