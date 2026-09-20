@@ -15,7 +15,7 @@ Normal ChatGPT should:
 2. read project root `PROJECT.md`;
 3. read `workflow/CONTEXT_ROUTING.md`;
 4. follow only the execution-policy route selected there;
-5. recover mutable continuation/review/execution state from the canonical source defined by the selected policy route; under `chatgpt_only`, resolve any selected branch-isolated workstream manifest before its mutable implementation state, use that manifest-selected Task Board for Card/milestone implementation-review state (including `research_obligation` for implementation/recovery Research), use the selected manifest itself for its distinct workstream final-integration review, retain `implementation/TASK_BOARD.yaml` as the legacy/default fallback, use `planning/reviews/<plan-revision>.md` for pre-execution plan review, and use the exact `PROJECT.md → Active research obligation` record for pre-execution Research;
+5. recover mutable continuation/review/execution state from the canonical source defined by the selected policy route; under `chatgpt_only`, new managed work uses an exact branch-isolated workstream and its manifest-selected state, while historical root `implementation/TASK_BOARD.yaml` and root workstream-local pointers are recovery/migration input only and must migrate before further managed mutation;
 6. treat durable repository authority as stronger than stale chat memory;
 7. persist changed durable truth when current project capabilities allow it.
 
@@ -23,6 +23,6 @@ Do not paste execution-policy semantics into the start prompt. The repository ro
 
 When a fresh ChatGPT chat is required or recommended later, use the exact canonical branch-aware handoff from `workflow/common/USER_STOP.md`. Keep it locator-only: do not expand it with recoverable workflow semantics, checklists or telemetry, and do not treat the named entry obligation as a session-scope boundary.
 
-## New project
+## New project / adoption
 
-Create/choose project repository, initialize a small `PROJECT.md` with an explicit accepted execution policy, then create only phase-appropriate artifacts. Do not create implementation state before it is needed.
+Create or choose the project repository and perform only read-only discovery needed to establish the integration target and execution policy. For a managed bootstrap/adoption change, create or recover the exact branch-isolated workstream **before** writing `PROJECT.md`, workflow state or project-source changes. Author phase-appropriate state on that branch and integrate through pull request + merge; do not seed root/default implementation state as the new-work path.
