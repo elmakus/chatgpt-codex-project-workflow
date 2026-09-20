@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Unreleased — branch-first managed changes
+
+- Migrated both fixed policies (`chatgpt_only` and `codex_only`) to a branch-first managed-change model: read-only exploration may remain branch-free, but natural-language authorization creates or recovers an exact branch-isolated workstream before the first durable change-specific write.
+- Kept `#issue` / `#feature` as optional shortcuts and retained proportional micro-fix handling while requiring every managed change, including trivial ones, to integrate through branch → pull request → merge.
+- Moved active exploratory, pre-execution Research and plan-review routing out of root `PROJECT.md` and into the selected workstream manifest plus exact pointed records; implementation/recovery Research remains selected-Task-Board-owned.
+- Reclassified historical root/default Task Boards and cumulative handoffs as recovery/provenance input only for the migrated fixed policies; live historical obligations migrate deterministically to an exact branch-isolated workstream before further mutation.
+- Preserved policy-local review/orchestration semantics: fresh normal-ChatGPT review boundaries for `chatgpt_only`, Codex Main/Tester and bounded-batch semantics for `codex_only`, plus existing target-refresh and terminal source-branch-deletion safety.
+- Added integrated documentation/dogfood regression coverage so README, root project navigation, templates, bootstrap prompts and fixed-policy routing continue to express the branch-first invariant.
+
+
 ## Unreleased — dedicated codex_only policy namespace
 
 - Added a complete dedicated `workflow/codex_only/` namespace and explicit root routing for `execution_policy: codex_only`, while keeping `chatgpt_only` isolated and non-migrated accepted policies on legacy routing.
