@@ -31,6 +31,17 @@ class CodexOnlyContinuousOrchestrationContractTests(unittest.TestCase):
         )
         self.assertNotIn("perform the context-health trigger check below", ROUTER)
 
+    def test_true_human_project_stop_boundaries_remain(self):
+        for boundary in (
+            "real strategic/product decision",
+            "explicit live/deployment authorization",
+            "concrete unremediable runtime/input blocker",
+            "end of approved scope",
+        ):
+            self.assertIn(boundary, ROUTER)
+        self.assertIn("Brainstorming → Project Definition promotion gate", ROUTER)
+        self.assertIn("treat this as a policy-specific real user stop", ROUTER)
+
     def test_planning_cannot_schedule_coordinator_refresh_boundary(self):
         self.assertNotIn(
             "coordinating-context refresh boundaries only when materially useful",
