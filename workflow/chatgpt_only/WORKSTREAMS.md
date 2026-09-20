@@ -52,6 +52,7 @@ It owns:
 - exact branch, creation base and integration target;
 - optional stacked parent identity/branch plus the exact parent-only dependency relation;
 - active/completed Intake lifecycle + exact intake-record location when the workstream was created/recovered through explicit intake;
+- exact nullable pre-execution routing locators for exploratory scope, pre-execution Research and active plan review;
 - exact Task Board location when implementation state exists;
 - workstream authority pointers;
 - workstream-level final-integration review state when such a gate is active;
@@ -61,6 +62,20 @@ It owns:
 The manifest does **not** own Card/milestone execution state.
 
 For intake-created workstreams, manifest `intake.state` + `intake.record` are routing/workstream-lifecycle metadata. The pointed `INTAKE.md` owns durable intake scope/findings/classification. Neither may mirror Card/milestone execution/review/result state.
+
+### Pre-execution routing locators
+
+The manifest `routing` block is **locator-only** pre-execution state:
+
+- `exploratory_scope` locates the exact active exploratory/brainstorming record for this workstream;
+- `research_obligation` locates the exact active pre-execution Research record for this workstream;
+- `plan_review` locates the exact active plan-review record for this workstream.
+
+Each value is nullable. A non-null value MUST be an exact repository-relative path and, for ordinary pre-integration work, MUST resolve on the exact manifest `branch`. The pointed artifact remains the sole owner of its lifecycle/status, subject/revision, findings/return data or review verdict. Do not copy those fields into the manifest.
+
+Before using a non-null routing locator, validate that the pointed artifact is the expected artifact class and belongs to the selected workstream/authority subject according to that artifact's owning lifecycle contract. A missing path, malformed locator, wrong artifact class, workstream/branch mismatch, plan-subject mismatch or contradictory stale locator is inconsistent state and routes to Recovery. Do not scan another branch, another workstream or a repository-global mutable registry to guess a replacement.
+
+`routing.research_obligation` is only for **pre-execution** Research. Once implementation/recovery state exists, Research continuation remains owned by the selected Task Board's `research_obligation` pointer. The manifest `review` block remains reserved for the distinct workstream final-integration review and MUST NOT be used for plan review.
 
 When a Task Board exists, it alone owns mutable Card/milestone readiness, execution, executor, implementation/recovery Research pointer, Card/milestone review state, result and evidence fields.
 
@@ -228,6 +243,8 @@ Active workstreams are recoverable from exact branch/handoff locators plus branc
 An optional project-level index may exist only as non-authoritative navigation unless a future accepted decision defines conflict-safe authoritative semantics.
 
 `PROJECT.md` may document the workstream-root convention but must not mirror current workstream/Card/review state.
+
+Pre-execution `routing.*` locators are likewise selected-workstream state. They must not be mirrored into a repository-global mutable workstream registry.
 
 ## Seriality and filesystem isolation
 
@@ -412,6 +429,7 @@ A branch-isolated intake/implementation/review/recovery obligation is recoverabl
 - for a successful merge whose closure is not yet terminal, the exact target-side package carried by that merge plus immutable PR/merge evidence;
 - the exact workstream manifest;
 - the exact manifest-pointed intake record when `intake.state: active`;
+- the exact non-null manifest `routing.*` record(s) required by the active pre-execution phase;
 - the manifest-selected Task Board when implementation exists;
 - exact authority/evidence/review pointers;
 - for an integrated terminal `done` workstream after source-branch deletion, the target-side durable workstream package plus exact manifest `result`/integration evidence;
