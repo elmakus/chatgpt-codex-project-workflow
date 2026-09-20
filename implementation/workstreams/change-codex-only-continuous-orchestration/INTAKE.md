@@ -7,7 +7,7 @@
 - Base: `ce3cf3fc80b923ad26b77d9ac66fb3db5ad31f5f`
 - Classification: independent
 - Parent workstream: none
-- Status: active
+- Status: complete
 
 ## Operator intent
 
@@ -32,16 +32,15 @@ No matching active workstream, branch or PR was found. The change is independent
 
 This is not a micro-fix. It changes accepted lifecycle semantics for `codex_only`, including what may stop a long-running orchestration pass.
 
-Next route: `project_definition`.
+Initial next route: `project_definition`.
 
-Definition must freeze:
+Definition completed with:
+- `requirements/CODEX_ONLY_CONTINUOUS_ORCHESTRATION.md` R1;
+- `decisions/ADR_CODEX_ONLY_CONTINUOUS_MAIN_ORCHESTRATION.md`.
 
-- normal `codex_only` continuation does not contain a Context Health/FRESH gate;
-- Main continues across all deterministic authorized milestones/reviews/corrections/close transitions;
-- formal Tester review does not itself return control to the user;
-- session/runtime loss is handled by durable recovery, not by a planned hygiene stop;
-- true stops remain unresolved user/product authority, explicit authorization gates, concrete unremediable runtime/input blockers, and end of approved scope;
-- the existing Brainstorming → Definition user-promotion gate remains unchanged.
+No unresolved user/product choice remains for planning.
+
+Current next route: `strategic_planning`.
 
 ## Scope boundaries
 
