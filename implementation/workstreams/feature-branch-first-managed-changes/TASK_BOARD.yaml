@@ -5,7 +5,7 @@ current_milestone: "M04"
 
 execution_ref:
   branch: "feat/branch-first-managed-changes"
-  pr: null
+  pr: 39
   head: "7273d292a1e77559f66b84f811e0ae6195d357ab"
 
 research_obligation: null
@@ -72,7 +72,7 @@ cards:
     review_subject: "e80a4b24854fae485e87532f882831291189bece"
     review_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M01-T01_REVIEW.md"
     result_commit: "e80a4b24854fae485e87532f882831291189bece"
-    result_pr: null
+    result_pr: 39
     evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M01-T01.md"
     tests_summary: "GREEN: exact branch readback/static contract checks passed for neutral kind, identical three-locator routing schema, locator-only ownership, fail-closed recovery, Task Board/final-review ownership preservation, policy-local separation and OpenSpec coherence; no repository test runner was present/claimed."
 
@@ -88,7 +88,7 @@ cards:
     review_subject: "4ec2c68b68c282a10f8c5275799d8bcabec1be95"
     review_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M01-T02_REVIEW.md"
     result_commit: "4ec2c68b68c282a10f8c5275799d8bcabec1be95"
-    result_pr: null
+    result_pr: 39
     evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M01-T02.md"
     tests_summary: "GREEN: exact branch readback/static scenario checks passed for natural-language managed-change entry, branch-free read-only behavior, marker shortcuts, neutral change identity, deterministic suffixing/exact recovery, fail-closed orphan handling, branch-before-write ordering, policy-local separation and OpenSpec coherence."
 
@@ -104,7 +104,7 @@ cards:
     review_subject: "aa2d0e578940bf6cac92d9191a3f37277a0f447b"
     review_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M01-T03_REVIEW.md"
     result_commit: "aa2d0e578940bf6cac92d9191a3f37277a0f447b"
-    result_pr: null
+    result_pr: 39
     evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M01-T03.md"
     tests_summary: "GREEN: exact-subject readback/static boundary checks passed for integrated-root PROJECT semantics, recovery-only historical default state, branch-before-write bootstrap/adoption, policy-local separation, OpenSpec completion and explicit M02/M03/M04 deferrals."
 
@@ -120,7 +120,7 @@ cards:
     review_subject: "6b1d9b2622f9275197e0b10e51c652c96b37f267"
     review_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M02-T01_REVIEW.md"
     result_commit: "6b1d9b2622f9275197e0b10e51c652c96b37f267"
-    result_pr: null
+    result_pr: 39
     evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M02-T01.md"
     tests_summary: "GREEN: exact branch readback and focused pre-execution lifecycle scenarios passed for manifest-owned exploratory/Research/plan-review locators, user-owned promotion, crash-safe Research/verdict consumption, fail-closed recovery, OpenSpec coherence and policy separation; no CI/test-runner execution is claimed."
 
@@ -136,7 +136,7 @@ cards:
     review_subject: "a3726bf22db1103e1a53c8d6e8256647699b6267"
     review_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M02-T02_REVIEW.md"
     result_commit: "a3726bf22db1103e1a53c8d6e8256647699b6267"
-    result_pr: null
+    result_pr: 39
     evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M02-T02.md"
     tests_summary: "GREEN: exact connector-backed static assertion replay PASS 52/52 after bounded regression-test correction; workstream-only active execution, topology-before-branch historical migration, fail-closed binding, review/Research ownership, micro-fix, target-refresh, terminal recovery, historical preservation, task/template surfaces, OpenSpec and policy separation remain coherent; local runner checkout is blocked by DNS, so no CI/Python runner pass is claimed."
 
@@ -152,7 +152,7 @@ cards:
     review_subject: "9aa1af79e4e3634c81626fc04fc6c9a7a6874519"
     review_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M03-T01_REVIEW_2.md"
     result_commit: "9aa1af79e4e3634c81626fc04fc6c9a7a6874519"
-    result_pr: null
+    result_pr: 39
     evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M03-T01.md"
     tests_summary: "GREEN after bounded RED correction: focused Codex pre-execution regression module 9/9 PASS and repository unittest discovery 19/19 PASS; in-scope semantic sweep found no active root PROJECT exploratory/Research ownership and no ChatGPT-only lifecycle imports; M03-T02-owned historical/default recovery wording remains explicitly deferred."
 
@@ -168,7 +168,7 @@ cards:
     review_subject: "76abbc14ea2e7ae9a4e6d98146beb2b66f4515b6"
     review_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M03-T02_REVIEW.md"
     result_commit: "76abbc14ea2e7ae9a4e6d98146beb2b66f4515b6"
-    result_pr: null
+    result_pr: 39
     evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M03-T02.md"
     tests_summary: "GREEN: exact connector-backed regression replay PASS 14/14 plus Codex-only semantic sweep; topology-before-branch migration, read-only historical source, Main/Tester/Research ownership, batch/post-batch lineage, micro-fix/target-refresh/terminal recovery, task/template surfaces, runtime-identity exclusion, OpenSpec and policy separation are coherent. Local unittest checkout was blocked by DNS, so no Python/CI runner pass is claimed."
 
@@ -184,6 +184,6 @@ cards:
     review_subject: null
     review_evidence: null
     result_commit: "cf9582b3a25f91ea018981f685e65ceb8c840e8d"
-    result_pr: null
+    result_pr: 39
     evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M04-T01.md"
     tests_summary: "GREEN: exact connector-backed M04 closure replay PASS 19/19; README/root PROJECT/template/bootstrap/root router/fixed-policy migration boundaries are coherent. Sandbox DNS blocked a fresh repository checkout, so no Python/CI runner PASS is claimed."
