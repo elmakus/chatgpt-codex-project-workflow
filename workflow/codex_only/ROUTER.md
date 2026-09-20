@@ -176,6 +176,7 @@ When Intake completes, it must first materialize the canonical durable state own
 
 Read:
 - `workflow/codex_only/BRAINSTORMING.md`;
+- the current intentional `#grill` directive when present for an already active Brainstorming scope;
 - the exact record referenced by selected manifest `routing.exploratory_scope` when that locator exists;
 - the exact `complete` Research record referenced by selected manifest `routing.research_obligation` when its Return target is this Brainstorming subject;
 - otherwise the current brainstorming material needed to establish/create the manifest locator;
