@@ -20,6 +20,19 @@ AUTHORITY = (ROOT / "workflow" / "common" / "AUTHORITY.md").read_text(
     encoding="utf-8"
 )
 
+CHATGPT_EXECUTION_PREP = (
+    ROOT / "workflow" / "chatgpt_only" / "EXECUTION_PREP.md"
+).read_text(encoding="utf-8")
+CHATGPT_RECOVERY = (
+    ROOT / "workflow" / "chatgpt_only" / "RECOVERY.md"
+).read_text(encoding="utf-8")
+CODEX_EXECUTION_PREP = (
+    ROOT / "workflow" / "codex_only" / "EXECUTION_PREP.md"
+).read_text(encoding="utf-8")
+CODEX_RECOVERY = (
+    ROOT / "workflow" / "codex_only" / "RECOVERY.md"
+).read_text(encoding="utf-8")
+
 
 class BranchFirstIntegratedClosureTests(unittest.TestCase):
     def test_readme_no_longer_presents_root_default_as_fixed_policy_active_state(self):
@@ -122,6 +135,24 @@ class BranchFirstIntegratedClosureTests(unittest.TestCase):
             "managed changes reach the integration target through branch → pull "
             "request → merge",
             AUTHORITY,
+        )
+
+    def test_fixed_policy_execution_never_resumes_root_default_as_active_state(self):
+        self.assertIn(
+            "MUST NOT be scaffolded or selected for new/continued managed work",
+            CHATGPT_EXECUTION_PREP,
+        )
+        self.assertIn(
+            "## Historical root/default migration before mutation",
+            CHATGPT_RECOVERY,
+        )
+        self.assertIn(
+            "MUST NOT be scaffolded, selected or mutated for new or continued managed work",
+            CODEX_EXECUTION_PREP,
+        )
+        self.assertIn(
+            "## Historical root/default migration before mutation",
+            CODEX_RECOVERY,
         )
 
     def test_changelog_records_fixed_policy_branch_first_migration(self):
