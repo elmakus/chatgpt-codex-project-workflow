@@ -6,14 +6,14 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: null
+  head: "d4dbd02a42e0ea04584154e7fb736a32b203acdf"
 
 research_obligation: null
 
 milestones:
   M01:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md#M01--branch-first-state-model-and-generic-managed-change-entry-contracts"
     checkpoint: null
     implementation_head: null
@@ -28,8 +28,8 @@ cards:
     title: "Define branch-first workstream routing state model"
     milestone: "M01"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M01-T01.md"
     review_state: null
