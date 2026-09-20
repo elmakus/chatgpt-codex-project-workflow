@@ -13,7 +13,7 @@ parent_branch: null
 parent_dependency: null
 
 intake:
-  state: active
+  state: complete
   record: "implementation/workstreams/issue-context-health-bounce/INTAKE.md"
 
 task_board: null
