@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/project-workflow-codex-plugin"
   pr: null
-  head: "bd9011b1e4463960871d62cf41987285346ead8c"
+  head: "d235e11c78e732d7c06ba4e3a6233c490d6181b3"
 
 research_obligation: null
 
@@ -33,10 +33,10 @@ cards:
     depends_on: []
     openspec_change: null
     contract: "implementation/workstreams/feature-project-workflow-codex-plugin/cards/M01-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "d235e11c78e732d7c06ba4e3a6233c490d6181b3"
     review_evidence: null
-    result_commit: null
+    result_commit: "d235e11c78e732d7c06ba4e3a6233c490d6181b3"
     result_pr: null
-    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M01-T01-runtime-contract-2026-09-20.md"
-    tests_summary: "Prior runtime delta verification is GREEN for same-repo plugin install, PLUGIN_ROOT canonical path resolution, bounded SessionStart activation/trust, per-repo enabled/control isolation, and bundled Skill discovery. Definition R2 plus approved plan PWCP-P2 accept the verified pw:pw command; Card is READY for bounded result reconciliation without rerunning unchanged runtime probes."
+    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M01-T01-result-reconciliation-2026-09-20.md"
+    tests_summary: "GREEN implementation reconciliation: existing current-runtime delta evidence remains valid; Definition R2 plus approved PWCP-P2 resolve the sole bundled-Skill naming blocker as pw:pw; no runtime mechanism changed, so unchanged probes were not redundantly rerun. Exact acceptance mapping and M02 implementation contract are in implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M01-T01-result-reconciliation-2026-09-20.md. Pending fresh independent review."
