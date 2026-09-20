@@ -48,7 +48,7 @@ cards:
     depends_on:
       - "M01-T01"
     contract: "implementation/workstreams/issue-codex-compaction-routing-recovery/cards/M01-T02.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "94eb7fd074052c5d4420b6edb2fe32ab2de1da13"
     review_evidence: null
     result_commit: "94eb7fd074052c5d4420b6edb2fe32ab2de1da13"
