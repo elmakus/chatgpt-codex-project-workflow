@@ -13,6 +13,8 @@ Do not load legacy/shared execution trees or another policy directory.
 1. Read `workflow/common/AUTHORITY.md` and project root `PROJECT.md`.
 2. An explicit current `#issue` / `#feature` operator directive routes to `INTAKE.md` before unrelated mutable execution state.
 
+An intentional current `#grill` directive is **not** Intake and does not receive new-workstream operator-directive precedence. Resolve normal workstream/exploratory state first. Only the Brainstorming route may consume `#grill`, and only for an already active Brainstorming scope; it must not create or recover a workstream or exploratory scope.
+
 3. Clear natural-language authorization for a **new managed repository change** (for example implement/apply/adopt repository or project changes) routes to `INTAKE.md` before any change-specific durable write when the request is not already an exact continuation/handoff of an existing workstream/PR/manifest. Read-only inspect/compare/analyze requests remain branch-free. Generic intake uses neutral `kind: change`; do not guess `issue` versus `feature`.
 4. Otherwise resolve an explicitly/current-branch selected branch-isolated workstream through `WORKSTREAMS.md`; validate manifest identity before trusting its Task Board.
 5. Resume `intake.state: active` before later work. A completed `micro_fix` Intake with no Task Board routes directly to Execution Prep + `MICRO_FIX.md`.
