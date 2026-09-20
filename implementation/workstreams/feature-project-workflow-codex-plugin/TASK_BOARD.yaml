@@ -39,4 +39,4 @@ cards:
     result_commit: "d235e11c78e732d7c06ba4e3a6233c490d6181b3"
     result_pr: null
     evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/blockers/M01-T01-command-name-reopened-2026-09-20.md"
-    tests_summary: "Previous PWCP-P2 reconciliation/result subject is preserved as historical evidence, but user/product authority reopened the explicit command name before review. Current blocker: requested $pw:project_workflow conflicts with normal Skill hyphen-case validation; see implementation/workstreams/feature-project-workflow-codex-plugin/blockers/M01-T01-command-name-reopened-2026-09-20.md."
+    tests_summary: "Definition blocker resolved: user/product authority accepted $pw:project-workflow under the verified normal Skill hyphen-case constraint. Previous PWCP-P2/M01 review subject remains historical only. Card stays blocked until PWCP-P3 receives independent plan review/approval and Execution Prep reconciles the Card contract."
