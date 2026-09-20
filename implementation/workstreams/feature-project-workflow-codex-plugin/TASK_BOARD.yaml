@@ -6,7 +6,7 @@ current_milestone: "M02"
 execution_ref:
   branch: "feat/project-workflow-codex-plugin"
   pr: null
-  head: "fbe0a601c2e443363a41f0b5e682bec7c3c588d3"
+  head: "6e16ba11293bbdb7bbc8d96167e8280273d77304"
 
 research_obligation: null
 
@@ -61,10 +61,10 @@ cards:
       - "M01-T01"
     openspec_change: null
     contract: "implementation/workstreams/feature-project-workflow-codex-plugin/cards/M02-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "6e16ba11293bbdb7bbc8d96167e8280273d77304"
     review_evidence: null
-    result_commit: null
+    result_commit: "6e16ba11293bbdb7bbc8d96167e8280273d77304"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M02-T01-plugin-package-2026-09-20.md"
+    tests_summary: "GREEN implementation on exact subject 6e16ba11293bbdb7bbc8d96167e8280273d77304. 14/14 repository tests passed; official Codex 0.155.0-alpha.9.2 plugin validator passed; isolated local and Git-backed marketplace install/readback returned pw@project-workflow installed+enabled; native skills/list returned pw:project-workflow; hooks/list returned the production SessionStart hook from installed cache; installed bootstrap routed through PROJECT.md + canonical workflow/CONTEXT_ROUTING.md; no live Codex state was mutated. Pending fresh independent review."
