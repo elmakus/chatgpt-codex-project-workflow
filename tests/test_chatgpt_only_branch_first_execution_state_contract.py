@@ -160,7 +160,7 @@ class ChatGPTOnlyBranchFirstExecutionStateTests(unittest.TestCase):
             repository,
         )
         self.assertIn(
-            "do not rewrite historical evidence/handoffs solely because the state model changed",
+            "Do not rewrite historical evidence/handoffs solely because the state model changed",
             repository,
         )
         self.assertIn(
