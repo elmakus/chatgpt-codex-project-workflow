@@ -2,7 +2,7 @@
 
 Milestone: `M01 — Continuous Codex Main lifecycle`
 Plan revision: `COCO-P2`
-Status: `PRE-INTEGRATION / FINAL REVIEW GREEN`
+Status: `DONE / INTEGRATED`
 
 ## Closure-ready state
 
@@ -30,11 +30,11 @@ Status: `PRE-INTEGRATION / FINAL REVIEW GREEN`
 - Final integration independent review: `implementation/workstreams/change-codex-only-continuous-orchestration/evidence/M01_FINAL_INTEGRATION_REVIEW_2026-09-20.md`.
 - Integrated acceptance candidate: `implementation/workstreams/change-codex-only-continuous-orchestration/evidence/M01_ACCEPTANCE_CANDIDATE_2026-09-20.md`.
 
-## Remaining gate and deterministic continuation
+## Final integration and terminal recovery
 
-The manifest-owned final-integration review is GREEN. Remaining deterministic Close obligations are:
-1. re-read `main`; if the target moved, rerun the integration refresh contract;
-2. open/verify the workstream → `main` PR carrying this namespaced closure-ready package;
-3. merge only while review and refresh remain current;
-4. reconcile the target-side manifest/Task Board/handoff/result state and verify terminal readback;
-5. handle source-branch cleanup under the normal branch-first closure contract.
+- Final integration PR: `#45`.
+- Final integration result: `597069effa21478429a5defb6309f41449889ab9`.
+- Target-side closure evidence: `implementation/workstreams/change-codex-only-continuous-orchestration/evidence/M01_FINAL_CLOSURE_2026-09-20.md`.
+- The merge result tree is unchanged from exact PR head `449d8c5a8dbbd1e38f2240500405450dfe69e18c`.
+- Source branch `work/codex-only-continuous-orchestration` was automatically deleted after successful merge; no fallback cleanup marker is required.
+- Terminal recovery is owned by this target-side namespaced package. No live Card, Research, review, stacked dependency, integration or cleanup obligation remains.
