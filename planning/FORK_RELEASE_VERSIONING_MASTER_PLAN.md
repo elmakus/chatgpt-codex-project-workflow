@@ -1,7 +1,7 @@
 # Fork Release Versioning — Master Plan
 
 Revision: `FRV-P2`
-Status: `draft`
+Status: `approved`
 Updated: `2026-09-20`
 Supersedes plan revision: `FRV-P1` (independent review RED — OpenSpec boundary)
 Review requirement: `RECOMMENDED`
@@ -162,5 +162,5 @@ Planning audit result: `GREEN`.
 - Review requirement: `RECOMMENDED`
 - Reason: this is a new cross-publication workflow contract that changes how agents choose externally visible release versions; independent review is practical before implementation.
 - Review record: `planning/reviews/FRV-P2.md`
-- Review state: `pending`
-- Reviewed subject: populated from the exact immutable draft blob after persistence.
+- Review state: `green`
+- Reviewed subject: `planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md@blob:90e25672f22299500d3c1086870eb587414ff345`
