@@ -1,7 +1,7 @@
 # Project Workflow Codex Plugin — Master Plan
 
 Revision: `PWCP-P1`
-Status: `draft`
+Status: `approved`
 Updated: `2026-09-20`
 Review requirement: `RECOMMENDED`
 
