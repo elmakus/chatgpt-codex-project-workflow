@@ -6,14 +6,14 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/project-workflow-codex-plugin"
   pr: null
-  head: "c39cb4415d10640b76ed505cf2967dcc6350ac1b"
+  head: "193b40ace0a073682a483a3b2755979ae7f01962"
 
 research_obligation: null
 
 milestones:
   M01:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md#milestone-m01--current-runtime-plugin-and-activation-contract"
     checkpoint: null
     implementation_head: null
@@ -28,7 +28,7 @@ cards:
     title: "Verify current Codex plugin activation contract"
     milestone: "M01"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on: []
     openspec_change: null
