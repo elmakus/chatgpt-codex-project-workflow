@@ -2,7 +2,7 @@
 
 Plan revision: COCO-P2
 Review requirement: RECOMMENDED
-Review state: pending
+Review state: in_progress
 Review subject: 0f2a0a1393e7fcf303cc63306bbd4e6ffcf7543b
 Review evidence: none
 
