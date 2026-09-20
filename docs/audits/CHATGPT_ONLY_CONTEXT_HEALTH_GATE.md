@@ -1,10 +1,14 @@
 # Audit — ChatGPT-only Context Health Gate
 
-Date: 2026-09-18  
-Base: `main@ac4907c62f6aaecbc3704a79f9cd3b55a0b3eb87`  
-Audited branch: `feat/chatgpt-context-health-gate@6e505462e0e063d038d5dd5c09b1e61cbd715043`
+Original audit date: 2026-09-18  
+Original base: `main@ac4907c62f6aaecbc3704a79f9cd3b55a0b3eb87`  
+Original audited branch: `feat/chatgpt-context-health-gate@6e505462e0e063d038d5dd5c09b1e61cbd715043`  
+Anti-bounce regression update: 2026-09-20  
+Regression workstream: `issue-context-health-bounce`
 
-Verdict: **GREEN**
+Original gate verdict: **GREEN**
+
+The anti-bounce scenario updates below are implementation-owned regression coverage. They do not constitute the fresh independent review verdict for the current workstream subject.
 
 ## Goal
 
@@ -214,6 +218,10 @@ PASS:
 - common user-stop contract has hygiene variant;
 - context-health handoff changes no project authority/policy/review semantics.
 
-## Final verdict
+## Original gate verdict
 
-**GREEN.** The workflow now has a qualitative, safe-boundary context refresh mechanism without arbitrary cadence or duplicate review resets.
+**GREEN.** The original gate established a qualitative, safe-boundary context refresh mechanism without arbitrary cadence or duplicate review resets.
+
+## Anti-bounce regression status
+
+The 2026-09-20 additions document implementation regression expectations only. The current workstream's independent review verdict remains external to this audit and is owned by the selected workstream review lifecycle.
