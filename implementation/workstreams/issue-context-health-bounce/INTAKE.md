@@ -5,7 +5,7 @@
 - Branch: `fix/chatgpt-only-context-health-bounce`
 - Integration target: `main`
 - Base: `main@808084a4c7989715f7ee4889a31bce28f778d597`
-- Status: `active`
+- Status: `complete`
 
 ## Operator intent
 
@@ -51,6 +51,10 @@ Next route: `execution_prep:micro_fix`
 4. `CONTINUE` remains the default when durable next authority is deterministically identifiable and no affirmative harmful-context evidence exists.
 5. Existing genuine hard-risk signals and safe-boundary behavior remain intact.
 6. Regression checks cover the reported short-session bounce case and nearby scenarios.
+
+## Durable continuation
+
+This completed Intake record plus `WORKSTREAM.yaml` is the canonical pre-Task-Board continuation anchor for `workflow/chatgpt_only/MICRO_FIX.md`.
 
 ## Evidence / tests to perform
 
