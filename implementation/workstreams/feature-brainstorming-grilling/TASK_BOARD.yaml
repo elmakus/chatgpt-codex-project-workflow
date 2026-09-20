@@ -6,14 +6,14 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/brainstorming-grilling"
   pr: null
-  head: null
+  head: "a63120d915971c1f768ee3045db9bb5ee689874a"
 
 research_obligation: null
 
 milestones:
   M01:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md#M01--integrate-dependency-aware-grilling-into-brainstorming"
     checkpoint: null
     implementation_head: null
@@ -28,8 +28,8 @@ cards:
     title: "Integrate dependency-aware grilling into Brainstorming"
     milestone: "M01"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on: []
     openspec_change: "openspec/changes/brainstorming-grilling"
     contract: "implementation/workstreams/feature-brainstorming-grilling/cards/M01-T01.md"
