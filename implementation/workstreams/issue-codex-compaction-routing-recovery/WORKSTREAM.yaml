@@ -17,7 +17,7 @@ intake:
 routing:
   exploratory_scope: null
   research_obligation: null
-  plan_review: null
+  plan_review: planning/reviews/CCOR-P1.md
 
 task_board: null
 
@@ -25,7 +25,7 @@ authority:
   requirements: requirements/CODEX_ORCHESTRATION_CONTEXT_RECOVERY.md
   decisions:
     - decisions/ADR_CODEX_ORCHESTRATION_POLICY_BINDING.md
-  plan: null
+  plan: planning/CODEX_ORCHESTRATION_CONTEXT_RECOVERY_MASTER_PLAN.md
 
 review:
   requirement: RECOMMENDED
