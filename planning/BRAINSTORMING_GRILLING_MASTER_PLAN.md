@@ -1,7 +1,7 @@
 # Master Plan — Brainstorming Grilling
 
 Revision: `BGR-P2`
-Status: `draft`
+Status: `approved`
 Updated: `2026-09-20`
 Independent plan review: `RECOMMENDED`
 Supersedes plan revision: `BGR-P1` — corrected OpenSpec boundary after independent review RED.
