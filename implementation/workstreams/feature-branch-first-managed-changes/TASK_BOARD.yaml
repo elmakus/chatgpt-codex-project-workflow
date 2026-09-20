@@ -6,7 +6,7 @@ current_milestone: "M02"
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "6b1d9b2622f9275197e0b10e51c652c96b37f267"
+  head: "f0079b790e9f65d0c02441f19ed240e76da70a16"
 
 research_obligation: null
 
@@ -104,7 +104,7 @@ cards:
     title: "Migrate ChatGPT-only execution state and historical-default recovery"
     milestone: "M02"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on: ["M02-T01"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M02-T02.md"
