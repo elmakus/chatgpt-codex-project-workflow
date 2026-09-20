@@ -75,11 +75,21 @@ class ChatGPTOnlyBranchFirstExecutionStateTests(unittest.TestCase):
             recovery,
         )
         self.assertIn(
-            "retry/recover the same deterministic migration identity without mutating "
+            "retry/recover the same deterministic migration identity **and topology** without mutating "
             "the source root board",
             recovery,
         )
 
+    def test_historical_migration_proves_topology_before_branch_creation(self):
+        recovery = FILES["RECOVERY.md"]
+        router = FILES["ROUTER.md"]
+        self.assertIn("Recover one exact migration topology **before branch creation or adoption**", recovery)
+        self.assertIn("INTAKE.md#Base and dependency classification", recovery)
+        self.assertIn("integration_target", recovery)
+        self.assertIn("base_ref", recovery)
+        self.assertIn("parent_dependency", recovery)
+        self.assertIn("fail closed before creating/adopting a branch", recovery)
+        self.assertIn("INTAKE.md` only when historical root/default migration", router)
     def test_binding_mismatch_and_historical_selection_fail_closed(self):
         router = FILES["ROUTER.md"]
         workstreams = FILES["WORKSTREAMS.md"]
