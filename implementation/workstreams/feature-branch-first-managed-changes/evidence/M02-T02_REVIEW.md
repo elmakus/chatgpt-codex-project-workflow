@@ -39,3 +39,22 @@ Required correction is bounded inside accepted authority: Recovery must recover/
 ## Verdict
 
 **RED.** The exact review subject does not yet satisfy deterministic historical-default migration. The finding is a bounded L1/L2 correction inside the accepted M02/Card authority; no user/product decision is required.
+
+
+---
+
+## Re-review attempt 2
+
+Date: 2026-09-20
+Review subject: `24efef664be6db1889fbf868487192a064e9e61b`
+Verdict: **RED**
+
+The prior topology finding is corrected: exact target/base/dependency classification now precedes branch creation/adoption, ambiguity fails closed, topology is persisted, and branch readback validates it. The remaining reviewed M02-T02 contracts are coherent with the Card authority and OpenSpec.
+
+Independent static assertion replay against exact immutable GitHub contents produced **51/52** passes. The one failure is in `test_historical_artifacts_are_preserved_but_not_active`: the test expects lowercase `do not rewrite historical evidence/handoffs solely because the state model changed`, while `REPOSITORY.md` contains the same sentence beginning with capital `Do`. Since `assertIn` is case-sensitive, the committed regression test is not GREEN as written.
+
+No GitHub Actions/status run exists for this subject. A clean local checkout attempt could not start because DNS resolution for `github.com` failed, so no Python runner pass is claimed.
+
+Impact: Card acceptance 9 and the required focused regression-check boundary are not GREEN for this exact subject; implementation evidence overstates that check. The workflow behavior itself is not shown defective by this finding.
+
+Bounded correction: align the regression assertion with the authoritative text (or make it semantically robust), replay the checks, reconcile evidence, and freeze a new immutable subject. No user/product decision is required.
