@@ -2,7 +2,7 @@
 
 Milestone: `M01 — Token-light orchestration recovery boundary`
 Plan revision: `CCOR-P2`
-Status: `PRE-INTEGRATION / FINAL REVIEW GREEN`
+Status: `DONE / INTEGRATED`
 
 ## Closure-ready state
 
@@ -31,13 +31,12 @@ Status: `PRE-INTEGRATION / FINAL REVIEW GREEN`
 - Final integration independent review: `implementation/workstreams/issue-codex-compaction-routing-recovery/evidence/M01_FINAL_INTEGRATION_REVIEW_2026-09-20.md`.
 - Integrated acceptance candidate: `implementation/workstreams/issue-codex-compaction-routing-recovery/evidence/M01_ACCEPTANCE_CANDIDATE_2026-09-20.md`.
 
-## Remaining gate and deterministic continuation
+## Final integration and terminal recovery
 
-Final integration review is GREEN and final integration PR is `#47`.
-
-Deterministic continuation:
-1. re-read `main`; if the target moved, rerun the integration refresh contract;
-2. verify PR `#47` carries the complete namespaced closure-ready package and only authorized closure bookkeeping after the reviewed subject;
-3. merge only while review and refresh remain current;
-4. reconcile target-side manifest/Task Board/handoff/result state and verify terminal readback;
-5. handle source-branch cleanup under the normal branch-first closure contract.
+- Final integration PR: `#47`.
+- Exact merged source head: `fbd669af20851e20297459c6fd9b656c7643b9a5`.
+- Final integration result: `1d61e60fb16596099de9d7c1b25d9f560b739e4c`.
+- Target-side closure evidence: `implementation/workstreams/issue-codex-compaction-routing-recovery/evidence/M01_FINAL_CLOSURE_2026-09-20.md`.
+- The merge result tree is unchanged from the exact PR head.
+- Source branch `fix/codex-compaction-routing-recovery` was automatically deleted after successful merge; no fallback cleanup marker is required.
+- Terminal recovery is owned by this target-side namespaced package. No live Card, Research, review, stacked dependency, integration or cleanup obligation remains.
