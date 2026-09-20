@@ -122,11 +122,15 @@ This gate does **not** apply to `Definition Complete = GREEN → Planning`; that
 
 Do not load context-health machinery after every role by default.
 
-Before starting the next substantial obligation at a safe durable boundary, ask whether the accumulated chat may now materially increase the risk of stale-state carryover, authority confusion or omission.
+Before starting the next substantial obligation at a safe durable boundary, ask whether the accumulated chat now contains affirmative evidence that continuing it may materially increase the risk of stale-state carryover, authority confusion or omission.
 
-If there is no concrete signal, continue without loading another module.
+Normal workflow topology is not such evidence. A role, milestone, phase, workstream or authority-area transition is not by itself a concrete context-health signal and MUST NOT cause this module to be loaded merely because the next obligation differs from the work just completed. The next obligation using a different authority/source area determines what authority to load next; it does not by itself show that the current transcript is harmful.
 
-If there is a concrete signal — for example materially superseded state in the transcript, major role/authority-area transition, large irrelevant diagnostic/tool history, or uncertainty reconstructing current truth from the conversation — read:
+If the current chat was itself started from a context-hygiene fresh-session handoff, completion of the recovered obligation and transition to the next deterministic role are likewise not new degradation. A new context-health trigger requires concrete harmful-context evidence accumulated in the current chat after recovery.
+
+If there is no affirmative harmful-context signal, continue without loading another module.
+
+If there is a concrete signal — for example materially superseded state in the transcript, large irrelevant diagnostic/tool history that now materially obstructs the next obligation, or actual uncertainty reconstructing current durable truth from the conversation — read:
 
 `workflow/chatgpt_only/CONTEXT_HEALTH.md`
 
@@ -167,6 +171,7 @@ When Intake completes, it must first materialize the canonical durable state own
 
 Read:
 - `workflow/chatgpt_only/BRAINSTORMING.md`;
+- the current intentional `#grill` directive when present for an already active Brainstorming scope;
 - the exact record referenced by selected manifest `routing.exploratory_scope` when that locator exists;
 - the exact `complete` Research record referenced by selected manifest `routing.research_obligation` when its Return target is this Brainstorming subject;
 - otherwise the current brainstorming material needed to establish/create the manifest locator;
