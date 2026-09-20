@@ -1,6 +1,6 @@
 # Master Plan — Codex-only continuous orchestration
 
-Plan revision: COCO-P1
+Plan revision: COCO-P2
 Status: draft
 Review requirement: RECOMMENDED
 
@@ -39,13 +39,14 @@ Owns COCO-R1 through COCO-R7.
    - make the role-transition protocol directly persist → route → continue;
    - explicitly state that coordinator/session hygiene is not a Project Workflow stop.
 2. Remove `workflow/codex_only/CONTEXT_HEALTH.md` so dormant policy text cannot compete with the active contract.
-3. Reconcile `workflow/codex/CODEX_ORCHESTRATION.md`, `workflow/codex_only/CLOSE.md`, and `workflow/codex_only/RECOVERY.md` only as needed to make one-shot multi-milestone continuation and runtime/durable recovery boundaries explicit.
-4. Add a dedicated regression contract test for `codex_only` continuous orchestration and preserve the existing ChatGPT-only Context Health test unchanged.
-5. Update user-facing repository documentation/changelog where needed so the policy distinction is discoverable.
+3. Remove/reword `workflow/codex_only/PLANNING.md` language that allows `coordinating-context refresh boundaries` so a Master Plan cannot schedule coordinator hygiene as a Project Workflow stop under `codex_only`.
+4. Reconcile `workflow/codex/CODEX_ORCHESTRATION.md`, `workflow/codex_only/CLOSE.md`, and `workflow/codex_only/RECOVERY.md` only as needed to make one-shot multi-milestone continuation and runtime/durable recovery boundaries explicit.
+5. Add a dedicated regression contract test for `codex_only` continuous orchestration that covers the Router plus the active planning/close/recovery/orchestration contracts, and preserve the existing ChatGPT-only Context Health test unchanged.
+6. Update user-facing repository documentation/changelog where needed so the policy distinction is discoverable.
 
 ### Acceptance
 
-- No active `codex_only` workflow file routes to or depends on a Context Health/FRESH decision.
+- No active `codex_only` workflow file routes to, depends on, schedules, or authorizes a coordinator Context Health/FRESH/hygiene stop.
 - `workflow/codex_only/CONTEXT_HEALTH.md` is absent.
 - Router explicitly continues deterministic legal obligations without a user-facing stop, including across milestone boundaries and internal Tester review cycles.
 - True stops remain: unresolved user/product authority, explicit authorization gate, concrete unremediable runtime/input blocker, or end of approved scope.
@@ -56,8 +57,8 @@ Owns COCO-R1 through COCO-R7.
 
 ### Verification strategy
 
-- Static contract assertions over `workflow/codex_only/ROUTER.md`, `CLOSE.md`, `RECOVERY.md`, and `workflow/codex/CODEX_ORCHESTRATION.md`.
-- Negative assertion that the codex-only Context Health file/reference is absent.
+- Static contract assertions over `workflow/codex_only/ROUTER.md`, `PLANNING.md`, `CLOSE.md`, `RECOVERY.md`, and `workflow/codex/CODEX_ORCHESTRATION.md`.
+- Negative assertions that the codex-only Context Health file/reference is absent and that `PLANNING.md` cannot schedule a coordinating-context refresh/hygiene boundary.
 - Positive assertion that `workflow/chatgpt_only/CONTEXT_HEALTH.md` and its contract test remain present.
 - Run targeted tests, then full repository Python unittest/pytest suite available in the repository.
 
