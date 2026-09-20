@@ -33,14 +33,17 @@ Reference:
   - after user answers, recompute the frontier;
   - facts are the agent's job to investigate; decisions remain the user's;
   - stop only when the frontier is empty and shared understanding is confirmed.
-- `wait-what` is a separate user-invoked repitch command: when the prior message did not land, explain again with more context, ASD-STE100 Simplified Technical English, and repository ubiquitous language from `CONTEXT.md`.
+- `wait-what` is a separate user-invoked repitch command: when the prior message did not land, explain again with more context, ASD-STE100 Simplified Technical English, and project ubiquitous language from `CONTEXT.md`.
 
-## Initial classification
+## Final intake classification
 
 - Path: Brainstorming discovery.
-- Proposed integration direction: strengthen the existing Brainstorming working method rather than add a new workflow phase or duplicate skill.
+- Integration direction: strengthen the existing Brainstorming working method rather than add a new workflow phase or duplicate skill.
 - Canonical downstream artifact: `brainstorming/BRAINSTORMING_GRILLING.md`.
+- Canonical scope: `brainstorming-grilling@R1`.
+- `PROJECT.md → Active exploratory scope` points to that exact record.
 - Promotion into Project Definition remains user-owned and pending.
+- Next route: Brainstorming.
 
 ## Open product decisions
 
@@ -52,5 +55,5 @@ Reference:
 
 ## Intake state
 
-- State: active
-- Next route after durable Brainstorming materialization: Brainstorming.
+- State: complete
+- Downstream owner: `brainstorming/BRAINSTORMING_GRILLING.md`
