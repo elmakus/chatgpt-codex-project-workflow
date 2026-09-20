@@ -6,7 +6,7 @@ current_milestone: "micro-fix"
 execution_ref:
   branch: "fix/chatgpt-only-context-health-bounce"
   pr: null
-  head: null
+  head: "e7b52d809076850a6c44d8b1a2b4291b418f3a46"
 
 research_obligation: null
 
@@ -17,8 +17,8 @@ cards:
     title: "Tighten ChatGPT-only Context Health anti-bounce semantics"
     milestone: "micro-fix"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/issue-context-health-bounce/cards/MF-T01.md"
     review_state: null
