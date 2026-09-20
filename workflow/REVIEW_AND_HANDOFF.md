@@ -130,6 +130,8 @@ Purpose: decide whether intended final milestone implementation is correct and s
 
 Purpose: verify that publication artifact is exactly already-accepted milestone state intended to be merged.
 
+When publication work for a downstream fork includes choosing or validating a release version, read and apply `workflow/common/FORK_RELEASE_VERSIONING.md` before version selection/validation. That common file is the sole lineage-semantic source; this shared publication flow must not derive its own fork-version algorithm. Applying it does not authorize tag/release/deployment writes or weaken existing publication gates.
+
 Verify as applicable:
 - correct base/head branches;
 - expected PR head/publication state;

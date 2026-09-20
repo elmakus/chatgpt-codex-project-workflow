@@ -1,0 +1,46 @@
+# Branch-isolated issue workstream for fork release version lineage.
+
+id: "issue-fork-release-versioning"
+kind: "issue"
+status: "ready"
+
+branch: "fix/fork-release-versioning"
+base_ref: "f3cdb60367da3e978397409b51c37faa181d613f"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: "complete"
+  record: "implementation/workstreams/issue-fork-release-versioning/INTAKE.md"
+
+routing:
+  exploratory_scope: null
+  research_obligation: null
+  plan_review: null
+
+task_board: "implementation/workstreams/issue-fork-release-versioning/TASK_BOARD.yaml"
+
+authority:
+  requirements: "requirements/FORK_RELEASE_VERSIONING.md"
+  decisions:
+    - "decisions/ADR_FORK_RELEASE_VERSION_LINEAGE.md"
+  plan: "planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md"
+
+review:
+  requirement: "RECOMMENDED"
+  state: "green"
+  subject: "cec373fbfe38ffb1602a17f87f222e244e1f1657"
+  evidence: "implementation/workstreams/issue-fork-release-versioning/evidence/M01_FINAL_INTEGRATION_REFRESH_2026-09-20.md"
+  covered_by: "implementation/workstreams/issue-fork-release-versioning/evidence/M01-T01-review.md"
+
+branch_cleanup:
+  state: null
+  ref: null
+  verified_head: null
+  evidence: null
+
+pr: 40
+result: null
