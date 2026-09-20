@@ -61,7 +61,7 @@ cards:
       - "M01-T01"
     openspec_change: null
     contract: "implementation/workstreams/feature-project-workflow-codex-plugin/cards/M02-T01.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "6e16ba11293bbdb7bbc8d96167e8280273d77304"
     review_evidence: null
     result_commit: "6e16ba11293bbdb7bbc8d96167e8280273d77304"
