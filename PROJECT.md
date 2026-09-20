@@ -6,7 +6,7 @@
 - Repository: `elmakus/chatgpt-codex-project-workflow`
 - Lifecycle: `active`
 - High-level goal: maintain and evolve the repository-backed Project Workflow contracts used by ChatGPT/Codex project execution.
-- High-level status: Project Workflow Codex plugin Definition R1 is approved; Master Plan `PWCP-P1` is awaiting independent review on branch `feat/project-workflow-codex-plugin`.
+- High-level status: Project Workflow Codex plugin Definition R1 and Master Plan `PWCP-P1` are approved; execution preparation is next on branch `feat/project-workflow-codex-plugin`.
 
 ## Execution policy
 
@@ -19,8 +19,8 @@ Changing execution policy requires an explicit user decision.
 - Active exploratory scope: `none`
 - Active research obligation: `none`
 - Requirements: `requirements/PROJECT_WORKFLOW_CODEX_PLUGIN.md`
-- Approved plan: `none for current workstream`
-- Current plan draft: `planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md`
+- Approved plan: `planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md`
+- Current plan draft: `none`
 - Current plan review: `planning/reviews/PWCP-P1.md`
 - Task Board: `implementation/TASK_BOARD.yaml` (legacy/default fallback; current branch-isolated workstream has no Task Board until Execution Prep)
 - Latest cumulative handoff: `project-handoffs/CUBC-M01_HANDOFF.md`
