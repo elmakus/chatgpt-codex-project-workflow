@@ -1,12 +1,12 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 workstream_id: "feature-branch-first-managed-changes"
 plan_revision: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md@BF-R3"
-current_milestone: "M01"
+current_milestone: "M02"
 
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "aa2d0e578940bf6cac92d9191a3f37277a0f447b"
+  head: "5d1a254e3e6dfe665d54b565529fe6db6f7c1b9a"
 
 research_obligation: null
 
@@ -19,6 +19,18 @@ milestones:
     implementation_head: "aa2d0e578940bf6cac92d9191a3f37277a0f447b"
     handoff: "implementation/workstreams/feature-branch-first-managed-changes/handoffs/M01_HANDOFF.md"
     acceptance_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M01_ACCEPTANCE.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M02:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md#M02--ChatGPT-only-lifecycle-migration"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
     review_state: null
     review_subject: null
     review_evidence: null
@@ -71,3 +83,35 @@ cards:
     result_pr: null
     evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M01-T03.md"
     tests_summary: "GREEN: exact-subject readback/static boundary checks passed for integrated-root PROJECT semantics, recovery-only historical default state, branch-before-write bootstrap/adoption, policy-local separation, OpenSpec completion and explicit M02/M03/M04 deferrals."
+
+  - id: "M02-T01"
+    title: "Migrate ChatGPT-only pre-execution routing to workstream-local state"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: ready
+    executor: chatgpt
+    depends_on: ["M01-T03"]
+    contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M02-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M02-T02"
+    title: "Migrate ChatGPT-only execution state and historical-default recovery"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: planned
+    executor: chatgpt
+    depends_on: ["M02-T01"]
+    contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M02-T02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
