@@ -1,0 +1,38 @@
+id: "feature-project-workflow-codex-plugin"
+kind: "feature"
+status: "definition"
+
+branch: "feat/project-workflow-codex-plugin"
+base_ref: "cdaf47245e45836917b152904d70807bca355e7d"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: "complete"
+  record: "implementation/workstreams/feature-project-workflow-codex-plugin/INTAKE.md"
+
+task_board: null
+
+authority:
+  requirements: null
+  decisions: []
+  plan: null
+
+review:
+  requirement: "RECOMMENDED"
+  state: null
+  subject: null
+  evidence: null
+  covered_by: null
+
+branch_cleanup:
+  state: null
+  ref: null
+  verified_head: null
+  evidence: null
+
+pr: null
+result: null
