@@ -19,7 +19,7 @@ research_obligation: null
 parallel: null
 
 # Qualified micro-fix keeps this mapping empty and uses one bounded Card directly.
-# Normal milestone entries use the same M02 provenance/review shape as the default board:
+# Normal milestone entries use the active Codex-only M02 provenance/review shape:
 # milestones:
 #   M01:
 #     decision_state: accepted
