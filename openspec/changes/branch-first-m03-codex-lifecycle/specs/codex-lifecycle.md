@@ -22,6 +22,18 @@ A REQUIRED/RECOMMENDED pre-execution plan review MUST keep lifecycle state in it
 
 Codex Main MUST validate the locator before review, remain sole durable shared-state writer and persist the verdict returned by a Tester independent from the plan author. The Tester MUST NOT clear the locator. Planning MUST consume the exact verdict and clear/repoint the locator only with the corresponding durable approval/correction transition.
 
+## Execution-state migration
+
+New or continued managed Codex-only execution MUST NOT use root `implementation/TASK_BOARD.yaml` as a normal mutable context. Historical root/default state MAY be read only to recover/migrate an exact obligation and MUST transition to a branch-isolated workstream before further mutation.
+
+Migration MUST prove exact topology before branch creation/adoption: intended `integration_target`, exact creation/adoption base and independent-versus-stacked dependency classification. Independent migration MUST use the normal integration target/base with null parent fields. Stacked migration MUST have exact parent-workstream/branch evidence plus a concrete parent-only dependency. If target, base or dependency topology cannot be proven, migration MUST fail closed before branch creation/adoption.
+
+Migration MUST then recover or deterministically create exactly one workstream identity, persist coherent manifest `base_ref`, `integration_target` and parent metadata, and create/reconcile its manifest-bound namespaced Task Board before resuming the obligation. The migrated board MUST preserve exact live Card/milestone review attempt history, semantic implementation-owner provenance, implementation Research pointer, result/evidence/dependency/blocker truth and any current/required M03 batch lineage including frozen base/member order and returned/integrated refs. Runtime worker/session/model/profile/invocation/worktree identity MUST NOT become migrated project state.
+
+Branch readback MUST validate manifest ↔ Task Board binding, persisted topology and preservation of every live obligation before the namespaced board becomes mutable authority. The historical root/default board MUST remain non-mutable migration/history input. Partial or ambiguous migration MUST fail closed and MUST NOT create a duplicate lane.
+
+Completed historical artifacts MUST NOT be deleted or rewritten solely for topology normalization. A long-lived legacy branch MAY reconcile root historical files against the integration target only after active ownership has migrated and only for final-integration conflict/history preservation.
+
 ## Ownership and policy separation
 
 Codex Main MUST remain the sole shared Project Workflow Task Board/integration-state writer. Runtime worker/session/model/profile/invocation/worktree identity MUST NOT become required durable project state.
