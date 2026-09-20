@@ -4,6 +4,8 @@ Plan revision: COCO-P1
 Review requirement: RECOMMENDED
 Review state: pending
 Review subject: 014ddad3969c36c81edd18e13068ba1ddca5362b
+Author owner role: planner
+Reviewer role: tester
 Review evidence: none
 
 ## Reviewed artifact
