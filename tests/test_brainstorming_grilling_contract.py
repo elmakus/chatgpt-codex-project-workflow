@@ -95,7 +95,8 @@ class BrainstormingGrillingContractTests(unittest.TestCase):
         self.assertIn("automatically use grilling", README)
         self.assertIn("includes an assistant recommendation", README)
         self.assertIn("The user may stop grilling at any time", README)
-        self.assertIn("does not change the existing Project Definition promotion gate", README)
+        self.assertIn("Neither automatic grilling nor `#grill` changes", README)
+        self.assertIn("Project Definition promotion gate", README)
 
 
 if __name__ == "__main__":
