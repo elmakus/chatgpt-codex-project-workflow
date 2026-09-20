@@ -1,0 +1,30 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "issue-context-health-bounce"
+plan_revision: "micro-fix"
+current_milestone: "micro-fix"
+
+execution_ref:
+  branch: "fix/chatgpt-only-context-health-bounce"
+  pr: null
+  head: null
+
+research_obligation: null
+
+milestones: {}
+
+cards:
+  - id: "MF-T01"
+    title: "Tighten ChatGPT-only Context Health anti-bounce semantics"
+    milestone: "micro-fix"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: []
+    contract: "implementation/workstreams/issue-context-health-bounce/cards/MF-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
