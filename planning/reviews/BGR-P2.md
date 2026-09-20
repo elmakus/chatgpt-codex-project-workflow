@@ -2,13 +2,13 @@
 
 Plan revision: BGR-P2
 Review requirement: RECOMMENDED
-Review state: in_progress
+Review state: green
 Review subject: 0671fb812cdc970df09be2c06d73b9d9e09bab20
 Plan: planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md
 Requirements: requirements/BRAINSTORMING_GRILLING.md
 Accepted decision: decisions/ADR_BRAINSTORMING_GRILLING.md
 Project branch: feat/brainstorming-grilling
-Review evidence: pending
+Review evidence: GREEN — exact frozen plan blob `0671fb812cdc970df09be2c06d73b9d9e09bab20` matches the branch Master Plan and is consistent with approved BGR R1 plus ADR-BGR-001. Current `main` confirms the existing policy-local Brainstorming/Intake baseline and the common OpenSpec rule for changed behavior contracts. BGR-P2 resolves the sole BGR-P1 RED defect by making the M01 Brainstorming + `#grill` non-Intake behavior a JIT OpenSpec contract, while preserving one-milestone BGR-REQ-001..014 coverage, lightweight Brainstorming, dependency/frontier semantics, recommendations, agent-owned facts, concise recoverable state, user-stop handling, unchanged Definition promotion, `wait-what` exclusion, routing/intake regressions, rollback/idempotency/security boundaries, and no hidden Definition change. No blocking planning defect found.
 
 ## Review objective
 
