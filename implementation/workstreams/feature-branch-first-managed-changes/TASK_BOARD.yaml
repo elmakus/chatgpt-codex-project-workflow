@@ -25,12 +25,12 @@ milestones:
 
   M02:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md#M02--ChatGPT-only-lifecycle-migration"
-    checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    checkpoint: "a3726bf22db1103e1a53c8d6e8256647699b6267"
+    implementation_head: "a3726bf22db1103e1a53c8d6e8256647699b6267"
+    handoff: "implementation/workstreams/feature-branch-first-managed-changes/handoffs/M02_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M02_ACCEPTANCE.md"
     review_state: null
     review_subject: null
     review_evidence: null
