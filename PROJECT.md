@@ -6,7 +6,7 @@
 - Repository: `elmakus/chatgpt-codex-project-workflow`
 - Lifecycle: `active`
 - High-level goal: maintain and evolve the repository-backed Project Workflow contracts used by ChatGPT/Codex project execution.
-- High-level status: branch-first managed-change Definition R1 approved; strategic planning active on `feat/branch-first-managed-changes`; integration target remains unchanged until PR merge.
+- High-level status: branch-first managed-change Definition R1 approved; Master Plan BF-R1 drafted and awaiting independent review on `feat/branch-first-managed-changes`; integration target remains unchanged until PR merge.
 
 ## Execution policy
 
