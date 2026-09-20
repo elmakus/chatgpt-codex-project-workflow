@@ -5,7 +5,7 @@ current_milestone: "M01"
 
 execution_ref:
   branch: "fix/fork-release-versioning"
-  pr: null
+  pr: 40
   head: "cec373fbfe38ffb1602a17f87f222e244e1f1657"
 
 research_obligation: null
@@ -36,6 +36,6 @@ cards:
     review_subject: "cec373fbfe38ffb1602a17f87f222e244e1f1657"
     review_evidence: "implementation/workstreams/issue-fork-release-versioning/evidence/M01-T01-review.md"
     result_commit: "cec373fbfe38ffb1602a17f87f222e244e1f1657"
-    result_pr: null
+    result_pr: 40
     evidence: "implementation/workstreams/issue-fork-release-versioning/evidence/M01-T01.md"
     tests_summary: "GREEN pre-review verification: exact regression source 8/8 in isolated stdlib execution plus 25/25 exact-branch persisted-artifact checks; independent review reran 8/8 focused and 21/21 full exact-subject tests; current closure branch full suite 21/21."
