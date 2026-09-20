@@ -323,6 +323,7 @@ The user should be able to press **Copy**, open a new chat and paste once. After
 - normal ChatGPT start: `prompts/CHATGPT_START.md`
 - fresh ChatGPT session handoff: `prompts/CHATGPT_FRESH_SESSION.md`
 - reusable ChatGPT Project Instructions: `prompts/CHATGPT_PROJECT_INSTRUCTIONS.md`
+- Codex plugin install/enable/usage: `docs/CODEX_PLUGIN.md`
 - Codex execution start: `prompts/CODEX_START.md`
 
 ## Start an existing project

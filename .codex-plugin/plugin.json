@@ -1,0 +1,25 @@
+{
+  "name": "pw",
+  "version": "0.1.0",
+  "description": "Project Workflow bootstrap for Codex.",
+  "author": {
+    "name": "elmakus",
+    "url": "https://github.com/elmakus"
+  },
+  "repository": "https://github.com/elmakus/chatgpt-codex-project-workflow",
+  "keywords": [
+    "project-workflow",
+    "codex",
+    "workflow"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Project Workflow",
+    "shortDescription": "Route Codex through canonical Project Workflow.",
+    "longDescription": "Thin Codex bootstrap for canonical Project Workflow routing and durable project state.",
+    "developerName": "elmakus",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Use Project Workflow for this repository."
+  }
+}

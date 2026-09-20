@@ -1,0 +1,126 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "feature-project-workflow-codex-plugin"
+plan_revision: "PWCP-P3"
+current_milestone: "M04"
+
+execution_ref:
+  branch: "feat/project-workflow-codex-plugin"
+  pr: 44
+  head: "bde88f919c0d26326949a757223f146e9b1e6976"
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: done
+    contract: "planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md#milestone-m01--current-runtime-plugin-and-activation-contract"
+    checkpoint: "b71c680c2e326a6d5f337508b2c3fd7697a30388"
+    implementation_head: "e37c30d8c53e9b1bfc1cb88ab62077d1ca18ff40"
+    handoff: "implementation/workstreams/feature-project-workflow-codex-plugin/handoffs/M01_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M01-acceptance-2026-09-20.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+  M02:
+    decision_state: accepted
+    execution_status: done
+    contract: "planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md#milestone-m02--same-repo-plugin-package-and-canonical-wrapper"
+    checkpoint: "63840e72f5088f97d051984aac8b8115f0589a07"
+    implementation_head: "6e16ba11293bbdb7bbc8d96167e8280273d77304"
+    handoff: "implementation/workstreams/feature-project-workflow-codex-plugin/handoffs/M02_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M02-acceptance-2026-09-20.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+  M03:
+    decision_state: accepted
+    execution_status: done
+    contract: "planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md#milestone-m03--always-on-lifecycle-intake-ux-and-progressive-disclosure-acceptance"
+    checkpoint: "1cab806a17d076f56023b80f15a5214e0a16edd0"
+    implementation_head: "54e142f46571db110a155e0b1efdf5c7afcdfac3"
+    handoff: "implementation/workstreams/feature-project-workflow-codex-plugin/handoffs/M03_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M03-acceptance-2026-09-20.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+  M04:
+    decision_state: accepted
+    execution_status: in_progress
+    contract: "planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md#milestone-m04--integrated-acceptance-and-release-readiness"
+    checkpoint: null
+    implementation_head: "bde88f919c0d26326949a757223f146e9b1e6976"
+    handoff: "implementation/workstreams/feature-project-workflow-codex-plugin/handoffs/M04_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M04_ACCEPTANCE_CANDIDATE_2026-09-20.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Verify current Codex plugin activation contract"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/workstreams/feature-project-workflow-codex-plugin/cards/M01-T01.md"
+    review_state: green
+    review_subject: "e37c30d8c53e9b1bfc1cb88ab62077d1ca18ff40"
+    review_evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M01-T01-independent-review-2026-09-20.md"
+    result_commit: "e37c30d8c53e9b1bfc1cb88ab62077d1ca18ff40"
+    result_pr: null
+    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M01-T01-p3-naming-delta-2026-09-20.md"
+    tests_summary: "GREEN under approved PWCP-P3/Definition R3. Current runtime remains codex-cli 0.155.0-alpha.9.2; unchanged packaging/activation/path/trust/isolation evidence was reused at the exact reviewed subject. Native skills/list returned pw:project-workflow for plugin pw and real $pw:project-workflow invocation returned PWCP_P3_SENTINEL_7C91. No live marketplace/plugin/config state was mutated. Independent review GREEN on exact subject e37c30d8c53e9b1bfc1cb88ab62077d1ca18ff40."
+  - id: "M02-T01"
+    title: "Implement same-repo Codex plugin package"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on:
+      - "M01-T01"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-project-workflow-codex-plugin/cards/M02-T01.md"
+    review_state: green
+    review_subject: "6e16ba11293bbdb7bbc8d96167e8280273d77304"
+    review_evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M02-T01-independent-review-2026-09-20.md"
+    result_commit: "6e16ba11293bbdb7bbc8d96167e8280273d77304"
+    result_pr: null
+    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M02-T01-plugin-package-2026-09-20.md"
+    tests_summary: "GREEN terminal result on exact implementation subject 6e16ba11293bbdb7bbc8d96167e8280273d77304. 14/14 repository tests passed; official Codex 0.155.0-alpha.9.2 plugin validator passed; isolated marketplace install/readback returned pw@project-workflow installed+enabled; native skills/list and hooks/list matched the production package; no live Codex state was mutated. Independent review GREEN with a fresh 14/14 test rerun plus isolated current-runtime install/bootstrap/hash readback."
+  - id: "M03-T01"
+    title: "Verify always-on lifecycle, isolation and intake UX"
+    milestone: "M03"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on:
+      - "M02-T01"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-project-workflow-codex-plugin/cards/M03-T01.md"
+    review_state: green
+    review_subject: "54e142f46571db110a155e0b1efdf5c7afcdfac3"
+    review_evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M03-T01-independent-review-2026-09-20.md"
+    result_commit: "54e142f46571db110a155e0b1efdf5c7afcdfac3"
+    result_pr: null
+    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M03-T01-lifecycle-intake-2026-09-20.md"
+    tests_summary: "GREEN implementation/verification subject 54e142f46571db110a155e0b1efdf5c7afcdfac3 over production package 6e16ba11293bbdb7bbc8d96167e8280273d77304. Current Codex 0.155.0-alpha.9.2: enabled ordinary prompt PW_ACTIVE; matched control PW_INACTIVE; same-thread resume PW_RESUME_ACTIVE; native ContextCompaction completed and post-compaction bootstrap returned PW_COMPACT_ACTIVE; progressive-disclosure trace remained bounded; #feature/#issue routed to Intake while explicit Skill arguments did not, selecting #feature/#issue as supported intake syntax; exact package regression 14/14 GREEN. All mutable runtime state was disposable; no live Codex marketplace/plugin/config/trust state was changed."
+  - id: "M04-T01"
+    title: "Reconcile release documentation and full feature acceptance"
+    milestone: "M04"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on:
+      - "M03-T01"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-project-workflow-codex-plugin/cards/M04-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: "f799df47690559f7ed3ed7666204a02a87c7a3e2"
+    result_pr: null
+    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M04-T01-release-readiness-2026-09-20.md"
+    tests_summary: "GREEN at f799df47690559f7ed3ed7666204a02a87c7a3e2. 14/14 repository tests passed on Codex 0.155.0-alpha.9.2; static drift audit found exactly one project-workflow Skill, no copied policy-specific router in Skill/bootstrap and no plugin-local updater/timer/poller; README links docs/CODEX_PLUGIN.md; fresh disposable marketplace install/readback returned pw@project-workflow 0.1.0 and bounded SessionStart context. Complete PWCP-REQ-001..015 matrix has no unresolved gap."

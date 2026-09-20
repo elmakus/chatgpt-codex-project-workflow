@@ -1,0 +1,40 @@
+id: "feature-project-workflow-codex-plugin"
+kind: "feature"
+status: "in_progress"
+
+branch: "feat/project-workflow-codex-plugin"
+base_ref: "cdaf47245e45836917b152904d70807bca355e7d"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: "complete"
+  record: "implementation/workstreams/feature-project-workflow-codex-plugin/INTAKE.md"
+
+task_board: "implementation/workstreams/feature-project-workflow-codex-plugin/TASK_BOARD.yaml"
+
+authority:
+  requirements: "requirements/PROJECT_WORKFLOW_CODEX_PLUGIN.md"
+  decisions:
+    - "decisions/ADR_PROJECT_WORKFLOW_CODEX_PLUGIN_PACKAGING.md"
+    - "decisions/ADR_PROJECT_WORKFLOW_CODEX_PLUGIN_ACTIVATION.md"
+  plan: "planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md"
+
+review:
+  requirement: "RECOMMENDED"
+  state: "green"
+  subject: "69b12d651728d041e64c51e9dfae69a560bbf9f3"
+  evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M04_FINAL_INTEGRATION_REVIEW_2026-09-20.md"
+  covered_by: null
+
+branch_cleanup:
+  state: null
+  ref: null
+  verified_head: null
+  evidence: null
+
+pr: 44
+result: null
