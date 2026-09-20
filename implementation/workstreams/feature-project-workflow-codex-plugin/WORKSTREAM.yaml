@@ -25,9 +25,9 @@ authority:
 
 review:
   requirement: "RECOMMENDED"
-  state: "in_progress"
+  state: "green"
   subject: "69b12d651728d041e64c51e9dfae69a560bbf9f3"
-  evidence: null
+  evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M04_FINAL_INTEGRATION_REVIEW_2026-09-20.md"
   covered_by: null
 
 branch_cleanup:
