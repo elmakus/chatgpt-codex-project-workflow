@@ -6,9 +6,19 @@ This file contains only policy-neutral authority rules.
 
 - Current workflow `main` is authoritative for workflow behavior unless an explicitly frozen in-flight boundary says otherwise.
 - Project repository is durable project truth.
-- Root `PROJECT.md` is a high-level router/index, not live execution state.
-- When implementation state exists, the **canonical Task Board selected by the active policy route** is the sole authoritative mutable Card/milestone execution-state record. Unless that route explicitly defines another canonical Task Board location, the default is `implementation/TASK_BOARD.yaml`.
+- Root `PROJECT.md` is a high-level integrated-project router/index, not live workstream execution or pre-execution routing state.
+- When implementation state exists, the **canonical Task Board selected by the active policy route** is the sole authoritative mutable Card/milestone execution-state record. A historical root `implementation/TASK_BOARD.yaml` may remain recoverable where a policy route explicitly supports legacy migration, but its existence is not permission to use root/default state as the destination for new branch-first managed work.
 - Accepted durable repository state outranks stale chat/session narrative.
+
+## Branch-first managed-change invariant
+
+For execution-policy routes that adopt the branch-first managed-change model:
+- the integration target represents integrated project truth;
+- read-only exploration may precede workstream creation, but an exact branch-isolated workstream must exist before the first durable change-specific Project Workflow or project-source write;
+- managed changes reach the integration target through branch → pull request → merge rather than normal direct target mutation;
+- historical root/default mutable state is recovery/migration input, not a new-work destination.
+
+The policy-local route owns Intake, naming, migration, lifecycle, review and recovery mechanics. This common contract states only the policy-neutral invariant.
 
 ## Role semantics
 
