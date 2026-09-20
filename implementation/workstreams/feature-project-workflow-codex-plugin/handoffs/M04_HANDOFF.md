@@ -2,7 +2,7 @@
 
 Milestone: `M04 — Integrated acceptance and release readiness`
 Plan revision: `PWCP-P3`
-Status: `PRE-INTEGRATION / FINAL REVIEW PENDING`
+Status: `PRE-INTEGRATION / FINAL REVIEW GREEN`
 
 ## Closure-ready state
 
@@ -14,6 +14,8 @@ Status: `PRE-INTEGRATION / FINAL REVIEW PENDING`
 - Refresh target baseline: `edb83e0c6c7ed06dcfce6df1e711fc3363d62d06`.
 - Full post-refresh repository regression: 70/70 GREEN.
 - Current-runtime isolated plugin install/readback: GREEN on Codex `0.155.0-alpha.9.2`.
+- Manifest-owned final-integration review: GREEN on exact subject `69b12d651728d041e64c51e9dfae69a560bbf9f3`.
+- Final-review evidence: `implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M04_FINAL_INTEGRATION_REVIEW_2026-09-20.md`.
 
 ## Authority now in force
 
@@ -32,16 +34,17 @@ Status: `PRE-INTEGRATION / FINAL REVIEW PENDING`
   `implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M04_FINAL_INTEGRATION_REFRESH_2026-09-20.md`.
 - Pre-review integrated acceptance candidate:
   `implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M04_ACCEPTANCE_CANDIDATE_2026-09-20.md`.
+- Final independent review:
+  `implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M04_FINAL_INTEGRATION_REVIEW_2026-09-20.md`.
 - M01–M03 acceptance/review evidence remains referenced by the selected Task Board.
 
 ## Remaining gate and deterministic continuation
 
-The workstream manifest owns a distinct `RECOMMENDED` final-integration review. Close must freeze the exact closure-ready subject after this handoff and Task Board reconciliation, persist `review.state: pending`, and stop for a fresh independent reviewer.
+The manifest-owned `RECOMMENDED` final-integration review is GREEN. The workstream remains non-terminal only because final target integration/readback has not yet completed.
 
-After GREEN final-integration review:
-1. return to Close;
-2. immediately re-read current `main`; if target moved, rerun the integration refresh contract before merging;
-3. open/verify the final workstream → `main` PR carrying this namespaced closure-ready package;
-4. merge only after the review/refresh gates are current;
-5. perform target-side terminal manifest/Task Board/handoff/result reconciliation and readback;
-6. treat automatic source-branch deletion as normal success, or use the manifest-local cleanup fallback only if the merged source branch survives.
+Close must now:
+1. immediately re-read current `main`; if target moved, rerun the integration refresh contract before merging and preserve or invalidate review coverage according to the exact-change rules;
+2. open/verify the final workstream → `main` PR carrying this namespaced closure-ready package;
+3. merge only while the review/refresh gates remain current;
+4. perform target-side terminal manifest/Task Board/handoff/result reconciliation and readback;
+5. treat automatic source-branch deletion as normal success, or use the manifest-local cleanup fallback only if the merged source branch survives.
