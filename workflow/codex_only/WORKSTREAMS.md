@@ -76,6 +76,14 @@ Before using a non-null routing locator, validate that the pointed artifact is t
 
 `routing.research_obligation` is only for **pre-execution** Research. Once implementation/recovery state exists, Research continuation remains owned by the selected Task Board's `research_obligation` pointer. The manifest `review` block remains reserved for the distinct workstream final-integration review and MUST NOT be used for plan review.
 
+Locator lifecycle is fail-closed and artifact-first:
+- create the pointed artifact before or in the same durable transition that sets its manifest locator; never point at a not-yet-durable record;
+- keep `routing.exploratory_scope` through the exact Brainstorming → Definition promotion/Definition recovery obligation and clear it only after the owning Definition result is durable or the exploratory scope is durably closed/superseded;
+- keep `routing.research_obligation` through `Status: complete`; clear it only after final-target reconciliation is durably `applied` and the record is `consumed` (except the explicit classifier-to-Research chaining rule, which applies only to Task-Board-owned implementation Research);
+- keep `routing.plan_review` through `pending | in_progress | green | red`; the Tester never clears it. Planning consumes the exact verdict: after GREEN it clears the locator only with/after durable plan approval, while a corrective revision repoints it only after the new exact pending review record exists.
+
+A stale non-null locator is not harmless metadata. Validate its record and route to Recovery when the lifecycle/subject no longer coheres; do not silently clear a locator whose owning result has not been reconciled.
+
 When a Task Board exists, it alone owns mutable Card/milestone readiness, execution, semantic implementation-owner provenance, implementation/recovery Research pointer, Card/milestone review attempts, result and evidence fields.
 
 The manifest `review` block is reserved for a **workstream-level final integration review**. It must never mirror a Card or milestone `review_state/review_subject/review_evidence`.
