@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "49f83ac703e5babb67555ee90aed955820dd298f"
+  head: "4ec2c68b68c282a10f8c5275799d8bcabec1be95"
 
 research_obligation: null
 
@@ -48,13 +48,13 @@ cards:
     executor: chatgpt
     depends_on: ["M01-T01"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M01-T02.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "4ec2c68b68c282a10f8c5275799d8bcabec1be95"
     review_evidence: null
-    result_commit: null
+    result_commit: "4ec2c68b68c282a10f8c5275799d8bcabec1be95"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M01-T02.md"
+    tests_summary: "GREEN: exact branch readback/static scenario checks passed for natural-language managed-change entry, branch-free read-only behavior, marker shortcuts, neutral change identity, deterministic suffixing/exact recovery, fail-closed orphan handling, branch-before-write ordering, policy-local separation and OpenSpec coherence."
 
   - id: "M01-T03"
     title: "Reconcile branch-first bootstrap and default-state boundary"
