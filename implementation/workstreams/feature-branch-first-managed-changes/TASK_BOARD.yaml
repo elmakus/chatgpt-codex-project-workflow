@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "d4dbd02a42e0ea04584154e7fb736a32b203acdf"
+  head: "e80a4b24854fae485e87532f882831291189bece"
 
 research_obligation: null
 
@@ -32,13 +32,13 @@ cards:
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M01-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "e80a4b24854fae485e87532f882831291189bece"
     review_evidence: null
-    result_commit: null
+    result_commit: "e80a4b24854fae485e87532f882831291189bece"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M01-T01.md"
+    tests_summary: "GREEN: exact branch readback/static contract checks passed for neutral kind, identical three-locator routing schema, locator-only ownership, fail-closed recovery, Task Board/final-review ownership preservation, policy-local separation and OpenSpec coherence; no repository test runner was present/claimed."
 
   - id: "M01-T02"
     title: "Add generic natural-language managed-change entry"
