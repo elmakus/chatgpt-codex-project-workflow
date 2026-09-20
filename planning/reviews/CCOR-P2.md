@@ -2,7 +2,7 @@
 
 Plan revision: CCOR-P2
 Review requirement: RECOMMENDED
-Review state: pending
+Review state: in_progress
 Review subject: 624a2d0b54c01e891bb4f1c0193e328a4ad0ca50:planning/CODEX_ORCHESTRATION_CONTEXT_RECOVERY_MASTER_PLAN.md
 Review evidence: none
 
