@@ -26,4 +26,10 @@ The review record under `planning/reviews/` remains the sole owner of plan-revie
 
 ## Execution-state migration
 
-M02-T02 removes legacy/default as a normal live ChatGPT-only state context. Historical root/default state remains recovery input and must be migrated to an exact workstream before further managed mutation. Review/Research ownership, seriality, target refresh and terminal recovery stay unchanged.
+M02-T02 removes legacy/default as a normal live ChatGPT-only state context. Historical root/default state remains recovery input and must be migrated to an exact workstream before further managed mutation.
+
+Recovery treats that migration as a higher-priority obligation than review, Research or execution on the historical board. It first recovers or deterministically creates one exact neutral branch-isolated workstream, then materializes a manifest-bound namespaced Task Board carrying only the continuation truth required for coherent recovery. Exact live Card/milestone review fields, implementation/recovery Research pointer, blockers, result/evidence/test pointers and required dependency results are preserved; immutable completed history may remain referenced in place and is not rewritten merely for layout.
+
+The root/default board is read-only during migration. A partially materialized migration is recovered by the same exact identity rather than duplicated. Only after exact branch readback proves manifest ↔ Task Board identity and preservation of every live obligation does the namespaced Task Board become the sole mutable execution owner. Ambiguous source/branch/mapping state fails closed.
+
+Long-lived legacy branches use the repository finalization migration only after active ownership is namespaced, so target-side historical/default files are not accidentally overwritten at integration. Review/Research ownership, seriality, micro-fix proportionality, target refresh and terminal recovery stay unchanged.
