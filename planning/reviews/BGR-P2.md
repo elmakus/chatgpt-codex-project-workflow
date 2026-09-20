@@ -2,7 +2,7 @@
 
 Plan revision: BGR-P2
 Review requirement: RECOMMENDED
-Review state: pending
+Review state: in_progress
 Review subject: 0671fb812cdc970df09be2c06d73b9d9e09bab20
 Plan: planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md
 Requirements: requirements/BRAINSTORMING_GRILLING.md
