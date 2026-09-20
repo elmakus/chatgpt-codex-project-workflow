@@ -24,7 +24,7 @@ milestones:
     review_evidence: null
   M02:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md#milestone-m02--same-repo-plugin-package-and-canonical-wrapper"
     checkpoint: null
     implementation_head: null
@@ -55,7 +55,7 @@ cards:
     title: "Implement same-repo Codex plugin package"
     milestone: "M02"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on:
       - "M01-T01"
