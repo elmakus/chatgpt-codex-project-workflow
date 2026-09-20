@@ -7,7 +7,7 @@
 - [x] Add the manifest orchestration binding schema.
 - [x] Reconcile workstream ownership/no-mirroring/validity semantics.
 - [x] Narrow blanket profile-persistence wording without permitting concrete runtime identity.
-- [ ] Run/read back T01 verification and freeze the independent-review subject.
+- [x] Run/read back T01 verification and freeze the independent-review subject.
 
 ## M01-T02 — lifecycle + dispatch wiring
 
