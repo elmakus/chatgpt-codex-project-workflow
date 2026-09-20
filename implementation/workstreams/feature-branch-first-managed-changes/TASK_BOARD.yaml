@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "e80a4b24854fae485e87532f882831291189bece"
+  head: "49f83ac703e5babb67555ee90aed955820dd298f"
 
 research_obligation: null
 
@@ -44,8 +44,8 @@ cards:
     title: "Add generic natural-language managed-change entry"
     milestone: "M01"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on: ["M01-T01"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M01-T02.md"
     review_state: null
