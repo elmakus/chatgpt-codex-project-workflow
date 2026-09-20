@@ -32,9 +32,9 @@ cards:
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/issue-codex-compaction-routing-recovery/cards/M01-T01.md"
-    review_state: in_progress
+    review_state: green
     review_subject: "319b034ebd3d5afd8643b755e00ab8d7987a0f34"
-    review_evidence: null
+    review_evidence: "implementation/workstreams/issue-codex-compaction-routing-recovery/evidence/M01-T01_REVIEW_2026-09-20.md"
     result_commit: "319b034ebd3d5afd8643b755e00ab8d7987a0f34"
     result_pr: null
     evidence: "implementation/workstreams/issue-codex-compaction-routing-recovery/evidence/M01-T01_IMPLEMENTATION_2026-09-20.md"
