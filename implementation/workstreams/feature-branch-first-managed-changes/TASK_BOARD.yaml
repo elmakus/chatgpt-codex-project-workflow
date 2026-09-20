@@ -60,7 +60,7 @@ cards:
     title: "Reconcile branch-first bootstrap and default-state boundary"
     milestone: "M01"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: null
     depends_on: ["M01-T01", "M01-T02"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M01-T03.md"
