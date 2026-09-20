@@ -1,6 +1,6 @@
 id: "issue-codex-compaction-routing-recovery"
 kind: "issue"
-status: "review"
+status: "done"
 
 branch: "fix/codex-compaction-routing-recovery"
 base_ref: "aa35886be2ec1b2ac58e600cd633dc214dc65096"
@@ -41,4 +41,4 @@ branch_cleanup:
   evidence: null
 
 pr: 47
-result: null
+result: "1d61e60fb16596099de9d7c1b25d9f560b739e4c"
