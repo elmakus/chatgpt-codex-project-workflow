@@ -16,7 +16,7 @@ Changing execution policy requires an explicit user decision.
 
 ## Canonical authority pointers
 
-- Active exploratory scope: `brainstorming/BRAINSTORMING_GRILLING.md (brainstorming-grilling@R1)`
+- Active exploratory scope: `none`
 - Active research obligation: `none`
 - Requirements: `requirements/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP.md`
 - Approved plan: `planning/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP_MASTER_PLAN.md`
