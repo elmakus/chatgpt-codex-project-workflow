@@ -33,9 +33,9 @@ cards:
     depends_on: []
     openspec_change: null
     contract: "implementation/workstreams/feature-project-workflow-codex-plugin/cards/M01-T01.md"
-    review_state: in_progress
+    review_state: green
     review_subject: "e37c30d8c53e9b1bfc1cb88ab62077d1ca18ff40"
-    review_evidence: null
+    review_evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M01-T01-independent-review-2026-09-20.md"
     result_commit: "e37c30d8c53e9b1bfc1cb88ab62077d1ca18ff40"
     result_pr: null
     evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M01-T01-p3-naming-delta-2026-09-20.md"
