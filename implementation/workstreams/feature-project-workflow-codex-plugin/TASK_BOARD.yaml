@@ -46,12 +46,12 @@ milestones:
     review_evidence: null
   M04:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md#milestone-m04--integrated-acceptance-and-release-readiness"
-    checkpoint: null
+    checkpoint: "1f18f2dc0bc8c9a2c56b49967df12d4e94bd5e2f"
     implementation_head: "bde88f919c0d26326949a757223f146e9b1e6976"
     handoff: "implementation/workstreams/feature-project-workflow-codex-plugin/handoffs/M04_HANDOFF.md"
-    acceptance_evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M04_ACCEPTANCE_CANDIDATE_2026-09-20.md"
+    acceptance_evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M04_FINAL_CLOSURE_2026-09-20.md"
     review_state: null
     review_subject: null
     review_evidence: null
