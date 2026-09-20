@@ -5,7 +5,7 @@ current_milestone: "M01"
 
 execution_ref:
   branch: "feat/brainstorming-grilling"
-  pr: null
+  pr: 37
   head: "40f2bd5f4b2c261411b5d07e953e94c250736fe7"
 
 research_obligation: null
@@ -37,6 +37,6 @@ cards:
     review_subject: "40f2bd5f4b2c261411b5d07e953e94c250736fe7"
     review_evidence: "implementation/workstreams/feature-brainstorming-grilling/evidence/M01-T01_REVIEW_2026-09-20.md"
     result_commit: "40f2bd5f4b2c261411b5d07e953e94c250736fe7"
-    result_pr: null
+    result_pr: 37
     evidence: "implementation/workstreams/feature-brainstorming-grilling/evidence/M01-T01.md"
     tests_summary: "GREEN author verification: full repository unittest discovery 13/13; policy-local grilling equivalence/trigger/frontier/fact-ownership/recovery/user-stop/promotion/routing/OpenSpec/README coverage GREEN; diff-check and conflict scan GREEN; OpenSpec checklist complete."
