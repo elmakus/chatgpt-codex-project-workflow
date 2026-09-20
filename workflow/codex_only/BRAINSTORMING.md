@@ -42,11 +42,17 @@ Do not rewrite history to make old brainstorming look settled.
 
 Read only already accepted requirements/decisions and source/project context that actually constrain the exploration. Do not load implementation-state machinery unless the question depends on current execution state.
 
+## Durable active scope
+
+Once exploration is durable managed-change state, an exact selected Codex-only workstream manifest already exists under the branch-first entry contract. Create/reconcile the exact brainstorming record first, then set manifest `routing.exploratory_scope` to that repository-relative record path in the same durable transition when practical. The record owns `Scope ID`, `Revision`, status and Definition-promotion fields; the manifest is locator-only.
+
+A fresh coordinator context recovers the active exploratory scope from selected manifest `routing.exploratory_scope`, validates that locator through `WORKSTREAMS.md`, then reads only the pointed record. Never mirror this locator into root `PROJECT.md`. A missing/mismatched locator for otherwise-live exploratory state is Recovery, not permission to guess another record.
+
 ## Exit conditions
 
 Move to Research when claims require verification.
 
-Before yielding, create one exact obligation under `workflow/codex_only/RESEARCH.md#Durable record contract` with Origin role `brainstorming`, exact exploratory `<scope-id>@<revision>`, Return target `brainstorming:<scope-id>@<revision>`, reconciliation pending, and set `PROJECT.md → Active research obligation`.
+Before yielding, create one exact obligation under `workflow/codex_only/RESEARCH.md#Durable record contract` with Origin role `brainstorming`, exact exploratory `<scope-id>@<revision>`, Return target `brainstorming:<scope-id>@<revision>`, reconciliation pending, and set the selected workstream manifest `routing.research_obligation` to that exact record. Persist the record + locator before returning to the router.
 
 When that record becomes complete for this Brainstorming subject, use `workflow/codex_only/RESEARCH.md#Final Return-target protocol`. The target mutation is the exact exploratory-record reconciliation. Persist it together with `Return reconciliation: applied` + exact result ref; only then consume/clear. Recovery from applied+complete must not reapply findings or create another brainstorming revision.
 
