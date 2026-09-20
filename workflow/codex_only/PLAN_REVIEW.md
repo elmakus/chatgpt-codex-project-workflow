@@ -28,7 +28,7 @@ For a branch-isolated Codex-only workstream, selected manifest `routing.plan_rev
 
 ## Independence
 
-Before `in_progress`, Codex Main validates the selected manifest `routing.plan_review` against this exact record/subject, then runtime must realize a Tester independent from the worker that authored the exact plan subject.
+Before `in_progress`, Codex Main validates the selected manifest `routing.plan_review` against this exact record/subject, satisfies `workflow/codex/CODEX_ORCHESTRATION.md#Codex-only pre-dispatch binding gate`, then runtime may realize a Tester independent from the worker that authored the exact plan subject.
 
 The Tester:
 
@@ -66,6 +66,6 @@ If Planning corrects the plan, create a new plan revision/review record. Do not 
 
 ## Runtime loss/replacement
 
-Loss of a reviewer runtime does not change the plan review subject/record. Codex Main may let `codex_workflow` safely resume or replace the Tester and repeat the full review of the same immutable plan subject.
+Loss of a reviewer runtime does not change the plan review subject/record. Before runtime resume/replacement, Codex Main re-applies the shared pre-dispatch binding gate; `codex_workflow` may then safely resume or replace the Tester and repeat the full review of the same immutable plan subject.
 
 A durable GREEN/RED verdict is not replayed merely because runtime worker state disappeared.

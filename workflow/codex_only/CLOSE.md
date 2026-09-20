@@ -88,7 +88,7 @@ Required ordering:
    - if reconciliation materially changes the covered content/behavior or acceptance surface, any prior coverage is stale: persist the new exact manifest `review.subject`, set REQUIRED/RECOMMENDED review to `pending`, clear stale `covered_by`, persist reconciliation evidence and return through the router to the formal independent-review obligation;
    - target movement or changed commit ancestry alone is not sufficient reason to invalidate review.
 
-Any concrete production worker that performs behavioral reconciliation is part of the implementation-owner set for that changed subject and cannot serve as its Tester. Codex Main records only semantic ownership; `codex_workflow` realizes an independent Tester.
+Any concrete production worker that performs behavioral reconciliation is part of the implementation-owner set for that changed subject and cannot serve as its Tester. Codex Main records only semantic ownership. Close freezes/routes the review obligation but does not directly realize its Tester; `REVIEW.md` owns that dispatch and applies the shared pre-dispatch binding gate before `codex_workflow` realizes the independent Tester.
 6. Immediately before the actual merge/integration, read the target again. If it moved after the comparison/review decision, loop through this gate again.
 
 File overlap alone never blocks this gate. A real dependency, incompatible authority, unresolved semantic conflict or unreconcilable integration conflict does.

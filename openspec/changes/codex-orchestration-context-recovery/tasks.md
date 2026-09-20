@@ -11,11 +11,11 @@
 
 ## M01-T02 — lifecycle + dispatch wiring
 
-- [ ] Establish binding deterministically during new-workstream Intake.
-- [ ] Add bounded pre-schema branch-first Recovery migration and fail-closed invalid-binding handling.
-- [ ] Add conditional reconstruction/kernel routing.
-- [ ] Make the generic orchestration boundary enforce the binding+latch precondition.
-- [ ] Wire/audit Executor, Tester, plan-review Tester, Investigator, bounded-parallel and Recovery realization paths.
+- [x] Establish binding deterministically during new-workstream Intake.
+- [x] Add bounded pre-schema branch-first Recovery migration and fail-closed invalid-binding handling.
+- [x] Add conditional reconstruction/kernel routing.
+- [x] Make the generic orchestration boundary enforce the binding+latch precondition.
+- [x] Wire/audit Executor, Tester, plan-review Tester, Investigator, bounded-parallel and Recovery realization paths.
 
 ## M01-T03 — regressions + docs
 

@@ -25,6 +25,12 @@ New obligations start with `Status: active`, `Return reconciliation: pending`, a
 
 The shared `templates/RESEARCH.md` may be used for evidence structure, but this policy-local module exclusively owns Codex-only continuation/routing semantics; concrete Investigator/runtime realization remains owned by `codex_workflow`.
 
+## Investigator realization
+
+When an active Research obligation requires a runtime Investigator, Codex Main satisfies `workflow/codex/CODEX_ORCHESTRATION.md#Codex-only pre-dispatch binding gate` before asking runtime to realize or re-realize that role. Investigator replacement/resume after runtime loss uses the same gate and the same durable Research record; it does not create a new Research obligation merely because concrete runtime state disappeared.
+
+Project Workflow does not interpret `policy_ref` into an Investigator harness/model and persists no concrete Investigator identity.
+
 ## Pointer ownership
 
 Pre-execution Brainstorming / Project Definition / Strategic Planning / plan-review Research uses:

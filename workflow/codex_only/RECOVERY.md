@@ -22,6 +22,22 @@ Recover only truth needed for the selected obligation:
 
 Previous chat narrative, worker/session handles and concrete worktree paths are not authority.
 
+## Orchestration reconstruction boundary
+
+For a selected branch-first workstream, Recovery also reconstructs the compact orchestration boundary from the selected manifest plus `ORCHESTRATION_KERNEL.md`; it never reconstructs concrete runtime identity.
+
+At known coordinator/transcript/context loss, repository-only recovery, coordinator replacement, or uncertainty about current-context re-bind:
+
+1. treat the conceptual current-context binding latch as absent/uncertain even when the durable fingerprint still matches;
+2. validate the selected manifest's `orchestration` shape and durable binding;
+3. if the selected pre-schema branch-first manifest has **no `orchestration` block**, perform one bounded schema upgrade: ask the active runtime owner to resolve the currently selected opaque policy/profile, persist exactly `runtime_owner + policy_ref + optional contract_fingerprint`, read it back, then continue;
+4. if the block already exists but required `runtime_owner` / `policy_ref` values are missing, unknown or contradictory, fail closed; do not reinterpret it as legacy absence and do not select another policy/harness;
+5. before the first subsequent policy-dependent worker realization/re-realization, satisfy `workflow/codex/CODEX_ORCHESTRATION.md#Codex-only pre-dispatch binding gate`.
+
+Fingerprint drift requires re-resolution and durable refresh only after successful resolution. A matching fingerprint suppresses only drift work; it never supplies the non-durable current-context latch.
+
+This recovery read is bounded to `PROJECT.md`, the selected manifest, the kernel and the exact canonical state already needed by the current obligation. Do not reread the entire workflow/project tree or remote `codex_workflow` repository merely to restore orchestration policy.
+
 ## Priority
 
 Apply this priority only after one exact branch-isolated workstream Task Board is selected and binding validation is GREEN. Historical root/default state must complete the migration-before-mutation protocol below before normal priority applies.
@@ -47,8 +63,8 @@ When no branch-isolated workstream is selected and historical root/default state
 1. Read root `implementation/TASK_BOARD.yaml` plus only the exact current contracts, review attempts, Research pointer/record, Card/milestone result/evidence, parallel batch/history, handoff and Git/PR state needed to identify the live obligation. This discovery is read-only with respect to root/default execution state.
 2. Recover one exact migration topology **before branch creation or adoption**. First recover any existing branch/manifest/PR that durably represents this same obligation. Otherwise recover the repository's intended normal `integration_target` and exact creation base from durable project/Git/PR evidence, then apply `INTAKE.md#Base and dependency classification`: use an independent workstream with null parent fields when no parent-only dependency exists; use a stacked workstream only when exact evidence proves the required parent workstream/branch and concrete `parent_dependency`. The selected base is the exact integration-target base for independent work or the exact required parent-only base for stacked work. If `integration_target`, exact base, parent ownership or dependency classification cannot be proven, fail closed before creating/adopting a branch.
 3. Establish one exact migration identity. Reuse an exact coherently recovered workstream identity when one exists. Otherwise use neutral `kind: change` plus deterministic `change-<slug>` / `work/<slug>` collision rules from Intake. A pre-existing non-target branch may be adopted only when exact Git + durable evidence prove it owns this same obligation and establish coherent `base_ref`, `integration_target` and parent metadata; otherwise do not guess or claim it.
-4. Ensure the exact workstream branch exists **before** writing migrated managed state. A newly created branch starts from the exact base proven in step 2. Materialize/reconcile one `WORKSTREAM.yaml` and one namespaced `TASK_BOARD.yaml` on that branch, persisting coherent `base_ref`, `integration_target`, `parent_workstream`, `parent_branch`, `parent_dependency`, manifest `task_board`, Task Board `workstream_id` and `execution_ref.branch`. Do not create a second lane when partial migration already materialized the same identity/topology.
-5. Migrate only continuation truth required for coherent recovery: current plan/milestone identity; live/non-terminal Cards and required dependency results; semantic `implementation_owner_role`; exact Card/milestone review requirement/current-attempt/append-only attempt history; implementation/recovery `research_obligation`; Card/milestone result/evidence/test/blocker pointers; and the complete `parallel.current_batch` plus referenced batch/member history needed to preserve frozen base, membership/order, returned/integrated refs and post-batch review-drain lineage. Runtime worker/session/model/profile/invocation/worktree identity is never migrated because it is not Project Workflow authority.
+4. Ensure the exact workstream branch exists **before** writing migrated managed state. A newly created branch starts from the exact base proven in step 2. Materialize/reconcile one `WORKSTREAM.yaml` and one namespaced `TASK_BOARD.yaml` on that branch, persisting coherent `base_ref`, `integration_target`, `parent_workstream`, `parent_branch`, `parent_dependency`, manifest `task_board`, Task Board `workstream_id` and `execution_ref.branch`. Do not create a second lane when partial migration already materialized the same identity/topology. Once that branch-isolated manifest exists, establish/read back its orchestration binding through **Orchestration reconstruction boundary** before any policy-dependent runtime continuation; never copy a historical root/default runtime profile into it as project authority.
+5. Migrate only continuation truth required for coherent recovery: current plan/milestone identity; live/non-terminal Cards and required dependency results; semantic `implementation_owner_role`; exact Card/milestone review requirement/current-attempt/append-only attempt history; implementation/recovery `research_obligation`; Card/milestone result/evidence/test/blocker pointers; and the complete `parallel.current_batch` plus referenced batch/member history needed to preserve frozen base, membership/order, returned/integrated refs and post-batch review-drain lineage. Concrete worker/session/model-instance/invocation/worktree identity is never migrated because it is not Project Workflow authority; the opaque manifest policy/profile selection is established through the runtime owner after the branch-isolated manifest exists, not copied from historical root/default execution state.
 6. Preserve immutable completed contracts/evidence/handoffs and batch/review lineage by exact reference when still valid; do not rewrite or duplicate completed history merely for layout. Never reinterpret a historical lane as a new batch or discard an integrated/returned result to simplify migration.
 7. If historical root `PROJECT.md` also carries an unreconciled pre-execution exploratory/Research locator for this same obligation, migrate that exact locator into selected manifest `routing.*` ownership defined by M03-T01. Do not mirror lifecycle fields and do not leave two active pointers.
 8. Persist concise migration provenance when mapping is non-trivial, including exact source root/default ref, proven target/base/dependency classification and resulting workstream manifest/Task Board ref. The source root/default board remains historical input and is not cleared, advanced or used as a mutable owner merely to mark migration complete.
@@ -93,6 +109,8 @@ For `parallel.current_batch` and every batch history entry require:
 Contradiction routes to Recovery; never infer the missing fact from runtime memory.
 
 ## Batch recovery by durable boundary
+
+Any path in this section that actually launches, resumes, replaces, reruns or re-realizes runtime worker work inherits the single `workflow/codex/CODEX_ORCHESTRATION.md#Codex-only pre-dispatch binding gate` before that runtime operation. The durable batch/member rules below do not duplicate runtime policy interpretation.
 
 ### Prepared
 
@@ -193,7 +211,7 @@ Task Board `research_obligation` remains the single implementation/recovery Rese
 
 ## Runtime boundary
 
-Project Workflow does not own concrete worker/session/model/profile/reasoning/invocation/lease/wait/resume/replacement/worktree-path state. Runtime may resume or replace a realization fail-closed; durable Card/batch/lane/result/review semantics remain unchanged.
+Project Workflow does not own concrete worker/session/model-instance/reasoning/invocation/lease/wait/resume/replacement/worktree-path state. Opaque policy/profile selection is durable only in the selected manifest `orchestration` binding. Runtime may resume or replace a realization only after the shared pre-dispatch binding gate; durable Card/batch/lane/result/review semantics remain unchanged.
 
 ## Integrated terminal workstream recovery
 
