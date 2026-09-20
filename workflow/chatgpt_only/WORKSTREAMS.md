@@ -17,7 +17,7 @@ Concurrency exists **between workstreams**, not between Cards inside one workstr
 
 Exactly one Card may be `in_progress` in the selected workstream Task Board.
 
-The legacy/default single-workstream mode remains valid. When no branch-isolated workstream is selected, `implementation/TASK_BOARD.yaml` remains the canonical Task Board exactly as before.
+Historical legacy/default single-workstream state remains recoverable, but it is not a mutable destination for branch-first managed work. When root `implementation/TASK_BOARD.yaml` is the only durable live-state source, use it only to recover/migrate the exact obligation into a branch-isolated workstream before further managed-change mutation.
 
 ## Canonical branch-isolated layout
 
@@ -190,12 +190,13 @@ When an exact target-side closure package records a workstream as intentionally 
 - keep manifest/Task Board branch identity as original provenance;
 - do not use closed PR state alone as proof of cleanup safety.
 
-### 6. Legacy/default fallback
+### 6. Historical legacy/default recovery
 
-When no branch-isolated workstream is selected:
-- if the project uses `implementation/TASK_BOARD.yaml`, that file remains the canonical mutable implementation state;
-- existing active/default state is never moved merely because multi-workstream support exists;
-- absence of a workstream manifest never makes a legacy/default project invalid.
+When no branch-isolated workstream is selected and root `implementation/TASK_BOARD.yaml` exists:
+- treat that board as historical recovery/migration input, not as the mutable destination for new or continued managed-change work;
+- recover the exact outstanding authority/state and route to policy-local Recovery to create/recover the branch-isolated workstream before further mutation;
+- preserve historical evidence and completed state without repository-wide churn;
+- absence of a workstream manifest does not make historical state invalid, but it also does not authorize root/default mutation.
 
 ### 7. Ambiguity
 
@@ -439,7 +440,7 @@ A branch-isolated intake/implementation/review/recovery obligation is recoverabl
 
 Previous chat narrative is never required.
 
-For the legacy/default mode, existing `PROJECT.md` + `implementation/TASK_BOARD.yaml` recovery remains unchanged.
+For historical legacy/default state, existing `PROJECT.md` + `implementation/TASK_BOARD.yaml` remain valid recovery inputs only. Any live managed-change continuation must migrate to the exact branch-isolated workstream before mutation.
 
 ## Foreign-policy boundary
 
