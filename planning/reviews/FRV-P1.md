@@ -2,10 +2,10 @@
 
 Plan revision: `FRV-P1`
 Review requirement: `RECOMMENDED`
-Review state: `in_progress`
+Review state: `red`
 Review subject: `planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md@blob:6f8939a2957caf3a0043d91d919dd50667e73b54`
 Review subject commit: `81d91b3a4e07cfbb20361356c2127da1ce37e958`
-Review evidence: `in_progress`
+Review evidence: `RED — exact frozen plan blob 6f8939a2957caf3a0043d91d919dd50667e73b54 is recoverable and otherwise preserves approved FRV R1 / ADR-FRV-001 lineage, provenance, migration, policy-surface coverage and authorization boundaries. The blocking plan-only defect is the OpenSpec boundary: FRV-P1 says no OpenSpec is required by default because the scope changes workflow contracts rather than a runtime API/schema, while current workflow/common/OPENSPEC.md explicitly treats new/changed behavior contracts and migrations/external side-effect semantics as normally justified OpenSpec surfaces. M01 introduces a new canonical release-selection behavior contract and migration/publication semantics across three publication routes. Planning must create a new revision that marks this M01 behavior surface as an OpenSpec candidate/required JIT contract and carries its verification/reconciliation into Execution Prep. Definition remains valid; no Research or user/product authority blocker found.`
 
 ## Scope
 
