@@ -19,11 +19,11 @@ The user also wants short issue/feature intake syntax.
 Use two layers:
 
 1. a minimal always-on activation/reminder surface for repositories where the plugin is enabled; and
-2. one explicit concise Project Workflow Skill, targeted as `$pw`, which routes into canonical Project Workflow and can accept subcommands/arguments when needed.
+2. one explicit concise Project Workflow bundled Skill using the verified current Codex identity `$pw:pw` (plugin `pw` + Skill `pw`), which routes into canonical Project Workflow and can accept subcommands/arguments when needed.
 
 The always-on surface may be implemented using supported plugin hooks, a very small repository instruction mechanism, or the smallest reliable combination proven by implementation evidence. It must not embed full workflow policy.
 
-Prefer existing `#issue` and `#feature` directives when end-to-end tests prove they reliably reach the canonical intake route under this always-on model. If that reliability is not demonstrated, use `$pw issue ...` and `$pw feature ...` as the documented fallback. Do not create separate duplicate Skills merely to provide those aliases.
+Prefer existing `#issue` and `#feature` directives when end-to-end tests prove they reliably reach the canonical intake route under this always-on model. If that reliability is not demonstrated, use `$pw:pw issue ...` and `$pw:pw feature ...` as the documented fallback. Do not create separate duplicate Skills merely to provide those aliases.
 
 ## Rationale
 
@@ -45,7 +45,7 @@ Rejected due to recurring context waste and authority duplication.
 
 ### Hook-only with no explicit Skill
 
-Rejected because a manual/recovery/debug entrypoint remains useful and the accepted UX includes `$pw`.
+Rejected because a manual/recovery/debug entrypoint remains useful and the accepted UX includes one concise explicit bundled Skill.
 
 ### Three Skills (`pw`, `pw-issue`, `pw-feature`)
 
@@ -55,7 +55,7 @@ Rejected as unnecessary duplication.
 
 - Implementation must validate fresh-session/resume/compaction behavior and any trust prompt required by hooks.
 - The always-on payload must remain intentionally small.
-- Usage docs must record the verified intake syntax after comparing `#issue/#feature` with the `$pw` fallback.
+- Usage docs must record the verified intake syntax after comparing `#issue/#feature` with the `$pw:pw` fallback.
 - A failure of one candidate activation mechanism does not permit dropping the always-on invariant; implementation must choose another accepted mechanism or return to Definition if current platform constraints make the invariant impossible.
 
 ## Required authoritative updates
@@ -68,7 +68,8 @@ Rejected as unnecessary duplication.
 ## Provenance
 
 - Source discussion/request: user-authorized `project-workflow-codex-plugin@R1`.
-- Evidence/research: current Codex plugin/Skill/hook capabilities and existing Project Workflow routing.
+- Evidence/research: current Codex plugin/Skill/hook capabilities and existing Project Workflow routing; M01-T01 runtime evidence proved bundled Skills are exposed as `<plugin-name>:<skill-name>` and that plugin `pw` + Skill `pw` yields `$pw:pw`, while literal `$pw` does not invoke the bundled Skill.
+- User/product reconciliation: on 2026-09-20 the user explicitly accepted `$pw:pw` as the supported explicit command.
 - Strategic `request_id`: none.
 - Exact `DECISION FOR CODEX:` marker: none.
 - Persisting commit: recorded by Git history.
