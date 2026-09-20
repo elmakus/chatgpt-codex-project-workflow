@@ -2,11 +2,11 @@
 
 ## M01-T01 — schema + kernel
 
-- [ ] Freeze this JIT OpenSpec against current Card authority and source baseline.
-- [ ] Add the compact Codex-only orchestration kernel.
-- [ ] Add the manifest orchestration binding schema.
-- [ ] Reconcile workstream ownership/no-mirroring/validity semantics.
-- [ ] Narrow blanket profile-persistence wording without permitting concrete runtime identity.
+- [x] Freeze this JIT OpenSpec against current Card authority and source baseline.
+- [x] Add the compact Codex-only orchestration kernel.
+- [x] Add the manifest orchestration binding schema.
+- [x] Reconcile workstream ownership/no-mirroring/validity semantics.
+- [x] Narrow blanket profile-persistence wording without permitting concrete runtime identity.
 - [ ] Run/read back T01 verification and freeze the independent-review subject.
 
 ## M01-T02 — lifecycle + dispatch wiring
