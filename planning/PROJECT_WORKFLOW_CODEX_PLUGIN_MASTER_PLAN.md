@@ -265,5 +265,5 @@ Planning audit result: `GREEN`.
 
 - Review requirement: `RECOMMENDED`
 - Reason: this is a new Master Plan spanning plugin packaging, lifecycle activation, trust behavior and end-to-end workflow routing; independent review is practical.
-- Review record: `planning/reviews/PWCP-P1.md`
+- Review record: `planning/reviews/PWCP-P2.md`
 - Plan remains `draft` until the exact `PWCP-P2` subject receives GREEN independent review.
