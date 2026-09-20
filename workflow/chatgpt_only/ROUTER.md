@@ -26,9 +26,9 @@ Do not load legacy/shared execution trees or another policy directory.
 13. A selected manifest final-integration `review.state: red` outranks unrelated/later implementation in that workstream and uses the same RED corrective-route classification; bounded correction/Research stays on the selected Task Board.
 14. When immutable PR/merge evidence proves the selected workstream's final-target merge succeeded but target-side closure/result reconciliation is unfinished, route to Close using `WORKSTREAMS.md#Post-merge-closure-workstream` before unrelated work. Source-branch disappearance does not block this route and must not cause ref recreation.
 15. A qualified micro-fix with a terminal fix Card and an unfinished selected workstream routes to Close for current-target refresh, final-integration review coverage/freeze and integration once no higher-priority Task Board or manifest pending/RED review obligation remains. Do not synthesize a milestone and do not reuse/freeze the manifest final-review gate before Close runs the refresh.
-16. If `PROJECT.md → Active research obligation` points to a pre-execution research record, read that exact record before choosing the route. `Status: active | blocked` routes to Research; `Status: complete` routes to the exact recorded Return target; `Status: consumed` means the pointer is stale and should be cleared at the next safe edit.
-17. If both Task Board and PROJECT point to different active/blocked/complete Research obligations, treat that as inconsistent state and route to Recovery instead of guessing which obligation owns continuation.
-18. If the current request/handoff or current planning state references a plan-review record, read that `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. Treat the request/handoff only as a locator; the record is authority. `pending | in_progress` outranks both.
+16. If the selected manifest `routing.research_obligation` points to a pre-execution Research record, validate and read that exact record before choosing the route. `Status: active | blocked` routes to Research; `Status: complete` routes to the exact recorded Return target; `Status: consumed` means the manifest locator is stale and should be cleared at the next safe edit after verifying reconciliation.
+17. If both Task Board `research_obligation` and manifest `routing.research_obligation` point to different active/blocked/complete Research obligations, treat that as inconsistent state and route to Recovery instead of guessing which lifecycle owns continuation. Implementation/recovery Research belongs only to the Task Board; pre-execution Research belongs only to manifest routing.
+18. If selected manifest `routing.plan_review` is non-null, validate and read that exact `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. An explicit fresh-session/request locator for a branch-isolated plan review must match the selected manifest locator; mismatch is Recovery. Treat the locator only as routing state; the review record is authority. `pending | in_progress` routes to independent Plan Review, while `green | red` routes to Planning for deterministic verdict consumption/correction. Historical root `PROJECT.md` exploratory/Research pointers without an exact migrated workstream are recovery/migration input only and must route to Recovery before further managed mutation.
 19. Select exactly one primary route below.
 20. Read only that route's required project artifacts plus exact authority refs.
 21. Continue deterministic work automatically until a real workflow stop is reached.
@@ -81,11 +81,11 @@ Under `chatgpt_only`, the first transition from exploratory Brainstorming into P
 
 Brainstorming may reach `ready_for_definition`, but that state is only a recommendation that formalization is now possible. It is not permission to start Definition.
 
-The active exploratory scope is discovered from project `PROJECT.md → Active exploratory scope`. That pointer identifies the exact brainstorming record used for recovery. The record carries a stable `Scope ID`, `Revision`, and `Definition promotion subject`.
+The active exploratory scope is discovered from the selected workstream manifest `routing.exploratory_scope`. That locator identifies the exact brainstorming record used for recovery and MUST pass `WORKSTREAMS.md` locator validation before use. The record carries a stable `Scope ID`, `Revision`, and `Definition promotion subject`; the manifest does not mirror those fields.
 
 Before entering Project Definition from an exploratory Brainstorming/Research path, require one of:
 - an explicit current user instruction to promote the current scope into Project Definition; or
-- durable `Definition promotion authorization: user_authorized` in the PROJECT-pointed brainstorming record, with `Definition promotion subject` exactly matching that record's current `<scope-id>@<revision>`.
+- durable `Definition promotion authorization: user_authorized` in the manifest-pointed brainstorming record, with `Definition promotion subject` exactly matching that record's current `<scope-id>@<revision>`.
 
 A durable `user_authorized` value without an exact matching promotion subject is stale/insufficient and must not authorize Definition.
 
@@ -93,14 +93,14 @@ Examples of sufficient user intent include “przejdź do Definition”, “form
 
 When Brainstorming is ready but promotion is not authorized:
 1. persist the useful brainstorming state;
-2. ensure `PROJECT.md → Active exploratory scope` points to that exact record;
+2. ensure selected manifest `routing.exploratory_scope` points to that exact record;
 3. set `Status: ready_for_definition`, `Definition promotion authorization: pending`, and `Definition promotion subject: none`;
 4. do **not** enter Project Definition or Planning;
 5. treat this as a policy-specific real user stop;
 6. use `workflow/common/USER_STOP.md` and ask only whether to continue brainstorming/research or promote the current scope into Project Definition.
 
 When the user explicitly authorizes promotion:
-1. ensure the current exploratory record and its PROJECT pointer are persisted;
+1. ensure the current exploratory record and its selected-manifest `routing.exploratory_scope` locator are persisted;
 2. persist `Definition promotion authorization: user_authorized` plus `Definition promotion subject: <scope-id>@<revision>` before entering Definition;
 3. route to Project Definition;
 4. continue normally from there.
@@ -111,7 +111,7 @@ Research completion does not bypass this gate. If Research was entered from an u
 
 The authorization applies only to the exact promoted scope/revision. Once Definition has begun, keep the active exploratory pointer/record available so bounded Research ↔ Definition recovery for that same promoted subject does not require repeated authorization. If Definition deliberately returns to open-ended Brainstorming because the product/problem space has materially reopened, create a new brainstorming revision (or a new scope when appropriate) and reset authorization to `pending` with promotion subject `none`.
 
-When Definition Complete becomes GREEN, the exploratory promotion obligation is complete. Clear `PROJECT.md → Active exploratory scope` when it no longer represents an active exploratory/Definition recovery pointer, then continue to Planning.
+When Definition Complete becomes GREEN, the exploratory promotion obligation is complete. Clear selected manifest `routing.exploratory_scope` only after the Definition result is durable and the locator no longer represents active exploratory/Definition recovery, then continue to Planning.
 
 This gate does **not** apply to `Definition Complete = GREEN → Planning`; that transition remains deterministic and automatic when planning is in scope.
 
@@ -164,16 +164,16 @@ When Intake completes, it must first materialize the canonical durable state own
 
 Read:
 - `workflow/chatgpt_only/BRAINSTORMING.md`;
-- the exact record referenced by `PROJECT.md → Active exploratory scope` when that pointer exists;
-- the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Brainstorming subject;
-- otherwise the current brainstorming material needed to establish/create that pointer;
+- the exact record referenced by selected manifest `routing.exploratory_scope` when that locator exists;
+- the exact `complete` Research record referenced by selected manifest `routing.research_obligation` when its Return target is this Brainstorming subject;
+- otherwise the current brainstorming material needed to establish/create the manifest locator;
 - only accepted constraints already relevant.
 
 ### Research
 
 Read:
 - `workflow/chatgpt_only/RESEARCH.md`;
-- the exact record referenced by `PROJECT.md → Active research obligation` for pre-execution Research when that pointer exists;
+- the exact record referenced by selected manifest `routing.research_obligation` for pre-execution Research when that locator exists;
 - otherwise the exact Task Board `research_obligation` pointer when Research was triggered from active execution/recovery;
 - the exact research question/material;
 - only relevant accepted requirements/decisions/source state.
@@ -185,8 +185,8 @@ The durable research record owns its `Status`, Origin subject and Return target.
 Read:
 - `workflow/chatgpt_only/DEFINITION.md`;
 - current user/product goal and explicit accepted choices;
-- the exact `PROJECT.md → Active exploratory scope` record when Definition was entered through the promotion gate and the pointer is still active;
-- the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Project Definition subject;
+- the exact record referenced by selected manifest `routing.exploratory_scope` when Definition was entered through the promotion gate and the locator is still active;
+- the exact `complete` Research record referenced by selected manifest `routing.research_obligation` when its Return target is this Project Definition subject;
 - the exact `complete` record referenced by Task Board `research_obligation` when its final Return target is this Project Definition subject;
 - relevant brainstorming conclusions;
 - relevant verified research/evidence;
@@ -218,7 +218,7 @@ Read:
 - `workflow/chatgpt_only/PLANNING.md`;
 - approved canonical requirements;
 - accepted decisions;
-- the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Strategic Planning subject;
+- the exact `complete` Research record referenced by selected manifest `routing.research_obligation` when its Return target is this Strategic Planning subject;
 - the exact `complete` record referenced by Task Board `research_obligation` when its final Return target is this Strategic Planning subject;
 - only verified research/baseline that the accepted definition or plan actually references;
 - current approved plan when replanning.
@@ -231,6 +231,7 @@ Read Task Board/current handoff only when planning/replanning an active project.
 
 Read:
 - `workflow/chatgpt_only/PLAN_REVIEW.md`;
+- selected workstream manifest + validated `routing.plan_review` locator;
 - exact `planning/reviews/<plan-revision>.md` record;
 - exact immutable Master Plan review subject;
 - approved canonical requirements;
