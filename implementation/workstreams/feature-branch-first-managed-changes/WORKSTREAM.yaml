@@ -2,7 +2,7 @@
 
 id: "feature-branch-first-managed-changes"
 kind: "feature"
-status: "planning"
+status: "ready"
 
 branch: "feat/branch-first-managed-changes"
 base_ref: "808084a4c7989715f7ee4889a31bce28f778d597"
@@ -16,7 +16,7 @@ intake:
   state: null
   record: null
 
-task_board: null
+task_board: "implementation/workstreams/feature-branch-first-managed-changes/TASK_BOARD.yaml"
 
 authority:
   requirements: "requirements/BRANCH_FIRST_MANAGED_CHANGES.md"

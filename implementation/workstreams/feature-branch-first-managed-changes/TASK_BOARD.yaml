@@ -1,0 +1,73 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "feature-branch-first-managed-changes"
+plan_revision: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md@BF-R3"
+current_milestone: "M01"
+
+execution_ref:
+  branch: "feat/branch-first-managed-changes"
+  pr: null
+  head: null
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md#M01--branch-first-state-model-and-generic-managed-change-entry-contracts"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Define branch-first workstream routing state model"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: []
+    contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M01-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M01-T02"
+    title: "Add generic natural-language managed-change entry"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on: ["M01-T01"]
+    contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M01-T02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M01-T03"
+    title: "Reconcile branch-first bootstrap and default-state boundary"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on: ["M01-T01", "M01-T02"]
+    contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M01-T03.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
