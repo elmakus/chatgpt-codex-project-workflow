@@ -6,7 +6,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "9aa1af79e4e3634c81626fc04fc6c9a7a6874519"
+  head: "b9df50e11741962e386a3eb03376ef1d39e0759c"
 
 research_obligation: null
 
@@ -148,7 +148,7 @@ cards:
     title: "Migrate Codex-only execution state and historical-default recovery"
     milestone: "M03"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on: ["M03-T01"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M03-T02.md"
