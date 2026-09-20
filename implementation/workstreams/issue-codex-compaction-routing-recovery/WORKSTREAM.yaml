@@ -17,7 +17,7 @@ intake:
 routing:
   exploratory_scope: null
   research_obligation: null
-  plan_review: planning/reviews/CCOR-P1.md
+  plan_review: planning/reviews/CCOR-P2.md
 
 task_board: null
 
