@@ -182,6 +182,12 @@ Under `mixed`, the next new execution assignment is routed again by Capability G
 
 No separate Campaign object or scheduler is required.
 
+## Downstream fork release versioning
+
+When Project Workflow publishes a project that is durably established as a downstream fork, release identity keeps the accepted upstream baseline visible and advances only a fork-local private revision, for example `v5.0.8-private.1`.
+
+The canonical semantics, migration rules, provenance requirements and mixed-tag selection behavior live in `workflow/common/FORK_RELEASE_VERSIONING.md`. Publication modules reference that common contract instead of duplicating the algorithm.
+
 ## Independent plan review
 
 A new or materially revised Master Plan uses independent plan review when practical.
