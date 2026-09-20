@@ -1,7 +1,7 @@
 # Project Workflow Codex Plugin — Master Plan
 
 Revision: `PWCP-P2`
-Status: `draft`
+Status: `approved`
 Updated: `2026-09-20`
 Review requirement: `RECOMMENDED`
 
@@ -266,4 +266,6 @@ Planning audit result: `GREEN`.
 - Review requirement: `RECOMMENDED`
 - Reason: this is a new Master Plan spanning plugin packaging, lifecycle activation, trust behavior and end-to-end workflow routing; independent review is practical.
 - Review record: `planning/reviews/PWCP-P2.md`
-- Plan remains `draft` until the exact `PWCP-P2` subject receives GREEN independent review.
+- Review state: `GREEN`
+- Reviewed subject: `blob:4932fcfa47a0a6a8dc9c4404fe76cb6f4a4c4346`
+- Plan approved after GREEN independent review; reviewed plan body is unchanged apart from deterministic lifecycle metadata.
