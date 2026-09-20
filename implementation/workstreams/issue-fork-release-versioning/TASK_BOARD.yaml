@@ -28,7 +28,7 @@ cards:
     title: "Implement canonical fork-release versioning contract"
     milestone: "M01"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/issue-fork-release-versioning/cards/M01-T01.md"
