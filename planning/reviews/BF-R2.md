@@ -2,9 +2,9 @@
 
 Plan revision: BF-R2
 Review requirement: RECOMMENDED
-Review state: in_progress
+Review state: red
 Review subject: commit `4c7cb45f5a5eb0e4abfcb7282e710cff32e072a8`, file `planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md`
-Review evidence: independent review in progress
+Review evidence: RED — BF-R2 fixes the BF-R1 REQ-BF-010 ownership inconsistency, and the remaining substantive review areas are GREEN. One bounded plan-only inconsistency remains: section 12 says the authoring chat must stop after freezing BF-R1 and its review record, although the exact reviewed revision is BF-R2. Correct that stale revision locator before approval. No Definition or ADR reopening is required. Current `main` still equals the plan baseline `808084a4c7989715f7ee4889a31bce28f778d597`.
 
 ## Review authority
 
