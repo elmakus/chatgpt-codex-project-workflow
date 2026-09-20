@@ -152,7 +152,7 @@ cards:
     executor: chatgpt
     depends_on: ["M03-T01"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M03-T02.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "76abbc14ea2e7ae9a4e6d98146beb2b66f4515b6"
     review_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M03-T02.md"
     result_commit: "76abbc14ea2e7ae9a4e6d98146beb2b66f4515b6"
