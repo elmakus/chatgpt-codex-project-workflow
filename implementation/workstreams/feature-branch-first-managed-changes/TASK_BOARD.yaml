@@ -49,7 +49,7 @@ milestones:
 
   M04:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md#M04--migration-documentation-dogfood-and-integrated-regression-closure"
     checkpoint: null
     implementation_head: null
@@ -176,7 +176,7 @@ cards:
     title: "Reconcile repository dogfood, documentation and integrated branch-first regressions"
     milestone: "M04"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on: ["M03-T02"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M04-T01.md"
