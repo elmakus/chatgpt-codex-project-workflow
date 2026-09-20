@@ -6,7 +6,7 @@ Merged source head: `83d7dddd971f93a9e34c8057cdf2885b0d8591e2`
 Integration merge result: `47c3cae3c1e1eb0ea8065a10b1e5dd052b96ce12`
 Integration target: `main`
 Closure-only reconciliation branch: `close/fork-release-versioning`
-Closure-only pull request: pending
+Closure-only pull request: `#42`
 Verdict: **GREEN**
 
 ## Merge and package readback
