@@ -1,6 +1,6 @@
 id: "issue-codex-compaction-routing-recovery"
 kind: "issue"
-status: "discovery"
+status: "planning"
 
 branch: "fix/codex-compaction-routing-recovery"
 base_ref: "aa35886be2ec1b2ac58e600cd633dc214dc65096"
@@ -11,7 +11,7 @@ parent_branch: null
 parent_dependency: null
 
 intake:
-  state: active
+  state: complete
   record: implementation/workstreams/issue-codex-compaction-routing-recovery/INTAKE.md
 
 routing:
@@ -22,8 +22,9 @@ routing:
 task_board: null
 
 authority:
-  requirements: null
-  decisions: []
+  requirements: requirements/CODEX_ORCHESTRATION_CONTEXT_RECOVERY.md
+  decisions:
+    - decisions/ADR_CODEX_ORCHESTRATION_POLICY_BINDING.md
   plan: null
 
 review:
