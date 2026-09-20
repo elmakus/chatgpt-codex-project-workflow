@@ -23,7 +23,7 @@ The exact refreshed tree `8874d0e418c7318ab1f0ade8495af203e5ffac09` is the same 
 
 - `python3 -m unittest discover -s tests -p "test_*.py"` → **54/54 GREEN**;
 - `git diff --check origin/main..HEAD` → **GREEN**;
-- GitHub compare `main...${c1}` → **0 behind / 223 ahead**;
+- GitHub compare `main...7273d292a1e77559f66b84f811e0ae6195d357ab` → **0 behind / 223 ahead**;
 - merge-tree compatibility against current `main` → **GREEN** after reconciliation.
 
 ## M04 acceptance
