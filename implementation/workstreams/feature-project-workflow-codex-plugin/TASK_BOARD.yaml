@@ -28,7 +28,7 @@ cards:
     title: "Verify current Codex plugin activation contract"
     milestone: "M01"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     openspec_change: null
@@ -39,4 +39,4 @@ cards:
     result_commit: "e37c30d8c53e9b1bfc1cb88ab62077d1ca18ff40"
     result_pr: null
     evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M01-T01-p3-naming-delta-2026-09-20.md"
-    tests_summary: "GREEN implementation result under approved PWCP-P3/Definition R3. Current runtime remains codex-cli 0.155.0-alpha.9.2; prior packaging/activation/path/trust/isolation evidence was reused only where unchanged. Bounded isolated delta: native skills/list returned pw:project-workflow for plugin pw and a real $pw:project-workflow codex exec invocation returned PWCP_P3_SENTINEL_7C91. No live marketplace/plugin/config state was mutated. Pending fresh independent review."
+    tests_summary: "GREEN under approved PWCP-P3/Definition R3. Current runtime remains codex-cli 0.155.0-alpha.9.2; unchanged packaging/activation/path/trust/isolation evidence was reused at the exact reviewed subject. Native skills/list returned pw:project-workflow for plugin pw and real $pw:project-workflow invocation returned PWCP_P3_SENTINEL_7C91. No live marketplace/plugin/config state was mutated. Independent review GREEN on exact subject e37c30d8c53e9b1bfc1cb88ab62077d1ca18ff40."
