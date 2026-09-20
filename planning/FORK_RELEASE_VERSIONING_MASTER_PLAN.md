@@ -1,8 +1,9 @@
 # Fork Release Versioning — Master Plan
 
-Revision: `FRV-P1`
+Revision: `FRV-P2`
 Status: `draft`
 Updated: `2026-09-20`
+Supersedes plan revision: `FRV-P1` (independent review RED — OpenSpec boundary)
 Review requirement: `RECOMMENDED`
 
 ## Authority
@@ -49,7 +50,8 @@ Project Workflow has one shared, deterministic fork-release versioning contract 
 
 ### Planned work packages
 
-1. Add a policy-neutral common contract, normally `workflow/common/FORK_RELEASE_VERSIONING.md`, that defines:
+1. Create/reconcile one JIT OpenSpec change for the M01 behavior surface before the first behavior-changing implementation Card. The OpenSpec contract must freeze the policy-neutral applicability/baseline/provenance tuple, canonical version construction and per-baseline counter semantics, migration/legacy behavior, lineage-aware selection rules, prerelease-quality independence, and the requirement that all supported publication routes defer to the single common contract.
+2. Add a policy-neutral common contract, normally `workflow/common/FORK_RELEASE_VERSIONING.md`, that defines:
    - downstream-fork applicability/detection;
    - exact upstream baseline evidence;
    - canonical `v<upstream>-private.<N>` construction;
@@ -60,18 +62,19 @@ Project Workflow has one shared, deterministic fork-release versioning contract 
    - explicit lane selection instead of generic max-SemVer;
    - SemVer precedence caveat;
    - independence of GitHub `prerelease` quality status.
-2. Wire the migrated ChatGPT-only publication path to load/apply the common contract only when release-version selection/validation for a downstream fork is material.
-3. Wire the migrated Codex-only publication path to the same common contract without duplicating semantics.
-4. Wire the legacy/shared publication surface used by still-unmigrated policies to the same common contract, preserving existing policy routing.
-5. Add deterministic regression tests that prove:
+3. Wire the migrated ChatGPT-only publication path to load/apply the common contract only when release-version selection/validation for a downstream fork is material.
+4. Wire the migrated Codex-only publication path to the same common contract without duplicating semantics.
+5. Wire the legacy/shared publication surface used by still-unmigrated policies to the same common contract, preserving existing policy routing.
+6. Add deterministic regression tests that prove:
    - `v5.0.8` baseline produces `v5.0.8-private.1` when no private lane exists;
-   - existing `private.1` / `private.2` produces `private.3`;
+   - a gapped / multi-digit lane such as `private.2` + `private.10` produces `private.11`, proving numeric `max(N)+1` rather than count/order-by-text behavior;
    - accepted move to upstream `v5.0.9` resets to `v5.0.9-private.1`;
+   - mixed private lanes remain baseline-scoped, so a high `N` on `v5.0.8-private.N` cannot affect the next revision on accepted baseline `v5.0.9`;
    - legacy `v5.0.9`–`v5.0.13` remain historical and are excluded from the private counter;
    - generic highest-SemVer is explicitly rejected for mixed lineage;
    - upstream repo/tag/SHA provenance and prerelease-independence rules are present;
    - all supported publication surfaces reference the canonical common contract.
-6. Update concise user/operator documentation so the fork-version convention is discoverable without duplicating the full common contract.
+7. Update concise user/operator documentation so the fork-version convention is discoverable without duplicating the full common contract.
 
 ### Acceptance
 
@@ -84,10 +87,11 @@ Project Workflow has one shared, deterministic fork-release versioning contract 
 - The contract rejects generic max-SemVer as the canonical mixed-tag resolver.
 - Upstream provenance and prerelease-quality separation are explicit.
 - Existing publication authorization/review semantics remain unchanged.
+- The required M01 OpenSpec behavior contract is coherent with Definition/ADR authority before implementation and is included in implementation verification/reconciliation.
 
 ### JIT trigger
 
-Execution Prep may split M01 into bounded Cards for common-contract authoring, policy-surface wiring and regression/documentation work if that improves reviewability. No further strategic decision is required.
+Execution Prep may split M01 into bounded Cards for OpenSpec/common-contract authoring, policy-surface wiring and regression/documentation work if that improves reviewability. It must mark the M01 behavior surface as OpenSpec-required/candidate under `workflow/common/OPENSPEC.md`; the first behavior-changing Card materializes/reconciles that OpenSpec immediately before implementation. No further strategic decision is required.
 
 ## Requirement coverage
 
@@ -110,7 +114,7 @@ Execution Prep may split M01 into bounded Cards for common-contract authoring, p
 
 - Add focused deterministic repository tests rather than relying on prose inspection alone.
 - Verify exact common-contract references from each supported publication surface.
-- Test representative mixed tag sets that include upstream-looking legacy releases and canonical private releases.
+- Test representative mixed tag sets that include upstream-looking legacy releases, multiple private baselines, gapped/private multi-digit revisions and canonical private releases.
 - Assert that no rule instructs generic highest-SemVer selection.
 - Run the repository test suite after implementation.
 - During workstream Close, refresh against current `main` and independently review the exact final integrated subject under normal workstream rules.
@@ -136,7 +140,7 @@ Rollback of this workflow workstream is ordinary branch/PR reversion before inte
 
 ## OpenSpec boundary
 
-No OpenSpec is required by default because this scope changes workflow contracts rather than a runtime API/schema. Execution Prep may introduce one only if implementation creates an executable parser/state interface whose behavior benefits from a machine-checkable contract.
+M01 is a new/changed behavior contract with migration and externally visible publication semantics, so it is an OpenSpec candidate and is required JIT before the first behavior-changing implementation Card. The OpenSpec change must remain inside approved FRV R1 / ADR-FRV-001 authority and formalize the technical behavior contract needed by the common lineage rule plus all publication-route integrations. Execution Prep owns candidate marking/Card binding; the executor reconciles the actual OpenSpec immediately before implementation against current `main`, the exact authority slice and the concrete Card. Verification must check that implementation/docs/tests and the OpenSpec contract do not contradict one another.
 
 ## Pre-implementation planning audit
 
@@ -148,6 +152,7 @@ No OpenSpec is required by default because this scope changes workflow contracts
 - Requirement coverage is complete.
 - Verification covers the known SemVer/migration failure modes.
 - No unresolved user/product choice remains.
+- The M01 behavior/migration/publication surface is explicitly treated as a JIT OpenSpec contract under `workflow/common/OPENSPEC.md`.
 - No speculative runtime mechanism is frozen beyond what the contract repository requires.
 
 Planning audit result: `GREEN`.
@@ -156,6 +161,6 @@ Planning audit result: `GREEN`.
 
 - Review requirement: `RECOMMENDED`
 - Reason: this is a new cross-publication workflow contract that changes how agents choose externally visible release versions; independent review is practical before implementation.
-- Review record: `planning/reviews/FRV-P1.md`
+- Review record: `planning/reviews/FRV-P2.md`
 - Review state: `pending`
 - Reviewed subject: populated from the exact immutable draft blob after persistence.
