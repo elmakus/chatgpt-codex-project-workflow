@@ -1,7 +1,7 @@
 # Master Plan — branch-first managed changes
 
 Revision: `BF-R3`
-Status: `draft`
+Status: `approved`
 Updated: `2026-09-20`
 Independent plan review: `RECOMMENDED`
 
