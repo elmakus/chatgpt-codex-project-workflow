@@ -1,0 +1,73 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "issue-codex-compaction-routing-recovery"
+plan_revision: "planning/CODEX_ORCHESTRATION_CONTEXT_RECOVERY_MASTER_PLAN.md@CCOR-P2"
+current_milestone: "M01"
+
+execution_ref:
+  branch: "fix/codex-compaction-routing-recovery"
+  pr: null
+  head: "9b7d86053d5da9f08ae562677066ada22df2ba2f"
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/CODEX_ORCHESTRATION_CONTEXT_RECOVERY_MASTER_PLAN.md#M01 — Token-light orchestration recovery boundary"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Establish orchestration binding schema and recovery kernel"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: []
+    contract: "implementation/workstreams/issue-codex-compaction-routing-recovery/cards/M01-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+  - id: "M01-T02"
+    title: "Wire binding lifecycle, recovery and generic dispatch gate"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on:
+      - "M01-T01"
+    contract: "implementation/workstreams/issue-codex-compaction-routing-recovery/cards/M01-T02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+  - id: "M01-T03"
+    title: "Add orchestration recovery regressions and documentation"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on:
+      - "M01-T02"
+    contract: "implementation/workstreams/issue-codex-compaction-routing-recovery/cards/M01-T03.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
