@@ -1,6 +1,6 @@
 id: "feature-brainstorming-grilling"
 kind: "feature"
-status: "planning"
+status: "ready"
 
 branch: "feat/brainstorming-grilling"
 base_ref: "cdaf47245e45836917b152904d70807bca355e7d"
@@ -14,7 +14,7 @@ intake:
   state: "complete"
   record: "implementation/workstreams/feature-brainstorming-grilling/INTAKE.md"
 
-task_board: null
+task_board: "implementation/workstreams/feature-brainstorming-grilling/TASK_BOARD.yaml"
 
 authority:
   requirements: "requirements/BRAINSTORMING_GRILLING.md"
@@ -23,7 +23,7 @@ authority:
   plan: "planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md"
 
 review:
-  requirement: null
+  requirement: "RECOMMENDED"
   state: null
   subject: null
   evidence: null
