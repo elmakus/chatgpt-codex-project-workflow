@@ -41,9 +41,9 @@ An intentional current `#grill` directive is **not** Intake and does not receive
    - Planning/Definition/Research when accepted authority requires it.
 10. After a current batch closes, its frozen member reviews are no longer deferred. Drain review/finalization/correction in canonical Task Board order before unrelated implementation.
 11. Read only the chosen route's required artifacts and exact authority slice.
-12. Continue deterministic authorized role transitions until a real strategic/product decision, explicit live/deployment authorization, concrete unremediable runtime/input blocker, context-hygiene boundary, or end of approved scope.
+12. Continue deterministic authorized role transitions until a real strategic/product decision, explicit live/deployment authorization, concrete unremediable runtime/input blocker, or end of approved scope.
 
-Fixed `codex_only` never changes execution policy because a runtime realization or concurrency path is unavailable. Runtime loss is recovered/resumed/replaced from durable project state; unsafe parallelism falls back to serial execution when the Card remains executable.
+Fixed `codex_only` never changes execution policy because a runtime realization or concurrency path is unavailable. Runtime loss is recovered/resumed/replaced from durable project state; unsafe parallelism falls back to serial execution when the Card remains executable. Coordinator/session context hygiene is not a Project Workflow stop under `codex_only`; interruption or replacement reconstructs the exact obligation from durable project state and resumes through this router, while concrete runtime/session mechanics remain owned by `codex_workflow`.
 
 ## Fresh-session entry semantics
 
@@ -65,11 +65,10 @@ When that role finishes:
 1. persist the durable state/evidence produced by the role;
 2. re-evaluate the applicable durable state (plan-review record, selected Task Board and selected manifest review state as applicable) + accepted authority;
 3. return to this router;
-4. if durable state/current phase already owns a real stop — including a root `CHATGPT.md#Real-stop-response-contract` boundary or the `codex_only` Brainstorming → Project Definition promotion gate below — handle that stop first and do not run a separate hygiene handoff;
-5. only when a deterministic authorized next role exists, perform the context-health trigger check below;
-6. select the next legal route;
-7. load that route's module(s);
-8. continue in the same coordinating context without a user-facing stop when context health remains CONTINUE.
+4. if durable state/current phase already owns a real stop — including a root `CHATGPT.md#Real-stop-response-contract` boundary or the `codex_only` Brainstorming → Project Definition promotion gate below — handle that stop first;
+5. select the next legal route when a deterministic authorized next role exists;
+6. load that route's module(s);
+7. continue deterministic Project Workflow orchestration without a user-facing coordinator-hygiene stop.
 
 The same coordinating context may therefore move across deterministic role transitions when no real boundary intervenes, for example:
 
@@ -126,24 +125,6 @@ The authorization applies only to the exact promoted scope/revision. Once Defini
 When Definition Complete becomes GREEN, the exploratory promotion obligation is complete. Clear selected manifest `routing.exploratory_scope` only after the Definition result is durable and the locator no longer represents active exploratory/Definition recovery, then continue to Planning.
 
 This gate does **not** apply to `Definition Complete = GREEN → Planning`; that transition remains deterministic and automatic when planning is in scope.
-
-## Context-health trigger check
-
-Do not load context-health machinery after every role by default.
-
-Before starting the next substantial obligation at a safe durable boundary, ask whether the accumulated chat may now materially increase the risk of stale-state carryover, authority confusion or omission.
-
-If there is no concrete signal, continue without loading another module.
-
-If there is a concrete signal — for example materially superseded state in the transcript, major role/authority-area transition, large irrelevant diagnostic/tool history, or uncertainty reconstructing current truth from the conversation — read:
-
-`workflow/codex_only/CONTEXT_HEALTH.md`
-
-Then obey its decision:
-- `CONTEXT_HEALTH: CONTINUE` → select/load the next route now;
-- `CONTEXT_HEALTH: FRESH` → do not start the next obligation; perform the context-hygiene user stop.
-
-Never use coordinator context hygiene as a substitute for formal independent review. Tester context/resume/replacement is runtime-owned; coordinator hygiene is evaluated only at a safe durable project boundary.
 
 ## Research return ownership and crash recovery
 

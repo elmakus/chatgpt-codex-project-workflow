@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Unreleased — codex_only continuous orchestration
+
+- Removed the policy-local `codex_only` Context Health/FRESH coordinator-hygiene gate so deterministic Main orchestration continues across role, Tester and approved milestone boundaries until a genuine human/project stop or end of scope.
+- Removed the Planning allowance for coordinator refresh boundaries and made durable Recovery/runtime replacement the continuation mechanism for coordinator interruption instead of a planned user-facing handoff.
+- Preserved `chatgpt_only` Context Health, the user-owned Brainstorming → Definition promotion gate, semantic independent review, durable state/recovery, explicit authorization gates, and the Project Workflow / `codex_workflow` ownership boundary.
+- Added regression coverage preventing coordinator hygiene from being reintroduced through Router or Planning while checking automatic next-milestone continuation and ChatGPT-only isolation.
+
 ## Unreleased — branch-first managed changes
 
 - Migrated both fixed policies (`chatgpt_only` and `codex_only`) to a branch-first managed-change model: read-only exploration may remain branch-free, but natural-language authorization creates or recovers an exact branch-isolated workstream before the first durable change-specific write.

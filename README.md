@@ -162,6 +162,8 @@ Context health:
 
 A hygiene handoff is session continuity only. It does not change requirements, execution policy, review state or project authority.
 
+`codex_only` intentionally differs: it has no Project Workflow Context Health/FRESH coordinator-hygiene gate. Codex Main continues every deterministic authorized obligation across roles and approved milestones until a genuine human/project stop or end of scope; coordinator/runtime interruption is reconstructed from durable repository state, while concrete worker/session resume or replacement remains owned by `codex_workflow`.
+
 ## Independent review
 
 Independent means independent from the worker/session that implemented the reviewed subject.

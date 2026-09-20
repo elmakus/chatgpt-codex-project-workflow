@@ -1,0 +1,41 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "change-codex-only-continuous-orchestration"
+plan_revision: "planning/CODEX_ONLY_CONTINUOUS_ORCHESTRATION_MASTER_PLAN.md@COCO-P2"
+current_milestone: "M01"
+
+execution_ref:
+  branch: "work/codex-only-continuous-orchestration"
+  pr: null
+  head: "a6bb50695b2be7b50827dec75e0cde3c467737b2"
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: in_progress
+    contract: "planning/CODEX_ONLY_CONTINUOUS_ORCHESTRATION_MASTER_PLAN.md#M01 — Continuous Codex Main lifecycle"
+    checkpoint: null
+    implementation_head: "a6bb50695b2be7b50827dec75e0cde3c467737b2"
+    handoff: "implementation/workstreams/change-codex-only-continuous-orchestration/handoffs/M01_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/change-codex-only-continuous-orchestration/evidence/M01_ACCEPTANCE_CANDIDATE_2026-09-20.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Make Codex-only orchestration continuous"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: []
+    contract: "implementation/workstreams/change-codex-only-continuous-orchestration/cards/M01-T01.md"
+    review_state: green
+    review_subject: "a6bb50695b2be7b50827dec75e0cde3c467737b2"
+    review_evidence: "implementation/workstreams/change-codex-only-continuous-orchestration/evidence/M01-T01_REVIEW_A2_2026-09-20.md"
+    result_commit: "a6bb50695b2be7b50827dec75e0cde3c467737b2"
+    result_pr: null
+    evidence: "implementation/workstreams/change-codex-only-continuous-orchestration/evidence/M01-T01_CORRECTION_A1_2026-09-20.md"
+    tests_summary: "GREEN on corrected exact subject a6bb50695b2be7b50827dec75e0cde3c467737b2: targeted continuous-orchestration + unchanged ChatGPT-only Context Health contracts 14/14; full repository unittest suite 78/78; diff --check GREEN; main refresh unchanged at ce3cf3fc80b923ad26b77d9ac66fb3db5ad31f5f."

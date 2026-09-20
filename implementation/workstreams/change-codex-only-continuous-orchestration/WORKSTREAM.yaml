@@ -1,0 +1,44 @@
+id: "change-codex-only-continuous-orchestration"
+kind: "change"
+status: "review"
+
+branch: "work/codex-only-continuous-orchestration"
+base_ref: "ce3cf3fc80b923ad26b77d9ac66fb3db5ad31f5f"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: complete
+  record: implementation/workstreams/change-codex-only-continuous-orchestration/INTAKE.md
+
+routing:
+  exploratory_scope: null
+  research_obligation: null
+  plan_review: null
+
+task_board: implementation/workstreams/change-codex-only-continuous-orchestration/TASK_BOARD.yaml
+
+authority:
+  requirements: requirements/CODEX_ONLY_CONTINUOUS_ORCHESTRATION.md
+  decisions:
+    - decisions/ADR_CODEX_ONLY_CONTINUOUS_MAIN_ORCHESTRATION.md
+  plan: planning/CODEX_ONLY_CONTINUOUS_ORCHESTRATION_MASTER_PLAN.md
+
+review:
+  requirement: RECOMMENDED
+  state: green
+  subject: "7bf641fcc26d33b0d086c2b092e29995c598d742"
+  evidence: "implementation/workstreams/change-codex-only-continuous-orchestration/evidence/M01_FINAL_INTEGRATION_REVIEW_2026-09-20.md"
+  covered_by: null
+
+branch_cleanup:
+  state: null
+  ref: null
+  verified_head: null
+  evidence: null
+
+pr: null
+result: null

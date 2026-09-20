@@ -2,6 +2,8 @@
 
 > Live Codex-only recovery contract. Recovery reconstructs project obligations from durable Project Workflow state, never from runtime session identity.
 
+Coordinator/session interruption, replacement, transcript loss or context loss is recovered here from durable project state; it is not a Project Workflow Context Health/FRESH/hygiene stop. Once durable state is coherent, deterministic continuation resumes without asking the user solely for a fresh coordinator context.
+
 ## Inputs
 
 Recover only truth needed for the selected obligation:
