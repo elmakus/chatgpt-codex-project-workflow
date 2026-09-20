@@ -111,7 +111,7 @@ cards:
     title: "Reconcile release documentation and full feature acceptance"
     milestone: "M04"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M03-T01"
@@ -120,7 +120,7 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
+    result_commit: "f799df47690559f7ed3ed7666204a02a87c7a3e2"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M04-T01-release-readiness-2026-09-20.md"
+    tests_summary: "GREEN at f799df47690559f7ed3ed7666204a02a87c7a3e2. 14/14 repository tests passed on Codex 0.155.0-alpha.9.2; static drift audit found exactly one project-workflow Skill, no copied policy-specific router in Skill/bootstrap and no plugin-local updater/timer/poller; README links docs/CODEX_PLUGIN.md; fresh disposable marketplace install/readback returned pw@project-workflow 0.1.0 and bounded SessionStart context. Complete PWCP-REQ-001..015 matrix has no unresolved gap."
