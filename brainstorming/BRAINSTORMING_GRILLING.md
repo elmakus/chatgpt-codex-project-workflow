@@ -103,7 +103,7 @@ No material product questions remain for this scope.
 - Research still needed: none blocking.
 - Open questions: none material.
 - Next phase/action: `ready for definition`
-- Definition promotion authorization: `pending`
-- Definition promotion subject: `none`
+- Definition promotion authorization: `user_authorized`
+- Definition promotion subject: `brainstorming-grilling@R1`
 
-> Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user phase promotion may authorize Definition for the exact current scope revision.
+> Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. This exact scope/revision was explicitly promoted by the user.
