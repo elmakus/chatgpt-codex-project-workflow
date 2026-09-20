@@ -16,9 +16,9 @@ milestones:
     execution_status: in_progress
     contract: "planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md#M01--integrate-dependency-aware-grilling-into-brainstorming"
     checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    implementation_head: "40f2bd5f4b2c261411b5d07e953e94c250736fe7"
+    handoff: "implementation/workstreams/feature-brainstorming-grilling/handoffs/M01_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-brainstorming-grilling/evidence/M01_FINAL_INTEGRATION_REFRESH_2026-09-20.md"
     review_state: null
     review_subject: null
     review_evidence: null
