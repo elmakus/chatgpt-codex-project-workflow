@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "work/codex-only-continuous-orchestration"
   pr: null
-  head: "e8825a661e613ae697f9304bfbba0cca585bf7d6"
+  head: "291e4628444c97bbb4ab645108d94161eaf036e8"
 
 research_obligation: null
 
@@ -32,10 +32,10 @@ cards:
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/change-codex-only-continuous-orchestration/cards/M01-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "291e4628444c97bbb4ab645108d94161eaf036e8"
     review_evidence: null
-    result_commit: null
+    result_commit: "291e4628444c97bbb4ab645108d94161eaf036e8"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/change-codex-only-continuous-orchestration/evidence/M01-T01_IMPLEMENTATION_2026-09-20.md"
+    tests_summary: "GREEN on exact subject 291e4628444c97bbb4ab645108d94161eaf036e8: dedicated continuous-orchestration contract 7/7; full repository unittest suite 77/77; diff --check GREEN; ChatGPT-only Context Health source/test unchanged."
