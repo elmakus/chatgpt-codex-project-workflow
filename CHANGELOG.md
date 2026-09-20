@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Unreleased — Codex orchestration context recovery
+
+- Added a compact workstream-local opaque orchestration binding for `codex_only`, without persisting concrete runtime-worker identity or concrete role-to-harness mappings.
+- Added a deliberately non-durable current-context binding latch plus `ORCHESTRATION_KERNEL.md`; reconstruction or uncertainty now requires a bounded runtime re-bind before policy-dependent worker realization even when the durable fingerprint is unchanged.
+- Wired new-workstream Intake, pre-schema Recovery migration, Executor/Tester/Investigator realization and recovery/replacement paths through one role-agnostic fail-closed pre-dispatch gate while leaving concrete policy interpretation to `codex_workflow`.
+- Added focused regression coverage for same-version reconstruction, fingerprint drift, invalid binding failure, canonical state ownership and `chatgpt_only` isolation.
+
 ## Unreleased — codex_only continuous orchestration
 
 - Removed the policy-local `codex_only` Context Health/FRESH coordinator-hygiene gate so deterministic Main orchestration continues across role, Tester and approved milestone boundaries until a genuine human/project stop or end of scope.
