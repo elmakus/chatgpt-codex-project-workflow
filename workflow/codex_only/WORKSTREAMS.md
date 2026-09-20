@@ -194,14 +194,16 @@ If exact branch/manifest/state cannot be resolved from durable project/Git state
 
 ## Intake identity, naming and recovery
 
-Explicit `#issue` / `#feature` creation semantics are owned by `workflow/codex_only/INTAKE.md`.
+Explicit `#issue` / `#feature` shortcuts and generic natural-language managed-change creation semantics are owned by `workflow/codex_only/INTAKE.md`.
 
 For intake-created workstreams:
 
 - issue IDs use `issue-<slug>` and branches use `fix/<slug>`;
 - feature IDs use `feature-<slug>` and branches use `feat/<slug>`;
-- collisions use the smallest available shared numeric suffix (`-2`, `-3`, ...);
+- neutral generic changes use `change-<slug>` and branches use `work/<slug>`;
+- collisions with coherently different durable work use the smallest available shared numeric suffix (`-2`, `-3`, ...);
 - an existing exact branch/manifest/PR locator for the same workstream is recovered rather than duplicated;
+- a deterministic candidate branch with a missing/malformed/identity-inconsistent manifest fails closed to Recovery and is not silently claimed or bypassed with a suffix;
 - durable workstream IDs are never recycled merely because old work is done/superseded.
 
 Naming is a creation convention, not a replacement for identity. After creation, `WORKSTREAM.yaml.id` and `WORKSTREAM.yaml.branch` are authoritative.
