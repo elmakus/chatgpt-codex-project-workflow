@@ -1,0 +1,40 @@
+# ChatGPT-only branch-isolated issue workstream.
+
+id: "issue-context-health-bounce"
+kind: "issue"
+status: "review"
+
+branch: "fix/chatgpt-only-context-health-bounce"
+base_ref: "808084a4c7989715f7ee4889a31bce28f778d597"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: complete
+  record: "implementation/workstreams/issue-context-health-bounce/INTAKE.md"
+
+task_board: "implementation/workstreams/issue-context-health-bounce/TASK_BOARD.yaml"
+
+authority:
+  requirements: "implementation/workstreams/issue-context-health-bounce/INTAKE.md"
+  decisions: []
+  plan: null
+
+review:
+  requirement: "RECOMMENDED"
+  state: green
+  subject: "main@808084a4c7989715f7ee4889a31bce28f778d597..e0d4beebb466f70e87ad0d4f2aa209c80e55f74f + MF-T01 acceptance"
+  evidence: "implementation/workstreams/issue-context-health-bounce/evidence/MF-T01_REVIEW_2026-09-20.md"
+  covered_by: "task_board:MF-T01"
+
+branch_cleanup:
+  state: null
+  ref: null
+  verified_head: null
+  evidence: null
+
+pr: 36
+result: null
