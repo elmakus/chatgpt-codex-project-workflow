@@ -24,12 +24,12 @@ milestones:
     review_evidence: null
   M02:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md#milestone-m02--same-repo-plugin-package-and-canonical-wrapper"
-    checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    checkpoint: "63840e72f5088f97d051984aac8b8115f0589a07"
+    implementation_head: "6e16ba11293bbdb7bbc8d96167e8280273d77304"
+    handoff: "implementation/workstreams/feature-project-workflow-codex-plugin/handoffs/M02_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M02-acceptance-2026-09-20.md"
     review_state: null
     review_subject: null
     review_evidence: null
