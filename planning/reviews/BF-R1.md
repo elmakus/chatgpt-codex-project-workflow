@@ -2,9 +2,9 @@
 
 Plan revision: BF-R1
 Review requirement: RECOMMENDED
-Review state: pending
+Review state: in_progress
 Review subject: commit `36b4f49a01691e7d31f3a8f892483b65b1408469`, file `planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md`
-Review evidence: pending independent review
+Review evidence: independent review in progress against the exact frozen subject and approved R1 Definition authority.
 
 ## Review authority
 
