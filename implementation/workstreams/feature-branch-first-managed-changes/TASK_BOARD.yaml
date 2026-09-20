@@ -104,7 +104,7 @@ cards:
     title: "Migrate ChatGPT-only execution state and historical-default recovery"
     milestone: "M02"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: ["M02-T01"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M02-T02.md"
