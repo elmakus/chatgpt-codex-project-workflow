@@ -1,0 +1,41 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "change-codex-only-continuous-orchestration"
+plan_revision: "planning/CODEX_ONLY_CONTINUOUS_ORCHESTRATION_MASTER_PLAN.md@COCO-P2"
+current_milestone: "M01"
+
+execution_ref:
+  branch: "work/codex-only-continuous-orchestration"
+  pr: null
+  head: null
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/CODEX_ONLY_CONTINUOUS_ORCHESTRATION_MASTER_PLAN.md#M01 — Continuous Codex Main lifecycle"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Make Codex-only orchestration continuous"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: []
+    contract: "implementation/workstreams/change-codex-only-continuous-orchestration/cards/M01-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
