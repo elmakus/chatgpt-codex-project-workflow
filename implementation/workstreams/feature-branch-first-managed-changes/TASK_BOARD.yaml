@@ -6,7 +6,7 @@ current_milestone: "M02"
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "5d1a254e3e6dfe665d54b565529fe6db6f7c1b9a"
+  head: "6b1d9b2622f9275197e0b10e51c652c96b37f267"
 
 research_obligation: null
 
@@ -92,13 +92,13 @@ cards:
     executor: chatgpt
     depends_on: ["M01-T03"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M02-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "6b1d9b2622f9275197e0b10e51c652c96b37f267"
     review_evidence: null
-    result_commit: null
+    result_commit: "6b1d9b2622f9275197e0b10e51c652c96b37f267"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M02-T01.md"
+    tests_summary: "GREEN: exact branch readback and focused pre-execution lifecycle scenarios passed for manifest-owned exploratory/Research/plan-review locators, user-owned promotion, crash-safe Research/verdict consumption, fail-closed recovery, OpenSpec coherence and policy separation; no CI/test-runner execution is claimed."
 
   - id: "M02-T02"
     title: "Migrate ChatGPT-only execution state and historical-default recovery"
