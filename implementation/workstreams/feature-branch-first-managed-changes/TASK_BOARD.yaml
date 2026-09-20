@@ -6,7 +6,7 @@ current_milestone: "M04"
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "76abbc14ea2e7ae9a4e6d98146beb2b66f4515b6"
+  head: "cf9582b3a25f91ea018981f685e65ceb8c840e8d"
 
 research_obligation: null
 
@@ -176,14 +176,14 @@ cards:
     title: "Reconcile repository dogfood, documentation and integrated branch-first regressions"
     milestone: "M04"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: ["M03-T02"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M04-T01.md"
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
+    result_commit: "cf9582b3a25f91ea018981f685e65ceb8c840e8d"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M04-T01.md"
+    tests_summary: "GREEN: exact connector-backed M04 closure replay PASS 19/19; README/root PROJECT/template/bootstrap/root router/fixed-policy migration boundaries are coherent. Sandbox DNS blocked a fresh repository checkout, so no Python/CI runner PASS is claimed."
