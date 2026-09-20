@@ -2,11 +2,11 @@
 
 Plan revision: COCO-P1
 Review requirement: RECOMMENDED
-Review state: pending
+Review state: red
 Review subject: 014ddad3969c36c81edd18e13068ba1ddca5362b
 Author owner role: planner
 Reviewer role: tester
-Review evidence: none
+Review evidence: RED — the frozen COCO-P1 subject is otherwise aligned with R1/ADR authority: it preserves ChatGPT-only Context Health, the user-owned Brainstorming → Definition promotion gate, independent Tester review, durable Recovery, deterministic multi-milestone continuation, and the `codex_workflow` runtime boundary. One bounded plan-only defect remains: current `main` `workflow/codex_only/PLANNING.md` still authorizes Master Plans to include `coordinating-context refresh boundaries only when materially useful`, but COCO-P1 neither removes/rewords that active codex-only planning contract nor extends regression coverage to prevent coordinator-hygiene boundaries from being reintroduced there. This conflicts with COCO-R1/COCO-R7's intent that context/session hygiene cannot create a Project Workflow stop. Planning must create a new revision that explicitly removes/reconciles this planning-level refresh-boundary allowance and adds regression coverage across the active codex-only lifecycle for coordinator-hygiene/FRESH stop semantics. No Definition or ADR reopening is required.
 
 ## Reviewed artifact
 
