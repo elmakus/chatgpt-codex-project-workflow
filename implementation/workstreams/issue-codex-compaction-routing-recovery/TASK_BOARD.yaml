@@ -5,7 +5,7 @@ current_milestone: "M01"
 
 execution_ref:
   branch: "fix/codex-compaction-routing-recovery"
-  pr: null
+  pr: 47
   head: "0a11f92fd03d08d94e4614204eef4dab3813d4bc"
 
 research_obligation: null
