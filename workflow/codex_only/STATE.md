@@ -37,7 +37,7 @@ This is a Project Workflow role slot, not a runtime worker identity.
 
 For a reviewable Card, the field lives on that Card. For a reviewable milestone/checkpoint subject, the milestone records the same field as aggregate production provenance. Runtime may resume/replace concrete realizations without changing semantic owner state.
 
-Do not persist worker/session/model/profile/invocation/lease identifiers or resume protocol in Project Workflow state.
+Do not persist concrete worker/session/model-instance/invocation/lease identifiers or resume protocol in Project Workflow state. Opaque orchestration policy/profile **selection** is the sole profile-related exception and may be durable only in the selected workstream manifest `orchestration` block under `WORKSTREAMS.md`; it is not concrete runtime identity and must not be mirrored into Task Board/Card state.
 
 ## M03 Card safety metadata
 
