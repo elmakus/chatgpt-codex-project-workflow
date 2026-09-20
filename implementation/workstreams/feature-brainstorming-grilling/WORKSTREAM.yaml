@@ -20,7 +20,7 @@ authority:
   requirements: "requirements/BRAINSTORMING_GRILLING.md"
   decisions:
     - "decisions/ADR_BRAINSTORMING_GRILLING.md"
-  plan: null
+  plan: "planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md"
 
 review:
   requirement: null
