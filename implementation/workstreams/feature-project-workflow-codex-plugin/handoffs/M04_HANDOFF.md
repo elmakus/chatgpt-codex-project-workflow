@@ -16,6 +16,7 @@ Status: `PRE-INTEGRATION / FINAL REVIEW GREEN`
 - Current-runtime isolated plugin install/readback: GREEN on Codex `0.155.0-alpha.9.2`.
 - Manifest-owned final-integration review: GREEN on exact subject `69b12d651728d041e64c51e9dfae69a560bbf9f3`.
 - Final-review evidence: `implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M04_FINAL_INTEGRATION_REVIEW_2026-09-20.md`.
+- Final integration pull request: `#44` (open; merge pending final target re-read).
 
 ## Authority now in force
 
@@ -44,7 +45,7 @@ The manifest-owned `RECOMMENDED` final-integration review is GREEN. The workstre
 
 Close must now:
 1. immediately re-read current `main`; if target moved, rerun the integration refresh contract before merging and preserve or invalidate review coverage according to the exact-change rules;
-2. open/verify the final workstream → `main` PR carrying this namespaced closure-ready package;
+2. verify PR `#44` still carries this namespaced closure-ready package;
 3. merge only while the review/refresh gates remain current;
 4. perform target-side terminal manifest/Task Board/handoff/result reconciliation and readback;
 5. treat automatic source-branch deletion as normal success, or use the manifest-local cleanup fallback only if the merged source branch survives.
