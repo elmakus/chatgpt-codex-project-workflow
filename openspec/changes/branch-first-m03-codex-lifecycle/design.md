@@ -39,4 +39,12 @@ This routing migration does not change execution orchestration:
 
 ## Execution-state migration
 
-Historical/default execution-state migration is owned by M03-T02. M03-T01 changes only the minimum routing boundary needed so pre-execution continuation is already workstream-local and fail-closed.
+M03-T02 removes root/default as a normal live Codex-only execution context. Historical root/default state remains read-only recovery input and must migrate to one exact branch-isolated workstream before further managed mutation.
+
+Migration outranks review, Research, batch recovery and execution on the historical board. Before creating or adopting a workstream branch, Recovery proves one exact topology from durable project/Git/PR evidence: intended `integration_target`, exact creation/adoption base and independent-versus-stacked dependency classification using the policy-local Intake rules. Independent migration uses the normal target/base with null parent fields; stacked migration is legal only with exact parent-workstream/branch evidence plus a concrete parent-only dependency. Ambiguous target/base/dependency topology fails closed.
+
+After topology proof, Recovery reuses or deterministically creates one neutral workstream identity, materializes a coherent manifest-bound namespaced Task Board, and preserves only exact continuation truth needed for recovery: plan/milestone identity, live Cards/dependencies, semantic implementation owner, append-only Card/milestone review attempts, implementation Research pointer, results/evidence/blockers and the complete current batch/history lineage needed to preserve frozen base/member order/returned/integrated refs/post-batch review drain. Runtime worker/session/model/profile/invocation/worktree identity is not migrated because it is non-authoritative.
+
+The historical root board remains unmodified. Partial migration recovers the same deterministic identity and topology rather than creating a duplicate lane. Exact branch readback must prove manifest ↔ Task Board binding, persisted topology and preservation of every live review/Research/result/dependency/batch obligation before mutable ownership switches to the namespaced board.
+
+Long-lived legacy branches use repository finalization migration only after active ownership is namespaced, so independently evolved target-side historical/default files are not overwritten. Micro-fix proportionality, Codex Main sole-writer ownership, exact-subject Tester independence, bounded batch semantics, target refresh, terminal target-side package and source-branch-deletion recovery remain unchanged.
