@@ -67,11 +67,15 @@ Routine completion of a Card, role or milestone alone is not enough.
 
 ### FRESH
 
-Allowed only when accumulated context creates concrete material risk for the next obligation, such as:
+Allowed only when accumulated context itself creates concrete material risk for the next obligation, such as:
 - materially superseded/contradictory state that could bleed into the next task;
 - difficulty distinguishing durable truth from old transient discussion/tool output;
 - substantial state reconstruction burden that is already cleaner in the repository;
-- a meaningful combination of role/authority shifts, large irrelevant diagnostic history and a complex/different next obligation.
+- a meaningful combination of stale transient history, large irrelevant diagnostic output and a complex next obligation.
+
+A different role, milestone, phase, workstream or authority/source area is not a context-health signal by itself. Workflow topology determines what authority to load next; it does not prove that the transcript is degraded.
+
+A chat started from a context-hygiene fresh-session handoff requires new concrete degradation accumulated after recovery before another `FRESH` result is legal.
 
 No numeric context threshold is used.
 
@@ -151,20 +155,35 @@ Result: the mandatory review boundary provides the reset; no extra hygiene stop.
 CLOSE done
 → router
 → next milestone approved
-→ context-risk trigger due major authority-area shift/stale prior history
-→ CONTEXT_HEALTH
-→ FRESH
+→ different authority/source area only
+→ no context-health trigger
+→ EXECUTION_PREP
 ```
 
-Result: safe clean-context handoff before next milestone prep.
+Result: **CONTINUE**. The milestone/authority transition is workflow topology, not evidence that the current transcript is harmful.
 
-If context remains useful/clean, CONTINUE.
+If substantial stale diagnostics or contradictory transient state accumulated and now create concrete material risk for the next milestone, that separate harmful-context evidence may trigger Context Health.
 
-### 7. Runtime/user/authorization blocker already exists
+### 7. Short context-hygiene recovery does not bounce
+
+```text
+fresh chat started from context-hygiene handoff
+→ recover exact durable obligation
+→ finish/persist it after a short continuation
+→ next deterministic obligation uses a different authority area
+→ no new harmful-context evidence accumulated
+→ CONTINUE
+```
+
+Result: **CONTINUE**. Completion of the recovered obligation and a different next authority area do not justify another hygiene handoff.
+
+A later `FRESH` remains legal only if new concrete context degradation accumulates in this chat after recovery.
+
+### 8. Runtime/user/authorization blocker already exists
 
 Result: blocker/authorization stop owns the boundary. Context health is not run separately.
 
-### 8. Mid-Card context feels large
+### 9. Mid-Card context feels large
 
 Result: no hygiene interruption. Finish/persist the current obligation first, then evaluate at router boundary.
 
@@ -186,7 +205,9 @@ PASS:
 - safe-boundary-only rule exists;
 - active Card/review/write interruption prohibited;
 - fixed token/turn/Card/milestone thresholds prohibited;
-- CONTINUE is default without material risk;
+- CONTINUE is default without affirmative material transcript risk;
+- role/milestone/phase/workstream/authority-area transitions are not standalone context-health signals;
+- a context-hygiene recovery requires new concrete degradation before another FRESH result;
 - fresh review and other real stops have priority;
 - every completed Card returns to router before another Card starts;
 - FRESH requires fully durable current obligation and exact recoverable next obligation;
