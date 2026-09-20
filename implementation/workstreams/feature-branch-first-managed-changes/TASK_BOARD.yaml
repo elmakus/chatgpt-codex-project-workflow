@@ -1,7 +1,7 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 workstream_id: "feature-branch-first-managed-changes"
 plan_revision: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md@BF-R3"
-current_milestone: "M03"
+current_milestone: "M04"
 
 execution_ref:
   branch: "feat/branch-first-managed-changes"
@@ -43,6 +43,18 @@ milestones:
     implementation_head: "76abbc14ea2e7ae9a4e6d98146beb2b66f4515b6"
     handoff: "implementation/workstreams/feature-branch-first-managed-changes/handoffs/M03_HANDOFF.md"
     acceptance_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M03_ACCEPTANCE.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M04:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md#M04--migration-documentation-dogfood-and-integrated-regression-closure"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
     review_state: null
     review_subject: null
     review_evidence: null
@@ -159,3 +171,19 @@ cards:
     result_pr: null
     evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M03-T02.md"
     tests_summary: "GREEN: exact connector-backed regression replay PASS 14/14 plus Codex-only semantic sweep; topology-before-branch migration, read-only historical source, Main/Tester/Research ownership, batch/post-batch lineage, micro-fix/target-refresh/terminal recovery, task/template surfaces, runtime-identity exclusion, OpenSpec and policy separation are coherent. Local unittest checkout was blocked by DNS, so no Python/CI runner pass is claimed."
+
+  - id: "M04-T01"
+    title: "Reconcile repository dogfood, documentation and integrated branch-first regressions"
+    milestone: "M04"
+    decision_state: accepted
+    execution_status: ready
+    executor: chatgpt
+    depends_on: ["M03-T02"]
+    contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M04-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
