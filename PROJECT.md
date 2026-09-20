@@ -6,7 +6,7 @@
 - Repository: `elmakus/chatgpt-codex-project-workflow`
 - Lifecycle: `active`
 - High-level goal: maintain and evolve the repository-backed Project Workflow contracts used by ChatGPT/Codex project execution.
-- High-level status: branch-first managed-change redesign is in Definition on `feat/branch-first-managed-changes`; integration target remains unchanged until PR merge.
+- High-level status: branch-first managed-change Definition R1 approved; strategic planning active on `feat/branch-first-managed-changes`; integration target remains unchanged until PR merge.
 
 ## Execution policy
 
@@ -16,15 +16,15 @@ Changing execution policy requires an explicit user decision.
 
 ## Canonical authority pointers
 
-- Active exploratory scope: `brainstorming/branch-first-managed-changes.md`
+- Active exploratory scope: `none`
 - Active research obligation: `none`
-- Requirements: `requirements/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP.md`
+- Requirements: `requirements/BRANCH_FIRST_MANAGED_CHANGES.md`
 - Approved plan: `planning/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP_MASTER_PLAN.md`
 - Task Board: `implementation/TASK_BOARD.yaml`
 - Latest cumulative handoff: `project-handoffs/CUBC-M01_HANDOFF.md`
 - Accepted decisions index / key pointers:
   - `decisions/ADR_CHATGPT_ONLY_BRANCH_ISOLATED_WORKSTREAMS.md`
-  - `decisions/ADR_CODEX_ONLY_TERMINAL_UNMERGED_BRANCH_DELETE.md`
+  - `decisions/ADR_CODEX_ONLY_TERMINAL_UNMERGED_BRANCH_DELETE.md`\n  - `decisions/ADR_BRANCH_FIRST_MANAGED_CHANGE_LIFECYCLE.md`\n  - `decisions/ADR_WORKSTREAM_LOCAL_ROUTING_STATE.md`\n  - `decisions/ADR_POLICY_LOCAL_BRANCH_FIRST.md`
 
 ## Workflow
 
