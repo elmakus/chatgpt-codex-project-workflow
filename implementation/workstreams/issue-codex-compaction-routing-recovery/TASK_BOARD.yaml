@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "fix/codex-compaction-routing-recovery"
   pr: null
-  head: "9b7d86053d5da9f08ae562677066ada22df2ba2f"
+  head: "319b034ebd3d5afd8643b755e00ab8d7987a0f34"
 
 research_obligation: null
 
@@ -32,13 +32,13 @@ cards:
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/issue-codex-compaction-routing-recovery/cards/M01-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "319b034ebd3d5afd8643b755e00ab8d7987a0f34"
     review_evidence: null
-    result_commit: null
+    result_commit: "319b034ebd3d5afd8643b755e00ab8d7987a0f34"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/issue-codex-compaction-routing-recovery/evidence/M01-T01_IMPLEMENTATION_2026-09-20.md"
+    tests_summary: "GREEN exact subject 319b034ebd3d5afd8643b755e00ab8d7987a0f34: targeted continuous-orchestration 8/8; full repository unittest 78/78; T01 static audit GREEN; diff --check GREEN; no chatgpt_only path changed."
   - id: "M01-T02"
     title: "Wire binding lifecycle, recovery and generic dispatch gate"
     milestone: "M01"
