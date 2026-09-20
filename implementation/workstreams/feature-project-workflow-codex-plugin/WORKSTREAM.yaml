@@ -1,6 +1,6 @@
 id: "feature-project-workflow-codex-plugin"
 kind: "feature"
-status: "in_progress"
+status: "review"
 
 branch: "feat/project-workflow-codex-plugin"
 base_ref: "cdaf47245e45836917b152904d70807bca355e7d"
