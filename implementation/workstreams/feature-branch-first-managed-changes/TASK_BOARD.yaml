@@ -148,7 +148,7 @@ cards:
     title: "Migrate Codex-only execution state and historical-default recovery"
     milestone: "M03"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: chatgpt
     depends_on: ["M03-T01"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M03-T02.md"
