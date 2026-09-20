@@ -58,3 +58,28 @@ No GitHub Actions/status run exists for this subject. A clean local checkout att
 Impact: Card acceptance 9 and the required focused regression-check boundary are not GREEN for this exact subject; implementation evidence overstates that check. The workflow behavior itself is not shown defective by this finding.
 
 Bounded correction: align the regression assertion with the authoritative text (or make it semantically robust), replay the checks, reconcile evidence, and freeze a new immutable subject. No user/product decision is required.
+
+
+---
+
+## Re-review attempt 3
+
+Date: 2026-09-20
+Review subject: `a3726bf22db1103e1a53c8d6e8256647699b6267`
+Verdict: **GREEN**
+
+### Independent inspection
+
+- Recovered the exact Card-owned review subject from the selected workstream Task Board and validated manifest ↔ Task Board identity on `feat/branch-first-managed-changes`.
+- Re-read the M02 milestone, M02-T02 Card, REQ-BF-002..009 / 011..017 authority slice, ADR-BF-001..003, M02 OpenSpec, prior RED evidence, exact reviewed source and the implementation evidence.
+- Verified the prior topology RED is corrected: historical root/default migration proves `integration_target`, exact base and independent-versus-stacked dependency topology before branch creation/adoption; ambiguity fails closed; topology is persisted and read back before mutable ownership switches.
+- Verified the prior regression-test RED is corrected: the historical-preservation assertion now matches the authoritative text.
+- Independently replayed the committed focused static assertion set against exact immutable GitHub contents for this subject: **52/52 PASS**.
+- Inspected the M02-T02 changed surface for scope/semantic coherence: active execution is workstream-only; root/default state is migration/history input only; binding mismatch does not fall back; Card/milestone review and implementation/recovery Research remain Task-Board-owned; micro-fix, target refresh, terminal target-side recovery and historical preservation remain intact; no ChatGPT-only lifecycle file imports `workflow/codex_only/`.
+- The subject changes only the M02-T02 lifecycle/OpenSpec/test/evidence surfaces plus its Task Board bookkeeping. No accepted requirement, ADR or milestone strategy change is required.
+
+No CI/Python runner pass is claimed by this review; the independent verification is exact GitHub subject readback plus connector-backed replay of the committed static contract suite.
+
+### Verdict
+
+**GREEN.** Exact subject `a3726bf22db1103e1a53c8d6e8256647699b6267` satisfies the M02-T02 Card acceptance and applicable M02 authority. No blocking finding remains.
