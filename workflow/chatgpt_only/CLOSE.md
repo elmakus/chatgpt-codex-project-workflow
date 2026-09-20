@@ -86,6 +86,12 @@ Do not perform an unauthorized live/deployment write while satisfying this Git i
 
 ## Publication / PR verification
 
+### Downstream fork release-version selection
+
+When publication work for a downstream fork includes choosing or validating a release version, read and apply `workflow/common/FORK_RELEASE_VERSIONING.md` before version selection/validation. That common file is the sole lineage-semantic source; this policy-local Close module must not derive its own fork-version algorithm.
+
+Applying the common contract does not authorize tag/release/deployment writes and does not weaken any existing review, acceptance, signing/checksum or external-write gate.
+
 Verify as applicable:
 - correct base/head branches and current integration target;
 - branch-isolated integration refresh is current for the target actually being merged;
