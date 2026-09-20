@@ -1,19 +1,19 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 workstream_id: "feature-project-workflow-codex-plugin"
-plan_revision: "PWCP-P2"
+plan_revision: "PWCP-P3"
 current_milestone: "M01"
 
 execution_ref:
   branch: "feat/project-workflow-codex-plugin"
   pr: null
-  head: "d235e11c78e732d7c06ba4e3a6233c490d6181b3"
+  head: "c39cb4415d10640b76ed505cf2967dcc6350ac1b"
 
 research_obligation: null
 
 milestones:
   M01:
     decision_state: accepted
-    execution_status: blocked
+    execution_status: ready
     contract: "planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md#milestone-m01--current-runtime-plugin-and-activation-contract"
     checkpoint: null
     implementation_head: null
@@ -28,7 +28,7 @@ cards:
     title: "Verify current Codex plugin activation contract"
     milestone: "M01"
     decision_state: accepted
-    execution_status: blocked
+    execution_status: ready
     executor: chatgpt
     depends_on: []
     openspec_change: null
@@ -38,5 +38,5 @@ cards:
     review_evidence: null
     result_commit: "d235e11c78e732d7c06ba4e3a6233c490d6181b3"
     result_pr: null
-    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/blockers/M01-T01-command-name-reopened-2026-09-20.md"
-    tests_summary: "Definition blocker resolved: user/product authority accepted $pw:project-workflow under the verified normal Skill hyphen-case constraint. Previous PWCP-P2/M01 review subject remains historical only. Card stays blocked until PWCP-P3 receives independent plan review/approval and Execution Prep reconciles the Card contract."
+    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M01-T01-runtime-contract-2026-09-20.md"
+    tests_summary: "Execution Prep reconciled M01-T01 under approved PWCP-P3/Definition R3 after GREEN plan review. Prior packaging/activation/path/trust/isolation evidence remains accepted where unchanged; the obsolete M01 review subject stays non-active. Remaining execution is the bounded naming delta proving plugin pw + Skill project-workflow is accepted/discovered/invokable as $pw:project-workflow, followed by refreshed M02 contract evidence."
