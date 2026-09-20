@@ -16,9 +16,9 @@ milestones:
     execution_status: in_progress
     contract: "planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md#milestone-m01--canonical-fork-release-contract-and-publication-enforcement"
     checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    implementation_head: "cec373fbfe38ffb1602a17f87f222e244e1f1657"
+    handoff: "implementation/workstreams/issue-fork-release-versioning/handoffs/M01_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/issue-fork-release-versioning/evidence/M01_FINAL_INTEGRATION_REFRESH_2026-09-20.md"
     review_state: null
     review_subject: null
     review_evidence: null
@@ -38,4 +38,4 @@ cards:
     result_commit: "cec373fbfe38ffb1602a17f87f222e244e1f1657"
     result_pr: null
     evidence: "implementation/workstreams/issue-fork-release-versioning/evidence/M01-T01.md"
-    tests_summary: "GREEN pre-review verification: exact regression source 8/8 in isolated stdlib execution plus 25/25 exact-branch persisted-artifact checks; independent review reran 8/8 focused and 21/21 full exact-subject tests."
+    tests_summary: "GREEN pre-review verification: exact regression source 8/8 in isolated stdlib execution plus 25/25 exact-branch persisted-artifact checks; independent review reran 8/8 focused and 21/21 full exact-subject tests; current closure branch full suite 21/21."
