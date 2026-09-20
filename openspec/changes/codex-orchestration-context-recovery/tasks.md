@@ -19,7 +19,7 @@
 
 ## M01-T03 — regressions + docs
 
-- [ ] Add focused CCOR-R10 contract tests.
-- [ ] Preserve continuous-orchestration and ChatGPT-only behavior regressions.
-- [ ] Add concise README/CHANGELOG discoverability where needed.
-- [ ] Run targeted and full repository verification.
+- [x] Add focused CCOR-R10 contract tests.
+- [x] Preserve continuous-orchestration and ChatGPT-only behavior regressions.
+- [x] Add concise README/CHANGELOG discoverability where needed.
+- [x] Run targeted and full repository verification.
