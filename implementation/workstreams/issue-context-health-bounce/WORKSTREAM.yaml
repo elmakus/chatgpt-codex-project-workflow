@@ -1,0 +1,40 @@
+# ChatGPT-only branch-isolated issue workstream.
+
+id: "issue-context-health-bounce"
+kind: "issue"
+status: "discovery"
+
+branch: "fix/chatgpt-only-context-health-bounce"
+base_ref: "808084a4c7989715f7ee4889a31bce28f778d597"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: active
+  record: "implementation/workstreams/issue-context-health-bounce/INTAKE.md"
+
+task_board: null
+
+authority:
+  requirements: null
+  decisions: []
+  plan: null
+
+review:
+  requirement: "RECOMMENDED"
+  state: null
+  subject: null
+  evidence: null
+  covered_by: null
+
+branch_cleanup:
+  state: null
+  ref: null
+  verified_head: null
+  evidence: null
+
+pr: null
+result: null
