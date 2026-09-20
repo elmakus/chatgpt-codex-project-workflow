@@ -28,7 +28,7 @@ cards:
     title: "Define branch-first workstream routing state model"
     milestone: "M01"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M01-T01.md"
