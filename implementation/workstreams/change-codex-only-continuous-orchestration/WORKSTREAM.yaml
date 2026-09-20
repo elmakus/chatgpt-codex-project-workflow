@@ -17,7 +17,7 @@ intake:
 routing:
   exploratory_scope: null
   research_obligation: null
-  plan_review: planning/reviews/COCO-P2.md
+  plan_review: planning/reviews/COCO-P1.md
 
 task_board: null
 
