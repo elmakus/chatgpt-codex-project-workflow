@@ -29,9 +29,10 @@ Do not load legacy/shared execution trees or another policy directory.
 16. If the selected manifest `routing.research_obligation` points to a pre-execution Research record, validate and read that exact record before choosing the route. `Status: active | blocked` routes to Research; `Status: complete` routes to the exact recorded Return target; `Status: consumed` means the manifest locator is stale and should be cleared at the next safe edit after verifying reconciliation.
 17. If both Task Board `research_obligation` and manifest `routing.research_obligation` point to different active/blocked/complete Research obligations, treat that as inconsistent state and route to Recovery instead of guessing which lifecycle owns continuation. Implementation/recovery Research belongs only to the Task Board; pre-execution Research belongs only to manifest routing.
 18. If selected manifest `routing.plan_review` is non-null, validate and read that exact `planning/reviews/<plan-revision>.md` record before plan approval or Execution Prep. An explicit fresh-session/request locator for a branch-isolated plan review must match the selected manifest locator; mismatch is Recovery. Treat the locator only as routing state; the review record is authority. `pending | in_progress` routes to independent Plan Review, while `green | red` routes to Planning for deterministic verdict consumption/correction. Historical root `PROJECT.md` exploratory/Research pointers without an exact migrated workstream are recovery/migration input only and must route to Recovery before further managed mutation.
-19. Select exactly one primary route below.
-20. Read only that route's required project artifacts plus exact authority refs.
-21. Continue deterministic work automatically until a real workflow stop is reached.
+19. If selected manifest `routing.exploratory_scope` is non-null and no higher Research/plan-review/execution obligation owns continuation, validate/read that exact exploratory record. A pending/ready promotion record routes to Brainstorming + the promotion gate; exact `user_authorized` promotion for the current subject with Definition not yet complete routes to Project Definition. Do not infer a different phase from chat history or another workstream.
+20. Select exactly one primary route below.
+21. Read only that route's required project artifacts plus exact authority refs.
+22. Continue deterministic work automatically until a real workflow stop is reached.
 
 ## Fresh-session entry semantics
 
