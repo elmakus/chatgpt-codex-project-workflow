@@ -83,7 +83,7 @@ cards:
     title: "Verify always-on lifecycle, isolation and intake UX"
     milestone: "M03"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M02-T01"
