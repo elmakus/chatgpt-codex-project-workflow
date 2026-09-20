@@ -13,7 +13,7 @@ Publication modules MUST reference this contract instead of copying its lineage 
 Before choosing or validating a downstream fork release version, establish from durable project/repository evidence:
 
 1. the exact upstream repository;
-2. the exact accepted upstream version/tag;
+2. the exact upstream version/tag that is accepted as the baseline;
 3. the exact upstream commit SHA represented by that accepted baseline.
 
 A release MUST NOT claim a newer upstream baseline until that baseline is actually integrated and accepted.
