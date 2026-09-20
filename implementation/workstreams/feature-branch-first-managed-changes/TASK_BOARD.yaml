@@ -37,12 +37,12 @@ milestones:
 
   M03:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md#M03--Codex-only-lifecycle-migration"
-    checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    checkpoint: "76abbc14ea2e7ae9a4e6d98146beb2b66f4515b6"
+    implementation_head: "76abbc14ea2e7ae9a4e6d98146beb2b66f4515b6"
+    handoff: "implementation/workstreams/feature-branch-first-managed-changes/handoffs/M03_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M03_ACCEPTANCE.md"
     review_state: null
     review_subject: null
     review_evidence: null
