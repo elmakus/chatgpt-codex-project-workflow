@@ -1,6 +1,6 @@
 id: "feature-brainstorming-grilling"
 kind: "feature"
-status: "discovery"
+status: "planning"
 
 branch: "feat/brainstorming-grilling"
 base_ref: "cdaf47245e45836917b152904d70807bca355e7d"
@@ -17,8 +17,9 @@ intake:
 task_board: null
 
 authority:
-  requirements: null
-  decisions: []
+  requirements: "requirements/BRAINSTORMING_GRILLING.md"
+  decisions:
+    - "decisions/ADR_BRAINSTORMING_GRILLING.md"
   plan: null
 
 review:
