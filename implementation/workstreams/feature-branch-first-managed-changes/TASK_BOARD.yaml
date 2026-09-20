@@ -6,7 +6,7 @@ current_milestone: "M04"
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "cf9582b3a25f91ea018981f685e65ceb8c840e8d"
+  head: "7273d292a1e77559f66b84f811e0ae6195d357ab"
 
 research_obligation: null
 
@@ -52,9 +52,9 @@ milestones:
     execution_status: in_progress
     contract: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md#M04--migration-documentation-dogfood-and-integrated-regression-closure"
     checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    implementation_head: "7273d292a1e77559f66b84f811e0ae6195d357ab"
+    handoff: "implementation/workstreams/feature-branch-first-managed-changes/handoffs/M04_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M04_FINAL_INTEGRATION_REFRESH_2026-09-20.md"
     review_state: null
     review_subject: null
     review_evidence: null
