@@ -148,7 +148,7 @@ cards:
     title: "Migrate Codex-only execution state and historical-default recovery"
     milestone: "M03"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: ["M03-T01"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M03-T02.md"
@@ -157,5 +157,5 @@ cards:
     review_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M03-T02_REVIEW.md"
     result_commit: "76abbc14ea2e7ae9a4e6d98146beb2b66f4515b6"
     result_pr: null
-    evidence: null
+    evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M03-T02.md"
     tests_summary: "GREEN: exact connector-backed regression replay PASS 14/14 plus Codex-only semantic sweep; topology-before-branch migration, read-only historical source, Main/Tester/Research ownership, batch/post-batch lineage, micro-fix/target-refresh/terminal recovery, task/template surfaces, runtime-identity exclusion, OpenSpec and policy separation are coherent. Local unittest checkout was blocked by DNS, so no Python/CI runner pass is claimed."
