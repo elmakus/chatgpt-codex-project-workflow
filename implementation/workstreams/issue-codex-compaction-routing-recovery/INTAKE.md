@@ -7,7 +7,7 @@
 - Base: `aa35886be2ec1b2ac58e600cd633dc214dc65096`
 - Classification: independent
 - Parent workstream: none
-- Status: active
+- Status: complete
 
 ## Operator intent
 
@@ -99,3 +99,21 @@ Excluded:
 - full workflow re-read after every compaction;
 - changing this repository's accepted `chatgpt_only` execution policy;
 - weakening independent review, authority, authorization or stop gates.
+
+
+## Definition result
+
+Project Definition is complete.
+
+Canonical accepted authority:
+- requirements: `requirements/CODEX_ORCHESTRATION_CONTEXT_RECOVERY.md` R2;
+- decision: `decisions/ADR_CODEX_ORCHESTRATION_POLICY_BINDING.md`.
+
+The accepted design separates:
+- a durable manifest-owned opaque runtime-policy binding;
+- a deliberately non-durable current-context binding latch that is treated as absent/uncertain after reconstruction;
+- a compact conditional `codex_only` orchestration kernel that re-binds before policy-dependent dispatch.
+
+This closes the primary same-version compaction failure without duplicating `codex_workflow` role→harness mechanics and without requiring a full workflow re-read.
+
+Next route: `strategic_planning`.
