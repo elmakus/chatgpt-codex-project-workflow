@@ -43,7 +43,7 @@ cards:
     title: "Wire binding lifecycle, recovery and generic dispatch gate"
     milestone: "M01"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: null
     depends_on:
       - "M01-T01"
