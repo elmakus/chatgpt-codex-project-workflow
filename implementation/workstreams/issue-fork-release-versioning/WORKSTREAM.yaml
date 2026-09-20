@@ -2,7 +2,7 @@
 
 id: "issue-fork-release-versioning"
 kind: "issue"
-status: "execution"
+status: "ready"
 
 branch: "fix/fork-release-versioning"
 base_ref: "f3cdb60367da3e978397409b51c37faa181d613f"
@@ -15,6 +15,11 @@ parent_dependency: null
 intake:
   state: "complete"
   record: "implementation/workstreams/issue-fork-release-versioning/INTAKE.md"
+
+routing:
+  exploratory_scope: null
+  research_obligation: null
+  plan_review: null
 
 task_board: "implementation/workstreams/issue-fork-release-versioning/TASK_BOARD.yaml"
 
