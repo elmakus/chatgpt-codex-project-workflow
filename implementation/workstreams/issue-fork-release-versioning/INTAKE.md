@@ -6,11 +6,11 @@
 - Integration target: `main`
 - Base ref: `f3cdb60367da3e978397409b51c37faa181d613f`
 - Classification: independent
-- Intake state: active
+- Intake state: complete
 
 ## Operator intent
 
-Correct Project Workflow behavior for releases of downstream forks. The observed agents currently publish fork-local changes by incrementing the upstream-looking SemVer patch number. The preferred model is the one already used by `elmakus/codex_workflow`: retain the upstream version as the lineage base and append a private revision suffix.
+Correct Project Workflow behavior for releases of downstream forks. The observed agents currently publish fork-local changes by incrementing the upstream-looking SemVer patch number. The accepted model is the one already used by `elmakus/codex_workflow`: retain the upstream version as the lineage base and append a private revision suffix.
 
 ## Baseline evidence
 
@@ -18,7 +18,7 @@ Correct Project Workflow behavior for releases of downstream forks. The observed
 - Upstream's latest published release at intake time is `v5.0.8` (published 2026-09-16).
 - The fork currently has published releases `v5.0.8`, `v5.0.9`, `v5.0.10`, `v5.0.11`, `v5.0.12`, and `v5.0.13`; latest is `v5.0.13` (published 2026-09-20).
 - Therefore fork-local releases already occupy version numbers that can later be used by upstream, and the tag alone no longer identifies which upstream baseline the fork actually contains.
-- `elmakus/codex_workflow` demonstrates the desired lineage form with releases such as `v1.1.17-private.12`.
+- `elmakus/codex_workflow` demonstrates the accepted lineage form with releases such as `v1.1.17-private.12`.
 
 ## Dependency / base discovery
 
@@ -37,54 +37,34 @@ The current release behavior conflates two different axes:
 
 Incrementing `5.0.8` to `5.0.9` for a fork-only change falsely makes the fork revision look like a newer upstream version. It also creates future tag collisions when upstream eventually publishes those versions.
 
-## Proposed contract direction
+## Accepted publication contract
 
-Recommended naming shape:
+User/product authority accepted on 2026-09-20:
 
-```text
-v<upstream-version>-private.<fork-revision>
-```
+1. canonical fork-local versions use `v<upstream-version>-private.<N>`;
+2. fork-local work never advances the upstream component;
+3. `N` increases inside one upstream baseline and restarts at `1` after an accepted upstream-baseline change;
+4. exact upstream repository, tag/version and commit SHA are release provenance;
+5. already-published upstream-looking fork releases are preserved as legacy history rather than rewritten/deleted;
+6. release consumers/resolvers must select the canonical private lane explicitly rather than generic max-SemVer across mixed tag classes;
+7. the `private` suffix identifies downstream lineage, not quality; GitHub `prerelease` is independent;
+8. first migration to a baseline with no existing canonical private releases begins at `private.1`.
 
-Example:
-
-```text
-v5.0.8-private.1
-v5.0.8-private.2
-v5.0.8-private.3
-```
-
-When the fork is deliberately rebased/aligned to a new upstream release, the upstream component changes and the private counter restarts:
-
-```text
-v5.0.9-private.1
-```
-
-Recommended supporting provenance:
-- record the exact upstream repository, upstream tag/version, and upstream commit SHA in release metadata;
-- never consume a future upstream-looking version number merely for a fork-local change;
-- keep the GitHub `prerelease` quality flag separate from the `-private.N` lineage suffix rather than inferring one from the other.
+Canonical Definition authority:
+- `requirements/FORK_RELEASE_VERSIONING.md` R1 — approved
+- `decisions/ADR_FORK_RELEASE_VERSION_LINEAGE.md` / `ADR-FRV-001` — accepted
 
 ## Migration concern
 
-Existing published `v5.0.9`–`v5.0.13` tags are already durable external references. Rewriting/deleting them would damage provenance and may break existing URLs/checksums. The preferred migration is therefore to preserve them as legacy releases and make resolvers/updaters explicitly understand the new fork-version lane, instead of sorting all historical tags as ordinary SemVer.
+Existing published `v5.0.9`–`v5.0.13` tags are durable external references and remain untouched.
 
-This migration detail matters because SemVer gives `5.0.8-private.1` lower precedence than `5.0.8`, while the already-published legacy `5.0.13` would sort above both. A generic "highest SemVer wins" resolver is therefore not sufficient after migration.
+SemVer gives `5.0.8-private.1` lower precedence than `5.0.8`, while legacy `5.0.13` sorts above both. Therefore a generic "highest SemVer wins" resolver is explicitly outside the accepted contract.
 
 ## Path classification
 
-This does **not** qualify as a micro-fix. It changes accepted workflow behavior for release/version publication and migration semantics, so the smallest correct downstream route is Project Definition.
+This does **not** qualify as a micro-fix. It changes accepted workflow behavior for release/version publication and migration semantics.
 
-Provisional route:
 - path: `project_definition`
-- next_route: `project_definition:fork-release-versioning`
+- next_route: `strategic_planning:fork-release-versioning`
 
-## Unresolved strategic gate
-
-Before Intake can complete, user authority is required for the exact publication contract, especially:
-
-1. adopt `v<upstream>-private.<N>` as the canonical fork-release naming rule;
-2. preserve already-published legacy tags/releases rather than rewriting them;
-3. require release consumers/resolvers to select the fork release lane explicitly rather than generic max-SemVer;
-4. keep GitHub `prerelease` status independent from the `private` suffix.
-
-Until that authority is explicit, this Intake remains active and no implementation contract is created.
+Project Definition is now complete and GREEN. The next legal route is Strategic Planning.
