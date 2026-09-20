@@ -132,7 +132,7 @@ cards:
     title: "Migrate Codex-only pre-execution routing to workstream-local state"
     milestone: "M03"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: ["M02-T02"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M03-T01.md"
