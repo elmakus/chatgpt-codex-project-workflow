@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "fix/codex-compaction-routing-recovery"
   pr: null
-  head: "659c5931896adc408aa5f773b6603ff82a0c0d19"
+  head: "94eb7fd074052c5d4420b6edb2fe32ab2de1da13"
 
 research_obligation: null
 
@@ -48,13 +48,13 @@ cards:
     depends_on:
       - "M01-T01"
     contract: "implementation/workstreams/issue-codex-compaction-routing-recovery/cards/M01-T02.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "94eb7fd074052c5d4420b6edb2fe32ab2de1da13"
     review_evidence: null
-    result_commit: null
+    result_commit: "94eb7fd074052c5d4420b6edb2fe32ab2de1da13"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/issue-codex-compaction-routing-recovery/evidence/M01-T02_IMPLEMENTATION_2026-09-20.md"
+    tests_summary: "GREEN exact subject 94eb7fd074052c5d4420b6edb2fe32ab2de1da13: targeted Codex-only execution/preexecution/continuous contracts 31/31; full repository unittest 78/78; T02 persisted-content audit GREEN; diff --check GREEN; no chatgpt_only path changed."
   - id: "M01-T03"
     title: "Add orchestration recovery regressions and documentation"
     milestone: "M01"
