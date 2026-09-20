@@ -6,7 +6,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "55ac886395fe53d82b01e691e06ef65948001310"
+  head: "2abc8ddd2d083fe66e4ba95369cbe2636e610ff5"
 
 research_obligation: null
 
@@ -136,13 +136,13 @@ cards:
     executor: chatgpt
     depends_on: ["M02-T02"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M03-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "2abc8ddd2d083fe66e4ba95369cbe2636e610ff5"
     review_evidence: null
-    result_commit: null
+    result_commit: "2abc8ddd2d083fe66e4ba95369cbe2636e610ff5"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M03-T01.md"
+    tests_summary: "GREEN: exact branch readback + committed Codex pre-execution static contract replay PASS 52/52; whole-policy sweep found 0 active root PROJECT exploratory/Research pointers and 0 ChatGPT-only lifecycle imports; manifest-local routing, user-owned promotion, crash-safe Research, Codex Main/Tester ownership, bounded-batch preservation and OpenSpec are coherent; no CI/Python runner pass is claimed."
 
   - id: "M03-T02"
     title: "Migrate Codex-only execution state and historical-default recovery"
