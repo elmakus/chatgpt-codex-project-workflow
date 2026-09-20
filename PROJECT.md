@@ -6,7 +6,7 @@
 - Repository: `elmakus/chatgpt-codex-project-workflow`
 - Lifecycle: `active`
 - High-level goal: maintain and evolve the repository-backed Project Workflow contracts used by ChatGPT/Codex project execution.
-- High-level status: Project Workflow Codex plugin Definition R1 and Master Plan `PWCP-P1` are approved; execution preparation is next on branch `feat/project-workflow-codex-plugin`.
+- High-level status: Project Workflow Codex plugin M01 runtime verification found a current-Codex bundled-Skill naming constraint; execution is blocked pending one user/product Definition decision.
 
 ## Execution policy
 
@@ -22,7 +22,8 @@ Changing execution policy requires an explicit user decision.
 - Approved plan: `planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md`
 - Current plan draft: `none`
 - Current plan review: `planning/reviews/PWCP-P1.md`
-- Task Board: `implementation/TASK_BOARD.yaml` (legacy/default fallback; current branch-isolated workstream has no Task Board until Execution Prep)
+- Open Definition question: `brainstorming/OPEN_QUESTIONS.md#pwcp-oq-001--explicit-codex-skill-entrypoint-under-bundled-skill-namespacing`
+- Task Board: `implementation/workstreams/feature-project-workflow-codex-plugin/TASK_BOARD.yaml`
 - Latest cumulative handoff: `project-handoffs/CUBC-M01_HANDOFF.md`
 - Accepted decisions index / key pointers:
   - `decisions/ADR_PROJECT_WORKFLOW_CODEX_PLUGIN_PACKAGING.md`
@@ -39,6 +40,6 @@ Changing execution policy requires an explicit user decision.
 
 This file is a high-level router/policy/index, not live execution state.
 
-The selected branch-isolated workstream is identified by `implementation/workstreams/feature-project-workflow-codex-plugin/WORKSTREAM.yaml`. Its independent plan-review record is the current durable continuation boundary.
+The selected branch-isolated workstream is identified by `implementation/workstreams/feature-project-workflow-codex-plugin/WORKSTREAM.yaml`. Its canonical Task Board is active. M01-T01 is blocked on the Definition-owned explicit Skill naming question recorded in `brainstorming/OPEN_QUESTIONS.md`.
 
 Do not record current milestone/card, assigned executor, active branch/HEAD, checkpoint, current OpenSpec or blocker status here. Once implementation state exists, read the canonical Task Board selected by the active ChatGPT-only state context for mutable execution state.
