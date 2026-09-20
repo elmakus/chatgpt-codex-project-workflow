@@ -3,8 +3,8 @@
 Plan revision: `PWCP-P2`
 Review requirement: `RECOMMENDED`
 Review state: `pending`
-Review subject: `planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md@blob:bca808796a0983de9d9c31a72a4b0b8a801289a9`
-Review subject commit: `6968f6a748189886a60d147733bc5ef43fa193a9`
+Review subject: `planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md@blob:4932fcfa47a0a6a8dc9c4404fe76cb6f4a4c4346`
+Review subject commit: `d2842cc3dd914d2f56e1f7b96cac107cad4dd637`
 Review evidence: `pending independent review`
 
 ## Scope
