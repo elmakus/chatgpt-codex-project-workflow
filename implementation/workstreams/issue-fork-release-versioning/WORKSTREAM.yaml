@@ -26,10 +26,10 @@ authority:
 
 review:
   requirement: "RECOMMENDED"
-  state: null
-  subject: null
-  evidence: null
-  covered_by: null
+  state: "green"
+  subject: "cec373fbfe38ffb1602a17f87f222e244e1f1657"
+  evidence: "implementation/workstreams/issue-fork-release-versioning/evidence/M01_FINAL_INTEGRATION_REFRESH_2026-09-20.md"
+  covered_by: "implementation/workstreams/issue-fork-release-versioning/evidence/M01-T01-review.md"
 
 branch_cleanup:
   state: null
