@@ -16,9 +16,9 @@ milestones:
     execution_status: in_progress
     contract: "planning/CODEX_ONLY_CONTINUOUS_ORCHESTRATION_MASTER_PLAN.md#M01 — Continuous Codex Main lifecycle"
     checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    implementation_head: "a6bb50695b2be7b50827dec75e0cde3c467737b2"
+    handoff: "implementation/workstreams/change-codex-only-continuous-orchestration/handoffs/M01_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/change-codex-only-continuous-orchestration/evidence/M01_ACCEPTANCE_CANDIDATE_2026-09-20.md"
     review_state: null
     review_subject: null
     review_evidence: null
