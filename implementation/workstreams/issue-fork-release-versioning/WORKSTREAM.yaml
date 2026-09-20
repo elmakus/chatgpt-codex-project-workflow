@@ -22,7 +22,7 @@ authority:
   requirements: "requirements/FORK_RELEASE_VERSIONING.md"
   decisions:
     - "decisions/ADR_FORK_RELEASE_VERSION_LINEAGE.md"
-  plan: null
+  plan: "planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md"
 
 review:
   requirement: "RECOMMENDED"
