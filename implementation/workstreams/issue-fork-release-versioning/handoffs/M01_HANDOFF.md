@@ -6,6 +6,7 @@
 - Implementation behavior head: `cec373fbfe38ffb1602a17f87f222e244e1f1657`
 - Reconciled pre-merge integration target: `main@a52fae6c38944f69c4ec38dc6e77457935146f26`
 - Integration pull request: `#40`
+- Target-side closure pull request: `#42`
 - Final integration result: `47c3cae3c1e1eb0ea8065a10b1e5dd052b96ce12`
 - Integrated milestone acceptance: **GREEN**
 - Independent Card review: **GREEN**
