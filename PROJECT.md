@@ -6,7 +6,7 @@
 - Repository: `elmakus/chatgpt-codex-project-workflow`
 - Lifecycle: `active`
 - High-level goal: maintain and evolve the repository-backed Project Workflow contracts used by ChatGPT/Codex project execution.
-- High-level status: Project Workflow Codex plugin Definition R3 and Master Plan `PWCP-P3` are approved with explicit command `$pw:project-workflow`; active M01 work continues on the branch-isolated feature workstream.
+- High-level status: Project Workflow Codex plugin Definition R3 and Master Plan `PWCP-P3` are approved; M01-T01 completed its bounded `$pw:project-workflow` runtime delta and is pending fresh independent implementation review.
 
 ## Execution policy
 
