@@ -6,7 +6,7 @@ current_milestone: "M02"
 execution_ref:
   branch: "feat/project-workflow-codex-plugin"
   pr: null
-  head: "e37c30d8c53e9b1bfc1cb88ab62077d1ca18ff40"
+  head: "fbe0a601c2e443363a41f0b5e682bec7c3c588d3"
 
 research_obligation: null
 
@@ -24,7 +24,7 @@ milestones:
     review_evidence: null
   M02:
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     contract: "planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md#milestone-m02--same-repo-plugin-package-and-canonical-wrapper"
     checkpoint: null
     implementation_head: null
@@ -51,3 +51,20 @@ cards:
     result_pr: null
     evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M01-T01-p3-naming-delta-2026-09-20.md"
     tests_summary: "GREEN under approved PWCP-P3/Definition R3. Current runtime remains codex-cli 0.155.0-alpha.9.2; unchanged packaging/activation/path/trust/isolation evidence was reused at the exact reviewed subject. Native skills/list returned pw:project-workflow for plugin pw and real $pw:project-workflow invocation returned PWCP_P3_SENTINEL_7C91. No live marketplace/plugin/config state was mutated. Independent review GREEN on exact subject e37c30d8c53e9b1bfc1cb88ab62077d1ca18ff40."
+  - id: "M02-T01"
+    title: "Implement same-repo Codex plugin package"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: ready
+    executor: chatgpt
+    depends_on:
+      - "M01-T01"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-project-workflow-codex-plugin/cards/M02-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
