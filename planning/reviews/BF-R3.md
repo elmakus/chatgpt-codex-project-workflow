@@ -2,9 +2,9 @@
 
 Plan revision: BF-R3
 Review requirement: RECOMMENDED
-Review state: pending
+Review state: in_progress
 Review subject: commit `505622c9791c59092c32cbbc8b1ca03651881996`, file `planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md`
-Review evidence: pending independent review
+Review evidence: review in progress
 
 ## Review authority
 
