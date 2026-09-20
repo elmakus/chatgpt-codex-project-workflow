@@ -19,7 +19,7 @@ routing:
   research_obligation: null
   plan_review: null
 
-task_board: null
+task_board: implementation/workstreams/issue-codex-compaction-routing-recovery/TASK_BOARD.yaml
 
 authority:
   requirements: requirements/CODEX_ORCHESTRATION_CONTEXT_RECOVERY.md
