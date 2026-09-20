@@ -46,7 +46,7 @@ Read only already accepted requirements/decisions and source/project context tha
 
 Move to Research when claims require verification.
 
-Before yielding, create one exact obligation under `workflow/chatgpt_only/RESEARCH.md#Durable record contract` with Origin role `brainstorming`, exact exploratory `<scope-id>@<revision>`, Return target `brainstorming:<scope-id>@<revision>`, reconciliation pending, and set `PROJECT.md → Active research obligation`.
+Before yielding, create one exact obligation under `workflow/chatgpt_only/RESEARCH.md#Durable record contract` with Origin role `brainstorming`, exact exploratory `<scope-id>@<revision>`, Return target `brainstorming:<scope-id>@<revision>`, reconciliation pending, and set the selected workstream manifest `routing.research_obligation` to that exact record. Persist the record + locator before returning to the router.
 
 When that record becomes complete for this Brainstorming subject, use `workflow/chatgpt_only/RESEARCH.md#Final Return-target protocol`. The target mutation is the exact exploratory-record reconciliation. Persist it together with `Return reconciliation: applied` + exact result ref; only then consume/clear. Recovery from applied+complete must not reapply findings or create another brainstorming revision.
 
