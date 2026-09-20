@@ -2,10 +2,10 @@
 
 Plan revision: `FRV-P2`
 Review requirement: `RECOMMENDED`
-Review state: `in_progress`
+Review state: `green`
 Review subject: `planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md@blob:90e25672f22299500d3c1086870eb587414ff345`
 Review subject commit: `e1bccdfc641f63cf52b8d799b925a18cd9ac7831`
-Review evidence: `in progress — independent review recovered exact immutable FRV-P2 subject and is validating it against R1, ADR-FRV-001, intake, current OpenSpec authority, and current publication/routing surfaces.`
+Review evidence: `GREEN — exact frozen FRV-P2 blob 90e25672f22299500d3c1086870eb587414ff345 preserves approved FRV R1 / ADR-FRV-001 lineage and migration semantics: upstream-anchored v<upstream>-private.N, exact repo/tag/SHA provenance, immutable legacy releases, first private.1, numeric per-baseline max(N)+1, reset on accepted baseline change, explicit rejection of generic max-SemVer across mixed lineage, and prerelease-quality independence. M01 maps all FRV-REQ-001..012, keeps one policy-neutral semantic source, covers the three supported workflow publication surfaces (ChatGPT-only Close, Codex-only Close, and legacy/shared REVIEW_AND_HANDOFF), and includes deterministic mixed-tag/provenance/route-coverage regression checks. The repo-local auto-patch-tag workflow is not a downstream-fork Project Workflow publication route and does not create a coverage gap. FRV-P2 resolves FRV-P1's sole blocking defect: M01 is explicitly a new/changed behavior + migration/publication contract, Execution Prep must mark/bind the OpenSpec candidate, the first behavior-changing executor Card must reconcile the JIT OpenSpec against current authority/source, and verification must keep OpenSpec plus implementation/docs/tests coherent. Migration/rollback, authorization, integrity, and no-upstream-sync/non-rewrite boundaries are explicit. No Definition change, Research obligation, or user/product blocker found.`
 
 ## Scope
 
