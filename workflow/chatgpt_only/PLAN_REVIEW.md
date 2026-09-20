@@ -33,6 +33,8 @@ The reviewed subject is one exact immutable plan draft.
 
 One review record corresponds to one exact plan revision/subject. Any substantive corrective plan edit must create a new plan revision (and therefore a distinct `planning/reviews/<plan-revision>.md` record) before a new review attempt. Do not overwrite a completed RED/GREEN record with another subject.
 
+For a branch-isolated ChatGPT-only workstream, the selected manifest `routing.plan_review` MUST point to the exact active review record. The review record remains sole owner of requirement/state/subject/evidence; the manifest never mirrors those fields. A missing, mismatched or wrong-subject locator is inconsistent state and routes to Recovery.
+
 ## Planner handoff into review
 
 After the planner's own pre-implementation audit is GREEN, when independent review is REQUIRED/RECOMMENDED:
@@ -40,18 +42,20 @@ After the planner's own pre-implementation audit is GREEN, when independent revi
 1. keep the Master Plan `Status: draft`;
 2. freeze/persist the exact plan draft;
 3. create the revision-specific review record as `pending`; do not reuse a completed review record for a different subject;
-4. commit/push the durable handoff when possible;
-5. stop before issuing an independent verdict;
-6. use the dedicated independent-plan-review fresh-chat variant from `workflow/common/USER_STOP.md`, with durable start pointer `planning/reviews/<plan-revision>.md`;
-7. keep the prompt locator-only; any material nonstandard review scope belongs in the durable plan-review record or another exact durable scope artifact, not in an expanded handoff prompt.
+4. set selected manifest `routing.plan_review` to that exact record and persist record + locator before yielding;
+5. commit/push the durable handoff when possible;
+6. stop before issuing an independent verdict;
+7. use the dedicated independent-plan-review fresh-chat variant from `workflow/common/USER_STOP.md`, with durable start pointer `planning/reviews/<plan-revision>.md`;
+8. keep the prompt locator-only; any material nonstandard review scope belongs in the durable plan-review record or another exact durable scope artifact, not in an expanded handoff prompt.
 
 The authoring chat must not independently review its own exact plan subject.
 
 ## Reviewer read set
 
 Read:
-- root `PROJECT.md`;
+- root `PROJECT.md` as integrated project authority/navigation only;
 - `workflow/chatgpt_only/PLAN_REVIEW.md`;
+- selected workstream manifest and validated `routing.plan_review` locator;
 - exact review record;
 - exact immutable Master Plan subject;
 - approved canonical requirements;
@@ -81,7 +85,8 @@ After GREEN:
 3. return to `workflow/chatgpt_only/ROUTER.md`;
 4. route to Planning;
 5. Planning may mark that reviewed plan revision `approved` when no other planning blocker remains, but only deterministic lifecycle metadata may change after GREEN; any substantive plan-body change requires a new plan revision and a new independent review subject;
-6. continue to Execution Prep automatically when implementation is already authorized.
+6. do not clear manifest `routing.plan_review` in the reviewer role; Planning clears it only after durably consuming the exact GREEN verdict into plan approval;
+7. continue to Execution Prep automatically when implementation is already authorized.
 
 GREEN itself is not a user stop.
 
@@ -95,7 +100,7 @@ After RED:
 Then:
 - bounded plan-only defects inside accepted Project Definition → route to Planning for correction;
 - defect reveals missing/incorrect accepted product/system authority → route to Project Definition;
-- more evidence needed before either can be resolved → create one exact record under `workflow/chatgpt_only/RESEARCH.md#Durable record contract`, with `Status: active`, `Origin role: plan_review`, this exact review record/subject as Origin subject, `Return target: strategic_planning:<exact correction subject>`, and `Return reconciliation: pending`; for a pre-execution plan review set `PROJECT.md → Active research obligation`, but for an active-work replan review set Task Board `research_obligation`; persist record + pointer before routing to Research;
+- more evidence needed before either can be resolved → create one exact record under `workflow/chatgpt_only/RESEARCH.md#Durable record contract`, with `Status: active`, `Origin role: plan_review`, this exact review record/subject as Origin subject, `Return target: strategic_planning:<exact correction subject>`, and `Return reconciliation: pending`; for a pre-execution plan review set selected manifest `routing.research_obligation`, but for an active-work replan review set Task Board `research_obligation`; never mirror either pointer into root `PROJECT.md`; persist record + pointer before routing to Research;
 - unresolved user/product authority → real user stop.
 
 If the same chat corrects the plan, it becomes the authoring chat for the corrected subject. When independent review remains REQUIRED/RECOMMENDED, freeze the new subject as `pending` and stop for a fresh independent re-review.

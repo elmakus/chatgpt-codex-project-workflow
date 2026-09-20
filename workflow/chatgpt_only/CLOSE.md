@@ -113,7 +113,7 @@ When milestone uses PR:
 8. persist/read back acceptance evidence and final implementation checkpoint;
 9. set milestone `done` only after the required target-side terminal readback is GREEN.
 
-For legacy/default PR finalization, or branch-isolated integration into an unmerged parent rather than the final target, use the normal handoff timing required by that state context. A small closure documentation commit is allowed when required.
+Historical root/default live state must have completed `RECOVERY.md#Historical root/default migration before mutation` before entering normal Close; this role never finalizes a root/default Task Board as active managed state. For branch-isolated integration into an unmerged parent rather than the final target, use the normal handoff timing required by that workstream state. A small closure documentation commit is allowed when required.
 
 ### Branch-isolated workstream final integration
 
@@ -144,14 +144,11 @@ For a qualified micro-fix, after the refresh gate is current, any REQUIRED/RECOM
 
 ## Cumulative handoff
 
-Canonical location is state-context-specific:
+For active managed work, the canonical cumulative handoff location is `implementation/workstreams/<workstream-id>/handoffs/MXX_HANDOFF.md`.
 
-- legacy/default single-workstream context → `project-handoffs/MXX_HANDOFF.md`;
-- branch-isolated workstream → `implementation/workstreams/<workstream-id>/handoffs/MXX_HANDOFF.md`.
+Historical root/default handoffs under `project-handoffs/` remain readable recovery/migration evidence but are not an active Close destination. The selected manifest-bound Task Board owns the exact milestone `handoff` pointer, so independent workstreams may each have their own `M01`, `M02`, etc. without filename collision.
 
-The selected canonical Task Board owns the exact milestone `handoff` pointer. Independent workstreams may therefore each have their own `M01`, `M02`, etc. without filename collision.
-
-`PROJECT.md -> Latest cumulative handoff` is only the legacy/default-context convenience pointer. Branch-isolated Close MUST NOT update it; the workstream's Task Board is the locator for its latest applicable handoff.
+`PROJECT.md -> Latest cumulative handoff` may remain as historical/default navigation only. Branch-isolated Close MUST NOT update it; the workstream's Task Board is the locator for its latest applicable handoff.
 
 Record minimum continuation truth:
 - completed checkpoint/final implementation head;

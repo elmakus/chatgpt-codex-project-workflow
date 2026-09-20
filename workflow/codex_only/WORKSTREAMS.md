@@ -17,7 +17,7 @@ Independent workstreams may execute concurrently. Inside one workstream, executi
 
 Ordinary execution has one `in_progress` Card. Multiple `in_progress` Cards are legal only when `STATE.md` proves one exact current M03 batch covers them, or when they are integrated members of one just-closed batch in the bounded post-batch review drain.
 
-The legacy/default single-workstream mode remains valid. When no branch-isolated workstream is selected, `implementation/TASK_BOARD.yaml` remains the canonical Task Board exactly as before.
+Historical legacy/default single-workstream state remains recoverable, but it is not a mutable destination for branch-first managed work. When root `implementation/TASK_BOARD.yaml` is the only durable live-state source, use it only to recover/migrate the exact obligation into a branch-isolated workstream before further managed-change mutation.
 
 ## Canonical branch-isolated layout
 
@@ -52,6 +52,7 @@ It owns:
 - exact branch, creation base and integration target;
 - optional stacked parent identity/branch plus the exact parent-only dependency relation;
 - active/completed Intake lifecycle + exact intake-record location when the workstream was created/recovered through explicit intake;
+- exact nullable pre-execution routing locators for exploratory scope, pre-execution Research and active plan review;
 - exact Task Board location when implementation state exists;
 - workstream authority pointers;
 - workstream-level final-integration review state when such a gate is active;
@@ -60,6 +61,28 @@ It owns:
 The manifest does **not** own Card/milestone execution state.
 
 For intake-created workstreams, manifest `intake.state` + `intake.record` are routing/workstream-lifecycle metadata. The pointed `INTAKE.md` owns durable intake scope/findings/classification. Neither may mirror Card/milestone execution/review/result state.
+
+### Pre-execution routing locators
+
+The manifest `routing` block is **locator-only** pre-execution state:
+
+- `exploratory_scope` locates the exact active exploratory/brainstorming record for this workstream;
+- `research_obligation` locates the exact active pre-execution Research record for this workstream;
+- `plan_review` locates the exact active plan-review record for this workstream.
+
+Each value is nullable. A non-null value MUST be an exact repository-relative path and, for ordinary pre-integration work, MUST resolve on the exact manifest `branch`. The pointed artifact remains the sole owner of its lifecycle/status, subject/revision, findings/return data or review verdict. Do not copy those fields into the manifest.
+
+Before using a non-null routing locator, validate that the pointed artifact is the expected artifact class and belongs to the selected workstream/authority subject according to that artifact's owning lifecycle contract. A missing path, malformed locator, wrong artifact class, workstream/branch mismatch, plan-subject mismatch or contradictory stale locator is inconsistent state and routes to Recovery. Do not scan another branch, another workstream or a repository-global mutable registry to guess a replacement.
+
+`routing.research_obligation` is only for **pre-execution** Research. Once implementation/recovery state exists, Research continuation remains owned by the selected Task Board's `research_obligation` pointer. The manifest `review` block remains reserved for the distinct workstream final-integration review and MUST NOT be used for plan review.
+
+Locator lifecycle is fail-closed and artifact-first:
+- create the pointed artifact before or in the same durable transition that sets its manifest locator; never point at a not-yet-durable record;
+- keep `routing.exploratory_scope` through the exact Brainstorming → Definition promotion/Definition recovery obligation and clear it only after the owning Definition result is durable or the exploratory scope is durably closed/superseded;
+- keep `routing.research_obligation` through `Status: complete`; clear it only after final-target reconciliation is durably `applied` and the record is `consumed` (except the explicit classifier-to-Research chaining rule, which applies only to Task-Board-owned implementation Research);
+- keep `routing.plan_review` through `pending | in_progress | green | red`; the Tester never clears it. Planning consumes the exact verdict: after GREEN it clears the locator only with/after durable plan approval, while a corrective revision repoints it only after the new exact pending review record exists.
+
+A stale non-null locator is not harmless metadata. Validate its record and route to Recovery when the lifecycle/subject no longer coheres; do not silently clear a locator whose owning result has not been reconciled.
 
 When a Task Board exists, it alone owns mutable Card/milestone readiness, execution, semantic implementation-owner provenance, implementation/recovery Research pointer, Card/milestone review attempts, result and evidence fields.
 
@@ -161,12 +184,13 @@ When an explicit durable locator identifies a branch-isolated workstream that in
 
 This path must not require any separate cleanup lifecycle/field. A missing required target-side closure package after source-branch deletion is inconsistent finalization state.
 
-### 5. Legacy/default fallback
+### 5. Historical legacy/default recovery
 
-When no branch-isolated workstream is selected:
-- if the project uses `implementation/TASK_BOARD.yaml`, that file remains the canonical mutable implementation state;
-- existing active/default state is never moved merely because multi-workstream support exists;
-- absence of a workstream manifest never makes a legacy/default project invalid.
+When no branch-isolated workstream is selected and root `implementation/TASK_BOARD.yaml` exists:
+- treat that board as historical recovery/migration input, not as the mutable destination for new or continued managed-change work;
+- recover the exact outstanding authority/state and route to policy-local Recovery to create/recover the branch-isolated workstream before further mutation;
+- preserve historical evidence and completed state without repository-wide churn;
+- absence of a workstream manifest does not make historical state invalid, but it also does not authorize root/default mutation.
 
 ### 6. Ambiguity
 
@@ -179,14 +203,16 @@ If exact branch/manifest/state cannot be resolved from durable project/Git state
 
 ## Intake identity, naming and recovery
 
-Explicit `#issue` / `#feature` creation semantics are owned by `workflow/codex_only/INTAKE.md`.
+Explicit `#issue` / `#feature` shortcuts and generic natural-language managed-change creation semantics are owned by `workflow/codex_only/INTAKE.md`.
 
 For intake-created workstreams:
 
 - issue IDs use `issue-<slug>` and branches use `fix/<slug>`;
 - feature IDs use `feature-<slug>` and branches use `feat/<slug>`;
-- collisions use the smallest available shared numeric suffix (`-2`, `-3`, ...);
+- neutral generic changes use `change-<slug>` and branches use `work/<slug>`;
+- collisions with coherently different durable work use the smallest available shared numeric suffix (`-2`, `-3`, ...);
 - an existing exact branch/manifest/PR locator for the same workstream is recovered rather than duplicated;
+- a deterministic candidate branch with a missing/malformed/identity-inconsistent manifest fails closed to Recovery and is not silently claimed or bypassed with a suffix;
 - durable workstream IDs are never recycled merely because old work is done/superseded.
 
 Naming is a creation convention, not a replacement for identity. After creation, `WORKSTREAM.yaml.id` and `WORKSTREAM.yaml.branch` are authoritative.
@@ -214,6 +240,8 @@ Active workstreams are recoverable from exact branch/handoff locators plus branc
 An optional project-level index may exist only as non-authoritative navigation unless a future accepted decision defines conflict-safe authoritative semantics.
 
 `PROJECT.md` may document the workstream-root convention but must not mirror current workstream/Card/review state.
+
+Pre-execution `routing.*` locators are likewise selected-workstream state. They must not be mirrored into a repository-global mutable workstream registry.
 
 ## Serial-default execution and filesystem isolation
 
@@ -371,6 +399,7 @@ A branch-isolated intake/implementation/review/recovery obligation is recoverabl
 - for non-terminal work, the exact workstream branch;
 - the exact workstream manifest;
 - the exact manifest-pointed intake record when `intake.state: active`;
+- the exact non-null manifest `routing.*` record(s) required by the active pre-execution phase;
 - the manifest-selected Task Board when implementation exists;
 - exact authority/evidence/review pointers;
 - for an integrated terminal `done` workstream after source-branch deletion, the target-side durable workstream package plus exact manifest `result`/integration evidence;
@@ -378,7 +407,7 @@ A branch-isolated intake/implementation/review/recovery obligation is recoverabl
 
 Previous chat narrative is never required.
 
-For the legacy/default mode, existing `PROJECT.md` + `implementation/TASK_BOARD.yaml` recovery remains unchanged.
+For historical legacy/default state, existing `PROJECT.md` + `implementation/TASK_BOARD.yaml` remain valid recovery inputs only. Any live managed-change continuation must migrate to the exact branch-isolated workstream before mutation.
 
 ## Foreign-policy boundary
 

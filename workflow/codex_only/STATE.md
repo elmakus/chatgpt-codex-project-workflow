@@ -4,7 +4,7 @@
 
 ## Project-state ownership
 
-The canonical Task Board selected by the current project/workstream context is the sole mutable Card/milestone execution-state record. A branch-isolated board is trusted only after manifest identity/branch binding succeeds.
+The manifest-selected branch-isolated Task Board is the sole mutable Card/milestone execution-state record for active managed Codex-only work. Resolve one exact workstream through `WORKSTREAMS.md` and require manifest identity/branch binding before any mutable state is trusted. Historical root/default `implementation/TASK_BOARD.yaml` is recovery/migration input only; it MUST NOT be selected or mutated as the active state context for new or continued managed work.
 
 Codex Main is the sole writer of shared Project Workflow Task Board and integration state. Executor/Tester workers return bounded results/evidence to Main; they do not become independent project-state writers.
 
@@ -173,6 +173,7 @@ A corrected reviewable result is a new exact subject/attempt and prior RED/GREEN
 
 Treat as inconsistent and recover before unrelated work:
 
+- root/default `implementation/TASK_BOARD.yaml` selected or mutated as active state for new/continued managed work instead of first migrating through Recovery;
 - invalid/missing review attempt pointers or terminal evidence;
 - active reviewable subject lacking semantic implementation owner;
 - Task Board GREEN subject/result mismatch;
@@ -199,4 +200,4 @@ Task Board `research_obligation` remains the single implementation/recovery Rese
 
 ## Full lifecycle state boundary
 
-Intake/exploratory/pre-execution Research and plan-review state remain in their owning durable records. Once implementation exists, the selected canonical Task Board owns Card/milestone execution, M02 review attempts, implementation-owned Research and M03 parallel state. The selected manifest owns only workstream routing/lifecycle identity plus the distinct final-integration review gate. Close/target integration never mirrors those owners into one another.
+Intake/exploratory/pre-execution Research and plan-review state remain in their owning durable records. Once implementation exists, the selected manifest-bound workstream Task Board owns Card/milestone execution, M02 review attempts, implementation-owned Research and M03 parallel state. The selected manifest owns only workstream routing/lifecycle identity plus the distinct final-integration review gate. Close/target integration never mirrors those owners into one another.

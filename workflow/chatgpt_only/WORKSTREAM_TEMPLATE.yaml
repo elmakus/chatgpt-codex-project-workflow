@@ -3,7 +3,7 @@
 # Card/milestone execution/review state belongs only to the selected Task Board.
 
 id: "<stable-workstream-id>"
-kind: "issue" # issue | feature | maintenance
+kind: "issue" # issue | feature | change | maintenance
 status: "discovery" # discovery | definition | planning | ready | in_progress | review | blocked | done | superseded
 
 # Stable source-workstream identity/provenance. Keep this value after final integration even if the source branch is later deleted.
@@ -22,6 +22,14 @@ parent_dependency: null
 intake:
   state: null # active | complete | null
   record: null # implementation/workstreams/<id>/INTAKE.md | null
+
+# Pre-execution routing locators only.
+# Non-null values are exact repository-relative paths on this workstream branch.
+# The pointed artifact owns its own lifecycle/status; this block never mirrors that state.
+routing:
+  exploratory_scope: null # exact exploratory/brainstorming record | null
+  research_obligation: null # exact pre-execution Research record | null
+  plan_review: null # exact planning/reviews/<plan-revision>.md record | null
 
 task_board: null # implementation/workstreams/<id>/TASK_BOARD.yaml | null
 

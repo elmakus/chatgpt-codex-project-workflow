@@ -7,8 +7,9 @@
 Recover only truth needed for the selected obligation:
 
 - project `PROJECT.md`;
-- exact workstream/branch + validated manifest when branch-isolated;
-- selected canonical Task Board;
+- exact workstream/branch + validated manifest for active managed work;
+- selected manifest-bound Task Board/history source for active managed work; when no workstream is selected and historical root/default `implementation/TASK_BOARD.yaml` exists, read it only as migration input under **Historical root/default migration before mutation** below;
+- `workflow/codex_only/INTAKE.md` only when historical migration must recover/create exact workstream identity, target/base or dependency topology;
 - exact Git/integration/result state;
 - current Card/milestone/plan authority;
 - current review history/evidence;
@@ -20,6 +21,8 @@ Recover only truth needed for the selected obligation:
 Previous chat narrative, worker/session handles and concrete worktree paths are not authority.
 
 ## Priority
+
+Apply this priority only after one exact branch-isolated workstream Task Board is selected and binding validation is GREEN. Historical root/default state must complete the migration-before-mutation protocol below before normal priority applies.
 
 Inside the selected context:
 
@@ -34,6 +37,24 @@ Inside the selected context:
 9. only then select new work.
 
 Runtime liveness never outranks a durable project verdict or returned lane result.
+
+## Historical root/default migration before mutation
+
+When no branch-isolated workstream is selected and historical root/default state contains a live managed-change obligation, migration itself outranks review, Research, Execution Prep, batch recovery and Execution. Do not resume, normalize or advance the root/default board in place.
+
+1. Read root `implementation/TASK_BOARD.yaml` plus only the exact current contracts, review attempts, Research pointer/record, Card/milestone result/evidence, parallel batch/history, handoff and Git/PR state needed to identify the live obligation. This discovery is read-only with respect to root/default execution state.
+2. Recover one exact migration topology **before branch creation or adoption**. First recover any existing branch/manifest/PR that durably represents this same obligation. Otherwise recover the repository's intended normal `integration_target` and exact creation base from durable project/Git/PR evidence, then apply `INTAKE.md#Base and dependency classification`: use an independent workstream with null parent fields when no parent-only dependency exists; use a stacked workstream only when exact evidence proves the required parent workstream/branch and concrete `parent_dependency`. The selected base is the exact integration-target base for independent work or the exact required parent-only base for stacked work. If `integration_target`, exact base, parent ownership or dependency classification cannot be proven, fail closed before creating/adopting a branch.
+3. Establish one exact migration identity. Reuse an exact coherently recovered workstream identity when one exists. Otherwise use neutral `kind: change` plus deterministic `change-<slug>` / `work/<slug>` collision rules from Intake. A pre-existing non-target branch may be adopted only when exact Git + durable evidence prove it owns this same obligation and establish coherent `base_ref`, `integration_target` and parent metadata; otherwise do not guess or claim it.
+4. Ensure the exact workstream branch exists **before** writing migrated managed state. A newly created branch starts from the exact base proven in step 2. Materialize/reconcile one `WORKSTREAM.yaml` and one namespaced `TASK_BOARD.yaml` on that branch, persisting coherent `base_ref`, `integration_target`, `parent_workstream`, `parent_branch`, `parent_dependency`, manifest `task_board`, Task Board `workstream_id` and `execution_ref.branch`. Do not create a second lane when partial migration already materialized the same identity/topology.
+5. Migrate only continuation truth required for coherent recovery: current plan/milestone identity; live/non-terminal Cards and required dependency results; semantic `implementation_owner_role`; exact Card/milestone review requirement/current-attempt/append-only attempt history; implementation/recovery `research_obligation`; Card/milestone result/evidence/test/blocker pointers; and the complete `parallel.current_batch` plus referenced batch/member history needed to preserve frozen base, membership/order, returned/integrated refs and post-batch review-drain lineage. Runtime worker/session/model/profile/invocation/worktree identity is never migrated because it is not Project Workflow authority.
+6. Preserve immutable completed contracts/evidence/handoffs and batch/review lineage by exact reference when still valid; do not rewrite or duplicate completed history merely for layout. Never reinterpret a historical lane as a new batch or discard an integrated/returned result to simplify migration.
+7. If historical root `PROJECT.md` also carries an unreconciled pre-execution exploratory/Research locator for this same obligation, migrate that exact locator into selected manifest `routing.*` ownership defined by M03-T01. Do not mirror lifecycle fields and do not leave two active pointers.
+8. Persist concise migration provenance when mapping is non-trivial, including exact source root/default ref, proven target/base/dependency classification and resulting workstream manifest/Task Board ref. The source root/default board remains historical input and is not cleared, advanced or used as a mutable owner merely to mark migration complete.
+9. Read back the workstream branch and require manifest ↔ Task Board binding, exact manifest topology matching the proven `integration_target` / `base_ref` / parent classification, and exact preservation of every still-live review/Research/result/dependency/batch obligation. Only after that readback is GREEN may the namespaced Task Board become the selected mutable execution state and normal recovery priority above apply.
+10. For a long-lived legacy branch whose root-state files would overwrite independently evolved target-side historical/default files at final integration, apply `REPOSITORY.md#Legacy branch → branch-isolated finalization migration` after active ownership is namespaced. Later root-file reconciliation there is conflict/history preservation, never resumption of root/default execution.
+11. If source identity, branch ownership, live obligation, integration target/base/dependency classification, parallel lineage or migration mapping remains ambiguous, preserve source plus any partial target state and fail closed. Ask for user input only when exact durable/Git/PR evidence cannot resolve the ambiguity.
+
+Crash rule: before step 9 succeeds, retry/recover the same deterministic migration identity **and topology** without mutating the source root board. After step 9 succeeds, never route the historical root board as active state; recover the namespaced workstream and its preserved Codex review/batch lineage instead.
 
 ## Review consistency
 
@@ -214,6 +235,6 @@ Never inspect or mutate another workstream Task Board to recover this gate.
 
 ## Full lifecycle resume
 
-Recovery may also restore active Intake, PROJECT-level exploratory/Research pointers, plan review, default-board state, stacked dependency/refresh state, terminal-unmerged closure/delete obligations and other Close obligations through the exact owning modules referenced by `ROUTER.md`.
+Recovery may also restore active Intake, selected-manifest exploratory/pre-execution Research locators, plan review, migrated historical state, stacked dependency/refresh state, terminal-unmerged closure/delete obligations and other Close obligations through the exact owning modules referenced by `ROUTER.md`. Historical root `PROJECT.md` routing pointers and root/default Task Board state are migration inputs only and never resume as active owners.
 
 After durable state is coherent, return to `workflow/codex_only/ROUTER.md`. Do not stop merely because recovery succeeded when deterministic legal work can continue. Use the normal human-facing stop contract only for unresolved user/product authority, explicit authorization or a concrete unremediable runtime/input blocker.

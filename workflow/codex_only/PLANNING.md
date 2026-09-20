@@ -47,8 +47,8 @@ Do not compensate for an incomplete definition by inventing strategic authority 
 When Planning needs evidence before it can make a valid planning decision:
 
 1. create one exact record under `workflow/codex_only/RESEARCH.md#Durable record contract`, with `Origin role: strategic_planning`, the current plan revision/planning obligation as Origin subject, `Return target: strategic_planning:<exact subject>`, and `Return reconciliation: pending`;
-2. for pre-execution Planning, set `PROJECT.md → Active research obligation` before yielding;
-3. when replanning active implementation/recovery work, set Task Board `research_obligation` instead and do not mirror it into `PROJECT.md`;
+2. for pre-execution Planning, set the selected workstream manifest `routing.research_obligation` to that exact record before yielding;
+3. when replanning active implementation/recovery work, set Task Board `research_obligation` instead and do not mirror it into root `PROJECT.md` or manifest pre-execution routing;
 4. persist record + owning pointer before returning to the router for Research.
 
 When that record becomes `complete` for this Strategic Planning subject, follow `workflow/codex_only/RESEARCH.md#Final Return-target protocol`. The target-specific reconciliation is the exact planning result: updated planning authority and, when REQUIRED/RECOMMENDED review still applies, the exact next plan revision/review boundary. Persist that result and `Return reconciliation: applied` + exact result refs in the same durable Git transition. Only then consume/clear. Recovery from `applied + complete` must not create another plan revision or review record.
@@ -214,7 +214,8 @@ For REQUIRED/RECOMMENDED review:
 1. keep the plan `Status: draft`;
 2. freeze the exact reviewed plan subject;
 3. create the separate `planning/reviews/<plan-revision>.md` record as `pending`;
-4. return to the router; the formal independent plan-review obligation is next and may be realized by a qualifying Codex-managed Tester without a mandatory normal-ChatGPT stop.
+4. set the selected workstream manifest `routing.plan_review` to that exact review record in the same durable handoff boundary; the manifest remains locator-only;
+5. return to the router; the formal independent plan-review obligation is next and may be realized by a qualifying Codex-managed Tester without a mandatory normal-ChatGPT stop.
 
 Use `workflow/codex_only/PLAN_REVIEW.md` for the independent review lifecycle.
 
@@ -233,6 +234,8 @@ Mark the Master Plan `approved` only when:
 - execution can begin without inventing strategic authority.
 
 Plan approval means **execution organization is accepted inside the already-approved Project Definition**. It does not redefine product/system intent.
+
+For a branch-isolated REQUIRED/RECOMMENDED plan review, keep manifest `routing.plan_review` pointed through the independent Tester verdict. Planning owns verdict consumption: after verifying the exact GREEN record/subject and durably approving that plan revision, clear `routing.plan_review`. A RED record stays pointed until Planning durably creates the corrected revision and either repoints the locator to its new pending review record or resolves the review lifecycle under accepted authority. Never clear the locator merely because the Tester role ended.
 
 ## Route transition
 

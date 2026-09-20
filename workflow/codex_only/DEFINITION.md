@@ -82,7 +82,7 @@ Do not hide it in planning as an implementation detail.
 ## Definition workflow
 
 1. Recover the current accepted goal and any existing definition authority.
-2. Read only relevant brainstorming/research/evidence. When the selected policy route exposes a `complete` Research record whose Return target is this Definition subject, treat reconciliation of that exact record as the current obligation regardless of whether its owning pointer is pre-execution PROJECT state or active implementation/recovery state.
+2. Read only relevant brainstorming/research/evidence. When the selected policy route exposes a `complete` Research record whose Return target is this Definition subject, treat reconciliation of that exact record as the current obligation regardless of whether its owning pointer is selected-workstream-manifest pre-execution routing or selected-Task-Board implementation/recovery state.
 3. Separate facts, explicit user choices, requirements, strategic decisions and unresolved questions.
 4. Draft/reconcile canonical requirements.
 5. Create/reconcile accepted decision records for material strategic choices.
@@ -115,8 +115,8 @@ Definition is a bounded role.
 When more evidence is required:
 - persist the exact open question/evidence need;
 - create one exact obligation under `workflow/codex_only/RESEARCH.md#Durable record contract` with `Origin role: project_definition`, the exact current Definition subject/revision as Origin subject, `Return target: project_definition:<exact subject>`, and `Return reconciliation: pending`;
-- for pre-execution Definition, set `PROJECT.md → Active research obligation` before yielding;
-- when Definition is resolving active implementation/recovery work, use Task Board `research_obligation` and do not mirror it into `PROJECT.md`;
+- for pre-execution Definition, set the selected workstream manifest `routing.research_obligation` to that exact record before yielding;
+- when Definition is resolving active implementation/recovery work, use Task Board `research_obligation` and do not mirror it into root `PROJECT.md` or manifest pre-execution routing;
 - persist record + owning pointer before returning to the router for Research.
 
 When returning from a `complete` Research record for this Definition subject, follow `workflow/codex_only/RESEARCH.md#Final Return-target protocol`:

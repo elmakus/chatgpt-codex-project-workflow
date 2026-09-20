@@ -19,6 +19,14 @@ Codex Main owns all selected Task Board mutations. Runtime worker selection/life
 - Codex Main remains the sole writer of shared Task Board/integration state.
 - Runtime worker/session/model/profile/invocation/resume identity is never Task Card/batch schema.
 
+## Active execution-state context
+
+Before Execution Prep mutates managed implementation state, one exact validated branch-isolated workstream MUST already be selected through `WORKSTREAMS.md`. Active Task Cards belong only under that workstream's manifest-bound cards location, and mutable execution/review/Research/batch state belongs only to the manifest-selected `WORKSTREAM_TASK_BOARD_TEMPLATE.yaml` shape.
+
+When implementation state is first needed, scaffold only the exact manifest-selected workstream Task Board, persist its `workstream_id` / `execution_ref.branch` binding and the manifest `task_board` locator, then read back that binding before use. Root `implementation/TASK_BOARD.yaml` and `workflow/codex_only/TASK_BOARD_TEMPLATE.yaml` are historical recovery/migration surfaces only and MUST NOT be scaffolded, selected or mutated for new or continued managed work.
+
+If historical root/default live state is the only execution source, do not prepare Cards against it. Return to Recovery and complete `RECOVERY.md#Historical root/default migration before mutation` first; only the migrated namespaced workstream state may re-enter Execution Prep.
+
 ## Card decomposition
 
 For each currently knowable Card:
@@ -135,4 +143,4 @@ Execution Prep never performs the Card review. If implementation later produces 
 
 ## Lifecycle integration
 
-Execution Prep is entered only through `ROUTER.md`. Qualified micro-fix materialization follows `MICRO_FIX.md`; normal planning/JIT follows accepted milestone authority. Final workstream integration remains owned by `CLOSE.md`/`WORKSTREAMS.md`.
+Execution Prep is entered only through `ROUTER.md` after exact workstream selection/binding. Qualified micro-fix materialization follows `MICRO_FIX.md`; normal planning/JIT follows accepted milestone authority. Historical root/default execution state must migrate through Recovery before this role. Final workstream integration remains owned by `CLOSE.md`/`WORKSTREAMS.md`.
