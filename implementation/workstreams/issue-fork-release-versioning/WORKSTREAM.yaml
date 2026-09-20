@@ -2,7 +2,7 @@
 
 id: "issue-fork-release-versioning"
 kind: "issue"
-status: "discovery"
+status: "planning"
 
 branch: "fix/fork-release-versioning"
 base_ref: "f3cdb60367da3e978397409b51c37faa181d613f"
@@ -13,18 +13,19 @@ parent_branch: null
 parent_dependency: null
 
 intake:
-  state: "active"
+  state: "complete"
   record: "implementation/workstreams/issue-fork-release-versioning/INTAKE.md"
 
 task_board: null
 
 authority:
-  requirements: null
-  decisions: []
+  requirements: "requirements/FORK_RELEASE_VERSIONING.md"
+  decisions:
+    - "decisions/ADR_FORK_RELEASE_VERSION_LINEAGE.md"
   plan: null
 
 review:
-  requirement: null
+  requirement: "RECOMMENDED"
   state: null
   subject: null
   evidence: null
