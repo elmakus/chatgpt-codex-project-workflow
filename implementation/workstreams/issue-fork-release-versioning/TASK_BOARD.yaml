@@ -32,10 +32,10 @@ cards:
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/issue-fork-release-versioning/cards/M01-T01.md"
-    review_state: in_progress
+    review_state: green
     review_subject: "cec373fbfe38ffb1602a17f87f222e244e1f1657"
-    review_evidence: null
+    review_evidence: "implementation/workstreams/issue-fork-release-versioning/evidence/M01-T01-review.md"
     result_commit: "cec373fbfe38ffb1602a17f87f222e244e1f1657"
     result_pr: null
     evidence: "implementation/workstreams/issue-fork-release-versioning/evidence/M01-T01.md"
-    tests_summary: "GREEN pre-review verification: exact regression source 8/8 in isolated stdlib execution plus 25/25 exact-branch persisted-artifact checks; auto-patch workflow unchanged from main."
+    tests_summary: "GREEN pre-review verification: exact regression source 8/8 in isolated stdlib execution plus 25/25 exact-branch persisted-artifact checks; independent review reran 8/8 focused and 21/21 full exact-subject tests."
