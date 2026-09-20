@@ -115,8 +115,8 @@ Definition is a bounded role.
 When more evidence is required:
 - persist the exact open question/evidence need;
 - create one exact obligation under `workflow/codex_only/RESEARCH.md#Durable record contract` with `Origin role: project_definition`, the exact current Definition subject/revision as Origin subject, `Return target: project_definition:<exact subject>`, and `Return reconciliation: pending`;
-- for pre-execution Definition, set `PROJECT.md → Active research obligation` before yielding;
-- when Definition is resolving active implementation/recovery work, use Task Board `research_obligation` and do not mirror it into `PROJECT.md`;
+- for pre-execution Definition, set the selected workstream manifest `routing.research_obligation` to that exact record before yielding;
+- when Definition is resolving active implementation/recovery work, use Task Board `research_obligation` and do not mirror it into root `PROJECT.md` or manifest pre-execution routing;
 - persist record + owning pointer before returning to the router for Research.
 
 When returning from a `complete` Research record for this Definition subject, follow `workflow/codex_only/RESEARCH.md#Final Return-target protocol`:
