@@ -2,7 +2,7 @@
 
 id: "issue-context-health-bounce"
 kind: "issue"
-status: "review"
+status: "done"
 
 branch: "fix/chatgpt-only-context-health-bounce"
 base_ref: "808084a4c7989715f7ee4889a31bce28f778d597"
@@ -37,4 +37,4 @@ branch_cleanup:
   evidence: null
 
 pr: 36
-result: null
+result: "e2862eeb07b43a0973155b74f5f0563165c5c12f"
