@@ -17,7 +17,7 @@ The plugin is packaging/activation around the existing Project Workflow reposito
 | PWCP-REQ-001 | Package Project Workflow as a Codex plugin from the existing `elmakus/chatgpt-codex-project-workflow` repository unless a verified hard platform constraint makes that impossible. | MUST | brainstorming R1 / ADR-PWCP-001 | accepted |
 | PWCP-REQ-002 | Keep `workflow/codex_only/*` and normal Project Workflow routing files as canonical authority; plugin Skill/bootstrap content must not duplicate policy semantics that then require manual synchronization. | MUST | brainstorming R1 / ADR-PWCP-001 | accepted |
 | PWCP-REQ-003 | Provide exactly one normal explicit Project Workflow bundled-Skill entrypoint. Under the verified current Codex namespacing contract, use plugin name `pw` + Skill name `pw`, exposed as `$pw:pw`. | MUST | brainstorming R1 / ADR-PWCP-002 / runtime evidence 2026-09-20 / user decision 2026-09-20 | accepted |
-| PWCP-REQ-004 | Enabling the plugin for a repository must establish a lightweight always-on Project Workflow invariant for ordinary user prompts; the user must not have to invoke `$pw` on every message. | MUST | brainstorming R1 / ADR-PWCP-002 | accepted |
+| PWCP-REQ-004 | Enabling the plugin for a repository must establish a lightweight always-on Project Workflow invariant for ordinary user prompts; the user must not have to invoke `$pw:pw` on every message. | MUST | brainstorming R1 / ADR-PWCP-002 | accepted |
 | PWCP-REQ-005 | The always-on bootstrap/reminder must remain small and must route into canonical workflow progressive disclosure instead of preloading the complete workflow tree. | MUST | brainstorming R1 / ADR-PWCP-002 | accepted |
 | PWCP-REQ-006 | The enabled-repository invariant must survive normal fresh session entry and supported resume/compaction lifecycle behavior without silently dropping Project Workflow. | MUST | brainstorming R1 / ADR-PWCP-002 | accepted |
 | PWCP-REQ-007 | A repository/project without the plugin enabled must not be implicitly placed under Project Workflow by this feature. | MUST | brainstorming R1 | accepted |
@@ -69,7 +69,7 @@ The plugin is packaging/activation around the existing Project Workflow reposito
 The feature is acceptable only when evidence demonstrates all applicable outcomes:
 
 1. The plugin can be installed/enabled from its Git-backed marketplace source and its one `$pw:pw` bundled Skill is discoverable.
-2. A normal prompt in an enabled test repository enters Project Workflow without explicit `$pw` invocation.
+2. A normal prompt in an enabled test repository enters Project Workflow without explicit `$pw:pw` invocation.
 3. The always-on reminder/bootstrap is bounded and does not cause the complete workflow tree to be loaded on each prompt.
 4. Fresh session and supported resume/compaction scenarios preserve the Project Workflow invariant.
 5. `$pw:pw` explicitly enters/re-enters the workflow.
