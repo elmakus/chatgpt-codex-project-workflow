@@ -6,7 +6,7 @@ current_milestone: "micro-fix"
 execution_ref:
   branch: "fix/chatgpt-only-context-health-bounce"
   pr: 36
-  head: "2b03230f51f42bc93147acc92cd2059e210e285c"
+  head: "302f32efdd8baadcc18e8a4ae03d2f6b116abc15"
 
 research_obligation: null
 
