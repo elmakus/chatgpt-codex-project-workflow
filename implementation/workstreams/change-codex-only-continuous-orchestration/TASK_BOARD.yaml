@@ -32,7 +32,7 @@ cards:
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/change-codex-only-continuous-orchestration/cards/M01-T01.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "a6bb50695b2be7b50827dec75e0cde3c467737b2"
     review_evidence: null
     result_commit: "a6bb50695b2be7b50827dec75e0cde3c467737b2"
