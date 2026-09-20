@@ -1,9 +1,10 @@
 # Master Plan — Brainstorming Grilling
 
-Revision: `BGR-P1`
+Revision: `BGR-P2`
 Status: `draft`
 Updated: `2026-09-20`
 Independent plan review: `RECOMMENDED`
+Supersedes plan revision: `BGR-P1` — corrected OpenSpec boundary after independent review RED.
 
 > Planning organizes the approved `requirements/BRAINSTORMING_GRILLING.md` Definition. Requirements and `ADR-BGR-001` remain product/system authority; this plan does not redefine them.
 
@@ -60,6 +61,7 @@ Independent plan review: `RECOMMENDED`
   - `requirements/BRAINSTORMING_GRILLING.md`
   - `decisions/ADR_BRAINSTORMING_GRILLING.md`
 - Planned work packages:
+  - Create/reconcile one JIT OpenSpec change for the M01 changed behavior contract, covering dependency-aware Brainstorming grilling plus `#grill` non-Intake routing semantics, before implementing that behavior.
   - Update ChatGPT-only Brainstorming contract with conditional decision-tree/frontier method, recommendations, fact ownership, durable-state minimality and user-stop semantics.
   - Update Codex-only Brainstorming contract with equivalent semantics inside its own policy namespace.
   - Define `#grill` as a Brainstorming interaction directive and explicitly preserve `#issue` / `#feature` as the only Intake directives; adjust router/intake text only where needed to prevent misclassification.
@@ -74,30 +76,31 @@ Independent plan review: `RECOMMENDED`
 
 | Requirement | Owner milestone | Planned work package or JIT trigger | OpenSpec candidate |
 |---|---|---|---|
-| BGR-REQ-001 | M01 | Brainstorming + routing contracts | no |
-| BGR-REQ-002 | M01 | Brainstorming trigger semantics + tests | no |
-| BGR-REQ-003 | M01 | Lightweight-path semantics + tests | no |
-| BGR-REQ-004 | M01 | `#grill` routing/non-intake semantics + tests | no |
-| BGR-REQ-005 | M01 | Decision-tree/frontier contract + tests | no |
-| BGR-REQ-006 | M01 | Frontier-round recommendation contract + tests | no |
-| BGR-REQ-007 | M01 | Fact-ownership contract + tests | no |
-| BGR-REQ-008 | M01 | Frontier recomputation contract + tests | no |
-| BGR-REQ-009 | M01 | Durable-state minimality/recovery contract + tests | no |
-| BGR-REQ-010 | M01 | Completion/deferred semantics + tests | no |
-| BGR-REQ-011 | M01 | User-stop semantics + tests | no |
-| BGR-REQ-012 | M01 | Remainder classification semantics + tests | no |
-| BGR-REQ-013 | M01 | Promotion-gate preservation + regression tests | no |
-| BGR-REQ-014 | M01 | Scope boundary/docs | no |
+| BGR-REQ-001 | M01 | Brainstorming + routing contracts | yes — shared M01 behavior contract |
+| BGR-REQ-002 | M01 | Brainstorming trigger semantics + tests | yes — shared M01 behavior contract |
+| BGR-REQ-003 | M01 | Lightweight-path semantics + tests | yes — shared M01 behavior contract |
+| BGR-REQ-004 | M01 | `#grill` routing/non-intake semantics + tests | yes — shared M01 behavior contract |
+| BGR-REQ-005 | M01 | Decision-tree/frontier contract + tests | yes — shared M01 behavior contract |
+| BGR-REQ-006 | M01 | Frontier-round recommendation contract + tests | yes — shared M01 behavior contract |
+| BGR-REQ-007 | M01 | Fact-ownership contract + tests | yes — shared M01 behavior contract |
+| BGR-REQ-008 | M01 | Frontier recomputation contract + tests | yes — shared M01 behavior contract |
+| BGR-REQ-009 | M01 | Durable-state minimality/recovery contract + tests | yes — shared M01 behavior contract |
+| BGR-REQ-010 | M01 | Completion/deferred semantics + tests | yes — shared M01 behavior contract |
+| BGR-REQ-011 | M01 | User-stop semantics + tests | yes — shared M01 behavior contract |
+| BGR-REQ-012 | M01 | Remainder classification semantics + tests | yes — shared M01 behavior contract |
+| BGR-REQ-013 | M01 | Promotion-gate preservation + regression tests | yes — shared M01 behavior contract |
+| BGR-REQ-014 | M01 | Scope boundary/docs | no — scope boundary only |
 
 ## 6. Dependency / execution order
 
 Within M01, Execution Prep may create multiple Cards but must preserve this logical order where dependencies require it:
 
-1. contract semantics for Brainstorming and manual forcing;
-2. router/intake wording needed to distinguish `#grill`;
-3. tests against the resulting exact contract surface;
-4. documentation/readme alignment;
-5. integrated verification across both policy-local namespaces.
+1. JIT OpenSpec reconciliation for the exact M01 changed behavior contract;
+2. contract semantics for Brainstorming and manual forcing;
+3. router/intake wording needed to distinguish `#grill`;
+4. tests against the resulting exact contract surface and OpenSpec requirements;
+5. documentation/readme alignment;
+6. integrated verification across both policy-local namespaces.
 
 Contract and tests may be developed together when a bounded Card can verify them without crossing review/write-scope boundaries.
 
@@ -112,6 +115,7 @@ Contract and tests may be developed together when a bounded Card can verify them
 
 Verification must include:
 
+- OpenSpec-to-implementation consistency for the M01 changed behavior contract, including the non-Intake `#grill` routing boundary;
 - static/content tests proving the new required semantics exist in the appropriate policy-local contracts;
 - routing/intake regression tests proving `#feature` / `#issue` behavior remains unchanged and `#grill` is not treated as new-workstream Intake;
 - scenario-style tests for:
@@ -143,6 +147,8 @@ Verification must include:
 
 Execution Prep may decide exact Card boundaries after reading current tests and contract file layout. It may split contract, tests and documentation into separate Cards if write scopes or reviewability benefit. It must not reinterpret the accepted trigger criteria, `#grill` semantics, persistence boundary or user-stop behavior.
 
+M01 requires one JIT OpenSpec behavior-contract change. Execution Prep reconciles that change against current HEAD, the exact authority slice and the concrete Task Card immediately before implementation, rather than freezing distant file-level detail in Planning.
+
 ## 12. Fresh-context boundaries
 
 - The independent plan review is a natural fresh-context boundary.
@@ -161,7 +167,7 @@ Execution Prep may decide exact Card boundaries after reading current tests and 
 - System verification: scenario and regression coverage specified.
 - Data integrity/idempotency/security: no new mutable authority or security surface; repeated manual trigger must be idempotent with respect to durable workstream state.
 - Authorization gates: no new gates; Definition promotion remains unchanged.
-- OpenSpec boundaries: no OpenSpec artifact required; this is workflow interaction/routing contract behavior rather than a production API/schema/security contract.
+- OpenSpec boundaries: M01 is a changed behavior contract and therefore requires one JIT OpenSpec change covering the Brainstorming grilling semantics plus `#grill` non-Intake routing boundary; concrete spec/task detail remains deferred to Execution Prep.
 - Overengineering/premature detail: exact file/test patch boundaries deferred to Execution Prep.
 - Remaining blockers: none.
 
