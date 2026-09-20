@@ -13,12 +13,12 @@ research_obligation: null
 milestones:
   M01:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/CODEX_ORCHESTRATION_CONTEXT_RECOVERY_MASTER_PLAN.md#M01 — Token-light orchestration recovery boundary"
-    checkpoint: null
+    checkpoint: "1d61e60fb16596099de9d7c1b25d9f560b739e4c"
     implementation_head: "0a11f92fd03d08d94e4614204eef4dab3813d4bc"
     handoff: "implementation/workstreams/issue-codex-compaction-routing-recovery/handoffs/M01_HANDOFF.md"
-    acceptance_evidence: "implementation/workstreams/issue-codex-compaction-routing-recovery/evidence/M01_ACCEPTANCE_CANDIDATE_2026-09-20.md"
+    acceptance_evidence: "implementation/workstreams/issue-codex-compaction-routing-recovery/evidence/M01_FINAL_CLOSURE_2026-09-20.md"
     review_state: null
     review_subject: null
     review_evidence: null
@@ -36,7 +36,7 @@ cards:
     review_subject: "319b034ebd3d5afd8643b755e00ab8d7987a0f34"
     review_evidence: "implementation/workstreams/issue-codex-compaction-routing-recovery/evidence/M01-T01_REVIEW_2026-09-20.md"
     result_commit: "319b034ebd3d5afd8643b755e00ab8d7987a0f34"
-    result_pr: null
+    result_pr: 47
     evidence: "implementation/workstreams/issue-codex-compaction-routing-recovery/evidence/M01-T01_IMPLEMENTATION_2026-09-20.md"
     tests_summary: "GREEN exact subject 319b034ebd3d5afd8643b755e00ab8d7987a0f34: targeted continuous-orchestration 8/8; full repository unittest 78/78; T01 static audit GREEN; diff --check GREEN; no chatgpt_only path changed."
   - id: "M01-T02"
@@ -52,7 +52,7 @@ cards:
     review_subject: "94eb7fd074052c5d4420b6edb2fe32ab2de1da13"
     review_evidence: "implementation/workstreams/issue-codex-compaction-routing-recovery/evidence/M01-T02_REVIEW_2026-09-20.md"
     result_commit: "94eb7fd074052c5d4420b6edb2fe32ab2de1da13"
-    result_pr: null
+    result_pr: 47
     evidence: "implementation/workstreams/issue-codex-compaction-routing-recovery/evidence/M01-T02_IMPLEMENTATION_2026-09-20.md"
     tests_summary: "GREEN exact subject 94eb7fd074052c5d4420b6edb2fe32ab2de1da13: targeted Codex-only execution/preexecution/continuous contracts 31/31; full repository unittest 78/78; T02 persisted-content audit GREEN; diff --check GREEN; no chatgpt_only path changed."
   - id: "M01-T03"
@@ -68,6 +68,6 @@ cards:
     review_subject: null
     review_evidence: null
     result_commit: "0a11f92fd03d08d94e4614204eef4dab3813d4bc"
-    result_pr: null
+    result_pr: 47
     evidence: "implementation/workstreams/issue-codex-compaction-routing-recovery/evidence/M01-T03_IMPLEMENTATION_2026-09-20.md"
     tests_summary: "GREEN exact subject 0a11f92fd03d08d94e4614204eef4dab3813d4bc: orchestration-recovery contract 10/10; continuous-orchestration 8/8; full repository unittest 88/88; diff --check GREEN."
