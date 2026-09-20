@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "fix/codex-compaction-routing-recovery"
   pr: null
-  head: "319b034ebd3d5afd8643b755e00ab8d7987a0f34"
+  head: "659c5931896adc408aa5f773b6603ff82a0c0d19"
 
 research_obligation: null
 
@@ -43,8 +43,8 @@ cards:
     title: "Wire binding lifecycle, recovery and generic dispatch gate"
     milestone: "M01"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on:
       - "M01-T01"
     contract: "implementation/workstreams/issue-codex-compaction-routing-recovery/cards/M01-T02.md"
