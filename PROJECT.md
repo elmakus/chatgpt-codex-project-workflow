@@ -6,7 +6,7 @@
 - Repository: `elmakus/chatgpt-codex-project-workflow`
 - Lifecycle: `active`
 - High-level goal: maintain and evolve the repository-backed Project Workflow contracts used by ChatGPT/Codex project execution.
-- High-level status: `CUBC-P1` terminal-unmerged Codex-only branch-cleanup scope completed and integrated; repository remains active for future workflow evolution.
+- High-level status: branch-first managed-change redesign is in Definition on `feat/branch-first-managed-changes`; integration target remains unchanged until PR merge.
 
 ## Execution policy
 
@@ -16,7 +16,7 @@ Changing execution policy requires an explicit user decision.
 
 ## Canonical authority pointers
 
-- Active exploratory scope: `none`
+- Active exploratory scope: `brainstorming/branch-first-managed-changes.md`
 - Active research obligation: `none`
 - Requirements: `requirements/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP.md`
 - Approved plan: `planning/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP_MASTER_PLAN.md`
