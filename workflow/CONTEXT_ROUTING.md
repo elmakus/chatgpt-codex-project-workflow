@@ -18,7 +18,7 @@ After selecting this route:
 - use only `workflow/common/*` and `workflow/chatgpt_only/*` workflow modules;
 - do not load legacy/shared execution contracts;
 - do not load another policy namespace;
-- recover mutable state from the canonical source defined by the selected policy route; for `chatgpt_only`, resolve the selected workstream state context first, then use that workstream's canonical Task Board for implementation/implementation-review state, with `implementation/TASK_BOARD.yaml` retained as the legacy/default fallback. Pre-execution plan-review state lives under `planning/reviews/`.
+- recover mutable state from the canonical source defined by the selected policy route; for new `chatgpt_only` managed work, resolve the exact branch-isolated workstream first and use its manifest-selected state. Historical root `implementation/TASK_BOARD.yaml` is recovery/migration input only; it is not a mutable destination for new or continued managed-change work. Pre-execution plan-review state remains policy-owned and is migrated to workstream-local routing by the ChatGPT-only lifecycle contracts.
 
 ### `codex_only`
 
@@ -30,7 +30,7 @@ After selecting this route:
 - use only `workflow/common/*` and `workflow/codex_only/*` for migrated Project Workflow semantics;
 - do not load `workflow/chatgpt_only/*`, legacy/shared execution contracts, or another policy namespace;
 - Codex Main is the fixed Project Workflow coordinator and sole shared Task Board/integration-state writer; concrete worker/session/model/profile/invocation/wait/resume/concurrency realization belongs to `codex_workflow`;
-- resolve branch-isolated/default state through the Codex-only router and validated workstream manifest/Task Board rules;
+- resolve new managed work through the Codex-only branch-isolated workstream rules; historical root/default state is recovery/migration input only and must migrate before further managed-change mutation;
 - serial execution remains valid by default; bounded concurrency is legal only through the Codex-only JIT/batch contracts;
 - a missing runtime realization or failed parallel-safety proof does not change execution policy.
 
@@ -61,6 +61,8 @@ Otherwise, execution is blocked until the policy is explicitly resolved.
 Brainstorming/research/Project Definition that does not depend on executor semantics may continue through policy-neutral common modules when safe.
 
 ## Migration invariant
+
+Under the migrated fixed policies (`chatgpt_only` and `codex_only`), a newly authorized managed repository change must create or recover its exact branch-isolated workstream before the first durable change-specific write. Existing root/default state may be inspected for recovery, but further managed mutation requires policy-local migration first.
 
 A policy route must not import semantics from another policy merely for convenience.
 

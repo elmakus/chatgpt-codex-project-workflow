@@ -14,11 +14,11 @@ Before creating executable work:
 ## State ownership
 
 Execution prep writes:
-- Task Card contracts in the selected state context: legacy/default `implementation/cards/`, or the selected workstream's manifest-bound cards location/conventional `implementation/workstreams/<id>/cards/`;
+- Task Card contracts only in the selected branch-isolated workstream's manifest-bound cards location/conventional `implementation/workstreams/<id>/cards/`; historical root/default Card files are recovery/migration input and do not receive new active contracts;
 - optional JIT milestone extension only when it adds material detail beyond the approved Master Plan milestone section; qualified micro-fixes do not create one merely to imitate milestone shape;
 - mutable readiness/status/result/review state only to the **selected canonical Task Board** resolved by `workflow/chatgpt_only/WORKSTREAMS.md`.
 
-When creating the first Task Board for this policy, resolve the state context first. For legacy/default state, scaffold `implementation/TASK_BOARD.yaml` from `workflow/chatgpt_only/TASK_BOARD_TEMPLATE.yaml`. For a validated branch-isolated workstream, scaffold the exact manifest-selected path from `workflow/chatgpt_only/WORKSTREAM_TASK_BOARD_TEMPLATE.yaml`. Do **not** use the shared `templates/TASK_BOARD.yaml`, which belongs to the legacy/other-policy stack and may contain bounded-parallel coordination fields that are illegal in active `chatgpt_only`.
+When creating the first Task Board for active managed work, a validated branch-isolated workstream MUST already be selected. Scaffold only the exact manifest-selected path from `workflow/chatgpt_only/WORKSTREAM_TASK_BOARD_TEMPLATE.yaml`, then persist the manifest `task_board` pointer and exact binding identity. Root `implementation/TASK_BOARD.yaml` and `workflow/chatgpt_only/TASK_BOARD_TEMPLATE.yaml` are historical recovery/migration surfaces only and MUST NOT be scaffolded or selected for new/continued managed work. Do **not** use the shared `templates/TASK_BOARD.yaml`, which belongs to the legacy/other-policy stack and may contain bounded-parallel coordination fields that are illegal in active `chatgpt_only`.
 
 Do not mirror live state into Card/milestone/`PROJECT.md`.
 
@@ -41,7 +41,7 @@ If the Research record is `active | blocked`, or it is `complete` for a differen
 
 When Execution Prep needs more evidence before it can legally classify or complete L2/JIT preparation:
 
-1. ensure the selected canonical Task Board exists; if this is first preparation, initialize the correct policy-local default/workstream template without inventing speculative placeholder Cards;
+1. ensure an exact validated branch-isolated workstream is selected and its manifest-bound Task Board exists; if this is first preparation for that workstream, initialize only `WORKSTREAM_TASK_BOARD_TEMPLATE.yaml` without inventing speculative placeholder Cards;
 2. create one exact Research record under `workflow/chatgpt_only/RESEARCH.md#Durable record contract`, with `Origin role: execution_prep`, the exact current milestone/preparation obligation as Origin subject, `Return target: execution_resolution:<same exact subject>`, and `Return reconciliation: pending`;
 3. persist the Research record and Task Board `research_obligation` in the same durable transition before yielding;
 4. preserve all already-valid preparation/Card state; do not mark unrelated work ready merely to create the handoff;
@@ -66,7 +66,7 @@ After materialization, the selected Task Board is the sole mutable Card/review/R
 ## Preparation steps
 
 1. Inspect current project/source/runtime/external state needed by the milestone.
-2. Resolve the state context through `workflow/chatgpt_only/WORKSTREAMS.md` when branch-isolated, then read only its selected canonical Task Board when implementation state exists.
+2. Resolve the exact branch-isolated workstream through `workflow/chatgpt_only/WORKSTREAMS.md`, validate manifest ↔ Task Board binding, then read only that selected workstream Task Board when implementation state exists. Historical root/default state must first complete Recovery migration and is never selected here as an active context.
 3. Resolve the current milestone contract from the approved Master Plan, or for a qualified micro-fix resolve the completed Intake + bounded fix authority under `MICRO_FIX.md` without requiring a Master Plan/milestone contract.
 4. Create a separate JIT milestone extension only when material execution/acceptance detail is missing.
 5. Decompose only work that is deterministic enough to contract now.
@@ -77,7 +77,7 @@ After materialization, the selected Task Board is the sole mutable Card/review/R
 10. Identify material external writes plus required persisted-state verification.
 11. Classify Card/milestone independent review when material. Separately, for a selected intake-created `issue | feature` workstream that changes code, runtime configuration, external behavior or system behavior, ensure manifest `review.requirement` is at least `RECOMMENDED` (or `REQUIRED` under existing high-risk authority); leave its workstream-level `state/subject/evidence` unactivated until an exact final/integrated subject exists or exact stronger-review coverage is proven.
 12. Mark OpenSpec candidates using `workflow/common/OPENSPEC.md`.
-13. Initialize/reconcile the selected canonical Task Board as sole live Card/milestone execution state for this default/workstream context.
+13. Initialize/reconcile the selected manifest-bound workstream Task Board as the sole live Card/milestone execution state for this managed workstream.
 14. Confirm requirement coverage, allowing future requirements to point to a durable JIT trigger.
 15. Audit sizing, dependencies, side effects, idempotency, security, migration and explicit authorization gates.
 16. Set exactly the next eligible Card `ready` when dependencies/prerequisites allow execution.
@@ -136,7 +136,7 @@ Do not change project topology during active milestone work.
 
 ## Prior handoff
 
-Read the latest applicable cumulative handoff for the **selected state context** only when it materially supplies predecessor truth needed by current preparation. Legacy/default context may use `PROJECT.md -> Latest cumulative handoff`; branch-isolated context resolves handoffs from its selected Task Board and must not use the project-global pointer as workstream state.
+Read the latest applicable cumulative handoff from the selected workstream Task Board only when it materially supplies predecessor truth needed by current preparation. A historical `PROJECT.md -> Latest cumulative handoff` or root `project-handoffs/` record may be read only as Recovery migration input and never becomes active workstream state; migrate only the exact predecessor truth needed for continuation.
 
 ## Automatic transition into execution
 

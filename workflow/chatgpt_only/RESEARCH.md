@@ -29,13 +29,13 @@ The shared `templates/RESEARCH.md` may be used for evidence structure, but this 
 
 Pre-execution Brainstorming / Project Definition / Strategic Planning / plan-review Research uses:
 
-`PROJECT.md → Active research obligation`.
+selected workstream manifest → `routing.research_obligation`.
 
 Execution Prep / implementation / recovery Research uses:
 
-selected canonical Task Board → `research_obligation` (branch-isolated manifest-selected board, or legacy/default `implementation/TASK_BOARD.yaml`).
+selected canonical Task Board → `research_obligation` (branch-isolated manifest-selected board, with historical root/default state handled only through the migration/recovery boundary owned by the execution-state lifecycle).
 
-Never mirror an implementation/recovery Research obligation into `PROJECT.md`.
+Never mirror a Research obligation into root `PROJECT.md`. Never place implementation/recovery Research in manifest `routing.research_obligation`; that locator is pre-execution-only.
 
 When the evidence gap originates from a branch-isolated workstream final-integration RED review, the RED review state remains manifest-owned but the Research continuation pointer still belongs only to that same workstream's validated selected Task Board. The Research record Origin subject must identify the exact manifest review subject/evidence. Never place that continuation in the default board or another workstream's board.
 

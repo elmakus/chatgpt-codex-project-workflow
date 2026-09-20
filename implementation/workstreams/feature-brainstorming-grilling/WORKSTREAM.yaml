@@ -1,0 +1,39 @@
+id: "feature-brainstorming-grilling"
+kind: "feature"
+status: "done"
+
+branch: "feat/brainstorming-grilling"
+base_ref: "cdaf47245e45836917b152904d70807bca355e7d"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: "complete"
+  record: "implementation/workstreams/feature-brainstorming-grilling/INTAKE.md"
+
+task_board: "implementation/workstreams/feature-brainstorming-grilling/TASK_BOARD.yaml"
+
+authority:
+  requirements: "requirements/BRAINSTORMING_GRILLING.md"
+  decisions:
+    - "decisions/ADR_BRAINSTORMING_GRILLING.md"
+  plan: "planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md"
+
+review:
+  requirement: "RECOMMENDED"
+  state: green
+  subject: "40f2bd5f4b2c261411b5d07e953e94c250736fe7 + M01/workstream acceptance"
+  evidence: "implementation/workstreams/feature-brainstorming-grilling/evidence/M01_FINAL_INTEGRATION_REFRESH_2026-09-20.md"
+  covered_by: "implementation/workstreams/feature-brainstorming-grilling/evidence/M01-T01_REVIEW_2026-09-20.md"
+
+branch_cleanup:
+  state: null
+  ref: null
+  verified_head: null
+  evidence: null
+
+pr: 37
+result: "56421c7df11da3e6e0b82e9eabc12e1721ab4312"

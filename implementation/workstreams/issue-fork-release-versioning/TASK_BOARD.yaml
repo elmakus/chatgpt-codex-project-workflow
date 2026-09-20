@@ -1,0 +1,41 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "issue-fork-release-versioning"
+plan_revision: "planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md@FRV-P2"
+current_milestone: "M01"
+
+execution_ref:
+  branch: "fix/fork-release-versioning"
+  pr: 40
+  head: "cec373fbfe38ffb1602a17f87f222e244e1f1657"
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: done
+    contract: "planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md#milestone-m01--canonical-fork-release-contract-and-publication-enforcement"
+    checkpoint: "47c3cae3c1e1eb0ea8065a10b1e5dd052b96ce12"
+    implementation_head: "cec373fbfe38ffb1602a17f87f222e244e1f1657"
+    handoff: "implementation/workstreams/issue-fork-release-versioning/handoffs/M01_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/issue-fork-release-versioning/evidence/M01_FINAL_INTEGRATION_REFRESH_2026-09-20.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Implement canonical fork-release versioning contract"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: []
+    contract: "implementation/workstreams/issue-fork-release-versioning/cards/M01-T01.md"
+    review_state: green
+    review_subject: "cec373fbfe38ffb1602a17f87f222e244e1f1657"
+    review_evidence: "implementation/workstreams/issue-fork-release-versioning/evidence/M01-T01-review.md"
+    result_commit: "cec373fbfe38ffb1602a17f87f222e244e1f1657"
+    result_pr: 40
+    evidence: "implementation/workstreams/issue-fork-release-versioning/evidence/M01-T01.md"
+    tests_summary: "GREEN: implementation pre-review verification 8/8 focused plus 25/25 persisted-artifact checks; independent review 8/8 focused and 21/21 full exact-subject; current-main reconciliation and exact merge-result target readback both pass full repository discovery 62/62, with diff --check GREEN."

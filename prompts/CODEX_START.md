@@ -8,13 +8,15 @@ Codex may be the fixed executor in a `codex_only` project, an assigned executor 
 Use current main of elmakus/chatgpt-codex-project-workflow.
 Project repo: <owner/repo>.
 Execution policy: codex_only.
-Durable start pointer: implementation/TASK_BOARD.yaml.
+Durable start pointer: <exact workstream WORKSTREAM.yaml / manifest-selected Task Board / historical recovery pointer>.
 Approved plan: <planning/MASTER_PLAN.md>.
 Required prior checkpoint: <checkpoint/current Task Board state>.
 
 Read project PROJECT.md and workflow/CONTEXT_ROUTING.md. Load shared execution contracts and workflow/codex modules only. Do not load CHATGPT.md or workflow/chatgpt/*.
 
-Recover Task Board/Git/runtime/review state, resolve the current milestone contract and each READY Task Card's exact authority slice, then read `workflow/EXECUTION.md`, `workflow/contracts/TASK_EXECUTION.md` and the required `workflow/codex/*` modules. Run the state/contract Refresh Gate and execute deterministic READY work. Do NOT run Capability Gate or capability inventory/preflight.
+Recover the exact selected branch-isolated workstream and its manifest-selected Task Board/Git/runtime/review state before mutable execution. Historical root `implementation/TASK_BOARD.yaml` is recovery/migration input only and must migrate before further managed-change mutation. Resolve the current milestone contract and each READY Task Card's exact authority slice, then read the execution modules selected by current `workflow/CONTEXT_ROUTING.md`. Run the state/contract Refresh Gate and execute deterministic READY work. Do NOT run Capability Gate or capability inventory/preflight.
+
+For a newly authorized `codex_only` managed repository change, create or recover the exact branch-isolated workstream before the first durable change-specific write; bootstrap/adoption follows the same branch → pull request → merge boundary.
 
 Project Workflow does not tell Codex which tools/capabilities it has. Attempt concrete operations with the actual runtime, handle ordinary executor-local remediation when permitted, and ask the user only when a concrete required operation still needs user-provided input/access/authorization.
 

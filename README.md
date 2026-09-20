@@ -14,15 +14,15 @@ The project repository is durable project truth. It stores brainstorming, resear
 
 The workflow deliberately separates contract from state:
 
-- `implementation/TASK_BOARD.yaml` — legacy/default `chatgpt_only` mutable execution-state authority; a branch-isolated workstream instead uses the exact Task Board selected by its validated `WORKSTREAM.yaml`; each selected Task Board is the sole mutable Card/milestone execution-state authority for that state context;
+- the exact branch-isolated `WORKSTREAM.yaml` + its manifest-selected `TASK_BOARD.yaml` — active mutable identity/routing plus Card/milestone execution state for managed work under the migrated fixed policies; historical root `implementation/TASK_BOARD.yaml` remains recovery/migration evidence only;
 - `planning/reviews/<plan-revision>.md` — mutable pre-execution independent plan-review state/evidence; it is not execution state and never substitutes for Task Board;
 - branch-isolated `WORKSTREAM.yaml` — workstream identity/routing, intake lifecycle/location metadata and the distinct workstream final-integration review lifecycle; it never mirrors Card/milestone Task Board state;
 - approved Master Plan milestone subsections — default milestone contracts;
 - `implementation/milestones/MXX.md` — optional JIT contract extensions only when the Master Plan needs material execution/acceptance detail;
 - Task Card files — bounded authority/scope/acceptance/test contracts;
 - cumulative handoff — compact summary of what became true at a completed milestone;
-- root `PROJECT.md` — small high-level project router/policy/index, not a live execution tracker; while an exploratory/Definition scope is active it may point to the exact canonical brainstorming record used to recover promotion state; under the migrated `chatgpt_only` route it may also point to the exact pre-execution Research obligation record while that continuation is active;
-- under migrated `chatgpt_only`, the active Research record owns `active | blocked | complete | consumed` lifecycle plus exact Origin/Return subjects; pre-execution routing is located from `PROJECT.md`, while implementation/recovery routing is located from Task Board `research_obligation`. Other policies retain their existing legacy-route semantics until migrated. Research is evidence/routing state, not accepted decision authority.
+- root `PROJECT.md` — small integrated-project router/policy/index; it does not own active workstream-local exploratory, pre-execution Research, plan-review or execution routing;
+- under the migrated fixed policies, pre-execution routing is located from the selected workstream manifest and exact pointed records; implementation/recovery Research remains selected-Task-Board-owned. Policies that still route through the legacy namespace retain their own semantics until migrated. Research is evidence/routing state, not accepted decision authority.
 
 This avoids repeatedly synchronizing status, executor, SHA and result pointers across several documents.
 
@@ -67,19 +67,26 @@ For `codex_only`:
 The prior multi-policy router is preserved at `workflow/legacy/CONTEXT_ROUTING.md` for policies not yet migrated. This is a staged migration: legacy shared execution/contracts remain in place until those policies receive their own namespaces.
 
 
-## ChatGPT-only branch-isolated workstreams and intake
+## Branch-first managed changes and ChatGPT-only intake
 
-Existing projects may continue in legacy/default single-workstream mode with `implementation/TASK_BOARD.yaml`. When independent work should proceed concurrently, `chatgpt_only` may create branch-isolated workstreams under `implementation/workstreams/<id>/`:
+Under the migrated fixed policies, every newly authorized managed repository change creates or recovers an exact branch-isolated workstream under `implementation/workstreams/<id>/` before the first durable change-specific write. Historical root/default state may be inspected only for deterministic migration/recovery and must move into a branch-isolated workstream before further managed mutation.
+
+Read-only exploration does not create a workstream by itself. Natural-language authorization is enough: for example, after comparing an upstream and fork read-only, a request such as “use Project Workflow to introduce these changes” transitions into managed work and creates/recovers the workstream before Definition, Planning or source writes. `#issue` and `#feature` remain optional explicit shortcuts rather than required syntax.
+
+A trivial bounded change still uses branch → pull request → merge, but may take the proportional micro-fix/direct-card path when its accepted scope does not justify a full Master Plan.
+
+For `chatgpt_only`, the workstream lifecycle is:
 
 - `WORKSTREAM.yaml` identifies the workstream, exact branch/base/target, optional parent dependency, canonical Task Board and distinct final-integration review gate;
 - the manifest-selected `TASK_BOARD.yaml` owns Card/milestone execution, Card/milestone review and implementation/recovery Research state for that workstream;
 - `#issue` starts diagnosis/repair intake and chooses independent versus genuinely parent-dependent stacked work before implementation;
 - `#feature` starts feature discovery but does **not** bypass the user-owned Brainstorming → Project Definition promotion gate;
+- `#grill` is **not Intake**: inside an already active Brainstorming scope it forces dependency-aware grilling without creating/recovering a workstream or exploratory scope;
 - a bounded issue may use the micro-fix path without a full Master Plan while retaining durable acceptance/evidence and independent review;
 - different local workstreams executing concurrently require separate Git worktrees/equivalent isolated checkouts; remote-only GitHub execution does not;
 - stacked children cannot masquerade as independent while they still require parent-only state;
 - before final integration, the selected workstream refreshes against the current target, reruns affected verification, checks textual and semantic conflicts, and re-freezes independent review only when the exact covered subject/acceptance surface materially changes;
-- branch-isolated milestone handoffs are namespaced under `implementation/workstreams/<id>/handoffs/`; root `project-handoffs/` and `PROJECT.md -> Latest cumulative handoff` remain legacy/default-context conventions;
+- branch-isolated milestone handoffs are namespaced under `implementation/workstreams/<id>/handoffs/`; historical root `project-handoffs/` and any old project-level handoff pointer remain recovery/history navigation only;
 - before final-target merge, the exact merge subject already carries every unique workstream artifact needed for recovery that can be known before merge;
 - GitHub may automatically delete a merged PR head immediately; post-merge closure/reconciliation then continues from the target-side namespaced package plus immutable PR/merge evidence without recreating the source ref;
 - merged branches that survive and terminal unmerged branches use an exact manifest-local `branch_cleanup: safe_to_delete` fallback only after terminal safety/ref-head proof is durable independently of the source branch; no `delete/*` alias or repository-global cleanup registry is used.
@@ -115,8 +122,10 @@ EXECUTION PREP
 EXECUTION
 ```
 
-- **Brainstorming** explores possibilities; it is not authority. Under `chatgpt_only`, becoming ready for Definition does not end exploration automatically: the user explicitly promotes an exact brainstorming scope/revision into Project Definition. `PROJECT.md` points to the active exploratory record so a fresh chat can recover the exact promotion state without guessing.
-- **Research** produces evidence; it is not accepted decision authority and does not itself authorize promotion. Under the migrated `chatgpt_only` route, a pre-execution Research loop that may cross sessions is anchored by the PROJECT-pointed exact Research record until the recorded Return target durably consumes the result.
+- **Brainstorming** explores possibilities; it is not authority. Under `chatgpt_only`, becoming ready for Definition does not end exploration automatically: the user explicitly promotes an exact brainstorming scope/revision into Project Definition. The selected workstream manifest locates the exact exploratory record so fresh recovery does not depend on root mutable project state.
+  - Both migrated policy-local Brainstorming contracts keep simple scopes lightweight, but automatically use grilling for materially ambiguous, materially multi-path or dependency-linked user decisions. Grilling asks the current dependency frontier together, numbers each decision question, includes an assistant recommendation, keeps agent-findable facts agent-owned, and recomputes the frontier after each user round.
+  - The user may stop grilling at any time. Material unresolved blockers keep Brainstorming open; marginal/non-blocking remainder may be deferred. Neither automatic grilling nor `#grill` changes the existing Project Definition promotion gate.
+- **Research** produces evidence; it is not accepted decision authority and does not itself authorize promotion. Under the migrated fixed-policy routes, a pre-execution Research loop that may cross sessions is anchored by the selected manifest's exact Research locator/record until the recorded Return target durably consumes the result.
 - **Project Definition** promotes accepted intent into `requirements/` + `decisions/` and keeps unresolved product/strategic questions explicit. Once Definition has been explicitly entered, `Definition Complete = GREEN → Planning` remains automatic when planning is in scope.
 - **Planning** consumes an approved Definition and organizes it into a Master Plan, milestone sequence, planned work packages, acceptance/checkpoints and JIT triggers.
 - **Execution Prep** converts currently knowable planned work into concrete executable Task Cards and Task Board state.
@@ -178,6 +187,12 @@ Each boundary still performs required close/handoff, just-in-time execution prep
 Under `mixed`, the next new execution assignment is routed again by Capability Gate.
 
 No separate Campaign object or scheduler is required.
+
+## Downstream fork release versioning
+
+When Project Workflow publishes a project that is durably established as a downstream fork, release identity keeps the accepted upstream baseline visible and advances only a fork-local private revision, for example `v5.0.8-private.1`.
+
+The canonical semantics, migration rules, provenance requirements and mixed-tag selection behavior live in `workflow/common/FORK_RELEASE_VERSIONING.md`. Publication modules reference that common contract instead of duplicating the algorithm.
 
 ## Independent plan review
 
@@ -264,7 +279,7 @@ Each route separates:
 - **CONDITIONAL** files loaded only when a concrete trigger exists;
 - **DO NOT READ BY DEFAULT** files that are outside the normal context set.
 
-Normal ChatGPT starts with the intentionally small `CHATGPT.md` router, project `PROJECT.md`, and `CONTEXT_ROUTING.md`. Under `chatgpt_only`, a branch-isolated state context is resolved from its exact branch + `WORKSTREAM.yaml` before mutable execution state is interpreted. Card/milestone implementation-review/recovery state then comes from that manifest-selected Task Board (including `research_obligation` when implementation/recovery Research is active), while the distinct workstream final-integration review stays manifest-owned. The legacy/default fallback remains `implementation/TASK_BOARD.yaml`; pre-execution plan-review state comes from `planning/reviews/<plan-revision>.md`, and an active pre-execution Research loop comes from the exact `PROJECT.md → Active research obligation` record. It then follows one primary route rather than loading neighboring phase modules "just in case."
+Normal ChatGPT starts with the intentionally small `CHATGPT.md` router, project `PROJECT.md`, and `CONTEXT_ROUTING.md`. Under `chatgpt_only`, the exact branch-isolated state context is resolved from its branch + `WORKSTREAM.yaml` before mutable lifecycle state is interpreted. Pre-execution exploratory/Research/plan-review routing is manifest-local; Card/milestone implementation-review/recovery state comes from the manifest-selected Task Board (including `research_obligation` when implementation/recovery Research is active), while the distinct workstream final-integration review stays manifest-owned. Historical root/default state is Recovery input only, never the active fallback for new or continued managed work. It then follows one primary route rather than loading neighboring phase modules "just in case."
 
 For a `chatgpt_only` independent-review obligation, the normal workflow modules are `workflow/chatgpt_only/REVIEW.md` + `STATE.md` with the exact reviewed subject/authority/evidence. When the verdict is persisted, the review role ends and the chat returns to `workflow/chatgpt_only/ROUTER.md`; downstream execution/close modules are loaded only if the router assigns those roles.
 

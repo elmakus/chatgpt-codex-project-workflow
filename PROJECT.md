@@ -6,7 +6,7 @@
 - Repository: `elmakus/chatgpt-codex-project-workflow`
 - Lifecycle: `active`
 - High-level goal: maintain and evolve the repository-backed Project Workflow contracts used by ChatGPT/Codex project execution.
-- High-level status: Project Workflow Codex plugin Definition R3 and Master Plan `PWCP-P3` are approved; M01-T01 completed its bounded `$pw:project-workflow` runtime delta and is pending fresh independent implementation review.
+- High-level status: branch-first managed-change model is the accepted target for the migrated fixed policies; repository evolution remains active.
 
 ## Execution policy
 
@@ -16,20 +16,17 @@ Changing execution policy requires an explicit user decision.
 
 ## Canonical authority pointers
 
-- Active exploratory scope: `none`
-- Active research obligation: `none`
-- Requirements: `requirements/PROJECT_WORKFLOW_CODEX_PLUGIN.md`
-- Approved plan: `planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md`
-- Current plan draft: `none`
-- Current plan review: `planning/reviews/PWCP-P3.md`
-- Open Definition question: `none`
-- Task Board: `implementation/workstreams/feature-project-workflow-codex-plugin/TASK_BOARD.yaml`
-- Latest cumulative handoff: `project-handoffs/CUBC-M01_HANDOFF.md`
+- Requirements: `requirements/BRANCH_FIRST_MANAGED_CHANGES.md`
+- Approved plan: `planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md`
+- Workstream root: `implementation/workstreams/` (non-live discovery convention; never a mutable active-workstream registry)
+- Historical/default Task Board: `implementation/TASK_BOARD.yaml` (recovery/migration navigation only; never a new/continued-work mutable destination)
+- Historical/default cumulative handoff: `project-handoffs/CUBC-M01_HANDOFF.md` (recovery/history navigation only; branch-isolated handoffs are selected through each workstream Task Board)
 - Accepted decisions index / key pointers:
-  - `decisions/ADR_PROJECT_WORKFLOW_CODEX_PLUGIN_PACKAGING.md`
-  - `decisions/ADR_PROJECT_WORKFLOW_CODEX_PLUGIN_ACTIVATION.md`
   - `decisions/ADR_CHATGPT_ONLY_BRANCH_ISOLATED_WORKSTREAMS.md`
   - `decisions/ADR_CODEX_ONLY_TERMINAL_UNMERGED_BRANCH_DELETE.md`
+  - `decisions/ADR_BRANCH_FIRST_MANAGED_CHANGE_LIFECYCLE.md`
+  - `decisions/ADR_WORKSTREAM_LOCAL_ROUTING_STATE.md`
+  - `decisions/ADR_POLICY_LOCAL_BRANCH_FIRST.md`
 
 ## Workflow
 
@@ -38,8 +35,10 @@ Changing execution policy requires an explicit user decision.
 
 ## Context note
 
-This file is a high-level router/policy/index, not live execution state.
+This file is a high-level integrated-project router/policy/index, not live workstream execution or pre-execution routing state.
 
-The selected branch-isolated workstream is identified by `implementation/workstreams/feature-project-workflow-codex-plugin/WORKSTREAM.yaml`. Its canonical Task Board is active under approved `PWCP-P3`. Definition R3 is current authority; `PWCP-P2` and the obsolete M01 review subject remain historical provenance only. Mutable implementation/review state remains solely in the selected Task Board and workstream manifest.
+Under the migrated fixed-policy branch-first model, active managed-change identity/routing belongs to the exact selected workstream manifest and its pointed artifacts; mutable Card/milestone execution belongs to that manifest-selected Task Board. Active exploratory, pre-execution Research and plan-review locators must not be mirrored here.
 
-Do not record current milestone/card, assigned executor, active branch/HEAD, checkpoint, current OpenSpec or blocker status here. Once implementation state exists, read the canonical Task Board selected by the active ChatGPT-only state context for mutable execution state.
+Historical/default Task Board and handoff pointers above are retained only so repositories and completed history that predate branch-first remain recoverable. Their presence does not authorize new or continued managed mutation there.
+
+Do not record current milestone/card, assigned executor, active branch/HEAD, checkpoint, current OpenSpec, blocker status, active workstream list, workstream-local routing locators or workstream review state here.

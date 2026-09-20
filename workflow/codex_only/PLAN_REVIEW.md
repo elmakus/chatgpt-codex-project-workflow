@@ -24,9 +24,11 @@ Review evidence: <evidence-or-null>
 
 Role labels are Project Workflow provenance. Do not store runtime worker/session/model/profile/invocation identifiers.
 
+For a branch-isolated Codex-only workstream, selected manifest `routing.plan_review` MUST point to the exact active review record. The review record remains sole owner of requirement/state/subject/evidence; the manifest never mirrors those fields. Missing, mismatched or wrong-subject locator state is inconsistent and routes to Recovery.
+
 ## Independence
 
-Before `in_progress`, runtime must realize a Tester independent from the worker that authored the exact plan subject.
+Before `in_progress`, Codex Main validates the selected manifest `routing.plan_review` against this exact record/subject, then runtime must realize a Tester independent from the worker that authored the exact plan subject.
 
 The Tester:
 
@@ -42,8 +44,9 @@ Codex Main persists the review record. A qualifying Codex-managed verdict satisf
 After GREEN:
 
 - preserve the exact review record/evidence;
+- do not clear manifest `routing.plan_review` in the Tester role;
 - return through the policy router to Planning for deterministic approval metadata;
-- Planning may mark that exact reviewed plan revision approved when no blocker remains;
+- Planning may mark that exact reviewed plan revision approved when no blocker remains and clear `routing.plan_review` only with/after durable verdict consumption;
 - implementation may continue automatically when already authorized.
 
 Any substantive plan-body change after GREEN creates a new plan revision/subject and separate review record.
@@ -56,7 +59,7 @@ After RED:
 - return to the router;
 - bounded plan-only defects -> Planning;
 - accepted product/system authority defect -> Definition;
-- missing evidence -> Research with exact Origin/Return target;
+- missing evidence -> Research with exact Origin/Return target; for pre-execution plan review set selected manifest `routing.research_obligation`, while active-work replan review uses Task Board `research_obligation`; never mirror either into root `PROJECT.md`;
 - unresolved user/product/authorization/runtime-input gate -> normal real stop.
 
 If Planning corrects the plan, create a new plan revision/review record. Do not overwrite the prior RED record.

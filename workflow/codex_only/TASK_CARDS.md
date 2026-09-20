@@ -18,7 +18,7 @@ Each Card identifies:
 - authorization gates;
 - independent-review requirement when applicable.
 
-Mutable execution/review/result/batch state belongs to the selected canonical Task Board, not the stable Card contract.
+Mutable execution/review/result/batch state belongs only to the selected manifest-bound workstream Task Board resolved by `WORKSTREAMS.md`, not the stable Card contract. Historical root/default `implementation/TASK_BOARD.yaml` is recovery/migration input only and is never the mutable destination for new or continued managed work.
 
 ## Optional parallel-safety contract
 

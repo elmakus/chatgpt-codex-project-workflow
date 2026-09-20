@@ -19,6 +19,7 @@ For every normal ChatGPT project task:
 5. Recover mutable review/execution state from the canonical source defined by the selected policy route. Do not assume every review lifecycle lives in `implementation/TASK_BOARD.yaml`.
 6. Follow exact durable authority refs rather than loading whole trees "just in case".
 7. Persist accepted changes to project truth when the task changes durable state.
+8. For a newly authorized managed repository change under a branch-first fixed policy, create or recover the exact branch-isolated workstream before the first durable change-specific write. Historical root/default execution state is recovery/migration input only, not a new-work destination.
 
 Progressive disclosure is **lossless by authority, selective by context**.
 

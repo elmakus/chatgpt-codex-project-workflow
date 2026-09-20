@@ -1,10 +1,8 @@
 # ChatGPT-only State Contract
 
-The **selected canonical Task Board** is the sole authoritative mutable Card/milestone execution-state record for the current ChatGPT-only state context.
+The **selected canonical Task Board** is the sole authoritative mutable Card/milestone execution-state record for the current ChatGPT-only managed workstream.
 
-Resolve that context through `workflow/chatgpt_only/WORKSTREAMS.md` before using this contract:
-- branch-isolated workstream → the exact Task Board named by its validated manifest;
-- otherwise → legacy/default `implementation/TASK_BOARD.yaml`.
+Resolve an exact branch-isolated workstream through `workflow/chatgpt_only/WORKSTREAMS.md` before using this contract, then use only the Task Board named by its validated manifest. Historical root/default `implementation/TASK_BOARD.yaml` is recovery/migration input only; it MUST NOT be selected or mutated as the active state context for new or continued managed work.
 
 Do not combine Cards from multiple workstream Task Boards into one synthetic execution state.
 
@@ -111,13 +109,13 @@ When accepted milestone/plan authority records a JIT decomposition trigger:
 
 ## Legacy execution-mode reconciliation
 
-The active ChatGPT-only route is serial **per selected Task Board**: exactly one Card may be in progress in that workstream/default board. Another independent workstream may have its own one in-progress Card without making this board invalid.
+The active ChatGPT-only route is serial **per selected workstream Task Board**: exactly one Card may be in progress in that workstream. Another independent workstream may have its own one in-progress Card without making this board invalid.
 
-If a legacy ChatGPT-only Task Board still contains old concurrent-card metadata:
+If a historical root/default ChatGPT-only Task Board still contains old concurrent-card metadata, do not normalize or resume that board in place. Recovery first migrates the exact live obligation(s) into one exact branch-isolated workstream under `RECOVERY.md#Historical-rootdefault-migration-before-mutation`. During that migration:
 - do not invent or start new concurrent lanes;
-- if no conflicting Cards are active, treat obsolete concurrency metadata as non-operative and clean it up at the next safe state edit;
-- if multiple old Cards are genuinely active, recover each exact durable result/state first, then serialize/reconcile them before starting new work;
-- never discard lane/result/evidence history merely to fit the new serial model.
+- preserve exact durable results/evidence for every previously active Card;
+- serialize/reconcile genuinely live obligations in the new workstream Task Board before starting new work;
+- leave completed lane/result/evidence history readable rather than rewriting it merely to fit the serial model.
 
 ## Starting a Card
 
@@ -237,12 +235,12 @@ Use fresh JIT preparation + Refresh Gate.
 ## Recovery state
 
 Fresh-session recovery uses:
-- `PROJECT.md`;
-- for ordinary pre-integration non-terminal branch-isolated work, the exact source-workstream branch + validated manifest;
+- `PROJECT.md` as integrated project/navigation authority only;
+- for ordinary pre-integration non-terminal managed work, the exact source-workstream branch + validated manifest;
 - for a successful final-target merge whose closure is not yet terminal, the merge-result target-side namespaced package + immutable PR/merge evidence even when the source branch has disappeared;
 - for an integrated terminal `done` workstream after source-branch deletion, the integration-target copy of the namespaced workstream package + exact manifest result under `WORKSTREAMS.md` / `RECOVERY.md`;
 - for terminal-unmerged cleanup history after source-branch deletion, the durable closure package + exact manifest `branch_cleanup` evidence;
-- the selected canonical Task Board/history source;
+- the selected manifest-bound workstream Task Board/history source; historical root/default Task Board state may be read only by Recovery as migration input before this active-state contract applies;
 - exact branch/HEAD/runtime/external state for ordinary pre-integration work, exact PR/merge + target readback for post-merge closure, or exact cleanup/target readback for terminal history;
 - current milestone/Card contracts;
 - referenced OpenSpec/evidence/result/review pointers;
@@ -254,6 +252,7 @@ Previous chat narrative is not required.
 ## Invalid states
 
 Examples:
+- root/default `implementation/TASK_BOARD.yaml` selected or mutated as active state for new/continued managed work instead of first migrating through Recovery;
 - more than one Card `in_progress` in the same selected Task Board;
 - branch-isolated Task Board `workstream_id` or `execution_ref.branch` does not exactly match its selected manifest, or required branch-isolated implementation/review/recovery state has a null/missing Task Board;
 - `done` Card missing required result/tests provenance;
