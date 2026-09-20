@@ -6,7 +6,7 @@ current_milestone: "M02"
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "775792e49d6b6a9e37cc60bdb14445269df9583a"
+  head: "24efef664be6db1889fbf868487192a064e9e61b"
 
 research_obligation: null
 
@@ -108,10 +108,10 @@ cards:
     executor: chatgpt
     depends_on: ["M02-T01"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M02-T02.md"
-    review_state: red
-    review_subject: "775792e49d6b6a9e37cc60bdb14445269df9583a"
-    review_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M02-T02_REVIEW.md"
-    result_commit: "775792e49d6b6a9e37cc60bdb14445269df9583a"
+    review_state: pending
+    review_subject: "24efef664be6db1889fbf868487192a064e9e61b"
+    review_evidence: null
+    result_commit: "24efef664be6db1889fbf868487192a064e9e61b"
     result_pr: null
     evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M02-T02.md"
-    tests_summary: "GREEN: 12/12 exact-branch static/scenario checks passed for workstream-only active execution, deterministic read-only historical migration-before-mutation, fail-closed binding, review/Research ownership, micro-fix, target-refresh, terminal recovery, historical preservation, task/template surfaces and policy separation; regression test file added, but no CI/Python runner execution is claimed."
+    tests_summary: "GREEN: corrected exact-branch readback passed for workstream-only active execution, deterministic read-only historical migration-before-mutation including target/base/dependency topology-before-branch creation, fail-closed binding, review/Research ownership, micro-fix, target-refresh, terminal recovery, historical preservation, task/template surfaces, OpenSpec and policy separation; local runner checkout was blocked by DNS, so no CI/Python runner pass is claimed."
