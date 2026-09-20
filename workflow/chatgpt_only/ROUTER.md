@@ -13,6 +13,8 @@ Do not load legacy/shared execution trees or another policy directory.
 1. Read `workflow/common/AUTHORITY.md`.
 2. Read project root `PROJECT.md`.
 3. If the current user request intentionally invokes `#issue` or `#feature` as an operator directive, read `workflow/chatgpt_only/INTAKE.md` and route to Intake **before** ordinary phase/implementation/review selection for any previously active default/workstream state. Quoted/example/incidental marker text is not a directive. Intake owns discovery of an existing matching workstream or creation of a new one; do not preselect an unrelated Task Board first.
+
+An intentional current `#grill` directive is **not** Intake and does not receive new-workstream operator-directive precedence. Resolve normal workstream/exploratory state first. Only the Brainstorming route may consume `#grill`, and only for an already active Brainstorming scope; it must not create or recover a workstream or exploratory scope.
 4. Otherwise, when the current request/handoff, exact current branch, or exact immutable PR/merge + target-side closure evidence identifies a branch-isolated workstream, read `workflow/chatgpt_only/WORKSTREAMS.md` and resolve its exact manifest first. A successful final-target merge may be recovered from the merge-result target-side package even when GitHub already deleted the source branch. This pre-execution manifest selection does not require a Task Board to exist.
 5. When that exact selected manifest has `intake.state: active`, read its exact `intake.record` and route to Intake before later work for that workstream. When `intake.state: complete`, do not replay Intake. If its exact record has `path: micro_fix` + `next_route: execution_prep:micro_fix` and no Task Board has yet been materialized, read `workflow/chatgpt_only/MICRO_FIX.md` and route directly to Execution Prep; this is the canonical micro-fix pre-Task-Board continuation.
 6. If implementation, implementation-review, blocker or execution-recovery state exists or is referenced, resolve the canonical Task Board **before** reading its mutable execution state. For a selected branch-isolated manifest, apply manifest ↔ Task Board binding validation (`workstream_id` + `execution_ref.branch`) from the exact source branch for ordinary pre-integration work, or from the exact target-side closure/history package when `WORKSTREAMS.md` explicitly permits that post-merge/terminal path. A failed binding routes to Recovery and must not fall back to the default board. When no branch-isolated workstream is selected, keep the legacy/default `implementation/TASK_BOARD.yaml` fallback. In the rest of this router, `Task Board` means that exact selected canonical board.
@@ -165,6 +167,7 @@ When Intake completes, it must first materialize the canonical durable state own
 ### Brainstorming
 
 Read:
+- the current intentional `#grill` directive when present for an already active Brainstorming scope;
 - `workflow/chatgpt_only/BRAINSTORMING.md`;
 - the exact record referenced by `PROJECT.md → Active exploratory scope` when that pointer exists;
 - the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Brainstorming subject;

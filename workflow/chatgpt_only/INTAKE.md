@@ -11,6 +11,8 @@ The explicit operator directives are:
 - `#issue <problem>` — diagnose/classify a problem and create or recover an issue workstream;
 - `#feature <goal>` — create or recover a feature workstream and enter discovery.
 
+`#grill` is explicitly **not** an Intake directive. It may only force the grilling interaction method after the router has resolved an already active Brainstorming scope; it never creates or recovers a workstream or exploratory scope.
+
 Treat a marker as an intake directive only when the current user request intentionally uses it as an operator command. A quoted marker, code/example text, documentation discussion, or incidental mention is not an intake directive.
 
 Exactly one intake directive owns one intake entry. If one request intentionally supplies conflicting `#issue` and `#feature` directives for the same new work and the intended kind cannot be determined, do not guess; request only the smallest clarification.

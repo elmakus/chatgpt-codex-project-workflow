@@ -12,6 +12,8 @@ Do not load legacy/shared execution trees or another policy directory.
 
 1. Read `workflow/common/AUTHORITY.md` and project root `PROJECT.md`.
 2. An explicit current `#issue` / `#feature` operator directive routes to `INTAKE.md` before unrelated mutable execution state.
+
+An intentional current `#grill` directive is **not** Intake and does not receive new-workstream operator-directive precedence. Resolve normal workstream/exploratory state first. Only the Brainstorming route may consume `#grill`, and only for an already active Brainstorming scope; it must not create or recover a workstream or exploratory scope.
 3. Otherwise resolve an explicitly/current-branch selected branch-isolated workstream through `WORKSTREAMS.md`; validate manifest identity before trusting its Task Board.
 4. Resume `intake.state: active` before later work. A completed `micro_fix` Intake with no Task Board routes directly to Execution Prep + `MICRO_FIX.md`.
 5. When implementation/review/recovery state exists, resolve exactly one canonical Task Board. Branch-isolated binding mismatch is Recovery; do not fall back to the default board.
@@ -168,6 +170,7 @@ When Intake completes, it must first materialize the canonical durable state own
 ### Brainstorming
 
 Read:
+- the current intentional `#grill` directive when present for an already active Brainstorming scope;
 - `workflow/codex_only/BRAINSTORMING.md`;
 - the exact record referenced by `PROJECT.md → Active exploratory scope` when that pointer exists;
 - the exact `complete` research record referenced by `PROJECT.md → Active research obligation` when its Return target is this Brainstorming subject;
