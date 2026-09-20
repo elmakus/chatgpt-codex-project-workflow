@@ -2,7 +2,7 @@
 
 id: "feature-branch-first-managed-changes"
 kind: "feature"
-status: "discovery"
+status: "planning"
 
 branch: "feat/branch-first-managed-changes"
 base_ref: "808084a4c7989715f7ee4889a31bce28f778d597"
@@ -19,8 +19,8 @@ intake:
 task_board: null
 
 authority:
-  requirements: null
-  decisions: []
+  requirements: "requirements/BRANCH_FIRST_MANAGED_CHANGES.md"
+  decisions:\n    - "decisions/ADR_BRANCH_FIRST_MANAGED_CHANGE_LIFECYCLE.md"\n    - "decisions/ADR_WORKSTREAM_LOCAL_ROUTING_STATE.md"\n    - "decisions/ADR_POLICY_LOCAL_BRANCH_FIRST.md"
   plan: null
 
 review:
