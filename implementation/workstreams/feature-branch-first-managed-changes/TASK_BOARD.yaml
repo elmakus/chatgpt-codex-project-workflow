@@ -6,7 +6,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "b9df50e11741962e386a3eb03376ef1d39e0759c"
+  head: "76abbc14ea2e7ae9a4e6d98146beb2b66f4515b6"
 
 research_obligation: null
 
@@ -152,10 +152,10 @@ cards:
     executor: chatgpt
     depends_on: ["M03-T01"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M03-T02.md"
-    review_state: null
-    review_subject: null
-    review_evidence: null
-    result_commit: null
+    review_state: pending
+    review_subject: "76abbc14ea2e7ae9a4e6d98146beb2b66f4515b6"
+    review_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M03-T02.md"
+    result_commit: "76abbc14ea2e7ae9a4e6d98146beb2b66f4515b6"
     result_pr: null
     evidence: null
-    tests_summary: null
+    tests_summary: "GREEN: exact connector-backed regression replay PASS 14/14 plus Codex-only semantic sweep; topology-before-branch migration, read-only historical source, Main/Tester/Research ownership, batch/post-batch lineage, micro-fix/target-refresh/terminal recovery, task/template surfaces, runtime-identity exclusion, OpenSpec and policy separation are coherent. Local unittest checkout was blocked by DNS, so no Python/CI runner pass is claimed."
