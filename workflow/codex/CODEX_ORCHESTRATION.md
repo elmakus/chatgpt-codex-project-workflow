@@ -41,6 +41,8 @@ Delegation does not transfer project-level accountability.
 
 Under `codex_only`, Codex Main also owns deterministic continuation across approved milestone boundaries when `workflow/EXECUTION.md` conditions are satisfied. It may perform allowed just-in-time execution prep but may not invent strategic authority.
 
+Coordinator/session context hygiene is not a Project Workflow stop under `codex_only`. If the coordinating runtime is interrupted or replaced, Main reconstructs the exact project obligation from durable Project Workflow state and continues it; `codex_workflow` remains the owner of the concrete resume/replacement/session mechanics.
+
 ## 4. Runtime-operation behavior
 
 Project Workflow does not maintain a catalog of Codex tools/capabilities and does not ask Codex Main to inventory them before execution.
