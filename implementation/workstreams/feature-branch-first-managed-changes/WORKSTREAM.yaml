@@ -20,7 +20,10 @@ task_board: null
 
 authority:
   requirements: "requirements/BRANCH_FIRST_MANAGED_CHANGES.md"
-  decisions:\n    - "decisions/ADR_BRANCH_FIRST_MANAGED_CHANGE_LIFECYCLE.md"\n    - "decisions/ADR_WORKSTREAM_LOCAL_ROUTING_STATE.md"\n    - "decisions/ADR_POLICY_LOCAL_BRANCH_FIRST.md"
+  decisions:
+    - "decisions/ADR_BRANCH_FIRST_MANAGED_CHANGE_LIFECYCLE.md"
+    - "decisions/ADR_WORKSTREAM_LOCAL_ROUTING_STATE.md"
+    - "decisions/ADR_POLICY_LOCAL_BRANCH_FIRST.md"
   plan: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md"
 
 review:
