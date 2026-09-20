@@ -39,4 +39,4 @@ cards:
     result_commit: null
     result_pr: null
     evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/blockers/M01-T01-definition-naming-constraint-2026-09-20.md"
-    tests_summary: "Runtime delta verification GREEN for same-repo plugin install, PLUGIN_ROOT canonical path resolution, bounded SessionStart activation/trust, per-repo enabled/control isolation, and bundled Skill discovery. BLOCKED: native App Server exposes bundled Skill as <plugin>:<skill>; shortest verified ID is pw:pw, while accepted PWCP authority still requires literal $pw. Definition/user decision required; see blocker evidence."
+    tests_summary: "Runtime delta verification GREEN for same-repo plugin install, PLUGIN_ROOT canonical path resolution, bounded SessionStart activation/trust, per-repo enabled/control isolation, and bundled Skill discovery. Definition R2 now accepts the verified pw:pw command. Card remains BLOCKED only while revised plan PWCP-P2 is independently reviewed and the Card/Task Board contract is reconciled afterward; see blocker evidence."
