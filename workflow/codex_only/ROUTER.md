@@ -12,11 +12,13 @@ Do not load legacy/shared execution trees or another policy directory.
 
 1. Read `workflow/common/AUTHORITY.md` and project root `PROJECT.md`.
 2. An explicit current `#issue` / `#feature` operator directive routes to `INTAKE.md` before unrelated mutable execution state.
-3. Otherwise resolve an explicitly/current-branch selected branch-isolated workstream through `WORKSTREAMS.md`; validate manifest identity before trusting its Task Board.
-4. Resume `intake.state: active` before later work. A completed `micro_fix` Intake with no Task Board routes directly to Execution Prep + `MICRO_FIX.md`.
-5. When implementation/review/recovery state exists, resolve exactly one canonical Task Board. Branch-isolated binding mismatch is Recovery; do not fall back to the default board.
-6. Resolve the current Card/milestone review attempt from the selected Task Board's `review.current_attempt`. An integrated member of the exact unresolved `parallel.current_batch` may have only a frozen `pending` attempt; that attempt is deferred until batch closure. Any `in_progress | red | green` verdict on such an unresolved member is inconsistent and routes to Recovery.
-7. Then route the highest applicable obligation:
+
+3. Clear natural-language authorization for a **new managed repository change** (for example implement/apply/adopt repository or project changes) routes to `INTAKE.md` before any change-specific durable write when the request is not already an exact continuation/handoff of an existing workstream/PR/manifest. Read-only inspect/compare/analyze requests remain branch-free. Generic intake uses neutral `kind: change`; do not guess `issue` versus `feature`.
+4. Otherwise resolve an explicitly/current-branch selected branch-isolated workstream through `WORKSTREAMS.md`; validate manifest identity before trusting its Task Board.
+5. Resume `intake.state: active` before later work. A completed `micro_fix` Intake with no Task Board routes directly to Execution Prep + `MICRO_FIX.md`.
+6. When implementation/review/recovery state exists, resolve exactly one canonical Task Board. Branch-isolated binding mismatch is Recovery; do not fall back to the default board.
+7. Resolve the current Card/milestone review attempt from the selected Task Board's `review.current_attempt`. An integrated member of the exact unresolved `parallel.current_batch` may have only a frozen `pending` attempt; that attempt is deferred until batch closure. Any `in_progress | red | green` verdict on such an unresolved member is inconsistent and routes to Recovery.
+8. Then route the highest applicable obligation:
    - inconsistent durable state -> Recovery;
    - non-deferred REQUIRED/RECOMMENDED current review attempt `pending | in_progress` -> Independent review;
    - Task Board `research_obligation` `active | blocked` -> Research; `complete` -> exact Return target;
@@ -32,9 +34,9 @@ Do not load legacy/shared execution trees or another policy directory.
    - deterministic READY set -> Execution Prep; M03 JIT may freeze one finite compatible batch, otherwise serial Execution;
    - milestone/workstream Close when prerequisites hold;
    - Planning/Definition/Research when accepted authority requires it.
-8. After a current batch closes, its frozen member reviews are no longer deferred. Drain review/finalization/correction in canonical Task Board order before unrelated implementation.
-9. Read only the chosen route's required artifacts and exact authority slice.
-10. Continue deterministic authorized role transitions until a real strategic/product decision, explicit live/deployment authorization, concrete unremediable runtime/input blocker, context-hygiene boundary, or end of approved scope.
+9. After a current batch closes, its frozen member reviews are no longer deferred. Drain review/finalization/correction in canonical Task Board order before unrelated implementation.
+10. Read only the chosen route's required artifacts and exact authority slice.
+11. Continue deterministic authorized role transitions until a real strategic/product decision, explicit live/deployment authorization, concrete unremediable runtime/input blocker, context-hygiene boundary, or end of approved scope.
 
 Fixed `codex_only` never changes execution policy because a runtime realization or concurrency path is unavailable. Runtime loss is recovered/resumed/replaced from durable project state; unsafe parallelism falls back to serial execution when the Card remains executable.
 
@@ -157,11 +159,11 @@ Research never selects a different route by itself; only the authorized classifi
 Read:
 - `workflow/codex_only/INTAKE.md`;
 - `workflow/codex_only/WORKSTREAMS.md`;
-- the explicit current `#issue` / `#feature` directive, or the exact active intake record from the selected workstream manifest;
+- the explicit current `#issue` / `#feature` directive, clear current natural-language authorization for a new managed change, or the exact active intake record from the selected workstream manifest;
 - project `PROJECT.md`;
 - only repository branch/PR/workstream/source/runtime evidence needed to establish identity, reproduce/diagnose when practical, choose base/dependency and materialize the smallest legal downstream route.
 
-For a new explicit directive, do not load an unrelated active Task Board merely because it is the current/default execution state. Intake discovers relevant workstreams without adopting their mutable state.
+For a new intake trigger, do not load an unrelated active Task Board merely because it is the current/default execution state. Intake discovers relevant workstreams without adopting their mutable state. Read-only analysis without managed-change authorization does not create a workstream.
 
 When Intake completes, it must first materialize the canonical durable state owned by the selected downstream route, then set its manifest intake state complete, return to this router and continue. A completed intake is not a user/session stop by itself.
 
