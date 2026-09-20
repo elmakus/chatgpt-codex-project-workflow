@@ -136,7 +136,7 @@ cards:
     executor: chatgpt
     depends_on: ["M02-T02"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M03-T01.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "9aa1af79e4e3634c81626fc04fc6c9a7a6874519"
     review_evidence: null
     result_commit: "9aa1af79e4e3634c81626fc04fc6c9a7a6874519"
