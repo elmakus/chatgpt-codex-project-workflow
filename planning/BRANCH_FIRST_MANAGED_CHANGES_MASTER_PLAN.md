@@ -1,6 +1,6 @@
 # Master Plan — branch-first managed changes
 
-Revision: `BF-R2`
+Revision: `BF-R3`
 Status: `draft`
 Updated: `2026-09-20`
 Independent plan review: `RECOMMENDED`
@@ -265,7 +265,7 @@ Do not create speculative future Cards whose scope depends on predecessor invent
 
 ## 12. Fresh-context boundaries
 
-This new material Master Plan requires independent review. The authoring chat must stop after freezing BF-R1 and its review record.
+This corrected material Master Plan requires independent review. The authoring chat must stop after freezing BF-R3 and its review record.
 
 Later fresh ChatGPT review boundaries follow normal `chatgpt_only` review and Context Health rules.
 
