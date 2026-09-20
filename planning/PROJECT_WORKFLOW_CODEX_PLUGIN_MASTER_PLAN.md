@@ -1,13 +1,13 @@
 # Project Workflow Codex Plugin — Master Plan
 
-Revision: `PWCP-P2`
-Status: `approved`
+Revision: `PWCP-P3`
+Status: `draft`
 Updated: `2026-09-20`
 Review requirement: `RECOMMENDED`
 
 ## Authority
 
-- Requirements: `requirements/PROJECT_WORKFLOW_CODEX_PLUGIN.md` R2
+- Requirements: `requirements/PROJECT_WORKFLOW_CODEX_PLUGIN.md` R3
 - Packaging decision: `decisions/ADR_PROJECT_WORKFLOW_CODEX_PLUGIN_PACKAGING.md`
 - Activation decision: `decisions/ADR_PROJECT_WORKFLOW_CODEX_PLUGIN_ACTIVATION.md`
 - Exploratory provenance: `brainstorming/PROJECT_WORKFLOW_CODEX_PLUGIN.md`
@@ -21,11 +21,11 @@ Deliver a per-repository Codex plugin for Project Workflow that:
 
 - is packaged from this repository;
 - keeps normal Project Workflow files as the only workflow authority;
-- provides one concise explicit bundled Skill exposed as `$pw:pw`;
+- provides one concise explicit bundled Skill exposed as `$pw:project-workflow`;
 - keeps Project Workflow active in enabled repositories through a very small always-on bootstrap/reminder;
 - preserves progressive disclosure;
 - reuses qualified generic marketplace/update evidence;
-- verifies and documents whether `#issue/#feature` remain the preferred intake syntax or whether the supported fallback must be `$pw:pw issue/$pw:pw feature`.
+- verifies and documents whether `#issue/#feature` remain the preferred intake syntax or whether the supported fallback must be `$pw:project-workflow issue/$pw:project-workflow feature`.
 
 ## Execution baseline
 
@@ -34,7 +34,7 @@ Deliver a per-repository Codex plugin for Project Workflow that:
 - Git-backed Codex plugin/Skill distribution and Workstation marketplace refresh are treated as qualified platform baseline where unchanged.
 - The feature is independent of currently unrelated workstreams and starts from base `cdaf47245e45836917b152904d70807bca355e7d`.
 - Current-runtime plugin packaging, lifecycle-hook/trust behavior and directive reliability must be verified against the actual Codex runtime before implementation choices are frozen.
-- M01-T01 runtime evidence has already verified the bundled-Skill identity contract `<plugin-name>:<skill-name>`; user/product authority accepted plugin `pw` + Skill `pw`, exposed as `$pw:pw`, as the explicit command.
+- M01-T01 runtime evidence has already verified the bundled-Skill identity contract `<plugin-name>:<skill-name>`; user/product authority accepted plugin `pw` + Skill `project-workflow`, exposed as `$pw:project-workflow`, as the explicit command.
 
 ## Inherited invariants
 
@@ -42,7 +42,7 @@ Deliver a per-repository Codex plugin for Project Workflow that:
 2. Do not create a separate plugin updater.
 3. Do not silently affect repositories where the plugin is not enabled.
 4. Do not preload the whole workflow tree to guarantee activation.
-5. Do not create multiple alias Skills when one `$pw:pw` bundled Skill with arguments suffices.
+5. Do not create multiple alias Skills when one `$pw:project-workflow` bundled Skill with arguments suffices.
 6. Keep exact Project Workflow routing through `PROJECT.md` and `workflow/CONTEXT_ROUTING.md`.
 7. Treat current plugin-platform baseline evidence as reusable only where the mechanism is unchanged.
 
@@ -82,7 +82,7 @@ Establish and verify the smallest current Codex packaging/activation design that
 - one concrete activation mechanism satisfies enabled-repo persistence and control-repo isolation;
 - plugin-root → canonical workflow path resolution is proven;
 - trust behavior is understood and testable;
-- the runtime-triggered Definition correction to `$pw:pw` is reconciled and no unresolved Definition blocker remains.
+- the runtime-triggered Definition correction to `$pw:project-workflow` is reconciled and no unresolved Definition blocker remains.
 
 ### JIT trigger
 
@@ -92,7 +92,7 @@ Execution Prep creates concrete Cards after checking the then-current Codex plug
 
 ### Outcome
 
-Implement the Project Workflow plugin package in this repository with one thin bundled Skill exposed as `$pw:pw` and no copied workflow policy.
+Implement the Project Workflow plugin package in this repository with one thin bundled Skill named `project-workflow`, exposed as `$pw:project-workflow`, and no copied workflow policy.
 
 ### Dependencies
 
@@ -111,7 +111,7 @@ Implement the Project Workflow plugin package in this repository with one thin b
 ### Planned work packages
 
 1. Add the current-runtime plugin manifest/package structure to this repository.
-2. Add one concise `pw` Skill whose only responsibilities are bootstrap/entry resolution and delegation to canonical Project Workflow routing.
+2. Add one concise `project-workflow` Skill whose only responsibilities are bootstrap/entry resolution and delegation to canonical Project Workflow routing.
 3. Add the selected minimal activation/reminder implementation from M01.
 4. Add/update marketplace metadata required to distribute this Git-backed plugin through the existing marketplace model.
 5. Add deterministic path/update tests proving ordinary `workflow/codex_only/*` changes require no Skill edit.
@@ -120,7 +120,7 @@ Implement the Project Workflow plugin package in this repository with one thin b
 ### Acceptance
 
 - plugin installs/enables through the accepted marketplace source;
-- `$pw:pw` is discoverable and routes into canonical Project Workflow;
+- `$pw:project-workflow` is discoverable and routes into canonical Project Workflow;
 - canonical workflow modules remain single-source;
 - workflow-module update propagation works without changing the Skill when bootstrap semantics are unchanged;
 - no plugin-local updater exists.
@@ -149,17 +149,17 @@ Prove normal enabled-repository use is reliable and choose/document the shortest
 
 ### Planned work packages
 
-1. End-to-end enabled-repository test: ordinary prompt enters Project Workflow without explicit `$pw:pw`.
+1. End-to-end enabled-repository test: ordinary prompt enters Project Workflow without explicit `$pw:project-workflow`.
 2. Fresh-session and supported resume/compaction tests.
 3. Control-repository test proving no accidental activation without plugin enablement.
 4. Progressive-disclosure evidence showing the always-on path loads only bootstrap/router/current-route context rather than the full workflow tree.
 5. Comparative intake tests:
-   - `#feature <goal>` vs `$pw:pw feature <goal>`;
-   - `#issue <problem>` vs `$pw:pw issue <problem>`.
+   - `#feature <goal>` vs `$pw:project-workflow feature <goal>`;
+   - `#issue <problem>` vs `$pw:project-workflow issue <problem>`.
 6. Select the documented user convention from evidence:
    - prefer `#feature/#issue` when reliably equivalent;
-   - otherwise document `$pw:pw feature/$pw:pw issue`.
-7. Verify `$pw:pw` remains a valid general explicit entry/recovery path.
+   - otherwise document `$pw:project-workflow feature/$pw:project-workflow issue`.
+7. Verify `$pw:project-workflow` remains a valid general explicit entry/recovery path.
 8. Reuse generic marketplace/install/updater evidence by exact reference and run only Project Workflow-specific delta tests.
 
 ### Acceptance
@@ -250,7 +250,7 @@ Create/refine OpenSpec during Execution Prep only if the concrete activation/pac
 ## Pre-implementation planning audit
 
 - Approved Definition is complete and internally consistent.
-- Same-repo packaging, canonical-source and one-Skill choices are frozen; the explicit current-runtime bundled-Skill command is `$pw:pw`.
+- Same-repo packaging, canonical-source and one-Skill choices are frozen; the explicit bundled-Skill identity is plugin `pw` + Skill `project-workflow` → `$pw:project-workflow`.
 - Exact current-runtime hook/instruction substrate is intentionally deferred to M01 evidence and bounded by accepted outcomes.
 - No user/product choice remains that changes milestone architecture.
 - Requirement coverage is complete.
@@ -264,8 +264,8 @@ Planning audit result: `GREEN`.
 ## Independent plan review
 
 - Review requirement: `RECOMMENDED`
-- Reason: this is a new Master Plan spanning plugin packaging, lifecycle activation, trust behavior and end-to-end workflow routing; independent review is practical.
-- Review record: `planning/reviews/PWCP-P2.md`
-- Review state: `GREEN`
-- Reviewed subject: `blob:4932fcfa47a0a6a8dc9c4404fe76cb6f4a4c4346`
-- Plan approved after GREEN independent review; reviewed plan body is unchanged apart from deterministic lifecycle metadata.
+- Reason: `PWCP-P3` materially revises the user-facing explicit bundled-Skill identity after user/product Definition R3 reconciliation. Milestone architecture is intentionally unchanged, but independent confirmation is practical before the active M01 contract is reconciled again.
+- Review record: `planning/reviews/PWCP-P3.md`
+- Review state: `pending`
+- Review subject: frozen in the separate revision-specific review record.
+
