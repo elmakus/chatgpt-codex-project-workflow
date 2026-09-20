@@ -338,6 +338,7 @@ Do not continue affected work until the owning authority is resolved.
 
 Read:
 - `workflow/codex_only/RECOVERY.md`;
+- `workflow/codex_only/INTAKE.md` only when historical root/default migration must recover/create workstream identity, target/base or dependency topology;
 - selected manifest when branch-isolated;
 - selected Task Board;
 - exact active branch/HEAD/runtime;
