@@ -85,8 +85,9 @@ Cover as applicable:
 - system verification strategy;
 - idempotency/data-integrity/security strategy;
 - JIT decomposition triggers where concrete execution detail is not yet knowable;
-- coordinating-context refresh boundaries only when materially useful;
 - relevant OpenSpec/handoff policy references when they materially shape execution.
+
+Under `codex_only`, do not schedule coordinator/session context refresh, Context Health, FRESH or hygiene boundaries as Master Plan checkpoints. Coordinator/runtime interruption is handled through durable Recovery and runtime-owned replacement rather than a planned Project Workflow stop.
 
 Do not duplicate the full text of requirements/decisions when exact authority references are sufficient.
 
