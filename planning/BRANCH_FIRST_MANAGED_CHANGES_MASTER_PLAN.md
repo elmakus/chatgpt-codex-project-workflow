@@ -1,6 +1,6 @@
 # Master Plan — branch-first managed changes
 
-Revision: `BF-R1`
+Revision: `BF-R2`
 Status: `draft`
 Updated: `2026-09-20`
 Independent plan review: `RECOMMENDED`
@@ -54,7 +54,7 @@ Implementation must convert the fixed-policy active paths to branch-first-only w
 
 **Outcome:** workflow contracts have one branch-first new-work model, one neutral generic managed-change entry, and workstream-local pre-execution routing state.
 
-**Requirement ownership:** REQ-BF-001..011, REQ-BF-015..017.
+**Requirement ownership:** REQ-BF-001..009, REQ-BF-011, REQ-BF-015..017.
 
 **Dependencies:** none.
 
@@ -276,7 +276,7 @@ Later fresh ChatGPT review boundaries follow normal `chatgpt_only` review and Co
 - Milestone boundaries/order: M01 freezes shared product/state model, M02/M03 perform policy-local realization, M04 closes migration/docs/integration.
 - Dependency completeness: GREEN; policy migrations depend on M01 state contract.
 - Outcome-level acceptance: explicit for all milestones.
-- Requirement coverage: REQ-BF-001..017 fully mapped.
+- Requirement coverage: REQ-BF-001..017 fully mapped; M01 explicitly excludes REQ-BF-010, whose owner milestone is M04.
 - Migration/rollback: preserves historical state, forces active legacy migration before mutation, branch-local rollback before PR.
 - System verification: scenario matrix + policy-local checks + integrated scan/target refresh.
 - Data integrity/idempotency/security: duplicate prevention, partial-creation recovery, target readback and branch-deletion safety covered.
