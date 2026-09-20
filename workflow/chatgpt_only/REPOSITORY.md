@@ -154,9 +154,9 @@ Material external mutations require meaningful persisted-state readback when ava
 Recovery must be possible from:
 - `PROJECT.md`;
 - for ordinary pre-integration non-terminal branch-isolated work, exact workstream branch + validated `WORKSTREAM.yaml`; for post-merge closure before terminal reconciliation, the merge-result target-side namespaced package + immutable PR/merge evidence; for integrated terminal `done` history after source-branch deletion, the target-side namespaced workstream package + exact manifest result; for terminal-unmerged cleanup history after deletion, the durable closure package + exact `branch_cleanup` evidence;
-- the PROJECT-pointed active exploratory record when Brainstorming/Definition promotion or recovery is active;
-- the PROJECT-pointed active pre-execution research record when Research/return-role recovery is active;
-- selected canonical Task Board, including its implementation/recovery `research_obligation` pointer and exact pointed record when present;
+- the exact exploratory record referenced by selected manifest `routing.exploratory_scope` when Brainstorming/Definition promotion or recovery is active;
+- the exact pre-execution Research record referenced by selected manifest `routing.research_obligation` when Research/return-role recovery is active;
+- the selected manifest-bound Task Board, including its implementation/recovery `research_obligation` pointer and exact pointed record when present; historical root/default Task Board and PROJECT routing pointers are read only as Recovery migration input;
 - exact Git/runtime/external state;
 - current milestone/Card contracts, or the exact bounded micro-fix Card + completed Intake record for a qualified direct fix;
 - referenced evidence/OpenSpec/handoff as actually needed.
@@ -177,7 +177,7 @@ Existing milestone files remain valid durable contracts even though separate mil
 
 Existing standalone evidence and cumulative handoffs remain durable history/evidence.
 
-A legacy Task Board without an explicit milestone contract pointer may recover from its existing plan/milestone references; add the pointer at the next safe execution-prep/state edit rather than performing repository-wide churn.
+A historical root/default Task Board without an explicit milestone contract pointer may recover that authority from its existing plan/milestone references during migration. Carry the exact recovered contract pointer into the new workstream Task Board; do not patch the root/default board merely to normalize legacy shape.
 
 Do not move active project topology mid-milestone. A legacy split-repository migration occurs only at a GREEN boundary with provenance.
 
