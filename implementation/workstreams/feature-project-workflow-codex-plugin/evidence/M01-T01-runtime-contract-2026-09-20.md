@@ -1,7 +1,7 @@
 # M01-T01 Runtime Contract Evidence — 2026-09-20
 
 Card: `M01-T01 — Verify current Codex plugin activation contract`
-Status: `BLOCKED on Definition-owned explicit Skill naming decision`
+Status: `GREEN implementation evidence; pending independent review`
 
 ## Runtime subject
 
@@ -9,11 +9,12 @@ Status: `BLOCKED on Definition-owned explicit Skill naming decision`
 - Verification used disposable isolated `CODEX_HOME` instances and disposable test workspaces.
 - Live `/home/codex/.codex/config.toml`, live marketplace registration and live plugin installation state were not mutated.
 - Generic Git-backed marketplace/plugin installability is reused from the qualified `elmakus/newproject-skill` M01 evidence; PWCP-specific packaging, hook, path-resolution and per-repository activation deltas were tested here.
+- Definition R3 / approved plan PWCP-P3 accepts plugin `pw` + Skill `project-workflow` → `$pw:project-workflow`.
 
 ## GREEN findings
 
 1. Same-repository plugin packaging is viable.
-   - A local Git-marketplace-shaped source containing plugin manifest(s), `skills/pw/`, `hooks/` and sibling `workflow/` files installed successfully through native `codex plugin marketplace add` + `codex plugin add`.
+   - A local Git-marketplace-shaped source containing plugin manifest(s), Skill content, hooks/bootstrap and sibling `workflow/` files installed successfully through native `codex plugin marketplace add` + `codex plugin add`.
    - Installed cache readback contained the Skill, hook/bootstrap and canonical sibling workflow files together.
 
 2. Canonical plugin-root path resolution is viable.
@@ -36,41 +37,55 @@ Status: `BLOCKED on Definition-owned explicit Skill naming decision`
    - Native App Server `skills/list` discovered the installed bundled Skill and returned the installed cache path plus plugin ownership.
    - A real explicit invocation using the returned Skill ID loaded the Skill and exposed a unique sentinel from its `SKILL.md`.
 
-## Definition-changing constraint found
+## Historical naming constraint and Definition reconciliation
 
-Current Codex namespaces a plugin-bundled Skill as:
+The first M01 runtime probe established the current namespace shape:
 
 `<plugin-name>:<skill-name>`
 
-Observed native App Server identities:
+Observed historical identities included:
 
 - plugin `project-workflow-probe` + Skill `pw` → `project-workflow-probe:pw`;
 - plugin `pw` + Skill `pw` → `pw:pw`.
 
-A real `codex exec` invocation of `$project-workflow-probe:pw` loaded the Skill and returned the unique sentinel `PWCP_SKILL_SENTINEL_73A1`.
+A real invocation of literal `$pw` did not load that bundled Skill, so the then-current Definition required correction. That blocker is now resolved by Definition R3 and ADR-PWCP-002: the accepted normal bundled-Skill identity is plugin `pw` + Skill `project-workflow` → `$pw:project-workflow`.
 
-A real invocation of literal `$pw` did not load that bundled Skill and returned the missing-skill sentinel.
+The old `$pw:pw` result remains historical provenance only; it is not the current acceptance target.
 
-Therefore the shortest verified normal bundled-Skill entrypoint is currently `$pw:pw`, not literal `$pw`.
+## Definition R3 naming-delta revalidation
 
-## Authority impact
+A fresh bounded probe revalidated only the affected naming delta; unchanged packaging/activation/path/trust/isolation evidence above was intentionally reused.
 
-This does not invalidate same-repository packaging, canonical-source architecture, always-on activation, progressive disclosure, trust handling or per-repository isolation.
+Probe setup:
+- disposable root: `/tmp/pw-p3-name-probe-final-7c91`;
+- isolated `CODEX_HOME`;
+- local marketplace plugin name: `pw`;
+- bundled Skill name: `project-workflow`;
+- unique Skill sentinel: `PWCP_P3_SENTINEL_7C91`.
 
-It does conflict with accepted authority that still requires literal `$pw` in:
+Results:
+1. Native marketplace/plugin installation accepted plugin `pw` with Skill directory `skills/project-workflow/SKILL.md`.
+2. Native App Server `skills/list` exposed the bundled Skill as `pw:project-workflow`.
+3. A real `codex exec` invocation of `$pw:project-workflow` loaded the Skill and returned exactly `PWCP_P3_SENTINEL_7C91`.
+4. Live `codex plugin list --json` and `codex plugin marketplace list --json` snapshots were byte-identical before versus after the isolated probe.
+5. No live marketplace/plugin/config mutation was required.
 
-- PWCP-REQ-009;
-- PWCP-REQ-010;
-- acceptance-level outcomes 1 and 5;
-- related wording in ADR-PWCP-002 / plan assumptions.
+Naming-delta verdict: `GREEN`.
 
-PWCP-REQ-003 already anticipates a current-Codex naming constraint, but that fallback has not yet been reconciled through the literal `$pw` requirements above. Execution may not silently reinterpret those accepted requirements.
+## Concrete M02 implementation contract
 
-## Required next route
+M02 may now implement the accepted same-repository package with these bounded contracts:
 
-Return to Project Definition. User/product authority must decide whether to:
+1. Plugin identity is `pw`; the single bundled Skill is named `project-workflow` and is exposed as `$pw:project-workflow`.
+2. The Skill remains a thin bootstrap/router only; canonical Project Workflow semantics stay in the existing workflow files.
+3. The plugin package must carry the canonical sibling workflow files needed by bootstrap/path resolution.
+4. The selected minimal always-on SessionStart activation/trust mechanism from the existing M01 evidence remains the implementation baseline because that mechanism was unchanged by Definition R3.
+5. Per-repository opt-in/control-repository isolation remains required.
+6. No plugin-local updater is introduced; marketplace/update ownership remains Workstation-owned.
+7. M03 still owns full startup/resume/compaction E2E acceptance and the evidence-based `#issue/#feature` versus `$pw:project-workflow issue/feature` usage choice.
 
-- accept the verified normal bundled-Skill name `$pw:pw` and reconcile literal `$pw` requirements accordingly; or
-- retain literal `$pw` as mandatory, which requires a different explicit-entry surface outside normal bundled-Skill namespacing and therefore further verification/replanning.
+No current-runtime contradiction remains for M02.
 
-M01-T01 remains non-terminal until that Definition decision is reconciled and execution is re-contracted.
+## Review boundary
+
+M01-T01 is implementation-complete but non-terminal until its contracted RECOMMENDED independent review is GREEN. The exact implementation subject is the commit that persists this refreshed evidence; Task Board owns the pending review pointer.
