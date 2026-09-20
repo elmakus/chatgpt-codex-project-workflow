@@ -2,7 +2,7 @@
 
 id: "issue-context-health-bounce"
 kind: "issue"
-status: "discovery"
+status: "ready"
 
 branch: "fix/chatgpt-only-context-health-bounce"
 base_ref: "808084a4c7989715f7ee4889a31bce28f778d597"
@@ -16,10 +16,10 @@ intake:
   state: complete
   record: "implementation/workstreams/issue-context-health-bounce/INTAKE.md"
 
-task_board: null
+task_board: "implementation/workstreams/issue-context-health-bounce/TASK_BOARD.yaml"
 
 authority:
-  requirements: null
+  requirements: "implementation/workstreams/issue-context-health-bounce/INTAKE.md"
   decisions: []
   plan: null
 
