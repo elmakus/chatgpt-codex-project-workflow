@@ -11,7 +11,7 @@ Read:
 - for a successful final-target merge whose closure is not yet terminal, the exact merge-result target-side namespaced workstream package plus immutable PR/merge evidence; the source branch may already be absent;
 - for an integrated terminal `done` workstream whose source branch was deleted, the exact target-side namespaced workstream package plus manifest integration result;
 - for terminal-unmerged cleanup history after source-branch deletion, the exact durable closure package plus manifest `branch_cleanup` evidence;
-- validated workstream manifest + its selected canonical Task Board/history source when branch-isolated, otherwise legacy/default `implementation/TASK_BOARD.yaml`;
+- validated workstream manifest + its selected canonical Task Board/history source for active managed work; when no workstream is selected and historical root/default `implementation/TASK_BOARD.yaml` exists, read it only as migration input under **Historical root/default migration before mutation** below;
 - relevant runtime/external state;
 - current milestone/Card contracts;
 - active Card/milestone review state from the selected Task Board;
@@ -24,7 +24,7 @@ Previous chat narrative is not authority.
 
 ## Recovery priority
 
-Apply this priority only inside the selected default/workstream Task Board. An unrelated workstream's active Card/review is not a blocker for this one.
+Apply this priority only after an exact branch-isolated workstream Task Board has been selected and binding validation passed. Historical root/default state must complete the migration-before-mutation protocol below first. An unrelated workstream's active Card/review is not a blocker for this one.
 
 1. REQUIRED/RECOMMENDED `review_state: pending | in_progress` outranks later implementation.
 2. Task Board `research_obligation` with research `Status: active | blocked | complete` outranks selecting new implementation, including when opened from a RED verdict, and recovers through **Implementation-owned Research** below.
@@ -37,6 +37,22 @@ Apply this priority only inside the selected default/workstream Task Board. An u
 9. Exact immutable PR/merge evidence proving final-target integration while target-side closure/result reconciliation is unfinished routes to Close using the post-merge target-side package, even when the source branch has already disappeared.
 10. A qualified micro-fix whose bounded Card is terminal and whose selected workstream is not done routes to Close once higher-priority Task Board or manifest pending/RED review obligations are absent; Close runs target refresh before final-review reuse/freeze and integration. Do not start another Card and do not synthesize a milestone.
 11. Only when no active obligation exists may next READY Card be selected.
+
+## Historical root/default migration before mutation
+
+When no branch-isolated workstream is selected and historical root/default state contains a live managed-change obligation, migration itself outranks review, Research, Execution Prep and Execution. Do not resume or normalize the root/default board in place.
+
+1. Read the root `implementation/TASK_BOARD.yaml` plus only its exact current contracts, review/Research pointers, evidence/results, handoff and Git state needed to identify the live obligation. This discovery is read-only with respect to root/default execution state.
+2. Establish one exact migration identity. First recover any existing branch/manifest/PR that durably represents this same obligation. Otherwise use neutral `kind: change` identity and the deterministic `change-<slug>` / `work/<slug>` collision rules from `INTAKE.md#Workstream identity and naming`. A pre-existing non-target branch may be adopted as the workstream branch only when exact Git + durable state prove it owns this same obligation and no conflicting manifest exists; ambiguity fails closed.
+3. Ensure the exact workstream branch exists **before** writing migrated managed state. Materialize/reconcile one `WORKSTREAM.yaml` plus one namespaced `TASK_BOARD.yaml` on that branch, with exact manifest `id/branch/task_board` ↔ Task Board `workstream_id/execution_ref.branch` binding. Do not create a second lane when a partial migration already materialized the same identity.
+4. Migrate only continuation truth required for coherent recovery: current plan/milestone identity, live/non-terminal Cards and required dependency results, exact Card/milestone review fields, implementation/recovery Research pointer, result/evidence/test pointers, blockers and execution provenance. Preserve immutable historical contracts/evidence/handoffs by exact reference when they remain valid; do not rewrite or duplicate completed history merely for layout.
+5. If historical root `PROJECT.md` also carries an unreconciled pre-execution exploratory/Research locator for this same obligation, migrate that exact locator into the selected manifest `routing.*` ownership defined by M02-T01. Do not mirror lifecycle fields and do not leave two active pointers.
+6. Persist concise migration provenance when the mapping is non-trivial, including the exact source root/default state ref and the resulting workstream manifest/Task Board ref. The source root/default board remains historical input and is not cleared, advanced or used as a mutable owner merely to mark migration complete.
+7. Read back the workstream branch and require successful manifest ↔ Task Board binding plus exact preservation of every still-live review/Research/result dependency. Only after that readback is GREEN may the namespaced Task Board become the selected mutable execution state and normal recovery priority above apply.
+8. For a long-lived legacy branch whose root-state files would overwrite independently evolved target-side historical/default files at final integration, apply `REPOSITORY.md#Legacy branch → branch-isolated finalization migration` after active ownership is namespaced. Any later root-file reconciliation there is conflict-avoidance/history preservation, never resumption of root/default execution.
+9. If source identity, branch ownership, current live obligation or migration mapping remains ambiguous, preserve both source and any partial target state and fail closed. Ask for user input only when exact durable/Git evidence cannot resolve the ambiguity.
+
+Crash rule: before step 7 succeeds, retry/recover the same deterministic migration identity without mutating the source root board. After step 7 succeeds, never route the historical root board as active state; recover the namespaced workstream instead.
 
 ## In-progress Card
 
