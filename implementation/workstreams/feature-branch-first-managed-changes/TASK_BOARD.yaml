@@ -6,7 +6,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "2abc8ddd2d083fe66e4ba95369cbe2636e610ff5"
+  head: "9aa1af79e4e3634c81626fc04fc6c9a7a6874519"
 
 research_obligation: null
 
@@ -136,13 +136,13 @@ cards:
     executor: chatgpt
     depends_on: ["M02-T02"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M03-T01.md"
-    review_state: red
-    review_subject: "2abc8ddd2d083fe66e4ba95369cbe2636e610ff5"
-    review_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M03-T01_REVIEW.md"
-    result_commit: "2abc8ddd2d083fe66e4ba95369cbe2636e610ff5"
+    review_state: pending
+    review_subject: "9aa1af79e4e3634c81626fc04fc6c9a7a6874519"
+    review_evidence: null
+    result_commit: "9aa1af79e4e3634c81626fc04fc6c9a7a6874519"
     result_pr: null
     evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M03-T01.md"
-    tests_summary: "GREEN: exact branch readback + committed Codex pre-execution static contract replay PASS 52/52; whole-policy sweep found 0 active root PROJECT exploratory/Research pointers and 0 ChatGPT-only lifecycle imports; manifest-local routing, user-owned promotion, crash-safe Research, Codex Main/Tester ownership, bounded-batch preservation and OpenSpec are coherent; no CI/Python runner pass is claimed."
+    tests_summary: "GREEN after bounded RED correction: focused Codex pre-execution regression module 9/9 PASS and repository unittest discovery 19/19 PASS; in-scope semantic sweep found no active root PROJECT exploratory/Research ownership and no ChatGPT-only lifecycle imports; M03-T02-owned historical/default recovery wording remains explicitly deferred."
 
   - id: "M03-T02"
     title: "Migrate Codex-only execution state and historical-default recovery"
