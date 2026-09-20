@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "4ec2c68b68c282a10f8c5275799d8bcabec1be95"
+  head: "aa2d0e578940bf6cac92d9191a3f37277a0f447b"
 
 research_obligation: null
 
@@ -64,10 +64,10 @@ cards:
     executor: chatgpt
     depends_on: ["M01-T01", "M01-T02"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M01-T03.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "aa2d0e578940bf6cac92d9191a3f37277a0f447b"
     review_evidence: null
-    result_commit: null
+    result_commit: "aa2d0e578940bf6cac92d9191a3f37277a0f447b"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M01-T03.md"
+    tests_summary: "GREEN: exact-subject readback/static boundary checks passed for integrated-root PROJECT semantics, recovery-only historical default state, branch-before-write bootstrap/adoption, policy-local separation, OpenSpec completion and explicit M02/M03/M04 deferrals."
