@@ -17,7 +17,7 @@ intake:
 routing:
   exploratory_scope: null
   research_obligation: null
-  plan_review: null
+  plan_review: planning/reviews/COCO-P1.md
 
 task_board: null
 
@@ -25,7 +25,7 @@ authority:
   requirements: requirements/CODEX_ONLY_CONTINUOUS_ORCHESTRATION.md
   decisions:
     - decisions/ADR_CODEX_ONLY_CONTINUOUS_MAIN_ORCHESTRATION.md
-  plan: null
+  plan: planning/CODEX_ONLY_CONTINUOUS_ORCHESTRATION_MASTER_PLAN.md
 
 review:
   requirement: RECOMMENDED
