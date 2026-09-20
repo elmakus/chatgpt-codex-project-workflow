@@ -9,7 +9,7 @@
 - Acceptance / refresh evidence: `implementation/workstreams/feature-brainstorming-grilling/evidence/M01_FINAL_INTEGRATION_REFRESH_2026-09-20.md`
 - Independent review evidence: `implementation/workstreams/feature-brainstorming-grilling/evidence/M01-T01_REVIEW_2026-09-20.md`
 - Final integration result: pending
-- Pull request: pending
+- Pull request: `#37`
 - Previous handoff: none
 
 ## Achieved state
@@ -20,4 +20,4 @@ The current `main` target is unchanged from the workstream creation base, merge-
 
 ## Next durable step
 
-Open/verify the final-target PR to `main`, re-read the target immediately before merge, integrate only while the refresh/review coverage remains current, then reconcile the actual merge result and terminal target-side package.
+Verify final-target PR `#37` to `main`, re-read the target immediately before merge, integrate only while the refresh/review coverage remains current, then reconcile the actual merge result and terminal target-side package.
