@@ -330,6 +330,7 @@ Do not continue affected work until the owning authority is resolved.
 
 Read:
 - `workflow/chatgpt_only/RECOVERY.md`;
+- `workflow/chatgpt_only/INTAKE.md` only when historical root/default migration must recover/create workstream identity, target/base or dependency topology;
 - selected manifest when branch-isolated;
 - selected Task Board/history source;
 - exact active branch/HEAD/runtime for ordinary pre-integration work, or exact post-merge target package + immutable PR/merge evidence / terminal-unmerged closure package when source-branch existence is no longer required;
