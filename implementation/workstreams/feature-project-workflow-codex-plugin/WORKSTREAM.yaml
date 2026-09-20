@@ -1,6 +1,6 @@
 id: "feature-project-workflow-codex-plugin"
 kind: "feature"
-status: "definition"
+status: "planning"
 
 branch: "feat/project-workflow-codex-plugin"
 base_ref: "cdaf47245e45836917b152904d70807bca355e7d"
@@ -17,9 +17,11 @@ intake:
 task_board: null
 
 authority:
-  requirements: null
-  decisions: []
-  plan: null
+  requirements: "requirements/PROJECT_WORKFLOW_CODEX_PLUGIN.md"
+  decisions:
+    - "decisions/ADR_PROJECT_WORKFLOW_CODEX_PLUGIN_PACKAGING.md"
+    - "decisions/ADR_PROJECT_WORKFLOW_CODEX_PLUGIN_ACTIVATION.md"
+  plan: "planning/PROJECT_WORKFLOW_CODEX_PLUGIN_MASTER_PLAN.md"
 
 review:
   requirement: "RECOMMENDED"
