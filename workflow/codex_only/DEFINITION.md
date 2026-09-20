@@ -82,7 +82,7 @@ Do not hide it in planning as an implementation detail.
 ## Definition workflow
 
 1. Recover the current accepted goal and any existing definition authority.
-2. Read only relevant brainstorming/research/evidence. When the selected policy route exposes a `complete` Research record whose Return target is this Definition subject, treat reconciliation of that exact record as the current obligation regardless of whether its owning pointer is pre-execution PROJECT state or active implementation/recovery state.
+2. Read only relevant brainstorming/research/evidence. When the selected policy route exposes a `complete` Research record whose Return target is this Definition subject, treat reconciliation of that exact record as the current obligation regardless of whether its owning pointer is selected-workstream-manifest pre-execution routing or selected-Task-Board implementation/recovery state.
 3. Separate facts, explicit user choices, requirements, strategic decisions and unresolved questions.
 4. Draft/reconcile canonical requirements.
 5. Create/reconcile accepted decision records for material strategic choices.

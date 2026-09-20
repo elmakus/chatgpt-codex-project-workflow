@@ -56,6 +56,15 @@ class CodexOnlyBranchFirstPreExecutionTests(unittest.TestCase):
             "selected workstream manifest `routing.research_obligation`",
             planning,
         )
+        self.assertIn(
+            "selected-workstream-manifest pre-execution routing",
+            definition,
+        )
+        self.assertIn(
+            "selected-Task-Board implementation/recovery state",
+            definition,
+        )
+        self.assertNotIn("pre-execution PROJECT state", definition)
         self.assertNotIn("PROJECT.md → Active research obligation", definition)
         self.assertNotIn("PROJECT.md → Active research obligation", planning)
 
