@@ -59,7 +59,8 @@ For `chatgpt_only`:
 
 For `codex_only`:
 - genuinely policy-neutral rules still come only from `workflow/common/`, while migrated lifecycle/execution semantics come from `workflow/codex_only/`;
-- Codex Main is the sole shared Task Board/integration-state writer; concrete worker/session/model/profile/invocation/wait/resume/concurrency realization remains owned by `codex_workflow`;
+- a branch-isolated workstream carries only an opaque runtime-policy binding; after coordinator reconstruction/uncertainty, the compact `ORCHESTRATION_KERNEL.md` requires current-context re-bind before policy-dependent worker realization, while the latch itself remains non-durable;
+- Codex Main is the sole shared Task Board/integration-state writer; concrete worker/session/model/profile/invocation/wait/resume/concurrency realization and interpretation of the opaque policy reference remain owned by `codex_workflow`;
 - serial execution remains valid by default, with only finite current-state/JIT-proven bounded Card batches eligible for concurrency;
 - formal independent review is exact-subject/role based: Tester does not repair production, and a qualifying Codex-managed verdict does not require a second normal-ChatGPT review;
 - branch-isolated/default Task Boards, stacked dependencies, target refresh, terminal durable packages and source-branch-deletion safety are policy-local contracts.
