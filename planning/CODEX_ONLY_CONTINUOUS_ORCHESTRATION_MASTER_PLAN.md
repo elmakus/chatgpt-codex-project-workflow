@@ -1,7 +1,7 @@
 # Master Plan — Codex-only continuous orchestration
 
 Plan revision: COCO-P2
-Status: draft
+Status: approved
 Review requirement: RECOMMENDED
 
 ## Authority
