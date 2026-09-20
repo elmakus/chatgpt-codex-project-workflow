@@ -1,12 +1,12 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 workstream_id: "feature-branch-first-managed-changes"
 plan_revision: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md@BF-R3"
-current_milestone: "M02"
+current_milestone: "M03"
 
 execution_ref:
   branch: "feat/branch-first-managed-changes"
   pr: null
-  head: "a3726bf22db1103e1a53c8d6e8256647699b6267"
+  head: "55ac886395fe53d82b01e691e06ef65948001310"
 
 research_obligation: null
 
@@ -31,6 +31,18 @@ milestones:
     implementation_head: "a3726bf22db1103e1a53c8d6e8256647699b6267"
     handoff: "implementation/workstreams/feature-branch-first-managed-changes/handoffs/M02_HANDOFF.md"
     acceptance_evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M02_ACCEPTANCE.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M03:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md#M03--Codex-only-lifecycle-migration"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
     review_state: null
     review_subject: null
     review_evidence: null
@@ -115,3 +127,35 @@ cards:
     result_pr: null
     evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M02-T02.md"
     tests_summary: "GREEN: exact connector-backed static assertion replay PASS 52/52 after bounded regression-test correction; workstream-only active execution, topology-before-branch historical migration, fail-closed binding, review/Research ownership, micro-fix, target-refresh, terminal recovery, historical preservation, task/template surfaces, OpenSpec and policy separation remain coherent; local runner checkout is blocked by DNS, so no CI/Python runner pass is claimed."
+
+  - id: "M03-T01"
+    title: "Migrate Codex-only pre-execution routing to workstream-local state"
+    milestone: "M03"
+    decision_state: accepted
+    execution_status: ready
+    executor: chatgpt
+    depends_on: ["M02-T02"]
+    contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M03-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M03-T02"
+    title: "Migrate Codex-only execution state and historical-default recovery"
+    milestone: "M03"
+    decision_state: accepted
+    execution_status: planned
+    executor: chatgpt
+    depends_on: ["M03-T01"]
+    contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M03-T02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
