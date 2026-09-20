@@ -1,6 +1,8 @@
-# Codex-only default Task Board.
-# M02 formal-review/provenance state is project-level and runtime-identity-free.
-# M03 bounded-parallel state is optional; serial behavior remains valid. Do not add runtime worker/session identity.
+# Historical Codex-only root/default Task Board shape.
+# Recovery/migration compatibility only: do NOT scaffold this template for new or continued managed work.
+# Active Codex-only managed execution uses the exact manifest-bound WORKSTREAM_TASK_BOARD_TEMPLATE.yaml.
+# Existing root/default boards remain readable migration/history input and are not mutated as an active state context.
+# M02 review/provenance and M03 bounded-parallel history stay readable; never add runtime worker/session identity.
 
 project: "<owner/repository>"
 plan_revision: "<R#>"

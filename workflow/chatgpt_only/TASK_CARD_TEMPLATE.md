@@ -2,7 +2,7 @@
 
 - Milestone: `MXX | micro-fix`
 
-> This file is a stable Task Card contract. Mutable execution/review/result state lives only in the selected canonical Task Board resolved by the ChatGPT-only workstream contract; the legacy/default path remains `implementation/TASK_BOARD.yaml`.
+> This file is a stable Task Card contract. Mutable execution/review/result state lives only in the selected manifest-bound workstream Task Board resolved by the ChatGPT-only workstream contract. Historical root/default `implementation/TASK_BOARD.yaml` is recovery/migration input only.
 
 ## Authority slice
 

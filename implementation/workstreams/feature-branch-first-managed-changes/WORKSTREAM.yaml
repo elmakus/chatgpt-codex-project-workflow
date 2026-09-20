@@ -1,0 +1,43 @@
+# Branch-isolated workstream manifest for branch-first managed changes.
+
+id: "feature-branch-first-managed-changes"
+kind: "feature"
+status: "done"
+
+branch: "feat/branch-first-managed-changes"
+base_ref: "808084a4c7989715f7ee4889a31bce28f778d597"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: null
+  record: null
+
+task_board: "implementation/workstreams/feature-branch-first-managed-changes/TASK_BOARD.yaml"
+
+authority:
+  requirements: "requirements/BRANCH_FIRST_MANAGED_CHANGES.md"
+  decisions:
+    - "decisions/ADR_BRANCH_FIRST_MANAGED_CHANGE_LIFECYCLE.md"
+    - "decisions/ADR_WORKSTREAM_LOCAL_ROUTING_STATE.md"
+    - "decisions/ADR_POLICY_LOCAL_BRANCH_FIRST.md"
+  plan: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md"
+
+review:
+  requirement: "RECOMMENDED"
+  state: green
+  subject: "2bb4498e43ed52a222ebe9b76b0ca5ac0d2625ba"
+  evidence: "implementation/workstreams/feature-branch-first-managed-changes/evidence/M04_FINAL_INTEGRATION_REVIEW_2026-09-20.md"
+  covered_by: null
+
+branch_cleanup:
+  state: null
+  ref: null
+  verified_head: null
+  evidence: null
+
+pr: 39
+result: "82f1bc386fc54d7e6b743a3d90352e9679e9ed4e"

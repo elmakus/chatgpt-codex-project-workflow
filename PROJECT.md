@@ -6,7 +6,7 @@
 - Repository: `elmakus/chatgpt-codex-project-workflow`
 - Lifecycle: `active`
 - High-level goal: maintain and evolve the repository-backed Project Workflow contracts used by ChatGPT/Codex project execution.
-- High-level status: `CUBC-P1` terminal-unmerged Codex-only branch-cleanup scope completed and integrated; repository remains active for future workflow evolution.
+- High-level status: branch-first managed-change model is the accepted target for the migrated fixed policies; repository evolution remains active.
 
 ## Execution policy
 
@@ -16,15 +16,17 @@ Changing execution policy requires an explicit user decision.
 
 ## Canonical authority pointers
 
-- Active exploratory scope: `none`
-- Active research obligation: `none`
-- Requirements: `requirements/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP.md`
-- Approved plan: `planning/CODEX_ONLY_UNMERGED_BRANCH_CLEANUP_MASTER_PLAN.md`
-- Task Board: `implementation/TASK_BOARD.yaml`
-- Latest cumulative handoff: `project-handoffs/CUBC-M01_HANDOFF.md`
+- Requirements: `requirements/BRANCH_FIRST_MANAGED_CHANGES.md`
+- Approved plan: `planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md`
+- Workstream root: `implementation/workstreams/` (non-live discovery convention; never a mutable active-workstream registry)
+- Historical/default Task Board: `implementation/TASK_BOARD.yaml` (recovery/migration navigation only; never a new/continued-work mutable destination)
+- Historical/default cumulative handoff: `project-handoffs/CUBC-M01_HANDOFF.md` (recovery/history navigation only; branch-isolated handoffs are selected through each workstream Task Board)
 - Accepted decisions index / key pointers:
   - `decisions/ADR_CHATGPT_ONLY_BRANCH_ISOLATED_WORKSTREAMS.md`
   - `decisions/ADR_CODEX_ONLY_TERMINAL_UNMERGED_BRANCH_DELETE.md`
+  - `decisions/ADR_BRANCH_FIRST_MANAGED_CHANGE_LIFECYCLE.md`
+  - `decisions/ADR_WORKSTREAM_LOCAL_ROUTING_STATE.md`
+  - `decisions/ADR_POLICY_LOCAL_BRANCH_FIRST.md`
 
 ## Workflow
 
@@ -33,8 +35,10 @@ Changing execution policy requires an explicit user decision.
 
 ## Context note
 
-This file is a high-level router/policy/index, not live execution state.
+This file is a high-level integrated-project router/policy/index, not live workstream execution or pre-execution routing state.
 
-The current project uses the legacy/default Task Board path for its own active implementation state. Branch-isolated workstreams created by the multi-workstream feature use their own validated manifests and Task Boards under the active ChatGPT-only workflow contract.
+Under the migrated fixed-policy branch-first model, active managed-change identity/routing belongs to the exact selected workstream manifest and its pointed artifacts; mutable Card/milestone execution belongs to that manifest-selected Task Board. Active exploratory, pre-execution Research and plan-review locators must not be mirrored here.
 
-Do not record current milestone/card, assigned executor, active branch/HEAD, checkpoint, current OpenSpec or blocker status here. Read the canonical Task Board selected by the active ChatGPT-only state context for mutable execution state.
+Historical/default Task Board and handoff pointers above are retained only so repositories and completed history that predate branch-first remain recoverable. Their presence does not authorize new or continued managed mutation there.
+
+Do not record current milestone/card, assigned executor, active branch/HEAD, checkpoint, current OpenSpec, blocker status, active workstream list, workstream-local routing locators or workstream review state here.
