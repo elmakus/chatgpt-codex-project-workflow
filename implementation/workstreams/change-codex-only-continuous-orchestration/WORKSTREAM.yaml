@@ -1,6 +1,6 @@
 id: "change-codex-only-continuous-orchestration"
 kind: "change"
-status: "in_progress"
+status: "review"
 
 branch: "work/codex-only-continuous-orchestration"
 base_ref: "ce3cf3fc80b923ad26b77d9ac66fb3db5ad31f5f"
