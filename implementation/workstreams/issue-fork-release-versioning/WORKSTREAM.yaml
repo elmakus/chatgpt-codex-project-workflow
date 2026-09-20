@@ -1,0 +1,40 @@
+# Branch-isolated issue workstream for fork release version lineage.
+
+id: "issue-fork-release-versioning"
+kind: "issue"
+status: "discovery"
+
+branch: "fix/fork-release-versioning"
+base_ref: "f3cdb60367da3e978397409b51c37faa181d613f"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: "active"
+  record: "implementation/workstreams/issue-fork-release-versioning/INTAKE.md"
+
+task_board: null
+
+authority:
+  requirements: null
+  decisions: []
+  plan: null
+
+review:
+  requirement: null
+  state: null
+  subject: null
+  evidence: null
+  covered_by: null
+
+branch_cleanup:
+  state: null
+  ref: null
+  verified_head: null
+  evidence: null
+
+pr: null
+result: null
