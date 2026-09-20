@@ -1,0 +1,42 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "feature-brainstorming-grilling"
+plan_revision: "BGR-P2"
+current_milestone: "M01"
+
+execution_ref:
+  branch: "feat/brainstorming-grilling"
+  pr: null
+  head: null
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md#M01--integrate-dependency-aware-grilling-into-brainstorming"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Integrate dependency-aware grilling into Brainstorming"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: []
+    openspec_change: "openspec/changes/brainstorming-grilling"
+    contract: "implementation/workstreams/feature-brainstorming-grilling/cards/M01-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
