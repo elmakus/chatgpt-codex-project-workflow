@@ -8,7 +8,7 @@
 - Pre-merge target baseline: `f3cdb60367da3e978397409b51c37faa181d613f`
 - Acceptance / refresh evidence: `implementation/workstreams/feature-branch-first-managed-changes/evidence/M04_FINAL_INTEGRATION_REFRESH_2026-09-20.md`
 - Independent final-integration review: **GREEN** — `implementation/workstreams/feature-branch-first-managed-changes/evidence/M04_FINAL_INTEGRATION_REVIEW_2026-09-20.md`
-- Pull request: pending
+- Pull request: `#39`
 - Final integration result: pending
 - Previous handoff: `implementation/workstreams/feature-branch-first-managed-changes/handoffs/M03_HANDOFF.md`
 
