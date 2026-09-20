@@ -2,9 +2,9 @@
 
 Plan revision: COCO-P1
 Review requirement: RECOMMENDED
-Review state: in_progress
+Review state: red
 Review subject: 014ddad3969c36c81edd18e13068ba1ddca5362b
-Review evidence: none
+Review evidence: RED — the exact COCO-P1 subject is incomplete against COCO-R1 and COCO-R7. Current `main` `workflow/codex_only/PLANNING.md` still lists `coordinating-context refresh boundaries only when materially useful` as valid Master Plan content, so active codex-only planning authority can still schedule coordinator hygiene as a workflow boundary. COCO-P1 does not include `workflow/codex_only/PLANNING.md` in planned work and its verification strategy does not cover that contract. This is a bounded plan-only defect: correct the plan with a new revision that explicitly reconciles/removes that planning allowance and adds regression coverage preventing coordinator Context Health/FRESH/hygiene stop semantics from re-entering through Planning. Approved requirements/ADR remain sufficient; no Definition reopening is required.
 
 ## Reviewed artifact
 
