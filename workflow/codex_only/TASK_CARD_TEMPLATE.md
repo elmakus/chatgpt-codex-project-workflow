@@ -2,7 +2,7 @@
 
 - Milestone: `<MXX>`
 
-> Stable Codex-only Task Card contract. Mutable execution/review/result state belongs to the selected canonical Task Board.
+> Stable Codex-only Task Card contract. Mutable execution/review/result/batch state belongs only to the selected manifest-bound workstream Task Board. Historical root/default `implementation/TASK_BOARD.yaml` is recovery/migration input only.
 
 ## Authority slice
 
