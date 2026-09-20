@@ -6,7 +6,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/project-workflow-codex-plugin"
   pr: null
-  head: "6e16ba11293bbdb7bbc8d96167e8280273d77304"
+  head: "54e142f46571db110a155e0b1efdf5c7afcdfac3"
 
 research_obligation: null
 
@@ -89,10 +89,10 @@ cards:
       - "M02-T01"
     openspec_change: null
     contract: "implementation/workstreams/feature-project-workflow-codex-plugin/cards/M03-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "54e142f46571db110a155e0b1efdf5c7afcdfac3"
     review_evidence: null
-    result_commit: null
+    result_commit: "54e142f46571db110a155e0b1efdf5c7afcdfac3"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-project-workflow-codex-plugin/evidence/M03-T01-lifecycle-intake-2026-09-20.md"
+    tests_summary: "GREEN implementation/verification subject 54e142f46571db110a155e0b1efdf5c7afcdfac3 over production package 6e16ba11293bbdb7bbc8d96167e8280273d77304. Current Codex 0.155.0-alpha.9.2: enabled ordinary prompt PW_ACTIVE; matched control PW_INACTIVE; same-thread resume PW_RESUME_ACTIVE; native ContextCompaction completed and post-compaction bootstrap returned PW_COMPACT_ACTIVE; progressive-disclosure trace remained bounded; #feature/#issue routed to Intake while explicit Skill arguments did not, selecting #feature/#issue as supported intake syntax; exact package regression 14/14 GREEN. All mutable runtime state was disposable; no live Codex marketplace/plugin/config/trust state was changed."
