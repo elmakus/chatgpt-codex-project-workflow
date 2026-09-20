@@ -1,0 +1,41 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "issue-fork-release-versioning"
+plan_revision: "planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md@FRV-P2"
+current_milestone: "M01"
+
+execution_ref:
+  branch: "fix/fork-release-versioning"
+  pr: null
+  head: null
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md#milestone-m01--canonical-fork-release-contract-and-publication-enforcement"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Implement canonical fork-release versioning contract"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: []
+    contract: "implementation/workstreams/issue-fork-release-versioning/cards/M01-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
