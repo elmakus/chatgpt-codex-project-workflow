@@ -29,7 +29,7 @@ authority:
 
 review:
   requirement: RECOMMENDED
-  state: pending
+  state: in_progress
   subject: "3d4384fd708937bdea149bdd0bb6230f7a1eaebc"
   evidence: null
   covered_by: null
