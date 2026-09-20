@@ -25,7 +25,7 @@ milestones:
 
   M02:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/BRANCH_FIRST_MANAGED_CHANGES_MASTER_PLAN.md#M02--ChatGPT-only-lifecycle-migration"
     checkpoint: null
     implementation_head: null
@@ -88,7 +88,7 @@ cards:
     title: "Migrate ChatGPT-only pre-execution routing to workstream-local state"
     milestone: "M02"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on: ["M01-T03"]
     contract: "implementation/workstreams/feature-branch-first-managed-changes/cards/M02-T01.md"
