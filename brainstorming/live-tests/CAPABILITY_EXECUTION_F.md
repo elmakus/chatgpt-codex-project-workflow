@@ -3,27 +3,21 @@
 Experiment: completed-Card cross-runtime takeover
 Execution state: active
 Execution subject: 6e580867cc3090ef59efbede19d8e6fb17cb8c31:brainstorming/live-tests/CAPABILITY_EXECUTION_F_SUBJECT.md
-Active execution:
-  id: X01
-  state: active
-  member:
-    card_id: T01
-    state: active
-    result_ref: null
-Execution evidence: none
+Active execution: null
+Execution evidence: T01 accepted; exact A.txt content verified in result commit 8d7a8224f85eb0e8c86c48029886af7d049fda0d.
 
 ## Synthetic Task Board
 
 ```yaml
 cards:
   - id: T01
-    execution_status: in_progress
+    execution_status: done
     depends_on: []
-    result_ref: null
-    evidence: null
+    result_ref: 8d7a8224f85eb0e8c86c48029886af7d049fda0d
+    evidence: execution-f/A.txt exists with exact required content; acceptance verified.
 
   - id: T02
-    execution_status: planned
+    execution_status: ready
     depends_on: [T01]
     result_ref: null
     evidence: null
