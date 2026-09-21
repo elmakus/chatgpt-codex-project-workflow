@@ -1794,6 +1794,335 @@ The same contract supports:
 No Definition promotion is authorized by this conclusion.
 
 
+### Post-implementation Independent Review audit — current main `7aa7512ead67a86256089d1af0171e2e655e700d`
+
+No review workflow change or live test is authorized yet. This section records the current-state audit and a proposed common target for discussion.
+
+#### Current common semantics already shared
+
+Both fixed-policy review routes already agree on the important project-level rules:
+
+- REQUIRED and RECOMMENDED reviews are real completion gates once activated;
+- one review judges one exact immutable subject;
+- the reviewer must be independent from production of that exact subject;
+- reviewer must not repair/mutate the subject while judging it;
+- verdict is GREEN or RED with durable evidence;
+- GREEN does not itself mark a Card `done`; Execution performs deterministic finalization after verifying the result still equals the GREEN subject;
+- RED preserves the reviewed subject/evidence and routes deterministic correction according to authority:
+  - bounded L1/L2 implementation correction -> Execution Prep/Execution;
+  - plan-only correction -> Planning;
+  - accepted authority change -> Definition;
+  - missing evidence -> Research;
+  - unresolved user/authorization/runtime-input gate -> real stop;
+- a changed corrected result is a new immutable review subject;
+- runtime/reviewer loss must not invent a new project review attempt when subject is unchanged;
+- workstream final-integration review is a distinct gate from Card/milestone review and may reuse an already-independent stronger verdict only when exact subject + complete acceptance coverage are proven.
+
+These are common Project Workflow semantics, not product behavior.
+
+#### Current ChatGPT-only realization
+
+`workflow/chatgpt_only/REVIEW.md` hardcodes:
+- a fresh normal ChatGPT chat as reviewer;
+- implementing chat cannot review its own subject;
+- fresh-review handoff/STOP when a new independent reviewer is required.
+
+Card/milestone review state is flat:
+
+```yaml
+review_state: pending | in_progress | green | red
+review_subject: <exact subject>
+review_evidence: <pointer>
+```
+
+This expresses the current attempt but has no explicit append-only attempt ledger.
+
+The current ChatGPT state contract says a corrected subject receives a new review, but the flat mutable fields do not themselves preserve prior RED/GREEN attempt lineage.
+
+#### Current Codex-only realization
+
+`workflow/codex_only/REVIEW.md` hardcodes:
+- `Codex Main` as state writer;
+- independent `Tester` as reviewer role;
+- `Executor` as implementation owner;
+- orchestration pre-dispatch binding.
+
+Card/milestone review state is richer and append-only:
+
+```yaml
+review:
+  requirement: REQUIRED
+  current_attempt: R01
+  attempts:
+    - id: R01
+      state: pending
+      subject: <exact immutable subject>
+      reviewer_role: tester
+      evidence: null
+```
+
+Useful semantics:
+- stable attempt IDs;
+- one immutable subject per attempt;
+- prior attempts append-only;
+- corrected result appends a new attempt;
+- reviewer replacement for the unchanged subject does not create a new attempt;
+- terminal verdict requires durable evidence.
+
+The worker-role fields are runtime leakage, but the append-only attempt model is stronger project semantics and should not be lost.
+
+#### Workstream final-integration drift
+
+Both current workstream manifests use a flat final-review gate:
+
+```yaml
+review:
+  requirement: ...
+  state: pending | in_progress | green | red | null
+  subject: ...
+  evidence: ...
+  covered_by: ...
+```
+
+This is sufficient for one current gate but is weaker than the Codex Card/milestone attempt ledger when a final review is RED, correction produces a changed integrated subject, and the next review must preserve earlier verdict lineage.
+
+Working direction: final-integration review should also preserve append-only gate-attempt history rather than overwrite the prior subject/evidence.
+
+#### Proposed common review owner model
+
+Every post-implementation review owner should use the same append-only project semantics:
+- Card;
+- milestone/checkpoint;
+- workstream final-integration gate.
+
+Conceptual common shape:
+
+```yaml
+review:
+  requirement: REQUIRED | RECOMMENDED | none
+  current_attempt: R02
+  attempts:
+    - id: R01
+      mode: independent_review
+      state: red
+      subject: <immutable subject 1>
+      evidence: <exact durable evidence>
+      independence:
+        requirement: independent_context
+        realization_state: satisfied
+        evidence: <runtime-neutral verification>
+      covered_by: null
+
+    - id: R02
+      mode: independent_review
+      state: pending
+      subject: <immutable subject 2>
+      evidence: null
+      independence:
+        requirement: independent_context
+        realization_state: resolve_independent_context
+        evidence: null
+      covered_by: null
+```
+
+For exact stronger-coverage reuse at the distinct workstream final-integration gate, an append-only terminal entry may use:
+
+```yaml
+mode: coverage_reuse
+state: green
+subject: <exact final integrated subject>
+covered_by: <exact prior independent GREEN verdict>
+evidence: <proof of identical subject + complete acceptance coverage>
+```
+
+No independent-context realization occurs for `coverage_reuse`; the evidence proves why a new review was unnecessary.
+
+This keeps one history model without pretending coverage reuse is a newly executed review.
+
+#### Review-attempt invariants
+
+Target common invariants:
+
+- attempt IDs are stable and never reused;
+- one attempt covers exactly one immutable subject;
+- `current_attempt` points to an existing attempt or is null;
+- at most one attempt for an owner is non-terminal;
+- prior attempts are append-only;
+- `green | red` requires durable evidence;
+- a verdict can only apply if its subject still exactly matches the reviewed durable result;
+- changed implementation/accepted subject creates a new attempt;
+- reviewer/context replacement for the unchanged subject stays in the same attempt;
+- no review attempt may mutate the subject while judging it;
+- no concrete product/worker/model/session identifier is required project state.
+
+This should replace the ChatGPT flat review fields rather than preserve two incompatible state shapes.
+
+#### Independence as a semantic obligation, not a worker name
+
+Common Project Workflow should encode:
+
+`independent context required for this exact subject`
+
+It should not encode:
+- `fresh ChatGPT`;
+- `Tester`;
+- `Executor`;
+- `Codex Main`.
+
+The Stage-7 capability-first realization lifecycle is a good candidate for review attempts:
+
+```text
+resolve_independent_context
+-> awaiting_independent_context
+-> independent_context_active
+-> satisfied
+```
+
+Interpretation:
+- `resolve_independent_context`: review exists, realization method not yet resolved;
+- if runtime has a qualifying independent delegated context, use it;
+- if not, persist `awaiting_independent_context`, emit locator-only fresh-context handoff and STOP;
+- receiving fresh context moves to `independent_context_active` rather than bouncing again;
+- terminal verdict sets realization to `satisfied`.
+
+If a reported available independent-context capability fails to invoke, that is runtime failure/retry/blocker evidence. It MUST NOT be reinterpreted as capability absence and silently downgraded to another transport.
+
+#### Independence proof
+
+Project Workflow needs durable proof that the semantic independence requirement was satisfied, but it does not need concrete session/worker identity.
+
+For an exact implementation subject:
+- the producing context must never review that same subject;
+- when multiple runtime realizations contributed to the subject, the selected reviewer must be independent from all production realizations that materially contributed;
+- runtime owns the concrete identity comparison/mechanism;
+- Project Workflow persists only runtime-neutral evidence/attestation that independence was verified for the exact subject.
+
+For fresh-context fallback, the durable `awaiting_independent_context -> independent_context_active` handoff state provides the same anti-bounce/recovery property validated in Stage 7.
+
+The independence evidence is tied to the immutable subject; changing subject invalidates it.
+
+#### Interaction with Stage 9 active_execution
+
+When one member of a multi-member X becomes `reconciled` and requires review:
+- freeze its exact pending review attempt immediately after canonical result is durable;
+- keep the Card non-terminal;
+- while the same `active_execution` still has unresolved sibling production, do **not** start formal review;
+- close/terminally reconcile X first;
+- then route pending reviews deterministically.
+
+This preserves the useful current Codex rule without any `batch`/`Tester` vocabulary and prevents RED repair from changing canonical production while sibling reconciliation is unfinished.
+
+For serial/direct execution with `active_execution: null` after reconciliation, the pending review obligation may be resolved immediately by the capability-first independent-context resolver.
+
+#### GREEN
+
+For a Card-completion attempt:
+1. persist GREEN/evidence;
+2. independence realization becomes satisfied;
+3. review role ends;
+4. router sends the Card to Execution finalization;
+5. Execution verifies current canonical result still equals GREEN subject;
+6. if equal and DoD is satisfied -> Card `done`;
+7. if result changed -> GREEN does not cover it; freeze a new attempt when review still applies.
+
+For workstream final-integration GREEN:
+- preserve attempt/history;
+- continue Close/integration only while exact covered subject/acceptance remains valid.
+
+A reviewer verdict is not itself a reason for a user-facing stop.
+
+#### RED
+
+For RED:
+1. persist verdict/evidence append-only;
+2. reviewer role ends and never repairs the subject while still reviewer;
+3. classify correction from durable authority/evidence;
+4. route deterministic correction;
+5. preserve prior RED attempt unchanged;
+6. when corrected canonical result exists, append a new pending attempt with a new immutable subject;
+7. resolve independence again for that new subject.
+
+The same chat/context that performs the correction is disqualified from reviewing the corrected subject; the common independent-context resolver handles the next review.
+
+#### Runtime loss and recovery
+
+For `pending`:
+- resume independent-context realization for the same attempt/subject.
+
+For `in_progress` with no complete durable verdict:
+- runtime may resume/replace reviewer realization;
+- reviewer performs the full review of the same immutable subject;
+- do not create a new project attempt.
+
+For durable verdict evidence whose attempt state is stale:
+- verify evidence exactly matches attempt + subject;
+- reconcile state to GREEN/RED;
+- do not rerun review merely to repair bookkeeping.
+
+For GREEN/RED:
+- never replay verdict because the reviewer/runtime disappeared.
+
+#### Proposed removals
+
+From ChatGPT-only review semantics:
+- fixed requirement that the reviewer is a normal ChatGPT product session;
+- product-specific fresh-review wording inside semantic review contract;
+- flat mutable Card/milestone review state.
+
+From Codex-only review semantics:
+- `Codex Main`;
+- `Tester`;
+- `Executor`;
+- `reviewer_role: tester`;
+- `implementation_owner_role: executor`;
+- orchestration pre-dispatch binding as Project Workflow review semantics.
+
+Preserve/promote from both:
+- exact owner and immutable subject;
+- same authority/acceptance surface;
+- independence requirement;
+- no reviewer repair;
+- append-only attempt lineage;
+- durable verdict/evidence;
+- GREEN finalization;
+- RED classification/correction;
+- runtime-loss recovery;
+- workstream exact-coverage reuse.
+
+#### Counterfactual challenge — do we really need append-only attempts everywhere?
+
+A smaller common schema could keep ChatGPT's flat current review state and rely on evidence files/Git history for previous RED/GREEN verdicts.
+
+Rejected as the working direction because:
+- RED -> correction -> recheck is a first-class lifecycle, not forensic Git archaeology;
+- cross-runtime recovery should know current vs historical verdicts directly from canonical state;
+- workstream final-review correction has the same lineage problem as Card review;
+- current Codex state already demonstrates a compact append-only solution.
+
+Therefore append-only attempt history is tentatively preferred for all post-implementation review owners.
+
+#### Proposed validation after user approval
+
+Do not run yet.
+
+**J — cross-runtime GREEN review**
+- runtime/context A produces a durable reviewable Card subject and freezes R01 pending with `resolve_independent_context`;
+- another qualifying independent context reviews exactly R01 and persists GREEN;
+- a later context/runtime finalizes the Card without replaying implementation or review;
+- no product/worker name enters review state.
+
+**K — RED -> repair -> R02 recheck**
+- R01 reviews subject S1 and returns RED;
+- bounded correction produces S2;
+- R01 remains immutable RED;
+- R02 is appended for S2;
+- producing correction context cannot self-review S2;
+- independent R02 returns GREEN;
+- final state preserves both attempts.
+
+A separate coverage-reuse test is only needed if manifest final-integration schema remains materially uncertain after J/K.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
