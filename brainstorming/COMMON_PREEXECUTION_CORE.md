@@ -2528,7 +2528,7 @@ No production workflow module has been changed.
 
 A compact fresh-chat handoff is durable at:
 
-`implementation/workstreams/feature-common-preexecution-core/handoffs/BRAINSTORMING_CHECKPOINT_2026-09-21_M.md`
+`implementation/workstreams/feature-common-preexecution-core/handoffs/BRAINSTORMING_CHECKPOINT_2026-09-21_N.md`
 
 That file is the preferred next-chat start pointer. This Brainstorming record remains canonical exploratory authority.
 
