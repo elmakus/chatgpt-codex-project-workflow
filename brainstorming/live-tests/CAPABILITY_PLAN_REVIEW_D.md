@@ -2,11 +2,11 @@
 
 Experiment: capability-first durable handoff-state live test
 Review requirement: RECOMMENDED
-Review state: pending
+Review state: in_progress
 Review verdict: none
 Review subject: dcdc80769c0b64d4444aa330285a780f8483ec5c:brainstorming/live-tests/CAPABILITY_PLAN_R1.md
 Subject author provenance: live-test-author-context
-Realization state: awaiting_independent_context
+Realization state: independent_context_active
 Review evidence: none
 
 ## Semantic obligation
