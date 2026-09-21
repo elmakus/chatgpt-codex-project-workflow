@@ -20,13 +20,13 @@ cards:
       attempts:
         - id: R01
           mode: independent_review
-          state: pending
+          state: in_progress
           subject: f72d08ae5d4aa8faf06dcedb586bc1618887200c:brainstorming/live-tests/review-k/result.txt
           evidence: null
           independence:
             requirement: independent_context
-            realization_state: resolve_independent_context
-            evidence: null
+            realization_state: independent_context_active
+            evidence: "Fresh independent delegated Tester context invoked; read-only review of exact R01/S1 subject."
           covered_by: null
 ```
 
