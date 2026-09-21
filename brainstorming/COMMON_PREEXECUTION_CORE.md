@@ -472,6 +472,26 @@ PASS criteria for the first context:
 This test specifically targets the capability resolver / automatic handoff generation that live test B did not test.
 
 
+### Live test C — initiating ChatGPT capability resolver PASS
+
+The initiating ChatGPT context was given only the durable pointer `brainstorming/live-tests/CAPABILITY_PLAN_REVIEW_C.md` and was not told which transport branch to choose.
+
+Observed behavior:
+- it recovered the exact obligation and immutable subject from repository state;
+- it recognized that the current context was forbidden to issue GREEN/RED;
+- it determined that no qualifying independent-context mechanism was available in the current runtime;
+- it preserved `Review state: pending` and did not mutate the immutable subject;
+- it emitted a locator-only fresh-context continuation prompt pointing back to the exact review record;
+- it stopped at the user handoff boundary without issuing a verdict;
+- it did not select behavior from product identity or require a concrete worker-role name.
+
+Repository verification after the response confirmed the review record remained `pending` and the immutable subject remained unchanged.
+
+Verdict for the first half of live test C: **PASS** for capability-first absence detection + automatic fresh-context handoff generation.
+
+The second half (fresh context consuming the generated prompt and completing the review) remains to be run if end-to-end confirmation is desired.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
