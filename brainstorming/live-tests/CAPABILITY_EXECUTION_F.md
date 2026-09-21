@@ -3,7 +3,13 @@
 Experiment: completed-Card cross-runtime takeover
 Execution state: active
 Execution subject: 6e580867cc3090ef59efbede19d8e6fb17cb8c31:brainstorming/live-tests/CAPABILITY_EXECUTION_F_SUBJECT.md
-Active execution: null
+Active execution:
+  id: X01
+  state: active
+  member:
+    card_id: T01
+    state: active
+    result_ref: null
 Execution evidence: none
 
 ## Synthetic Task Board
@@ -11,7 +17,7 @@ Execution evidence: none
 ```yaml
 cards:
   - id: T01
-    execution_status: ready
+    execution_status: in_progress
     depends_on: []
     result_ref: null
     evidence: null
