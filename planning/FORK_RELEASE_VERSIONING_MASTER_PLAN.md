@@ -1,7 +1,7 @@
 # Fork Release Versioning — Master Plan
 
 Revision: `FRV-P3`
-Status: `draft`
+Status: `approved`
 Updated: `2026-09-21`
 Supersedes plan revision: `FRV-P2` (approved and implemented through M01)
 Review requirement: `RECOMMENDED`
@@ -238,5 +238,5 @@ Planning audit result: `GREEN`.
 - Review requirement: `RECOMMENDED`
 - Reason: FRV-P3 materially extends externally visible release/update-channel semantics and requirement coverage; independent review is practical.
 - Review record: `planning/reviews/FRV-P3.md`
-- Review state: `pending`
-- Review subject: frozen by the review record after this draft write.
+- Review state: `green`
+- Reviewed subject: `planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md@blob:f9b60df7337231f2d32c4a93875a7c9e340b3dbc`
