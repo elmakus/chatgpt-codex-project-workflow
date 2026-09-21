@@ -1,7 +1,7 @@
 # Branch-isolated workstream manifest.
 id: "change-fork-release-order-latest-alias"
 kind: "change"
-status: "in_progress"
+status: "review"
 
 branch: "work/fork-release-order-latest-alias"
 base_ref: "main"
