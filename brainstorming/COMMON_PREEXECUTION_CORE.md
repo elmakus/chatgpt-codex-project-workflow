@@ -2255,6 +2255,104 @@ Canonical state remains correctly at:
 A genuinely fresh context that did not perform the S2 correction is still required for Phase 3.
 
 
+### Authoritative-state refresh gate — cross-context/recovery entry
+
+The K correction race exposed a distinct portability requirement:
+
+`fresh context != fresh durable repository state`.
+
+A newly opened context can be perfectly independent from prior chat history while still routing from a stale local checkout/worktree. Therefore common Project Workflow recovery/entry must establish current authoritative durable state **before** selecting the next legal obligation.
+
+Target rule:
+
+```text
+new context / takeover / recovery entry
+-> resolve exact selected workstream + authoritative branch/ref
+-> refresh the authoritative durable source
+-> establish exact current authoritative head
+-> reconcile/validate local checkout against that head
+-> read canonical durable workflow state from that head
+-> only then select the legal pending obligation
+```
+
+For a remote-backed Git workstream:
+- fetch/refresh the exact authoritative branch/ref before routing when that ref may have advanced outside the current context;
+- do not infer current workflow state from an unrefreshed local worktree merely because the chat/context itself is fresh;
+- if local state is behind/diverged from authoritative durable state, do not execute the phase implied only by stale local state;
+- if local uncommitted/unpushed state represents an unresolved owned attempt, reconcile that ownership first rather than discarding or replaying it blindly;
+- if safe reconciliation cannot be proven, fail closed to Recovery.
+
+Before publishing a mutable transition, preserve the existing optimistic-concurrency/CAS behavior:
+- write from the exact expected durable base;
+- if push/update is rejected because the authoritative branch advanced, refresh authoritative state and **reroute from the new durable state**;
+- do not blindly retry the stale phase.
+
+The K race demonstrates why both layers are needed:
+1. **pre-routing freshness** prevents unnecessary duplicate phase execution;
+2. **expected-base/CAS publication** remains the final protection against concurrent advancement.
+
+This gate applies at cross-context/takeover/recovery entry or whenever the selected authoritative state may have advanced externally. It does not require a redundant remote refresh before every deterministic role transition performed by the same coordinating context when that context still owns the exact current durable head and no competing writer is permitted.
+
+The gate is common workflow correctness, not a Codex-specific fix.
+
+### Live review test K — lifecycle PASS, runtime-neutral evidence defect exposed
+
+Phase 3 is now durable at:
+
+`729c17e48b688e00394f0428bf62259fe6e5839d`
+
+Verified final lifecycle:
+- experiment `pending_r02 -> completed`;
+- R02 `pending -> green`;
+- exact S2 subject remains
+  `073f6d569c44d609de5eee3bf2bf1e550ca74938:brainstorming/live-tests/review-k/result.txt`;
+- R01 remains immutable RED for S1;
+- T01 remains `in_progress` as intended by this test;
+- Phase 3 did not finalize the Card.
+
+Therefore the **review lifecycle objective passes**:
+```text
+R01 RED(S1)
+-> bounded correction S2
+-> append R02(S2)
+-> independent R02 GREEN
+```
+
+The append-only attempt model and correction-context self-review prohibition are validated.
+
+However, R02 durable independence evidence contains concrete runtime telemetry:
+- the role label `tester`;
+- a concrete session UUID;
+- a concrete invocation UUID.
+
+This violates the intended stronger runtime-neutral Project Workflow boundary even though the schema itself did not require those fields.
+
+Therefore the precise K result is:
+
+- **append-only review / RED-repair-recheck semantics: PASS**;
+- **strict runtime-neutral durable evidence: FAIL / defect exposed**.
+
+The common contract should be strengthened from:
+
+`runtime identity is not required project state`
+
+to:
+
+`concrete runtime worker/role/model/session/invocation/worktree identity MUST NOT be persisted in canonical Project Workflow state or canonical review evidence merely to prove independence`.
+
+Allowed canonical independence evidence should state only semantic facts needed for project recovery, for example:
+- `independence: verified`;
+- the exact immutable subject;
+- that the reviewer did not materially produce/repair that subject;
+- that review was read-only with respect to the subject.
+
+Concrete runtime telemetry may remain in runtime-owned logs when useful for diagnostics, but it is not Project Workflow authority and must not be copied into canonical review state.
+
+This also strengthens the earlier K race invariant:
+- a context that materially produced/repaired S2 is disqualified from R02 regardless of whether its competing local commit became canonical;
+- this semantic fact may be attested without persisting the context/session identity itself.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
