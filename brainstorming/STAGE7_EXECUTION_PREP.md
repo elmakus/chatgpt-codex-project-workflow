@@ -290,3 +290,24 @@ This preserves authorization semantics where explicitly required without adding 
 - READY is not blocked merely because work is deployment/live-write;
 - missing facts route to Research;
 - micro-fix reuses the same Execution Prep semantics in a smaller shape.
+
+
+## Grilling decision — front-load knowable decomposition
+
+User clarified the intended operating model:
+
+- Strategic Planning is expected to be authored by a stronger planning model/runtime.
+- Later orchestration/JIT continuation may use a different, lighter coordinating model/runtime.
+- The workflow should therefore preserve as much useful planning/decomposition work as can be known reliably up front, rather than intentionally deferring easy-to-specify work to later JIT.
+
+Stage-7 direction:
+
+1. Planning should express the full milestone/workstream structure and planned work packages as far as they are meaningfully knowable.
+2. Execution Prep should materialize **all currently well-defined useful Task Cards**, not only the immediately next Card.
+3. A Card that is already bounded enough to specify may exist in `planned` even if its dependencies are not yet complete.
+4. When those dependencies become satisfied, the Card may become `ready` without requiring re-planning.
+5. Only work whose exact executable scope genuinely depends on predecessor evidence remains as a durable planned-work/JIT trigger instead of a speculative Card.
+6. Later orchestration may split/merge/reorder/refine only not-yet-started Cards inside accepted authority when new evidence makes that useful.
+7. The objective is to front-load high-quality reasoning without freezing details that are genuinely unknowable.
+
+This preserves the existing ChatGPT-only planned-work/JIT model while making explicit that JIT is a precision mechanism, not a reason to defer work that the planner can already specify well.
