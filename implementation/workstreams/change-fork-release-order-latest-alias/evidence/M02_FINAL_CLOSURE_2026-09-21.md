@@ -7,7 +7,7 @@
 - Final integration result: `b27677862e6fe5984979c2072acf2e83a3787ad0`
 - Source workstream branch: `work/fork-release-order-latest-alias`
 - Source branch state after merge: automatically deleted by GitHub
-- Target-side closure PR: pending
+- Target-side closure PR: `#55`
 
 ## Exact target readback
 
