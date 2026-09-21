@@ -327,3 +327,19 @@ This keeps the ordinary Card lifecycle small:
 `planned -> ready -> in_progress -> done/blocked`
 
 with review-related non-terminal behavior handled by the review contract rather than another preparation status.
+
+
+## Grilling decision — preserve current L2/JIT correction boundary
+
+Current `chatgpt_only` and `codex_only` already implement the desired boundary:
+
+- Execution Prep / JIT may create, split, merge, reorder, replace and refine **not-yet-started** Cards from durable predecessor evidence;
+- this does not require Strategic Planning when the changes remain inside accepted requirements, architecture/decisions, milestone invariants/outcome and authorization boundaries;
+- return to Planning only when the evidence requires changing the approved execution strategy, milestone structure/order or future milestone outcomes while Definition remains valid;
+- return to Definition when accepted product/system authority itself must change.
+
+User direction: preserve this proven behavior in V2 rather than redesigning it.
+
+User also accepted:
+- no extra `prepared` Card status between `ready` and `in_progress`;
+- Stage 8 revalidates current truth before actual start and routes stale work back to JIT/Recovery only when the change is material.
