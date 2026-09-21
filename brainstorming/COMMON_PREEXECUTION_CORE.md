@@ -589,6 +589,143 @@ Conclusion:
 Bounded challenge still open: determine whether `realization_state` belongs as a reusable generic common obligation primitive or whether each obligation type should own an equivalent lifecycle locally. Avoid introducing a generic abstraction unless at least one additional obligation demonstrates the same state shape.
 
 
+### Stage 8 audit — Execution Prep / JIT (current main `7aa7512ead67a86256089d1af0171e2e655e700d`)
+
+No workflow change is authorized yet. This is a current-state audit plus a proposed direction for discussion.
+
+#### Current ChatGPT-only shape
+
+`workflow/chatgpt_only/EXECUTION_PREP.md` contains the richer common preparation lifecycle:
+- accepted-authority / approved-plan or qualified-micro-fix preconditions;
+- branch-isolated workstream + manifest-bound Task Board ownership;
+- full crash-safe Research return/reconciliation protocol;
+- Execution Prep → Research handoff;
+- qualified micro-fix materialization;
+- JIT decomposition and deferred-Card triggers;
+- exact authority slices / must-preserve constraints;
+- bounded scope, acceptance, tests, external readback, review classification and OpenSpec;
+- incremental L2/JIT refinement;
+- authority/evidence/Git/handoff rules;
+- automatic return to router after preparation.
+
+It also encodes runtime-specific serial behavior:
+- preparation step 16 sets **exactly the next eligible Card** `ready`;
+- `ChatGPT is the fixed executor`;
+- no executor/capability selection;
+- downstream `STATE.md` makes more than one Card `in_progress` invalid.
+
+Its Task Card contract has no concurrency-safety metadata.
+
+#### Current Codex-only shape
+
+`workflow/codex_only/EXECUTION_PREP.md` shares the basic Card/JIT principles but compresses several common lifecycles (especially Research/micro-fix detail) and adds an M03 bounded-parallel scheduler layer:
+- optional Card `parallel_safe`, `write_scope`, `exclusive_resources`;
+- mark next executable Card(s) READY;
+- normalize write/resource claims;
+- greedily build a compatible READY set;
+- resolve one exact integration base;
+- ask runtime whether isolated mutable workspaces exist;
+- freeze stable batch/lane IDs (`B01`, `L01`, ...);
+- mark batch members `in_progress` before runtime launch;
+- persist batch membership/base/history in Task Board;
+- revalidate safety immediately before launch;
+- prepared-batch abandonment/recovery semantics.
+
+It also persists semantic role wording such as `implementation_owner_role: executor`.
+
+#### Core semantic mismatch
+
+Current ChatGPT `READY` partly means “the one Card this serial runtime should execute next”. Current Codex `READY` can represent several simultaneously executable Cards.
+
+That makes readiness depend on runtime scheduling capability, which conflicts with cross-runtime portability.
+
+Proposed invariant:
+
+`READY = this Card is legally executable now from project authority/dependencies/prerequisites.`
+
+Runtime selection is separate:
+
+`SELECTED FOR EXECUTION = the current runtime chose this READY Card now.`
+
+For example, if T01 and T02 have no dependencies and T03 depends on both, common durable state after preparation should be:
+- T01 READY
+- T02 READY
+- T03 blocked/planned behind dependencies
+
+A serial runtime may execute T01 then T02. A concurrency-capable runtime may execute T01+T02 concurrently. Neither runtime should rewrite project readiness merely because of its capability surface.
+
+#### Proposed common Stage-8 ownership
+
+A common `EXECUTION_PREP.md` should own:
+- accepted authority / plan / micro-fix preconditions;
+- exact selected workstream + canonical Task Board;
+- Research return/handoff/reconciliation;
+- JIT decomposition and durable triggers;
+- Task Card creation/refinement for not-yet-started work;
+- exact dependencies and authority slices;
+- included/excluded scope;
+- acceptance/tests/readback;
+- review requirement;
+- OpenSpec candidate handling;
+- requirement coverage and strategic-boundary checks;
+- marking **all currently executable Cards READY**;
+- automatic return to routing/execution when at least one READY Card exists and no real gate intervenes.
+
+It should not own:
+- product identity;
+- fixed executor names;
+- concrete worker-role names;
+- capability inventory by product;
+- batch/lane IDs;
+- worker/worktree allocation;
+- concrete runtime concurrency selection;
+- pre-launch runtime worker dispatch.
+
+#### Concurrency-safety metadata proposal
+
+Some project-level safety facts should remain portable because they are useful regardless of which runtime later executes the Card.
+
+Candidate optional Card metadata:
+- bounded repository `write_scope`;
+- `exclusive_resources` for non-path conflicts.
+
+These are correctness/ownership facts, not worker identities.
+
+Open design choice:
+- retain an explicit neutral opt-in such as `concurrency_safe: true`; or
+- treat complete valid concurrency-safety metadata as the opt-in and remove the boolean.
+
+Recommended direction for discussion: keep the metadata optional and JIT. Absence never blocks serial execution. Do not force every Card to predict scopes that are not useful/knowable. A runtime considering concurrency may use only Cards with a complete safety proof.
+
+The current Codex-specific `parallel_safe` name and scheduler semantics need not survive as-is.
+
+#### Batch mechanics boundary
+
+Current Codex Execution Prep freezes `Bxx/Lxx` batches before Execution. Proposed Stage-8 commonization should remove that scheduler action from Execution Prep.
+
+Execution Prep should end with a truthful READY set plus optional concurrency-safety facts. The current runtime decides how many READY Cards to select.
+
+Exact durable state needed after actual concurrent execution starts (integration base, concurrent attempts, partial results, recovery) belongs to the Stage-9 Execution/State audit; do not prematurely classify all of it as runtime-only because some may be required for crash recovery and cross-runtime takeover.
+
+#### Existing common semantics to prefer
+
+The ChatGPT-only Execution Prep currently has the more complete common JIT/Research/micro-fix lifecycle and should be the semantic baseline for commonization. The Codex-only parallel-safety ideas should be selectively merged into that baseline rather than replacing it.
+
+Task Card commonization should similarly start from the richer ChatGPT Card authority/JIT contract and add only runtime-neutral optional concurrency-safety facts from Codex.
+
+#### Downstream issues intentionally deferred to Stage 9
+
+The following are visible now but should not be solved as part of Stage 8:
+- ChatGPT `executor: chatgpt` provenance;
+- Codex `implementation_owner_role: executor`;
+- whether multiple `in_progress` Cards are common-valid state;
+- exact durable concurrent-attempt/batch/integration provenance;
+- takeover while runtime workers are actively executing;
+- runtime-specific recovery/resume state.
+
+Those belong to Execution/State because they arise only after a READY Card is actually selected/launched.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
