@@ -2353,6 +2353,68 @@ This also strengthens the earlier K race invariant:
 - this semantic fact may be attested without persisting the context/session identity itself.
 
 
+### Live-test harness contamination finding — current Project Workflow still wraps the experiment
+
+The live-test prompts begin with:
+
+`Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow`
+
+while the repository bootstrap still says current workflow `main` is authoritative and routes into the existing fixed-policy modules. Therefore the live tests are not executing the proposed common contract in a vacuum.
+
+Current old-policy behavior can influence the experiment before/around the synthetic record.
+
+Verified examples from current `main`:
+- root `CHATGPT.md` says current workflow `main` is authoritative and routes through the selected fixed-policy namespace;
+- `workflow/codex_only/REVIEW.md` explicitly uses `Codex Main`, `Tester`, `Executor`, semantic reviewer-role terminology and the old orchestration gate;
+- current Recovery does not yet impose the newly proposed mandatory authoritative-remote refresh before routing a fresh/takeover context.
+
+Consequences for interpreting J/K and earlier live tests:
+
+1. **Runtime-role/evidence leakage**
+   - the appearance of `Tester` and concrete session/invocation telemetry in K is likely influenced by the currently active Codex-only review/runtime contract;
+   - it is evidence that the old workflow/harness can contaminate canonical live-test evidence;
+   - it is NOT clean evidence that the proposed common review contract itself would choose those fields if implemented natively.
+
+2. **Stale local durable state on fresh context**
+   - a new chat being fresh does not imply its checkout was refreshed;
+   - current old workflow does not contain the new explicit pre-routing authoritative-state refresh gate;
+   - therefore the K duplicate Phase-2 attempt is evidence of a gap in the currently active wrapper/recovery behavior and motivates the new common gate, but must not be described as a failure of the not-yet-implemented common contract.
+
+3. **What remains valid**
+   - the durable state-machine transitions exercised by the synthetic records remain useful evidence because each test record explicitly constrained legal phases and STOP boundaries;
+   - F/G/H/I/J/K still demonstrate whether agents can consume those runtime-neutral states correctly once they read the intended record;
+   - incidental old-policy vocabulary/telemetry must be separated from the semantic state-transition result.
+
+#### Stronger isolation rule for future live tests
+
+Future capability-first live-test prompts should explicitly establish an experimental authority boundary:
+
+- use the installed/current Project Workflow only for safe repository/bootstrap mechanics;
+- for the tested obligation, the exact durable live-test record is the authoritative semantic contract;
+- when an existing `workflow/chatgpt_only/*` or `workflow/codex_only/*` rule conflicts with the live-test record's synthetic common contract, the live-test record wins **for that isolated experiment only**;
+- do not import fixed-policy worker names, product identity, state schema or review/execution realization rules unless the live-test record explicitly references them;
+- normal repository safety, branch ownership, Git integrity and explicit STOP boundaries still apply.
+
+Suggested prompt prefix:
+
+```text
+Użyj Project Workflow z elmakus/chatgpt-codex-project-workflow do bezpiecznego bootstrapu repozytorium i operacji Git.
+To izolowany live test projektowanego common contractu. Dla testowanej obligation exact durable live-test record jest nadrzędnym kontraktem semantycznym i zastępuje sprzeczne reguły z workflow/chatgpt_only/* lub workflow/codex_only/* wyłącznie w granicach tego eksperymentu. Nie importuj z fixed-policy modules nazw produktów/workerów, state shape ani realization behavior, jeśli durable record ich jawnie nie wymaga.
+```
+
+This does not promote the proposed common contract to production authority. It is only test-harness isolation so the experiment measures the candidate semantics rather than current fixed-policy implementation.
+
+#### Reclassification of K evidence defect
+
+The K runtime-neutral evidence finding should therefore be read as:
+
+- append-only RED -> repair -> R02 GREEN lifecycle: **PASS**;
+- clean isolation from old fixed-policy runtime vocabulary: **not proven by the current harness**;
+- observed `tester/session/invocation` telemetry: **old-workflow/harness contamination exposed**, not a definitive failure of the proposed common contract.
+
+The target common contract should still forbid such telemetry in canonical Project Workflow state, because that remains the desired architecture boundary.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
