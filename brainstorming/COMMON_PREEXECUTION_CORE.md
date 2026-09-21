@@ -454,6 +454,24 @@ Corrected next live test:
 6. after the future `codex_workflow` native-subagent change, run the same initiating-context test in Codex and require internal independent realization without a user handoff.
 
 
+### Live test C — initiating-context capability resolution
+
+A cleaner live test was prepared at:
+
+`brainstorming/live-tests/CAPABILITY_PLAN_REVIEW_C.md`
+
+It points to the same immutable review subject as A/B but changes what is being tested. The first context is explicitly the initiating/coordinating context and is forbidden from issuing the verdict itself. It receives only a runtime-neutral semantic obligation plus a capability-first realization rule.
+
+PASS criteria for the first context:
+- do not infer behavior from product identity;
+- determine whether a qualifying independent execution context can actually be realized with mechanisms available in the current runtime;
+- if available, realize it internally;
+- if absent, preserve the same pending obligation, emit a locator-only fresh-context continuation prompt, and STOP;
+- if available but invocation fails, retain pending state and route runtime failure/retry/blocker handling rather than treating the capability as absent.
+
+This test specifically targets the capability resolver / automatic handoff generation that live test B did not test.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
