@@ -1391,6 +1391,409 @@ Working conclusion:
 - no new realization is legal while prior active liveness remains unresolved.
 
 
+### Stage 9 concrete target contract draft — common Execution / State
+
+Status: tentatively accepted direction refined from live tests F–I. This is still Brainstorming authority only.
+
+#### Core separation
+
+The target model uses two distinct state layers:
+
+1. **Card lifecycle** answers whether project work is not started, executable, started/non-terminal, blocked or terminal.
+2. **Active execution lifecycle** answers whether a concrete current realization set exists and whether it is safe to continue/transfer.
+
+Therefore `execution_status: in_progress` MUST NOT mean "a worker/session is currently alive".
+
+A Card may remain `in_progress` after implementation is durably reconciled while a REQUIRED/RECOMMENDED review or another non-terminal Card obligation still prevents `done`, even when `active_execution: null`.
+
+#### Common Card lifecycle
+
+Keep the existing project-level Card states:
+
+```text
+planned -> ready -> in_progress -> done
+                     \-> blocked
+planned|ready|in_progress|blocked -> superseded   # only with accepted authority
+```
+
+Stage-8 meaning remains:
+
+`READY = legally executable now from durable project authority, dependencies, prerequisites and authorization gates.`
+
+Starting execution moves a selected READY Card to `in_progress`.
+
+A launched/in-progress Card MUST NOT be reset to READY merely because runtime state disappeared. The narrow exception is a provably pre-launch prepared execution that never authorized or began mutation; safe abandonment may restore ordinary READY state after durable reconciliation.
+
+A Card becomes `done` only after the applicable Definition of Done, including required review, is satisfied.
+
+#### One common active-execution model
+
+Use one current execution-set concept for both serial and concurrent work.
+
+Conceptual target schema:
+
+```yaml
+active_execution:
+  id: X01
+  state: prepared | active | transfer_ready
+  base_ref: <exact canonical durable base>
+  reconciliation_order: [T01, T02]
+  members:
+    - card_id: T01
+      state: prepared | active | quiesced | result_ready | reconciled | blocked
+      checkpoint_ref: null
+      result_ref: null
+      canonical_result_ref: null
+      evidence: null
+```
+
+Or:
+
+```yaml
+active_execution: null
+```
+
+Rules:
+- one member = ordinary serial execution;
+- multiple members = bounded concurrent execution;
+- `Xnn` is a project-local execution-attempt identifier, not runtime/session identity;
+- one X ID survives runtime/context takeover until that project execution attempt closes;
+- concrete worker/model/session/invocation/worktree identity is forbidden as required Project Workflow state;
+- member set and `reconciliation_order` freeze before member mutation begins;
+- `base_ref` is exact durable project/Git state against which selected work was started;
+- shared Task Board/manifest/integration state has one coordinating writer; delegated realizations return bounded result/evidence and do not independently mutate common coordination state.
+
+No separate `parallel.current_batch`, batch ID, lane ID or fixed worker-role identity is required.
+
+#### Active-execution states
+
+`prepared`
+- exact member set is selected and durable;
+- selected Cards are already `in_progress`;
+- exact base/order are frozen;
+- no member mutation is yet accepted as having begun;
+- before launch, current safety/authority may be revalidated;
+- safe abandonment back to ordinary Card READY is legal only when durable/runtime evidence proves no member mutation or side effect began.
+
+`active`
+- at least one member realization may be active, result reconciliation may be in progress, or liveness is otherwise not safe to infer;
+- another runtime MUST NOT create a replacement realization merely because the old runtime/session is unavailable;
+- uncertain liveness remains `active` and fails closed, as validated by test I.
+
+`transfer_ready`
+- an explicit durable safety boundary;
+- every old realization has been proven quiescent/ended;
+- no old member may continue mutating project or external state;
+- enough durable state exists to let another runtime continue/reconcile the same X attempt;
+- this is never inferred from transcript/session disappearance.
+
+`null`
+- no current implementation realization set remains;
+- all member outcomes have been reconciled into ordinary Card/review/blocker state.
+
+No separate generic `Execution state` field is needed.
+
+#### Member states
+
+`prepared`
+- selected inside X but mutation has not begun.
+
+`active`
+- member may still mutate or its liveness is uncertain.
+
+`quiesced`
+- old realization is proven unable to continue mutation;
+- member is still non-terminal and may carry an exact durable `checkpoint_ref`;
+- same X may later reactivate this member.
+
+`result_ready`
+- an exact durable realization result exists;
+- that result is not yet the accepted canonical Card result;
+- member must not be re-executed merely because runtime state disappeared.
+
+`reconciled`
+- accepted member result has been reconciled into canonical project state;
+- exact `canonical_result_ref` is durable;
+- this member is never replayed within this X attempt.
+
+`blocked`
+- the member realization is durably stopped/quiesced and cannot legally continue without recovery/classification;
+- exact blocker evidence is required;
+- do not use `blocked` to hide uncertain liveness: if an old realization may still mutate, the member remains `active` and the takeover is fail-closed.
+
+#### Member transitions
+
+Normal:
+
+```text
+prepared -> active
+active -> result_ready -> reconciled
+active -> quiesced -> active
+active -> quiesced -> blocked
+```
+
+Direct canonical execution may collapse:
+
+```text
+active -> reconciled
+```
+
+when there is no separate returned-result integration boundary and exact accepted canonical result/evidence is already durable.
+
+A bounded retry of the same member under the same X is legal only when:
+- prior realization is proven quiescent;
+- accepted Card authority is unchanged;
+- base and safety constraints required by the Card remain valid;
+- any failed/returned prior result remains durably recoverable as evidence.
+
+Then the member may re-enter `active` without creating a new X. Successful/reconciled siblings are never replayed.
+
+A changed Card authority/subject that constitutes new implementation work creates a later execution attempt after the current obligation is reconciled; do not mutate an old X into a different contract.
+
+#### Starting execution from Stage 8
+
+Precondition:
+- `active_execution: null`;
+- no higher-priority durable review/Research/correction/recovery obligation owns continuation;
+- one or more Cards are READY.
+
+Runtime realization selection:
+- a serial runtime selects one legal READY Card;
+- a concurrency-capable runtime may select a finite compatible subset for which current project-level concurrency safety is proven;
+- runtime capability changes the selected subset/scheduling, not READY semantics;
+- Project Workflow does not ask the user to choose between equivalent deterministic realizations.
+
+Before member work:
+1. freeze one X ID, exact `base_ref`, finite member set and reconciliation order;
+2. move every selected Card `ready -> in_progress`;
+3. persist `active_execution.state: prepared`;
+4. read back;
+5. perform current refresh/safety validation;
+6. durably enter `active` before accepting member mutation as live;
+7. invoke/realize through the runtime.
+
+If a reported available runtime capability fails during invocation, do not reinterpret it as capability absence and silently change transport. Preserve/retry/block according to runtime-operation evidence.
+
+Partial launch uncertainty is fail-closed. A stale `active` state is never proof that nothing launched.
+
+#### Result and reconciliation semantics
+
+Delegated/isolated realization:
+- returned exact member result -> `result_ready` + exact `result_ref`;
+- validate authority/scope/tests/evidence against the frozen base;
+- reconcile in frozen `reconciliation_order`;
+- persist exact canonical result -> `reconciled` + `canonical_result_ref`.
+
+Direct canonical realization:
+- exact accepted canonical result may move the member directly to `reconciled`.
+
+Project Card result state always points to the accepted canonical result, never merely to an unintegrated isolated-worker result.
+
+A durable `result_ready` member is never rerun solely because its runtime disappeared.
+
+Scope escape, integration conflict or contradictory evidence preserves the returned result/evidence and fails closed; it does not silently widen scope or reorder siblings.
+
+#### Closing one execution attempt
+
+An X may be cleared only when no member remains potentially live and every member outcome has been reconciled into durable project state:
+- `reconciled` result;
+- or durable Card/member blocker after proven quiescence.
+
+Then:
+1. persist corresponding Card result/blocker/review boundary;
+2. recompute project readiness;
+3. set `active_execution: null`;
+4. return to the common router.
+
+No permanent execution-set history ledger is required by default once all necessary lineage is already carried by exact Card result, evidence, review-attempt and blocker refs. Preserve additional execution history only when a concrete recovery/review requirement proves it necessary.
+
+#### Review boundary while an execution set is unresolved
+
+When a member becomes `reconciled` and its Card requires independent review:
+- freeze the exact immutable review subject/result as `pending`;
+- the Card remains non-terminal;
+- do not issue a verdict in the producing context.
+
+For a multi-member X with unresolved members, formal review realization is deferred until that X is closed or terminally reconciled. This preserves the useful current Codex invariant that a RED correction cannot mutate production underneath unresolved sibling reconciliation.
+
+After X is null, ordinary common review routing may consume the frozen pending attempts.
+
+No `implementation_owner_role: executor` or `reviewer_role: tester` is required. Review must instead prove the semantic independence requirement against the exact produced subject; concrete independent-context realization belongs to runtime capability handling.
+
+#### Completed-Card runtime switch
+
+A terminal/reconciled Card boundary requires no special product handoff.
+
+Target:
+
+```text
+T01 done + exact result/evidence
+T02 ready
+active_execution null
+
+new runtime
+-> reconstruct from durable project state
+-> do not replay T01
+-> select next legal obligation
+```
+
+Validated by live test F.
+
+#### Active runtime switch
+
+A non-terminal execution attempt can transfer only through explicit `transfer_ready`.
+
+To set `transfer_ready`:
+- every old realization is proven ended/quiescent;
+- no member remains `active`;
+- every completed result/checkpoint/ref needed for continuation is durable;
+- no old context/worker may continue authoritative or external mutation.
+
+Receiving runtime:
+1. verifies exact X, base, member states and refs;
+2. preserves every `reconciled` and `result_ready` member;
+3. never replays a durable checkpoint merely due runtime switch;
+4. may reactivate only unresolved `quiesced/prepared` members under the same still-valid authority;
+5. may continue those remaining members serially even when the previous runtime used concurrency;
+6. preserves the same X ID.
+
+Validated for one Card by G and for a multi-member concurrent set by H.
+
+#### Unsafe takeover
+
+If `active_execution.state: active` and exact evidence does not prove prior realization quiescence/end or an already-accepted durable result:
+- do not create a replacement X;
+- do not replay the Card;
+- do not reset the Card to READY;
+- do not infer old realization death from missing session/runtime identity;
+- persist/recover the exact blocker and fail closed.
+
+Validated by I.
+
+For material non-idempotent external effects, quiescence/idempotency/readback evidence is mandatory before replacement. Repository-local worker disappearance is not a general proof that external mutation stopped.
+
+#### Multiple in-progress Cards
+
+Remove the ChatGPT-only invariant that exactly one Card may be `in_progress`.
+
+Multiple `in_progress` Cards are legal when each has exact durable ownership, for example:
+- it is a member of the current `active_execution`; or
+- implementation is already reconciled but a durable review/finalization/correction obligation keeps the Card non-terminal.
+
+Therefore Card `in_progress` cardinality is not a runtime capability signal.
+
+What is invalid is an `in_progress` Card whose exact owning durable obligation cannot be reconstructed.
+
+#### Runtime-neutral concurrency safety
+
+Stage 9 consumes, but does not invent, project-level concurrency-safety facts established/refreshed at JIT.
+
+The exact Card schema for those facts remains a Stage-8 schema choice, but Stage 9 requires at minimum enough durable proof to establish:
+- compatible mutation/write scope;
+- no conflicting exclusive/shared resource;
+- no hidden sequencing prerequisite;
+- safe reconciliation/integration behavior;
+- any external-side-effect constraints.
+
+Absence/incompleteness of such proof means serial realization remains legal but concurrency is not.
+
+#### Current ChatGPT-only material to remove/replace
+
+Replace:
+- `Normal ChatGPT is the fixed executor`;
+- `executor: chatgpt`;
+- exactly-one-`in_progress` invariant;
+- execution semantics that assume implementation occurs directly inside one fixed product context;
+- product-specific fresh-review stop mechanics inside Execution.
+
+Preserve/promote:
+- deterministic Card authority/Refresh Gate;
+- result/tests/evidence/readback;
+- Research return/handoff;
+- Definition of Done;
+- exact review freeze boundary;
+- recovery from actual durable state.
+
+#### Current Codex-only material to remove/translate
+
+Remove as Project Workflow authority:
+- `Codex Main` identity;
+- `Executor` / `Tester` names;
+- `implementation_owner_role: executor`;
+- `reviewer_role: tester`;
+- orchestration profile/pre-dispatch binding from common project semantics under the fixed-runtime target;
+- batch IDs and lane labels as required project semantics;
+- concrete worker/worktree/session lifecycle.
+
+Translate:
+- `parallel.current_batch` -> `active_execution`;
+- `integration_base` -> `base_ref`;
+- batch frozen member list -> X frozen member list;
+- `returned` -> member `result_ready`;
+- `integrated` -> member `reconciled`;
+- member returned/integrated refs -> `result_ref` / `canonical_result_ref`;
+- prepared/running/integrating recovery rules -> common prepared/active/result-ready/reconciliation recovery;
+- post-launch terminal reconciliation -> quiesce all live members, preserve returned/reconciled refs, move unresolved Cards to exact blocked state, then clear X;
+- post-batch review drain -> ordinary pending-review drain after X closes.
+
+Preserve the safety substance:
+- one shared-state writer;
+- isolated mutable concurrent realizations;
+- frozen base/member set/order;
+- scope/resource validation;
+- never replay returned/reconciled siblings;
+- deterministic reconciliation;
+- fail-closed partial writes/conflicts;
+- review not interleaved with unresolved sibling production.
+
+#### Stage-9 counterfactual challenge
+
+Could the common model simply keep the current Codex batch schema and treat serial work as a one-member batch?
+
+That would preserve recovery power, but it would also retain accidental scheduler vocabulary (`batch`, `lane`) and make every runtime appear to use Codex-style parallel orchestration. F–I show the required common semantics are smaller: exact execution set, member lifecycle, base/result/checkpoint/reconciliation refs, quiescence and transfer safety.
+
+Conversely, could common Execution keep only Card states and discard `active_execution` entirely?
+
+No. G–I demonstrate that `in_progress` alone cannot distinguish:
+- safely transferable quiesced work;
+- durable partial checkpoint work;
+- returned/reconciled sibling results;
+- unsafe uncertain-live work.
+
+Therefore a runtime-neutral active-execution record is materially required for portable mid-Card/mid-set recovery.
+
+#### Stage-9 working conclusion
+
+Tentatively stable Stage-9 target:
+
+```text
+Stage 8:
+truthful READY graph
+
+Stage 9:
+runtime selects 1..N legal READY Cards
+-> common X execution set
+-> prepared
+-> active
+-> member results/checkpoints/reconciliation
+-> optional transfer_ready
+-> canonical Card result/review/blocker state
+-> active_execution null
+```
+
+The same contract supports:
+- direct serial ChatGPT-style execution;
+- delegated serial execution;
+- concurrent Codex-style execution;
+- crash recovery;
+- completed-Card runtime switching;
+- active-Card switching through quiescent checkpoint;
+- concurrent-to-serial takeover;
+- fail-closed unsafe liveness.
+
+No Definition promotion is authorized by this conclusion.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
