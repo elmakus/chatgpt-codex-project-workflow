@@ -2545,11 +2545,15 @@ Previously listed questions about whether Brainstorming/Research/Definition/Plan
 ## Next bounded work
 
 1. Run **M — clean review evidence** under the isolated harness.
-2. Audit `ROUTER`, `RECOVERY`, `WORKSTREAMS`, `CLOSE` and relevant templates/tests.
-3. Reconcile the audit with capability-first routing, authoritative-state refresh, `active_execution`, append-only review attempts, final-integration review and cross-runtime continuation.
-4. Choose the target composition architecture and migration/test shape.
-5. Reconcile this record into one target common-core architecture.
-6. If no material design question remains, stop at the user-owned Brainstorming -> Definition promotion gate.
+2. Run an **orchestration-topology continuity test** covering:
+   - capable coordinator one-shot continuation across review/correction/re-review without artificial user stops;
+   - normal ChatGPT GREEN -> deterministic same-chat continuation;
+   - normal ChatGPT RED -> bounded same-chat correction, followed by a fresh independent-context boundary only when the corrected exact subject requires a new review.
+3. Audit `ROUTER`, `RECOVERY`, `WORKSTREAMS`, `CLOSE` and relevant templates/tests.
+4. Reconcile the audit with capability-first routing, authoritative-state refresh, `active_execution`, append-only review attempts, final-integration review, orchestration-topology preservation and cross-runtime continuation.
+5. Choose the target composition architecture and migration/test shape.
+6. Reconcile this record into one target common-core architecture.
+7. If no material design question remains, stop at the user-owned Brainstorming -> Definition promotion gate.
 
 ## Outcome of this session
 
