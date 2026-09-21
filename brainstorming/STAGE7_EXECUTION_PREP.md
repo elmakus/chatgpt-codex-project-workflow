@@ -311,3 +311,19 @@ Stage-7 direction:
 7. The objective is to front-load high-quality reasoning without freezing details that are genuinely unknowable.
 
 This preserves the existing ChatGPT-only planned-work/JIT model while making explicit that JIT is a precision mechanism, not a reason to defer work that the planner can already specify well.
+
+
+## Grilling decisions — state boundary before Execution
+
+User accepted:
+
+- no extra Card lifecycle state between `ready` and `in_progress` merely for preparation; do not add `prepared` to ordinary Card status;
+- Stage 8 must refresh/revalidate current repository/dependency truth immediately before actual execution selection/start;
+- if that refresh materially invalidates Card scope/readiness/safety, route back to JIT/Recovery rather than launching stale work;
+- if nothing material changed, execution proceeds without ceremony.
+
+This keeps the ordinary Card lifecycle small:
+
+`planned -> ready -> in_progress -> done/blocked`
+
+with review-related non-terminal behavior handled by the review contract rather than another preparation status.
