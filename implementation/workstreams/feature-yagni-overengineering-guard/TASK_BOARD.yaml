@@ -16,9 +16,9 @@ milestones:
     execution_status: in_progress
     contract: "planning/YAGNI_OVERENGINEERING_GUARD_MASTER_PLAN.md#M01--make-yagni-a-shared-operational-workflow-invariant"
     checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    implementation_head: "e7c8ce88560b34a63213af064c2083cf1cf8932a"
+    handoff: "implementation/workstreams/feature-yagni-overengineering-guard/handoffs/M01_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-yagni-overengineering-guard/evidence/M01-acceptance.md"
     review_state: null
     review_subject: null
     review_evidence: null
