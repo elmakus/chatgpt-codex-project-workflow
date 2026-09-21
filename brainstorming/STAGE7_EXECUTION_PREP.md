@@ -343,3 +343,27 @@ User direction: preserve this proven behavior in V2 rather than redesigning it.
 User also accepted:
 - no extra `prepared` Card status between `ready` and `in_progress`;
 - Stage 8 revalidates current truth before actual start and routes stale work back to JIT/Recovery only when the change is material.
+
+
+## Current V1 finding — Main is already required to think before execution
+
+Current `chatgpt_only` already has two protections:
+
+1. **JIT dependency-sensitive refinement**
+   - when future Card scope materially depends on predecessor evidence, a JIT trigger is preserved;
+   - after the predecessor result exists, Execution Prep creates/revises the real not-yet-started Card;
+   - the predecessor result is bound into the Card authority slice;
+   - Task Board is reconciled before execution.
+
+2. **Execution Refresh Gate**
+   - before implementation, Main compares the exact current branch/HEAD, Card/milestone state, authority, dependency results, actual source/interfaces, tests/evidence/review obligations and other relevant current facts;
+   - local implementation-detail drift may be reconciled inside L1/L2;
+   - larger strategy changes route to Planning; authority changes route to Definition; missing evidence routes to Research.
+
+Therefore the current workflow does **not** treat Main as a blind worker that merely flips `planned -> ready -> in_progress`. It already requires contextual judgment before implementation.
+
+The open design choice is only whether V2 should add a stronger explicit mandatory "re-evaluate the whole Card after every dependency completion" rule. Current evidence does not require that extra ceremony.
+
+## Grilling decision — history of JIT-refined Cards
+
+User accepted the recommendation that V2 does not need a separate workflow history object for every prior version of a not-yet-started Card. Git history remains the underlying history; the current durable Card contract is authoritative, with concise rationale/evidence retained only when materially useful.
