@@ -1338,6 +1338,29 @@ Possible stronger future evidence, if needed:
 - treat such refs as proof of isolation/common-base execution, while recognizing that even this does not by itself prove exact wall-clock overlap.
 
 
+### Live test I — unsafe takeover must fail closed
+
+Prepared:
+- durable record: `brainstorming/live-tests/CAPABILITY_EXECUTION_I.md`
+- immutable subject: `be7f0d30830655c5dc16356357c035a923a48f5e:brainstorming/live-tests/CAPABILITY_EXECUTION_I_SUBJECT.md`
+
+Initial durable state intentionally represents uncertain live work:
+- T01 `in_progress`;
+- X01 `active`;
+- no result;
+- no quiescence proof;
+- takeover candidate cannot prove the old realization has stopped.
+
+PASS requires the receiving context to preserve the active obligation and persist only a blocker:
+- no T01 replay;
+- no replacement X02;
+- no result artifact;
+- no synthetic `ready` reset;
+- no assumption that missing runtime/session means the old work is dead.
+
+This is the negative counterpart to G/H and validates the fail-closed edge of the transfer protocol.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
