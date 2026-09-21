@@ -20,8 +20,17 @@ Explore how Research is currently defined in Project Workflow and what the activ
 - The feature does not require parent-only state.
 - Classification: independent workstream from normal integration target `main`.
 
-## Current intake state
+## Final intake classification
 
-- State: active
-- Downstream path expected: Brainstorming discovery
-- Definition promotion authorization: pending
+- Path: Brainstorming discovery.
+- Canonical downstream artifact: `brainstorming/RESEARCH_AGENT_BEHAVIOR.md`.
+- Canonical scope: `research-agent-behavior@R1`.
+- Selected manifest `routing.exploratory_scope` points to that exact record.
+- No formal Research obligation is required merely to explain the current repository contract.
+- Definition promotion authorization remains pending.
+- Next route: Brainstorming.
+
+## Intake state
+
+- State: complete
+- Downstream owner: `brainstorming/RESEARCH_AGENT_BEHAVIOR.md`
