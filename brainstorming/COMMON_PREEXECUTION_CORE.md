@@ -2599,27 +2599,23 @@ Especially:
 - any new common state/primitive must justify itself by a real cross-runtime correctness or recovery need;
 - avoid turning the common layer into a larger contract than the two working branches it replaces.
 
-### Stage 7 — Execution Prep / JIT — active analysis
+### Stage 7 — Execution Prep / JIT — resolved
 
 Detailed stage record:
 
 `brainstorming/STAGE7_EXECUTION_PREP.md`
 
-Current Stage-7 conclusion:
+Current resolved direction:
+- preserve the proven planned-work/JIT preparation model;
+- materialize all currently knowable useful Cards;
+- retain JIT triggers only for detail genuinely dependent on predecessor evidence;
+- Main re-evaluates predecessor results rather than blindly flipping readiness;
+- not-yet-started Cards remain refinable within existing L2 authority;
+- READY remains semantic/project state, not worker assignment;
+- no Project-Card concurrency metadata is required because Stage 8 later removed concurrent Card execution;
+- launch-time refresh belongs to Execution.
 
-- Card decomposition, JIT triggers, Research return, micro-fix preparation, readiness, review requirement and exact authority/scope/acceptance are common Project Workflow semantics.
-- READY is runtime-independent: multiple Cards may be READY even when the active runtime can only execute serially.
-- ChatGPT V1's “exactly one READY Card” is a runtime-policy restriction, not target common semantics.
-- Codex V1's concrete batch/lane/workspace scheduling is runtime realization and should not remain inside common Execution Prep.
-- Stage 7 should end with stable Cards + semantic READY state + project safety constraints.
-- Actual execution-set selection and neutral `active_execution` freeze belong to Stage 8 immediately before execution.
-- Codex's current “refresh immediately before launch” also belongs to Stage 8 launch safety, not Stage 7 preparation.
-- Runtime worker/model/session/worktree identity must not enter Stage-7 durable state.
-
-One material Stage-7 choice remains open:
-whether optional explicit Card-level concurrency safety metadata (`write_scope`, `exclusive_resources`, opt-in safety) remains common project state or is re-derived dynamically from ordinary Card scope on every execution.
-
-Current recommendation: keep optional explicit runtime-neutral safety metadata because it is correctness evidence and supports cross-runtime takeover; its absence simply means serial-only.
+Earlier Stage-7 exploration of `parallel_safe`, `write_scope`, `exclusive_resources` and concurrent execution-set selection is superseded by the later explicit no-parallel Project-Card decision.
 
 ### Seriality boundary — Project Cards only
 
@@ -2671,7 +2667,7 @@ For runtimes with qualifying implementation workers:
 - uncertain external side effects require readback before retry;
 - no dedicated `transfer_ready` Card state is needed for runtime switching.
 
-### Stage 8 — Execution — active analysis
+### Stage 8 — Execution — resolved
 
 Detailed stage record:
 
@@ -2685,7 +2681,19 @@ Stage 8 starts from a conservative merge of the two working execution paths:
 - runtime capability may change how the one active Card is realized, not Card authority or READY meaning;
 - runtime/model/session/worktree identity remains outside canonical Project Workflow state.
 
-The previous universal `active_execution` / parallel execution-set direction is superseded. Stage 8 now targets a serial one-active-Card model plus minimal recovery/transfer semantics for that one Card.
+The previous universal `active_execution` / parallel execution-set direction is superseded. Stage 8 resolves to one active Project Workflow Card per selected workstream, with single-Card delegation/recovery and no extra ordinary execution wrapper.
+
+### Supersession note for historical execution experiments
+
+Earlier sections in this file that tentatively accepted Project-Card parallelism, multi-member `active_execution`, `prepared/transfer_ready`, batch/lane replacement semantics, or concurrency-safety Card metadata are **historical Brainstorming evidence only**.
+
+They are superseded by the later explicit decisions recorded under Stage 7/8:
+- exactly one Project Workflow Card is actively executing per selected workstream;
+- no Project Workflow parallel Card execution;
+- no universal `active_execution`, ordinary `returned`, or `transfer_ready` Card lifecycle state;
+- runtime-internal subagent/concurrency topology is outside Project Workflow.
+
+Do not use the older experimental sections as the current V2 target.
 
 ## Current checkpoint / handoff
 
@@ -2707,11 +2715,11 @@ Deferred N topology tests are post-implementation V2 validation, not missing Bra
 
 Stage-by-stage reconciliation is still active. The cross-cutting audit is provisional architecture evidence, not Brainstorming completion authority.
 
-Current focus: Stage 8 — Execution. Stage 7 is resolved after grilling.
+Current focus: Stage 9 — Independent Implementation Review. Stages 7 and 8 are resolved after grilling.
 
 ## Next bounded work
 
-Continue Stage 8 — Execution grilling, beginning with the minimum durable state needed for ordinary serial execution versus delegated/concurrent/takeover execution.
+Consolidate Stage 9 — Independent Implementation Review from current ChatGPT-only/Codex-only contracts and live review evidence, then grill only remaining material choices.
 
 Do not return to the Definition promotion gate until the remaining lifecycle stages have been reviewed individually and then reconciled cross-cutting.
 
@@ -2725,6 +2733,6 @@ Do not return to the Definition promotion gate until the remaining lifecycle sta
 - Definition promotion subject remains `none`.
 - Deferred N remains a V2 implementation-validation obligation, not a Brainstorming blocker.
 - No production workflow module has been changed.
-- Current phase/action: Stage 7 — Execution Prep / JIT analysis.
+- Current phase/action: Stage 9 — Independent Implementation Review analysis.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user authorization may promote the current exploratory scope into Definition.
