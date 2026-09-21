@@ -1,19 +1,19 @@
 # Live Execution Prep obligation — E-A
 
 Experiment: Stage-8 runtime-neutral readiness parity
-Preparation state: pending
+Preparation state: completed
 Preparation subject: bb1bf611bdd883567d642c020c4fd35feecdf88a:brainstorming/live-tests/CAPABILITY_EXECUTION_PREP_E_SUBJECT.md
-Preparation evidence: none
+Preparation evidence: Per immutable subject E (bb1bf61), T01 and T02 are ready from project legality with no dependencies or authorization blockers; T03 remains planned because T01 and T02 are not done. Scheduling capability and product identity not considered; Execution not entered.
 
 ## Current synthetic Task Board state
 
 ```yaml
 cards:
   - id: T01
-    execution_status: planned
+    execution_status: ready
     depends_on: []
   - id: T02
-    execution_status: planned
+    execution_status: ready
     depends_on: []
   - id: T03
     execution_status: planned
