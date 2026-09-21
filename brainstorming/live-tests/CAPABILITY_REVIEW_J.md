@@ -1,7 +1,7 @@
 # Live Review obligation — J
 
 Experiment: cross-runtime GREEN review and finalization
-Experiment state: reviewed
+Experiment state: completed
 Review authority: dbe81191afb840e096ef0aadde9b922ee5ccf5da:brainstorming/live-tests/CAPABILITY_REVIEW_J_SUBJECT.md
 Active execution: null
 
@@ -10,7 +10,7 @@ Active execution: null
 ```yaml
 cards:
   - id: T01
-    execution_status: in_progress
+    execution_status: done
     result_ref: a23712266f36ae70cda129a9b3242c6391b50b49
     evidence: exact synthetic implementation result is durable
 
