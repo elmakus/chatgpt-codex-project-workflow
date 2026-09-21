@@ -1,6 +1,6 @@
 id: "feature-yagni-overengineering-guard"
 kind: "feature"
-status: "ready"
+status: "in_progress"
 
 branch: "feat/yagni-overengineering-guard"
 base_ref: "13e27863cb11ec9e223ee2af191f79fe6b8d559d"
