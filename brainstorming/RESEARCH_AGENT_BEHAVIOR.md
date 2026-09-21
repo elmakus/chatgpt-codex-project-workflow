@@ -93,7 +93,7 @@ No material user/product decision remains blocking Project Definition. Exact sou
 - Research still needed: none before Definition.
 - Open questions: none material at product level.
 - Next phase/action: `ready for definition`
-- Definition promotion authorization: `pending`
-- Definition promotion subject: `none`
+- Definition promotion authorization: `user_authorized`
+- Definition promotion subject: `research-agent-behavior@R2`
 
-> Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Because the selected policy requires explicit user phase promotion, this scope must not enter Project Definition until the user explicitly authorizes promotion.
+> Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`.
