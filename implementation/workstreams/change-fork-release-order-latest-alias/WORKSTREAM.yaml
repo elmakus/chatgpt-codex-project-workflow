@@ -1,7 +1,7 @@
 # Branch-isolated workstream manifest.
 id: "change-fork-release-order-latest-alias"
 kind: "change"
-status: "discovery"
+status: "planning"
 
 branch: "work/fork-release-order-latest-alias"
 base_ref: "main"
@@ -12,20 +12,21 @@ parent_branch: null
 parent_dependency: null
 
 intake:
-  state: active
+  state: "complete"
   record: "implementation/workstreams/change-fork-release-order-latest-alias/INTAKE.md"
 
 routing:
   exploratory_scope: null
   research_obligation: null
-  plan_review: null
+  plan_review: "planning/reviews/FRV-P3.md"
 
 task_board: null
 
 authority:
-  requirements: null
-  decisions: []
-  plan: null
+  requirements: "requirements/FORK_RELEASE_VERSIONING.md"
+  decisions:
+    - "decisions/ADR_FORK_RELEASE_VERSION_LINEAGE.md"
+  plan: "planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md"
 
 review:
   requirement: null
