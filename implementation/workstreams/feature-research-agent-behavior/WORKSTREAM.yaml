@@ -29,10 +29,10 @@ authority:
 
 review:
   requirement: "RECOMMENDED"
-  state: null
-  subject: null
-  evidence: null
-  covered_by: null
+  state: "green"
+  subject: "content:25ac000cac86c7421c3632f216be1074f61f64ce; acceptance:implementation/workstreams/feature-research-agent-behavior/evidence/M01-acceptance.md@blob:07ec56c220708a2d77c2e3201b16d904d267cc09"
+  evidence: "implementation/workstreams/feature-research-agent-behavior/evidence/final-integration-review-coverage.md"
+  covered_by: "M01-T01@25ac000cac86c7421c3632f216be1074f61f64ce -> implementation/workstreams/feature-research-agent-behavior/evidence/M01-T01-review.md@blob:58e2c08ca995f881dd024858ef883170511c1d6e"
 
 branch_cleanup:
   state: null
