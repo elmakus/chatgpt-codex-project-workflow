@@ -1151,6 +1151,32 @@ Working direction:
 - do not keep an additional generic `Execution state` unless it has a distinct, necessary meaning with exact transitions.
 
 
+### Live test G — active-Card checkpoint takeover
+
+Prepared:
+- durable record: `brainstorming/live-tests/CAPABILITY_EXECUTION_G.md`
+- immutable subject: `82cac004ad0c47e4d94e766aaabf604d84e2f748:brainstorming/live-tests/CAPABILITY_EXECUTION_G_SUBJECT.md`
+
+T01 intentionally spans two bounded units:
+- Unit A creates a durable prefix and becomes the transfer checkpoint;
+- Unit B completes the same Card after takeover.
+
+Phase 1 must leave:
+- T01 `in_progress`;
+- execution attempt `X01`;
+- `state: transfer_ready`;
+- member `state: quiesced`;
+- exact Unit-A `checkpoint_ref`;
+- no old realization still able to mutate T01;
+- then STOP.
+
+Phase 2 must preserve X01, verify and not replay Unit A, reactivate the same execution attempt, execute only Unit B, then complete T01.
+
+This deliberately tests that runtime/context switching does not imply a new project execution attempt.
+
+Bounded challenge: the synthetic test can prove quiescence because it has only synchronous repository-local work. A later test must separately validate the negative case where quiescence of a detached worker or external side effect cannot be proven; that case must fail closed.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
