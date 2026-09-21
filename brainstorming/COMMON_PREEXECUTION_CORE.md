@@ -2621,6 +2621,22 @@ whether optional explicit Card-level concurrency safety metadata (`write_scope`,
 
 Current recommendation: keep optional explicit runtime-neutral safety metadata because it is correctness evidence and supports cross-runtime takeover; its absence simply means serial-only.
 
+### Stage 8 — Execution — active analysis
+
+Detailed stage record:
+
+`brainstorming/STAGE8_EXECUTION.md`
+
+Stage 8 starts from a conservative merge of the two working execution paths:
+- preserve the simple ChatGPT-only serial Card lifecycle;
+- preserve Codex-only useful bounded-concurrency/result-recovery behavior;
+- Main/coordinator remains the reasoning owner and sole shared Project Workflow state writer;
+- workers/subagents are bounded realizations, not competing coordinators;
+- runtime capability changes scheduling/realization, not Card authority or READY meaning;
+- runtime/model/session/worktree identity remains outside canonical Project Workflow state.
+
+The first open design question is whether the previously proposed universal `active_execution` wrapper is actually necessary for ordinary one-Card serial execution. Under the conservative-commonization principle, a supplemental neutral execution-set/transfer record may be preferable only where concurrency, isolated delegated results or active cross-runtime transfer genuinely require additional durable state.
+
 ## Current checkpoint / handoff
 
 The current compact handoff is:
@@ -2641,11 +2657,11 @@ Deferred N topology tests are post-implementation V2 validation, not missing Bra
 
 Stage-by-stage reconciliation is still active. The cross-cutting audit is provisional architecture evidence, not Brainstorming completion authority.
 
-Current focus: Stage 7 — Execution Prep / JIT. Concurrency-safety metadata decisions are resolved; remaining Stage-7 questions concern JIT mutation/readiness boundaries.
+Current focus: Stage 8 — Execution. Stage 7 is resolved after grilling.
 
 ## Next bounded work
 
-Finish the remaining Stage-7 JIT/readiness boundary questions, then continue to Stage 8 — Execution.
+Continue Stage 8 — Execution grilling, beginning with the minimum durable state needed for ordinary serial execution versus delegated/concurrent/takeover execution.
 
 Do not return to the Definition promotion gate until the remaining lifecycle stages have been reviewed individually and then reconciled cross-cutting.
 
