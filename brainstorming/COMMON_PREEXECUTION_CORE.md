@@ -386,6 +386,23 @@ Counterfactual challenge: runtime-neutral portability must not erase real correc
 This portability goal is now the main architectural criterion for evaluating commonization and capability-dependent mechanics.
 
 
+### Live test B — ChatGPT fresh-context result
+
+The live ChatGPT branch of the capability-first experiment completed from a fresh independent chat using only the runtime-neutral durable obligation in `brainstorming/live-tests/CAPABILITY_PLAN_REVIEW_B.md`.
+
+Observed behavior:
+- the initiating chat did not issue the verdict;
+- the fresh chat recovered the exact immutable subject from the durable review record;
+- it did not require a concrete worker-role name, model, product-specific reviewer contract or previous-chat narrative;
+- it preserved the immutable subject unchanged;
+- it wrote the verdict/evidence back to the same review record;
+- verdict was **RED** because the deliberate plan omission for `capability available + invocation fails` is a material correctness gap.
+
+Interpretation: the reviewed plan failed, but the **ChatGPT transport/portability path passed**. The RED is expected evidence that an independent fresh context actually evaluated the subject rather than merely following the initiating chat's conclusion. It also confirms that runtime-neutral wording was sufficient for ChatGPT to understand and execute the obligation.
+
+A/B comparison remains open until the Codex live branch completes.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
