@@ -2416,38 +2416,67 @@ The target common contract should still forbid such telemetry in canonical Proje
 
 
 
-### Live-test harness hardening complete; L armed
+### Live-test harness hardening complete; L PASS; M prepared
 
-The stronger experimental authority boundary is now durable at:
+The isolated harness remains durable at:
 
 `c427bafb31c3f6c79544be3a89300b02503aa7f9:brainstorming/live-tests/ISOLATED_COMMON_CONTRACT_HARNESS.md`
 
-The harness now explicitly requires:
-- current Project Workflow only for safe bootstrap/repository mechanics;
-- exact live-test record as semantic authority inside the experiment;
-- no import of conflicting fixed-policy product/worker/state/realization semantics;
-- authoritative branch/ref refresh before routing on new-context/takeover/recovery entry;
-- refresh + reroute after a lost publication race;
-- semantic-only canonical evidence, with concrete product/worker/model/session/invocation/worktree telemetry excluded unless itself required by the tested property.
+#### Live test L — authoritative-state refresh PASS
 
-Live test L is prepared as a real stale-local-state probe rather than a single-record simulation:
+L completed durably at:
 
-- result fixture baseline: `brainstorming/live-tests/refresh-l/result.txt` = `UNSET\n`;
-- deliberate stale snapshot:
-  `2e52d793c597da27dc1000b126cf60cb90a8a491:brainstorming/live-tests/CAPABILITY_REFRESH_L.md`;
-- that stale snapshot legally routes `L-STALE -> write_stale_marker`;
-- authoritative branch then advances to the armed record at
-  `1f5ea94e81a64ef7b98d4fe12081d2b5f7c498bd:brainstorming/live-tests/CAPABILITY_REFRESH_L.md`;
-- current experiment state is `fresh_phase_pending`;
-- current legal obligation is `L-FRESH -> write_fresh_marker`.
+`b10eaa864b2a58831868e8b6efbea29bd0164c1e`
 
-L is now self-contained: the current context acts only as experiment setup, creates a clean disposable checkout at the stale snapshot, and launches a fresh isolated probe context rooted in that checkout. The probe receives only a locator-style instruction, must refresh the authoritative branch before phase selection, and must discover the current obligation from durable state.
+Verified from repository truth:
+- the probe started from exact stale snapshot `2e52d793c597da27dc1000b126cf60cb90a8a491`;
+- it refreshed authoritative state before selecting the obligation;
+- refreshed routing selected `L-FRESH`;
+- stale `L-STALE` was neither executed nor published;
+- no push/CAS rejection was needed to discover freshness;
+- exact result is `L: FRESH\n`;
+- the completion commit changed only the L record and its result fixture;
+- persisted evidence contains semantic/Git correctness facts and no concrete runtime identity telemetry.
 
-This removes all user-side Git preparation. The user only needs to start one fresh capable runtime/context and point it at `CAPABILITY_REFRESH_L.md`.
+Verdict: **PASS — authoritative-state refresh before routing prevents stale-phase execution and complements expected-base/CAS publication safety.**
 
-Success requires the stale-rooted probe to discover `L-FRESH` by refreshing before phase selection, never execute/publish `L-STALE`, and never rely on push/CAS rejection to learn that the checkout was stale.
+This supports the common entry/recovery invariant:
 
-No production workflow module was changed while hardening the harness or preparing L.
+```text
+new context / takeover / recovery
+-> resolve exact authoritative branch/ref
+-> refresh authoritative durable source
+-> establish current authoritative head
+-> reconcile/validate local state
+-> read canonical durable state
+-> route
+```
+
+#### Live test M — clean independent-review evidence prepared
+
+M is now durable at:
+
+`brainstorming/live-tests/CAPABILITY_REVIEW_M.md`
+
+Exact immutable authority:
+
+`48e7c92d7aa5f1931ce3e096aa3e6d23f6999e39:brainstorming/live-tests/CAPABILITY_REVIEW_M_SUBJECT.md`
+
+Exact immutable reviewed subject:
+
+`788ceee02a19d6e03d336b6f28b524691f09250d:brainstorming/live-tests/review-m/result.txt`
+
+Prepared review record commit:
+
+`d29d96baf4e03eb2d7ba98a9a40454ea458185ca`
+
+M tests whether an independent review under the isolated harness can finish GREEN while canonical evidence remains strictly normalized and semantic-only:
+- exact authority/content/read-only facts;
+- reviewer did not materially produce/repair the subject;
+- review was read-only;
+- no concrete product/worker/model/session/invocation/workspace/worktree identity.
+
+No production workflow module has been changed by L verification or M preparation.
 
 ## Current checkpoint / handoff
 
@@ -2488,11 +2517,12 @@ Previously listed questions about whether Brainstorming/Research/Definition/Plan
 
 ## Next bounded work
 
-1. Run **L — authoritative-state refresh** using the self-contained setup in `CAPABILITY_REFRESH_L.md`; no manual stale checkout is required.
-2. Run **M — clean review evidence** under the isolated harness.
-3. Audit `ROUTER`, `RECOVERY`, `WORKSTREAMS`, `CLOSE` and relevant templates/tests.
-4. Reconcile this record into one target common-core architecture.
-5. If no material design question remains, stop at the user-owned Brainstorming -> Definition promotion gate.
+1. Run **M — clean review evidence** under the isolated harness.
+2. Audit `ROUTER`, `RECOVERY`, `WORKSTREAMS`, `CLOSE` and relevant templates/tests.
+3. Reconcile the audit with capability-first routing, authoritative-state refresh, `active_execution`, append-only review attempts, final-integration review and cross-runtime continuation.
+4. Choose the target composition architecture and migration/test shape.
+5. Reconcile this record into one target common-core architecture.
+6. If no material design question remains, stop at the user-owned Brainstorming -> Definition promotion gate.
 
 ## Outcome of this session
 
@@ -2502,6 +2532,6 @@ Previously listed questions about whether Brainstorming/Research/Definition/Plan
 - Definition promotion subject remains `none`.
 - No production workflow module has been changed by this exploratory checkpoint.
 - Durable handoff created for a fresh chat.
-- Next phase/action: `run self-contained live test L`.
+- Next phase/action: `run isolated clean-evidence live test M`.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user authorization may promote the current exploratory scope into Definition.
