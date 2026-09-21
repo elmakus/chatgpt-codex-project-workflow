@@ -6,7 +6,7 @@ Review state: pending
 Review verdict: none
 Review subject: dcdc80769c0b64d4444aa330285a780f8483ec5c:brainstorming/live-tests/CAPABILITY_PLAN_R1.md
 Subject author provenance: live-test-author-context
-Realization state: resolve_independent_context
+Realization state: awaiting_independent_context
 Review evidence: none
 
 ## Semantic obligation
