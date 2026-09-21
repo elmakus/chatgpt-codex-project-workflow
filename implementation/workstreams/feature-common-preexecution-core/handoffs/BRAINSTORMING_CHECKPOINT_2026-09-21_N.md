@@ -1,4 +1,4 @@
-# Brainstorming handoff — common pre-execution core — topology test N
+# Brainstorming handoff — common pre-execution core — post-M / pre-audit
 
 Date: 2026-09-21
 Workstream: `feature-common-preexecution-core`
@@ -10,38 +10,57 @@ Definition promotion authorization: `pending`
 
 ## Verified checkpoint
 
-Live test M is PASS at:
+Live test L: PASS.
+
+Live test M: PASS at:
 `9435ebd56d9628588e64cde22efc631e1463dca0`.
 
-M proved that independent review can persist only normalized semantic evidence with no concrete runtime identity telemetry.
+M proved that independent review can persist normalized semantic-only evidence without concrete runtime identity telemetry.
 
-## Current obligations
+## Topology validation N — deferred until V2
 
-### First: N-CAPABLE
+The intended compatibility invariant remains:
 
-Start pointer:
-`brainstorming/live-tests/ORCHESTRATION_TOPOLOGY_N_CAPABLE.md`
+- a capable coordinator may continue one-shot across deterministic review/correction/re-review/finalization;
+- a normal ChatGPT review chat may continue after GREEN;
+- after RED it may perform bounded same-chat correction, but if it materially creates the corrected subject it must stop only at the new independent-review boundary;
+- independence is per exact subject, not per whole chat/session.
 
-This tests one capable coordinating invocation across:
-`R01 RED -> correction S2 -> R02 independent GREEN -> deterministic finalization`
+Prepared scenarios remain at:
+- `brainstorming/live-tests/ORCHESTRATION_TOPOLOGY_N_CAPABLE.md`;
+- `brainstorming/live-tests/ORCHESTRATION_TOPOLOGY_N_CHATGPT.md`.
 
-No intermediate user-facing stop is allowed unless a real blocker occurs.
+Both are now `deferred_until_v2`.
 
-### Then: N-CHATGPT
+Do not execute them against current V1. They are V2 implementation/validation tests and are not prerequisites for current Brainstorming/Definition readiness.
 
-Start pointer:
-`brainstorming/live-tests/ORCHESTRATION_TOPOLOGY_N_CHATGPT.md`
+Experimental clean-room harness:
+`brainstorming/live-tests/CLEANROOM_TOPOLOGY_HARNESS_N.md`.
 
-This tests:
-- fresh chat A: R01 RED -> same-chat correction -> freeze R02 -> stop only at the new fresh-review boundary;
-- fresh chat B: R02 GREEN -> same-chat finalization -> completed.
+It is retained only as future validation infrastructure and has no production authority.
 
-Shared authority:
-`43aef1d58367d2cfea1f561c58eee7791322c203:brainstorming/live-tests/ORCHESTRATION_TOPOLOGY_N_AUTHORITY.md`
+## Current obligation
 
-## After N
+Continue Brainstorming with the cross-cutting repository audit:
 
-Audit current ROUTER / RECOVERY / WORKSTREAMS / CLOSE and relevant templates/tests, then reconcile target composition architecture.
+- current ROUTER;
+- RECOVERY;
+- WORKSTREAMS;
+- CLOSE;
+- relevant templates/tests.
+
+Reconcile those contracts with:
+- capability-first realization;
+- authoritative-state refresh before routing;
+- `active_execution`;
+- append-only review attempts;
+- final-integration review;
+- orchestration-topology preservation;
+- cross-runtime continuation.
+
+Then choose the target common-core composition/migration architecture and determine whether any material design question remains.
+
+If Brainstorming becomes ready, STOP at the user-owned Brainstorming -> Definition promotion gate.
 
 Do not enter Definition without explicit user authorization.
-Do not modify production workflow modules during N.
+Do not modify production workflow modules during this Brainstorming audit.
