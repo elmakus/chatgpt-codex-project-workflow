@@ -135,6 +135,8 @@ Planning does not silently decide missing product/system intent. Execution Prep 
 
 ## Authority preservation
 
+Project Workflow also applies one policy-neutral YAGNI / proportional-design rule from common authority: material extra complexity needs a concrete current justification, while all current quality and accepted-authority obligations remain intact.
+
 Progressive disclosure reduces context volume, not accepted intent. Planning/decomposition/delegation follows **lossless by authority, selective by context**:
 
 - a Task Card identifies the exact durable authority slice applicable to its bounded scope;

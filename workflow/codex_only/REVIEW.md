@@ -27,6 +27,8 @@ Resolve exactly one project review owner before judging:
 
 Never mirror one review lifecycle into another.
 
+Apply the policy-neutral YAGNI/proportional-design invariant from `workflow/common/AUTHORITY.md`. Unjustified speculative complexity is a review defect: for material extra complexity, ask which current requirement, accepted constraint, verified evidence, existing contract or demonstrated current reuse justifies it. Do not use YAGNI to reject complexity required by current authority/evidence or to weaken current quality obligations.
+
 ## Card/milestone attempt lifecycle
 
 The Task Board review block is defined by `STATE.md`.
