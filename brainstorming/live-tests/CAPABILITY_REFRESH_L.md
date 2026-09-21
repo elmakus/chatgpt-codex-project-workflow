@@ -1,13 +1,19 @@
 # Live authoritative-state refresh obligation — L
 
 Experiment: pre-routing authoritative-state refresh
-Experiment state: fresh_phase_pending
+Experiment state: completed
 Harness authority: c427bafb31c3f6c79544be3a89300b02503aa7f9:brainstorming/live-tests/ISOLATED_COMMON_CONTRACT_HARNESS.md
 Authoritative repository: elmakus/chatgpt-codex-project-workflow
 Authoritative branch: feat/common-preexecution-core
 Known stale snapshot: 2e52d793c597da27dc1000b126cf60cb90a8a491
 Result path: brainstorming/live-tests/refresh-l/result.txt
-Refresh evidence: null
+Refresh evidence:
+  local_pre_refresh_head: 2e52d793c597da27dc1000b126cf60cb90a8a491
+  refreshed_authoritative_head: 75f1027be90620da4020564419f0037b76f4420f
+  stale_snapshot_routed_or_executed: false
+  stale_phase_publication_attempted: false
+  push_or_CAS_rejection_needed_to_discover_freshness: false
+  publication_base: 75f1027be90620da4020564419f0037b76f4420f
 
 ## Purpose
 
@@ -30,7 +36,7 @@ For this experiment:
 ```yaml
 pending_obligation:
   id: L-FRESH
-  state: pending
+  state: completed
   action: write_fresh_marker
 ```
 
