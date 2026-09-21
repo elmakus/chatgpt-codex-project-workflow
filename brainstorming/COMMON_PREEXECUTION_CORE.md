@@ -234,6 +234,43 @@ Capability-first candidate architecture:
 Open decision for stage 7: whether `parallel_safe/write_scope/exclusive_resources` belong in stable Project Workflow Card contracts as project-level safety constraints, while concrete batch/lane/workspace scheduling moves to runtime orchestration; or whether even those fields should be derived dynamically by Main/runtime from Card scope. Recommendation: retain explicit project-safety metadata only when it is necessary to prove non-overlap safely; move concrete batch formation and worker/lane realization out of Project Workflow.
 
 
+### Stage numbering correction
+
+The previously discussed stage 7 was misnumbered. The intended sequence is:
+- 6. Strategic Planning
+- 7. Independent Plan Review
+- 8. Execution Prep / JIT
+
+Stage-8 parallelism analysis remains useful but is deferred until stage 7 is settled.
+
+### Stage 7 exploration — Independent Plan Review
+
+Current-main comparison shows the same Project Workflow semantics in both fixed policies:
+- review requirement comes from Planning;
+- one durable review record per exact immutable plan revision/subject;
+- selected workstream manifest points to that active review record;
+- reviewer must be independent from the author of the exact subject;
+- reviewer reads the immutable plan + approved Definition/decisions/relevant evidence and does not mutate the plan while judging it;
+- verdict is GREEN/RED with durable evidence;
+- GREEN returns to Planning for deterministic approval/verdict consumption, then may continue to Execution Prep;
+- RED returns through the router to Planning, Definition, Research, or a real user-owned stop depending on the defect;
+- substantive correction creates a new plan revision and a new review subject; completed review records are never overwritten.
+
+The current policy difference is review transport/realization only:
+- ChatGPT-only requires a fresh normal ChatGPT chat because the authoring chat cannot provide an independent verdict.
+- Codex-only asks runtime to realize an independent Tester and carries Codex-specific binding/runtime-loss semantics.
+
+Capability-first target:
+- common Project Workflow expresses only `independent review required for exact subject X` plus the read/evidence/immutability constraints;
+- it does not name `Tester` or any concrete worker role;
+- Main/runtime selects any available catalog capability that satisfies the independence constraint;
+- when no independent delegated context is available, persist the exact review obligation and perform a fresh-context handoff;
+- a failed invocation of an available independent-context capability is a runtime failure/retry/blocker, not evidence that capability is absent;
+- a fresh ChatGPT context can perform the same common review contract directly from the durable locator, so no product-specific review semantics are required.
+
+Counterfactual challenge: removing worker-role names must not weaken provenance. Project Workflow still needs enough durable information to prove that the verdict did not come from the author of the exact review subject. The concrete runtime worker name/ID need not be part of the project contract, but independence evidence/provenance may still need a neutral representation.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
