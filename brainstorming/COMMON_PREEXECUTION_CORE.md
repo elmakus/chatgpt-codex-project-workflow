@@ -2621,6 +2621,20 @@ whether optional explicit Card-level concurrency safety metadata (`write_scope`,
 
 Current recommendation: keep optional explicit runtime-neutral safety metadata because it is correctness evidence and supports cross-runtime takeover; its absence simply means serial-only.
 
+### User direction — remove Project Workflow parallel Card execution
+
+The target V2 no longer includes bounded parallel execution of multiple Cards.
+
+Consequences:
+- exactly one Card may be `in_progress` per selected workstream;
+- common execution preserves the proven ChatGPT-only serial lifecycle;
+- Codex-only batch/lane/multi-member reconciliation machinery is not migrated into V2;
+- earlier exploratory conclusions about Card-level concurrency metadata and multi-member `active_execution` are superseded;
+- single-Card delegation remains allowed as runtime realization;
+- Main remains the sole shared Project Workflow state writer and reasoning coordinator.
+
+This is a deliberate simplification, not a temporary runtime limitation.
+
 ### Stage 8 — Execution — active analysis
 
 Detailed stage record:
@@ -2629,13 +2643,13 @@ Detailed stage record:
 
 Stage 8 starts from a conservative merge of the two working execution paths:
 - preserve the simple ChatGPT-only serial Card lifecycle;
-- preserve Codex-only useful bounded-concurrency/result-recovery behavior;
+- preserve Codex-only useful single-Card delegation/result-recovery behavior, while dropping bounded-parallel Card execution;
 - Main/coordinator remains the reasoning owner and sole shared Project Workflow state writer;
 - workers/subagents are bounded realizations, not competing coordinators;
-- runtime capability changes scheduling/realization, not Card authority or READY meaning;
+- runtime capability may change how the one active Card is realized, not Card authority or READY meaning;
 - runtime/model/session/worktree identity remains outside canonical Project Workflow state.
 
-The first open design question is whether the previously proposed universal `active_execution` wrapper is actually necessary for ordinary one-Card serial execution. Under the conservative-commonization principle, a supplemental neutral execution-set/transfer record may be preferable only where concurrency, isolated delegated results or active cross-runtime transfer genuinely require additional durable state.
+The previous universal `active_execution` / parallel execution-set direction is superseded. Stage 8 now targets a serial one-active-Card model plus minimal recovery/transfer semantics for that one Card.
 
 ## Current checkpoint / handoff
 
