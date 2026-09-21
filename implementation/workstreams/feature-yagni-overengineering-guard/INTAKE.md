@@ -25,9 +25,15 @@ Evaluate whether Project Workflow already has a general rule against overenginee
 - No matching branch/workstream was found for YAGNI / overengineering.
 - No parent-only state is required; this is independent work based on current `main`.
 
+## Final intake classification
+
+- Path: Brainstorming discovery.
+- Canonical downstream artifact: `brainstorming/YAGNI_OVERENGINEERING_GUARD.md`.
+- Canonical scope: `yagni-overengineering-guard@R1`.
+- Definition promotion authorization remains pending.
+- Next route: Brainstorming.
+
 ## Intake state
 
-- State: active
-- Path classification: feature discovery / Brainstorming
-- Downstream owner: pending canonical Brainstorming record
-- Definition promotion: pending
+- State: complete
+- Downstream owner: `brainstorming/YAGNI_OVERENGINEERING_GUARD.md`
