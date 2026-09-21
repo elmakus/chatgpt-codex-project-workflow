@@ -5,7 +5,7 @@ current_milestone: "M02"
 
 execution_ref:
   branch: "work/adaptive-brainstorming-grilling"
-  pr: null
+  pr: 53
   head: "2504bb4968130f87f8f861eba4b0398a31439bf3"
 
 research_obligation: null
@@ -37,6 +37,6 @@ cards:
     review_subject: "2504bb4968130f87f8f861eba4b0398a31439bf3"
     review_evidence: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02-T01_REVIEW_R2_2026-09-21.md"
     result_commit: "2504bb4968130f87f8f861eba4b0398a31439bf3"
-    result_pr: null
+    result_pr: 53
     evidence: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02-T01_CORRECTION_2026-09-21.md"
     tests_summary: "GREEN corrective verification on 2504bb4968130f87f8f861eba4b0398a31439bf3: focused adaptive grilling 12/12; full repository 93/93; diff-check/conflict-marker/README literal-escape checks GREEN; see correction evidence."
