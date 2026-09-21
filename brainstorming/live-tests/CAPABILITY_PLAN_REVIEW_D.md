@@ -2,12 +2,12 @@
 
 Experiment: capability-first durable handoff-state live test
 Review requirement: RECOMMENDED
-Review state: in_progress
-Review verdict: none
+Review state: completed
+Review verdict: RED
 Review subject: dcdc80769c0b64d4444aa330285a780f8483ec5c:brainstorming/live-tests/CAPABILITY_PLAN_R1.md
 Subject author provenance: live-test-author-context
-Realization state: independent_context_active
-Review evidence: none
+Realization state: satisfied
+Review evidence: M02 distinguishes independent-context capability present vs absent but omits the present-but-invocation-failed path; this leaves failure handling underspecified and permits an invocation failure to be misclassified as capability absence/fresh-context fallback, violating the capability-first contract.
 
 ## Semantic obligation
 
