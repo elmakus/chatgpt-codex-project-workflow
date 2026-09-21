@@ -6,7 +6,7 @@ current_milestone: "M02"
 execution_ref:
   branch: "work/adaptive-brainstorming-grilling"
   pr: null
-  head: "e09e564c4acd68ef0ea007cd5aff25e712112d5c"
+  head: "2504bb4968130f87f8f861eba4b0398a31439bf3"
 
 research_obligation: null
 
@@ -16,12 +16,12 @@ milestones:
     execution_status: in_progress
     contract: "planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md#M02--make-adaptive-grilling-intrinsic-to-every-brainstorming-route"
     checkpoint: null
-    implementation_head: "e09e564c4acd68ef0ea007cd5aff25e712112d5c"
+    implementation_head: "2504bb4968130f87f8f861eba4b0398a31439bf3"
     handoff: null
     acceptance_evidence: null
     review_state: null
     review_subject: null
-    review_evidence: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02-T01_REVIEW_2026-09-21.md"
+    review_evidence: null
 
 cards:
   - id: "M02-T01"
@@ -33,10 +33,10 @@ cards:
     depends_on: []
     openspec_change: "openspec/changes/adaptive-brainstorming-grilling"
     contract: "implementation/workstreams/change-adaptive-brainstorming-grilling/cards/M02-T01.md"
-    review_state: red
-    review_subject: "e09e564c4acd68ef0ea007cd5aff25e712112d5c"
+    review_state: pending
+    review_subject: "2504bb4968130f87f8f861eba4b0398a31439bf3"
     review_evidence: null
-    result_commit: "e09e564c4acd68ef0ea007cd5aff25e712112d5c"
+    result_commit: "2504bb4968130f87f8f861eba4b0398a31439bf3"
     result_pr: null
-    evidence: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02-T01.md"
-    tests_summary: "GREEN author verification: focused adaptive grilling 12/12; full repository 93/93; diff-check/conflict-marker/active-manual-trigger scans GREEN; see evidence pointer."
+    evidence: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02-T01_CORRECTION_2026-09-21.md"
+    tests_summary: "GREEN corrective verification on 2504bb4968130f87f8f861eba4b0398a31439bf3: focused adaptive grilling 12/12; full repository 93/93; diff-check/conflict-marker/README literal-escape checks GREEN; see correction evidence."
