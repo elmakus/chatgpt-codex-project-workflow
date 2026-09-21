@@ -2,7 +2,7 @@
 
 Plan revision: `FRV-P3`
 Review requirement: `RECOMMENDED`
-Review state: `pending`
+Review state: `in_progress`
 Review subject: `planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md@blob:f9b60df7337231f2d32c4a93875a7c9e340b3dbc`
 Review subject commit: `91755fc9883136407a242ade1aa59161519fa351`
 Review evidence: `null`
