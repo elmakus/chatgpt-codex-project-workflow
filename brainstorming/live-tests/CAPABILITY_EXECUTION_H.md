@@ -10,10 +10,10 @@ Execution evidence: none
 ```yaml
 cards:
   - id: T01
-    execution_status: in_progress
+    execution_status: done
     depends_on: []
-    result_ref: null
-    evidence: null
+    result_ref: 2a48259a9e1bbb3086581f3d88bc169eb9fba8c5
+    evidence: Exact A.txt content verified after isolated concurrent realization and canonical reconciliation.
 
   - id: T02
     execution_status: in_progress
