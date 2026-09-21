@@ -256,3 +256,43 @@ It does not prohibit a runtime from using internal implementation techniques ins
 - Main remains responsible for the Card result;
 - no second Card becomes concurrently active;
 - internal worker/session topology does not become Project Workflow state.
+
+
+## Grilling decisions — delegated execution and recovery
+
+User accepted:
+- worker/subagent does not finalize shared Task Board state; Main validates and persists project truth;
+- if a delegated worker result already exists durably after coordinator/runtime interruption, Main recovers and reuses it rather than rerunning the Card;
+- uncertain external side effects require readback/recovery before retry; if safe state cannot be established, fail closed instead of duplicating a non-idempotent operation;
+- no separate `transfer_ready` Card lifecycle state is added solely for runtime switching.
+
+### Important correction — Main must delegate implementation when executor capability exists
+
+For a runtime that provides qualifying implementation workers/subagents, Main is an orchestrator/reasoning coordinator and **must delegate Card implementation** rather than spending coordinator reasoning budget implementing the Card itself.
+
+Project Workflow V2 should state only the semantic boundary:
+
+> If the active runtime can realize a qualifying delegated implementation context for the Card, Main delegates the implementation. Main remains responsible for routing, JIT reasoning, authority, validation, integration, review boundaries and recovery.
+
+If the active runtime genuinely has no delegated implementation capability, common Project Workflow may still allow direct implementation by the coordinating context so the same workflow remains usable in a normal ChatGPT-style runtime.
+
+A failed invocation of an available implementation capability is not capability absence and must not silently authorize Main to implement the Card itself; it follows runtime retry/blocker/recovery behavior.
+
+The stronger runtime-specific rule — e.g. that a Codex Main with installed executor workers never acts as the implementation worker — belongs primarily to runtime orchestration such as `codex_workflow`, not to a duplicated Project Workflow worker catalog.
+
+This preserves:
+- Main as the project brain;
+- worker execution when workers exist;
+- runtime portability when they do not;
+- no product/model/worker names in canonical project state.
+
+### Recovery of an interrupted delegated Card
+
+For one `in_progress` Card:
+
+1. recover current authoritative state;
+2. determine whether an exact delegated result is already durable/recoverable;
+3. if yes, validate/reconcile it once and do not rerun;
+4. if no result exists and the prior realization cannot continue, re-realize the same Card through a qualifying implementation capability;
+5. do not fall back to Main implementation merely because the previous worker disappeared when delegation capability still exists;
+6. for uncertain external side effects, read back before any retry and fail closed when duplication safety cannot be proven.
