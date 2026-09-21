@@ -296,3 +296,24 @@ For one `in_progress` Card:
 4. if no result exists and the prior realization cannot continue, re-realize the same Card through a qualifying implementation capability;
 5. do not fall back to Main implementation merely because the previous worker disappeared when delegation capability still exists;
 6. for uncertain external side effects, read back before any retry and fail closed when duplication safety cannot be proven.
+
+
+## Grilling decisions — serial Project Cards, unconstrained runtime internals
+
+User clarified the scope of the no-parallel decision:
+
+> Project Workflow serializes **Project Workflow Cards**, not internal runtime work.
+
+Therefore:
+- only one Project Workflow Card may be actively executing per selected workstream;
+- Project Workflow does not define or restrict how the runtime realizes that one Card internally;
+- an Executor/runtime may use zero, one or many internal subagents, sequentially or concurrently, according to runtime orchestration;
+- internal subagent topology, concurrency, worker count and scheduling are not Project Workflow state;
+- this must not create additional active Project Workflow Cards or competing writers of shared Project Workflow state.
+
+This keeps the common contract small and leaves runtime orchestration to its owning layer such as `codex_workflow`.
+
+User also accepted:
+- when an implementing worker discovers that the Card contract itself must materially change, the worker does not silently widen/rewrite project authority;
+- it returns the finding to Main;
+- Main performs the legal JIT/Planning/Definition classification and then re-delegates continuation under the updated authority as applicable.
