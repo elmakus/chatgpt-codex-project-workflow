@@ -2,9 +2,10 @@
 
 ## Checkpoint
 
-- Milestone behavior: GREEN.
+- Milestone behavior: GREEN and terminal.
 - Final behavioral implementation head: `25ac000cac86c7421c3632f216be1074f61f64ce`.
-- Final integration result: pending until PR #49 is merged and target-side readback is reconciled.
+- Final integration result: PR #49 merged into `main` as `764b9fb99da8e5cfe0b2393be52d4f14954555df`.
+- GitHub automatically removed the merged source branch `feat/research-agent-behavior`; original branch identity remains preserved as provenance in the workstream manifest and Task Board.
 
 ## Achieved state
 
@@ -23,8 +24,10 @@ Research now uses a shared proportional prior-art/source-quality contract: relev
 - Implementation verification: `implementation/workstreams/feature-research-agent-behavior/evidence/M01-T01.md`.
 - Independent Card review GREEN: `implementation/workstreams/feature-research-agent-behavior/evidence/M01-T01-review.md`.
 - Integrated M01 acceptance GREEN: `implementation/workstreams/feature-research-agent-behavior/evidence/M01-acceptance.md`.
+- Final-integration review gate GREEN by exact independent coverage: `implementation/workstreams/feature-research-agent-behavior/evidence/final-integration-review-coverage.md`.
+- Final-target integration completed without target drift or behavioral reconciliation.
 - No material exceptions or deferred behavioral items remain in approved M01 scope.
 
 ## Next durable starting point
 
-Run final-integration refresh/publication for PR #49 against current `main`. Preserve/reconcile the manifest final-integration review gate, merge only the accepted closure-ready subject, then reconcile merge-result-dependent manifest/Task Board/handoff fields from target-side state.
+The approved RAB-P1/M01 workstream is complete. Recover terminal history from the namespaced target-side package on `main`; no further implementation, review, Research or integration obligation remains for this workstream.

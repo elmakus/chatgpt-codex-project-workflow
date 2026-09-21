@@ -1,6 +1,6 @@
 id: "feature-research-agent-behavior"
 kind: "feature"
-status: "review"
+status: "done"
 
 branch: "feat/research-agent-behavior"
 base_ref: "13e27863cb11ec9e223ee2af191f79fe6b8d559d"
@@ -41,4 +41,4 @@ branch_cleanup:
   evidence: null
 
 pr: 49
-result: null
+result: "764b9fb99da8e5cfe0b2393be52d4f14954555df"
