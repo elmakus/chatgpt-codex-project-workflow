@@ -1235,6 +1235,34 @@ What this does NOT yet prove:
 The next materially distinct validation target is concurrent takeover rather than the reverse-direction version of this same serial checkpoint test.
 
 
+### Live test H — concurrent execution-set takeover
+
+Prepared:
+- durable record: `brainstorming/live-tests/CAPABILITY_EXECUTION_H.md`
+- immutable subject: `3f18dd1483dc5bb4cd42257c47bf0187d55f9c14:brainstorming/live-tests/CAPABILITY_EXECUTION_H_SUBJECT.md`
+
+H validates a materially distinct Stage-9 property from F/G.
+
+Phase 1 requires actual concurrent isolated realization of:
+- T01 to full completion;
+- T02 only through checkpoint Unit B1.
+
+The coordinator then reconciles both outputs into canonical durable state and freezes:
+- T01 `done / reconciled`;
+- T02 `in_progress / quiesced`;
+- X01 `transfer_ready`;
+- T03 still `planned`.
+
+Phase 2 may run in a serial-only runtime. It must preserve T01 and B1, reactivate the same X01 only for unresolved T02, execute B2 serially, finish T02, and make T03 READY.
+
+Important bounded interpretation:
+- this tests concurrency followed by takeover after all old member realizations have already stopped/returned;
+- it does not yet prove forced quiescence/cancellation of a still-live detached worker;
+- it does not test external side effects.
+
+The test fails as a concurrency validation if Phase 1 silently executes T01 and T02/B1 serially.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
