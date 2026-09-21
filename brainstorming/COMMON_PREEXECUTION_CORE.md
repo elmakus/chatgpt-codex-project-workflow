@@ -769,6 +769,23 @@ A/B records are separate only so each runtime can mutate its own durable result 
 Counterfactual challenge: if a runtime marks only one of T01/T02 READY because it intends to execute serially, that is evidence that scheduling remains incorrectly encoded in Stage-8 project state. If it creates a batch or starts work, it has crossed the intended Stage-8/Stage-9 boundary.
 
 
+### Live test E-B — ChatGPT Stage-8 readiness result
+
+ChatGPT completed the E-B Stage-8-only reconciliation and persisted commit `257159e734fa29b5e11d1e263467e7bb38770c00`.
+
+Verified durable result:
+- T01: `ready`
+- T02: `ready`
+- T03: `planned`
+- Preparation state: `completed`
+
+The record explicitly states that runtime scheduling capability/product identity were not used and no Execution worker/batch/workspace action was taken.
+
+Verdict for ChatGPT side only: **PASS**.
+
+Cross-runtime READY parity remains pending until E-A completes in Codex.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
