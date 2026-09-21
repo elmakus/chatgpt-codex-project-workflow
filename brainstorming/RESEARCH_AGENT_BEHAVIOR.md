@@ -21,6 +21,7 @@ Understand the current Project Workflow Research semantics and the concrete beha
 - Pre-execution Research is located through the selected workstream manifest `routing.research_obligation`; implementation/recovery Research is located through the selected Task Board `research_obligation`.
 - On completion, Research returns to its exact recorded Return target. It cannot choose a new destination from chat history.
 - In `codex_only`, an active Research obligation may be realized by a runtime Investigator, but concrete Investigator harness/model/session mechanics belong to `codex_workflow`, not Project Workflow.
+- Repository drift exists in `templates/RESEARCH.md`: its explanatory footer still says ChatGPT-only pre-execution Research uses a root `PROJECT.md` active-research pointer. Current `workflow/chatgpt_only/RESEARCH.md`, `workflow/chatgpt_only/ROUTER.md`, and root `PROJECT.md` instead define the selected workstream manifest `routing.research_obligation` as the authoritative pre-execution pointer. The policy-local route owns pointer semantics, so the template footer is stale documentation rather than current authority.
 
 ### Existing accepted decisions
 
@@ -52,6 +53,7 @@ Keep ChatGPT-only as self-executed Research, while making Codex-only Investigato
 - More explicit research procedure improves repeatability but risks over-constraining simple research.
 - Runtime-specific Investigator rules must not duplicate `codex_workflow` ownership.
 - A stronger contract should still preserve the distinction between evidence and accepted authority.
+- The shared Research template should not contradict policy-local pointer ownership.
 
 ## Research needed
 
@@ -62,6 +64,7 @@ None required to answer the current-state question. Additional research is neede
 - What exactly should improve compared with today's Research behavior?
 - Should the change apply to `chatgpt_only`, `codex_only`, or both?
 - Should Research define concrete investigation tactics, or only minimum evidence/quality obligations?
+- Should this feature also repair the stale pointer description in `templates/RESEARCH.md`?
 
 ## Outcome of this session
 
