@@ -1,6 +1,6 @@
 id: "change-adaptive-brainstorming-grilling"
 kind: "change"
-status: "ready"
+status: "in_progress"
 
 branch: "work/adaptive-brainstorming-grilling"
 base_ref: "13e27863cb11ec9e223ee2af191f79fe6b8d559d"
