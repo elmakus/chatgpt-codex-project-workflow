@@ -742,6 +742,33 @@ The user tentatively accepted the Stage-8 direction for further validation:
 This is still Brainstorming acceptance, not Definition promotion authorization.
 
 
+### Live test E — Stage-8 READY parity
+
+Prepared two equivalent live records:
+- `brainstorming/live-tests/CAPABILITY_EXECUTION_PREP_E_A.md`
+- `brainstorming/live-tests/CAPABILITY_EXECUTION_PREP_E_B.md`
+
+Both point to the same immutable synthetic milestone subject:
+`bb1bf611bdd883567d642c020c4fd35feecdf88a:brainstorming/live-tests/CAPABILITY_EXECUTION_PREP_E_SUBJECT.md`
+
+Synthetic graph:
+- T01: no dependencies;
+- T02: no dependencies;
+- T03: depends on T01 + T02.
+
+The live test is intentionally bounded to Execution Prep. It forbids Card execution, worker selection and batch/lane creation.
+
+Target property:
+- both runtimes must derive readiness solely from project legality;
+- expected READY set is T01 + T02;
+- T03 remains non-READY until both dependencies are done;
+- runtime serial/parallel capability must not alter the READY set.
+
+A/B records are separate only so each runtime can mutate its own durable result without racing the other.
+
+Counterfactual challenge: if a runtime marks only one of T01/T02 READY because it intends to execute serially, that is evidence that scheduling remains incorrectly encoded in Stage-8 project state. If it creates a batch or starts work, it has crossed the intended Stage-8/Stage-9 boundary.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
