@@ -10,7 +10,7 @@
 - Independent review evidence: `implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02-T01_REVIEW_R2_2026-09-21.md`
 - Final integration result: `c9fcd616a0d2b22a6e87d01a93da0af9bdfca2b4`
 - Pull request: `#53`
-- Target-side closure evidence: `pending`
+- Target-side closure evidence: `implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02_FINAL_CLOSURE_2026-09-21.md`
 - Source branch: automatically deleted by GitHub after successful merge; no fallback cleanup marker required
 - Previous handoff: historical M01 lives in `implementation/workstreams/feature-brainstorming-grilling/handoffs/M01_HANDOFF.md`
 
