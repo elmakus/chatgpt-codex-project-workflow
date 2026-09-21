@@ -1,0 +1,42 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "feature-research-agent-behavior"
+plan_revision: "RAB-P1"
+current_milestone: "M01"
+
+execution_ref:
+  branch: "feat/research-agent-behavior"
+  pr: null
+  head: null
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/RESEARCH_AGENT_BEHAVIOR_MASTER_PLAN.md#M01--strengthen-research-investigation-quality-and-prior-art-discovery"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Strengthen Research prior-art and source-quality behavior"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: []
+    openspec_change: "openspec/changes/research-agent-behavior"
+    contract: "implementation/workstreams/feature-research-agent-behavior/cards/M01-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
