@@ -29,10 +29,10 @@ authority:
 
 review:
   requirement: RECOMMENDED
-  state: null
-  subject: null
-  evidence: null
-  covered_by: null
+  state: green
+  subject: "2504bb4968130f87f8f861eba4b0398a31439bf3 + M02/workstream acceptance"
+  evidence: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02_FINAL_INTEGRATION_REFRESH_2026-09-21.md"
+  covered_by: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02-T01_REVIEW_R2_2026-09-21.md"
 
 branch_cleanup:
   state: null
