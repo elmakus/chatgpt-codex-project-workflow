@@ -2229,6 +2229,32 @@ The later terminal R01 evidence no longer requires or names a concrete worker ro
 This does not invalidate the RED/correction/append-only semantics already verified, but it is evidence that the eventual common contract should explicitly prohibit concrete runtime-role names not only in the final schema but also in intermediate durable evidence/state.
 
 
+#### K race-condition finding — losing correction context is not an independent R02 reviewer
+
+A second Codex context also executed Phase 2 locally from the stale `r01_red` state and produced an equivalent S2/R02 transition. Its push was rejected because the remote branch had already advanced to the equivalent canonical Phase-2 state created by the ChatGPT correction context.
+
+The Codex context then refreshed/reset to remote `c3d5f593b22dbf2150c02a300421ce7534280ce2` and stopped before R02.
+
+This is the correct independence outcome.
+
+Reason:
+- independence is determined by what a context/realization materially did, not by which competing equivalent commit became canonical;
+- a context that independently produced the correction S2 is a production/correction context for that exact reviewed subject, even if its own write lost a CAS/push race;
+- therefore that same context is disqualified from issuing R02;
+- observing that remote already contains an equivalent S2 does not retroactively make the losing producer independent.
+
+This exposes a useful common review invariant:
+
+> A context/realization that materially produced, repaired or transformed the exact reviewed subject is disqualified from independently reviewing that subject, regardless of whether its local result became the canonical durable commit.
+
+Canonical state remains correctly at:
+- R01 immutable RED for S1;
+- R02 pending for canonical S2 `073f6d569c44d609de5eee3bf2bf1e550ca74938`;
+- `Experiment state: pending_r02`.
+
+A genuinely fresh context that did not perform the S2 correction is still required for Phase 3.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
