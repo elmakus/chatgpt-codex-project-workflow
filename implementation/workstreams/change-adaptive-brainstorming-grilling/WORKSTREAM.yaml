@@ -1,6 +1,6 @@
 id: "change-adaptive-brainstorming-grilling"
 kind: "change"
-status: "planning"
+status: "ready"
 
 branch: "work/adaptive-brainstorming-grilling"
 base_ref: "13e27863cb11ec9e223ee2af191f79fe6b8d559d"
@@ -19,7 +19,7 @@ routing:
   research_obligation: null
   plan_review: null
 
-task_board: null
+task_board: "implementation/workstreams/change-adaptive-brainstorming-grilling/TASK_BOARD.yaml"
 
 authority:
   requirements: "requirements/BRAINSTORMING_GRILLING.md"
@@ -28,7 +28,7 @@ authority:
   plan: "planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md"
 
 review:
-  requirement: null
+  requirement: RECOMMENDED
   state: null
   subject: null
   evidence: null
