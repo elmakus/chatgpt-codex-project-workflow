@@ -2,7 +2,7 @@
 
 Date: 2026-09-21
 Scope: common-preexecution-core@R1
-Status: active analysis
+Status: resolved
 Production authority: none
 Baseline: current main fixed-policy contracts
 
@@ -347,3 +347,30 @@ User accepted:
 3. A bad worker result does not by itself make the Card `blocked`. If the Card contract remains valid, it stays `in_progress` and Main delegates bounded correction/re-execution. Use `blocked` only for a real unresolved blocker. If the evidence means the Card contract itself must change, Main routes through JIT/Planning/Definition as appropriate.
 
 This keeps Main capable and reasoning-driven without allowing coordinator budget to drift into implementation work.
+
+
+## Stage 8 completion audit
+
+Completion challenge after all grilling:
+
+- removing Project-Card parallelism eliminates the need for common batch/lane/execution-set machinery;
+- the simple serial Card lifecycle remains sufficient for direct and delegated single-Card execution;
+- Main/worker ownership is clear: Main reasons/routes/delegates/validates/reconciles; implementation workers implement;
+- runtime-internal subagent topology is outside Project Workflow;
+- delegated result recovery is covered without introducing `returned` or `transfer_ready` Card states;
+- uncertain external effects fail closed through readback/recovery;
+- bad worker output remains an `in_progress` correction unless there is a real blocker or authority change;
+- Main may perform deterministic coordinator operations and lightweight checks, but implementation/debugging corrections remain delegated when qualifying implementation capability exists;
+- existing Review, Research, Planning and Definition boundaries remain intact.
+
+Counterfactual challenge:
+- a universal `active_execution` wrapper would add state without solving a remaining single-Card correctness gap;
+- preserving Codex batch semantics would contradict the explicit serial Project-Card decision;
+- forbidding runtime-internal subagents would incorrectly move runtime orchestration into Project Workflow;
+- allowing Main to code whenever a worker fails would defeat the intended coordinator/worker separation.
+
+No additional Stage-8 semantic primitive is justified.
+
+Stage 8 is resolved at Brainstorming level.
+
+Historical paragraphs above that tentatively retained parallel execution or proposed `active_execution` / `transfer_ready` are retained only as design history and are superseded by the later explicit user decisions in this record.
