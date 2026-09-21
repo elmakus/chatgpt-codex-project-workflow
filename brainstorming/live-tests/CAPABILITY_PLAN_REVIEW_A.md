@@ -5,7 +5,7 @@ Review requirement: RECOMMENDED
 Review state: pending
 Review subject: dcdc80769c0b64d4444aa330285a780f8483ec5c:brainstorming/live-tests/CAPABILITY_PLAN_R1.md
 Subject author provenance: live-test-author-context
-Independence requirement: verdict must be produced from a context independent of the subject author
+Independence requirement: the context that initiates this review must not issue the verdict; the verdict must be produced by a separate independent context
 Review evidence: none
 
 ## Review obligation
