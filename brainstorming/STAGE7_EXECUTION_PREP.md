@@ -221,8 +221,22 @@ Then it returns to the common router.
 
 Stage 8 may choose one or more READY Cards and create the neutral durable `active_execution` obligation before actual execution.
 
-## Open material question
+## Resolved grilling decisions — concurrency safety
 
-Should V2 retain explicit optional Card-level concurrency safety metadata as common project state, or require Stage 8/runtime to derive safety from the ordinary Card scope each time?
+User accepted recommendations 1–5:
 
-Recommendation: retain explicit optional safety metadata. It is project correctness evidence, supports cross-runtime takeover, and does not force concurrency.
+1. Stage 7 persists runtime-neutral concurrency-safety metadata; Stage 8 revalidates freshness/compatibility before actual concurrent execution rather than deriving safety from scratch.
+2. If a Card lacks complete concurrency-safety proof, it remains serial-valid but is not eligible for concurrent execution. Runtime may not infer missing proof ad hoc.
+3. Concurrency-safety claims belong in the stable Task Card contract, not mutable Task Board scheduling state.
+4. Safety covers both repository mutation scope and shared/external resources through stable project-level claims/tokens.
+5. Stage 7 marks every semantically executable Card READY. READY means executable-now, not selected-by-scheduler.
+
+Resulting Stage-7 invariant:
+
+> Execution Prep determines what work is legal and what concurrent combinations are project-safe in principle; Execution decides what subset to run now and how to realize it.
+
+These choices are exploratory Brainstorming conclusions, not yet accepted Definition authority.
+
+## Remaining Stage-7 questions
+
+The remaining questions concern JIT mutation boundaries, authorization-sensitive readiness, and whether any preparation state besides stable Cards/JIT triggers is required before Stage 8.
