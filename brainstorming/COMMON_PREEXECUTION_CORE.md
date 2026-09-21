@@ -786,6 +786,38 @@ Verdict for ChatGPT side only: **PASS**.
 Cross-runtime READY parity remains pending until E-A completes in Codex.
 
 
+### Live test E — cross-runtime Stage-8 READY parity PASS
+
+Both E records completed against the same immutable subject.
+
+ChatGPT E-B:
+- T01 `ready`
+- T02 `ready`
+- T03 `planned`
+- no Execution entered
+- no worker/batch/workspace selection
+- commit `257159e734fa29b5e11d1e263467e7bb38770c00`
+
+Codex E-A:
+- T01 `ready`
+- T02 `ready`
+- T03 `planned`
+- no Execution entered
+- no worker/batch/workspace selection
+- commit `8a5d08af2cf21bf8568613e6329336d8f17c8973`
+
+Both durable records derive the same READY set solely from project legality/dependencies and explicitly exclude runtime scheduling capability/product identity from readiness.
+
+Verdict: **PASS — cross-runtime Stage-8 readiness semantics are portable.**
+
+Observed Codex runtime restarts/contention during the run did not alter the final durable result. Treat this only as incidental robustness evidence, not as a controlled recovery test.
+
+Stage-8 working conclusion:
+- common Execution Prep can own a truthful runtime-neutral READY graph;
+- serial/parallel selection belongs after the Stage-8 boundary;
+- Stage 9 must now define portable execution-state semantics, including clean takeover after a completed Card and safe behavior/checkpointing when concurrent work is active.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
