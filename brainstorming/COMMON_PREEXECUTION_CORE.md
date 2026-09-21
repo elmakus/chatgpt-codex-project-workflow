@@ -131,6 +131,33 @@ Policy-local modules should own only mechanics whose correct behavior genuinely 
 
 None.
 
+### Orchestration-topology preservation — explicit user direction
+
+The common-core refactor MUST preserve runtime/policy freedom in how a sequence of semantic obligations is realized.
+
+The intended behavior is:
+
+- **Codex-capable orchestration may remain one-shot across many workflow roles.**
+  A coordinating context may continue through deterministic stages, delegate independent review, consume GREEN, route RED to correction, delegate the next independent recheck, and continue again without a user-facing stop whenever no real authority/runtime boundary exists.
+
+- **Normal ChatGPT may continue deterministically after review in the same chat.**
+  After a fresh independent-review chat returns GREEN, that chat leaves reviewer role and may immediately continue through post-review finalization and later deterministic routes.
+  After RED, the same chat may leave reviewer role and perform a bounded authorized correction/replanning/research route when the router assigns it.
+
+- **Independence is per exact reviewed subject, not per whole chat/session.**
+  If a ChatGPT review chat performs the correction and thereby materially produces the corrected subject, it becomes a producer for that new subject and cannot independently review it. A new independent context is then required for the next review attempt.
+  Likewise, a Codex runtime may reuse or replace logical runtime realizations only when independence for the exact subject remains valid.
+
+Therefore the common semantic contract must NOT:
+- require a user/chat stop after every GREEN or RED;
+- require one orchestration topology for all runtimes;
+- encode `fresh ChatGPT chat` or `Tester/Executor` as the semantic rule;
+- prevent a capable coordinator from completing an entire deterministic chain in one user invocation.
+
+The common layer should define durable obligations, subject independence and real-stop conditions; runtime/policy realization decides whether those obligations are handled through delegated contexts, role transitions inside one coordinating invocation, or a fresh-context handoff.
+
+This behavior is already present in current fixed-policy contracts and is a compatibility invariant for commonization.
+
 ### Capability-first direction
 
 The user clarified the intended simplification direction: workflow semantics should prefer capability-dependent mechanics over product identity where the semantic obligation is the same.
