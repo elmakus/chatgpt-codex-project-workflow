@@ -1,7 +1,7 @@
 # Orchestration-topology continuity — N-CAPABLE
 
 Experiment: capable coordinator one-shot continuity
-Experiment state: pending_r01
+Experiment state: deferred_until_v2
 Harness authority: c427bafb31c3f6c79544be3a89300b02503aa7f9:brainstorming/live-tests/ISOLATED_COMMON_CONTRACT_HARNESS.md
 Semantic authority: 43aef1d58367d2cfea1f561c58eee7791322c203:brainstorming/live-tests/ORCHESTRATION_TOPOLOGY_N_AUTHORITY.md
 Result path: brainstorming/live-tests/topology-n-capable/result.txt
@@ -28,6 +28,12 @@ cards:
             realization_state: resolve_independent_context
             evidence: null
 ```
+
+## Deferred status
+
+Do not execute this experiment against the current production Project Workflow. It is retained as a V2 validation scenario and becomes executable only after the V2/common-core implementation exists far enough that the tested context can run against that implementation rather than infer behavior through V1 policy wrappers.
+
+This deferral is not a failure and does not block current Brainstorming/Definition readiness.
 
 ## Purpose
 
