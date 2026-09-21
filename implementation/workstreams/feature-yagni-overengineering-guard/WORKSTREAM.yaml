@@ -1,6 +1,6 @@
 id: "feature-yagni-overengineering-guard"
 kind: "feature"
-status: "planning"
+status: "ready"
 
 branch: "feat/yagni-overengineering-guard"
 base_ref: "13e27863cb11ec9e223ee2af191f79fe6b8d559d"
@@ -19,7 +19,7 @@ routing:
   research_obligation: null
   plan_review: null
 
-task_board: null
+task_board: "implementation/workstreams/feature-yagni-overengineering-guard/TASK_BOARD.yaml"
 
 authority:
   requirements: "requirements/YAGNI_OVERENGINEERING_GUARD.md"
@@ -28,7 +28,7 @@ authority:
   plan: "planning/YAGNI_OVERENGINEERING_GUARD_MASTER_PLAN.md"
 
 review:
-  requirement: null
+  requirement: "RECOMMENDED"
   state: null
   subject: null
   evidence: null
