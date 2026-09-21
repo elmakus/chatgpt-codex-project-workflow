@@ -1,6 +1,6 @@
 id: "feature-research-agent-behavior"
 kind: "feature"
-status: "planning"
+status: "ready"
 
 branch: "feat/research-agent-behavior"
 base_ref: "13e27863cb11ec9e223ee2af191f79fe6b8d559d"
@@ -19,7 +19,7 @@ routing:
   research_obligation: null
   plan_review: null
 
-task_board: null
+task_board: "implementation/workstreams/feature-research-agent-behavior/TASK_BOARD.yaml"
 
 authority:
   requirements: "requirements/RESEARCH_AGENT_BEHAVIOR.md"
