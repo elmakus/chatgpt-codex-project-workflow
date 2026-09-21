@@ -2415,24 +2415,60 @@ The K runtime-neutral evidence finding should therefore be read as:
 The target common contract should still forbid such telemetry in canonical Project Workflow state, because that remains the desired architecture boundary.
 
 
+## Current checkpoint / handoff
+
+A compact fresh-chat handoff is durable at:
+
+`implementation/workstreams/feature-common-preexecution-core/handoffs/BRAINSTORMING_CHECKPOINT_2026-09-21.md`
+
+That file is the preferred next-chat start pointer. This Brainstorming record remains canonical exploratory authority.
+
+The handoff captures:
+- current Stage 1–9 common-core direction;
+- F–K live-test results;
+- append-only review model;
+- `active_execution` direction;
+- authoritative-state refresh gate;
+- old-workflow live-test contamination caveat;
+- remaining L/M tests and cross-cutting audit;
+- unresolved composition/fencing/migration questions.
+
 ## Research needed
 
-No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
+No external research is currently required.
 
-## Open questions
+Remaining evidence is repository-internal:
+- isolated live-test harness behavior;
+- authoritative-state refresh test L;
+- runtime-neutral review evidence test M;
+- current Router/Recovery/Workstreams/Close composition and state ownership.
 
-1. Should policy routers still route to `workflow/<policy>/BRAINSTORMING.md` etc., where those files become tiny adapters, or should they route directly to `workflow/common/BRAINSTORMING.md` when no adapter is needed?
-2. For Intake and Planning, do we want one common contract with explicit policy hook points, or a common lifecycle contract plus separate short policy supplements?
-3. Do we want the end state to remove duplicated policy-local files entirely when there is zero policy delta (likely Brainstorming/Definition), or preserve tiny forwarding files for namespace symmetry and discoverability?
+## Open material questions
+
+1. Exact composition architecture: direct routing to common modules versus tiny policy-local forwarders/adapters.
+2. Exact final-integration review history/coverage-reuse shape under the append-only attempt model.
+3. Whether authoritative refresh + explicit quiescence/transfer + expected-base/CAS is sufficient stale-coordinator fencing, or whether Recovery evidence demonstrates a need for a stronger neutral fencing primitive.
+4. Migration/test plan for replacing duplicated fixed-policy contracts without accidental behavior loss.
+
+Previously listed questions about whether Brainstorming/Research/Definition/Planning are semantically common are no longer open absent new contradictory evidence.
+
+## Next bounded work
+
+1. Harden live-test prompts with an explicit experimental authority boundary so old fixed-policy semantics cannot contaminate the tested common obligation.
+2. Run **L — authoritative-state refresh**.
+3. Run **M — clean review evidence**.
+4. Audit `ROUTER`, `RECOVERY`, `WORKSTREAMS`, `CLOSE` and relevant templates/tests.
+5. Reconcile this record into one target common-core architecture.
+6. If no material design question remains, stop at the user-owned Brainstorming -> Definition promotion gate.
 
 ## Outcome of this session
 
-- Tentative conclusions: Brainstorming, the promotion gate and Definition should be fully common. Research can likely be fully common because Codex Investigator dispatch is already governed by the generic orchestration boundary. Planning can likely be fully common if review realization and Context Health remain router/review concerns. Intake has one real Codex-only orchestration-binding establishment step; this is the only stage in 1–6 that still clearly needs a policy-specific hook unless binding establishment is deliberately moved/lazily deferred.
-- Explicit user/product choices to promote through Project Definition: none yet.
-- Research still needed: repository-internal architecture/test inspection before choosing the exact composition mechanism.
-- Open questions: composition model, adapter placement, direct-common routing versus forwarding policy modules, migration/test shape.
-- Next phase/action: `continue brainstorming`
-- Definition promotion authorization: `pending`
-- Definition promotion subject: `none`
+- Brainstorming remains `tentative`.
+- Scope remains `common-preexecution-core@R1`.
+- Definition promotion authorization remains `pending`.
+- Definition promotion subject remains `none`.
+- No production workflow module has been changed by this exploratory checkpoint.
+- Durable handoff created for a fresh chat.
+- Next phase/action: `continue brainstorming from handoff`.
 
-> Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. When the selected policy requires explicit user phase promotion, only an explicit user instruction may set `Definition promotion authorization: user_authorized`, and the authorization must name the exact current `<scope-id>@<revision>`. Any material change to the exploratory scope before Definition starts creates a new revision and resets authorization to `pending`.
+> Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user authorization may promote the current exploratory scope into Definition.
