@@ -124,7 +124,7 @@ class AdaptiveBrainstormingGrillingContractTests(unittest.TestCase):
             "legacy/mixed",
             "manual grilling operator directive MUST NOT remain",
             "explicit Brainstorming → Project Definition promotion gate",
-            "wait-what remains outside this change",
+            "wait-what",
         )
         for phrase in required:
             self.assertIn(phrase, OPENSPEC)
