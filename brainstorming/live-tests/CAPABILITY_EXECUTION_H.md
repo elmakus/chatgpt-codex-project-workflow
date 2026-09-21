@@ -1,9 +1,9 @@
 # Live Execution obligation — H
 
 Experiment: concurrent execution-set takeover
-Experiment state: pending
+Experiment state: completed
 Execution subject: 3f18dd1483dc5bb4cd42257c47bf0187d55f9c14:brainstorming/live-tests/CAPABILITY_EXECUTION_H_SUBJECT.md
-Execution evidence: T01 and T02/B1 ran concurrently in separate isolated mutable contexts; both returned exact accepted artifacts, were reconciled in order, and all old member realizations ended before transfer.
+Execution evidence: T01 and T02/B1 ran concurrently in separate isolated mutable contexts; both returned exact accepted artifacts, were reconciled in order, and all old member realizations ended before transfer. Phase 2 resumed the same X01 from the durable B1 checkpoint, executed B2 only, preserved T01 and B-prefix byte-for-byte, and closed X01.
 
 ## Synthetic Task Board
 
@@ -16,33 +16,22 @@ cards:
     evidence: Exact A.txt content verified after isolated concurrent realization and canonical reconciliation.
 
   - id: T02
-    execution_status: in_progress
+    execution_status: done
     depends_on: []
-    result_ref: null
-    evidence: Exact B1 checkpoint at 1ee12e95ca96fc08a4ed5719d036e3c5f32ec525; B2 not executed.
+    result_ref: f3630798b7bfb2002efc57e3d7051123d834c4dc
+    evidence: Continued X01 from exact B1 checkpoint 1ee12e95ca96fc08a4ed5719d036e3c5f32ec525; executed B2 only; exact B.txt verified; A.txt and B-prefix.txt verified unchanged.
 
   - id: T03
-    execution_status: planned
+    execution_status: ready
     depends_on: [T01, T02]
     result_ref: null
-    evidence: null
+    evidence: Readiness recomputed after T01 and T02 became terminal; T03 implementation was not executed.
 ```
 
 ## Active execution
 
 ```yaml
-id: X01
-state: active
-base_ref: a09a054181f4a0975b1cc1226b28238cd56f7dd1
-reconciliation_order: [T01, T02]
-members:
-  - card_id: T01
-    state: reconciled
-    canonical_result_ref: 2a48259a9e1bbb3086581f3d88bc169eb9fba8c5
-  - card_id: T02
-    state: active
-    checkpoint_ref: 1ee12e95ca96fc08a4ed5719d036e3c5f32ec525
-    canonical_result_ref: null
+null
 ```
 
 ## Common execution contract for this experiment
