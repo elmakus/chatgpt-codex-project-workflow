@@ -2658,6 +2658,19 @@ For runtimes that genuinely lack delegated implementation capability, the common
 
 The stricter concrete worker-routing prohibition belongs to runtime orchestration (for example `codex_workflow`), while Project Workflow keeps only this capability-first semantic boundary.
 
+### Stage 8 Main/worker boundary — accepted
+
+For runtimes with qualifying implementation workers:
+- Main reasons, routes, delegates, validates, reconciles and owns Project Workflow state;
+- workers implement the active Card;
+- worker completion is not Card completion;
+- Main does not implement or make even small semantic/code fixes itself; corrections are delegated;
+- worker-provided test/evidence may be accepted without automatic full rerun when sufficient;
+- no ordinary `returned` Card state is added; the Card remains `in_progress` through Main validation/reconciliation;
+- interrupted returned work is recovered from durable evidence before any re-execution;
+- uncertain external side effects require readback before retry;
+- no dedicated `transfer_ready` Card state is needed for runtime switching.
+
 ### Stage 8 — Execution — active analysis
 
 Detailed stage record:
