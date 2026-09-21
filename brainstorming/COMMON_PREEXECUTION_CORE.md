@@ -1361,6 +1361,36 @@ PASS requires the receiving context to preserve the active obligation and persis
 This is the negative counterpart to G/H and validates the fail-closed edge of the transfer protocol.
 
 
+### Live test I — unsafe takeover fail-closed PASS
+
+Verified commit: `72b06a2f142d3818c26ab3935679910761d083b1`.
+
+The diff changes only the durable test record:
+- `Experiment state: pending -> blocked`;
+- adds exact blocker evidence.
+
+Verified final durable state:
+- T01 remains `in_progress`;
+- X01 remains the same `active` unresolved execution attempt;
+- no result ref exists;
+- no X02/replacement attempt exists;
+- `brainstorming/live-tests/execution-i/result.txt` does not exist.
+
+Verdict: **PASS — uncertain still-active work fails closed rather than being replayed or replaced.**
+
+This completes the core Stage-9 transfer safety matrix exercised so far:
+- F: completed-Card boundary takeover — PASS;
+- G: active single-Card takeover at proven quiescent checkpoint — PASS;
+- H: multi-member concurrent-set takeover after quiescent reconciliation — PASS, with actual-concurrency evidence limited to durable coordinator attestation;
+- I: unsafe active takeover without quiescence/result proof — PASS fail-closed.
+
+Working conclusion:
+- a common runtime-neutral execution lifecycle can distinguish terminal, transferable and unsafe-active states without product identity;
+- cross-runtime transfer should be ordinary recovery from durable execution state;
+- `transfer_ready/quiesced` is an explicit safety boundary, not an inference from context/session disappearance;
+- no new realization is legal while prior active liveness remains unresolved.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
