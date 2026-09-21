@@ -559,6 +559,36 @@ No product, worker, model, harness or runtime-session identity is encoded in the
 This test specifically checks that a durable state transition, rather than handoff-prompt narrative, is sufficient to prevent recursive fresh-context bounce.
 
 
+### Live test D — end-to-end durable handoff-state PASS
+
+Live test D completed successfully across two normal ChatGPT contexts.
+
+Verified sequence:
+1. first context recovered `resolve_independent_context`, found no qualifying delegated independent-context mechanism, durably transitioned the record to `awaiting_independent_context`, preserved `Review state: pending`, emitted the locator-only handoff, and stopped without verdict;
+2. second fresh context recovered `awaiting_independent_context` and did not bounce;
+3. before judging the subject it durably transitioned to:
+   - `Review state: in_progress`
+   - `Realization state: independent_context_active`
+   in commit `917552aa55f51ace2859b1c0baedb84ce0536799`;
+4. it then independently reviewed the exact immutable subject and persisted:
+   - `Review state: completed`
+   - `Review verdict: RED`
+   - `Realization state: satisfied`
+   - concise evidence
+   in commit `9e0c0915a47152feb10d93b5075d54bd4ba5de4f`;
+5. the immutable subject remained unchanged with blob SHA `9f082055f79c7146dc19abbd84cd49d6d56fdf44`.
+
+The RED is expected and matches prior independent reviews: the test subject deliberately omits the `capability present + invocation fails` case.
+
+Conclusion:
+- durable handoff-state transition fixes the recursive fresh-context bounce observed in test C;
+- normal ChatGPT can implement the runtime-neutral capability-first fallback end-to-end without product-name branching or concrete worker-role names;
+- a fresh context can infer from durable state that it is now the independent executor rather than another realization coordinator;
+- this state-machine pattern is a strong candidate for common independent-context obligations beyond plan review.
+
+Bounded challenge still open: determine whether `realization_state` belongs as a reusable generic common obligation primitive or whether each obligation type should own an equivalent lifecycle locally. Avoid introducing a generic abstraction unless at least one additional obligation demonstrates the same state shape.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
