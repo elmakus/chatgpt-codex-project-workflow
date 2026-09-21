@@ -1,0 +1,44 @@
+id: "change-adaptive-brainstorming-grilling"
+kind: "change"
+status: "in_progress"
+
+branch: "work/adaptive-brainstorming-grilling"
+base_ref: "13e27863cb11ec9e223ee2af191f79fe6b8d559d"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: complete
+  record: "implementation/workstreams/change-adaptive-brainstorming-grilling/INTAKE.md"
+
+routing:
+  exploratory_scope: null
+  research_obligation: null
+  plan_review: null
+
+task_board: "implementation/workstreams/change-adaptive-brainstorming-grilling/TASK_BOARD.yaml"
+
+authority:
+  requirements: "requirements/BRAINSTORMING_GRILLING.md"
+  decisions:
+    - "decisions/ADR_BRAINSTORMING_ADAPTIVE_GRILLING.md"
+  plan: "planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md"
+
+review:
+  requirement: RECOMMENDED
+  state: green
+  subject: "2504bb4968130f87f8f861eba4b0398a31439bf3 + M02/workstream acceptance"
+  evidence: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02_FINAL_INTEGRATION_REFRESH_2026-09-21.md"
+  covered_by: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02-T01_REVIEW_R2_2026-09-21.md"
+
+branch_cleanup:
+  state: null
+  ref: null
+  verified_head: null
+  evidence: null
+
+pr: 53
+result: null

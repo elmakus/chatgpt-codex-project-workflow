@@ -1,186 +1,222 @@
 # Master Plan — Brainstorming Grilling
 
-Revision: `BGR-P2`
+Revision: `BGR-P3`
 Status: `approved`
-Updated: `2026-09-20`
+Updated: `2026-09-21`
 Independent plan review: `RECOMMENDED`
-Supersedes plan revision: `BGR-P1` — corrected OpenSpec boundary after independent review RED.
+Supersedes plan revision: `BGR-P2` — R2 Definition replaces conditional/manual grilling with adaptive default grilling.
 
-> Planning organizes the approved `requirements/BRAINSTORMING_GRILLING.md` Definition. Requirements and `ADR-BGR-001` remain product/system authority; this plan does not redefine them.
+> Planning organizes the approved `requirements/BRAINSTORMING_GRILLING.md` R2 Definition. ADR-BGR-002 is strategic authority and supersedes ADR-BGR-001. This plan does not redefine those choices.
 
 ## 1. Accepted target / canonical inputs
 
-- Requirements: `requirements/BRAINSTORMING_GRILLING.md` — `R1`, approved.
-- Accepted decision: `decisions/ADR_BRAINSTORMING_GRILLING.md` — `ADR-BGR-001`.
-- Exploratory provenance: `brainstorming/BRAINSTORMING_GRILLING.md` — `brainstorming-grilling@R1`, user-promoted.
-- Workstream: `implementation/workstreams/feature-brainstorming-grilling/WORKSTREAM.yaml`.
-- External pattern reference: Matt Pocock's public `grill-me` / `grilling` skills; no runtime dependency.
+- Requirements: `requirements/BRAINSTORMING_GRILLING.md` — `R2`, approved.
+- Accepted decision: `decisions/ADR_BRAINSTORMING_ADAPTIVE_GRILLING.md` — `ADR-BGR-002`.
+- Exploratory provenance: `brainstorming/ADAPTIVE_BRAINSTORMING_GRILLING.md` — `adaptive-brainstorming-grilling@R1`, explicitly user-promoted.
+- Workstream: `implementation/workstreams/change-adaptive-brainstorming-grilling/WORKSTREAM.yaml`.
+- Historical baseline: BGR-P2 / integrated M01 established conditional grilling plus `#grill`; that behavior is now the migration baseline to replace.
+- External inspiration remains Matt Pocock's public `grill-me` / `grilling` skills; there is no runtime dependency.
 
 ## 2. Execution baseline
 
-- `workflow/chatgpt_only/BRAINSTORMING.md` and `workflow/codex_only/BRAINSTORMING.md` define Brainstorming goals, authority boundaries and Research/Definition exits but do not define dependency-aware grilling/frontier rounds.
-- `workflow/chatgpt_only/INTAKE.md` and `workflow/codex_only/INTAKE.md` reserve explicit new-workstream intake for `#issue` and `#feature`.
-- The routers distinguish explicit Intake directives from ordinary route selection.
-- Existing Brainstorming → Project Definition promotion semantics are already explicit and must remain unchanged.
-- Existing tests/docs should be extended rather than introducing a new lifecycle/state machine.
+- ChatGPT-only and Codex-only Brainstorming currently implement conditional grilling, whole-frontier rounds, recommendations, Research ownership, recovery state, user stop, and a manual `#grill` force control.
+- Their routers and Intake contracts explicitly recognize `#grill` as a non-Intake Brainstorming directive.
+- The active legacy/mixed route still dispatches Brainstorming through `workflow/BRAINSTORMING.md`, which lacks the newer dependency-aware grilling contract.
+- Existing BGR tests primarily assert required text/contract presence. They protect routing semantics but do not strongly prevent a future “2–3 questions then declare done” interpretation.
+- Existing Brainstorming → Project Definition promotion and Research-return lifecycles are already authoritative and must remain unchanged.
 
-## 3. Inherited non-goals / invariants / external constraints
+## 3. Inherited non-goals / invariants / constraints
 
-- Grilling is not a workflow phase, intake kind, workstream kind or authority layer.
-- `#feature` remains the feature workstream entry directive; `#grill` only modifies interaction behavior for an active Brainstorming scope.
-- Brainstorming remains tentative until Definition promotion.
-- Agent-findable facts remain agent-owned work; user-facing grilling focuses on user/product/strategic decisions.
-- Full transient decision trees are not required durable state.
-- The user can stop grilling at any time; the workflow must not force low-value follow-up questions.
-- `wait-what` localization/implementation is out of scope.
-- ChatGPT-only and Codex-only must receive equivalent Brainstorming semantics without importing execution mechanics across policy namespaces.
+- Adaptive grilling remains Brainstorming interaction behavior, never a new phase, Intake kind, workstream type, scheduler, questionnaire engine, or second authority layer.
+- No fixed minimum/maximum question count or round count.
+- Simple scopes may end quickly only after the required completion audit/final challenge finds no material remainder.
+- Complex scopes may continue for many rounds when decision value remains.
+- Agent-findable facts remain agent-owned and use normal Research routes.
+- User stop ends new questions immediately but cannot hide material blockers or bypass Definition promotion.
+- `#grill` must disappear from active supported surfaces; historical artifacts remain untouched unless they are current authority that must be revised.
+- Policy-local lifecycle/recovery semantics remain isolated even where the interaction method is equivalent.
+- `wait-what` remains out of scope.
+- No new credentials, deployment, data migration, or live-system authorization gate.
 
 ## 4. Milestones
 
-### M01 — Integrate dependency-aware grilling into Brainstorming
+### M01 — Historical baseline: conditional dependency-aware grilling
 
-- Outcome: current Project Workflow Brainstorming supports conditional automatic grilling plus manual `#grill` forcing, while preserving existing lifecycle/authority boundaries and durable-state minimality.
-- Checkpoint: policy-local contracts, routing/intake interpretation, tests and user-facing documentation agree on one coherent grilling behavior.
+- State: completed/integrated under BGR-P2.
+- Purpose in P3: historical dependency only; do not reopen or rewrite its completed implementation evidence.
+- Result inherited: conditional grilling exists in migrated fixed-policy namespaces and `#grill` exists as the manual force surface.
+
+### M02 — Make adaptive grilling intrinsic to every Brainstorming route
+
+- Outcome: every active Project Workflow Brainstorming route uses one adaptive dependency-aware discovery method; completion is resistant to shallow early exit; `#grill` is no longer a supported active operator surface.
+- Dependencies: approved BGR R2 Definition + ADR-BGR-002; integrated M01 baseline.
+- Checkpoint: current Brainstorming contracts, route surfaces, OpenSpec behavior, tests/scenario evidence, and user-facing docs agree on the R2 semantics with no active conditional/manual-grilling path left.
 - Acceptance:
-  - simple Brainstorming can remain lightweight;
-  - materially ambiguous, multi-path or dependency-linked decisions trigger grilling without numeric thresholds;
-  - the decision tree/frontier only exposes questions whose prerequisites are settled;
-  - each frontier question is numbered and carries an assistant recommendation;
-  - agent-findable facts are investigated rather than delegated back to the user;
-  - answers cause frontier recomputation before dependent questions appear;
-  - `#grill` forces the method for the active Brainstorming scope without creating Intake/workstream state;
-  - full transient decision-tree persistence is not required, while durable recovery retains accepted choices/open material decisions/dependencies/research needs;
-  - all material branches must be resolved or explicitly deferred/non-blocking for normal completion;
-  - a clear user stop such as “dobra, wystarczy” stops grilling immediately and classifies the unresolved remainder by materiality;
-  - Definition promotion rules remain unchanged;
-  - `wait-what` remains outside scope;
-  - regression tests prove the above semantics and existing Intake routing remains intact.
-- Requirement coverage: BGR-REQ-001 through BGR-REQ-014.
-- Dependencies: approved BGR R1 Definition and ADR-BGR-001.
-- Inherited constraints / rationale:
-  - `requirements/BRAINSTORMING_GRILLING.md`
-  - `decisions/ADR_BRAINSTORMING_GRILLING.md`
+  - ChatGPT-only, Codex-only, and legacy/mixed Brainstorming all express the adaptive-default method;
+  - no entry route controls whether grilling happens;
+  - decision-tree/frontier recomputation, relevant internal decision lenses, thematic batching, numbered questions, and recommendation-per-material-question are explicit;
+  - each material settled choice receives one bounded counterfactual challenge and is reopened only by materially new evidence/contradiction/context;
+  - agent-findable facts use Research and return to the same exploratory subject;
+  - normal completion requires relevant-surface completion audit plus one final challenge/discovery pass;
+  - implementation readiness alone is explicitly insufficient to end Brainstorming;
+  - no numeric depth quota exists;
+  - a simple scenario can terminate after a short round only after completion audit;
+  - a complex/dependency-rich scenario demonstrably requires successive rounds as new consequences/frontiers appear;
+  - clear user stop halts questions immediately while unresolved material blockers keep the scope tentative;
+  - active `#grill` support is absent from routers, Intake, Brainstorming contracts, current README/docs/examples, current OpenSpec, and current BGR tests;
+  - explicit Brainstorming → Definition promotion remains unchanged;
+  - regression verification covers all active route families and prevents reintroduction of conditional/manual semantics.
+- Requirement coverage: BGR-REQ-001..018.
 - Planned work packages:
-  - Create/reconcile one JIT OpenSpec change for the M01 changed behavior contract, covering dependency-aware Brainstorming grilling plus `#grill` non-Intake routing semantics, before implementing that behavior.
-  - Update ChatGPT-only Brainstorming contract with conditional decision-tree/frontier method, recommendations, fact ownership, durable-state minimality and user-stop semantics.
-  - Update Codex-only Brainstorming contract with equivalent semantics inside its own policy namespace.
-  - Define `#grill` as a Brainstorming interaction directive and explicitly preserve `#issue` / `#feature` as the only Intake directives; adjust router/intake text only where needed to prevent misclassification.
-  - Add/extend tests covering automatic trigger criteria, dependency ordering, recommendation requirement, fact ownership, `#grill` non-intake behavior, user-stop handling, durable-state expectations and promotion-gate preservation.
-  - Update README/workflow-facing documentation/examples where needed so the user control surface and lifecycle distinction are discoverable.
-- JIT decomposition / deferred-detail trigger: Execution Prep may split the planned work packages into bounded Cards according to actual test/document layout; no strategic detail depends on predecessor evidence.
-- Planning re-evaluation trigger: implementation evidence shows the accepted behavior cannot be expressed without introducing a new lifecycle/state owner or materially restructuring Intake.
-- Definition re-open trigger: implementation reveals that `#grill` must create/recover workstreams, that grilling must become a separate phase, or that any accepted BGR requirement cannot be preserved.
-- Boundary gate / explicit user authorization: none beyond normal independent review gates.
+  1. Create/reconcile one JIT OpenSpec change for BGR R2 adaptive-default behavior, explicitly superseding the prior conditional/manual behavior contract without rewriting historical evidence.
+  2. Refactor ChatGPT-only and Codex-only Brainstorming interaction sections to adaptive-default semantics while preserving each namespace's own durable Research/Definition mechanics.
+  3. Bring the active legacy/mixed `workflow/BRAINSTORMING.md` path to equivalent adaptive interaction semantics without importing migrated fixed-policy state mechanics.
+  4. Remove supported `#grill` handling from active ChatGPT-only/Codex-only routers and Intake contracts and remove active documentation/spec/test references that advertise it.
+  5. Strengthen BGR verification so it checks anti-shortcut completion semantics, cross-route parity, user-stop/blocker behavior, evidence-driven reopening, Research interleave, and absence of the manual trigger; add scenario-oriented evidence that distinguishes simple versus multi-round complex Brainstorming instead of only checking isolated phrases.
+  6. Update README/current user-facing documentation/examples to describe adaptive Brainstorming as intrinsic behavior and explain that the user only needs natural-language stop/continuation.
+  7. Run integrated verification across the exact affected route/doc/spec/test surfaces and existing repository regression suite.
+- JIT decomposition trigger: Execution Prep may split contract/OpenSpec/tests/docs/removal work into bounded Cards based on actual current file layout and reviewability, but every BGR requirement must be assigned before its implementation starts.
+- Planning re-evaluation trigger: implementation shows equivalent semantics cannot be delivered across active route families without materially changing routing topology or milestone strategy.
+- Definition re-open trigger: implementation requires restoring a manual trigger, introducing numeric depth quotas, changing Definition promotion authority, adding a new lifecycle/state owner, or weakening any R2 requirement.
+- Boundary/user authorization gate: none beyond normal independent review gates.
 
 ## 5. Requirement coverage matrix
 
-| Requirement | Owner milestone | Planned work package or JIT trigger | OpenSpec candidate |
+| Requirement | Owner milestone | Planned work package / JIT path | OpenSpec |
 |---|---|---|---|
-| BGR-REQ-001 | M01 | Brainstorming + routing contracts | yes — shared M01 behavior contract |
-| BGR-REQ-002 | M01 | Brainstorming trigger semantics + tests | yes — shared M01 behavior contract |
-| BGR-REQ-003 | M01 | Lightweight-path semantics + tests | yes — shared M01 behavior contract |
-| BGR-REQ-004 | M01 | `#grill` routing/non-intake semantics + tests | yes — shared M01 behavior contract |
-| BGR-REQ-005 | M01 | Decision-tree/frontier contract + tests | yes — shared M01 behavior contract |
-| BGR-REQ-006 | M01 | Frontier-round recommendation contract + tests | yes — shared M01 behavior contract |
-| BGR-REQ-007 | M01 | Fact-ownership contract + tests | yes — shared M01 behavior contract |
-| BGR-REQ-008 | M01 | Frontier recomputation contract + tests | yes — shared M01 behavior contract |
-| BGR-REQ-009 | M01 | Durable-state minimality/recovery contract + tests | yes — shared M01 behavior contract |
-| BGR-REQ-010 | M01 | Completion/deferred semantics + tests | yes — shared M01 behavior contract |
-| BGR-REQ-011 | M01 | User-stop semantics + tests | yes — shared M01 behavior contract |
-| BGR-REQ-012 | M01 | Remainder classification semantics + tests | yes — shared M01 behavior contract |
-| BGR-REQ-013 | M01 | Promotion-gate preservation + regression tests | yes — shared M01 behavior contract |
-| BGR-REQ-014 | M01 | Scope boundary/docs | no — scope boundary only |
+| BGR-REQ-001 | M02 | Brainstorming interaction contracts / lifecycle boundary regression | yes |
+| BGR-REQ-002 | M02 | All active Brainstorming route families + route tests | yes |
+| BGR-REQ-003 | M02 | Completion/depth semantics + anti-quota tests | yes |
+| BGR-REQ-004 | M02 | Simple-scope scenario + completion audit behavior | yes |
+| BGR-REQ-005 | M02 | Decision-tree/frontier contract + dependency scenarios | yes |
+| BGR-REQ-006 | M02 | Internal decision-lens coverage contract + scenario evidence | yes |
+| BGR-REQ-007 | M02 | Thematic batching/numbering/recommendations contract | yes |
+| BGR-REQ-008 | M02 | Frontier recomputation + multi-round scenario | yes |
+| BGR-REQ-009 | M02 | Research interleave/return-to-same-subject behavior | yes |
+| BGR-REQ-010 | M02 | Bounded counterfactual challenge behavior | yes |
+| BGR-REQ-011 | M02 | Evidence-driven reopening behavior | yes |
+| BGR-REQ-012 | M02 | Completion audit + final discovery pass + anti-shortcut tests | yes |
+| BGR-REQ-013 | M02 | User-stop and blocker-preservation behavior | yes |
+| BGR-REQ-014 | M02 | Recovery-state minimality / no transcript-tree authority | yes |
+| BGR-REQ-015 | M02 | Existing Definition-promotion regression coverage | yes |
+| BGR-REQ-016 | M02 | Remove active `#grill` route/docs/spec/test surfaces | yes |
+| BGR-REQ-017 | M02 | ChatGPT-only/Codex-only/legacy-mixed parity verification | yes |
+| BGR-REQ-018 | M02 | Scope-boundary documentation/regression | no — scope boundary |
 
 ## 6. Dependency / execution order
 
-Within M01, Execution Prep may create multiple Cards but must preserve this logical order where dependencies require it:
+Within M02 preserve this logical dependency order:
 
-1. JIT OpenSpec reconciliation for the exact M01 changed behavior contract;
-2. contract semantics for Brainstorming and manual forcing;
-3. router/intake wording needed to distinguish `#grill`;
-4. tests against the resulting exact contract surface and OpenSpec requirements;
-5. documentation/readme alignment;
-6. integrated verification across both policy-local namespaces.
+1. JIT OpenSpec reconciliation against BGR R2 + ADR-BGR-002 and current HEAD.
+2. Core adaptive interaction contract for the three active Brainstorming route families.
+3. Removal/reconciliation of active `#grill` router/Intake/operator surfaces.
+4. Verification strengthening and scenario-oriented behavior evidence against the resulting exact contract.
+5. README/current docs/examples alignment.
+6. Integrated regression and cross-route consistency verification.
 
-Contract and tests may be developed together when a bounded Card can verify them without crossing review/write-scope boundaries.
+Execution Prep may combine adjacent items in one bounded Card when write scope and independent review remain clear. It must not separate tests/docs so far from the changed contract that the exact behavior subject becomes ambiguous.
 
-## 7. Deployment / migration / rollback strategy
+## 7. OpenSpec / behavior-contract strategy
 
-- Documentation/workflow-contract change only; no data migration or live deployment gate.
-- Existing projects/workstreams remain valid because no new mandatory mutable state is introduced.
-- Rollback is ordinary Git revert of the feature changes if integration verification fails.
-- Do not require migration of historical Brainstorming records to a serialized decision-tree format.
+M02 changes a workflow behavior contract and therefore requires one JIT OpenSpec change.
 
-## 8. System verification strategy
+Preferred new change identity: `adaptive-brainstorming-grilling` rather than mutating the already-integrated historical `brainstorming-grilling` change package. The new OpenSpec should:
+- reference BGR R2 and ADR-BGR-002;
+- state adaptive-default semantics and completion invariants;
+- state complete removal of active `#grill` support;
+- cover all active Brainstorming route families;
+- preserve Research return and Definition promotion boundaries;
+- avoid encoding implementation-file details beyond what current execution needs.
 
-Verification must include:
+Execution Prep confirms exact archival/current OpenSpec layout before authoring it.
 
-- OpenSpec-to-implementation consistency for the M01 changed behavior contract, including the non-Intake `#grill` routing boundary;
-- static/content tests proving the new required semantics exist in the appropriate policy-local contracts;
-- routing/intake regression tests proving `#feature` / `#issue` behavior remains unchanged and `#grill` is not treated as new-workstream Intake;
-- scenario-style tests for:
-  - lightweight Brainstorming;
-  - automatic grilling from dependent decisions;
-  - manual `#grill`;
-  - question dependency ordering;
-  - recommendations on frontier questions;
-  - agent-owned fact lookup;
-  - user-requested early stop;
-  - blocking versus non-blocking remainder classification;
-  - recovery without a full persisted decision tree;
-  - unchanged explicit Definition promotion gate;
-- existing relevant repository test suites to catch broader router/workflow regressions.
+## 8. Migration / rollback strategy
 
-## 9. Idempotency / data-integrity / security strategy
+- Workflow-contract/documentation/test change only; no persistent project data migration is required.
+- Historical Brainstorming records and historical BGR M01/OpenSpec/evidence remain valid provenance and need no rewrite.
+- Existing active Brainstorming scopes recover under current durable state; the changed interaction method applies when they next enter/resume Brainstorming.
+- Removing `#grill` is an intentional operator-surface breaking change; no compatibility alias is retained.
+- Rollback is an ordinary Git revert of M02 if integrated verification fails; do not rewrite historical M01 evidence.
 
-- Repeated `#grill` for the same active Brainstorming scope changes interaction mode only and must not create duplicate durable workstreams/authority.
-- Durable records remain concise recovery state, not a transcript or hidden second authority source.
-- No new credentials, remote execution, external writes or security-sensitive runtime behavior are introduced.
+## 9. System verification strategy
 
-## 10. Explicit authorization boundaries
+Verification must combine deterministic repository checks with behavior-oriented scenario evidence:
 
-- No deployment/live-write authorization is required.
-- Existing user-owned Brainstorming → Project Definition promotion semantics remain authoritative and unchanged.
-- Independent plan/implementation/final-integration review gates follow normal ChatGPT-only workflow rules.
+- repository regression suite;
+- contract parity checks across ChatGPT-only, Codex-only, and legacy/mixed Brainstorming;
+- negative scans/assertions proving active `#grill` support is removed from current route/Intake/Brainstorming/docs/spec/test surfaces while allowing historical provenance;
+- focused checks for every R2 completion invariant: expected-decision-value continuation, completion audit, final challenge pass, implementation-readiness insufficiency, no numeric quota, counterfactual challenge, evidence-driven reopening, Research interleave, user-stop blocker preservation;
+- a **simple-scope scenario** demonstrating that adaptive grilling can terminate quickly only after audit;
+- a **complex/dependency-rich scenario** demonstrating multiple successive rounds/frontier recomputation rather than a single shallow 2–3-question pass;
+- a **Research-interleave scenario** demonstrating fact ownership and return to the same exploratory subject;
+- Definition-promotion regression proving adaptive grilling does not bypass explicit promotion.
 
-## 11. JIT / deferred decomposition map
+Because the workflow behavior is instruction-driven rather than an executable questionnaire engine, scenario evidence may be maintained as bounded contract fixtures/audit cases rather than inventing a new runtime solely for tests. Execution Prep chooses the smallest deterministic representation that materially catches regressions.
 
-Execution Prep may decide exact Card boundaries after reading current tests and contract file layout. It may split contract, tests and documentation into separate Cards if write scopes or reviewability benefit. It must not reinterpret the accepted trigger criteria, `#grill` semantics, persistence boundary or user-stop behavior.
+## 10. Data integrity / idempotency / security
 
-M01 requires one JIT OpenSpec behavior-contract change. Execution Prep reconciles that change against current HEAD, the exact authority slice and the concrete Task Card immediately before implementation, rather than freezing distant file-level detail in Planning.
+- No second mutable decision-tree authority is introduced.
+- Durable state remains recovery-relevant exploratory outcomes/dependencies, not full transcript telemetry.
+- Research return remains exactly-once under existing Research contracts.
+- Re-entry/recovery of the same exploratory scope must not duplicate workstream or Definition authority.
+- No credentials, external writes, privileged infrastructure, or security-sensitive runtime behavior are introduced.
 
-## 12. Fresh-context boundaries
+## 11. Explicit authorization boundaries
 
-- The independent plan review is a natural fresh-context boundary.
-- Later Card/final-integration reviews follow normal ChatGPT-only review semantics.
-- No extra context-health handoff is planned solely because the work crosses policy-local contract files.
+- No deployment/live-write authorization gate.
+- Existing user-owned Brainstorming → Project Definition promotion remains unchanged.
+- Independent plan review is RECOMMENDED and forms the next fresh-chat boundary.
+- Card/final-integration independent review follows normal ChatGPT-only rules after Execution Prep.
 
-## 13. Pre-implementation planning audit
+## 12. JIT / deferred decomposition map
 
-- Definition Complete still GREEN: yes; BGR R1 is approved and ADR-BGR-001 is accepted.
-- False assumptions / P0/P1 risks: primary risk is accidental creation of a third Intake directive or new lifecycle; the plan explicitly forbids both.
-- Milestone boundaries/order: one integrated milestone is sufficient because all changes form one coherent workflow behavior and can be verified together.
-- Dependency completeness: contract semantics precede/own router wording, tests and docs; no external runtime dependency exists.
-- Outcome-level acceptance: complete and traceable to all BGR requirements.
-- Requirement coverage: BGR-REQ-001..014 each map to M01 and a planned work package.
-- Migration/rollback: no data migration; historical Brainstorming remains valid.
-- System verification: scenario and regression coverage specified.
-- Data integrity/idempotency/security: no new mutable authority or security surface; repeated manual trigger must be idempotent with respect to durable workstream state.
-- Authorization gates: no new gates; Definition promotion remains unchanged.
-- OpenSpec boundaries: M01 is a changed behavior contract and therefore requires one JIT OpenSpec change covering the Brainstorming grilling semantics plus `#grill` non-Intake routing boundary; concrete spec/task detail remains deferred to Execution Prep.
-- Overengineering/premature detail: exact file/test patch boundaries deferred to Execution Prep.
+Execution Prep owns exact Card boundaries and may split M02 into contract/OpenSpec, verification, and docs/removal Cards when current source layout makes that safer.
+
+It must preserve:
+- one exact R2 authority slice for all Cards;
+- requirement coverage before implementation of each requirement;
+- current OpenSpec coherence before behavior implementation;
+- cross-route parity verification before milestone close.
+
+Do not create speculative future Cards whose scope depends on actual changed-file/test structure.
+
+## 13. Fresh-context boundaries
+
+- Independent plan review is the immediate fresh-context boundary after this draft is frozen.
+- Later REQUIRED/RECOMMENDED Card/final-integration reviews use normal fresh-review boundaries.
+- No extra context-hygiene stop is planned merely because M02 touches three routing families.
+
+## 14. Pre-implementation planning audit
+
+- Definition Complete: GREEN — BGR R2 approved, ADR-BGR-002 accepted, no unresolved product choice.
+- False assumptions / P0-P1 risks:
+  - **P0:** accidentally leaving an active `#grill` path creates two behavior modes → explicitly covered by removal and negative verification.
+  - **P0:** updating only migrated fixed-policy Brainstorming leaves legacy/mixed behavior divergent → M02 explicitly owns all active route families.
+  - **P1:** another phrase-only test suite still permits shallow runtime interpretation → completion invariants and scenario-oriented evidence are explicit acceptance.
+  - **P1:** overcorrecting into a fixed exhaustive questionnaire → numeric quotas and rigid user-facing lens checklist are forbidden.
+- Milestone structure/order: one new integrated M02 is sufficient; M01 remains completed historical baseline.
+- Dependency completeness: OpenSpec/current contract before implementation; interaction contract before removal/tests/docs finalization.
+- Outcome-level acceptance: covers route parity, depth/completion, user stop, Research, trigger removal, promotion preservation.
+- Requirement coverage: BGR-REQ-001..018 all map to M02 and a concrete planned package.
+- Migration/rollback: no durable data migration; intentional operator-surface removal; ordinary revert available.
+- System verification: deterministic regressions + simple/complex/Research scenario evidence.
+- Data integrity/security: no new state authority or sensitive runtime surface.
+- Authorization gates: none new; promotion/review gates preserved.
+- OpenSpec boundary: one new JIT change justified by changed workflow behavior.
+- Overengineering check: no new questionnaire runtime, scheduler, generic scoring system, persisted full tree, or numeric depth engine; scenario representation deferred to the smallest useful execution-time mechanism.
 - Remaining blockers: none.
 
 Planning audit verdict: GREEN.
 
-## 14. Workflow references
+## 15. Workflow references
 
 - Policy router: `workflow/CONTEXT_ROUTING.md`
 - ChatGPT-only Planning: `workflow/chatgpt_only/PLANNING.md`
 - ChatGPT-only Brainstorming: `workflow/chatgpt_only/BRAINSTORMING.md`
 - Codex-only Brainstorming: `workflow/codex_only/BRAINSTORMING.md`
-- ChatGPT-only Intake: `workflow/chatgpt_only/INTAKE.md`
-- Codex-only Intake: `workflow/codex_only/INTAKE.md`
+- Legacy/mixed Brainstorming: `workflow/BRAINSTORMING.md`
+- ChatGPT-only/Codex-only Intake and routers for active `#grill` removal
 - OpenSpec: `workflow/common/OPENSPEC.md`
+- Independent plan review: `workflow/chatgpt_only/PLAN_REVIEW.md`
 
-The Master Plan is not the live task tracker. Mutable implementation state will belong to the workstream-selected Task Board after Execution Prep.
+The Master Plan is planning authority, not the live Task Board. Mutable implementation state will be created only after plan review/approval and Execution Prep.

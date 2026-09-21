@@ -48,31 +48,30 @@ Once exploration is durable managed-change state, an exact selected workstream m
 
 A fresh session recovers the active exploratory scope from selected manifest `routing.exploratory_scope`, validates that locator through `WORKSTREAMS.md`, then reads only the pointed record. Never mirror this locator into root `PROJECT.md`. A missing/mismatched locator for otherwise-live exploratory state is Recovery, not permission to guess another record.
 
-## Grilling interaction method
+## Adaptive grilling interaction method
 
-Grilling is a conditional interaction method inside Brainstorming. It is **not** a separate workflow phase, Intake kind, workstream kind or authority layer.
+Adaptive grilling is the default interaction method inside every Brainstorming scope. It is **not** a separate workflow phase, Intake kind, workstream kind or authority layer, and no entry route or manual operator directive controls whether it applies.
 
-Use ordinary lightweight Brainstorming when the scope is simple. Automatically use grilling when at least one semantic condition is present:
-- unresolved user decisions depend on other user decisions;
-- the goal is materially ambiguous;
-- multiple materially different solution paths remain open.
+Depth is proportional to the expected decision value of another sensible round. A genuinely simple scope may finish after one short user round when the completion audit finds no further material decision value. Do not manufacture low-value questions merely to increase depth, and do not use a fixed minimum/maximum question count or round count. Having enough information to implement is **not** by itself a Brainstorming completion condition.
 
-Do not use a numeric question-count threshold to decide whether grilling applies.
+### Decision surface, tree and frontier
 
-An intentional `#grill` directive forces grilling for the **currently active Brainstorming scope only**. It does not create or recover a workstream, does not create an exploratory scope, and is not an Intake directive. If no active Brainstorming scope exists, `#grill` does not invent one.
-
-### Decision tree and frontier
-
-When grilling:
+During Brainstorming:
 
 1. Model material unresolved **user/product/strategic decisions** as a transient dependency-aware decision tree.
-2. Compute the current **frontier** from material unresolved decisions whose prerequisites are already settled.
-3. Establish agent-findable facts through permitted tools/evidence or the existing Research route instead of delegating research to the user.
-4. Ask the whole currently independent frontier in one round. Number the questions and include an explicit assistant recommendation for every question.
-5. Incorporate the user's answers as exploratory accepted choices, then recompute the decision tree/frontier before exposing any dependent question.
-6. Repeat only while material unresolved branches remain.
+2. Search the relevant decision surface with adaptive internal lenses such as goal/non-goals, user/UX, scope, architecture/interfaces, data/state, dependencies, failure/edge cases, migration/backward compatibility, security/operations and acceptance. Use only lenses that are relevant; do not turn them into a rigid user-facing checklist.
+3. Keep agent-findable facts agent-owned. Establish them through permitted tools/evidence or the applicable Research route instead of delegating research to the user.
+4. Compute the current **frontier** from material unresolved decisions whose prerequisites are already settled.
+5. Select a coherent thematic batch from that frontier. Split a large frontier into digestible groups rather than dumping it at once. Number each material decision question and include an explicit assistant recommendation for it.
+6. Incorporate the user's answers as exploratory accepted choices. Give each material settled choice one bounded adversarial/counterfactual challenge before treating it as stable exploratory state.
+7. After every user round, Research reconciliation, challenge result or material reopening, recompute the decision tree/frontier before exposing dependent questions or declaring completion.
+8. Continue while another sensible round has meaningful expected value for changing scope, UX, architecture, constraints, acceptance or important edge cases.
 
-User-facing frontier questions should focus on genuine user/product/strategic choices, not facts the agent can establish.
+### Challenge stability and reopening
+
+Once a material choice has received its bounded challenge, do not repeatedly reopen it merely to prolong exploration.
+
+Reopen that choice only when materially new evidence, contradiction or changed context undermines it. Recompute any dependent branches/frontier when a choice reopens.
 
 ### Durable state and recovery
 
@@ -82,19 +81,20 @@ Persist only enough Brainstorming state for fresh-session recovery:
 - accepted exploratory choices;
 - unresolved material decisions;
 - material dependency relations between those decisions;
+- challenge/reopening state when needed to avoid duplicate challenge churn;
 - research needs/evidence obligations.
 
-This durable state remains exploratory. It does not become canonical requirements or accepted decisions until Project Definition reconciles it through the existing promotion boundary.
+This durable state remains exploratory and must not become a second requirements/decision authority or a persisted conversation transcript.
 
 ### Completion and user-requested stop
 
-Normal grilling completion requires every material branch to be resolved or explicitly classified as deferred/non-blocking.
+Before normal completion, perform a bounded completion audit across the relevant decision surface and one final challenge/discovery pass. Completion is allowed only when another sensible round has low expected value for changing material scope, UX, architecture, constraints, acceptance or important edge cases.
 
-The user may stop grilling at any time with clear natural language such as “dobra, wystarczy”. Stop asking further grilling questions immediately rather than manufacturing lower-value questions. Then classify the unresolved remainder by materiality:
-- unresolved material product/strategic blockers keep Brainstorming open;
-- marginal/non-blocking items may be recorded as deferred and do not by themselves prevent `ready_for_definition`.
+A clear natural-language user stop such as “dobra, wystarczy” halts new Brainstorming questions immediately. Do not manufacture lower-value follow-ups after that stop. Then classify the unresolved remainder:
+- unresolved material product/strategic blockers keep the exploratory scope tentative and prevent it from being treated as ready to leave Brainstorming;
+- marginal/non-blocking items may be recorded as deferred.
 
-Stopping grilling does not bypass the policy-owned Brainstorming → Project Definition promotion gate.
+Stopping questions does not authorize a downstream phase transition and does not bypass the active route's existing promotion/authority boundary.
 
 ## Exit conditions
 

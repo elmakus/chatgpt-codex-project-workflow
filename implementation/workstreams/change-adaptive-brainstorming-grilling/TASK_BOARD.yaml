@@ -1,0 +1,42 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "change-adaptive-brainstorming-grilling"
+plan_revision: "BGR-P3"
+current_milestone: "M02"
+
+execution_ref:
+  branch: "work/adaptive-brainstorming-grilling"
+  pr: 53
+  head: "2504bb4968130f87f8f861eba4b0398a31439bf3"
+
+research_obligation: null
+
+milestones:
+  M02:
+    decision_state: accepted
+    execution_status: in_progress
+    contract: "planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md#M02--make-adaptive-grilling-intrinsic-to-every-brainstorming-route"
+    checkpoint: null
+    implementation_head: "2504bb4968130f87f8f861eba4b0398a31439bf3"
+    handoff: "implementation/workstreams/change-adaptive-brainstorming-grilling/handoffs/M02_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02_FINAL_INTEGRATION_REFRESH_2026-09-21.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M02-T01"
+    title: "Make adaptive grilling intrinsic to every Brainstorming route"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: []
+    openspec_change: "openspec/changes/adaptive-brainstorming-grilling"
+    contract: "implementation/workstreams/change-adaptive-brainstorming-grilling/cards/M02-T01.md"
+    review_state: green
+    review_subject: "2504bb4968130f87f8f861eba4b0398a31439bf3"
+    review_evidence: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02-T01_REVIEW_R2_2026-09-21.md"
+    result_commit: "2504bb4968130f87f8f861eba4b0398a31439bf3"
+    result_pr: 53
+    evidence: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02-T01_CORRECTION_2026-09-21.md"
+    tests_summary: "GREEN corrective verification on 2504bb4968130f87f8f861eba4b0398a31439bf3: focused adaptive grilling 12/12; full repository 93/93; diff-check/conflict-marker/README literal-escape checks GREEN; see correction evidence."
