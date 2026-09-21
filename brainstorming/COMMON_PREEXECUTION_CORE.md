@@ -2188,6 +2188,47 @@ This validates:
 - Card finalization is a separate deterministic continuation from verdict production.
 
 
+### Live review test K — Phase 1/2 verified, Phase 3 still pending
+
+Verified Phase 1:
+
+- `6596a4bcf5c130813c54fd3b012de41c5b23015b`
+  - R01 `pending -> in_progress`;
+  - independence realization `resolve_independent_context -> independent_context_active`.
+
+- `20451f05b064a0fd075962b989fe6e453b8c77fd`
+  - experiment `pending_r01 -> r01_red`;
+  - R01 `in_progress -> red`;
+  - exact immutable S1 subject preserved;
+  - RED evidence correctly identifies `review-k: BAD\n` versus required `review-k: GOOD\n`;
+  - independence becomes `satisfied`.
+
+Verified Phase 2:
+
+- `073f6d569c44d609de5eee3bf2bf1e550ca74938`
+  - only authorized file `brainstorming/live-tests/review-k/result.txt` changes;
+  - exact correction is `BAD -> GOOD`;
+  - this commit is canonical S2.
+
+- `c3d5f593b22dbf2150c02a300421ce7534280ce2`
+  - T01 result ref advances from exact S1 to exact S2;
+  - `current_attempt: R01 -> R02`;
+  - R01 remains immutable RED with its original subject/evidence;
+  - R02 is appended as a distinct pending attempt for exact S2;
+  - R02 independence starts at `resolve_independent_context`;
+  - experiment becomes `pending_r02`.
+
+Current remote durable state is still `pending_r02`. No later durable R02 GREEN transition is present yet, so K cannot yet receive a full PASS.
+
+#### Runtime-role leakage finding
+
+The intermediate Phase-1 commit `6596a4bc...` persisted independence evidence containing the phrase `delegated Tester context`.
+
+The later terminal R01 evidence no longer requires or names a concrete worker role, so the current canonical review record is runtime-neutral. However, Git history proves that current runtime behavior can still leak a concrete worker-role label into a transient durable Project Workflow state transition.
+
+This does not invalidate the RED/correction/append-only semantics already verified, but it is evidence that the eventual common contract should explicitly prohibit concrete runtime-role names not only in the final schema but also in intermediate durable evidence/state.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
