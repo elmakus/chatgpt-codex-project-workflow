@@ -2,7 +2,7 @@
 
 Plan revision: `BGR-P3`
 Review requirement: `RECOMMENDED`
-Review state: `pending`
+Review state: `in_progress`
 Review subject: `30dc9306584ceebddd2514a8aa585bd86f45ad1c:planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md`
 Review evidence: `pending`
 
