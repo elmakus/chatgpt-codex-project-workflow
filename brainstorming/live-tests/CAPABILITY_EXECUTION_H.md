@@ -10,13 +10,13 @@ Execution evidence: none
 ```yaml
 cards:
   - id: T01
-    execution_status: ready
+    execution_status: in_progress
     depends_on: []
     result_ref: null
     evidence: null
 
   - id: T02
-    execution_status: ready
+    execution_status: in_progress
     depends_on: []
     result_ref: null
     evidence: null
@@ -30,7 +30,20 @@ cards:
 
 ## Active execution
 
-`null`
+```yaml
+id: X01
+state: active
+base_ref: a09a054181f4a0975b1cc1226b28238cd56f7dd1
+reconciliation_order: [T01, T02]
+members:
+  - card_id: T01
+    state: active
+    canonical_result_ref: null
+  - card_id: T02
+    state: active
+    checkpoint_ref: null
+    canonical_result_ref: null
+```
 
 ## Common execution contract for this experiment
 
