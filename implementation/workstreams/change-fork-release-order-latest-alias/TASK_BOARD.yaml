@@ -32,7 +32,7 @@ cards:
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/change-fork-release-order-latest-alias/cards/M02-T01.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "822c0ee434e5dde5904a3709af5022bc0905bb5b"
     review_evidence: "implementation/workstreams/change-fork-release-order-latest-alias/evidence/M02-T01.md"
     result_commit: "822c0ee434e5dde5904a3709af5022bc0905bb5b"
