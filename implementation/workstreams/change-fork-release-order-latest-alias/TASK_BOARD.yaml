@@ -17,8 +17,8 @@ milestones:
     contract: "planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md#milestone-m02--canonical-fork-channel-ordering-and-moving-aliases"
     checkpoint: null
     implementation_head: "822c0ee434e5dde5904a3709af5022bc0905bb5b"
-    handoff: null
-    acceptance_evidence: null
+    handoff: "implementation/workstreams/change-fork-release-order-latest-alias/handoffs/M02_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/change-fork-release-order-latest-alias/evidence/M02_FINAL_INTEGRATION_REFRESH_2026-09-21.md"
     review_state: null
     review_subject: null
     review_evidence: null
