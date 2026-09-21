@@ -492,6 +492,49 @@ Verdict for the first half of live test C: **PASS** for capability-first absence
 The second half (fresh context consuming the generated prompt and completing the review) remains to be run if end-to-end confirmation is desired.
 
 
+### Live test C — fresh-context continuation FAIL (handoff bounce)
+
+The second half of live test C exposed a durable-contract bug.
+
+Observed:
+- the first ChatGPT context correctly detected absence of a qualifying delegated independent context, preserved `pending`, emitted a locator-only fresh-context handoff and stopped;
+- the user opened a fresh ChatGPT chat with that generated handoff;
+- the fresh chat re-read the durable record and again concluded that the context receiving the record is the initiating/coordinating context forbidden from issuing a verdict;
+- it therefore emitted another fresh-context handoff instead of performing the review.
+
+This is a **handoff bounce** caused by the durable contract, not by product detection.
+
+Root cause:
+the record says:
+
+`the context that receives this record as its current obligation is the initiating/coordinating context and MUST NOT issue the review verdict itself`
+
+That statement is permanently true for every context that follows the durable pointer, including the intended fresh reviewer. Because the handoff prompt is explicitly non-authoritative, its statement that the new chat is fresh cannot override the durable record.
+
+Implication:
+capability-first routing needs a runtime-neutral durable distinction between:
+- the context responsible for **realizing** an independent obligation; and
+- the independent context that is **authorized to execute** that obligation.
+
+The distinction must survive runtime transfer without relying on previous-chat narrative or product identity.
+
+Candidate correction:
+- keep one semantic review obligation;
+- add a neutral lifecycle/ownership marker that changes durably before the handoff, e.g. `realization_state: awaiting_independent_context` or equivalent;
+- an initiating context with no qualifying delegation capability transitions the record to that state, persists it, emits the locator-only handoff and stops;
+- a new context recovering `awaiting_independent_context` may establish that it is a distinct context and execute the review directly, rather than trying to resolve another independent context;
+- this marker must not encode `ChatGPT`, `Codex`, worker names, model names, or runtime session IDs.
+
+The exact schema is still exploratory. The key invariant is: **a durable handoff must change enough state to distinguish "create an independent context" from "you are now the independent context", otherwise fresh-context fallback can recurse forever.**
+
+Verdict:
+- initiating-context capability resolution: PASS;
+- fresh-context continuation: FAIL;
+- end-to-end ChatGPT fallback: FAIL until the durable role/lifecycle transition is specified.
+
+This failure is useful evidence for the portability design and should be fixed before treating stage-7 commonization as settled.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
