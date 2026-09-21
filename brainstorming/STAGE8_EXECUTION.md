@@ -164,10 +164,12 @@ The conservative-commonization principle means the universal wrapper should not 
 
 ## Open material questions
 
-1. Do we need one universal `active_execution` wrapper even for ordinary one-Card execution, or only a supplemental record when concurrency/transfer requires it?
-2. When Main delegates a single Card to a worker in an isolated workspace, is the existing Card `in_progress` + exact returned result ref sufficient, or does delegation itself justify a generic execution-attempt record?
-3. How much durable history of completed concurrent execution is actually needed after Card results/reviews are canonical, versus relying on Git/result/review history?
-4. For runtime takeover of active work, should explicit `transfer_ready` be a common state only when a transfer is actually requested, rather than part of every normal execution lifecycle?
+Parallel/multi-member execution questions are superseded by the user's serial Project-Card decision.
+
+Remaining Stage-8 questions are intentionally narrow:
+1. what minimum validation Main must perform before accepting a delegated implementation result as the Card's canonical result;
+2. whether Main must rerun verification itself or may consume durable worker-produced test evidence when sufficient;
+3. whether any additional single-Card returned-result state is needed, or ordinary `in_progress` + exact result/evidence reconciliation is sufficient.
 
 These are Stage-8 design questions, not accepted Definition decisions.
 
