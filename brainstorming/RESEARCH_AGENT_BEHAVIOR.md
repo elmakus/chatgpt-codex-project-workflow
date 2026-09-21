@@ -2,18 +2,18 @@
 
 Date: `2026-09-21`
 Scope ID: `research-agent-behavior`
-Revision: `R1`
-Status: `tentative`
+Revision: `R2`
+Status: `ready_for_definition`
 
 ## Problem / goal
 
-Understand the current Project Workflow Research semantics and the concrete behavior of the active agent when routing enters Research, then decide whether that contract should be changed.
+Strengthen Project Workflow Research so that, when relevant, it actively checks external prior art and real-world problem reports/solutions instead of solving every problem from first principles, while preserving the evidence-versus-authority boundary.
 
 ## Current understanding
 
 ### Verified facts
 
-- Shared Research goal: produce source-grounded findings that can support Project Definition and later planning without conflating evidence with accepted intent.
+- Shared Research goal today is to produce source-grounded findings that can support Project Definition and later planning without conflating evidence with accepted intent.
 - A Research artifact distinguishes verified facts/sources, repository observations, assumptions, uncertainties, alternatives, recommendation when requested, and unresolved authority questions.
 - Research is evidence only. It does not directly create accepted requirements, decisions or plan authority.
 - Under the current repository policy `chatgpt_only`, ChatGPT itself executes the Research role. There is no separate runtime Investigator realization in the ChatGPT-only Research contract.
@@ -29,51 +29,71 @@ Understand the current Project Workflow Research semantics and the concrete beha
 - Brainstorming routes to Research when material claims require verification.
 - Research completion does not authorize Brainstorming → Project Definition promotion.
 
-### Assumptions to verify
+### Explicit user/product choices from discovery
 
-- Whether the desired feature is to change only Research interaction quality, or to introduce a stronger explicit research-agent contract across both fixed policies.
-- Whether Research should prescribe a concrete search procedure/tool strategy or remain outcome/authority oriented.
+- Research should not stop at local repository/document inspection when the problem may already have known external solutions.
+- When relevant, Research should search the internet for prior art: similar problems, issue reports, discussions and how other people/projects solved them, specifically to avoid reinventing the wheel.
+- This stronger Research behavior should apply consistently to both `chatgpt_only` and `codex_only`; only the concrete role realization differs.
+- The stale pointer description in `templates/RESEARCH.md` should be repaired in the same feature.
 
-## Ideas / alternatives considered
+## Target behavior candidates
 
-### Option A — Keep current contract
+### Shared Research investigation contract
 
-Keep Research primarily as an evidence/authority boundary with exact durable continuation, leaving concrete investigation tactics to the active agent/runtime.
+Research should use the smallest useful evidence path for the question, but when the subject plausibly has external prior art it should include external discovery rather than defaulting to an original solution.
 
-### Option B — Strengthen Research behavior contract
+Relevant evidence classes may include:
+- current project/repository state;
+- official/upstream documentation and primary sources;
+- upstream source, changelogs, issues and discussions;
+- public issue trackers and implementation examples from comparable projects;
+- community reports/forums/discussions when they provide practical failure modes or solutions;
+- external web sources needed to verify current behavior or constraints.
 
-Add explicit expectations for how the research role investigates: source hierarchy, repository inspection, web/external verification, competing hypotheses, contradiction handling, stopping criteria and concise return package.
+Community evidence is supporting evidence, not automatically authoritative. Conflicting or anecdotal reports should be identified as such and checked against stronger sources when possible.
 
-### Option C — Separate Investigator semantics across policies
+### Applicability
 
-Keep ChatGPT-only as self-executed Research, while making Codex-only Investigator behavior more explicitly specified through the runtime-owned orchestration contract without moving model/harness ownership into Project Workflow.
+The shared Research quality/evidence contract should apply under both fixed policies:
+- `chatgpt_only`: ChatGPT performs the Research role directly;
+- `codex_only`: the Research obligation may be realized by a runtime Investigator, while `codex_workflow` continues to own model/harness/session mechanics.
+
+Project Workflow should specify expected evidence behavior, not a concrete model or runtime implementation.
+
+### Boundedness
+
+Research should remain proportional:
+- skip broad internet searching for purely local/private/repository-internal facts when external prior art cannot materially help;
+- search external prior art when the problem involves public software, APIs, libraries, protocols, tooling, known failure modes, design patterns or other domains where existing solutions are reasonably likely;
+- stop when enough source-grounded evidence exists to answer the exact Research question and compare meaningful alternatives, rather than searching indefinitely.
 
 ## Trade-offs / questions
 
-- More explicit research procedure improves repeatability but risks over-constraining simple research.
-- Runtime-specific Investigator rules must not duplicate `codex_workflow` ownership.
-- A stronger contract should still preserve the distinction between evidence and accepted authority.
-- The shared Research template should not contradict policy-local pointer ownership.
+- Stronger external discovery improves reuse of established solutions and lowers the chance of reinventing the wheel.
+- Community reports can expose real failure modes not covered by official documentation, but they need clear source-quality labeling.
+- The contract should require useful prior-art discovery when relevant without forcing expensive web research for every trivial local question.
+- Runtime-specific Investigator mechanics must remain outside Project Workflow.
 
 ## Research needed
 
-None required to answer the current-state question. Additional research is needed only after the desired behavior change is selected.
+No additional formal Research is required before Project Definition. The remaining work is to formalize the accepted target behavior and its exact boundaries.
 
 ## Open questions
 
-- What exactly should improve compared with today's Research behavior?
-- Should the change apply to `chatgpt_only`, `codex_only`, or both?
-- Should Research define concrete investigation tactics, or only minimum evidence/quality obligations?
-- Should this feature also repair the stale pointer description in `templates/RESEARCH.md`?
+No material user/product decision remains blocking Project Definition. Exact source ordering, minimum evidence wording and stopping criteria can be formalized in Definition/Planning as long as they preserve the user choices above.
 
 ## Outcome of this session
 
-- Tentative conclusions: current Research is a durable evidence-producing role, not a decision-making phase; under current `chatgpt_only` policy ChatGPT performs it directly, while `codex_only` may realize an Investigator through runtime orchestration.
-- Explicit user/product choices to promote through Project Definition: none yet.
-- Research still needed: none for current-state explanation.
-- Open questions: desired target behavior remains unspecified.
-- Next phase/action: `continue brainstorming`
+- Tentative conclusions: Research should explicitly look for relevant external prior art and real-world solutions when that can materially help, rather than relying only on local evidence or inventing a new solution.
+- Explicit user/product choices to promote through Project Definition:
+  - relevant internet/prior-art/community search becomes part of the Research behavior contract;
+  - apply the behavior to both `chatgpt_only` and `codex_only`;
+  - preserve runtime ownership boundaries for Codex Investigator realization;
+  - repair the stale `templates/RESEARCH.md` ChatGPT-only pointer description.
+- Research still needed: none before Definition.
+- Open questions: none material at product level.
+- Next phase/action: `ready for definition`
 - Definition promotion authorization: `pending`
 - Definition promotion subject: `none`
 
-> Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`.
+> Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Because the selected policy requires explicit user phase promotion, this scope must not enter Project Definition until the user explicitly authorizes promotion.
