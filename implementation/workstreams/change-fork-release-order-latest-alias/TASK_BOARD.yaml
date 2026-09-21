@@ -5,7 +5,7 @@ current_milestone: "M02"
 
 execution_ref:
   branch: "work/fork-release-order-latest-alias"
-  pr: null
+  pr: 54
   head: "822c0ee434e5dde5904a3709af5022bc0905bb5b"
 
 research_obligation: null
@@ -36,6 +36,6 @@ cards:
     review_subject: "822c0ee434e5dde5904a3709af5022bc0905bb5b"
     review_evidence: "implementation/workstreams/change-fork-release-order-latest-alias/evidence/M02-T01.md"
     result_commit: "822c0ee434e5dde5904a3709af5022bc0905bb5b"
-    result_pr: null
+    result_pr: 54
     evidence: "implementation/workstreams/change-fork-release-order-latest-alias/evidence/M02-T01.md"
     tests_summary: "GREEN on exact subject 822c0ee: 12/12 focused FRV, 112/112 full unittest discovery, git diff --check GREEN."
