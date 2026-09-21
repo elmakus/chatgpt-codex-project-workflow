@@ -28,7 +28,7 @@ cards:
     title: "Make adaptive grilling intrinsic to every Brainstorming route"
     milestone: "M02"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     openspec_change: "openspec/changes/adaptive-brainstorming-grilling"
