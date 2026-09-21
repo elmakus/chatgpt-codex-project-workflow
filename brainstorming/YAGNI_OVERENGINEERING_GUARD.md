@@ -2,14 +2,14 @@
 
 Date: `2026-09-21`
 Scope ID: `yagni-overengineering-guard`
-Revision: `R1`
+Revision: `R2`
 Status: `tentative`
 
 ## Problem / goal
 
 Project Workflow already contains several local proportionality rules, but it does not currently state a general engineering principle against adding complexity for hypothetical future needs.
 
-The goal is to decide whether to add an explicit YAGNI-style invariant: implement the simplest solution that satisfies current accepted requirements and evidence, and do not add speculative abstractions, extensibility, indirection, infrastructure, configuration or generalized machinery without a concrete current need.
+The goal is to add an explicit YAGNI-style invariant: implement the simplest solution that satisfies current accepted requirements and evidence, and do not add speculative abstractions, extensibility, indirection, infrastructure, configuration or generalized machinery without a concrete current need.
 
 ## Current understanding
 
@@ -31,57 +31,47 @@ The goal is to decide whether to add an explicit YAGNI-style invariant: implemen
 - Future implementation detail should be delayed when predecessor evidence is required.
 - Progressive disclosure is selective by context but lossless by authority.
 
-### Assumptions to verify
+### Explicit user/product choices from this exploration
 
-- A general anti-overengineering rule should be a default engineering invariant rather than an absolute ban on abstraction or extensibility.
-- Extra complexity should remain legal when current accepted requirements, concrete evidence, compatibility constraints, safety, migration needs or demonstrated near-term reuse justify it.
+- Adopt the global YAGNI-style direction rather than limiting the rule to Planning/Execution or keeping only local proportionality rules.
+- Treat YAGNI as a policy-neutral engineering invariant across the workflow.
+- The invariant must reject speculative complexity without blocking complexity justified by concrete current requirements/evidence.
+- Before Definition promotion, compare this direction against established external engineering practice and concrete public-repository rules.
 
-## Ideas / alternatives considered
+## Chosen direction
 
-### Option A — Global YAGNI-style engineering invariant
-
-State one policy-neutral principle that applies across Definition, Planning, Execution Prep, implementation and review:
+Use one compact policy-neutral engineering invariant rather than a new lifecycle mechanism:
 
 > Prefer the simplest design that fully satisfies current accepted requirements, decisions and evidence. Do not add abstractions, generality, extensibility, configuration, infrastructure or future-proofing for hypothetical needs. Additional complexity requires a concrete present justification.
 
-This would provide a single test reviewers and planners can apply without creating new lifecycle machinery.
+“Simple” means the least complex solution that satisfies the complete accepted authority surface, not the shortest implementation or fewest files.
 
-### Option B — Planning/execution-only rule
-
-Add the rule only to Planning / Execution Prep / Execution contracts.
-
-This is narrower, but Brainstorming and Definition could still normalize speculative complexity before those phases.
-
-### Option C — Keep only existing local rules
-
-Make no general change and rely on current proportionality rules.
-
-This avoids another invariant, but leaves the exact gap raised by this feature: there is no general criterion for rejecting speculative engineering that is technically valid but not currently needed.
+The final wording may be refined from Research evidence before Definition promotion.
 
 ## Trade-offs / questions
 
 - A YAGNI rule should reject speculative complexity, not necessary complexity.
-- “Simplest” must mean simplest solution that satisfies the whole accepted authority surface, not shortest code or fewest files.
-- The rule should not prevent deliberate extension points when a current requirement, known compatibility surface, safety requirement, migration constraint or already-demonstrated reuse case requires them.
-- The principle should remain small; adding scoring systems, complexity budgets or new lifecycle gates would itself violate the intent.
+- The rule should not prevent deliberate extension points when a current requirement, known compatibility surface, safety requirement, migration constraint or demonstrated current reuse case requires them.
+- The principle should remain small; scoring systems, complexity budgets or a new lifecycle gate would themselves be suspect unless Research reveals a concrete need.
+- Research should distinguish useful operational patterns from slogans so the resulting invariant is actually reviewable.
 
 ## Research needed
 
-No blocking external research is required to decide the product direction. YAGNI is a well-established software-design principle; the repository-specific gap is already established from current `main`.
+Active Research: `research/YAGNI_PRACTICES_R1.md`.
+
+Question: how do established engineering sources and public repositories operationalize YAGNI / anti-overengineering, and which concrete practices should Project Workflow adopt or avoid compared with the proposed global invariant?
 
 ## Open questions
 
-1. Should Project Workflow adopt Option A as a global policy-neutral engineering invariant, with the explicit exception that complexity is allowed when justified by a concrete current requirement/evidence?
-
-Assistant recommendation: **yes**. This directly addresses overengineering while preserving necessary architecture and avoids creating extra process machinery.
+No unresolved user/product decision is currently blocking Research. After Research returns, reconcile any evidence-backed wording/exception changes before deciding readiness for Definition.
 
 ## Outcome of this session
 
-- Tentative conclusions: Project Workflow has several local proportionality rules but no general anti-overengineering invariant; a compact global YAGNI-style rule is the smallest coherent addition.
-- Explicit user/product choices to promote through Project Definition: pending answer to Open question 1.
-- Research still needed: none blocking.
-- Open questions: 1 material product choice.
-- Next phase/action: `continue brainstorming`
+- Tentative conclusions: adopt a global policy-neutral YAGNI invariant, with wording to be refined against external practice.
+- Explicit user/product choices to promote through Project Definition: global YAGNI direction and concrete-current-justification exception.
+- Research still needed: external-practice comparison in `research/YAGNI_PRACTICES_R1.md`.
+- Open questions: none requiring user input before Research.
+- Next phase/action: `research`
 - Definition promotion authorization: `pending`
 - Definition promotion subject: `none`
 
