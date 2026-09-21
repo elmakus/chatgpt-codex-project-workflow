@@ -37,6 +37,28 @@ Status: `tentative | ready_for_definition`
 
 ...
 
+## Adaptive discovery state
+
+Persist only recovery-relevant state; do not serialize the full transient decision tree or conversation.
+
+### Accepted exploratory choices
+
+| Choice | Counterfactual challenge | Stability note |
+|---|---|---|
+| ... | pending | ... |
+
+### Unresolved material decisions / dependencies
+
+| Decision | Prerequisites | Status |
+|---|---|---|
+| ... | ... | open |
+
+### Reopened choices
+
+Record only choices reopened by materially new evidence, contradiction or changed context.
+
+...
+
 ## Research needed
 
 ...
