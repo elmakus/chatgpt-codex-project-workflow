@@ -16,9 +16,9 @@ milestones:
     execution_status: in_progress
     contract: "planning/RESEARCH_AGENT_BEHAVIOR_MASTER_PLAN.md#M01--strengthen-research-investigation-quality-and-prior-art-discovery"
     checkpoint: null
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    implementation_head: "25ac000cac86c7421c3632f216be1074f61f64ce"
+    handoff: "implementation/workstreams/feature-research-agent-behavior/handoffs/M01_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-research-agent-behavior/evidence/M01-acceptance.md"
     review_state: null
     review_subject: null
     review_evidence: null
