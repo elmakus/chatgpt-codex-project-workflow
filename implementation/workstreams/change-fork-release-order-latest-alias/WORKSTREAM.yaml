@@ -1,7 +1,7 @@
 # Branch-isolated workstream manifest.
 id: "change-fork-release-order-latest-alias"
 kind: "change"
-status: "planning"
+status: "ready"
 
 branch: "work/fork-release-order-latest-alias"
 base_ref: "main"
@@ -20,7 +20,7 @@ routing:
   research_obligation: null
   plan_review: null
 
-task_board: null
+task_board: "implementation/workstreams/change-fork-release-order-latest-alias/TASK_BOARD.yaml"
 
 authority:
   requirements: "requirements/FORK_RELEASE_VERSIONING.md"
@@ -29,7 +29,7 @@ authority:
   plan: "planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md"
 
 review:
-  requirement: null
+  requirement: "RECOMMENDED"
   state: null
   subject: null
   evidence: null
