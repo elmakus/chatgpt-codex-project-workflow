@@ -6,6 +6,17 @@ This module applies only after root routing has selected `execution_policy: code
 
 Produce source-grounded findings without conflating evidence with accepted intent, while making every cross-session Research continuation exactly recoverable.
 
+## Shared evidence behavior
+
+Apply `workflow/common/RESEARCH.md` in full for investigation quality. In particular, this policy-local Research route:
+- uses the smallest evidence path sufficient for the exact question;
+- actively checks relevant external prior art when it is reasonably likely to exist and materially help;
+- distinguishes stronger/primary/upstream evidence from anecdotal/community evidence and surfaces conflicts explicitly;
+- reports unavailable required source paths as limitations rather than fabricating evidence;
+- stops once sufficient source-grounded evidence answers the exact question and meaningful alternatives.
+
+These evidence rules do not change this module's durable continuation, Return-target/reconciliation or pointer-ownership semantics.
+
 ## Durable record contract
 
 Any Research obligation that may cross a role/session boundary must have one exact durable record **before** its origin role yields.
