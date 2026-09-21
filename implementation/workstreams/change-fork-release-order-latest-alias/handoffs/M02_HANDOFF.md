@@ -6,10 +6,13 @@
 - Implementation behavior head: `822c0ee434e5dde5904a3709af5022bc0905bb5b`
 - Reconciled pre-merge integration target: `main@fd2dc95f539d982e1009d71bbf1301f3098900f6`
 - Integration pull request: `#54`
-- Final integration result: pending
+- Final integration result: `b27677862e6fe5984979c2072acf2e83a3787ad0`
 - Integrated milestone acceptance: **GREEN**
 - Independent Card review: **GREEN**
 - Workstream final-integration review: **GREEN by exact coverage reuse**
+- Target-side closure pull request: `#55`
+- Target-side closure evidence: `implementation/workstreams/change-fork-release-order-latest-alias/evidence/M02_FINAL_CLOSURE_2026-09-21.md`
+- Source branch: automatically deleted by GitHub after successful merge; no fallback cleanup marker required
 - Final-integration refresh evidence: `implementation/workstreams/change-fork-release-order-latest-alias/evidence/M02_FINAL_INTEGRATION_REFRESH_2026-09-21.md`
 
 ## Achieved state
@@ -33,4 +36,4 @@ Generic SemVer is explicitly not the canonical fork-channel resolver. No runtime
 
 ## Terminal recovery
 
-Before merge, recover from this workstream branch + manifest + selected Task Board. After final-target merge, reconcile the pending PR/result fields from the target-side namespaced package and immutable merge evidence; do not depend on source-branch survival.
+Recover completed truth from the target-side `implementation/workstreams/change-fork-release-order-latest-alias/` package plus manifest result `b27677862e6fe5984979c2072acf2e83a3787ad0` and immutable PR #54 merge evidence. No live Card, Research, review, stacked-dependency or integration obligation remains.

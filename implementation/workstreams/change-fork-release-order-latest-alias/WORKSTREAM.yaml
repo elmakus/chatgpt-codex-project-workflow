@@ -1,7 +1,7 @@
 # Branch-isolated workstream manifest.
 id: "change-fork-release-order-latest-alias"
 kind: "change"
-status: "review"
+status: "done"
 
 branch: "work/fork-release-order-latest-alias"
 base_ref: "main"
@@ -42,4 +42,4 @@ branch_cleanup:
   evidence: null
 
 pr: 54
-result: null
+result: "b27677862e6fe5984979c2072acf2e83a3787ad0"
