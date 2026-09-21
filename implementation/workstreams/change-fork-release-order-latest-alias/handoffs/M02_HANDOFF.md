@@ -5,7 +5,7 @@
 - Milestone: `M02 — Canonical fork-channel ordering and moving aliases`
 - Implementation behavior head: `822c0ee434e5dde5904a3709af5022bc0905bb5b`
 - Reconciled pre-merge integration target: `main@fd2dc95f539d982e1009d71bbf1301f3098900f6`
-- Integration pull request: pending
+- Integration pull request: `#54`
 - Final integration result: pending
 - Integrated milestone acceptance: **GREEN**
 - Independent Card review: **GREEN**
