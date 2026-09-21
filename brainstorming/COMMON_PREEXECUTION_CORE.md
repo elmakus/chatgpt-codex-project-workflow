@@ -2155,6 +2155,39 @@ Both tests reuse the capability-first independence lifecycle from Stage 7:
 Test-specific STOP boundaries are intentional observability points. They do not imply that the eventual production router must stop after every GREEN/RED transition when deterministic continuation is otherwise legal.
 
 
+### Live review test J — cross-runtime GREEN + finalization PASS
+
+Verified durable sequence:
+
+1. Codex-side independent review completed R01 GREEN at
+   `c7a01744688301fb5c755143aa946f1a2c9892e7`.
+   - Experiment `pending_review -> reviewed`.
+   - R01 `in_progress -> green`.
+   - exact immutable subject remained
+     `a23712266f36ae70cda129a9b3242c6391b50b49:brainstorming/live-tests/review-j/result.txt`.
+   - durable GREEN evidence was recorded.
+   - `independence.realization_state -> satisfied`.
+   - no reviewed-subject mutation occurred.
+
+2. Later ChatGPT context finalized the same Card at
+   `044aab4f8b78bdfe5450aad64c3d9fe6d48b9edd`.
+   - Experiment `reviewed -> completed`.
+   - T01 `in_progress -> done`.
+   - T01 result ref remained unchanged.
+   - R01 remained the only attempt and stayed GREEN.
+   - no implementation replay;
+   - no review replay;
+   - review history/evidence unchanged.
+
+Verdict: **PASS — a runtime-neutral independent GREEN verdict can be consumed by a later different runtime/context for deterministic Card finalization without replay.**
+
+This validates:
+- product-neutral independent-context review semantics;
+- one unchanged subject stays in one review attempt;
+- terminal review evidence survives runtime/context change;
+- Card finalization is a separate deterministic continuation from verdict production.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
