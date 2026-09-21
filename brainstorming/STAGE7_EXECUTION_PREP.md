@@ -406,3 +406,21 @@ Stage 7 preserves the proven fixed-policy preparation/JIT model, with only the m
 - launch-time refresh belongs to Execution.
 
 Next stage: Stage 8 — Execution.
+
+
+## Superseding decision from Stage 8 — no parallel Cards in V2
+
+Later Stage-8 grilling explicitly removed Project Workflow-level parallel Card execution from target V2.
+
+Therefore the earlier Stage-7 decisions about:
+- Card concurrency opt-in;
+- `parallel_safe`;
+- `write_scope` as concurrency proof;
+- `exclusive_resources` as concurrency proof;
+- multiple READY Cards being used to form concurrent execution sets;
+
+are superseded **for concurrency purposes**.
+
+Stage 7 still may leave multiple Cards READY when their dependencies/prerequisites are satisfied, but Stage 8 selects and executes exactly one Card at a time.
+
+Ordinary Card scope/external-write constraints remain valid when needed for execution safety/authority; they are no longer required as a parallel scheduling contract.
