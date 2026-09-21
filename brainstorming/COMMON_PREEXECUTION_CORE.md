@@ -391,14 +391,14 @@ This portability goal is now the main architectural criterion for evaluating com
 The live ChatGPT branch of the capability-first experiment completed from a fresh independent chat using only the runtime-neutral durable obligation in `brainstorming/live-tests/CAPABILITY_PLAN_REVIEW_B.md`.
 
 Observed behavior:
-- the initiating chat did not issue the verdict;
-- the fresh chat recovered the exact immutable subject from the durable review record;
+- the user manually opened a fresh ChatGPT chat and supplied the locator prompt;
+- that fresh chat recovered the exact immutable subject from the durable review record;
 - it did not require a concrete worker-role name, model, product-specific reviewer contract or previous-chat narrative;
 - it preserved the immutable subject unchanged;
 - it wrote the verdict/evidence back to the same review record;
 - verdict was **RED** because the deliberate plan omission for `capability available + invocation fails` is a material correctness gap.
 
-Interpretation: the reviewed plan failed, but the **ChatGPT transport/portability path passed**. The RED is expected evidence that an independent fresh context actually evaluated the subject rather than merely following the initiating chat's conclusion. It also confirms that runtime-neutral wording was sufficient for ChatGPT to understand and execute the obligation.
+Correct interpretation: this proves **fresh-context consumption/recovery portability**, not automatic capability resolution or automatic handoff generation. The initiating ChatGPT context was not tested for the decision `independent context required + no native delegation capability → generate fresh-context handoff and stop`; the user manually created that fresh context. The RED still demonstrates that the fresh context independently evaluated the runtime-neutral obligation.
 
 A/B comparison remains open until the Codex live branch completes.
 
@@ -426,6 +426,32 @@ Therefore the live test verdict on the architecture is:
 - **full durable-state interchangeability: not yet complete until canonical verdict/provenance serialization is defined.**
 
 Recommended next bounded test after correcting the deliberate subject defect and canonical record schema: repeat the same A/B review expecting GREEN and compare the resulting durable records field-for-field after excluding transport-only runtime logs.
+
+
+### Live-test interpretation correction
+
+The first A/B live test must not be overclaimed.
+
+What was actually tested:
+- ChatGPT B: a manually created fresh ChatGPT chat could recover and execute the runtime-neutral review obligation.
+- Codex A: Codex Main/runtime could realize the independent-review obligation through its installed orchestration without the Project Workflow record naming a worker role.
+
+What was **not** tested on ChatGPT B:
+- whether the initiating ChatGPT context independently detects that it lacks a qualifying delegated independent-context capability;
+- whether it automatically chooses the fresh-context fallback;
+- whether it emits the correct durable handoff/STOP without the user pre-creating the fresh chat.
+
+Therefore ChatGPT B is evidence for **handoff target recoverability**, not evidence for the proposed capability resolver.
+
+Codex A also reflects the currently installed legacy `codex_workflow` behavior: it selected a Muse exec-backed worker. This validates runtime-owned realization/no Project Workflow worker-name requirement, but does not validate the intended future native-Codex-subagent implementation. That mechanism must be retested after `codex_workflow` is updated.
+
+Corrected next live test:
+1. create one pending runtime-neutral independent-review obligation;
+2. remain in the initiating ChatGPT context;
+3. instruct it only to continue the obligation under the capability-first rule, without manually opening a fresh chat and without telling it which transport to use;
+4. PASS requires the initiating ChatGPT context to determine that no qualifying native/delegated independent context is available, preserve the pending durable obligation, generate a locator-only fresh-context handoff, and STOP without issuing the verdict itself;
+5. then run that generated handoff in a fresh chat and verify recovery/verdict;
+6. after the future `codex_workflow` native-subagent change, run the same initiating-context test in Codex and require internal independent realization without a user handoff.
 
 
 ## Research needed
