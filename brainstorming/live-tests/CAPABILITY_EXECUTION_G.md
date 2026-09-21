@@ -2,7 +2,7 @@
 
 Experiment: active-Card cross-runtime checkpoint takeover
 Execution subject: 82cac004ad0c47e4d94e766aaabf604d84e2f748:brainstorming/live-tests/CAPABILITY_EXECUTION_G_SUBJECT.md
-Execution evidence: none
+Execution evidence: Unit A matches the immutable subject byte-for-byte at commit `9625b8de23914975acc09e8a3549332c46c16287`; no delegated or detached realization was used; X01 is quiesced for transfer.
 
 ## Synthetic Task Board
 
@@ -19,11 +19,11 @@ cards:
 
 ```yaml
 id: X01
-state: active
+state: transfer_ready
 member:
   card_id: T01
-  state: active
-  checkpoint_ref: null
+  state: quiesced
+  checkpoint_ref: 9625b8de23914975acc09e8a3549332c46c16287
   result_ref: null
 ```
 
