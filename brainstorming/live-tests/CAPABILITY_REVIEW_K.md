@@ -1,7 +1,7 @@
 # Live Review obligation — K
 
 Experiment: RED correction append-only recheck
-Experiment state: pending_r02
+Experiment state: completed
 Review authority: 569a439b3ffa75a8fa7d0fd6947e89d4bde1d0cd:brainstorming/live-tests/CAPABILITY_REVIEW_K_SUBJECT.md
 Active execution: null
 
@@ -30,13 +30,13 @@ cards:
           covered_by: null
         - id: R02
           mode: independent_review
-          state: pending
+          state: green
           subject: 073f6d569c44d609de5eee3bf2bf1e550ca74938:brainstorming/live-tests/review-k/result.txt
-          evidence: null
+          evidence: "GREEN: authority 569a439b3ffa75a8fa7d0fd6947e89d4bde1d0cd requires exact 15-byte 'review-k: GOOD' plus LF; S2 073f6d569c44d609de5eee3bf2bf1e550ca74938:brainstorming/live-tests/review-k/result.txt has blob 8f32fdb2d2ea509a8100b786c82ad28148c6cbaa, 15 bytes (hex 72 65 76 69 65 77 2d 6b 3a 20 47 4f 4f 44 0a); exact match, T01 result_ref equals S2, R01 RED block unchanged, clean tree, no subject mutation."
           independence:
             requirement: independent_context
-            realization_state: resolve_independent_context
-            evidence: null
+            realization_state: satisfied
+            evidence: "Fresh distinct read-only tester CAP-REVIEW-K-R02 (session 57c1fd08-f79a-44f0-9ad6-8fe69296387f, invocation 8263b14b-5c71-4279-a436-83a30bfbb942) reviewed exact S2 without mutation; tester did not produce S2 and inspected immutable objects only under a no-Git-write role; this record persists that verified verdict."
           covered_by: null
 ```
 
