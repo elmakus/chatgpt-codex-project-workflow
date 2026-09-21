@@ -1,7 +1,7 @@
 # Live independent review obligation — M
 
 Experiment: isolated clean review evidence
-Experiment state: pending_review
+Experiment state: completed
 Harness authority: c427bafb31c3f6c79544be3a89300b02503aa7f9:brainstorming/live-tests/ISOLATED_COMMON_CONTRACT_HARNESS.md
 Review authority: 48e7c92d7aa5f1931ce3e096aa3e6d23f6999e39:brainstorming/live-tests/CAPABILITY_REVIEW_M_SUBJECT.md
 Reviewed subject: 788ceee02a19d6e03d336b6f28b524691f09250d:brainstorming/live-tests/review-m/result.txt
@@ -21,13 +21,18 @@ review:
   attempts:
     - id: R01
       mode: independent_review
-      state: pending
+      state: green
       subject: 788ceee02a19d6e03d336b6f28b524691f09250d:brainstorming/live-tests/review-m/result.txt
-      evidence: null
+      evidence:
+        authority_match: exact
+        subject_content_match: true
+        subject_read_only: true
       independence:
         requirement: independent_context
-        realization_state: resolve_independent_context
-        evidence: null
+        realization_state: satisfied
+        evidence:
+          reviewer_did_not_materially_produce_or_repair_subject: true
+          review_was_read_only: true
 ```
 
 ## Experimental authority
