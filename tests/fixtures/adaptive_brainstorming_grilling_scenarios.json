@@ -1,0 +1,78 @@
+{
+  "simple_scope": {
+    "scope": "simple-scope@R1",
+    "user_rounds": [
+      {
+        "frontier": ["delivery_preference"],
+        "questions_numbered": true,
+        "recommendations_present": true
+      }
+    ],
+    "completion_audit": {
+      "remaining_material_decisions": []
+    },
+    "final_discovery_pass": {
+      "new_material_decisions": []
+    },
+    "expected": "completion_eligible"
+  },
+  "dependency_rich_scope": {
+    "scope": "dependency-rich@R1",
+    "dependencies": {
+      "goal_shape": [],
+      "state_model": ["goal_shape"],
+      "failure_policy": ["state_model"]
+    },
+    "user_rounds": [
+      {
+        "frontier": ["goal_shape"],
+        "questions_numbered": true,
+        "recommendations_present": true,
+        "challenge_after_settlement": ["goal_shape"]
+      },
+      {
+        "frontier": ["state_model"],
+        "questions_numbered": true,
+        "recommendations_present": true,
+        "challenge_after_settlement": ["state_model"]
+      },
+      {
+        "frontier": ["failure_policy"],
+        "questions_numbered": true,
+        "recommendations_present": true,
+        "challenge_after_settlement": ["failure_policy"]
+      }
+    ],
+    "completion_audit": {
+      "remaining_material_decisions": []
+    },
+    "final_discovery_pass": {
+      "new_material_decisions": []
+    },
+    "expected": "completion_eligible_after_successive_frontier_recomputation"
+  },
+  "research_interleave": {
+    "scope": "research-interleave@R1",
+    "frontier_before_research": ["provider_choice"],
+    "agent_owned_fact": "provider_limit",
+    "research_origin_subject": "research-interleave@R1",
+    "research_return_subject": "research-interleave@R1",
+    "frontier_after_research": ["provider_choice"],
+    "expected": "resume_same_exploratory_subject"
+  },
+  "user_stop_with_blocker": {
+    "scope": "stop-with-blocker@R1",
+    "clear_stop": true,
+    "new_questions_after_stop": 0,
+    "unresolved_material_blockers": ["acceptance_boundary"],
+    "expected": "tentative_not_ready"
+  },
+  "evidence_reopening": {
+    "scope": "evidence-reopening@R1",
+    "choice": "state_model",
+    "bounded_challenges_before_new_evidence": 1,
+    "new_material_evidence": true,
+    "choice_reopened": true,
+    "dependent_frontier_recomputed": true
+  }
+}
