@@ -82,7 +82,6 @@ For `chatgpt_only`, the workstream lifecycle is:
 - the manifest-selected `TASK_BOARD.yaml` owns Card/milestone execution, Card/milestone review and implementation/recovery Research state for that workstream;
 - `#issue` starts diagnosis/repair intake and chooses independent versus genuinely parent-dependent stacked work before implementation;
 - `#feature` starts feature discovery but does **not** bypass the user-owned Brainstorming → Project Definition promotion gate;
-- `#grill` is **not Intake**: inside an already active Brainstorming scope it forces dependency-aware grilling without creating/recovering a workstream or exploratory scope;
 - a bounded issue may use the micro-fix path without a full Master Plan while retaining durable acceptance/evidence and independent review;
 - different local workstreams executing concurrently require separate Git worktrees/equivalent isolated checkouts; remote-only GitHub execution does not;
 - stacked children cannot masquerade as independent while they still require parent-only state;
@@ -124,8 +123,7 @@ EXECUTION
 ```
 
 - **Brainstorming** explores possibilities; it is not authority. Under `chatgpt_only`, becoming ready for Definition does not end exploration automatically: the user explicitly promotes an exact brainstorming scope/revision into Project Definition. The selected workstream manifest locates the exact exploratory record so fresh recovery does not depend on root mutable project state.
-  - Both migrated policy-local Brainstorming contracts keep simple scopes lightweight, but automatically use grilling for materially ambiguous, materially multi-path or dependency-linked user decisions. Grilling asks the current dependency frontier together, numbers each decision question, includes an assistant recommendation, keeps agent-findable facts agent-owned, and recomputes the frontier after each user round.
-  - The user may stop grilling at any time. Material unresolved blockers keep Brainstorming open; marginal/non-blocking remainder may be deferred. Neither automatic grilling nor `#grill` changes the existing Project Definition promotion gate.
+  - Every active Brainstorming route uses adaptive dependency-aware grilling by default. Depth follows the expected decision value of another round rather than a fixed question/round quota: simple scopes may finish quickly only after completion audit, while dependency-rich scopes continue through successive thematic frontier rounds. Material decision questions are numbered and include an assistant recommendation; agent-findable facts stay agent-owned, settled choices receive one bounded counterfactual challenge, and the frontier is recomputed after each round or material new evidence.\n  - Before normal completion, Brainstorming performs a bounded relevant-surface audit plus one final discovery/challenge pass; merely knowing enough to implement is not sufficient. The user may stop questions at any time with clear natural language. Material unresolved blockers keep the scope tentative, and the existing Project Definition promotion gate remains unchanged.
 - **Research** produces evidence; it is not accepted decision authority and does not itself authorize promotion. Under the migrated fixed-policy routes, a pre-execution Research loop that may cross sessions is anchored by the selected manifest's exact Research locator/record until the recorded Return target durably consumes the result.
 - **Project Definition** promotes accepted intent into `requirements/` + `decisions/` and keeps unresolved product/strategic questions explicit. Once Definition has been explicitly entered, `Definition Complete = GREEN → Planning` remains automatic when planning is in scope.
 - **Planning** consumes an approved Definition and organizes it into a Master Plan, milestone sequence, planned work packages, acceptance/checkpoints and JIT triggers.
@@ -134,6 +132,8 @@ EXECUTION
 Planning does not silently decide missing product/system intent. Execution Prep does not require speculative future Card IDs from Planning.
 
 ## Authority preservation
+
+Project Workflow also applies one policy-neutral YAGNI / proportional-design rule from common authority: material extra complexity needs a concrete current justification, while all current quality and accepted-authority obligations remain intact.
 
 Progressive disclosure reduces context volume, not accepted intent. Planning/decomposition/delegation follows **lossless by authority, selective by context**:
 
