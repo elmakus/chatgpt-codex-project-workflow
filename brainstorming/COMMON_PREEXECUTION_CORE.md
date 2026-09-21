@@ -2635,6 +2635,19 @@ Consequences:
 
 This is a deliberate simplification, not a temporary runtime limitation.
 
+### Main delegation rule — clarified during Stage 8
+
+For runtimes with qualifying implementation-worker capability:
+- Main is the reasoning/orchestration owner, not the implementation worker;
+- Card implementation is delegated;
+- Main owns JIT decisions, authority, validation, integration, review routing and recovery;
+- disappearance/failure of one worker does not authorize Main to implement the Card when delegated capability still exists;
+- available-capability invocation failure follows runtime retry/blocker/recovery, not capability-absence fallback.
+
+For runtimes that genuinely lack delegated implementation capability, the common workflow may allow the coordinating context to implement directly so runtime portability is preserved.
+
+The stricter concrete worker-routing prohibition belongs to runtime orchestration (for example `codex_workflow`), while Project Workflow keeps only this capability-first semantic boundary.
+
 ### Stage 8 — Execution — active analysis
 
 Detailed stage record:
