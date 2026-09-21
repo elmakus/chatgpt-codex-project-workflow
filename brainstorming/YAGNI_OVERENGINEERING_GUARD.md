@@ -93,7 +93,7 @@ No material product/strategic questions remain for this scope.
 - Research still needed: none blocking.
 - Open questions: none material.
 - Next phase/action: `ready for definition`
-- Definition promotion authorization: `pending`
-- Definition promotion subject: `none`
+- Definition promotion authorization: `user_authorized`
+- Definition promotion subject: `yagni-overengineering-guard@R3`
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`.
