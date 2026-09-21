@@ -18,6 +18,8 @@ Close-time compatibility and final-integration review-coverage proof for `change
 - Publication surfaces still reference the single common fork-release contract and `.github/workflows/auto-patch-tag.yml` remains outside the changed behavior surface.
 - Post-review work is limited to durable Task Board/manifest/evidence/handoff bookkeeping. No reviewed FRV behavior, OpenSpec requirement, test logic, README semantics or authority acceptance surface is changed.
 
+- Integration pull request: `#54` (`work/fork-release-order-latest-alias` → `main`).
+
 ## Final-integration review coverage
 
 The one M02 implementation Card is the whole behavioral workstream subject. Current-target refresh is GREEN and the workstream-owned behavior plus acceptance surface are unchanged from exact independently reviewed subject `822c0ee434e5dde5904a3709af5022bc0905bb5b`.
