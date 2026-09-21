@@ -225,29 +225,37 @@ Do not import product/worker names, state shape or realization behavior unless t
 
 ## Remaining material work
 
+The live-test harness hardening is now complete and durable at:
+`c427bafb31c3f6c79544be3a89300b02503aa7f9:brainstorming/live-tests/ISOLATED_COMMON_CONTRACT_HARNESS.md`.
+
+Live test L is armed with:
+- stale local snapshot: `2e52d793c597da27dc1000b126cf60cb90a8a491`;
+- current record: `brainstorming/live-tests/CAPABILITY_REFRESH_L.md`;
+- current state: `fresh_phase_pending`;
+- current legal obligation: `L-FRESH`.
+
 Do these before considering Brainstorming complete:
 
-1. **Harden the live-test harness** with the isolation boundary above.
-2. **Live test L — authoritative-state refresh**
-   - start a fresh context with intentionally stale local state;
-   - require refresh of authoritative branch before routing;
-   - success: it sees the newer obligation and does not execute the stale phase or wait for push rejection.
-3. **Live test M — clean review evidence**
+1. **Run live test L — authoritative-state refresh**
+   - start a fresh context with a clean local checkout pinned exactly to the stale snapshot above;
+   - require refresh of the authoritative branch before routing;
+   - success: it sees `L-FRESH`, does not execute/publish `L-STALE`, and does not need push/CAS rejection to discover freshness.
+2. **Live test M — clean review evidence**
    - independent review under the isolated harness;
    - success: canonical durable evidence contains semantic independence only, with no product/worker/session/invocation identity.
-4. **Cross-cutting audit**
+3. **Cross-cutting audit**
    - current `ROUTER`;
    - `RECOVERY`;
    - `WORKSTREAMS`;
    - `CLOSE`;
    - relevant templates/tests.
    Reconcile them with capability-first routing, authoritative-state refresh, `active_execution`, append-only review attempts, final-integration review and cross-runtime continuation.
-5. **Choose composition architecture**
+4. **Choose composition architecture**
    - direct routing to `workflow/common/*` where there is zero policy delta;
    - versus tiny policy-local forwarders/adapters;
    - keep policy-local text only for genuine runtime/policy differences.
-6. Reconcile the canonical Brainstorming record into one target architecture and decide whether any material design question remains.
-7. Only if Brainstorming is truly ready, stop at the user-owned Brainstorming -> Definition promotion gate. Do not self-promote.
+5. Reconcile the canonical Brainstorming record into one target architecture and decide whether any material design question remains.
+6. Only if Brainstorming is truly ready, stop at the user-owned Brainstorming -> Definition promotion gate. Do not self-promote.
 
 ## Material questions still open
 
@@ -272,6 +280,8 @@ No external research is currently needed.
 
 ## Next-chat recommended entry
 
-Start from this handoff, refresh the branch, then continue Brainstorming with **live-test harness hardening + test L**, unless current repository state shows a newer durable obligation.
+Start from this handoff, refresh the branch, then recover `brainstorming/live-tests/CAPABILITY_REFRESH_L.md`.
+
+For the actual L probe, the execution context must begin with a clean local checkout pinned exactly to `2e52d793c597da27dc1000b126cf60cb90a8a491` while the authoritative remote branch remains newer. Use the isolated harness and let the refreshed durable record select the legal obligation.
 
 Do not run Definition or modify production workflow modules yet.
