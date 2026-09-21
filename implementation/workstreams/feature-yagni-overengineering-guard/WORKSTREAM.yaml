@@ -25,7 +25,7 @@ authority:
   requirements: "requirements/YAGNI_OVERENGINEERING_GUARD.md"
   decisions:
     - "decisions/ADR_YAGNI_PROPORTIONAL_DESIGN.md"
-  plan: null
+  plan: "planning/YAGNI_OVERENGINEERING_GUARD_MASTER_PLAN.md"
 
 review:
   requirement: null
