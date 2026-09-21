@@ -78,6 +78,55 @@ A downstream resolver therefore:
 
 Upstream tags, upstream-looking legacy fork tags, malformed private tags, and canonical private tags for another baseline do not participate in the current baseline's private counter.
 
+
+## Canonical fork-channel ordering across baselines
+
+Baseline-local next-release selection and cross-baseline current/update-channel selection are different operations.
+
+When a resolver needs the current canonical fork release across baselines:
+
+1. accept only exact canonical tags of the form `vX.Y.Z-private.N`, with numeric `X`, `Y`, `Z` components and a positive integer `N`;
+2. exclude upstream-only tags, legacy upstream-looking fork tags, malformed private tags, and every other non-canonical tag before ordering;
+3. compare accepted candidates numerically by the tuple `(X, Y, Z, N)`;
+4. select the maximum tuple.
+
+For example, the canonical fork-channel order among:
+
+```text
+v1.1.17-private.99
+v1.1.18-private.4
+v1.1.18-private.10
+v1.1.19-private.1
+```
+
+is:
+
+```text
+v1.1.19-private.1
+> v1.1.18-private.10
+> v1.1.18-private.4
+> v1.1.17-private.99
+```
+
+An upstream-only `v1.1.18` does not enter this candidate set and therefore cannot outrank `v1.1.18-private.4` in the canonical fork channel merely because SemVer gives the upstream release higher precedence.
+
+Generic SemVer ordering is valid for SemVer semantics, but it MUST NOT be used, wrapped with ad-hoc exceptions, or otherwise treated as the canonical fork-channel resolver.
+
+## Optional moving `latest` alias
+
+A publication surface that natively supports moving aliases or channels MAY expose `latest` as convenience metadata.
+
+When used:
+
+- `latest` MUST point to the newest accepted **stable** canonical fork release under the canonical fork-channel ordering above plus the project's release-quality policy;
+- the immutable/versioned canonical reference MUST remain available and authoritative for reproducibility and rollback;
+- the moving alias and canonical versioned reference MUST identify the same released artifact/content identity at publication time;
+- `latest` is channel metadata only, not canonical release identity;
+- Project Workflow MUST NOT create a synthetic canonical Git tag/release such as `vlatest`;
+- a publication system without native moving-alias semantics MUST NOT emulate one merely to satisfy this contract.
+
+The `private.N` suffix remains lineage/revision metadata. Stability/quality eligibility for `latest` is determined separately by the project's accepted release-quality policy.
+
 ## Legacy release immutability
 
 Already-published fork releases/tags that used upstream-looking versions are immutable historical provenance.
