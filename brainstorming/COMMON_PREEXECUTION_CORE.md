@@ -2479,31 +2479,50 @@ new context / takeover / recovery
 -> route
 ```
 
-#### Live test M — clean independent-review evidence prepared
+#### Live test M — clean independent-review evidence PASS
 
-M is now durable at:
+M completed durably at:
 
-`brainstorming/live-tests/CAPABILITY_REVIEW_M.md`
+`9435ebd56d9628588e64cde22efc631e1463dca0`
 
-Exact immutable authority:
+Verified from repository truth:
+- R01 is GREEN for exact immutable subject `788ceee02a19d6e03d336b6f28b524691f09250d:brainstorming/live-tests/review-m/result.txt`;
+- authority and subject remain unchanged;
+- the verdict commit changed only `CAPABILITY_REVIEW_M.md`;
+- canonical evidence uses exactly the normalized semantic-only shape required by the experiment;
+- no concrete product/worker/model/session/invocation/workspace/worktree identity is present.
 
-`48e7c92d7aa5f1931ce3e096aa3e6d23f6999e39:brainstorming/live-tests/CAPABILITY_REVIEW_M_SUBJECT.md`
+Verdict: **PASS — independent review can be realized under the isolated common harness without runtime telemetry leaking into canonical Project Workflow evidence.**
 
-Exact immutable reviewed subject:
+This closes the clean-evidence defect exposed by the contaminated K harness as a candidate common-contract capability.
 
-`788ceee02a19d6e03d336b6f28b524691f09250d:brainstorming/live-tests/review-m/result.txt`
+#### Orchestration-topology continuity test N prepared
 
-Prepared review record commit:
+One shared semantic authority:
 
-`d29d96baf4e03eb2d7ba98a9a40454ea458185ca`
+`43aef1d58367d2cfea1f561c58eee7791322c203:brainstorming/live-tests/ORCHESTRATION_TOPOLOGY_N_AUTHORITY.md`
 
-M tests whether an independent review under the isolated harness can finish GREEN while canonical evidence remains strictly normalized and semantic-only:
-- exact authority/content/read-only facts;
-- reviewer did not materially produce/repair the subject;
-- review was read-only;
-- no concrete product/worker/model/session/invocation/workspace/worktree identity.
+Two realization variants are prepared:
 
-No production workflow module has been changed by L verification or M preparation.
+1. **N-CAPABLE**
+   - record: `brainstorming/live-tests/ORCHESTRATION_TOPOLOGY_N_CAPABLE.md`;
+   - starts with R01 pending for BAD S1;
+   - success requires one capable coordinating invocation to perform:
+     `R01 RED -> correction S2 -> R02 independent GREEN -> deterministic finalization`
+     without artificial user-facing stops.
+
+2. **N-CHATGPT**
+   - record: `brainstorming/live-tests/ORCHESTRATION_TOPOLOGY_N_CHATGPT.md`;
+   - starts in `awaiting_independent_context` for R01;
+   - first fresh ChatGPT review chat must:
+     `R01 RED -> same-chat correction S2 -> freeze R02 -> STOP only at new fresh-review boundary`;
+   - second fresh ChatGPT review chat must:
+     `R02 GREEN -> same-chat deterministic finalization -> completed`;
+   - stopping immediately after RED or GREEN is a test failure.
+
+Together these tests verify that common semantic obligations do not force one orchestration topology across runtimes.
+
+No production workflow module has been changed.
 
 ## Current checkpoint / handoff
 
@@ -2544,11 +2563,8 @@ Previously listed questions about whether Brainstorming/Research/Definition/Plan
 
 ## Next bounded work
 
-1. Run **M — clean review evidence** under the isolated harness.
-2. Run an **orchestration-topology continuity test** covering:
-   - capable coordinator one-shot continuation across review/correction/re-review without artificial user stops;
-   - normal ChatGPT GREEN -> deterministic same-chat continuation;
-   - normal ChatGPT RED -> bounded same-chat correction, followed by a fresh independent-context boundary only when the corrected exact subject requires a new review.
+1. Run **N-CAPABLE — capable coordinator one-shot continuity**.
+2. Run **N-CHATGPT — same-chat continuation with fresh-review boundaries**.
 3. Audit `ROUTER`, `RECOVERY`, `WORKSTREAMS`, `CLOSE` and relevant templates/tests.
 4. Reconcile the audit with capability-first routing, authoritative-state refresh, `active_execution`, append-only review attempts, final-integration review, orchestration-topology preservation and cross-runtime continuation.
 5. Choose the target composition architecture and migration/test shape.
@@ -2563,6 +2579,6 @@ Previously listed questions about whether Brainstorming/Research/Definition/Plan
 - Definition promotion subject remains `none`.
 - No production workflow module has been changed by this exploratory checkpoint.
 - Durable handoff created for a fresh chat.
-- Next phase/action: `run isolated clean-evidence live test M`.
+- Next phase/action: `run orchestration-topology continuity test N-CAPABLE`.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user authorization may promote the current exploratory scope into Definition.
