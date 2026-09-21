@@ -3,7 +3,7 @@
 Date: `2026-09-21`
 Scope ID: `common-preexecution-core`
 Revision: `R1`
-Status: `ready_for_definition`
+Status: `tentative`
 
 ## Problem / goal
 
@@ -2606,23 +2606,19 @@ Deferred N topology tests are post-implementation V2 validation, not missing Bra
 
 ## Open material questions
 
-None currently.
+Stage-by-stage reconciliation is still active. The cross-cutting audit is provisional architecture evidence, not Brainstorming completion authority.
 
-Reopen Brainstorming only if the user introduces a new material product/architecture choice or V2 implementation evidence invalidates one of the current conclusions.
+Current focus: Stage 7 — Execution Prep / JIT.
 
 ## Next bounded work
 
-Brainstorming is ready for the user-owned promotion gate.
+Continue stage-by-stage Brainstorming from **Stage 7 — Execution Prep / JIT**.
 
-Do not enter Definition without explicit user authorization for exact scope:
-
-`common-preexecution-core@R1`
-
-If authorized, persist the exact promotion authorization/subject and route to Project Definition.
+Do not return to the Definition promotion gate until the remaining lifecycle stages have been reviewed individually and then reconciled cross-cutting.
 
 ## Outcome of this session
 
-- Brainstorming status is now `ready_for_definition`.
+- Brainstorming status is `tentative`; the previous ready-for-definition conclusion was reopened because the lifecycle still needs stage-by-stage review.
 - Scope remains `common-preexecution-core@R1`.
 - Cross-cutting audit is complete.
 - Target V2 common-core architecture and migration direction are resolved at Brainstorming level.
@@ -2630,6 +2626,6 @@ If authorized, persist the exact promotion authorization/subject and route to Pr
 - Definition promotion subject remains `none`.
 - Deferred N remains a V2 implementation-validation obligation, not a Brainstorming blocker.
 - No production workflow module has been changed.
-- Current real stop: user-owned Brainstorming -> Definition promotion gate.
+- Current phase/action: Stage 7 — Execution Prep / JIT analysis.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user authorization may promote the current exploratory scope into Definition.
