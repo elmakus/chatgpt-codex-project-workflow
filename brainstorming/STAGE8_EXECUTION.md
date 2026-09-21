@@ -170,3 +170,31 @@ The conservative-commonization principle means the universal wrapper should not 
 4. For runtime takeover of active work, should explicit `transfer_ready` be a common state only when a transfer is actually requested, rather than part of every normal execution lifecycle?
 
 These are Stage-8 design questions, not accepted Definition decisions.
+
+
+## Grilling decisions — minimal execution state
+
+User accepted the first Stage-8 execution decisions:
+
+1. Ordinary one-Card execution does **not** get a universal extra `active_execution` wrapper merely for schema symmetry. Preserve the simple proven Card lifecycle.
+2. Delegating one Card to a worker/subagent also does not by itself require a new Project Workflow execution-attempt object. The Card remains `in_progress`; Main owns recovery and result reconciliation.
+3. Bounded parallel execution remains fully supported. Additional durable group state is introduced only when multiple Cards are actually active together and project correctness/recovery needs shared base/member/result/reconciliation information.
+4. Cross-runtime takeover of active work is not blind hot migration. Normal switching happens at safe durable boundaries; active-work transfer requires explicit quiescence/checkpoint evidence sufficient to prevent duplicate execution.
+
+Clarification:
+
+> Removing the universal wrapper does **not** remove parallel execution. It removes unnecessary extra state from the common serial path.
+
+Target shape:
+
+```text
+serial/direct or single delegated Card
+  ready -> in_progress -> result/review -> done
+
+multiple concurrent Cards
+  Cards become in_progress
+  + one minimal neutral concurrent-execution record
+    covering frozen members/base/result reconciliation/recovery
+```
+
+This preserves the simple ChatGPT-only serial behavior while retaining Codex-only bounded-parallel capability where it is actually needed.
