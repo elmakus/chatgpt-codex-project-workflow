@@ -28,7 +28,7 @@ cards:
     title: "Extend canonical fork-channel ordering and moving-alias contract"
     milestone: "M02"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/change-fork-release-order-latest-alias/cards/M02-T01.md"
