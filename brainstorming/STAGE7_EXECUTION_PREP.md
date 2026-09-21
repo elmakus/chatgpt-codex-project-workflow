@@ -240,3 +240,53 @@ These choices are exploratory Brainstorming conclusions, not yet accepted Defini
 ## Remaining Stage-7 questions
 
 The remaining questions concern JIT mutation boundaries, authorization-sensitive readiness, and whether any preparation state besides stable Cards/JIT triggers is required before Stage 8.
+
+
+## Grilling correction — preserve proven V1 behavior
+
+The user clarified that V2 is primarily a merge of two already-working fixed-policy branches, especially preserving the behavior that works well in `chatgpt_only`. The goal is not to redesign every lifecycle into a larger generic framework.
+
+This adds a conservative-merger rule for Stage 7:
+
+> Prefer the smallest common contract that preserves proven ChatGPT-only behavior and adds only the runtime-neutral capability needed to absorb Codex-only behavior.
+
+### Future work whose exact Card is not knowable yet
+
+Current `chatgpt_only` already distinguishes:
+
+- **planned work package / durable JIT trigger** — we know future work will be needed, but its exact executable Card depends materially on predecessor evidence;
+- **real Task Card** — scope is bounded enough to contract now.
+
+Therefore V2 should preserve this behavior:
+
+- if future work is known conceptually but its exact scope depends materially on predecessor results, keep the planned work package/JIT trigger;
+- after the predecessor result is durable, Execution Prep materializes or substantially reshapes the real Card from that evidence;
+- do not create a vague executable placeholder merely to reserve an ID;
+- if the Card is already sufficiently knowable now but merely waits for a dependency, it may exist before the dependency completes and becomes READY later.
+
+So the trigger preserves **that something remains to be done**, while the later JIT pass owns the exact Card shape.
+
+### READY and deployment/live writes
+
+The user does not want a default human-approval gate merely because work performs deployment or a live write.
+
+Target rule:
+
+- deployment/live-write nature by itself does **not** make a Card non-READY;
+- a Card is blocked from READY only when accepted project authority explicitly requires an approval/authorization that has not yet been satisfied, or when concrete required access/input is missing;
+- Project Workflow must not invent an extra user-confirmation gate solely from operation category;
+- external readback/verification requirements still remain part of the Card contract.
+
+This preserves authorization semantics where explicitly required without adding unnecessary user stops.
+
+### Grilling decisions currently settled
+
+- concurrency safety metadata: explicit optional runtime-neutral Card-contract metadata;
+- incomplete concurrency proof: serial-only, not invalid;
+- safety metadata belongs to stable Card contract;
+- safety covers repository mutation + shared/external resources;
+- all semantically executable Cards may be READY at once;
+- future-but-not-yet-contractable work is represented by planned work package/JIT trigger, not vague placeholder Card;
+- READY is not blocked merely because work is deployment/live-write;
+- missing facts route to Research;
+- micro-fix reuses the same Execution Prep semantics in a smaller shape.
