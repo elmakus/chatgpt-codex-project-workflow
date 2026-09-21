@@ -1,7 +1,7 @@
 # Live Review obligation — J
 
 Experiment: cross-runtime GREEN review and finalization
-Experiment state: pending_review
+Experiment state: reviewed
 Review authority: dbe81191afb840e096ef0aadde9b922ee5ccf5da:brainstorming/live-tests/CAPABILITY_REVIEW_J_SUBJECT.md
 Active execution: null
 
@@ -20,13 +20,13 @@ cards:
       attempts:
         - id: R01
           mode: independent_review
-          state: in_progress
+          state: green
           subject: a23712266f36ae70cda129a9b3242c6391b50b49:brainstorming/live-tests/review-j/result.txt
-          evidence: null
+          evidence: "GREEN: immutable authority dbe81191afb840e096ef0aadde9b922ee5ccf5da:brainstorming/live-tests/CAPABILITY_REVIEW_J_SUBJECT.md requires exact content; a23712266f36ae70cda129a9b3242c6391b50b49:brainstorming/live-tests/review-j/result.txt has blob 2c40b08eb28e09d043b6e192d2feea8e3841a156, 19 bytes, 'review-j: accepted' plus LF; reviewer confirmed exact match, clean status and no subject mutation."
           independence:
             requirement: independent_context
-            realization_state: independent_context_active
-            evidence: null
+            realization_state: satisfied
+            evidence: "A fresh independent review context inspected immutable repository objects only; the producing implementation context was unavailable and was not consulted."
           covered_by: null
 ```
 
