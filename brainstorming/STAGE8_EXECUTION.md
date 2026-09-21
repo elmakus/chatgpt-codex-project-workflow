@@ -319,3 +319,20 @@ User also accepted:
 - when an implementing worker discovers that the Card contract itself must materially change, the worker does not silently widen/rewrite project authority;
 - it returns the finding to Main;
 - Main performs the legal JIT/Planning/Definition classification and then re-delegates continuation under the updated authority as applicable.
+
+
+## Grilling decisions — Main validation boundary
+
+User accepted:
+
+1. Worker completion is not Card completion. Main must validate returned implementation against the exact Card scope, acceptance, required tests/evidence and material constraints before accepting the Card result.
+2. Main does not automatically rerun every worker test. Worker-provided durable evidence may be consumed when sufficient; Main may require/re-delegate additional verification when evidence is incomplete, unclear or materially risky.
+3. Main does not make implementation fixes itself, even when tiny, when qualifying implementation-worker capability exists. Implementation corrections are delegated back to an implementation worker. Main may perform coordinator-owned operations such as routing, state mutation, result reconciliation/integration and review orchestration.
+4. No separate ordinary `returned` Card lifecycle state is introduced for one-Card serial execution. The Card remains `in_progress` while Main validates/reconciles the returned work, then proceeds to exact result/review/finalization state.
+
+Recovery consequence:
+- if Main is interrupted after worker completion but before Card reconciliation, Recovery first proves whether the returned implementation/result already exists;
+- when exact result/evidence is recoverable, reconcile it without replaying implementation;
+- when implementation evidence is insufficient, re-realize/verify through the runtime-owned implementation capability rather than Main coding the correction itself.
+
+This preserves the simple ChatGPT-style Card state machine while importing the useful Codex principle that delegated completion is only input to Main-owned project reconciliation.
