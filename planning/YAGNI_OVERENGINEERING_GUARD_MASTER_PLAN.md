@@ -1,7 +1,7 @@
 # Master Plan — YAGNI / Proportional Design
 
 Revision: `YAGNI-P2`
-Status: `draft`
+Status: `approved`
 Updated: `2026-09-21`
 Independent plan review: `RECOMMENDED`
 
