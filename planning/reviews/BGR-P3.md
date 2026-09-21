@@ -2,9 +2,9 @@
 
 Plan revision: `BGR-P3`
 Review requirement: `RECOMMENDED`
-Review state: `in_progress`
+Review state: `green`
 Review subject: `30dc9306584ceebddd2514a8aa585bd86f45ad1c:planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md`
-Review evidence: `pending`
+Review evidence: `GREEN — exact BGR-P3 subject audited independently against approved BGR R2 / ADR-BGR-002 and current main baseline. BGR-REQ-001..018 each have an M02 execution path; M01 remains historical. The three active Brainstorming route families are correctly identified (chatgpt_only, codex_only, legacy/mixed), and the relevant Brainstorming/Intake/router/OpenSpec test baseline remains materially unchanged on current main despite unrelated branch drift. Planned #grill removal covers active router/Intake/Brainstorming/docs/current-spec/test surfaces while preserving completed M01 provenance. Verification adds simple, dependency-rich multi-round, Research-interleave, completion-audit/final-challenge, reopening, user-stop/blocker and promotion regressions, materially addressing shallow phrase-only coverage without a questionnaire runtime or numeric quota. Research return and user-owned Definition promotion remain preserved. One new JIT OpenSpec change, no data migration, ordinary Git rollback, normal independent review gates, and Execution-Prep-owned Card detail are proportionate; no Definition change or premature execution detail was found.`
 
 ## Definition authority
 
