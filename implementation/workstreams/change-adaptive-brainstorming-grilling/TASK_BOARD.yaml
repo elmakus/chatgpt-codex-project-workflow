@@ -33,7 +33,7 @@ cards:
     depends_on: []
     openspec_change: "openspec/changes/adaptive-brainstorming-grilling"
     contract: "implementation/workstreams/change-adaptive-brainstorming-grilling/cards/M02-T01.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "e09e564c4acd68ef0ea007cd5aff25e712112d5c"
     review_evidence: null
     result_commit: "e09e564c4acd68ef0ea007cd5aff25e712112d5c"
