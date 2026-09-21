@@ -331,6 +331,32 @@ Recommended test shape in this repository:
 Success criterion: **semantic parity with transport variance**. If the two capability variants require different Project Workflow authority/state semantics, the commonization proposal is not yet correct.
 
 
+### Capability-parity A/B smoke — result
+
+A bounded in-session state-machine experiment was run for stage 7 using one identical durable plan-review subject under three mocked capability surfaces.
+
+Input in all cases:
+- plan revision: `R1`;
+- review requirement: `RECOMMENDED`;
+- review state: `pending`;
+- exact immutable review subject: one fixed subject;
+- reviewer must differ from the subject author.
+
+Results:
+
+| Case | Capability surface | Expected transport | Result |
+|---|---|---|---|
+| A | independent context available, invocation succeeds | delegated independent review | PASS |
+| B | independent context absent | durable fresh-context handoff, then fresh review | PASS |
+| C | independent context available, invocation fails | runtime failure/retry/blocker; no fallback | PASS |
+
+For A and B, after an equivalent GREEN verdict the Project Workflow durable state was semantically identical: same plan revision, same exact review subject, same GREEN state and same evidence. Concrete reviewer transport identity was irrelevant to the durable review semantics.
+
+For C, the failed delegated invocation preserved the original pending review subject/state and did not reinterpret the failure as capability absence or trigger a fresh-context fallback.
+
+This smoke supports the capability-first hypothesis for stage 7: independent review semantics can be common while realization transport varies. It is not yet proof for the full workflow; later stages require their own parity scenarios.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
