@@ -6,14 +6,14 @@ current_milestone: "M02"
 execution_ref:
   branch: "work/adaptive-brainstorming-grilling"
   pr: null
-  head: null
+  head: "f4131d0e06f3d732039b96e7f0b3673463ff7d92"
 
 research_obligation: null
 
 milestones:
   M02:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md#M02--make-adaptive-grilling-intrinsic-to-every-brainstorming-route"
     checkpoint: null
     implementation_head: null
@@ -28,8 +28,8 @@ cards:
     title: "Make adaptive grilling intrinsic to every Brainstorming route"
     milestone: "M02"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on: []
     openspec_change: "openspec/changes/adaptive-brainstorming-grilling"
     contract: "implementation/workstreams/change-adaptive-brainstorming-grilling/cards/M02-T01.md"
