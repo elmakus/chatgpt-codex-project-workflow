@@ -4,7 +4,7 @@ Date: `2026-09-21`
 Research question: `How do established engineering sources and public repositories operationalize YAGNI / anti-overengineering, and which concrete practices should Project Workflow adopt or avoid compared with the proposed global invariant?`
 
 Research ID: `yagni-practices-r1`
-Status: `complete`
+Status: `consumed`
 Origin role: `brainstorming`
 Origin subject: `yagni-overengineering-guard@R2`
 Return target: `brainstorming:yagni-overengineering-guard@R2`
