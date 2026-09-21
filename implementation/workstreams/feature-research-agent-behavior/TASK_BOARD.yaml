@@ -33,7 +33,7 @@ cards:
     depends_on: []
     openspec_change: "openspec/changes/research-agent-behavior"
     contract: "implementation/workstreams/feature-research-agent-behavior/cards/M01-T01.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "25ac000cac86c7421c3632f216be1074f61f64ce"
     review_evidence: null
     result_commit: "25ac000cac86c7421c3632f216be1074f61f64ce"
