@@ -1090,6 +1090,23 @@ The user tentatively accepted the proposed runtime-portable Stage-9 direction fo
 This remains Brainstorming acceptance, not Definition promotion authorization.
 
 
+### Live test F — completed-Card cross-runtime takeover
+
+Prepared durable live test:
+- record: `brainstorming/live-tests/CAPABILITY_EXECUTION_F.md`
+- immutable subject: `6e580867cc3090ef59efbede19d8e6fb17cb8c31:brainstorming/live-tests/CAPABILITY_EXECUTION_F_SUBJECT.md`
+
+The test uses real isolated repository outputs:
+- T01 writes `brainstorming/live-tests/execution-f/A.txt`;
+- T02 depends on T01 and writes `brainstorming/live-tests/execution-f/B.txt`.
+
+The common test contract uses a one-member runtime-neutral `Active execution` wrapper even for serial work. Each context must durably mark start, execute exactly one Card, persist its result, clear active execution, recompute readiness, and STOP at the completed-Card boundary.
+
+Phase 1 is intended for Codex; Phase 2 for normal ChatGPT. Product identity is not part of the durable contract. PASS requires the second runtime to preserve T01 and execute only T02 from repository truth.
+
+This first Stage-9 test does not yet test in-progress transfer or concurrent execution.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
