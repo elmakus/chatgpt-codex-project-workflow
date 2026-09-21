@@ -2,29 +2,23 @@
 
 Experiment: active-Card cross-runtime checkpoint takeover
 Execution subject: 82cac004ad0c47e4d94e766aaabf604d84e2f748:brainstorming/live-tests/CAPABILITY_EXECUTION_G_SUBJECT.md
-Execution evidence: Unit A matches the immutable subject byte-for-byte at commit `9625b8de23914975acc09e8a3549332c46c16287`; no delegated or detached realization was used; X01 is quiesced for transfer.
+Execution evidence: X01 resumed from preserved checkpoint `9625b8de23914975acc09e8a3549332c46c16287` without replaying Unit A; Unit A remained byte-for-byte unchanged; Unit B matches the immutable subject at result commit `19a99fbbff3f9d05f62907274f9a4fea505c3dd9`; full T01 acceptance is satisfied.
 
 ## Synthetic Task Board
 
 ```yaml
 cards:
   - id: T01
-    execution_status: in_progress
+    execution_status: done
     depends_on: []
-    result_ref: null
-    evidence: null
+    result_ref: 19a99fbbff3f9d05f62907274f9a4fea505c3dd9
+    evidence: "Resumed existing X01 from checkpoint 9625b8de23914975acc09e8a3549332c46c16287; Unit A unchanged; Unit B exact; full acceptance verified."
 ```
 
 ## Active execution
 
 ```yaml
-id: X01
-state: active
-member:
-  card_id: T01
-  state: active
-  checkpoint_ref: 9625b8de23914975acc09e8a3549332c46c16287
-  result_ref: null
+null
 ```
 
 ## Common execution contract for this experiment
