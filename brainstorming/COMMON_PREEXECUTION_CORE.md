@@ -200,6 +200,40 @@ Counterfactual challenge: Project Workflow still must encode any property that c
 Scope discipline: continue analysis only for Intake through Strategic Planning until those six stages are settled; do not advance into Execution Prep/Execution/Review/Close yet.
 
 
+### Stage 7 exploration — Execution Prep / JIT refinement
+
+Current-main comparison shows that Execution Prep has one large semantic common core plus a Codex-only parallel-batch scheduler layered into the route.
+
+Common/project-semantic material that should remain independent of runtime identity:
+- exact selected branch-isolated workstream and manifest-bound Task Board;
+- Task Card creation only when scope is currently knowable, with durable JIT triggers instead of speculative placeholders;
+- exact authority slice, dependencies, included/excluded scope, acceptance, tests/evidence/readback, authorization gates and review requirement;
+- Research handoff/return and crash-safe reconciliation;
+- qualified micro-fix materialization into one bounded Card without inventing a Master Plan/milestone;
+- incremental L2/JIT refinement only for not-yet-started work within accepted authority;
+- OpenSpec marking, requirement coverage, side-effect/idempotency/security/migration audit;
+- Task Board as sole mutable implementation/review/Research state;
+- automatic return to router when executable work is prepared.
+
+Current Codex-only additions are primarily concurrency realization:
+- optional Card fields `parallel_safe`, `write_scope`, `exclusive_resources`;
+- current READY-set compatibility calculation;
+- freezing a concrete batch ID/member list/lane order/integration base;
+- pre-launch workspace-isolation proof and stale-batch refresh/abandon logic;
+- marking batch members in progress before runtime launch.
+
+Current ChatGPT-only differences are primarily policy restrictions rather than different preparation semantics: it forbids bounded-parallel coordination metadata and marks exactly one next eligible Card READY because the policy assumes serial execution.
+
+Capability-first candidate architecture:
+- common Execution Prep creates the same Cards and dependency graph for every runtime;
+- optional project-safety metadata may describe whether concurrent mutation is safe, but must not encode worker/session/model identity;
+- common Project Workflow should not freeze a concrete parallel runtime batch merely because one product supports subagents unless that batch/integration state is required for durable project correctness;
+- Main/runtime may choose serial versus concurrent realization from the same READY Cards according to available capabilities;
+- lack of concurrency capability leaves the Cards serial-valid and does not require a different policy-local Task Card contract.
+
+Open decision for stage 7: whether `parallel_safe/write_scope/exclusive_resources` belong in stable Project Workflow Card contracts as project-level safety constraints, while concrete batch/lane/workspace scheduling moves to runtime orchestration; or whether even those fields should be derived dynamically by Main/runtime from Card scope. Recommendation: retain explicit project-safety metadata only when it is necessary to prove non-overlap safely; move concrete batch formation and worker/lane realization out of Project Workflow.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
