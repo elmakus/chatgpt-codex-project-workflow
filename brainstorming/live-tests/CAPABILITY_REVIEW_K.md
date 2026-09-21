@@ -1,7 +1,7 @@
 # Live Review obligation — K
 
 Experiment: RED correction append-only recheck
-Experiment state: pending_r01
+Experiment state: r01_red
 Review authority: 569a439b3ffa75a8fa7d0fd6947e89d4bde1d0cd:brainstorming/live-tests/CAPABILITY_REVIEW_K_SUBJECT.md
 Active execution: null
 
@@ -20,13 +20,13 @@ cards:
       attempts:
         - id: R01
           mode: independent_review
-          state: in_progress
+          state: red
           subject: f72d08ae5d4aa8faf06dcedb586bc1618887200c:brainstorming/live-tests/review-k/result.txt
-          evidence: null
+          evidence: "RED: authority 569a439b3ffa75a8fa7d0fd6947e89d4bde1d0cd requires exact 15-byte 'review-k: GOOD' plus LF; S1 f72d08ae5d4aa8faf06dcedb586bc1618887200c:brainstorming/live-tests/review-k/result.txt has blob 8d96510edd2bc4958b989e6c3b78c839ae057d28, 14 bytes 'review-k: BAD' plus LF (hex 72 65 76 69 65 77 2d 6b 3a 20 42 41 44 0a); content mismatch, no subject mutation."
           independence:
             requirement: independent_context
-            realization_state: independent_context_active
-            evidence: "Fresh independent delegated Tester context invoked; read-only review of exact R01/S1 subject."
+            realization_state: satisfied
+            evidence: "Fresh distinct read-only review context completed R01; reviewer did not produce S1 and inspected immutable objects only. Delegation trail: initial delegated invocation interrupted by connection loss; exact resume returned session_busy; replacement same-workspace invocation returned session_busy; review completed in fresh isolated workspace."
           covered_by: null
 ```
 
