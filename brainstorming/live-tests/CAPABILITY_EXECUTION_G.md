@@ -19,10 +19,10 @@ cards:
 
 ```yaml
 id: X01
-state: transfer_ready
+state: active
 member:
   card_id: T01
-  state: quiesced
+  state: active
   checkpoint_ref: 9625b8de23914975acc09e8a3549332c46c16287
   result_ref: null
 ```
