@@ -11,11 +11,11 @@ parent_branch: null
 parent_dependency: null
 
 intake:
-  state: active
+  state: complete
   record: "implementation/workstreams/feature-common-preexecution-core/INTAKE.md"
 
 routing:
-  exploratory_scope: null
+  exploratory_scope: "brainstorming/COMMON_PREEXECUTION_CORE.md"
   research_obligation: null
   plan_review: null
 
