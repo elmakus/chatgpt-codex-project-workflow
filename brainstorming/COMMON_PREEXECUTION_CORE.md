@@ -271,6 +271,66 @@ Capability-first target:
 Counterfactual challenge: removing worker-role names must not weaken provenance. Project Workflow still needs enough durable information to prove that the verdict did not come from the author of the exact review subject. The concrete runtime worker name/ID need not be part of the project contract, but independence evidence/provenance may still need a neutral representation.
 
 
+### Proposed validation — capability-parity A/B smoke
+
+Before committing to the common/capability-first refactor, validate the design with fixture-driven semantic A/B scenarios rather than product-identity detection.
+
+Core test principle:
+- start from the **same durable Project Workflow state** and exact semantic obligation;
+- run the routing decision under two mocked runtime capability surfaces;
+- assert that Project Workflow semantics and durable subject/state are identical, while only the realization/transport differs.
+
+Primary plan-review scenario:
+
+```text
+Input:
+  exact immutable plan subject R1
+  review requirement = RECOMMENDED
+  review state = pending
+  reviewer must be independent from author
+
+A: independent_context_available = true
+  → select delegated independent realization
+  → no user stop
+  → verdict is written to the same review record
+
+B: independent_context_available = false
+  → persist/retain the same pending review record
+  → fresh-context handoff
+  → STOP
+  → fresh context resumes from the same durable locator
+  → verdict is written to the same review record
+
+Expected semantic equivalence after verdict:
+  same review subject
+  same review lifecycle
+  same GREEN/RED semantics
+  same evidence requirements
+  same router continuation
+  no product-specific worker role appears in Project Workflow state
+```
+
+Negative scenario:
+- capability is reported available but delegated invocation fails;
+- expected: runtime retry/blocker/error path;
+- forbidden: reinterpret failure as capability absence and silently switch to fresh-context fallback.
+
+Additional first-seven-stage regression scenarios should verify:
+1. Brainstorming and Definition behave identically under both capability surfaces.
+2. Research obligation is the same; runtime may delegate or Main may execute it, but durable Research semantics remain unchanged.
+3. Planning creates the same immutable plan-review obligation regardless of capability.
+4. Fresh-context continuation recovers from durable state without previous-chat narrative.
+5. No `Tester`/`Investigator`/other runtime catalog role is required in common Project Workflow contracts.
+
+Recommended test shape in this repository:
+- add a fixture JSON/YAML matrix similar to the existing adaptive-brainstorming fixtures;
+- add Python contract/state-transition tests that assert expected next obligation/stop/locator for each capability variant;
+- retain static text-contract tests only as secondary guardrails;
+- add one synthetic E2E smoke covering Planning → independent plan review → GREEN → Planning approval for both capability variants.
+
+Success criterion: **semantic parity with transport variance**. If the two capability variants require different Project Workflow authority/state semantics, the commonization proposal is not yet correct.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
