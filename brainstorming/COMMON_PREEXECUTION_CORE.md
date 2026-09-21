@@ -1073,6 +1073,23 @@ D. **Unsafe takeover negative case**
 - new runtime must fail closed, not duplicate the operation.
 
 
+### Stage 9 direction — tentatively accepted
+
+The user tentatively accepted the proposed runtime-portable Stage-9 direction for live validation:
+
+- common execution semantics own durable Card/result/review/recovery truth;
+- Stage-8 READY remains runtime-neutral;
+- runtime selects serial vs compatible concurrent realization;
+- product/worker/model/session identity is not required Project Workflow state;
+- completed-Card runtime switching is ordinary durable continuation;
+- active-work switching requires a durable quiesce/checkpoint boundary rather than blind hot migration;
+- concurrent work must preserve enough runtime-neutral durable result/reconciliation state for another runtime to take over safely;
+- uncertain still-active or external-write execution fails closed rather than being duplicated;
+- concrete orchestration/cancellation/resume/workspaces remain runtime-owned.
+
+This remains Brainstorming acceptance, not Definition promotion authorization.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
