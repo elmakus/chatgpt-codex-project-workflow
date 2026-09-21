@@ -1,0 +1,44 @@
+id: "feature-research-agent-behavior"
+kind: "feature"
+status: "review"
+
+branch: "feat/research-agent-behavior"
+base_ref: "13e27863cb11ec9e223ee2af191f79fe6b8d559d"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: "complete"
+  record: "implementation/workstreams/feature-research-agent-behavior/INTAKE.md"
+
+routing:
+  exploratory_scope: null
+  research_obligation: null
+  plan_review: null
+
+task_board: "implementation/workstreams/feature-research-agent-behavior/TASK_BOARD.yaml"
+
+authority:
+  requirements: "requirements/RESEARCH_AGENT_BEHAVIOR.md"
+  decisions:
+    - "decisions/ADR_RESEARCH_AGENT_BEHAVIOR.md"
+  plan: "planning/RESEARCH_AGENT_BEHAVIOR_MASTER_PLAN.md"
+
+review:
+  requirement: "RECOMMENDED"
+  state: "green"
+  subject: "content:25ac000cac86c7421c3632f216be1074f61f64ce; acceptance:implementation/workstreams/feature-research-agent-behavior/evidence/M01-acceptance.md@blob:07ec56c220708a2d77c2e3201b16d904d267cc09"
+  evidence: "implementation/workstreams/feature-research-agent-behavior/evidence/final-integration-review-coverage.md"
+  covered_by: "M01-T01@25ac000cac86c7421c3632f216be1074f61f64ce -> implementation/workstreams/feature-research-agent-behavior/evidence/M01-T01-review.md@blob:58e2c08ca995f881dd024858ef883170511c1d6e"
+
+branch_cleanup:
+  state: null
+  ref: null
+  verified_head: null
+  evidence: null
+
+pr: 49
+result: null

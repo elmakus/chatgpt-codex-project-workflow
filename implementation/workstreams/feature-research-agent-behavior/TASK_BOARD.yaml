@@ -1,0 +1,42 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "feature-research-agent-behavior"
+plan_revision: "RAB-P1"
+current_milestone: "M01"
+
+execution_ref:
+  branch: "feat/research-agent-behavior"
+  pr: 49
+  head: "25ac000cac86c7421c3632f216be1074f61f64ce"
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: in_progress
+    contract: "planning/RESEARCH_AGENT_BEHAVIOR_MASTER_PLAN.md#M01--strengthen-research-investigation-quality-and-prior-art-discovery"
+    checkpoint: null
+    implementation_head: "25ac000cac86c7421c3632f216be1074f61f64ce"
+    handoff: "implementation/workstreams/feature-research-agent-behavior/handoffs/M01_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-research-agent-behavior/evidence/M01-acceptance.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Strengthen Research prior-art and source-quality behavior"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on: []
+    openspec_change: "openspec/changes/research-agent-behavior"
+    contract: "implementation/workstreams/feature-research-agent-behavior/cards/M01-T01.md"
+    review_state: green
+    review_subject: "25ac000cac86c7421c3632f216be1074f61f64ce"
+    review_evidence: "implementation/workstreams/feature-research-agent-behavior/evidence/M01-T01-review.md"
+    result_commit: "25ac000cac86c7421c3632f216be1074f61f64ce"
+    result_pr: 49
+    evidence: "implementation/workstreams/feature-research-agent-behavior/evidence/M01-T01.md"
+    tests_summary: "GREEN: targeted/relevant 28/28; full repository 97/97; diff-check/conflict-marker checks GREEN; independent Card review GREEN."
