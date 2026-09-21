@@ -3,7 +3,7 @@
 Date: `2026-09-21`
 Scope ID: `common-preexecution-core`
 Revision: `R1`
-Status: `tentative`
+Status: `ready_for_definition`
 
 ## Problem / goal
 
@@ -2528,60 +2528,108 @@ The clean-room harness prepared for N is retained as experimental test infrastru
 
 No production workflow module has been changed.
 
+### Cross-cutting audit complete — target V2 architecture resolved
+
+The cross-cutting audit is durable at:
+
+`brainstorming/CROSS_CUTTING_AUDIT_COMMON_PREEXECUTION_CORE.md`
+
+The audit covered current V1:
+- `ROUTER`;
+- `RECOVERY`;
+- `WORKSTREAMS`;
+- `CLOSE`;
+- active workstream/Task Board templates;
+- branch-first, context-health and Codex orchestration regression tests.
+
+Brainstorming conclusion:
+
+1. **One common semantic router/state machine.**
+   Durable obligation ordering, authority, recovery, review and workstream lifecycle move to common contracts.
+
+2. **Thin runtime/surface adapters only.**
+   ChatGPT context-health/fresh-chat mechanics and Codex runtime delegation remain realization concerns. They must not redefine Project Workflow semantics or state schema.
+
+3. **One common Task Board schema.**
+   Replace ChatGPT single-review-state and Codex batch-specific project schema divergence with:
+   - generic append-only review attempts;
+   - neutral `active_execution`;
+   - no product/worker/model/session/worktree identity.
+
+4. **One common workstream manifest.**
+   Remove V1 Codex durable `orchestration` binding for new V2 work under the one-fixed-runtime/capability-first target.
+   Keep project identity/routing/authority/final-review/result state only.
+
+5. **One generic review model for Card, milestone and final integration.**
+   Workstream final-integration review no longer keeps a separate mutable `state/subject/evidence/covered_by` lifecycle.
+   It uses the same append-only attempt history, with `mode: independent_review | coverage_reuse`.
+   Exact coverage reuse becomes a terminal GREEN attempt referencing the stronger prior independent verdict.
+
+6. **Authoritative-state freshness is common correctness.**
+   New-context/takeover/recovery entry must refresh the exact authoritative branch/ref before routing.
+   Expected-base/CAS remains publication protection.
+   No stronger lease/fencing primitive is currently justified beyond authoritative refresh + explicit execution quiescence/transfer + CAS.
+
+7. **Branch cleanup becomes capability-first common behavior.**
+   - already absent branch -> cleanup complete;
+   - deletion capability available -> verify exact ref/head, delete, read back;
+   - deletion unavailable -> persist optional exact `safe_to_delete` fallback for a later capable context.
+   This reconciles the previously different ChatGPT/Codex cleanup contracts without policy-specific lifecycle trees.
+
+8. **V2 routing is runtime-portable.**
+   New V2 work should not require durable `execution_policy: chatgpt_only | codex_only` to choose a different semantic state machine.
+   Existing execution-policy values remain migration input during transition.
+   The active runtime realizes common obligations according to available capabilities.
+
+9. **Migration is staged, not an in-place blind rewrite.**
+   Build common schemas/readers first, migrate semantic modules, switch routing only after parity evidence, then retire policy-local semantic copies.
+
+Deferred N-CAPABLE/N-CHATGPT remain required V2 implementation-validation scenarios, not pre-Definition Brainstorming evidence.
+
+No production workflow module has been changed by this audit.
+
 ## Current checkpoint / handoff
 
-A compact fresh-chat handoff is durable at:
+The current compact handoff is:
 
-`implementation/workstreams/feature-common-preexecution-core/handoffs/BRAINSTORMING_CHECKPOINT_2026-09-21_N.md`
+`implementation/workstreams/feature-common-preexecution-core/handoffs/BRAINSTORMING_READY_2026-09-21.md`
 
-That file is the preferred next-chat start pointer. This Brainstorming record remains canonical exploratory authority.
+This Brainstorming record remains canonical exploratory authority.
 
-The handoff captures:
-- current Stage 1–9 common-core direction;
-- F–K live-test results;
-- append-only review model;
-- `active_execution` direction;
-- authoritative-state refresh gate;
-- old-workflow live-test contamination caveat;
-- remaining L/M tests and cross-cutting audit;
-- unresolved composition/fencing/migration questions.
+The handoff records the resolved target V2 architecture, migration direction, evidence checkpoint and exact user-owned Definition promotion gate.
 
 ## Research needed
 
-No external research is currently required.
+No external or repository-internal Research obligation remains before Definition.
 
-Remaining evidence is repository-internal:
-- isolated live-test harness behavior;
-- authoritative-state refresh test L;
-- runtime-neutral review evidence test M;
-- current Router/Recovery/Workstreams/Close composition and state ownership.
+Deferred N topology tests are post-implementation V2 validation, not missing Brainstorming evidence.
 
 ## Open material questions
 
-1. Exact composition architecture: direct routing to common modules versus tiny policy-local forwarders/adapters.
-2. Exact final-integration review history/coverage-reuse shape under the append-only attempt model.
-3. Whether authoritative refresh + explicit quiescence/transfer + expected-base/CAS is sufficient stale-coordinator fencing, or whether Recovery evidence demonstrates a need for a stronger neutral fencing primitive.
-4. Migration/test plan for replacing duplicated fixed-policy contracts without accidental behavior loss.
+None currently.
 
-Previously listed questions about whether Brainstorming/Research/Definition/Planning are semantically common are no longer open absent new contradictory evidence.
+Reopen Brainstorming only if the user introduces a new material product/architecture choice or V2 implementation evidence invalidates one of the current conclusions.
 
 ## Next bounded work
 
-1. Audit `ROUTER`, `RECOVERY`, `WORKSTREAMS`, `CLOSE` and relevant templates/tests.
-2. Reconcile the audit with capability-first routing, authoritative-state refresh, `active_execution`, append-only review attempts, final-integration review, orchestration-topology preservation and cross-runtime continuation.
-3. Choose the target composition architecture and migration/test shape.
-4. Reconcile this record into one target common-core architecture.
-5. Carry **N-CAPABLE** and **N-CHATGPT** forward as V2 implementation/validation tests, not pre-Definition evidence requirements.
-6. If no material design question remains, stop at the user-owned Brainstorming -> Definition promotion gate.
+Brainstorming is ready for the user-owned promotion gate.
+
+Do not enter Definition without explicit user authorization for exact scope:
+
+`common-preexecution-core@R1`
+
+If authorized, persist the exact promotion authorization/subject and route to Project Definition.
 
 ## Outcome of this session
 
-- Brainstorming remains `tentative`.
+- Brainstorming status is now `ready_for_definition`.
 - Scope remains `common-preexecution-core@R1`.
+- Cross-cutting audit is complete.
+- Target V2 common-core architecture and migration direction are resolved at Brainstorming level.
 - Definition promotion authorization remains `pending`.
 - Definition promotion subject remains `none`.
-- No production workflow module has been changed by this exploratory checkpoint.
-- Durable handoff created for a fresh chat.
-- Next phase/action: `audit cross-cutting routing/recovery/workstream/close contracts`; topology test N is deferred until V2.
+- Deferred N remains a V2 implementation-validation obligation, not a Brainstorming blocker.
+- No production workflow module has been changed.
+- Current real stop: user-owned Brainstorming -> Definition promotion gate.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user authorization may promote the current exploratory scope into Definition.
