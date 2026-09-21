@@ -1177,6 +1177,64 @@ This deliberately tests that runtime/context switching does not imply a new proj
 Bounded challenge: the synthetic test can prove quiescence because it has only synchronous repository-local work. A later test must separately validate the negative case where quiescence of a detached worker or external side effect cannot be proven; that case must fail closed.
 
 
+### Live test G — active-Card checkpoint takeover PASS
+
+The repository is sufficient to verify the full test; no chat transcript is required.
+
+Verified durable sequence:
+
+1. `8413cdb9da798a346d3840c94bd8df904c107afb`
+   - T01 `ready -> in_progress`
+   - execution attempt `X01` created as `active`
+
+2. `9625b8de23914975acc09e8a3549332c46c16287`
+   - Unit A only
+   - creates `execution-g/part1.txt`
+   - exact content matches immutable subject
+
+3. `91baa2ba052b29f3494b1018739419b5f9234741`
+   - T01 remains `in_progress`
+   - same X01 transitions `active -> transfer_ready`
+   - member transitions `active -> quiesced`
+   - exact checkpoint ref persisted
+   - durable evidence states no delegated/detached realization was used and X01 is quiesced
+
+4. `8e4d5ddd32025de1c773accb88d7fec0f7885046`
+   - same X01 transitions back to `active`
+   - checkpoint ref is preserved
+   - no new project execution attempt is created
+
+5. `19a99fbbff3f9d05f62907274f9a4fea505c3dd9`
+   - Unit B only
+   - creates `execution-g/part2.txt`
+   - compare from checkpoint to result shows no modification to `part1.txt`
+
+6. `d97a3607d0278702b2b83dc4b1b95d45bcfae2b4`
+   - T01 becomes `done`
+   - exact T01 result ref persisted
+   - Active execution becomes null
+   - evidence records preserved checkpoint and unchanged Unit A
+
+Final artifacts:
+- `part1.txt`: exact Unit-A content
+- `part2.txt`: exact Unit-B content
+
+Verdict: **PASS — one non-terminal repository-local Card can transfer across contexts/runtimes at a durable quiescent checkpoint while preserving the same project execution attempt.**
+
+What this proves:
+- durable `transfer_ready/quiesced` state is sufficient for takeover without prior-chat narrative;
+- completed checkpoint work is not replayed;
+- runtime/context switch does not require a new project execution attempt;
+- Project Workflow can distinguish an unsafe active realization from a transferable quiesced one.
+
+What this does NOT yet prove:
+- cancellation/quiescence of a detached runtime worker;
+- takeover while multiple concurrent members are active;
+- safety for non-idempotent external side effects.
+
+The next materially distinct validation target is concurrent takeover rather than the reverse-direction version of this same serial checkpoint test.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
