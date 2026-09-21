@@ -1107,6 +1107,50 @@ Phase 1 is intended for Codex; Phase 2 for normal ChatGPT. Product identity is n
 This first Stage-9 test does not yet test in-progress transfer or concurrent execution.
 
 
+### Live test F — completed-Card cross-runtime takeover PASS
+
+The two-runtime execution test completed successfully against one shared durable record.
+
+Phase 1 — Codex:
+- durably started T01 under one-member active execution X01;
+- created only `brainstorming/live-tests/execution-f/A.txt`;
+- exact T01 result commit: `8d7a8224f85eb0e8c86c48029886af7d049fda0d`;
+- completion-state commit: `bf7833def24e52e3b2d71fe9215b6fcc6ca0e0e8`;
+- persisted T01 `done`, T02 `ready`, `Active execution: null`;
+- stopped at the completed-Card boundary.
+
+Phase 2 — normal ChatGPT:
+- recovered the same durable record with T01 already terminal;
+- verified accepted T01 result instead of re-executing it;
+- durably started only T02 as X02 in `ea28ea2a3d152b92c5e98e5eb4bdbab7fc2704d8`;
+- created only `brainstorming/live-tests/execution-f/B.txt`;
+- exact T02 result commit: `00fb4871f22e719bc4f454c0c9372c588fd968fc`;
+- completion-state commit: `f85786ee4ecb82646476433cf268a4d53621dff0`;
+- persisted both Cards `done` and `Active execution: null`.
+
+Verification:
+- T02 result commit changes only B.txt;
+- A.txt remains exactly the T01 blob `ba78e7baacc4a3930ac0f2744d6a1db6ba9662ab`;
+- final A/B contents match the immutable subject;
+- no product/worker/session conversion schema was needed between runtimes.
+
+Verdict: **PASS — a completed Card boundary is a portable cross-runtime continuation boundary.**
+
+This validates the intended normal case:
+`Codex completes Card -> durable repository truth -> ChatGPT continues next Card`.
+The reverse direction remains worth one bounded counterfactual test only if implementation details differ materially; semantically the tested contract is symmetric.
+
+#### F schema finding
+
+The synthetic record still says top-level `Execution state: active` after both Cards are done while `Active execution: null`.
+
+This does not invalidate the takeover result because the test contract routes from Card state + `Active execution`, but it exposes an avoidable ambiguous duplicate lifecycle.
+
+Working direction:
+- prefer one authoritative active-execution lifecycle plus Card states;
+- do not keep an additional generic `Execution state` unless it has a distinct, necessary meaning with exact transitions.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
