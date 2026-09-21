@@ -21,6 +21,21 @@ PRIVATE_TAG = re.compile(
 )
 
 
+def canonical_private_key(tag: str) -> tuple[int, int, int, int] | None:
+    match = PRIVATE_TAG.fullmatch(tag)
+    if not match:
+        return None
+    x, y, z = (int(part) for part in match.group("baseline").split("."))
+    return (x, y, z, int(match.group("n")))
+
+
+def current_canonical_private(tags: list[str]) -> str | None:
+    candidates = [(key, tag) for tag in tags if (key := canonical_private_key(tag))]
+    if not candidates:
+        return None
+    return max(candidates)[1]
+
+
 def next_private_version(baseline: str, tags: list[str]) -> str:
     revisions: list[int] = []
     for tag in tags:
@@ -55,6 +70,34 @@ class ForkReleaseVersioningContractTest(unittest.TestCase):
         ]
         self.assertEqual(next_private_version("5.0.8", tags), "v5.0.8-private.1")
 
+    def test_canonical_channel_numeric_private_order(self) -> None:
+        tags = ["v1.1.18-private.4", "v1.1.18-private.10"]
+        self.assertEqual(current_canonical_private(tags), "v1.1.18-private.10")
+
+    def test_canonical_channel_cross_baseline_order(self) -> None:
+        tags = [
+            "v1.1.17-private.99",
+            "v1.1.18-private.10",
+            "v1.1.19-private.1",
+        ]
+        self.assertEqual(current_canonical_private(tags), "v1.1.19-private.1")
+
+    def test_upstream_only_semver_winner_is_not_channel_candidate(self) -> None:
+        tags = ["v1.1.18", "v1.1.18-private.4"]
+        self.assertEqual(current_canonical_private(tags), "v1.1.18-private.4")
+
+    def test_noncanonical_tags_are_excluded_from_channel(self) -> None:
+        tags = [
+            "v1.1.18",
+            "v1.1.20",
+            "v1.1.19-private.0",
+            "v1.1.19-private.foo",
+            "v1.1.19-private.2-extra",
+            "legacy-v9",
+            "v1.1.18-private.10",
+        ]
+        self.assertEqual(current_canonical_private(tags), "v1.1.18-private.10")
+
     def test_common_contract_contains_required_semantics(self) -> None:
         text = COMMON.read_text(encoding="utf-8")
         required = (
@@ -66,6 +109,13 @@ class ForkReleaseVersioningContractTest(unittest.TestCase):
             "MUST NOT rewrite, delete, retag",
             "prerelease",
             "automatic upstream synchronization",
+            "Canonical fork-channel ordering across baselines",
+            "(X, Y, Z, N)",
+            "wrapped with ad-hoc exceptions",
+            "Optional moving `latest` alias",
+            "newest accepted **stable** canonical fork release",
+            "same released artifact/content identity",
+            "synthetic canonical Git tag/release such as `vlatest`",
         )
         for needle in required:
             self.assertIn(needle, text)

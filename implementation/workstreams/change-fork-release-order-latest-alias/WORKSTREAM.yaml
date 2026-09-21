@@ -1,0 +1,45 @@
+# Branch-isolated workstream manifest.
+id: "change-fork-release-order-latest-alias"
+kind: "change"
+status: "review"
+
+branch: "work/fork-release-order-latest-alias"
+base_ref: "main"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: "complete"
+  record: "implementation/workstreams/change-fork-release-order-latest-alias/INTAKE.md"
+
+routing:
+  exploratory_scope: null
+  research_obligation: null
+  plan_review: null
+
+task_board: "implementation/workstreams/change-fork-release-order-latest-alias/TASK_BOARD.yaml"
+
+authority:
+  requirements: "requirements/FORK_RELEASE_VERSIONING.md"
+  decisions:
+    - "decisions/ADR_FORK_RELEASE_VERSION_LINEAGE.md"
+  plan: "planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md"
+
+review:
+  requirement: "RECOMMENDED"
+  state: "green"
+  subject: "822c0ee434e5dde5904a3709af5022bc0905bb5b"
+  evidence: "implementation/workstreams/change-fork-release-order-latest-alias/evidence/M02_FINAL_INTEGRATION_REFRESH_2026-09-21.md"
+  covered_by: "implementation/workstreams/change-fork-release-order-latest-alias/evidence/M02-T01.md"
+
+branch_cleanup:
+  state: null
+  ref: null
+  verified_head: null
+  evidence: null
+
+pr: 54
+result: null

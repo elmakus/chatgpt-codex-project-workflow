@@ -196,7 +196,7 @@ No separate Campaign object or scheduler is required.
 
 When Project Workflow publishes a project that is durably established as a downstream fork, release identity keeps the accepted upstream baseline visible and advances only a fork-local private revision, for example `v5.0.8-private.1`.
 
-The canonical semantics, migration rules, provenance requirements and mixed-tag selection behavior live in `workflow/common/FORK_RELEASE_VERSIONING.md`. Publication modules reference that common contract instead of duplicating the algorithm.
+The canonical semantics, migration rules, provenance requirements and mixed-tag selection behavior live in `workflow/common/FORK_RELEASE_VERSIONING.md`. Baseline-local next-release selection is separate from the cross-baseline fork channel, which orders exact canonical private releases numerically by `(X, Y, Z, N)` rather than generic SemVer. Publication surfaces that natively support moving aliases may expose `latest` as channel metadata while immutable versioned release identity remains authoritative; no synthetic `vlatest` Git release/tag is introduced. Publication modules reference the common contract instead of duplicating the algorithm.
 
 ## Independent plan review
 

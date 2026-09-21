@@ -41,3 +41,21 @@ The test model is verification code only; production/workflow semantics remain o
 ## Integrity and authorization
 
 This change never mutates external release history and does not grant tag/release/deployment authority. Existing publication, review, signing/checksum and external-write gates remain controlling.
+
+
+## M02 resolver and alias extension
+
+The existing common contract remains the only semantic source. No new runtime resolver library/service is introduced in this repository.
+
+For verification, repository tests may use a small self-contained parser/model for exact canonical private tags. That parser is test-only evidence and does not become a second production authority.
+
+Two resolver contexts remain intentionally distinct:
+
+1. baseline-local publication selection filters to one accepted baseline and computes numeric `max(N)+1`;
+2. current/update-channel selection filters to exact canonical private releases across baselines and compares numeric `(X, Y, Z, N)`.
+
+Non-canonical tags are rejected before ordering, so generic SemVer precedence is not part of canonical channel resolution.
+
+Moving `latest` remains publication-surface metadata. Project Workflow only defines its semantic eligibility and identity constraints; actual downstream alias writes remain subject to that downstream project's publication policy and authorization gates.
+
+Detailed semantics remain in `workflow/common/FORK_RELEASE_VERSIONING.md`; publication modules and README must not duplicate the algorithm.

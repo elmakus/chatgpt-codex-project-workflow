@@ -67,3 +67,46 @@ When downstream fork release-version selection or validation is material, the fo
 - legacy/shared Review and Handoff publication flow.
 
 The contract MUST NOT itself authorize publication, deployment, tag deletion, force-push, release mutation, or upstream synchronization.
+
+
+## Requirement: canonical fork-channel ordering
+
+Baseline-local next-release selection and cross-baseline current/update-channel selection MUST be treated as separate operations.
+
+A cross-baseline canonical fork-channel resolver MUST accept only exact canonical private release tags of the form `vX.Y.Z-private.N` with numeric version components and a positive integer `N`.
+
+For accepted candidates, the resolver MUST compare the numeric tuple `(X, Y, Z, N)`.
+
+Generic SemVer precedence MUST NOT be used as the canonical fork-channel resolver and MUST NOT be wrapped with ad-hoc exceptions to emulate this domain order.
+
+### Scenario: same-baseline numeric private revision
+
+Given `v1.1.18-private.4` and `v1.1.18-private.10`, the canonical fork channel orders `private.10` after `private.4`.
+
+### Scenario: cross-baseline ordering
+
+Given canonical private releases `v1.1.17-private.99`, `v1.1.18-private.10`, and `v1.1.19-private.1`, the newest canonical fork-channel release is `v1.1.19-private.1`.
+
+### Scenario: upstream-only tag excluded
+
+Given `v1.1.18` and `v1.1.18-private.4`, the upstream-only `v1.1.18` does not participate in the canonical fork channel and therefore cannot outrank the canonical private release.
+
+## Requirement: non-canonical exclusion
+
+Upstream-only tags, legacy upstream-looking fork tags, malformed private tags, and all other non-canonical tags MUST NOT participate in cross-baseline canonical fork-channel ordering or moving-alias selection.
+
+## Requirement: optional moving latest alias
+
+A publication surface that natively supports moving aliases MAY expose `latest` as convenience channel metadata.
+
+When used, `latest` MUST point to the newest accepted stable canonical fork release according to canonical fork-channel ordering plus the project's release-quality policy.
+
+The immutable/versioned canonical reference MUST remain published and authoritative for reproducibility and rollback.
+
+At publication time, the alias and the canonical versioned reference MUST identify the same released artifact/content identity.
+
+`latest` MUST NOT become a canonical release version and Project Workflow MUST NOT create a synthetic canonical Git tag/release such as `vlatest`.
+
+Publication systems without native moving-alias semantics MUST continue to use the canonical versioned release and their normal release-discovery mechanism.
+
+The `private.N` suffix continues to identify lineage/revision only; release-quality metadata such as GitHub `prerelease` remains independent.
