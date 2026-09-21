@@ -818,6 +818,261 @@ Stage-8 working conclusion:
 - Stage 9 must now define portable execution-state semantics, including clean takeover after a completed Card and safe behavior/checkpointing when concurrent work is active.
 
 
+### Stage 9 audit — Execution / State (current main `7aa7512ead67a86256089d1af0171e2e655e700d`)
+
+No Stage-9 workflow change or live test is authorized yet. This section records the current-state audit and a proposed runtime-portable direction for discussion.
+
+#### Current ChatGPT-only execution shape
+
+`workflow/chatgpt_only/EXECUTION.md` + `STATE.md` implement one direct serial execution loop:
+- select exactly one deterministic READY Card;
+- persist `ready -> in_progress`;
+- persist `executor: chatgpt` plus branch/base recovery pointer;
+- run Refresh Gate;
+- implement in the coordinating chat;
+- persist exact result/tests/evidence;
+- freeze independent review when required, otherwise mark `done`;
+- return to router at the durable Card boundary.
+
+State invariant:
+- exactly one Card may be `in_progress` per selected workstream Task Board;
+- more than one is invalid state.
+
+Recovery of an ordinary `in_progress` Card is intentionally simple:
+- verify branch/HEAD against Task Board;
+- inspect actual implementation/tests/evidence;
+- run Refresh Gate;
+- continue from proven durable state;
+- do not blindly repeat completed steps.
+
+This model has no durable concurrent-attempt state.
+
+#### Current Codex-only execution shape
+
+`workflow/codex_only/EXECUTION.md`, `STATE.md` and `RECOVERY.md` support both serial execution and a durable bounded-parallel lifecycle.
+
+Serial path is semantically similar to ChatGPT:
+- choose READY Card;
+- persist `in_progress`;
+- execute through runtime;
+- persist result/tests/evidence;
+- freeze review or finalize;
+- return to router.
+
+Codex-specific/runtime-coupled state currently includes:
+- `Codex Main` as fixed coordinator;
+- `implementation_owner_role: executor`;
+- orchestration pre-dispatch binding;
+- explicit worker-role language (`Executor`, `Tester`).
+
+Parallel project state currently includes:
+- one `parallel.current_batch`;
+- stable batch IDs and lane labels;
+- exact `integration_base`;
+- frozen finite member order;
+- batch states `prepared -> running -> integrating -> complete | blocked`;
+- member states `prepared -> in_progress -> returned -> integrated | blocked`;
+- exact returned and integrated result refs;
+- deterministic ordered integration;
+- preserved partial results;
+- same-member retry or terminal reconciliation;
+- post-batch review drain.
+
+Recovery already has an important runtime-neutral property: concrete worker/session/model/worktree identity is not authority. A `returned` durable result is not rerun merely because runtime disappeared.
+
+#### What is already naturally portable
+
+A terminal Card is already conceptually runtime-neutral once durable truth is complete:
+- `execution_status: done`;
+- exact result ref;
+- tests/evidence/readback;
+- required review satisfied;
+- dependencies can be recomputed into READY state.
+
+Therefore a clean boundary after a completed Card should require no product-specific handoff. A different runtime can reconstruct the same Task Board and select the next legal obligation.
+
+The current blockers to literal interchangeability are schema/provenance differences such as `executor: chatgpt` vs `implementation_owner_role: executor`, policy-specific review shapes and policy namespaces, not the underlying Card semantics.
+
+#### Proposed common Execution ownership
+
+Common Stage 9 should own project-level execution semantics:
+- deterministic priority of already-active durable obligations before new work;
+- READY -> selected/start transition;
+- Refresh Gate;
+- exact Card authority/scope/acceptance/tests/readback;
+- durable active execution state;
+- exact implementation result/evidence;
+- Card review freeze boundary;
+- terminal `done` semantics;
+- RED correction / Research routing;
+- recovery from partial durable transitions;
+- cross-runtime takeover rules.
+
+It should not own:
+- product identity;
+- fixed `ChatGPT` / `Codex Main` identity;
+- concrete `Executor` / `Tester` names;
+- model/profile/session/invocation/worktree IDs;
+- runtime-specific worker lifecycle.
+
+A neutral rule can replace `Codex Main`: the **coordinating context** is the only writer of shared Project Workflow state; delegated realizations return bounded results/evidence and do not mutate the shared Task Board/manifest/integration bookkeeping. In a non-delegating runtime, the same context may both coordinate and implement.
+
+#### Selection after the Stage-8 READY graph
+
+Stage 8 leaves all legally executable Cards READY.
+
+Stage 9 asks the runtime how much of that READY set it can safely realize:
+- serial-only runtime selects one;
+- concurrency-capable runtime may select a compatible subset whose concurrency-safety proof is valid.
+
+This selection is HOW, not project readiness.
+
+However, **once work actually starts**, enough runtime-neutral durable state must be persisted to recover or transfer it. Runtime choice itself may be transient; its consequences cannot be transcript-only.
+
+#### Candidate neutral active-execution model
+
+Replace policy-specific serial-vs-batch semantics with a common concept such as an `active_execution` / execution set.
+
+Conceptual shape, not yet a schema commitment:
+
+```yaml
+active_execution:
+  id: X01
+  state: active | reconciling | transfer_ready | complete | blocked
+  base_ref: <exact durable base>
+  members:
+    - card_id: T01
+      state: active | result_ready | reconciled | quiesced | blocked
+      result_ref: null
+      canonical_result_ref: null
+```
+
+Properties:
+- one member is ordinary serial execution;
+- two or more members represent concurrent execution;
+- no worker/lane/model/session identity is required;
+- member ordering may provide deterministic reconciliation order when concurrent results must be integrated;
+- direct serial execution may collapse `result_ready -> reconciled` into one durable transition when result is already on the canonical workstream branch;
+- delegated isolated work can preserve a separate returned/result-ready boundary before canonical reconciliation.
+
+This is intended to preserve the useful recovery semantics of today's Codex batch without making `B01/L01/Executor/Codex Main` part of the common contract.
+
+Open question: whether a universal execution-set wrapper is worth the overhead for one-member serial work. A lighter alternative is per-Card execution-attempt state plus an optional concurrent-group record only when >1 Card is launched. This should be decided after validation, not assumed.
+
+#### Clean takeover after a completed Card
+
+Target behavior:
+
+```text
+T01 done + exact result/evidence
+T02 ready
+no unresolved active_execution
+
+switch runtime
+
+new runtime reads durable state
+-> does not care who executed T01
+-> selects next legal obligation
+```
+
+No special user handoff should be semantically required. The next runtime reconstructs from repository truth.
+
+Concrete provenance such as `executor: chatgpt` should disappear from required project semantics. If producer provenance is needed for independent-review proof, use neutral subject/execution provenance rather than product/worker names.
+
+#### Takeover while a serial Card is still active
+
+A runtime switch must not cause two contexts to mutate the same Card concurrently.
+
+Therefore an active Card needs one of:
+- completion to a terminal/durable result boundary; or
+- a durable transfer/checkpoint transition that proves the previous realization has stopped/quiesced and records enough state for continuation.
+
+A new runtime must never infer from absence of transcript that the previous realization is gone.
+
+#### Takeover in the middle of concurrent work
+
+The current Codex batch model already preserves useful facts: frozen base, member set/order, returned results, integrated results and blockers. The common model should preserve equivalent facts but add an explicit cross-runtime transfer boundary.
+
+Proposed safe model:
+1. current coordinating context requests/establishes a **quiescent checkpoint**;
+2. every member is durably classified as one of:
+   - result already durable;
+   - reconciled/integrated;
+   - quiesced with no accepted result yet;
+   - blocked with exact evidence;
+3. no old realization is allowed to continue mutating authoritative/shared/external state after the checkpoint;
+4. persist `transfer_ready` (name tentative);
+5. old coordinating context stops;
+6. new runtime reconstructs the same active execution from durable state:
+   - never reruns durable returned/reconciled results;
+   - may reconcile returned results;
+   - may re-realize only quiesced unresolved members under the same still-valid Card authority/base/safety constraints;
+   - may choose to continue remaining unresolved work serially even if the previous runtime had executed concurrently.
+
+If quiescence cannot be proven, fail closed rather than launch duplicate work.
+
+This gives safe cross-runtime takeover without requiring true hot migration of runtime sessions.
+
+#### Important external-write caveat
+
+Repository-isolated workers are relatively easy to replace because stale returned commits can be ignored/reconciled. Material external writes are different: an old realization that might still mutate an external system cannot safely be duplicated.
+
+Therefore cross-runtime transfer of an active Card with external side effects requires exact quiescence/idempotency/readback evidence before replacement. Runtime loss alone is not proof that an old external mutation cannot still occur.
+
+This correctness property belongs in common Project Workflow even though the concrete cancellation mechanism is runtime-owned.
+
+#### Review provenance cleanup
+
+Current ChatGPT stores `executor: chatgpt`; Codex stores `implementation_owner_role: executor` and review `reviewer_role: tester`.
+
+Target should not require those product/role names.
+
+Common state needs only enough neutral provenance to establish:
+- exact implementation subject/result;
+- which execution attempt produced it;
+- whether the review context is independent of that producing context.
+
+The Stage-7 independent-context realization lifecycle can then be reused conceptually for Card review without hardcoding `Tester`.
+
+Do not yet generalize the exact schema until the Stage-9/Review interaction is validated.
+
+#### Proposed Stage-9 working direction
+
+1. Commonize the serial Card lifecycle and recovery semantics.
+2. Remove product/worker identity from required project state.
+3. Make multiple active Cards legal only when covered by one exact durable active-execution/concurrency record.
+4. Move Codex's useful returned/integrated/recovery facts into runtime-neutral execution-state terminology.
+5. Allow a runtime that cannot continue concurrency to finish/recover remaining members serially after a proven transfer checkpoint.
+6. Define clean Card-boundary runtime switching as ordinary recovery/continuation, not a special workflow.
+7. Define active-work switching as a durable quiesce/checkpoint protocol; no blind hot takeover.
+8. Keep concrete orchestration, worker choice, cancellation, resume and workspace handling runtime-owned.
+9. Preserve fail-closed behavior for uncertain runtime-active/external-write state.
+
+#### Proposed validation after user approval
+
+Do not run yet.
+
+A. **Completed-Card takeover test**
+- one runtime executes T01 to terminal durable `done`;
+- another runtime starts from only durable state;
+- it must recognize T01 as complete, T02 as next READY and must not replay T01.
+
+B. **Serial in-progress checkpoint takeover**
+- first runtime starts T01 and persists a bounded checkpoint/transfer-ready state;
+- second runtime resumes/continues T01 without duplicating already durable work.
+
+C. **Mid-concurrency takeover**
+- runtime A starts T01+T02 concurrently;
+- one member becomes durable result, the other reaches a proven quiescent unresolved checkpoint;
+- switch to a serial-only runtime;
+- it must preserve/reconcile the completed member and continue only the unresolved member serially;
+- T03 becomes READY only after both are terminal.
+
+D. **Unsafe takeover negative case**
+- old realization may still perform a non-idempotent external write and quiescence cannot be proven;
+- new runtime must fail closed, not duplicate the operation.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
