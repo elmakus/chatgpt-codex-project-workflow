@@ -726,6 +726,22 @@ The following are visible now but should not be solved as part of Stage 8:
 Those belong to Execution/State because they arise only after a READY Card is actually selected/launched.
 
 
+### Stage 8 direction — tentatively accepted
+
+The user tentatively accepted the Stage-8 direction for further validation:
+
+- common Execution Prep owns project-legality/JIT preparation, not runtime scheduling;
+- `READY` means a Card is legally executable now from project authority/dependencies/prerequisites;
+- all currently executable Cards may be READY simultaneously;
+- runtime selection/concurrency is deferred to Execution;
+- ChatGPT serial capability must not suppress otherwise-legal READY state;
+- Codex parallel capability must not change Project Workflow readiness semantics;
+- optional runtime-neutral concurrency-safety facts may remain on Cards, while concrete batch/lane/worker/workspace mechanics are not Stage-8 preparation state;
+- exact concurrent-attempt/recovery state remains deferred to the Stage-9 audit.
+
+This is still Brainstorming acceptance, not Definition promotion authorization.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
