@@ -2,7 +2,7 @@
 
 Date: 2026-09-21
 Scope: common-preexecution-core@R1
-Status: active analysis
+Status: resolved
 Production authority: none
 Baseline: current main fixed-policy contracts
 
@@ -389,3 +389,20 @@ Practical rule:
 - Stage 8 still performs the launch-time refresh/revalidation before execution.
 
 User also accepted that superseded/replaced not-yet-started Card history does not need a new Project Workflow lifecycle; Git history plus bounded rationale when material is sufficient.
+
+
+## Stage 7 completion
+
+No material Stage-7 decision remains open after grilling.
+
+Stage 7 preserves the proven fixed-policy preparation/JIT model, with only the minimum commonization changes needed for runtime portability and Codex concurrency safety:
+- all currently knowable useful Cards may be materialized;
+- future unknowable detail stays behind planned work/JIT triggers;
+- Main/orchestrator re-evaluates predecessor evidence rather than blindly flipping dependency state;
+- not-yet-started Cards remain refinable within existing L2 authority;
+- semantic READY is runtime-independent;
+- optional concurrency-safety metadata is stable project contract data;
+- no new ordinary Card state is added between ready and in_progress;
+- launch-time refresh belongs to Execution.
+
+Next stage: Stage 8 — Execution.
