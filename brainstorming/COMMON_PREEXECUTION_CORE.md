@@ -535,6 +535,30 @@ Verdict:
 This failure is useful evidence for the portability design and should be fixed before treating stage-7 commonization as settled.
 
 
+### Live test D — durable handoff-state correction
+
+A follow-up live test was prepared at:
+
+`brainstorming/live-tests/CAPABILITY_PLAN_REVIEW_D.md`
+
+Purpose: validate the proposed fix for the handoff bounce found in test C.
+
+The experiment introduces a runtime-neutral durable realization state machine:
+
+`resolve_independent_context`
+→ `awaiting_independent_context`
+→ `independent_context_active`
+→ `satisfied`
+
+Key invariant:
+- the context that writes `awaiting_independent_context` must stop and may not execute the review;
+- a later fresh context recovering `awaiting_independent_context` is no longer responsible for finding another independent context; if it satisfies the independence conditions, it becomes the reviewer and executes the obligation directly.
+
+No product, worker, model, harness or runtime-session identity is encoded in the Project Workflow record.
+
+This test specifically checks that a durable state transition, rather than handoff-prompt narrative, is sufficient to prevent recursive fresh-context bounce.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
