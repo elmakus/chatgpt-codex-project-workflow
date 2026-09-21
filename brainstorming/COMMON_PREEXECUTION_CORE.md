@@ -2630,11 +2630,11 @@ Deferred N topology tests are post-implementation V2 validation, not missing Bra
 
 Stage-by-stage reconciliation is still active. The cross-cutting audit is provisional architecture evidence, not Brainstorming completion authority.
 
-Current focus: Stage 7 — Execution Prep / JIT. One material decision remains: durable optional concurrency-safety metadata versus dynamic derivation.
+Current focus: Stage 7 — Execution Prep / JIT. Concurrency-safety metadata decisions are resolved; remaining Stage-7 questions concern JIT mutation/readiness boundaries.
 
 ## Next bounded work
 
-Finish the remaining Stage-7 concurrency-safety metadata decision, then continue to Stage 8 — Execution.
+Finish the remaining Stage-7 JIT/readiness boundary questions, then continue to Stage 8 — Execution.
 
 Do not return to the Definition promotion gate until the remaining lifecycle stages have been reviewed individually and then reconciled cross-cutting.
 
