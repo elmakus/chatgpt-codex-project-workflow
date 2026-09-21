@@ -115,7 +115,7 @@ No additional material product decision was found.
 - Research still needed: none blocking.
 - Open questions: none material.
 - Next phase/action: `ready for definition`
-- Definition promotion authorization: `pending`
-- Definition promotion subject: `none`
+- Definition promotion authorization: `user_authorized`
+- Definition promotion subject: `adaptive-brainstorming-grilling@R1`
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`.
