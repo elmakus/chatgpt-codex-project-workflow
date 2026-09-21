@@ -177,6 +177,29 @@ The user clarified the intended target architecture:
 - Parallelism is therefore an optimization/capability realization, not a distinct project semantics branch. Only genuinely simultaneous behavior that is itself part of acceptance would create a hard capability requirement.
 
 
+### User direction — no worker-role names in Project Workflow
+
+The user refined the runtime boundary further: Project Workflow should not hardcode concrete worker-role names such as `Executor`, `Tester` or `Investigator` merely to tell Codex which worker to launch.
+
+Target separation for the first six stages:
+
+- Project Workflow owns the **semantic obligation and constraints**: exact Research question/return target, exact plan-review subject, whether independence is required, accepted authority and durable lifecycle state.
+- Main reads that obligation plus the task/subject and asks the installed runtime workflow to realize it using the most appropriate currently available worker/capability from its own catalog.
+- `codex_workflow` owns the worker catalog, role names, model/harness mapping and the decision of which concrete worker class realizes a delegable obligation.
+- Project Workflow must not need to know that the selected runtime calls that worker `Investigator`, `Tester`, `Executor` or any future name.
+- A semantic invariant such as independent review remains Project Workflow authority; the concrete worker chosen to satisfy that invariant is runtime authority.
+- For work that does not require an independent context, Main may perform it directly when appropriate or delegate according to runtime policy; Project Workflow should not force delegation merely because a named worker role exists.
+
+Current first-six-stage hardcoding identified on main:
+- `codex_only/RESEARCH.md` explicitly names `Investigator` and contains an Investigator-realization section; this is a candidate for removal from the common Research semantics.
+- `codex_only/PLANNING.md` names a Codex-managed `Tester` for plan review; common Planning should instead create the exact independent-review obligation and return to routing/transport resolution.
+- `codex_only/INTAKE.md` mentions concrete Executor/Tester/Investigator realization only descriptively and as part of the current orchestration-binding design; under the one-fixed-runtime target this should not be needed in Intake.
+
+Counterfactual challenge: Project Workflow still must encode any property that changes correctness, such as `independent context required`, exact immutable review subject, or read-only evidence boundaries. Removing worker names must not remove those semantic guarantees. The runtime may choose any catalog entry only if it satisfies the Project Workflow obligation.
+
+Scope discipline: continue analysis only for Intake through Strategic Planning until those six stages are settled; do not advance into Execution Prep/Execution/Review/Close yet.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
