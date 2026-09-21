@@ -2,9 +2,9 @@
 
 Plan revision: `YAGNI-P1`
 Review requirement: `RECOMMENDED`
-Review state: `in_progress`
+Review state: `red`
 Review subject: `planning/YAGNI_OVERENGINEERING_GUARD_MASTER_PLAN.md blob ce1179fae0a8c1d8f3a43cd1f1530ea64b9d4f99`
-Review evidence: `none`
+Review evidence: `RED — one bounded plan-only defect. The plan correctly centralizes the YAGNI invariant, preserves quality/authority guardrails, avoids new YAGNI lifecycle/state/score machinery, and keeps OpenSpec selective rather than mandatory. However, M01/OpenSpec wording says Execution Prep should create/reconcile the JIT OpenSpec change. Current main does not have one cross-policy owner for that action: chatgpt_only EXECUTION_PREP only marks OpenSpec candidates and chatgpt_only EXECUTION performs JIT reconciliation, while codex_only EXECUTION_PREP currently creates/reconciles it. workflow/common/OPENSPEC.md also assigns actual JIT creation/reconciliation to the current executor. Leaving this wording would either contradict the selected chatgpt_only route or silently require an out-of-scope role-contract change. Correct the plan to let Execution Prep make/record the selective candidate/need decision while actual creation/reconciliation follows the current policy-specific OpenSpec owner. No accepted Definition/ADR change or additional research is required; no other P0/P1 planning defect found.`
 
 ## Review scope
 
