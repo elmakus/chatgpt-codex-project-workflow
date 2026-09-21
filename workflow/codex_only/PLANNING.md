@@ -194,6 +194,8 @@ Before plan review/approval, the planner performs its own audit:
 - overengineering or premature implementation detail;
 - unresolved questions that should have routed back to Definition/Research.
 
+Apply the policy-neutral `workflow/common/AUTHORITY.md#YAGNI--proportional-design` invariant during this audit. For each material increase in solution complexity, ask which current requirement, accepted constraint, verified evidence, existing contract or demonstrated current reuse justifies it; hypothetical future need alone is insufficient.
+
 Resolve deterministic planning defects directly.
 
 If a material gap belongs to Project Definition or requires user/product authority, route there instead of approving around it.

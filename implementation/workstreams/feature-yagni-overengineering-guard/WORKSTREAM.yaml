@@ -1,0 +1,44 @@
+id: "feature-yagni-overengineering-guard"
+kind: "feature"
+status: "review"
+
+branch: "feat/yagni-overengineering-guard"
+base_ref: "13e27863cb11ec9e223ee2af191f79fe6b8d559d"
+integration_target: "main"
+
+parent_workstream: null
+parent_branch: null
+parent_dependency: null
+
+intake:
+  state: "complete"
+  record: "implementation/workstreams/feature-yagni-overengineering-guard/INTAKE.md"
+
+routing:
+  exploratory_scope: null
+  research_obligation: null
+  plan_review: null
+
+task_board: "implementation/workstreams/feature-yagni-overengineering-guard/TASK_BOARD.yaml"
+
+authority:
+  requirements: "requirements/YAGNI_OVERENGINEERING_GUARD.md"
+  decisions:
+    - "decisions/ADR_YAGNI_PROPORTIONAL_DESIGN.md"
+  plan: "planning/YAGNI_OVERENGINEERING_GUARD_MASTER_PLAN.md"
+
+review:
+  requirement: "RECOMMENDED"
+  state: "green"
+  subject: "content:e7c8ce88560b34a63213af064c2083cf1cf8932a; acceptance:implementation/workstreams/feature-yagni-overengineering-guard/evidence/M01-acceptance.md@blob:33b3c07542410f19bf259bff93275605e7fc0099"
+  evidence: "implementation/workstreams/feature-yagni-overengineering-guard/evidence/M01_FINAL_INTEGRATION_REFRESH_2026-09-21.md"
+  covered_by: "M01-T01@e7c8ce88560b34a63213af064c2083cf1cf8932a -> implementation/workstreams/feature-yagni-overengineering-guard/evidence/M01-T01_REVIEW_2026-09-21.md@blob:0ea915193ceb739c3abd86b314d98047e1e3807b"
+
+branch_cleanup:
+  state: null
+  ref: null
+  verified_head: null
+  evidence: null
+
+pr: 51
+result: null

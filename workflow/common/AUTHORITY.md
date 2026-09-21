@@ -51,6 +51,22 @@ Apply authority by domain:
 
 A Task Card narrows execution scope but does not override richer requirements/decisions/approved-plan authority. Actual code/runtime is implementation evidence, not permission to silently rewrite accepted strategic authority.
 
+## YAGNI / proportional design
+
+Prefer the least-complex solution that fully satisfies the complete applicable current requirements, accepted decisions, constraints, invariants and verified evidence.
+
+Do not add speculative abstractions, generality, extensibility, configuration, dependencies, infrastructure, compatibility paths or future-proofing solely for hypothetical future needs. Every material increase in solution complexity must have a concrete current justification traceable to accepted authority, verified evidence, an existing current contract/constraint or demonstrated current reuse/variation. “Maybe later” alone is insufficient.
+
+“Simplest” means least unnecessary complexity, not minimum lines, files or immediate effort. YAGNI never permits omitting or weakening current correctness, security, testing, maintainability/refactoring, compatibility, observability, migration or other applicable quality obligations.
+
+Prefer an existing fitting mechanism when it satisfies current authority cleanly, while allowing new machinery when current requirements or evidence justify it. Generalize from demonstrated current shared need/variation or another concrete current constraint; temporary duplication may be preferable to a premature or wrong abstraction. Keep changes focused on the accepted current obligation rather than bundling unrelated cleanup.
+
+Do not create a YAGNI-specific lifecycle phase, state owner, approval gate, complexity score/budget, registry or numeric abstraction threshold unless a later concrete requirement independently justifies one.
+
+Operational review question:
+
+> Which current requirement, accepted constraint, verified evidence, existing contract or demonstrated current reuse justifies this material extra complexity?
+
 ## Progressive disclosure
 
 Read the smallest context required for the current obligation, but never omit an applicable implementation-shaping constraint.
