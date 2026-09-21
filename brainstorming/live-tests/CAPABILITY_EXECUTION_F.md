@@ -3,14 +3,8 @@
 Experiment: completed-Card cross-runtime takeover
 Execution state: active
 Execution subject: 6e580867cc3090ef59efbede19d8e6fb17cb8c31:brainstorming/live-tests/CAPABILITY_EXECUTION_F_SUBJECT.md
-Active execution:
-  id: X02
-  state: active
-  member:
-    card_id: T02
-    state: active
-    result_ref: null
-Execution evidence: T01 accepted; exact A.txt content verified in result commit 8d7a8224f85eb0e8c86c48029886af7d049fda0d.
+Active execution: null
+Execution evidence: T01 accepted in 8d7a8224f85eb0e8c86c48029886af7d049fda0d; T02 accepted in 00fb4871f22e719bc4f454c0c9372c588fd968fc; A.txt preserved unchanged.
 
 ## Synthetic Task Board
 
@@ -23,10 +17,10 @@ cards:
     evidence: execution-f/A.txt exists with exact required content; acceptance verified.
 
   - id: T02
-    execution_status: in_progress
+    execution_status: done
     depends_on: [T01]
-    result_ref: null
-    evidence: null
+    result_ref: 00fb4871f22e719bc4f454c0c9372c588fd968fc
+    evidence: execution-f/B.txt exists with exact required content; result commit changes only B.txt; T01 A.txt remains unchanged.
 ```
 
 ## Common execution contract for this experiment
