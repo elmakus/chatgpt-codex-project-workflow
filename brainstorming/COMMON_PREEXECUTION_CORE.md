@@ -2415,6 +2415,36 @@ The K runtime-neutral evidence finding should therefore be read as:
 The target common contract should still forbid such telemetry in canonical Project Workflow state, because that remains the desired architecture boundary.
 
 
+
+### Live-test harness hardening complete; L armed
+
+The stronger experimental authority boundary is now durable at:
+
+`c427bafb31c3f6c79544be3a89300b02503aa7f9:brainstorming/live-tests/ISOLATED_COMMON_CONTRACT_HARNESS.md`
+
+The harness now explicitly requires:
+- current Project Workflow only for safe bootstrap/repository mechanics;
+- exact live-test record as semantic authority inside the experiment;
+- no import of conflicting fixed-policy product/worker/state/realization semantics;
+- authoritative branch/ref refresh before routing on new-context/takeover/recovery entry;
+- refresh + reroute after a lost publication race;
+- semantic-only canonical evidence, with concrete product/worker/model/session/invocation/worktree telemetry excluded unless itself required by the tested property.
+
+Live test L is prepared as a real stale-local-state probe rather than a single-record simulation:
+
+- result fixture baseline: `brainstorming/live-tests/refresh-l/result.txt` = `UNSET\n`;
+- deliberate stale snapshot:
+  `2e52d793c597da27dc1000b126cf60cb90a8a491:brainstorming/live-tests/CAPABILITY_REFRESH_L.md`;
+- that stale snapshot legally routes `L-STALE -> write_stale_marker`;
+- authoritative branch then advances to the armed record at
+  `1f5ea94e81a64ef7b98d4fe12081d2b5f7c498bd:brainstorming/live-tests/CAPABILITY_REFRESH_L.md`;
+- current experiment state is `fresh_phase_pending`;
+- current legal obligation is `L-FRESH -> write_fresh_marker`.
+
+The runner must begin from a clean local checkout whose pre-refresh HEAD is exactly the stale snapshot while the authoritative remote branch is newer. Success requires discovering `L-FRESH` by refreshing before phase selection, never executing/publishing `L-STALE`, and not relying on push/CAS rejection to learn that the checkout was stale.
+
+No production workflow module was changed while hardening the harness or preparing L.
+
 ## Current checkpoint / handoff
 
 A compact fresh-chat handoff is durable at:
@@ -2454,12 +2484,11 @@ Previously listed questions about whether Brainstorming/Research/Definition/Plan
 
 ## Next bounded work
 
-1. Harden live-test prompts with an explicit experimental authority boundary so old fixed-policy semantics cannot contaminate the tested common obligation.
-2. Run **L — authoritative-state refresh**.
-3. Run **M — clean review evidence**.
-4. Audit `ROUTER`, `RECOVERY`, `WORKSTREAMS`, `CLOSE` and relevant templates/tests.
-5. Reconcile this record into one target common-core architecture.
-6. If no material design question remains, stop at the user-owned Brainstorming -> Definition promotion gate.
+1. Run **L — authoritative-state refresh** from the exact stale local snapshot defined in `CAPABILITY_REFRESH_L.md`.
+2. Run **M — clean review evidence** under the isolated harness.
+3. Audit `ROUTER`, `RECOVERY`, `WORKSTREAMS`, `CLOSE` and relevant templates/tests.
+4. Reconcile this record into one target common-core architecture.
+5. If no material design question remains, stop at the user-owned Brainstorming -> Definition promotion gate.
 
 ## Outcome of this session
 
@@ -2469,6 +2498,6 @@ Previously listed questions about whether Brainstorming/Research/Definition/Plan
 - Definition promotion subject remains `none`.
 - No production workflow module has been changed by this exploratory checkpoint.
 - Durable handoff created for a fresh chat.
-- Next phase/action: `continue brainstorming from handoff`.
+- Next phase/action: `run live test L from its exact stale local snapshot`.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user authorization may promote the current exploratory scope into Definition.
