@@ -2588,6 +2588,17 @@ Deferred N-CAPABLE/N-CHATGPT remain required V2 implementation-validation scenar
 
 No production workflow module has been changed by this audit.
 
+### Conservative commonization principle — explicit user direction
+
+V2 is a merge/commonization of two already-working fixed-policy workflows, not permission to redesign the lifecycle into a larger generic system.
+
+Especially:
+- preserve proven `chatgpt_only` behavior unless a concrete portability/commonization requirement requires change;
+- absorb useful Codex-only capability without importing Codex runtime machinery into Project Workflow semantics;
+- prefer deletion of duplicated policy wording over adding new abstraction layers;
+- any new common state/primitive must justify itself by a real cross-runtime correctness or recovery need;
+- avoid turning the common layer into a larger contract than the two working branches it replaces.
+
 ### Stage 7 — Execution Prep / JIT — active analysis
 
 Detailed stage record:
