@@ -8,8 +8,8 @@ Status: `complete`
 Origin role: `brainstorming`
 Origin subject: `yagni-overengineering-guard@R2`
 Return target: `brainstorming:yagni-overengineering-guard@R2`
-Return reconciliation: `pending`
-Return reconciliation result: `none`
+Return reconciliation: `applied`
+Return reconciliation result: `brainstorming/YAGNI_OVERENGINEERING_GUARD.md@yagni-overengineering-guard@R3`
 
 ## Scope
 
