@@ -198,3 +198,61 @@ multiple concurrent Cards
 ```
 
 This preserves the simple ChatGPT-only serial behavior while retaining Codex-only bounded-parallel capability where it is actually needed.
+
+
+## User decision — remove parallel Card execution from V2
+
+The user explicitly removed Project Workflow parallel execution from the target V2.
+
+Decision:
+
+- exactly one Card may be actively executing per selected workstream;
+- V2 does not form concurrent Card groups/batches;
+- V2 does not need durable parallel member/base/lane reconciliation state;
+- Codex-only bounded-parallel batch semantics are **not** carried into the common V2;
+- useful Codex behavior that is not inherently parallel remains eligible for preservation, especially:
+  - Main as sole writer of shared Project Workflow state;
+  - delegation of one bounded Card to a runtime worker/subagent;
+  - durable result/evidence reconciliation;
+  - do not replay already durable successful work;
+  - runtime/session/worker identity is not canonical Project Workflow state;
+  - safe recovery of an in-progress Card.
+
+Target ordinary execution therefore remains intentionally simple:
+
+```text
+planned -> ready -> in_progress -> review/finalization -> done
+```
+
+At most one Card is `in_progress` in the selected workstream.
+
+This intentionally favors the already-proven ChatGPT-only serial lifecycle over importing Codex-only M03 bounded-parallel machinery.
+
+### Consequences
+
+The following candidate/common concepts are no longer needed for V2 Card execution:
+
+- universal `active_execution` wrapper;
+- optional concurrent execution-set record;
+- batch IDs;
+- lane IDs;
+- frozen multi-member set/order;
+- concurrent integration base;
+- multi-member result reconciliation;
+- post-batch review drain;
+- same-member retry inside an unresolved batch;
+- parallel Card metadata as a V2 requirement.
+
+Stage 7 concurrency-safety metadata decisions are superseded by this later user decision. V2 does not need `parallel_safe`, `write_scope` or `exclusive_resources` for the purpose of Card concurrency.
+
+Repository/file scope and external-write boundaries may still exist where needed for ordinary Card authority/safety, but not as a concurrency scheduler contract.
+
+### Scope of this decision
+
+This removes **Project Workflow-level concurrent Card execution**.
+
+It does not prohibit a runtime from using internal implementation techniques inside one active Card, provided:
+- one Card remains the single Project Workflow execution obligation;
+- Main remains responsible for the Card result;
+- no second Card becomes concurrently active;
+- internal worker/session topology does not become Project Workflow state.
