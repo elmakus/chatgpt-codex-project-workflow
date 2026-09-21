@@ -17,8 +17,8 @@ milestones:
     contract: "planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md#M02--make-adaptive-grilling-intrinsic-to-every-brainstorming-route"
     checkpoint: null
     implementation_head: "2504bb4968130f87f8f861eba4b0398a31439bf3"
-    handoff: null
-    acceptance_evidence: null
+    handoff: "implementation/workstreams/change-adaptive-brainstorming-grilling/handoffs/M02_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02_FINAL_INTEGRATION_REFRESH_2026-09-21.md"
     review_state: null
     review_subject: null
     review_evidence: null
