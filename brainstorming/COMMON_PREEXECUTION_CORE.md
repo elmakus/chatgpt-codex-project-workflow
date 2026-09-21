@@ -2621,6 +2621,16 @@ whether optional explicit Card-level concurrency safety metadata (`write_scope`,
 
 Current recommendation: keep optional explicit runtime-neutral safety metadata because it is correctness evidence and supports cross-runtime takeover; its absence simply means serial-only.
 
+### Seriality boundary — Project Cards only
+
+The user's no-parallel decision applies only to Project Workflow Card concurrency.
+
+- one Project Workflow Card active per selected workstream;
+- runtime/internal worker topology for that Card is unrestricted by Project Workflow;
+- internal subagents may be sequential or concurrent;
+- Project Workflow does not model, count or schedule them;
+- runtime internals must not create extra Project Workflow Cards or competing shared-state writers.
+
 ### User direction — remove Project Workflow parallel Card execution
 
 The target V2 no longer includes bounded parallel execution of multiple Cards.
