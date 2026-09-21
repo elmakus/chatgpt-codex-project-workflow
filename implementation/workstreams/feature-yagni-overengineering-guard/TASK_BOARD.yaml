@@ -33,9 +33,9 @@ cards:
     depends_on: []
     openspec_change: null
     contract: "implementation/workstreams/feature-yagni-overengineering-guard/cards/M01-T01.md"
-    review_state: in_progress
+    review_state: green
     review_subject: "e7c8ce88560b34a63213af064c2083cf1cf8932a"
-    review_evidence: null
+    review_evidence: "implementation/workstreams/feature-yagni-overengineering-guard/evidence/M01-T01_REVIEW_2026-09-21.md"
     result_commit: "e7c8ce88560b34a63213af064c2083cf1cf8932a"
     result_pr: 51
     evidence: "implementation/workstreams/feature-yagni-overengineering-guard/evidence/M01-T01.md"
