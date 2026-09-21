@@ -20,12 +20,12 @@ cards:
       attempts:
         - id: R01
           mode: independent_review
-          state: pending
+          state: in_progress
           subject: a23712266f36ae70cda129a9b3242c6391b50b49:brainstorming/live-tests/review-j/result.txt
           evidence: null
           independence:
             requirement: independent_context
-            realization_state: resolve_independent_context
+            realization_state: independent_context_active
             evidence: null
           covered_by: null
 ```
