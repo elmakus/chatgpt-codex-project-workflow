@@ -10,7 +10,7 @@
 - Integrated milestone acceptance: **GREEN**
 - Independent Card review: **GREEN**
 - Workstream final-integration review: **GREEN by exact coverage reuse**
-- Target-side closure pull request: pending
+- Target-side closure pull request: `#55`
 - Target-side closure evidence: `implementation/workstreams/change-fork-release-order-latest-alias/evidence/M02_FINAL_CLOSURE_2026-09-21.md`
 - Source branch: automatically deleted by GitHub after successful merge; no fallback cleanup marker required
 - Final-integration refresh evidence: `implementation/workstreams/change-fork-release-order-latest-alias/evidence/M02_FINAL_INTEGRATION_REFRESH_2026-09-21.md`
