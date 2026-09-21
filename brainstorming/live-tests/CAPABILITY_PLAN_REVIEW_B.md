@@ -2,11 +2,11 @@
 
 Experiment: capability-first live A/B
 Review requirement: RECOMMENDED
-Review state: pending
+Review state: RED
 Review subject: dcdc80769c0b64d4444aa330285a780f8483ec5c:brainstorming/live-tests/CAPABILITY_PLAN_R1.md
 Subject author provenance: live-test-author-context
 Independence requirement: the context that initiates this review must not issue the verdict; the verdict must be produced by a separate independent context
-Review evidence: none
+Review evidence: RED — M01 preserves one runtime-neutral review obligation, reviewer independence, immutable subject, and GREEN/RED evidence semantics. M02 is materially incomplete because it defines only successful use of an available independent-context capability and the capability-absent fresh-context handoff. It leaves the available-but-invocation-fails state undefined, implicitly assuming capability availability implies successful realization. That can produce divergent runtime behavior or incorrectly reclassify invocation failure as capability absence; the independent-review obligation must remain intact and invocation failure needs an explicit distinct continuation/failure rule.
 
 ## Review obligation
 
