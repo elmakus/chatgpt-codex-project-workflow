@@ -357,6 +357,35 @@ For C, the failed delegated invocation preserved the original pending review sub
 This smoke supports the capability-first hypothesis for stage 7: independent review semantics can be common while realization transport varies. It is not yet proof for the full workflow; later stages require their own parity scenarios.
 
 
+### Primary design goal — runtime portability at any workflow boundary
+
+The user clarified the overarching goal: one Project Workflow task/workstream must remain portable between normal ChatGPT and Codex at arbitrary durable boundaries, without changing project semantics or requiring a policy rewrite.
+
+Intended usage includes, for example:
+- start Brainstorming in ChatGPT;
+- continue Research in Codex;
+- return to ChatGPT for Definition/Planning/JIT preparation;
+- move implementation to Codex;
+- later move remaining implementation back to ChatGPT;
+- continue from the same durable project/workstream state each time.
+
+Therefore Project Workflow should describe **semantic obligations, authority, durable state and correctness constraints**, not product identity or concrete worker catalogs.
+
+Runtime realization is capability-dependent:
+- when independent context is required and native/delegated independent execution is available, the runtime may realize it internally;
+- when independent context is required but unavailable, preserve the same obligation and produce a fresh-context handoff;
+- when multiple ready obligations are concurrency-safe and runtime can execute concurrently, it may do so;
+- when concurrency is unavailable, the same legal obligations execute serially;
+- lack of a capability changes transport/scheduling, not the underlying Project Workflow meaning;
+- available-capability invocation failure is not capability absence and follows normal runtime failure/retry/blocker handling.
+
+The durable state must be sufficient for another supported runtime to take over without relying on previous-chat narrative, worker names, session IDs, model identities or runtime-specific orchestration metadata.
+
+Counterfactual challenge: runtime-neutral portability must not erase real correctness requirements. If an obligation genuinely requires a property such as reviewer independence, isolated mutable ownership, atomic external operation, or simultaneous behavior as part of acceptance, Project Workflow must persist that property explicitly. The receiving runtime may choose how to realize it, but may not weaken it merely because a capability is unavailable.
+
+This portability goal is now the main architectural criterion for evaluating commonization and capability-dependent mechanics.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
