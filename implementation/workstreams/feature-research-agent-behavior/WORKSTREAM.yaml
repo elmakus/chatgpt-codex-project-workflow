@@ -28,7 +28,7 @@ authority:
   plan: "planning/RESEARCH_AGENT_BEHAVIOR_MASTER_PLAN.md"
 
 review:
-  requirement: null
+  requirement: "RECOMMENDED"
   state: null
   subject: null
   evidence: null
