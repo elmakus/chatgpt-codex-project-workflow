@@ -1,9 +1,10 @@
 # Live Execution obligation — I
 
 Experiment: unsafe active takeover negative case
-Experiment state: pending
+Experiment state: blocked
 Execution subject: be7f0d30830655c5dc16356357c035a923a48f5e:brainstorming/live-tests/CAPABILITY_EXECUTION_I_SUBJECT.md
 Execution evidence: prior realization liveness is unknown; no quiescence/result proof is durable.
+Blocker evidence: takeover is unsafe because durable repository truth proves neither prior-realization quiescence/end nor an exact accepted result; T01 and X01 must remain unresolved and no replay is permitted.
 
 ## Synthetic Task Board
 
