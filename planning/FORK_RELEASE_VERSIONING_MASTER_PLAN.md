@@ -1,166 +1,242 @@
 # Fork Release Versioning — Master Plan
 
-Revision: `FRV-P2`
-Status: `approved`
-Updated: `2026-09-20`
-Supersedes plan revision: `FRV-P1` (independent review RED — OpenSpec boundary)
+Revision: `FRV-P3`
+Status: `draft`
+Updated: `2026-09-21`
+Supersedes plan revision: `FRV-P2` (approved and implemented through M01)
 Review requirement: `RECOMMENDED`
 
 ## Authority
 
-- Requirements: `requirements/FORK_RELEASE_VERSIONING.md` R1
+- Requirements: `requirements/FORK_RELEASE_VERSIONING.md` R2
 - Decision: `decisions/ADR_FORK_RELEASE_VERSION_LINEAGE.md` / `ADR-FRV-001`
-- Intake provenance: `implementation/workstreams/issue-fork-release-versioning/INTAKE.md`
-- Workstream: `implementation/workstreams/issue-fork-release-versioning/WORKSTREAM.yaml`
-- Branch: `fix/fork-release-versioning`
+- Current intake provenance: `implementation/workstreams/change-fork-release-order-latest-alias/INTAKE.md`
+- Current workstream: `implementation/workstreams/change-fork-release-order-latest-alias/WORKSTREAM.yaml`
+- Current branch: `work/fork-release-order-latest-alias`
 - Integration target: `main`
+- Prior completed workstream: `implementation/workstreams/issue-fork-release-versioning/WORKSTREAM.yaml`
 
 ## Goal
 
-Make fork release-version selection an explicit Project Workflow contract so publication agents cannot turn fork-local changes into future-looking upstream versions.
+Extend the already-integrated downstream-fork release contract so every Project Workflow consumer has one deterministic domain rule for both:
 
-The implementation must establish one policy-neutral lineage contract, wire every supported publication path to it, preserve progressive disclosure, and add regression coverage for canonical `v<upstream>-private.<N>` selection plus legacy migration semantics.
+1. choosing the next canonical release in an accepted upstream baseline lane; and
+2. choosing the current/latest canonical fork release across canonical private releases.
+
+The extension must preserve `vX.Y.Z-private.N`, define cross-baseline canonical ordering as numeric `(X, Y, Z, N)`, keep generic SemVer out of fork-channel selection, and define `latest` only as an optional moving alias on publication systems that natively support aliases.
 
 ## Execution baseline
 
-- Current workflow publication contracts verify publication/PR state but do not define a fork-specific release-version lineage rule.
-- The migrated ChatGPT-only and Codex-only Close modules are separate policy-local publication paths.
-- Policies still on the legacy/shared route use the shared review/handoff publication surface.
-- The repository is primarily contract/documentation driven; deterministic contract tests are the appropriate regression mechanism unless implementation discovers an existing executable release-version parser.
-- Existing downstream release history is external evidence/provenance only; this workstream changes Project Workflow behavior and does not rewrite releases in `elmakus/codex-chatgpt-web` or another project repository.
+The prior FRV workstream has already integrated M01 on `main`:
+
+- `workflow/common/FORK_RELEASE_VERSIONING.md` is the single policy-neutral semantic source;
+- ChatGPT-only, Codex-only and legacy/shared publication paths already defer to it;
+- deterministic regression coverage exists in `tests/test_fork_release_versioning.py`;
+- README documents the convention;
+- historical release identity and GitHub prerelease-quality independence are already explicit.
+
+Current gap:
+
+- the common contract describes baseline-local private-lane selection but does not fully define one canonical cross-baseline fork-channel order for updater/current-release selection;
+- it does not define the allowed semantics of a moving `latest` alias;
+- downstream tooling can therefore still implement ordinary SemVer sorting and get a wrong fork-channel result.
+
+This Project Workflow workstream updates workflow authority/contracts/tests only. It does not directly patch `codex_workflow`, workstation images, or another downstream project repository; each adopter applies the updated authority through its own managed workstream.
 
 ## Inherited invariants
 
-1. Accepted fork-release semantics come only from `requirements/FORK_RELEASE_VERSIONING.md` and `ADR-FRV-001`.
-2. The policy-neutral versioning rule has one canonical source; policy-local Close modules reference it instead of duplicating the algorithm.
-3. Loading remains conditional: projects that are not downstream forks do not need fork-versioning context.
-4. Historical releases/tags are never rewritten by this workflow change.
-5. Release publication remains subject to existing authorization, acceptance, review, signing/checksum and external-write rules.
-6. The word `private` is lineage metadata, not a stability decision.
+1. Canonical release identity remains `vX.Y.Z-private.N`.
+2. `X.Y.Z` is always the actual accepted upstream baseline; fork-local work never advances it.
+3. Baseline-local next-release selection uses only that baseline's exact canonical `private.N` lane and numeric `max(N)+1`.
+4. Historical upstream-looking/legacy tags remain immutable provenance.
+5. The common contract remains the only canonical semantic source; publication modules reference it rather than copying algorithms.
+6. Generic SemVer remains valid for SemVer semantics but is not the accepted fork-channel resolver.
+7. `private.N` is lineage/revision metadata, not stability metadata.
+8. External publication/tag/deployment authorization rules remain unchanged.
+9. A moving alias never replaces immutable/versioned release identity.
+10. YAGNI applies: do not add a runtime library/service to this contract repository when deterministic contract logic/tests are sufficient.
 
-## Milestone M01 — Canonical fork-release contract and publication enforcement
+## Milestone M01 — Canonical fork-release identity and baseline-local selection
+
+Status: `completed by prior workstream`
 
 ### Outcome
 
-Project Workflow has one shared, deterministic fork-release versioning contract that is applied by every supported publication route and guarded by regression tests/documentation.
+The repository already has the canonical `vX.Y.Z-private.N` contract, baseline-local counter semantics, publication-route wiring, legacy preservation, provenance requirements and initial regression coverage.
+
+### Authority already covered
+
+- FRV-REQ-001 through FRV-REQ-012 under Definition R1 / FRV-P2.
+- R2 clarifies FRV-REQ-004/007/009 without invalidating the completed M01 outcome.
+
+M01 is historical prerequisite evidence only. This workstream MUST NOT replay its implementation or mutate its completed Task Board/history.
+
+## Milestone M02 — Canonical fork-channel ordering and moving aliases
+
+### Outcome
+
+Project Workflow has one explicit canonical fork-channel ordering rule and one bounded moving-alias contract, with deterministic regression coverage that prevents ordinary SemVer selection from reappearing in downstream guidance.
 
 ### Requirement ownership
 
-- FRV-REQ-001 through FRV-REQ-012.
+Primary:
+- FRV-REQ-013 through FRV-REQ-017.
+
+Clarified/extended behavior:
+- FRV-REQ-007;
+- FRV-REQ-009.
 
 ### Planned work packages
 
-1. Create/reconcile one JIT OpenSpec change for the M01 behavior surface before the first behavior-changing implementation Card. The OpenSpec contract must freeze the policy-neutral applicability/baseline/provenance tuple, canonical version construction and per-baseline counter semantics, migration/legacy behavior, lineage-aware selection rules, prerelease-quality independence, and the requirement that all supported publication routes defer to the single common contract.
-2. Add a policy-neutral common contract, normally `workflow/common/FORK_RELEASE_VERSIONING.md`, that defines:
-   - downstream-fork applicability/detection;
-   - exact upstream baseline evidence;
-   - canonical `v<upstream>-private.<N>` construction;
-   - per-baseline private-counter increment/reset;
-   - first-migration `private.1` behavior;
-   - legacy-tag preservation;
-   - exact upstream repo/tag/SHA provenance;
-   - explicit lane selection instead of generic max-SemVer;
-   - SemVer precedence caveat;
-   - independence of GitHub `prerelease` quality status.
-3. Wire the migrated ChatGPT-only publication path to load/apply the common contract only when release-version selection/validation for a downstream fork is material.
-4. Wire the migrated Codex-only publication path to the same common contract without duplicating semantics.
-5. Wire the legacy/shared publication surface used by still-unmigrated policies to the same common contract, preserving existing policy routing.
-6. Add deterministic regression tests that prove:
-   - `v5.0.8` baseline produces `v5.0.8-private.1` when no private lane exists;
-   - a gapped / multi-digit lane such as `private.2` + `private.10` produces `private.11`, proving numeric `max(N)+1` rather than count/order-by-text behavior;
-   - accepted move to upstream `v5.0.9` resets to `v5.0.9-private.1`;
-   - mixed private lanes remain baseline-scoped, so a high `N` on `v5.0.8-private.N` cannot affect the next revision on accepted baseline `v5.0.9`;
-   - legacy `v5.0.9`–`v5.0.13` remain historical and are excluded from the private counter;
-   - generic highest-SemVer is explicitly rejected for mixed lineage;
-   - upstream repo/tag/SHA provenance and prerelease-independence rules are present;
-   - all supported publication surfaces reference the canonical common contract.
-7. Update concise user/operator documentation so the fork-version convention is discoverable without duplicating the full common contract.
+1. **JIT OpenSpec reconciliation**
+   - Materialize/reconcile one OpenSpec change for the M02 behavior surface immediately before the first behavior-changing implementation Card.
+   - Freeze the distinction between baseline-local next-release selection and cross-baseline canonical fork-channel selection.
+   - Freeze exact-candidate parsing, numeric tuple ordering, non-canonical exclusion and moving-alias boundaries.
+
+2. **Extend the common fork-release contract**
+   - Preserve the existing `vX.Y.Z-private.N` identity and baseline-local `max(N)+1` algorithm.
+   - Add a separate canonical fork-channel resolver rule:
+     - accept only exact `vX.Y.Z-private.N` tags with positive integer components;
+     - compare numeric `(X, Y, Z, N)`;
+     - ignore upstream-only, legacy upstream-looking, malformed and other non-canonical tags.
+   - State explicitly that generic SemVer ordering must not be wrapped with ad-hoc exceptions and used as the canonical downstream resolver.
+
+3. **Define moving `latest` alias semantics**
+   - Permit `latest` only on publication surfaces with native moving-alias/channel semantics.
+   - Require it to point to the newest accepted stable canonical fork release according to the canonical fork-channel order plus project release-quality policy.
+   - Require the immutable/versioned canonical reference to remain available.
+   - Require alias and canonical version to identify the same released artifact/content at publication time.
+   - Explicitly forbid inventing a canonical Git tag/release such as `vlatest`.
+   - Do not require systems without native alias semantics to emulate one.
+
+4. **Strengthen deterministic regression coverage**
+   - Add a test helper/representation that parses canonical private versions independently of generic SemVer precedence.
+   - Prove numeric same-baseline ordering, including `private.10 > private.4`.
+   - Prove cross-baseline tuple ordering.
+   - Prove an upstream-only `v1.1.18` cannot outrank `v1.1.18-private.4` in the fork channel because it is not a canonical candidate.
+   - Prove legacy/malformed/non-canonical tags are excluded.
+   - Assert the common contract contains moving-alias, stable-eligibility, immutable-reference and no-`vlatest` semantics.
+   - Preserve existing publication-surface reference tests and the repository-local auto-patch-tagger boundary.
+
+5. **Update concise discoverability documentation**
+   - Update README only enough to distinguish canonical version identity, fork-channel ordering and optional moving aliases.
+   - Keep detailed semantics in the common contract; do not duplicate the full algorithm in README or policy-local Close modules.
 
 ### Acceptance
 
-- One canonical common fork-release contract exists.
-- All supported publication surfaces defer fork release-version selection/validation to that common contract.
-- No publication module contains a divergent copy of the version algorithm.
-- Regression tests cover all FRV acceptance-level outcomes that can be verified statically/deterministically in this workflow repository.
-- The canonical examples produce `v5.0.8-private.1` and reset correctly on an accepted upstream-baseline change.
-- Legacy tags are explicitly preserved and excluded from the private counter.
-- The contract rejects generic max-SemVer as the canonical mixed-tag resolver.
-- Upstream provenance and prerelease-quality separation are explicit.
-- Existing publication authorization/review semantics remain unchanged.
-- The required M01 OpenSpec behavior contract is coherent with Definition/ADR authority before implementation and is included in implementation verification/reconciliation.
+- One common contract still owns all fork-release semantics.
+- Baseline-local next-release selection and cross-baseline current/update selection are explicitly different operations.
+- Canonical cross-baseline ordering is numeric `(X, Y, Z, N)` over exact canonical private releases only.
+- Generic SemVer is explicitly invalid as the canonical fork-channel resolver.
+- `v1.1.18` is excluded from the fork-channel candidates even when SemVer would rank it above `v1.1.18-private.4`.
+- `v1.1.18-private.10` orders after `v1.1.18-private.4`.
+- `v1.1.19-private.1` orders after every canonical `v1.1.18-private.N` release.
+- Legacy/upstream-only/malformed tags do not participate in canonical channel ordering.
+- `latest` is optional, surface-native channel metadata only.
+- No contract instructs creation of `latest`/`vlatest` as a canonical Git release/tag.
+- When `latest` exists it selects the newest accepted stable canonical fork release and does not remove the immutable/versioned reference.
+- Existing publication authorization, provenance, historical-tag immutability and prerelease-quality separation remain unchanged.
+- Focused tests and the repository's relevant full test discovery are GREEN.
+- OpenSpec, common contract, README and regression tests are coherent.
 
 ### JIT trigger
 
-Execution Prep may split M01 into bounded Cards for OpenSpec/common-contract authoring, policy-surface wiring and regression/documentation work if that improves reviewability. It must mark the M01 behavior surface as OpenSpec-required/candidate under `workflow/common/OPENSPEC.md`; the first behavior-changing Card materializes/reconciles that OpenSpec immediately before implementation. No further strategic decision is required.
+Execution Prep may use one bounded Card for M02 because the contract/test/documentation change is tightly coupled and small enough to review as one immutable subject. Split only if current repository evidence proves materially separate implementation risk.
+
+The first behavior-changing Card MUST bind/reconcile the M02 OpenSpec immediately before implementation. No additional strategic/user decision is required.
 
 ## Requirement coverage
 
 | Requirement | Owner milestone | Execution path |
 |---|---|---|
-| FRV-REQ-001 | M01 | common contract applicability + baseline evidence |
-| FRV-REQ-002 | M01 | canonical version construction |
-| FRV-REQ-003 | M01 | prohibit upstream-component bump for local work |
-| FRV-REQ-004 | M01 | per-baseline counter semantics |
-| FRV-REQ-005 | M01 | provenance contract + publication checks |
-| FRV-REQ-006 | M01 | legacy preservation/migration rules |
-| FRV-REQ-007 | M01 | lineage-aware selection algorithm + tests |
-| FRV-REQ-008 | M01 | prerelease-quality separation |
-| FRV-REQ-009 | M01 | SemVer caveat + mixed-tag tests |
-| FRV-REQ-010 | M01 | publication-surface wiring + route coverage test |
-| FRV-REQ-011 | M01 | first-migration `private.1` rule + test |
-| FRV-REQ-012 | M01 | canonical-lane `max(N)+1` rule + test |
+| FRV-REQ-001 | M01 complete | accepted upstream baseline/provenance |
+| FRV-REQ-002 | M01 complete | canonical private identity |
+| FRV-REQ-003 | M01 complete | prohibit fork-local upstream bump |
+| FRV-REQ-004 | M01 complete / R2 clarification | independent per-baseline numeric lane |
+| FRV-REQ-005 | M01 complete | upstream repo/tag/SHA provenance |
+| FRV-REQ-006 | M01 complete | immutable legacy history |
+| FRV-REQ-007 | M01 + M02 | explicit canonical lane/channel selection, never generic max-SemVer |
+| FRV-REQ-008 | M01 complete | quality independence |
+| FRV-REQ-009 | M01 + M02 | SemVer consequence + domain-ordering regression |
+| FRV-REQ-010 | M01 complete | single policy-neutral source and publication-route references |
+| FRV-REQ-011 | M01 complete | empty baseline lane begins at private.1 |
+| FRV-REQ-012 | M01 complete | baseline-local numeric max(N)+1 |
+| FRV-REQ-013 | M02 | exact canonical parsing + numeric (X,Y,Z,N) order |
+| FRV-REQ-014 | M02 | non-canonical candidate exclusion |
+| FRV-REQ-015 | M02 | optional native latest alias + stable eligibility |
+| FRV-REQ-016 | M02 | no synthetic vlatest/canonical alias identity |
+| FRV-REQ-017 | M02 | immutable versioned reference + artifact identity |
 
 ## Verification strategy
 
-- Add focused deterministic repository tests rather than relying on prose inspection alone.
-- Verify exact common-contract references from each supported publication surface.
-- Test representative mixed tag sets that include upstream-looking legacy releases, multiple private baselines, gapped/private multi-digit revisions and canonical private releases.
-- Assert that no rule instructs generic highest-SemVer selection.
-- Run the repository test suite after implementation.
-- During workstream Close, refresh against current `main` and independently review the exact final integrated subject under normal workstream rules.
+- Extend `tests/test_fork_release_versioning.py` instead of creating a second semantic test suite.
+- Keep canonical parsing/order logic in the regression test self-contained and deterministic; Project Workflow remains a contract repository rather than introducing an unnecessary runtime release library.
+- Exercise representative mixed sets containing canonical private releases, upstream-only tags, legacy upstream-looking tags, malformed private tags, multiple baselines and multi-digit private revisions.
+- Verify common-contract wording for both resolver contexts and moving-alias boundaries.
+- Verify supported publication surfaces continue to reference the one common contract and do not duplicate the algorithm.
+- Run focused FRV tests plus relevant repository-wide test discovery.
+- During Close, refresh against current `main` and independently review the exact final integrated workstream subject under normal branch-isolated rules.
 
 ## Migration / rollback
 
-This Project Workflow change does not mutate existing downstream release history.
+This Project Workflow change mutates no external release history and creates no external alias.
 
-Migration for a downstream fork begins on its next new release after it adopts the updated workflow:
-- preserve legacy releases/tags;
-- establish exact current upstream baseline;
-- if no canonical private release exists for that baseline, start at `private.1`;
-- otherwise use the next private revision in that baseline's canonical lane.
+Downstream adoption is project-local:
 
-Rollback of this workflow workstream is ordinary branch/PR reversion before integration. No external release deletion or retagging is part of rollback.
+- existing canonical private tags remain unchanged;
+- a downstream updater/resolver switches from generic SemVer selection to exact canonical private parsing/order;
+- a publication pipeline may add/update a native `latest` alias only if that project's accepted publication policy uses one;
+- immutable versioned releases remain available.
+
+Rollback of this workflow workstream is ordinary branch/PR reversion before integration. No tag deletion, retagging or alias mutation is part of this repository's rollback.
 
 ## Security / integrity
 
-- Never derive upstream baseline solely from a version string when repository/project evidence can establish exact provenance.
-- Never delete/rewrite historical tags as a normalization step.
-- Existing authorization gates for tag/release publication remain in force.
-- Exact upstream SHA is part of release evidence to prevent false-lineage claims.
+- Never treat a display/version string alone as proof of upstream lineage.
+- Never include upstream-only/legacy/malformed tags in canonical fork-channel ordering.
+- Never move a publication alias to an artifact that is not the exact accepted canonical release content.
+- Never remove the immutable versioned reference merely because a moving alias exists.
+- Existing authorization gates for tag/release/container publication remain in force.
 
 ## OpenSpec boundary
 
-M01 is a new/changed behavior contract with migration and externally visible publication semantics, so it is an OpenSpec candidate and is required JIT before the first behavior-changing implementation Card. The OpenSpec change must remain inside approved FRV R1 / ADR-FRV-001 authority and formalize the technical behavior contract needed by the common lineage rule plus all publication-route integrations. Execution Prep owns candidate marking/Card binding; the executor reconciles the actual OpenSpec immediately before implementation against current `main`, the exact authority slice and the concrete Card. Verification must check that implementation/docs/tests and the OpenSpec contract do not contradict one another.
+M02 changes externally observable release-selection/channel behavior and therefore requires JIT OpenSpec before the first behavior-changing implementation Card.
+
+The OpenSpec must remain inside approved FRV R2 / ADR-FRV-001 authority and formalize only:
+
+- exact canonical-private candidate grammar;
+- baseline-local versus cross-baseline resolver distinction;
+- numeric `(X, Y, Z, N)` ordering;
+- non-canonical exclusion;
+- optional moving-`latest` semantics;
+- stable eligibility being determined by the project's release-quality policy;
+- immutable canonical-reference and artifact-identity requirement;
+- no-`vlatest` boundary.
+
+Do not use OpenSpec to invent a cross-repository deployment mechanism or automatically modify downstream projects.
 
 ## Pre-implementation planning audit
 
-- Approved Definition R1 is complete and internally coherent.
-- The naming format, migration behavior, resolver semantics and prerelease-quality separation are frozen by accepted authority.
-- One common contract avoids policy drift.
-- All supported publication paths have an explicit integration path.
-- The plan does not rewrite external release history.
-- Requirement coverage is complete.
-- Verification covers the known SemVer/migration failure modes.
-- No unresolved user/product choice remains.
-- The M01 behavior/migration/publication surface is explicitly treated as a JIT OpenSpec contract under `workflow/common/OPENSPEC.md`.
-- No speculative runtime mechanism is frozen beyond what the contract repository requires.
+- Definition R2 is approved and internally coherent.
+- The canonical identity `vX.Y.Z-private.N` remains unchanged.
+- The new requirement is a bounded semantic extension, not a new versioning scheme.
+- M01 is complete historical prerequisite state and is not replayed.
+- M02 owns all new FRV-REQ-013..017 obligations plus the necessary FRV-REQ-007/009 clarification.
+- One common contract remains the semantic source.
+- The plan distinguishes baseline-local next-release selection from cross-baseline current/update selection.
+- The plan does not require a moving alias on systems that do not natively support one.
+- The plan preserves immutable releases, provenance and publication authorization.
+- Tests cover the exact SemVer failure mode that triggered this change.
+- No downstream repository mutation is smuggled into this Project Workflow workstream.
+- No unresolved product/system choice remains.
+- Added complexity is justified by current accepted requirements; no new runtime service/library/registry is introduced.
 
 Planning audit result: `GREEN`.
 
 ## Independent plan review
 
 - Review requirement: `RECOMMENDED`
-- Reason: this is a new cross-publication workflow contract that changes how agents choose externally visible release versions; independent review is practical before implementation.
-- Review record: `planning/reviews/FRV-P2.md`
-- Review state: `green`
-- Reviewed subject: `planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md@blob:90e25672f22299500d3c1086870eb587414ff345`
+- Reason: FRV-P3 materially extends externally visible release/update-channel semantics and requirement coverage; independent review is practical.
+- Review record: `planning/reviews/FRV-P3.md`
+- Review state: `pending`
+- Review subject: frozen by the review record after this draft write.
