@@ -336,3 +336,14 @@ Recovery consequence:
 - when implementation evidence is insufficient, re-realize/verify through the runtime-owned implementation capability rather than Main coding the correction itself.
 
 This preserves the simple ChatGPT-style Card state machine while importing the useful Codex principle that delegated completion is only input to Main-owned project reconciliation.
+
+
+## Grilling decisions — coordinator operations versus implementation
+
+User accepted:
+
+1. Main may directly perform coordinator-owned mechanical operations such as Git reconciliation/cherry-pick/merge when deterministic, Task Board/workflow-state updates, workflow-state commits, routing and readback. If a merge/conflict requires implementation judgment or code changes, Main delegates that implementation work.
+2. Main may directly perform lightweight inspection/verification needed for orchestration, such as reading files/diffs/status, checking returned evidence, and running small deterministic checks. Heavy implementation/debugging/testing work remains delegated when qualifying worker capability exists.
+3. A bad worker result does not by itself make the Card `blocked`. If the Card contract remains valid, it stays `in_progress` and Main delegates bounded correction/re-execution. Use `blocked` only for a real unresolved blocker. If the evidence means the Card contract itself must change, Main routes through JIT/Planning/Definition as appropriate.
+
+This keeps Main capable and reasoning-driven without allowing coordinator budget to drift into implementation work.
