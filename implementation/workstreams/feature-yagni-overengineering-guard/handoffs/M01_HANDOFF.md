@@ -2,9 +2,10 @@
 
 ## Checkpoint
 
-- Milestone behavior: GREEN and integration-ready.
+- Milestone behavior: GREEN and terminal.
 - Final behavioral implementation head: `e7c8ce88560b34a63213af064c2083cf1cf8932a`.
-- Final integration result: pending final-target merge of PR #51 and merge-result target-side reconciliation.
+- Final integration result: PR #51 merged into `main` as `3372ab4c2dedc8029715796d1f7063576db4277f`.
+- GitHub automatically removed the merged source branch `feat/yagni-overengineering-guard`; original branch identity remains preserved as provenance in the workstream manifest and Task Board.
 - Workstream branch: `feat/yagni-overengineering-guard`; integration target: `main`.
 
 ## Achieved state
@@ -24,9 +25,10 @@ Project Workflow now has one policy-neutral YAGNI/proportional-design invariant 
 - Independent Card review GREEN: `implementation/workstreams/feature-yagni-overengineering-guard/evidence/M01-T01_REVIEW_2026-09-21.md`.
 - Integrated M01 acceptance GREEN: `implementation/workstreams/feature-yagni-overengineering-guard/evidence/M01-acceptance.md`.
 - Final-integration refresh/review gate GREEN by exact independent coverage: `implementation/workstreams/feature-yagni-overengineering-guard/evidence/M01_FINAL_INTEGRATION_REFRESH_2026-09-21.md`.
-- Refreshed target movement affects Research-agent-behavior files only; no YAGNI behavior-file overlap or semantic conflict was found.
+- Refreshed target movement affected Research-agent-behavior files only; no YAGNI behavior-file overlap or semantic conflict was found.
+- Final-target integration completed without behavioral reconciliation.
 - No material exceptions or deferred behavioral items remain in approved M01 scope.
 
 ## Next durable starting point
 
-Complete final-target merge of PR #51 only while the refreshed target/review coverage remains valid. After merge, reconcile merge-result-dependent manifest/Task Board/handoff fields from target-side state, read back the terminal namespaced package, and then mark the workstream/milestone done.
+The approved YAGNI-P2/M01 workstream is complete. Recover terminal history from the namespaced target-side package on `main`; no further implementation, review, Research or integration obligation remains for this workstream.

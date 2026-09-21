@@ -1,6 +1,6 @@
 id: "feature-yagni-overengineering-guard"
 kind: "feature"
-status: "review"
+status: "done"
 
 branch: "feat/yagni-overengineering-guard"
 base_ref: "13e27863cb11ec9e223ee2af191f79fe6b8d559d"
@@ -41,4 +41,4 @@ branch_cleanup:
   evidence: null
 
 pr: 51
-result: null
+result: "3372ab4c2dedc8029715796d1f7063576db4277f"
