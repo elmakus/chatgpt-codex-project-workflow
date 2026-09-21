@@ -403,6 +403,31 @@ Interpretation: the reviewed plan failed, but the **ChatGPT transport/portabilit
 A/B comparison remains open until the Codex live branch completes.
 
 
+### Live A/B conclusion — ChatGPT vs Codex
+
+Both live branches completed against the same immutable subject `dcdc80769c0b64d4444aa330285a780f8483ec5c:brainstorming/live-tests/CAPABILITY_PLAN_R1.md`.
+
+Observed common behavior:
+- neither initiating context issued the independent verdict itself;
+- neither durable obligation named a required worker role;
+- ChatGPT satisfied independence through a fresh-chat boundary;
+- Codex satisfied independence by selecting a separate runtime worker internally;
+- both reviewers independently returned **RED** for the same material defect: the subject leaves `capability available + invocation fails` undefined;
+- both preserved the immutable subject.
+
+This is strong live evidence for the core portability hypothesis: the same runtime-neutral semantic obligation can be realized by different runtimes while preserving the same substantive review result.
+
+The live test also exposed two serialization/provenance differences that must be resolved before claiming full durable-state parity:
+1. ChatGPT persisted `Review state: RED`, while Codex persisted `Review state: completed` plus a separate `Review verdict: RED`. A common review contract must define one canonical lifecycle schema so takeover does not depend on runtime-specific interpretation.
+2. Codex additionally persisted concrete runtime provenance (`Reviewer: fresh logical Muse Tester...`, invocation UUID). That was not required by the runtime-neutral obligation. Under the target architecture, Project Workflow should persist only neutral provenance needed to prove independence/correctness; concrete worker/session/invocation identity should remain runtime-owned unless a specific audit requirement justifies it.
+
+Therefore the live test verdict on the architecture is:
+- **capability-first semantic portability: supported by live evidence;**
+- **full durable-state interchangeability: not yet complete until canonical verdict/provenance serialization is defined.**
+
+Recommended next bounded test after correcting the deliberate subject defect and canonical record schema: repeat the same A/B review expecting GREEN and compare the resulting durable records field-for-field after excluding transport-only runtime logs.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
