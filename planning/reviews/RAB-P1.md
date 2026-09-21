@@ -2,7 +2,7 @@
 
 Plan revision: `RAB-P1`
 Review requirement: `RECOMMENDED`
-Review state: `pending`
+Review state: `in_progress`
 Review subject: `planning/RESEARCH_AGENT_BEHAVIOR_MASTER_PLAN.md@blob:a215bece1a5bdf76d3c48f71bc38c4c224280f5c`
 Plan: `planning/RESEARCH_AGENT_BEHAVIOR_MASTER_PLAN.md`
 Requirements: `requirements/RESEARCH_AGENT_BEHAVIOR.md`
