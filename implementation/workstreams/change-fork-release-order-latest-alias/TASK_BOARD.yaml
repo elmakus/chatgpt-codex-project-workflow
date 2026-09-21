@@ -6,7 +6,7 @@ current_milestone: "M02"
 execution_ref:
   branch: "work/fork-release-order-latest-alias"
   pr: null
-  head: null
+  head: "fe298d0df33c91cc47b2e43c32a8d388574da7fc"
 
 research_obligation: null
 
@@ -28,7 +28,7 @@ cards:
     title: "Extend canonical fork-channel ordering and moving-alias contract"
     milestone: "M02"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on: []
     contract: "implementation/workstreams/change-fork-release-order-latest-alias/cards/M02-T01.md"
