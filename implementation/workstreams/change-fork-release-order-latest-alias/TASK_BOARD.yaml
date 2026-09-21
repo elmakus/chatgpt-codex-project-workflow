@@ -1,0 +1,41 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "change-fork-release-order-latest-alias"
+plan_revision: "planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md@FRV-P3"
+current_milestone: "M02"
+
+execution_ref:
+  branch: "work/fork-release-order-latest-alias"
+  pr: null
+  head: null
+
+research_obligation: null
+
+milestones:
+  M02:
+    decision_state: accepted
+    execution_status: in_progress
+    contract: "planning/FORK_RELEASE_VERSIONING_MASTER_PLAN.md#milestone-m02--canonical-fork-channel-ordering-and-moving-aliases"
+    checkpoint: null
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M02-T01"
+    title: "Extend canonical fork-channel ordering and moving-alias contract"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: ready
+    executor: chatgpt
+    depends_on: []
+    contract: "implementation/workstreams/change-fork-release-order-latest-alias/cards/M02-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
