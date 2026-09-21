@@ -1263,6 +1263,81 @@ Important bounded interpretation:
 The test fails as a concurrency validation if Phase 1 silently executes T01 and T02/B1 serially.
 
 
+### Live test H — concurrent execution-set takeover PASS with concurrency-evidence caveat
+
+The H durable record reached the intended final state:
+
+- T01 `done`, result `2a48259a9e1bbb3086581f3d88bc169eb9fba8c5`;
+- T02 `done`, result `f3630798b7bfb2002efc57e3d7051123d834c4dc`;
+- T03 `ready`;
+- `Active execution: null`;
+- `Experiment state: completed`.
+
+Verified durable sequence:
+
+1. `7e0d166c92f6ea15bae5ee6aa98cb075b6b3e013`
+   - T01 and T02 both `ready -> in_progress` before member work;
+   - X01 created with both members active;
+   - exact common base persisted.
+
+2. Phase-1 member outputs:
+   - T01 artifact/result: `2a48259a9e1bbb3086581f3d88bc169eb9fba8c5`;
+   - T02 B1 checkpoint: `1ee12e95ca96fc08a4ed5719d036e3c5f32ec525`;
+   - exact artifact contents match immutable subject.
+
+3. `da1475c2e28e1277a2616eb4ba43b2707ae83abb`
+   - durable evidence records that T01 and T02/B1 were realized concurrently in separate isolated mutable contexts;
+   - T01 is `done / reconciled`;
+   - T02 remains `in_progress / quiesced`;
+   - X01 becomes `transfer_ready`;
+   - T03 remains planned;
+   - all old member realizations are recorded as ended before transfer.
+
+4. `6ec6e8cf75a1e77f5efdcb0b6eb093b14b3b1b58`
+   - same X01 is resumed;
+   - T01 remains reconciled;
+   - only T02 becomes active;
+   - B1 checkpoint ref is preserved.
+
+5. `f3630798b7bfb2002efc57e3d7051123d834c4dc`
+   - Phase 2 creates only `execution-h/B.txt`.
+
+6. `6735d7799f8abb5fa3b536f151ffa5dc6dde76e7`
+   - T02 becomes done;
+   - T03 becomes ready;
+   - Active execution becomes null;
+   - experiment becomes completed.
+
+Preservation verification:
+- compare from the transfer checkpoint through T02 result shows only the state record + new `B.txt`;
+- `A.txt` was not replayed or rewritten;
+- `B-prefix.txt` was not replayed or rewritten;
+- T03 was not executed.
+
+Verdict: **PASS for the designed common execution-set takeover contract.**
+
+#### Concurrency evidence boundary exposed by H
+
+The repository proves:
+- both Cards were made active before member work;
+- separate accepted member artifacts existed;
+- the coordinator durably attested that their isolated realizations ran concurrently;
+- canonical reconciliation and later serial takeover behaved correctly.
+
+However, canonical Git history itself is serial and does not independently prove wall-clock overlap. In particular, the canonical B1 commit is descended from the T01 reconciliation path. This is compatible with parallel workers whose returned outputs were reconciled sequentially, but Git topology alone cannot distinguish that from serial realization.
+
+Therefore the strongest precise claim is:
+- **takeover/reconciliation semantics are independently repository-verifiable;**
+- **actual concurrent realization is verified by the coordinator's durable runtime-neutral attestation, not independently reconstructible from Git topology.**
+
+This is acceptable under H's written evidence contract, which intentionally forbids concrete worker/session/worktree identity, but it exposes a design question for the eventual common schema: whether a runtime-neutral concurrency proof stronger than coordinator attestation is worth retaining.
+
+Possible stronger future evidence, if needed:
+- preserve per-member isolated result refs derived from one frozen base before canonical reconciliation;
+- still avoid concrete worker/session identity;
+- treat such refs as proof of isolation/common-base execution, while recognizing that even this does not by itself prove exact wall-clock overlap.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
