@@ -17,6 +17,7 @@ CODEX_ROUTER = (ROOT / "workflow/codex_only/ROUTER.md").read_text(encoding="utf-
 CHAT_INTAKE = (ROOT / "workflow/chatgpt_only/INTAKE.md").read_text(encoding="utf-8")
 CODEX_INTAKE = (ROOT / "workflow/codex_only/INTAKE.md").read_text(encoding="utf-8")
 README = (ROOT / "README.md").read_text(encoding="utf-8")
+BRAIN_TEMPLATE = (ROOT / "templates/BRAINSTORM.md").read_text(encoding="utf-8")
 
 OPENSPEC = (
     ROOT
@@ -76,6 +77,13 @@ class AdaptiveBrainstormingGrillingContractTests(unittest.TestCase):
             self.assertIn("full transient decision tree is working state", section)
             self.assertIn("persisted conversation transcript", section)
 
+    def test_recovery_template_carries_only_adaptive_recovery_state(self):
+        self.assertIn("Accepted exploratory choices", BRAIN_TEMPLATE)
+        self.assertIn("Counterfactual challenge", BRAIN_TEMPLATE)
+        self.assertIn("Unresolved material decisions / dependencies", BRAIN_TEMPLATE)
+        self.assertIn("Reopened choices", BRAIN_TEMPLATE)
+        self.assertIn("do not serialize the full transient decision tree or conversation", BRAIN_TEMPLATE)
+
     def test_completion_and_user_stop_close_the_shallow_exit_loophole(self):
         for text in BRAIN.values():
             section = adaptive_section(text)
@@ -95,6 +103,7 @@ class AdaptiveBrainstormingGrillingContractTests(unittest.TestCase):
             "chatgpt_intake": CHAT_INTAKE,
             "codex_intake": CODEX_INTAKE,
             "readme": README,
+            "brainstorm_template": BRAIN_TEMPLATE,
         }
         for name, text in active_surfaces.items():
             self.assertNotIn("#grill", text, msg=f"manual operator leaked into {name}")
