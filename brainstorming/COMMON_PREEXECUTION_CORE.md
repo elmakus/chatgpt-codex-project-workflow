@@ -2588,6 +2588,28 @@ Deferred N-CAPABLE/N-CHATGPT remain required V2 implementation-validation scenar
 
 No production workflow module has been changed by this audit.
 
+### Stage 7 — Execution Prep / JIT — active analysis
+
+Detailed stage record:
+
+`brainstorming/STAGE7_EXECUTION_PREP.md`
+
+Current Stage-7 conclusion:
+
+- Card decomposition, JIT triggers, Research return, micro-fix preparation, readiness, review requirement and exact authority/scope/acceptance are common Project Workflow semantics.
+- READY is runtime-independent: multiple Cards may be READY even when the active runtime can only execute serially.
+- ChatGPT V1's “exactly one READY Card” is a runtime-policy restriction, not target common semantics.
+- Codex V1's concrete batch/lane/workspace scheduling is runtime realization and should not remain inside common Execution Prep.
+- Stage 7 should end with stable Cards + semantic READY state + project safety constraints.
+- Actual execution-set selection and neutral `active_execution` freeze belong to Stage 8 immediately before execution.
+- Codex's current “refresh immediately before launch” also belongs to Stage 8 launch safety, not Stage 7 preparation.
+- Runtime worker/model/session/worktree identity must not enter Stage-7 durable state.
+
+One material Stage-7 choice remains open:
+whether optional explicit Card-level concurrency safety metadata (`write_scope`, `exclusive_resources`, opt-in safety) remains common project state or is re-derived dynamically from ordinary Card scope on every execution.
+
+Current recommendation: keep optional explicit runtime-neutral safety metadata because it is correctness evidence and supports cross-runtime takeover; its absence simply means serial-only.
+
 ## Current checkpoint / handoff
 
 The current compact handoff is:
@@ -2608,11 +2630,11 @@ Deferred N topology tests are post-implementation V2 validation, not missing Bra
 
 Stage-by-stage reconciliation is still active. The cross-cutting audit is provisional architecture evidence, not Brainstorming completion authority.
 
-Current focus: Stage 7 — Execution Prep / JIT.
+Current focus: Stage 7 — Execution Prep / JIT. One material decision remains: durable optional concurrency-safety metadata versus dynamic derivation.
 
 ## Next bounded work
 
-Continue stage-by-stage Brainstorming from **Stage 7 — Execution Prep / JIT**.
+Finish the remaining Stage-7 concurrency-safety metadata decision, then continue to Stage 8 — Execution.
 
 Do not return to the Definition promotion gate until the remaining lifecycle stages have been reviewed individually and then reconciled cross-cutting.
 
