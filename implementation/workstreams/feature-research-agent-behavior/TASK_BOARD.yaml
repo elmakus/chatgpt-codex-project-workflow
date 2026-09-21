@@ -6,14 +6,14 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/research-agent-behavior"
   pr: null
-  head: null
+  head: "e0e4897587a8f41c811845d65306453e4ad7787b"
 
 research_obligation: null
 
 milestones:
   M01:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/RESEARCH_AGENT_BEHAVIOR_MASTER_PLAN.md#M01--strengthen-research-investigation-quality-and-prior-art-discovery"
     checkpoint: null
     implementation_head: null
@@ -28,8 +28,8 @@ cards:
     title: "Strengthen Research prior-art and source-quality behavior"
     milestone: "M01"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on: []
     openspec_change: "openspec/changes/research-agent-behavior"
     contract: "implementation/workstreams/feature-research-agent-behavior/cards/M01-T01.md"
