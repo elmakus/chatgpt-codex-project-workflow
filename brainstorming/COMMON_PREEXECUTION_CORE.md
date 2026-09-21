@@ -2496,13 +2496,13 @@ Verdict: **PASS — independent review can be realized under the isolated common
 
 This closes the clean-evidence defect exposed by the contaminated K harness as a candidate common-contract capability.
 
-#### Orchestration-topology continuity test N prepared
+#### Orchestration-topology continuity test N deferred until V2
 
 One shared semantic authority:
 
 `43aef1d58367d2cfea1f561c58eee7791322c203:brainstorming/live-tests/ORCHESTRATION_TOPOLOGY_N_AUTHORITY.md`
 
-Two realization variants are prepared:
+Two realization variants are retained as post-implementation V2 validation scenarios:
 
 1. **N-CAPABLE**
    - record: `brainstorming/live-tests/ORCHESTRATION_TOPOLOGY_N_CAPABLE.md`;
@@ -2520,7 +2520,11 @@ Two realization variants are prepared:
      `R02 GREEN -> same-chat deterministic finalization -> completed`;
    - stopping immediately after RED or GREEN is a test failure.
 
-Together these tests verify that common semantic obligations do not force one orchestration topology across runtimes.
+These tests are intentionally **not executed against V1**. The user chose to defer them until V2/common-core exists far enough that the tested contexts can exercise the new implementation directly rather than be influenced by current fixed-policy wrappers.
+
+The required behavior remains a compatibility invariant, but N is no longer a prerequisite for completing current Brainstorming or entering Definition. It becomes part of the V2 implementation/validation plan.
+
+The clean-room harness prepared for N is retained as experimental test infrastructure only; it does not change production authority.
 
 No production workflow module has been changed.
 
@@ -2563,13 +2567,12 @@ Previously listed questions about whether Brainstorming/Research/Definition/Plan
 
 ## Next bounded work
 
-1. Run **N-CAPABLE — capable coordinator one-shot continuity**.
-2. Run **N-CHATGPT — same-chat continuation with fresh-review boundaries**.
-3. Audit `ROUTER`, `RECOVERY`, `WORKSTREAMS`, `CLOSE` and relevant templates/tests.
-4. Reconcile the audit with capability-first routing, authoritative-state refresh, `active_execution`, append-only review attempts, final-integration review, orchestration-topology preservation and cross-runtime continuation.
-5. Choose the target composition architecture and migration/test shape.
-6. Reconcile this record into one target common-core architecture.
-7. If no material design question remains, stop at the user-owned Brainstorming -> Definition promotion gate.
+1. Audit `ROUTER`, `RECOVERY`, `WORKSTREAMS`, `CLOSE` and relevant templates/tests.
+2. Reconcile the audit with capability-first routing, authoritative-state refresh, `active_execution`, append-only review attempts, final-integration review, orchestration-topology preservation and cross-runtime continuation.
+3. Choose the target composition architecture and migration/test shape.
+4. Reconcile this record into one target common-core architecture.
+5. Carry **N-CAPABLE** and **N-CHATGPT** forward as V2 implementation/validation tests, not pre-Definition evidence requirements.
+6. If no material design question remains, stop at the user-owned Brainstorming -> Definition promotion gate.
 
 ## Outcome of this session
 
@@ -2579,6 +2582,6 @@ Previously listed questions about whether Brainstorming/Research/Definition/Plan
 - Definition promotion subject remains `none`.
 - No production workflow module has been changed by this exploratory checkpoint.
 - Durable handoff created for a fresh chat.
-- Next phase/action: `run orchestration-topology continuity test N-CAPABLE`.
+- Next phase/action: `audit cross-cutting routing/recovery/workstream/close contracts`; topology test N is deferred until V2.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user authorization may promote the current exploratory scope into Definition.
