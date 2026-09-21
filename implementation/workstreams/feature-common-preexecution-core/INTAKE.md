@@ -3,7 +3,7 @@
 Date: 2026-09-21
 Workstream ID: `feature-common-preexecution-core`
 Kind: `feature`
-Status: `active`
+Status: `complete`
 
 ## Operator intent
 
@@ -40,5 +40,10 @@ Direct comparison of current `main` policy-local modules shows:
 
 Path: exploratory feature
 Next route: `brainstorming:common-preexecution-core@R1`
+Durable next-route artifact: `brainstorming/COMMON_PREEXECUTION_CORE.md`
 
 The feature requires design exploration before Project Definition because the main open question is contract factoring: which semantics become truly policy-neutral authority and which remain policy adapters without introducing indirection or cross-policy coupling.
+
+## Result
+
+The canonical Brainstorming scope `common-preexecution-core@R1` is materialized and selected by the workstream manifest. Intake is complete; continuation is owned by Brainstorming.
