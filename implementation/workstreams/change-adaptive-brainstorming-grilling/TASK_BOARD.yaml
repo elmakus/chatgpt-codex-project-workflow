@@ -13,9 +13,9 @@ research_obligation: null
 milestones:
   M02:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md#M02--make-adaptive-grilling-intrinsic-to-every-brainstorming-route"
-    checkpoint: null
+    checkpoint: "c9fcd616a0d2b22a6e87d01a93da0af9bdfca2b4"
     implementation_head: "2504bb4968130f87f8f861eba4b0398a31439bf3"
     handoff: "implementation/workstreams/change-adaptive-brainstorming-grilling/handoffs/M02_HANDOFF.md"
     acceptance_evidence: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02_FINAL_INTEGRATION_REFRESH_2026-09-21.md"
@@ -39,4 +39,4 @@ cards:
     result_commit: "2504bb4968130f87f8f861eba4b0398a31439bf3"
     result_pr: 53
     evidence: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02-T01_CORRECTION_2026-09-21.md"
-    tests_summary: "GREEN corrective verification on 2504bb4968130f87f8f861eba4b0398a31439bf3: focused adaptive grilling 12/12; full repository 93/93; diff-check/conflict-marker/README literal-escape checks GREEN; see correction evidence."
+    tests_summary: "GREEN: corrected subject focused adaptive grilling 12/12 and full repository 93/93; independent Card review GREEN; final-integration refresh/coverage GREEN; PR #53 merged to main; target-side adaptive contract/package readback GREEN; source branch auto-deleted normally."
