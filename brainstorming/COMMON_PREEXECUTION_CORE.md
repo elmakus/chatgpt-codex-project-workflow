@@ -131,6 +131,37 @@ Policy-local modules should own only mechanics whose correct behavior genuinely 
 
 None.
 
+### Capability-first direction
+
+The user clarified the intended simplification direction: workflow semantics should prefer capability-dependent mechanics over product identity where the semantic obligation is the same.
+
+For independent review, the candidate common rule is:
+
+```text
+independent review required
+→ use an available independent execution context when the runtime provides one
+→ otherwise persist exact review state and hand off to a fresh context
+```
+
+A failed invocation of an available independent-agent capability is not evidence that the capability is absent and must not silently downgrade to a fresh-chat fallback. Failure follows normal retry/blocker/evidence handling.
+
+This suggests the current `chatgpt_only` / `codex_only` split should remain only where there is a genuine semantic/runtime-policy requirement, not merely because one environment realizes the same obligation with a subagent and another realizes it with a fresh context.
+
+Accepted exploratory implications from the current user round:
+- Brainstorming should not differ between fixed policies.
+- Brainstorming → Definition promotion gate should not differ.
+- Definition drift should be corrected and the stage treated as common.
+- Research durable lifecycle should be common; Codex Investigator realization is a runtime transport concern.
+- Strategic Planning should use the same common semantics; review transport belongs after plan freeze, outside Planning itself.
+- Existing `workflow/common/*` must be audited as a whole before reuse: some files are current active common authority, while Brainstorming/Definition and part of Research are older/partial contracts and must not be blindly reused.
+- The remaining Intake orchestration-binding step needs a separate decision: either retain it because an exact runtime orchestration policy/profile is durable project intent, or simplify/defer it if the new model only requires capability resolution at the point a capability is needed.
+
+Historical finding for Context Health / Planning:
+- `chatgpt_only` Context Health was introduced on 2026-09-18 and materially tightened on 2026-09-20 (`fa83e4e99`, anti-bounce; `0353c2bac`, router reconciliation) so topology transitions are not context-health signals.
+- `codex_only/PLANNING.md` was then explicitly changed by `be7d3d7b0` on 2026-09-20 12:31 UTC to remove the planned coordinator-refresh boundary.
+- `chatgpt_only/PLANNING.md` still retains the older “fresh-context boundaries only when materially useful” Master Plan bullet. That is accidental drift relative to the newer Context Health semantics, not a desired policy difference.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
