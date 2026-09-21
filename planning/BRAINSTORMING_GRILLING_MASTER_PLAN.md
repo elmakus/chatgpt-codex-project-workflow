@@ -1,7 +1,7 @@
 # Master Plan — Brainstorming Grilling
 
 Revision: `BGR-P3`
-Status: `draft`
+Status: `approved`
 Updated: `2026-09-21`
 Independent plan review: `RECOMMENDED`
 Supersedes plan revision: `BGR-P2` — R2 Definition replaces conditional/manual grilling with adaptive default grilling.
