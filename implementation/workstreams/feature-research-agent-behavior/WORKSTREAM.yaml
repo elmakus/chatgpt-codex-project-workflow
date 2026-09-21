@@ -11,11 +11,11 @@ parent_branch: null
 parent_dependency: null
 
 intake:
-  state: "active"
+  state: "complete"
   record: "implementation/workstreams/feature-research-agent-behavior/INTAKE.md"
 
 routing:
-  exploratory_scope: null
+  exploratory_scope: "brainstorming/RESEARCH_AGENT_BEHAVIOR.md"
   research_obligation: null
   plan_review: null
 
