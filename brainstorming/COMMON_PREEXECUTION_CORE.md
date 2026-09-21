@@ -2123,6 +2123,38 @@ Do not run yet.
 A separate coverage-reuse test is only needed if manifest final-integration schema remains materially uncertain after J/K.
 
 
+### Live review tests J/K prepared
+
+Prepared test J:
+- durable record: `brainstorming/live-tests/CAPABILITY_REVIEW_J.md`
+- immutable authority: `dbe81191afb840e096ef0aadde9b922ee5ccf5da:brainstorming/live-tests/CAPABILITY_REVIEW_J_SUBJECT.md`
+- exact implementation result: `a23712266f36ae70cda129a9b3242c6391b50b49:brainstorming/live-tests/review-j/result.txt`
+
+J validates:
+- capability-first realization of one independent R01 review without product/worker identity;
+- durable GREEN;
+- later cross-runtime/context Card finalization from that GREEN without replaying implementation or review;
+- one immutable attempt remains sufficient when subject did not change.
+
+Prepared test K:
+- durable record: `brainstorming/live-tests/CAPABILITY_REVIEW_K.md`
+- immutable authority: `569a439b3ffa75a8fa7d0fd6947e89d4bde1d0cd:brainstorming/live-tests/CAPABILITY_REVIEW_K_SUBJECT.md`
+- intentionally defective S1: `f72d08ae5d4aa8faf06dcedb586bc1618887200c:brainstorming/live-tests/review-k/result.txt`
+
+K validates:
+- R01 independently detects S1 defect and becomes immutable RED;
+- bounded correction produces distinct S2;
+- correction appends R02 instead of replacing R01;
+- correction-producing context cannot issue the R02 verdict;
+- later independent R02 reviews exact S2 GREEN;
+- both review attempts remain durable and addressable.
+
+Both tests reuse the capability-first independence lifecycle from Stage 7:
+`resolve_independent_context -> awaiting_independent_context | independent_context_active -> satisfied`.
+
+Test-specific STOP boundaries are intentional observability points. They do not imply that the eventual production router must stop after every GREEN/RED transition when deterministic continuation is otherwise legal.
+
+
 ## Research needed
 
 No external research is currently required. The next useful evidence is repository-internal: routing/read-set constraints, current tests and how common modules are already composed elsewhere.
