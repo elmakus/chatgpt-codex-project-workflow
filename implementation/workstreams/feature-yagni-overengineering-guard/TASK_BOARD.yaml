@@ -28,7 +28,7 @@ cards:
     title: "Operationalize policy-neutral YAGNI invariant"
     milestone: "M01"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     openspec_change: null
@@ -39,4 +39,4 @@ cards:
     result_commit: "e7c8ce88560b34a63213af064c2083cf1cf8932a"
     result_pr: 51
     evidence: "implementation/workstreams/feature-yagni-overengineering-guard/evidence/M01-T01.md"
-    tests_summary: "GREEN: focused 6/6; full repository 94/94; diff-check/conflict-marker checks GREEN; independent Card review pending."
+    tests_summary: "GREEN: focused 6/6 independently reproduced; author full repository 94/94 plus diff-check/conflict-marker checks GREEN; independent Card review GREEN."
