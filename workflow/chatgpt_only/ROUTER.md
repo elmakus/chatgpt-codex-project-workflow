@@ -14,7 +14,6 @@ Do not load legacy/shared execution trees or another policy directory.
 2. Read project root `PROJECT.md`.
 3. If the current user request intentionally invokes `#issue` or `#feature` as an operator directive, read `workflow/chatgpt_only/INTAKE.md` and route to Intake **before** ordinary phase/implementation/review selection for any previously active default/workstream state. Quoted/example/incidental marker text is not a directive. Intake owns discovery of an existing matching workstream or creation of a new one; do not preselect an unrelated Task Board first.
 
-An intentional current `#grill` directive is **not** Intake and does not receive new-workstream operator-directive precedence. Resolve normal workstream/exploratory state first. Only the Brainstorming route may consume `#grill`, and only for an already active Brainstorming scope; it must not create or recover a workstream or exploratory scope.
 
 4. If the current request clearly authorizes a **new managed repository change** in natural language (for example, to implement, apply or adopt repository/project changes) and is not already an exact continuation/handoff of an existing workstream/PR/manifest, read `workflow/chatgpt_only/INTAKE.md` and route to Intake before any change-specific durable write. Read-only inspect/compare/analyze requests do not trigger Intake and remain branch-free. Generic natural-language intake uses neutral `kind: change`; do not guess `issue` versus `feature`.
 5. Otherwise, when the current request/handoff, exact current branch, or exact immutable PR/merge + target-side closure evidence identifies a branch-isolated workstream, read `workflow/chatgpt_only/WORKSTREAMS.md` and resolve its exact manifest first. A successful final-target merge may be recovered from the merge-result target-side package even when GitHub already deleted the source branch. This pre-execution manifest selection does not require a Task Board to exist.
@@ -171,7 +170,6 @@ When Intake completes, it must first materialize the canonical durable state own
 
 Read:
 - `workflow/chatgpt_only/BRAINSTORMING.md`;
-- the current intentional `#grill` directive when present for an already active Brainstorming scope;
 - the exact record referenced by selected manifest `routing.exploratory_scope` when that locator exists;
 - the exact `complete` Research record referenced by selected manifest `routing.research_obligation` when its Return target is this Brainstorming subject;
 - otherwise the current brainstorming material needed to establish/create the manifest locator;
