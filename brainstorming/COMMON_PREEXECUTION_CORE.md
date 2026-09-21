@@ -2441,7 +2441,11 @@ Live test L is prepared as a real stale-local-state probe rather than a single-r
 - current experiment state is `fresh_phase_pending`;
 - current legal obligation is `L-FRESH -> write_fresh_marker`.
 
-The runner must begin from a clean local checkout whose pre-refresh HEAD is exactly the stale snapshot while the authoritative remote branch is newer. Success requires discovering `L-FRESH` by refreshing before phase selection, never executing/publishing `L-STALE`, and not relying on push/CAS rejection to learn that the checkout was stale.
+L is now self-contained: the current context acts only as experiment setup, creates a clean disposable checkout at the stale snapshot, and launches a fresh isolated probe context rooted in that checkout. The probe receives only a locator-style instruction, must refresh the authoritative branch before phase selection, and must discover the current obligation from durable state.
+
+This removes all user-side Git preparation. The user only needs to start one fresh capable runtime/context and point it at `CAPABILITY_REFRESH_L.md`.
+
+Success requires the stale-rooted probe to discover `L-FRESH` by refreshing before phase selection, never execute/publish `L-STALE`, and never rely on push/CAS rejection to learn that the checkout was stale.
 
 No production workflow module was changed while hardening the harness or preparing L.
 
@@ -2484,7 +2488,7 @@ Previously listed questions about whether Brainstorming/Research/Definition/Plan
 
 ## Next bounded work
 
-1. Run **L — authoritative-state refresh** from the exact stale local snapshot defined in `CAPABILITY_REFRESH_L.md`.
+1. Run **L — authoritative-state refresh** using the self-contained setup in `CAPABILITY_REFRESH_L.md`; no manual stale checkout is required.
 2. Run **M — clean review evidence** under the isolated harness.
 3. Audit `ROUTER`, `RECOVERY`, `WORKSTREAMS`, `CLOSE` and relevant templates/tests.
 4. Reconcile this record into one target common-core architecture.
@@ -2498,6 +2502,6 @@ Previously listed questions about whether Brainstorming/Research/Definition/Plan
 - Definition promotion subject remains `none`.
 - No production workflow module has been changed by this exploratory checkpoint.
 - Durable handoff created for a fresh chat.
-- Next phase/action: `run live test L from its exact stale local snapshot`.
+- Next phase/action: `run self-contained live test L`.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user authorization may promote the current exploratory scope into Definition.
