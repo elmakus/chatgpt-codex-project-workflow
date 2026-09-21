@@ -5,8 +5,8 @@ current_milestone: "M01"
 
 execution_ref:
   branch: "feat/research-agent-behavior"
-  pr: null
-  head: "e0e4897587a8f41c811845d65306453e4ad7787b"
+  pr: 49
+  head: "25ac000cac86c7421c3632f216be1074f61f64ce"
 
 research_obligation: null
 
@@ -33,10 +33,10 @@ cards:
     depends_on: []
     openspec_change: "openspec/changes/research-agent-behavior"
     contract: "implementation/workstreams/feature-research-agent-behavior/cards/M01-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "25ac000cac86c7421c3632f216be1074f61f64ce"
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "25ac000cac86c7421c3632f216be1074f61f64ce"
+    result_pr: 49
+    evidence: "implementation/workstreams/feature-research-agent-behavior/evidence/M01-T01.md"
+    tests_summary: "GREEN: targeted/relevant 28/28; full repository 97/97; diff-check/conflict-marker checks GREEN; independent Card review pending."
