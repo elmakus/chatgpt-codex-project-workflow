@@ -2695,6 +2695,23 @@ They are superseded by the later explicit decisions recorded under Stage 7/8:
 
 Do not use the older experimental sections as the current V2 target.
 
+### Stage 9 — Independent Implementation Review — active analysis
+
+Detailed stage record:
+
+`brainstorming/STAGE9_REVIEW.md`
+
+Current baseline:
+- one immutable exact subject per review attempt;
+- append-only attempts across changed subjects;
+- independence is semantic and subject-specific;
+- context that materially produced/repaired the subject cannot independently review it;
+- concrete runtime/product/worker/model/session/invocation/worktree identity is not canonical review evidence;
+- GREEN may be consumed across runtime/context without replay;
+- RED routes bounded correction without automatic user stop;
+- fresh-context and delegated-review realizations are two ways to satisfy the same common independence obligation;
+- old parallel-review deferral is superseded by the Stage-8 serial Project-Card decision.
+
 ## Current checkpoint / handoff
 
 The current compact handoff is:
