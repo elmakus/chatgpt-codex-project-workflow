@@ -367,3 +367,25 @@ The open design choice is only whether V2 should add a stronger explicit mandato
 ## Grilling decision — history of JIT-refined Cards
 
 User accepted the recommendation that V2 does not need a separate workflow history object for every prior version of a not-yet-started Card. Git history remains the underlying history; the current durable Card contract is authoritative, with concise rationale/evidence retained only when materially useful.
+
+
+## Grilling clarification — orchestrator re-evaluates, not blindly promotes
+
+Current V1 already requires meaningful re-evaluation before execution, but the obligation is distributed rather than expressed as one simple sentence:
+
+- ChatGPT Execution Prep inspects current project/source/runtime/external state, dependencies, authority and predecessor evidence before marking work ready.
+- Incremental JIT explicitly allows refinement from durable predecessor evidence.
+- ChatGPT Execution performs a Refresh Gate before implementation.
+- Codex Execution revalidates dependencies, Card contracts, authority/source/evidence and safety immediately before execution.
+
+Target V2 should preserve this without adding a heavy new subsystem:
+
+> The coordinating Main/orchestrator must use current predecessor results and current project truth when promoting/selecting a Card for execution. It must not treat dependency completion as a blind status toggle.
+
+Practical rule:
+- if predecessor completion merely satisfies a dependency and does not materially change the Card assumptions, promotion to READY may be straightforward;
+- if predecessor evidence materially affects scope, interfaces, acceptance, safety or assumptions, Main performs the existing L2/JIT refinement before execution;
+- the workflow does not require a ceremonial full re-review of every unchanged Card;
+- Stage 8 still performs the launch-time refresh/revalidation before execution.
+
+User also accepted that superseded/replaced not-yet-started Card history does not need a new Project Workflow lifecycle; Git history plus bounded rationale when material is sufficient.
