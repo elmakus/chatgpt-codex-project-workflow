@@ -9,7 +9,7 @@
 - Acceptance / refresh evidence: `implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02_FINAL_INTEGRATION_REFRESH_2026-09-21.md`
 - Independent review evidence: `implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02-T01_REVIEW_R2_2026-09-21.md`
 - Final integration result: `pending`
-- Pull request: `pending`
+- Pull request: `#53`
 - Target-side closure evidence: `pending`
 - Source branch: `work/adaptive-brainstorming-grilling`
 - Previous handoff: historical M01 lives in `implementation/workstreams/feature-brainstorming-grilling/handoffs/M01_HANDOFF.md`
