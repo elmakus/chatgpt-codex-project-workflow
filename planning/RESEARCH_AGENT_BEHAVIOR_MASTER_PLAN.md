@@ -1,7 +1,7 @@
 # Master Plan — Research Agent Behavior
 
 Revision: `RAB-P1`
-Status: `draft`
+Status: `approved`
 Updated: `2026-09-21`
 Independent plan review: `RECOMMENDED`
 Supersedes plan revision: `none`
