@@ -6,7 +6,7 @@ current_milestone: "M02"
 execution_ref:
   branch: "work/adaptive-brainstorming-grilling"
   pr: null
-  head: "f4131d0e06f3d732039b96e7f0b3673463ff7d92"
+  head: "e09e564c4acd68ef0ea007cd5aff25e712112d5c"
 
 research_obligation: null
 
@@ -16,7 +16,7 @@ milestones:
     execution_status: in_progress
     contract: "planning/BRAINSTORMING_GRILLING_MASTER_PLAN.md#M02--make-adaptive-grilling-intrinsic-to-every-brainstorming-route"
     checkpoint: null
-    implementation_head: null
+    implementation_head: "e09e564c4acd68ef0ea007cd5aff25e712112d5c"
     handoff: null
     acceptance_evidence: null
     review_state: null
@@ -33,10 +33,10 @@ cards:
     depends_on: []
     openspec_change: "openspec/changes/adaptive-brainstorming-grilling"
     contract: "implementation/workstreams/change-adaptive-brainstorming-grilling/cards/M02-T01.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "e09e564c4acd68ef0ea007cd5aff25e712112d5c"
     review_evidence: null
-    result_commit: null
+    result_commit: "e09e564c4acd68ef0ea007cd5aff25e712112d5c"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/change-adaptive-brainstorming-grilling/evidence/M02-T01.md"
+    tests_summary: "GREEN author verification: focused adaptive grilling 12/12; full repository 93/93; diff-check/conflict-marker/active-manual-trigger scans GREEN; see evidence pointer."
