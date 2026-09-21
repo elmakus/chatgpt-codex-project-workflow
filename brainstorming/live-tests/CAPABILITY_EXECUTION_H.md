@@ -32,7 +32,7 @@ cards:
 
 ```yaml
 id: X01
-state: transfer_ready
+state: active
 base_ref: a09a054181f4a0975b1cc1226b28238cd56f7dd1
 reconciliation_order: [T01, T02]
 members:
@@ -40,7 +40,7 @@ members:
     state: reconciled
     canonical_result_ref: 2a48259a9e1bbb3086581f3d88bc169eb9fba8c5
   - card_id: T02
-    state: quiesced
+    state: active
     checkpoint_ref: 1ee12e95ca96fc08a4ed5719d036e3c5f32ec525
     canonical_result_ref: null
 ```
