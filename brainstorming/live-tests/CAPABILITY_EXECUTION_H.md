@@ -3,7 +3,7 @@
 Experiment: concurrent execution-set takeover
 Experiment state: pending
 Execution subject: 3f18dd1483dc5bb4cd42257c47bf0187d55f9c14:brainstorming/live-tests/CAPABILITY_EXECUTION_H_SUBJECT.md
-Execution evidence: none
+Execution evidence: T01 and T02/B1 ran concurrently in separate isolated mutable contexts; both returned exact accepted artifacts, were reconciled in order, and all old member realizations ended before transfer.
 
 ## Synthetic Task Board
 
@@ -19,7 +19,7 @@ cards:
     execution_status: in_progress
     depends_on: []
     result_ref: null
-    evidence: null
+    evidence: Exact B1 checkpoint at 1ee12e95ca96fc08a4ed5719d036e3c5f32ec525; B2 not executed.
 
   - id: T03
     execution_status: planned
@@ -32,16 +32,16 @@ cards:
 
 ```yaml
 id: X01
-state: active
+state: transfer_ready
 base_ref: a09a054181f4a0975b1cc1226b28238cd56f7dd1
 reconciliation_order: [T01, T02]
 members:
   - card_id: T01
-    state: active
-    canonical_result_ref: null
+    state: reconciled
+    canonical_result_ref: 2a48259a9e1bbb3086581f3d88bc169eb9fba8c5
   - card_id: T02
-    state: active
-    checkpoint_ref: null
+    state: quiesced
+    checkpoint_ref: 1ee12e95ca96fc08a4ed5719d036e3c5f32ec525
     canonical_result_ref: null
 ```
 
