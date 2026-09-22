@@ -4,7 +4,7 @@ Date: `2026-09-22`
 Research question: Determine, from current Pi upstream/docs/source plus proportional tracker/community evidence, whether Project Workflow V2 can keep M03 semantics runtime-neutral while adding Pi as a compatibility/runtime candidate, and what minimal Pi-side capabilities/package/extension layer are actually needed.
 
 Research ID: `PWV2-M03-PI-R1`
-Status: `complete`
+Status: `consumed`
 Origin role: `execution_resolution`
 Origin subject: `M03-T04@implementation/workstreams/feature-common-preexecution-core/cards/M03-T04.md`
 Return target: `execution:M03-T04@implementation/workstreams/feature-common-preexecution-core/cards/M03-T04.md`
