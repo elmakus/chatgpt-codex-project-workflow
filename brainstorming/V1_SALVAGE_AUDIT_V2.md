@@ -2,7 +2,7 @@
 
 Date: 2026-09-22
 Scope: common-preexecution-core@R1
-Status: active final-Brainstorming audit
+Status: resolved
 Production authority: none
 
 ## Purpose
@@ -55,7 +55,7 @@ Normally skipped for:
 
 Recommendation: **retain as trigger-only optional module**, not as a normal-router preload and not as mandatory ceremony.
 
-Open question: whether V2 should preserve the OpenSpec name/tool explicitly, or generalize the semantic concept as an optional technical-contract module with OpenSpec as one realization.
+Resolved: V2 preserves the semantic mechanism as a selective, tool-neutral technical-contract module; OpenSpec is a supported realization when it adds material value beyond the Task Card.
 
 ## Candidate 4 — fork release versioning
 
@@ -117,7 +117,7 @@ Do not carry forward:
 - unconditional deployment/live-write authorization stop;
 - separate plugin-maintained policy copy.
 
-## Material decisions still worth explicit confirmation
+## Material decisions — resolved
 
 1. Retain one-project-one-repository as a V2 invariant?
 2. Retain branch-first manifest-bound workstreams as the normal managed-change model?
@@ -171,3 +171,8 @@ For GitHub-hosted managed projects with Issues capability:
 - Close verifies issue state after merge and may explicitly close only after accepted scope is durably complete when auto-close is unavailable/disabled.
 
 Applies analogously to both `#issue` and `#feature`.
+
+
+## Completion
+
+All salvage decisions are resolved. The authoritative disposition summary is `brainstorming/V1_TO_V2_COVERAGE_MATRIX.md`.
