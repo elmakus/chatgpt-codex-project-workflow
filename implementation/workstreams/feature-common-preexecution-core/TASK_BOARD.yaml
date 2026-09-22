@@ -303,7 +303,7 @@ cards:
     title: "Cumulative M03 acceptance and immutable review freeze"
     milestone: "M03"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on:
       - "M03-T04"
