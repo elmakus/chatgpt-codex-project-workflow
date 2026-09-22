@@ -336,3 +336,44 @@ No second semantic copy.
 ```
 
 Normal workflow edits therefore update one source tree only.
+
+
+## Grilling decisions — router as progressive-disclosure index
+
+User accepted:
+
+1. The common V2 router should stay small and own progressive-disclosure routing. Functionally, it replaces the role that a traditional Skill's references/index often plays: the Skill enters Project Workflow, while the router selects the exact workflow module(s) required for the current obligation.
+   - Do not create a duplicate `references/` policy tree merely to imitate generic Skill structure.
+   - Canonical `workflow/*.md` modules are the referenced material.
+2. After route selection, read only the selected stage/module by default. Do not automatically load predecessor/successor modules unless an explicit current-stage dependency/transition requires them.
+3. Durable artifacts should carry exact authority/evidence/result refs sufficient to avoid broad scans of `requirements/`, `decisions/`, `research/`, implementation evidence, etc.
+4. Do **not** enforce an arbitrary fixed line-count budget for `SKILL.md`. The requirement is semantic/context economy:
+   - only bootstrap/location/recovery instructions;
+   - no stage logic;
+   - no duplicated router rules;
+   - no broad reference catalog;
+   - as short as practical while remaining robust.
+5. Templates, migration material, docs and other support surfaces are outside the ordinary runtime read set and are loaded only on a concrete trigger.
+
+## Progressive disclosure chain
+
+Target:
+
+```text
+Codex Skill / ChatGPT bootstrap
+  -> small common router
+  -> exact current workflow module
+  -> exact durable project state
+  -> exact authority/evidence refs
+```
+
+Not:
+
+```text
+Skill
+  -> preload all workflow files
+  -> preload docs/templates/migration
+  -> scan project repository broadly
+```
+
+The router therefore acts as the central semantic index and obligation selector for both surfaces.
