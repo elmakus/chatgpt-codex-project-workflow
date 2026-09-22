@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "901baa60224a216a5264a0897e71876e552f1b7b"
+  head: "bc3e295f3ea3a19947625478e72e65b02fc22be5"
 
 research_obligation: null
 
@@ -99,8 +99,8 @@ cards:
     title: "Complete cumulative M01 deterministic validation and freeze integrated acceptance subject"
     milestone: "M01"
     decision_state: accepted
-    execution_status: planned
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on:
       - "M01-T04"
     openspec_change: null
