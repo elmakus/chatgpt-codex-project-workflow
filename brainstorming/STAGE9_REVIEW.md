@@ -236,3 +236,15 @@ Coverage reuse should use the same generic attempt/history model rather than a s
 4. For review evidence, is concise semantic evidence enough, with detailed runtime diagnostics kept only in runtime-owned logs?
 
 These are Brainstorming questions, not accepted Definition decisions.
+
+
+## Grilling decisions — common review model
+
+User accepted:
+
+1. Once `RECOMMENDED` review is part of the accepted contract and activated, it is a real blocking gate just like `REQUIRED`. The distinction records why the gate exists, not whether it may be skipped.
+2. After an independent reviewer produces RED, that same chat/context may leave reviewer role, return through the router and act as Main/coordinator for bounded correction when legally routed there. If it materially produces/repairs the changed subject S2, it is disqualified from independently reviewing S2.
+3. Card review, milestone review and workstream final-integration review should use one generic append-only attempt model rather than separate mutable review state machines. Ownership/subject differ; lifecycle semantics do not.
+4. Canonical Project Workflow review evidence remains concise and semantic. Concrete model/worker/session/invocation/worktree/runtime telemetry stays runtime-owned and is not persisted merely to prove independence.
+
+These decisions preserve the proven ChatGPT-only/Codex-only review semantics while removing product-specific realization details.
