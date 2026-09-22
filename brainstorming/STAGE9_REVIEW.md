@@ -291,3 +291,19 @@ Counterfactual challenge:
 No remaining Stage-9 semantic decision is open.
 
 Stage 9 is resolved at Brainstorming level.
+
+
+## Cross-stage exception — Stage 6 Plan Review uses explicit fresh best-model handoff
+
+Later user direction adds one deliberate exception to the generic capability-first review realization model.
+
+For **Independent Plan Review (Stage 6)**:
+- after Strategic Planning freezes the exact immutable plan subject, the planner must hard-stop;
+- it must not launch an internal reviewer subagent/worker for that plan review;
+- the user is instructed to move to a fresh independent context using the best currently available model;
+- that fresh context performs the Plan Review;
+- after GREEN + durable plan approval, there is another hard stop before Execution Prep so the user may switch to a lighter model.
+
+This exception applies to Plan Review because the user wants the highest-leverage plan creation and its independent validation isolated into separate top-model contexts.
+
+It does **not** replace the Stage-9 implementation-review capability-first rule. Card/milestone/final-integration reviews remain realizable through qualifying independent runtime capability unless separately overridden.
