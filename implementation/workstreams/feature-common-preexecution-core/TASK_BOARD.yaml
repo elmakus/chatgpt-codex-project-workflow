@@ -333,7 +333,7 @@ cards:
     title: "Integration refresh and review-coverage preservation"
     milestone: "M04"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     openspec_change: null
@@ -341,10 +341,10 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "51f3d820d18c9e99a738bda5b281b578e03afe9b"
+    result_pr: 4
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M04-T01-integration-refresh-2026-09-22.md"
+    tests_summary: "GREEN: exact target 51f3d820d18c9e99a738bda5b281b578e03afe9b/tree ab631650397b5782ca883ccadc6e919c15770282; Actions 35759502841 PASS; state 27/27; router 38/38; execution 4/4; review 1/1; recovery 2/2; close 8/8; compileall + diff/check PASS; PR #4 exact head/base, draft/open/mergeable."
 
   - id: "M04-T02"
     title: "External effects and final tracker lifecycle"
