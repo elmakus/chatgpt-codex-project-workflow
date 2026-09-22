@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "2ac0705e61da1f440df46a09277d62b3d65b4ec0"
+  head: "ac424265ab2897f4d647a0fd3932ce0aa18f4146"
 
 research_obligation: null
 
@@ -16,7 +16,7 @@ milestones:
     execution_status: in_progress
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m01--clean-foundation-durable-envelope-and-early-delivery-feasibility"
     checkpoint: null
-    implementation_head: "2ca48653b19e5641cbc2d0edb7ba871b84aff99d"
+    implementation_head: "221e4e93c3df3fe006880f4ade5c250eb356c8e9"
     handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/EXECUTION_PREP_ENTRY_2026-09-22.md"
     acceptance_evidence: null
     review_state: null
@@ -45,7 +45,7 @@ cards:
     title: "Prove isolated pw / project_workflow_v2 delivery feasibility"
     milestone: "M01"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M01-T01"
@@ -54,10 +54,10 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
+    result_commit: "221e4e93c3df3fe006880f4ade5c250eb356c8e9"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M01-T02-plugin-feasibility-2026-09-22.md"
+    tests_summary: "GREEN: isolated pw@project-workflow-v2 0.1.0 on Codex CLI 0.155.0-alpha.9.2; exact pw:project_workflow_v2 Skill discovery from isolated cache; installed package blobs equal target Git blobs; SessionStart bundled-router readback and missing-router fail-closed GREEN; live marketplace/plugin unchanged. No CI PASS claimed because no workflow run/status was registered at immediate readback."
 
   - id: "M01-T03"
     title: "Implement minimal durable authority/state envelope"
