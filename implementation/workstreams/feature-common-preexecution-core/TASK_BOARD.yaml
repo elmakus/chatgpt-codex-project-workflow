@@ -309,9 +309,9 @@ cards:
       - "M03-T04"
     openspec_change: null
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M03-T05.md"
-    review_state: in_progress
+    review_state: red
     review_subject: "elmakus/project_workflow_v2@commit:1d9aa10721d7eb5764dec9bfae857715bd555a34|tree:4402bbb83461564717ced5ddcdf96eb6ba31e9e8|M03-T05-card-blob:4043f600450f0754af0874ea64ee104edc263ee6|acceptance-evidence-blob:9c671b9267280e1cb5c385fb6ba5260231d59a8c"
-    review_evidence: null
+    review_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M03-T05-independent-review-R01-2026-09-22.md"
     result_commit: "1d9aa10721d7eb5764dec9bfae857715bd555a34"
     result_pr: 3
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M03-T05-cumulative-acceptance-2026-09-22.md"
