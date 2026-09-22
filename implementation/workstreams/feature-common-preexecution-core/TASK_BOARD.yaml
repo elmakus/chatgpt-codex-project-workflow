@@ -368,7 +368,7 @@ cards:
     title: "Target-side terminal recovery and cleanup"
     milestone: "M04"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on:
       - "M04-T02"
