@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "a72e90f6404265ab1b40d250fc81f6f46dcb0b65"
+  head: "2ac0705e61da1f440df46a09277d62b3d65b4ec0"
 
 research_obligation: null
 
@@ -45,8 +45,8 @@ cards:
     title: "Prove isolated pw / project_workflow_v2 delivery feasibility"
     milestone: "M01"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on:
       - "M01-T01"
     openspec_change: null
