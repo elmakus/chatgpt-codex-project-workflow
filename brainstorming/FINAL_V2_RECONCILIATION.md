@@ -149,6 +149,39 @@ Substantive implementation/debugging/testing is delegated when qualifying worker
 
 A runtime genuinely lacking delegated implementation capability may execute directly for portability.
 
+## Brainstorming interaction model
+
+Adaptive grilling is the default method for **every V2 Brainstorming scope**.
+
+No `#grill` command is required or supported as a separate active workflow mode.
+
+When Brainstorming is active:
+- discover the current decision frontier;
+- ask only genuine user/product/strategic decisions;
+- number material questions;
+- include a recommendation for each;
+- research agent-findable facts independently rather than asking the user;
+- continue through thematic rounds while further questioning has meaningful expected decision value;
+- perform a final challenge/discovery pass before declaring Brainstorming complete;
+- allow the user to stop questioning explicitly at any time, while preserving unresolved material blockers.
+
+A simple scope may complete after a short round; a complex scope may require many rounds. There is no fixed question/round quota.
+
+### Intake interaction
+
+`#feature` enters discovery/Brainstorming by default.
+
+`#issue` is diagnosis-first and may take a qualified micro-fix fast path when all of these are concretely true:
+- root cause and intended behavior are already concrete;
+- change is bounded and low strategic risk;
+- no accepted requirement/architecture/product decision must change;
+- acceptance can be stated directly;
+- no substantial migration/deployment strategy is needed.
+
+A qualified micro-fix therefore does **not** enter Brainstorming merely for ceremony.
+
+If issue diagnosis instead exposes unresolved intended behavior, meaningful alternative solutions, product/architecture choices or another material user-owned decision, V2 should route that issue into the same adaptive Brainstorming interaction before Definition/Planning rather than silently choosing a solution.
+
 ## Execution Prep
 
 Execution Prep:
