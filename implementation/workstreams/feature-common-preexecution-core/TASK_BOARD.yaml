@@ -6,7 +6,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "1d9aa10721d7eb5764dec9bfae857715bd555a34"
+  head: "0545cb38afa05cf82a536360a876583959dc3bf9"
 
 research_obligation: null
 
@@ -309,10 +309,10 @@ cards:
       - "M03-T04"
     openspec_change: null
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M03-T05.md"
-    review_state: red
-    review_subject: "elmakus/project_workflow_v2@commit:1d9aa10721d7eb5764dec9bfae857715bd555a34|tree:4402bbb83461564717ced5ddcdf96eb6ba31e9e8|M03-T05-card-blob:4043f600450f0754af0874ea64ee104edc263ee6|acceptance-evidence-blob:9c671b9267280e1cb5c385fb6ba5260231d59a8c"
-    review_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M03-T05-independent-review-R01-2026-09-22.md"
-    result_commit: "1d9aa10721d7eb5764dec9bfae857715bd555a34"
+    review_state: pending
+    review_subject: "elmakus/project_workflow_v2@commit:0545cb38afa05cf82a536360a876583959dc3bf9|tree:45dbcfd0e7ba9670a9e3266bd4cdf37440f1e577|M03-T05-card-blob:4043f600450f0754af0874ea64ee104edc263ee6|acceptance-evidence-blob:4ebedac3709f1913d67594547f252e7c91c541be"
+    review_evidence: null
+    result_commit: "0545cb38afa05cf82a536360a876583959dc3bf9"
     result_pr: 3
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M03-T05-cumulative-acceptance-2026-09-22.md"
-    tests_summary: "GREEN pre-review: target 1d9aa10721d7eb5764dec9bfae857715bd555a34/tree 4402bbb83461564717ced5ddcdf96eb6ba31e9e8; Actions 35751124535 PASS; state 27/27; router 38/38; execution 4/4; review and recovery suites PASS; isolated full unittest 72/72; compileall + diff/check + clean tree PASS; cumulative 26-file M03 surface remains runtime-neutral; Pi stays compatibility candidate and Codex delivery authority unchanged."
+    tests_summary: "GREEN corrected pre-review: R01 exact-dependency finding repaired; target 0545cb38afa05cf82a536360a876583959dc3bf9/tree 45dbcfd0e7ba9670a9e3266bd4cdf37440f1e577; Actions 35754567552 PASS; state 27/27; router 38/38 including same-path changed-result fail-closed regression; execution 4/4; review and recovery suites PASS; isolated full unittest 72/72; compileall + diff/check + clean tree PASS; cumulative 26-file M03 surface remains runtime-neutral; Pi stays compatibility candidate and Codex delivery authority unchanged."
