@@ -232,7 +232,7 @@ cards:
     title: "JIT Card contracts and execution-readiness semantics"
     milestone: "M03"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     openspec_change: null
@@ -240,10 +240,10 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "19dd7db20d21f566705a105101af77dce4cdbcda"
+    result_pr: 3
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M03-T01-execution-readiness-2026-09-22.md"
+    tests_summary: "GREEN: exact target 19dd7db20d21f566705a105101af77dce4cdbcda/tree 8ff1c4d32396230d8e5207c3f7bdf8cdbaf2d78f; Actions 35744090015 PASS; state 25/25; router 32/32; package/bundle/baseline PASS; runtime-neutral READY/JIT/launch-refresh + selective technical-contract behavior verified; PR #3 exact head/base, draft/open/mergeable."
 
   - id: "M03-T02"
     title: "Runtime-neutral execution, delegation and result reconciliation"
