@@ -1,6 +1,6 @@
 id: "feature-common-preexecution-core"
 kind: "feature"
-status: "discovery"
+status: "planning"
 
 branch: "feat/common-preexecution-core"
 base_ref: "fd2dc95f539d982e1009d71bbf1301f3098900f6"
@@ -22,8 +22,14 @@ routing:
 task_board: null
 
 authority:
-  requirements: null
-  decisions: []
+  requirements: "requirements/PROJECT_WORKFLOW_V2.md"
+  decisions:
+    - "decisions/ADR_PROJECT_WORKFLOW_V2_SINGLE_SEMANTIC_CORE.md"
+    - "decisions/ADR_PROJECT_WORKFLOW_V2_DELIVERY_BOOTSTRAP.md"
+    - "decisions/ADR_PROJECT_WORKFLOW_V2_MANAGED_CHANGE_LIFECYCLE.md"
+    - "decisions/ADR_PROJECT_WORKFLOW_V2_EXECUTION_BOUNDARY.md"
+    - "decisions/ADR_PROJECT_WORKFLOW_V2_REVIEW_AND_PREMIUM_PLANNING.md"
+    - "decisions/ADR_PROJECT_WORKFLOW_V2_CONTEXT_RESEARCH_YAGNI.md"
   plan: null
 
 review:
