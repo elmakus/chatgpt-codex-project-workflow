@@ -6,7 +6,7 @@ Research question: `Using current upstream and practical evidence, determine Pi'
 ## Durable continuation metadata — policy-activated only
 
 Research ID: `PWV2-PI-R1`
-Status: `complete`
+Status: `consumed`
 Origin role: `strategic_planning`
 Origin subject: `PWV2-P1:M03-runtime-boundary-before-execution-prep`
 Return target: `strategic_planning:PWV2-P1:M03-runtime-boundary-before-execution-prep`
