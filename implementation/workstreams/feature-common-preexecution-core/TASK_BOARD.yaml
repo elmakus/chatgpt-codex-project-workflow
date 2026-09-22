@@ -350,7 +350,7 @@ cards:
     title: "External effects and final tracker lifecycle"
     milestone: "M04"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M04-T01"
@@ -359,10 +359,10 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "1e482c395b04af36a97ce7c33c540653184cb26a"
+    result_pr: 4
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M04-T02-external-effects-tracker-2026-09-22.md"
+    tests_summary: "GREEN: exact target 1e482c395b04af36a97ce7c33c540653184cb26a/tree 40ec062eedfcfb37b3064a8531d10141f5c52a99; Actions 35763906839 PASS; state 28/28; router 38/38; execution 4/4; review 1/1; recovery 2/2; close 13/13; compileall + diff/check + clean tree PASS; A06 and L03-ready external-effect/tracker oracles verified; PR #4 exact head/base, draft/open."
 
   - id: "M04-T03"
     title: "Target-side terminal recovery and cleanup"
