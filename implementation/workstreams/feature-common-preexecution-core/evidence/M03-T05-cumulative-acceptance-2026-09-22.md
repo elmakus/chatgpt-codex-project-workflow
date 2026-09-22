@@ -2,11 +2,11 @@
 
 Date: 2026-09-22
 Card: `M03-T05`
-Result before independent review: **GREEN / fresh review pending**
+Result before independent review: **GREEN / corrected subject review pending**
 Target repository: `elmakus/project_workflow_v2`
 Target branch: `feat/pwv2-m03-execution-review`
-Frozen target commit: `1d9aa10721d7eb5764dec9bfae857715bd555a34`
-Frozen target tree: `4402bbb83461564717ced5ddcdf96eb6ba31e9e8`
+Frozen target commit: `0545cb38afa05cf82a536360a876583959dc3bf9`
+Frozen target tree: `45dbcfd0e7ba9670a9e3266bd4cdf37440f1e577`
 Target integration baseline: `main@95e4fb5b8b31a2d4a456171121d9965ac55d4d9a`
 Draft PR: `elmakus/project_workflow_v2#3`
 
@@ -19,9 +19,23 @@ This evidence evaluates the exact target commit against:
 - ADR-PWV2-004, ADR-PWV2-005 and ADR-PWV2-006;
 - accepted M02 cumulative/integration handoff;
 - consumed pre-execution Pi Research `research/PWV2_PI_RUNTIME_COMPATIBILITY_R1.md` and its Planning reconciliation;
-- current M03-T04 Pi compatibility Research/reconciliation, which independently reconfirmed the same runtime-neutral classification after durable recovery.
+- current M03-T04 Pi compatibility Research/reconciliation, which independently reconfirmed the same runtime-neutral classification after durable recovery;
+- independent M03-T05 review R01 corrective evidence at `implementation/workstreams/feature-common-preexecution-core/evidence/M03-T05-independent-review-R01-2026-09-22.md`.
 
 This is deterministic M03 acceptance only. It does not claim L08/L09 live topology acceptance, M04 final-integration/Close semantics, Pi runtime/package qualification, migration, adoption or custody transfer.
+
+## R01 correction reconciliation
+
+Independent review R01 on the prior subject `1d9aa10721d7eb5764dec9bfae857715bd555a34` was RED and remains immutable history.
+
+Its blocking finding was corrected inside accepted M03 authority without a Definition, Strategic Plan, Research or product-scope change:
+- stable Task Card predecessor dependencies are now bound as exact result `path@commit:blob` identity rather than mutable path alone;
+- launch refresh compares the Card-bound path + immutable commit/blob tuple with the current DONE predecessor result;
+- a predecessor result replaced under the same path now fails closed instead of allowing a stale READY Card to launch;
+- the production Task Card template and execution-readiness documentation state the same exact-identity contract;
+- regression coverage proves path-only dependency input is rejected and same-path changed-result identity routes to Recovery.
+
+No runtime/model/provider/session/worker identity, scheduler, adapter API or extra state owner was added.
 
 ## Pi compatibility reconciliation
 
@@ -39,17 +53,17 @@ Pi therefore remains a compatibility/runtime candidate only. Codex delivery/boot
 ## Exact Git / PR readback
 
 At cumulative acceptance:
-- feature HEAD = `1d9aa10721d7eb5764dec9bfae857715bd555a34`;
-- tree = `4402bbb83461564717ced5ddcdf96eb6ba31e9e8`;
+- feature HEAD = `0545cb38afa05cf82a536360a876583959dc3bf9`;
+- tree = `45dbcfd0e7ba9670a9e3266bd4cdf37440f1e577`;
 - target `main` remains `95e4fb5b8b31a2d4a456171121d9965ac55d4d9a`;
-- branch is 46 commits ahead / 0 behind current main;
+- branch is 47 commits ahead / 0 behind current main;
 - cumulative M03 diff is 26 files, limited to common execution/review/recovery workflow modules, runtime-neutral validators/router/helpers, templates and deterministic tests/scripts;
 - no `chatgpt_only`, `codex_only`, legacy, Context Health, scheduler/lane/batch, worker-adapter or runtime-adapter path exists in the target tree;
 - PR #3 has the exact head/base above, remains draft/open and mergeable.
 
 ## Automated verification
 
-GitHub Actions run `35751124535` on the exact frozen target head completed successfully:
+GitHub Actions run `35754567552` on the exact corrected frozen target head completed successfully:
 - job `test`: GREEN;
 - repository-check step: GREEN;
 - state-contract suite: **27/27 PASS**;
@@ -89,7 +103,7 @@ Review attempts are append-only exact immutable subjects with exact acceptance a
 
 ### A11 / precise Card and selective technical contract
 
-Execution Prep parses complete bounded Task Card contracts, loads a technical contract only when the Card selects one, and supports ordinary precise Card-only execution. Predecessor-dependent work uses JIT triggers rather than speculative placeholder Cards.
+Execution Prep parses complete bounded Task Card contracts, loads a technical contract only when the Card selects one, and supports ordinary precise Card-only execution. Predecessor-dependent work uses JIT triggers rather than speculative placeholder Cards. Materialized predecessor dependencies bind exact result path + commit/blob identity, and launch refresh fails closed if the result changes under the same path.
 
 ### A12 / YAGNI and runtime-neutral boundary
 
@@ -118,6 +132,6 @@ The exact target continues to reject/omit:
 
 ## Review freeze
 
-No remaining deterministic M03 acceptance failure was found on the exact target subject.
+R01 RED remains immutable evidence for its prior subject. After the bounded correction, no remaining deterministic M03 acceptance failure was found on the corrected exact target subject.
 
-M03-T05 remains non-terminal. Because this chat reconciled/fixed part of the exact M03 subject and produced this cumulative acceptance evidence, it must not independently review the frozen subject. A fresh independent reviewer is required before Card finalization and M03 Close/integration.
+M03-T05 remains non-terminal. Because this chat implemented the R01 correction and refreshed this cumulative acceptance evidence, it must not independently review the corrected subject. A fresh independent reviewer is required before Card finalization and M03 Close/integration.
