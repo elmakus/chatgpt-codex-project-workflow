@@ -296,3 +296,43 @@ ChatGPT reads the canonical `workflow/` tree from the GitHub V2 repository.
 Codex reads the same canonical `workflow/` tree from its installed plugin package.
 
 The old repository/branches may be used as migration/reference evidence during development, but are not copied forward as permanent production structure.
+
+
+## Grilling decisions — packaging, clean repo ownership and context economy
+
+User accepted:
+
+1. The Codex plugin packages the **same canonical `workflow/` files directly** from the V2 repository. No generated/copied second semantic tree is maintained for the plugin.
+2. Plugin namespace stays short: `pw`. The V2 Skill is named `project_workflow_v2`. Explicit invocation target: `$pw:project_workflow_v2`.
+3. A project's `PROJECT.md` declares only the common V2 workflow contract/state. It does not contain the workflow GitHub source URL or plugin package path.
+4. Legacy migration belongs in a bounded migration tool/module outside the normal canonical `workflow/` semantics. The common V2 router does not permanently route through V1 policy-local paths.
+5. The current `chatgpt-codex-project-workflow` repository becomes historical/development reference once the separate clean V2 repository is production-ready. The production V2 repository is a new clean repository conceptually named `project_workflow_v2`.
+
+## Codex context-economy invariant
+
+The Codex Skill/bootstrap must not become a context hog.
+
+Target behavior:
+- SessionStart injects only a very small bounded pointer/reminder;
+- `$pw:project_workflow_v2` reads only the minimal bootstrap/router material needed to locate the current obligation;
+- router modules use progressive disclosure and load only the exact current stage/module + durable project artifacts + exact authority/evidence refs required for that obligation;
+- do not preload all stage files, templates, review contracts, migration docs or historical guidance;
+- do not duplicate canonical workflow prose inside `SKILL.md`, SessionStart or plugin metadata;
+- once a route is selected, neighboring modules remain unread unless a concrete transition requires them;
+- runtime/internal Codex orchestration details stay outside Project Workflow context unless the current operation actually needs them.
+
+The Skill should remain roughly a pointer/entry contract, not a compressed copy of Project Workflow.
+
+### One-product packaging invariant
+
+```text
+canonical V2 repo/workflow/
+        |
+        +--> ChatGPT reads remotely
+        |
+        +--> Codex plugin bundles same files directly
+
+No second semantic copy.
+```
+
+Normal workflow edits therefore update one source tree only.
