@@ -3,7 +3,7 @@
 Date: `2026-09-21`
 Scope ID: `common-preexecution-core`
 Revision: `R1`
-Status: `ready_for_definition`
+Status: `promoted_to_definition`
 
 ## Problem / goal
 
@@ -2963,7 +2963,7 @@ No additional material user decision was found by the final decision-gap/validat
 
 The current compact handoff is:
 
-`implementation/workstreams/feature-common-preexecution-core/handoffs/BRAINSTORMING_READY_2026-09-21.md`
+`implementation/workstreams/feature-common-preexecution-core/handoffs/DEFINITION_COMPLETE_2026-09-22.md`
 
 This Brainstorming record remains canonical exploratory authority.
 
@@ -2979,7 +2979,7 @@ Deferred N topology tests are post-implementation V2 validation, not missing Bra
 
 None. Stage-by-stage reconciliation, cross-cutting audit and V1 salvage/coverage audit are complete at Brainstorming level.
 
-Current focus: Brainstorming complete; explicit user promotion to Project Definition is pending.
+Current focus: Project Definition complete; premium stop A before Strategic Planning.
 
 ## Next bounded work
 
@@ -2993,10 +2993,10 @@ All lifecycle stages and cross-cutting salvage have been reconciled. Do not ente
 - Scope remains `common-preexecution-core@R1`.
 - Cross-cutting audit is complete.
 - Target V2 common-core architecture and migration direction are resolved at Brainstorming level.
-- Definition promotion authorization remains `pending`.
-- Definition promotion subject remains `none`.
+- Definition promotion authorization: `user_authorized`.
+- Definition promotion subject: `project-workflow-v2@R1`.
 - Deferred N remains a V2 implementation-validation obligation, not a Brainstorming blocker.
 - No production workflow module has been changed.
-- Current phase/action: Brainstorming complete; explicit Project Definition promotion pending.
+- Current phase/action: Definition complete; stop before Strategic Planning for best-available-model handoff.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user authorization may promote the current exploratory scope into Definition.
