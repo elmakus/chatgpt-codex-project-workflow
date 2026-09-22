@@ -404,7 +404,7 @@ cards:
     title: "Cumulative M04 acceptance and immutable review freeze"
     milestone: "M04"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M04-T04"
@@ -416,4 +416,4 @@ cards:
     result_commit: "013c4b405875a356f863b9b381d60faa0ad8935a"
     result_pr: 4
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M04-T05-cumulative-acceptance-R02-2026-09-22.md"
-    tests_summary: "R01 correction GREEN on exact corrected target/tree: Actions push 35773744806 PASS + PR 35773750088 PASS; scripts/test.sh PASS; state 28/28; router 39/39; execution 4/4; review 1/1; recovery 2/2; Close+fork 29/29; full unittest 103/103; compileall + diff/check + clean-tree PASS; new exact R02 review subject frozen."
+    tests_summary: "GREEN terminal: independent R02 GREEN for exact corrected subject 013c4b405875a356f863b9b381d60faa0ad8935a/tree 7367d38d41240730530ec3b16174ca7db2738807; R01 RED preserved as immutable older-subject history; Actions push 35773744806 PASS + PR 35773750088 PASS; fresh independent checkout scripts/test.sh PASS; full unittest 103/103; compileall + diff/check + clean-tree PASS."
