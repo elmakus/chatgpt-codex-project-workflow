@@ -446,3 +446,20 @@ cards:
     result_pr: null
     evidence: null
     tests_summary: null
+
+  - id: "M05-T02"
+    title: "Codex plugin package and thin local bootstrap"
+    milestone: "M05"
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M05-T02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
