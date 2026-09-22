@@ -2,7 +2,7 @@
 
 Milestone: `M01 — Clean foundation, durable envelope and early delivery feasibility`
 Plan revision: `PWV2-P1`
-Status: `GREEN acceptance / target integration blocked on PR access`
+Status: `GREEN / target integration complete`
 
 ## Completed checkpoint
 
@@ -11,6 +11,9 @@ Status: `GREEN acceptance / target integration blocked on PR access`
 - Target tree: `595a84ea2fcea446567ba7eff6f11474d6a33d29`.
 - Cards `M01-T01` through `M01-T05`: done.
 - Integrated T05 independent review R01: GREEN.
+- Target PR: `elmakus/project_workflow_v2#1`.
+- Target merge commit: `8c955d1d9e8ba9396582753814d5b6c3283dde01`.
+- Target integration evidence: `implementation/workstreams/feature-common-preexecution-core/evidence/M01-target-integration-2026-09-22.md`.
 - Deterministic M01 acceptance: `implementation/workstreams/feature-common-preexecution-core/evidence/M01-T05-cumulative-acceptance-2026-09-22.md`.
 - Review evidence: `implementation/workstreams/feature-common-preexecution-core/evidence/M01-T05-independent-review-R01-2026-09-22.md`.
 
@@ -34,6 +37,6 @@ M01 does not claim M02+ lifecycle semantics, L01-L09 live acceptance, production
 
 ## Next durable starting point
 
-Resolve `blockers/M01_TARGET_PR_ACCESS_2026-09-22.md`, then complete the approved construction publication step: integrate exact reviewed target branch `elmakus/project_workflow_v2:feat/pwv2-m01-foundation@f1f4ed87875877529da6dc954e785d6373de7930` into target `main` through PR with exact-head readback. After target integration is verified, finalize M01 and proceed automatically to JIT Execution Prep for `M02 — Intake through Definition and premium planning` on `feat/common-preexecution-core`.
+M01 publication is complete. Target `main` is integrated at `8c955d1d9e8ba9396582753814d5b6c3283dde01` through PR #1; the exact reviewed content is unchanged by the merge commit. Proceed automatically to JIT Execution Prep for `M02 — Intake through Definition and premium planning` on `feat/common-preexecution-core`.
 
 Materialize only presently knowable bounded M02 Cards from approved PWV2-P1 and exact M01 predecessor evidence. Preserve the meta-synthesis S2 Guidance Pack, especially production-semantic tests, minimal schema growth, explicit premium/review transition fixtures and current GitHub tracker mechanics JIT. No production adoption/cutover is authorized.
