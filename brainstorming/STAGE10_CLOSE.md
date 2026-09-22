@@ -147,3 +147,23 @@ Detailed Stage 11 analysis will own the broader continuation topology.
 4. Should deterministic closure-only bookkeeping after merge be allowed without opening a new implementation/review subject, provided it cannot change accepted behavior/content?
 
 These are Brainstorming questions, not accepted Definition decisions.
+
+
+## Grilling decisions — terminal closure and branch cleanup
+
+User accepted:
+
+1. After a workstream is safely integrated/closed, Project Workflow should clean up the source branch when the current capability supports it. The user noted that GitHub automatic branch deletion after merge is already enabled everywhere, so in the common happy path Close should first detect/read back whether the branch is already absent rather than redundantly issuing deletion.
+2. If a still-existing source branch is proven safe to delete but the current runtime cannot delete it, retain a minimal durable `safe_to_delete` fallback so a later capable context can finish cleanup. This is a bounded fallback, not a separate orchestration subsystem.
+3. Before source-branch disappearance can be treated as terminally safe, verify that the target-side durable workstream package is sufficient to reconstruct completed result/review/lifecycle truth without the source branch.
+4. Closure-only bookkeeping after merge does not create a new implementation/review subject when it is strictly deterministic lifecycle metadata and cannot change accepted behavior/content. If behavioral/content reconciliation is needed, it is implementation and follows the normal execution/review path.
+
+### GitHub auto-delete interaction
+
+Repository-host automatic branch deletion is treated as a valid cleanup realization:
+
+- after merge/closure, read back exact source-ref existence;
+- if already absent, cleanup is complete;
+- do not recreate the branch merely to perform Project Workflow cleanup;
+- if still present and safe, delete through current capability when available;
+- otherwise persist only the minimal exact safe-to-delete fallback.
