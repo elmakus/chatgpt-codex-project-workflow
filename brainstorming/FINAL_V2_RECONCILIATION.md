@@ -171,16 +171,34 @@ A simple scope may complete after a short round; a complex scope may require man
 
 `#feature` enters discovery/Brainstorming by default.
 
-`#issue` is diagnosis-first and may take a qualified micro-fix fast path when all of these are concretely true:
-- root cause and intended behavior are already concrete;
+`#issue` is **diagnosis-first, discussion-before-implementation**.
+
+The `#issue` directive authorizes diagnosis/intake, not automatic implementation. After enough read-only diagnosis exists to explain the problem and propose a repair direction, Project Workflow enters a mandatory short adaptive-Brainstorming alignment with the user **before any implementation mutation**.
+
+This applies even when the issue appears to qualify as a micro-fix.
+
+The first alignment round must present, at minimum:
+- what the diagnosis/root cause currently appears to be;
+- the proposed intended end state / repair behavior;
+- material safety, compatibility or side-effect considerations that are already knowable;
+- the assistant's recommended repair direction;
+- the smallest genuine user decision needed before implementation.
+
+There must be at least one user response after that diagnosis/proposal boundary. The original `#issue` message alone never authorizes implementation continuation.
+
+If the user wants explanation, challenges safety, changes the desired outcome or exposes additional choices, continue adaptive grilling until the intended result is sufficiently agreed.
+
+Only after that user alignment may Intake classify a direct micro-fix fast path when all of these are concretely true:
+- root cause and intended behavior are concrete;
+- the user has accepted/authorized the bounded repair direction after diagnosis;
 - change is bounded and low strategic risk;
 - no accepted requirement/architecture/product decision must change;
 - acceptance can be stated directly;
 - no substantial migration/deployment strategy is needed.
 
-A qualified micro-fix therefore does **not** enter Brainstorming merely for ceremony.
+A qualified micro-fix may then bypass full Project Definition / Strategic Planning and route directly to Execution Prep, but it never bypasses the diagnosis + user-alignment Brainstorming boundary.
 
-If issue diagnosis instead exposes unresolved intended behavior, meaningful alternative solutions, product/architecture choices or another material user-owned decision, V2 should route that issue into the same adaptive Brainstorming interaction before Definition/Planning rather than silently choosing a solution.
+If diagnosis exposes material product/architecture decisions or meaningful alternative outcomes, the same adaptive Brainstorming simply continues rather than silently choosing a solution.
 
 ## Execution Prep
 
@@ -272,7 +290,7 @@ After GREEN is durably consumed and the reviewed plan revision is approved:
 
 Any later **material** re-entry into Strategic Planning repeats the full A -> Planning -> B -> Plan Review -> C block.
 
-Qualified micro-fixes that legitimately bypass Master Planning also bypass the premium block.
+Qualified micro-fixes that legitimately bypass Master Planning also bypass the premium planning block, but only after the mandatory issue diagnosis + user-alignment Brainstorming boundary.
 
 These premium boundaries outrank ordinary automatic continuation and survive Recovery.
 
