@@ -2728,6 +2728,14 @@ Current baseline:
 - fresh-context and delegated-review realizations are two ways to satisfy the same common independence obligation;
 - old parallel-review deferral is superseded by the Stage-8 serial Project-Card decision.
 
+### Stage 10 close decisions — accepted
+
+- after safe closure, source-branch cleanup is automatic/capability-first;
+- because GitHub auto-delete-after-merge is enabled, Close first reads back branch absence and treats an already-absent branch as cleanup complete;
+- if a safe branch still exists and deletion capability is unavailable, persist only a minimal exact `safe_to_delete` fallback;
+- terminal closure requires a target-side durable recovery package sufficient after source-branch disappearance;
+- deterministic closure-only bookkeeping after merge does not create a new review subject when it cannot change accepted content/behavior.
+
 ### Stage 10 — Close / Publication / Integration — active analysis
 
 Detailed stage record:
@@ -2741,6 +2749,28 @@ Current baseline:
 - workstream closure must remain recoverable after source-branch disappearance;
 - deterministic closure bookkeeping may be distinct from behavioral implementation;
 - branch cleanup realization is the main remaining ChatGPT/Codex divergence to grill.
+
+### Cross-cutting proposal — premium-model planning window
+
+User proposed two explicit human-facing hard stops around the highest-leverage reasoning phase:
+
+1. before that phase, stop and recommend switching to the best currently available model;
+2. after that phase is durably complete, stop and inform the user that the highest-leverage reasoning phase is complete and normal continuation may use a lighter/cheaper model.
+
+Current recommendation, not yet user-confirmed:
+- first hard stop: after Project Definition is complete and before Strategic Planning begins;
+- premium-model window: Strategic Planning **plus its independent Plan Review**;
+- second hard stop: after the reviewed Master Plan is GREEN/approved, before Execution Prep begins.
+
+Rationale:
+- Project Definition primarily formalizes accepted product/system authority and unresolved user choices;
+- Strategic Planning has the highest downstream leverage because it defines milestone structure/order, execution strategy, requirement coverage and JIT decomposition;
+- Independent Plan Review should remain inside the same premium window so the highest-leverage plan is not validated by a materially weaker reviewer;
+- Execution Prep/Execution can then run under a lighter coordinator because they operate inside already-reviewed plan authority.
+
+If only one single stage may use the premium model, prioritize Strategic Planning.
+
+This model-selection guidance must be capability/tier neutral in the workflow text (for example, “best available model” / “lighter model”), not hard-code `GPT-6 Astra` or any specific model name.
 
 ## Current checkpoint / handoff
 
