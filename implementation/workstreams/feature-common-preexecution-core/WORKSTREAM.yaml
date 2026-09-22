@@ -15,9 +15,9 @@ intake:
   record: "implementation/workstreams/feature-common-preexecution-core/INTAKE.md"
 
 routing:
-  exploratory_scope: "brainstorming/COMMON_PREEXECUTION_CORE.md"
+  exploratory_scope: null
   research_obligation: null
-  plan_review: null
+  plan_review: "planning/reviews/PWV2-P1.md"
 
 task_board: null
 
@@ -30,7 +30,7 @@ authority:
     - "decisions/ADR_PROJECT_WORKFLOW_V2_EXECUTION_BOUNDARY.md"
     - "decisions/ADR_PROJECT_WORKFLOW_V2_REVIEW_AND_PREMIUM_PLANNING.md"
     - "decisions/ADR_PROJECT_WORKFLOW_V2_CONTEXT_RESEARCH_YAGNI.md"
-  plan: null
+  plan: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md"
 
 review:
   requirement: null
