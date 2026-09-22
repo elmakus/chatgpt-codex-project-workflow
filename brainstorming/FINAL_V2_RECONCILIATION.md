@@ -2,7 +2,7 @@
 
 Date: 2026-09-22
 Scope: common-preexecution-core@R1
-Status: tentative — V1 salvage audit reopened
+Status: ready_for_definition
 Promotion: explicit user authorization required
 Production authority: none
 
@@ -539,7 +539,7 @@ A final cross-cutting V1 salvage audit identified a small set of mechanisms that
 
 `brainstorming/V1_SALVAGE_AUDIT_V2.md`
 
-Until those decisions are resolved, the prior ready-for-Definition state is temporarily reopened.
+Those decisions are now resolved in `brainstorming/V1_TO_V2_COVERAGE_MATRIX.md`; the Brainstorming subject is again ready for explicit Definition promotion.
 
 ## Promotion gate
 
