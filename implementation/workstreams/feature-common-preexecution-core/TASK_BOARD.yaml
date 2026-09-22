@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "bc3e295f3ea3a19947625478e72e65b02fc22be5"
+  head: "f5451bc7ff72d8645ebc6f7195b1473d710b94e0"
 
 research_obligation: null
 
@@ -105,10 +105,10 @@ cards:
       - "M01-T04"
     openspec_change: null
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M01-T05.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "elmakus/project_workflow_v2@commit:f1f4ed87875877529da6dc954e785d6373de7930|tree:595a84ea2fcea446567ba7eff6f11474d6a33d29|M01-T05-card-blob:076868938c0c91a0d8895c5a4035ed5de0ab4b5e|acceptance-evidence-blob:306f3843f4813cf2cbe4a734ec502675647e41f5"
     review_evidence: null
-    result_commit: null
+    result_commit: "f1f4ed87875877529da6dc954e785d6373de7930"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M01-T05-cumulative-acceptance-2026-09-22.md"
+    tests_summary: "GREEN pre-review: target f1f4ed87875877529da6dc954e785d6373de7930/tree 595a84ea2fcea446567ba7eff6f11474d6a33d29; sh scripts/test.sh PASS; cumulative unittest discovery 16/16 PASS; compileall + diff/check + clean tree PASS; T02 package/Skill/hook inputs unchanged through T04; current and missing-router SessionStart checks PASS; no CI PASS claimed."
