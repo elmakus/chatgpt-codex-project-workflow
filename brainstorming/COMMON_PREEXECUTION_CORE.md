@@ -2800,7 +2800,7 @@ If only one single stage may use the premium model, prioritize Strategic Plannin
 
 This model-selection guidance must be capability/tier neutral in the workflow text (for example, “best available model” / “lighter model”), not hard-code a specific model name.
 
-### Stage 11 — Router / Automatic Continuation / Human Stops — active analysis
+### Stage 11 — Router / Automatic Continuation / Human Stops — resolved
 
 Detailed stage record:
 
@@ -2858,7 +2858,7 @@ Current baseline:
 - support docs/templates/migration are trigger-only;
 - no arbitrary `SKILL.md` line-count requirement; keep it only as large as necessary for robust bootstrap/recovery and no larger.
 
-### Cross-cutting V2 delivery/bootstrap — active analysis
+### Cross-cutting V2 delivery/bootstrap — resolved
 
 Detailed record:
 
@@ -2894,11 +2894,11 @@ Deferred N topology tests are post-implementation V2 validation, not missing Bra
 
 Stage-by-stage reconciliation is still active. The cross-cutting audit is provisional architecture evidence, not Brainstorming completion authority.
 
-Current focus: Stage 11 — Router / Automatic Continuation / Human Stops. Stages 7 through 10 are resolved after grilling.
+Current focus: final cross-stage reconciliation. Stages 1–11 and the V2 delivery/bootstrap surface have been compared/grilled at Brainstorming level.
 
 ## Next bounded work
 
-Continue Stage 11 — Router / Automatic Continuation / Human Stops grilling, including premium-model hard-stop precedence and context-health boundaries.
+Perform final cross-stage reconciliation and grill only remaining contradictions/material choices before considering explicit Brainstorming -> Project Definition promotion.
 
 Do not return to the Definition promotion gate until the remaining lifecycle stages have been reviewed individually and then reconciled cross-cutting.
 
@@ -2912,6 +2912,6 @@ Do not return to the Definition promotion gate until the remaining lifecycle sta
 - Definition promotion subject remains `none`.
 - Deferred N remains a V2 implementation-validation obligation, not a Brainstorming blocker.
 - No production workflow module has been changed.
-- Current phase/action: Stage 11 — Router / Automatic Continuation / Human Stops analysis.
+- Current phase/action: final Brainstorming cross-stage reconciliation.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user authorization may promote the current exploratory scope into Definition.
