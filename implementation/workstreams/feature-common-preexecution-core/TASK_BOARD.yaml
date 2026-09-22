@@ -207,7 +207,7 @@ cards:
       - "M02-T04"
     openspec_change: null
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M02-T05.md"
-    review_state: pending
+    review_state: in_progress
     review_subject: "elmakus/project_workflow_v2@commit:fdd737fd16c7aac385bf35699782eafe1722819b|tree:dc21a3986cc0fbbec7e2d299570d0dca3181d970|M02-T05-card-blob:6d11a5f70d393de21e5e8b5b09c52c50c64c08b4|acceptance-evidence-blob:431c9175a1f0ec77a064453b6bd82f23cac06ad2"
     review_evidence: null
     result_commit: "fdd737fd16c7aac385bf35699782eafe1722819b"
