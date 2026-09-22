@@ -1,12 +1,12 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 workstream_id: "feature-common-preexecution-core"
 plan_revision: "PWV2-P1"
-current_milestone: "M02"
+current_milestone: "M03"
 
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "517d6a389fa186fcb466f2e0761b24f6d40f5a6b"
+  head: "e9d4811e360768ba362085e7a983a44d1a41db14"
 
 research_obligation: null
 
@@ -31,6 +31,18 @@ milestones:
     implementation_head: "89503fafa55e052e1ee48fb8252cecb6d3028728"
     handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M02_HANDOFF.md"
     acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M02-T05-cumulative-acceptance-2026-09-22.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M03:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m03--jit-execution-delegated-results-and-common-independent-review"
+    checkpoint: "95e4fb5b8b31a2d4a456171121d9965ac55d4d9a"
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
     review_state: null
     review_subject: null
     review_evidence: null
@@ -214,3 +226,93 @@ cards:
     result_pr: 2
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M02-T05-cumulative-acceptance-2026-09-22.md"
     tests_summary: "GREEN terminal: independent R04 GREEN for exact subject 89503fafa55e052e1ee48fb8252cecb6d3028728/tree a62d48b362596ab9837583d15177b3bac5a66a8b; R01+R02+R03 RED preserved as immutable older-subject history; Actions 35725824309 GREEN; sh scripts/test.sh PASS; state 23/23; router 28/28; full unittest 51/51; compileall + diff/check + clean tree PASS; PR #2 exact head/base, 23 files, mergeable/clean at post-review readback; no separate combined-status PASS claimed."
+
+
+  - id: "M03-T01"
+    title: "JIT Card contracts and execution-readiness semantics"
+    milestone: "M03"
+    decision_state: accepted
+    execution_status: ready
+    executor: chatgpt
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M03-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M03-T02"
+    title: "Runtime-neutral execution, delegation and result reconciliation"
+    milestone: "M03"
+    decision_state: accepted
+    execution_status: planned
+    executor: chatgpt
+    depends_on:
+      - "M03-T01"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M03-T02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M03-T03"
+    title: "Exact-subject common independent review"
+    milestone: "M03"
+    decision_state: accepted
+    execution_status: planned
+    executor: chatgpt
+    depends_on:
+      - "M03-T02"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M03-T03.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M03-T04"
+    title: "Execution/review recovery and deterministic continuation"
+    milestone: "M03"
+    decision_state: accepted
+    execution_status: planned
+    executor: chatgpt
+    depends_on:
+      - "M03-T03"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M03-T04.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M03-T05"
+    title: "Cumulative M03 acceptance and immutable review freeze"
+    milestone: "M03"
+    decision_state: accepted
+    execution_status: planned
+    executor: chatgpt
+    depends_on:
+      - "M03-T04"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M03-T05.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
