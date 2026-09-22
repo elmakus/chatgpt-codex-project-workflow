@@ -201,8 +201,8 @@ cards:
     title: "Cumulative M02 acceptance and immutable review freeze"
     milestone: "M02"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on:
       - "M02-T04"
     openspec_change: null
