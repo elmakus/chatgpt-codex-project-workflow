@@ -2946,6 +2946,19 @@ All identified V1 mechanisms now have an explicit keep/generalize/trigger-only/m
 - do not create duplicate OpenSpec artifacts for trivial fixes merely for ceremony;
 - preserve the mechanism tool-neutrally enough that OpenSpec is a realization, not a second authority layer.
 
+### V2 validation audit — complete
+
+Validation plan: `brainstorming/V2_VALIDATION_MATRIX.md`.
+
+Result:
+- no additional user-run live test is required before Project Definition;
+- deterministic schema/router/state/migration/coverage behavior should be automated in V2;
+- real-surface live tests are deferred until their implementation slice exists;
+- required manual acceptance coverage includes ChatGPT Android adaptive grilling, `#issue` no-auto-fix + GitHub tracker closure, Codex `$pw:project_workflow_v2`/plugin update propagation, ChatGPT<->Codex durable portability, premium A/B/C model handoffs, and deferred N-CAPABLE/N-CHATGPT review-topology continuity;
+- exact V2 schema/file/label/test-fixture choices are implementation details unless later evidence reveals a material product decision.
+
+No additional material user decision was found by the final decision-gap/validation audit.
+
 ## Current checkpoint / handoff
 
 The current compact handoff is:
