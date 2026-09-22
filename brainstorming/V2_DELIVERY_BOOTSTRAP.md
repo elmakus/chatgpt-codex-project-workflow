@@ -228,3 +228,38 @@ Target interpretation:
 - after bootstrap, both enter the same common V2 semantics and consume the same project durable state.
 
 The phrase itself is not used for runtime self-detection. Each surface's bootstrap resolves its own instruction source.
+
+
+## Grilling decisions — repository activation boundary and V2 Skill identity
+
+User clarified:
+
+1. Repository-local pinning/enablement of plugins, MCPs and Skills is **out of scope for Project Workflow V2**. The user's separate `newproject-skill` will provision/pin those dependencies into newly created repositories. Project Workflow therefore does not own per-repository Codex plugin activation policy.
+2. The official explicit Codex entry is accepted as a short Skill invocation, but it is not required on every prompt when bootstrap/session activation already established Project Workflow.
+3. Remove durable `execution_policy: chatgpt_only | codex_only` from the V2 project contract. Runtime/surface may change while consuming the same durable state.
+
+### Codex Skill naming
+
+User clarified the intended Codex namespacing model:
+- plugin name: `pw`;
+- Skill name: `project_workflow_v2`;
+- explicit invocation: `$pw:project_workflow_v2`.
+
+Treat this as the target V2 interface. Acceptance tests during implementation must verify the installed package exposes this exact invocation.
+
+Project Workflow does not need to infer runtime identity from that invocation. The plugin bootstrap already supplies the Codex instruction source.
+
+### Provisioning boundary
+
+Target ownership:
+
+```text
+newproject-skill
+  -> pins/enables required plugin/MCP/Skill dependencies for repository
+
+Project Workflow V2
+  -> assumes its bootstrap surface is available
+  -> owns workflow semantics and durable project lifecycle only
+```
+
+Do not duplicate new-project provisioning logic inside Project Workflow.
