@@ -350,7 +350,7 @@ cards:
     title: "External effects and final tracker lifecycle"
     milestone: "M04"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: chatgpt
     depends_on:
       - "M04-T01"
