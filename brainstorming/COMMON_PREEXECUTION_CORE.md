@@ -2850,6 +2850,14 @@ Current baseline:
 - production V2 moves to a new clean repository, with the current repository retained as historical/development reference;
 - Codex bootstrap/Skill must stay extremely small and use progressive disclosure; it must never preload or restate the full workflow.
 
+### V2 progressive-disclosure bootstrap — accepted
+
+- thin Skill/bootstrap -> small common router -> exact current module -> exact durable state -> exact authority/evidence refs;
+- router functions as the workflow reference/index layer; no duplicate Skill `references/` policy tree;
+- neighboring stages are not loaded by default;
+- support docs/templates/migration are trigger-only;
+- no arbitrary `SKILL.md` line-count requirement; keep it only as large as necessary for robust bootstrap/recovery and no larger.
+
 ### Cross-cutting V2 delivery/bootstrap — active analysis
 
 Detailed record:
