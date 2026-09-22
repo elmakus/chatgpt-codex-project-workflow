@@ -183,7 +183,7 @@ cards:
     title: "GitHub Issue tracker recovery and correlation"
     milestone: "M02"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M02-T03"
@@ -192,16 +192,16 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "f978dda304ac9de8fe4806f6f31c530cc586e70e"
+    result_pr: 2
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M02-T04-github-tracker-2026-09-22.md"
+    tests_summary: "GREEN exact checkout: sh scripts/test.sh PASS; state 22/22; router 25/25; live read-only GitHub Issue discovery query succeeded. Draft-PR Actions run 35718260814 remains RED/no-step; no CI PASS claimed."
 
   - id: "M02-T05"
     title: "Cumulative M02 acceptance and immutable review freeze"
     milestone: "M02"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: null
     depends_on:
       - "M02-T04"
