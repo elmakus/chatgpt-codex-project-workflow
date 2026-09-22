@@ -2832,6 +2832,15 @@ Current baseline:
 - explicit Skill invocation is a convenient entry/recovery command, not required on every prompt after bootstrap is active;
 - V2 project state removes durable `execution_policy: chatgpt_only | codex_only`.
 
+### Clean V2 repository shape — accepted
+
+- new Project Workflow V2 is a clean repository, not a permanent extension of the V1 policy-local tree;
+- one canonical semantic tree lives at `workflow/`;
+- do not create redundant `workflow/v2/` inside a repository that is already entirely V2;
+- no production `chatgpt_only`, `codex_only` or `legacy` semantic directories are carried forward;
+- V2 projects declare only the common V2 contract marker;
+- `$pw:project_workflow_v2` enters the common router and does not duplicate routing semantics.
+
 ### Cross-cutting V2 delivery/bootstrap — active analysis
 
 Detailed record:
