@@ -6,7 +6,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "e9d4811e360768ba362085e7a983a44d1a41db14"
+  head: "5a986d803f367e48cea8d61c270a56780977545e"
 
 research_obligation: null
 
@@ -37,7 +37,7 @@ milestones:
 
   M03:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m03--jit-execution-delegated-results-and-common-independent-review"
     checkpoint: "95e4fb5b8b31a2d4a456171121d9965ac55d4d9a"
     implementation_head: null
@@ -232,7 +232,7 @@ cards:
     title: "JIT Card contracts and execution-readiness semantics"
     milestone: "M03"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on: []
     openspec_change: null
