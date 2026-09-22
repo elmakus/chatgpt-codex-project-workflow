@@ -131,3 +131,34 @@ Recommendations:
 3. retain the semantic mechanism but make the core tool-neutral, with OpenSpec as an optional realization unless existing project compatibility argues for keeping the name;
 4. trigger-only optional module;
 5. yes.
+
+
+## User decisions — salvage round
+
+Accepted:
+1. retain **one project = one repository** as a V2 invariant;
+2. retain **branch-first, manifest-bound workstreams** as the normal managed-change model;
+4. retain **fork release versioning** as a trigger-only optional V2 module for projects durably declared as downstream forks;
+5. retain **locator-only ready-to-copy fresh-chat handoff UX** at explicit fresh-context gates; remove only obsolete Context Health handoff behavior.
+
+Open:
+3. OpenSpec / technical-contract granularity.
+
+Clarification under discussion:
+- every bug/change still has an explicit accepted intended result, bounded authority, acceptance and tests through Intake/Brainstorming + Task Card;
+- the open question is whether a separate OpenSpec artifact should be created for every change, including trivial bugs, or only when it adds material contract value beyond the Task Card;
+- recommendation remains selective separate OpenSpec because mandatory duplication for simple unambiguous fixes conflicts with YAGNI/context economy.
+
+## New V2 repository
+
+The user created the new production-target repository:
+
+`elmakus/project_workflow_v2`
+
+Verified via GitHub on 2026-09-22:
+- repository exists;
+- visibility: private;
+- default branch: `main`;
+- repository is currently empty.
+
+Do not populate it until the active V1-hosted Brainstorming/Definition/Planning authority reaches the legal execution boundary.
