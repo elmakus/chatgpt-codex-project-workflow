@@ -3,7 +3,7 @@
 Date: `2026-09-21`
 Scope ID: `common-preexecution-core`
 Revision: `R1`
-Status: `tentative`
+Status: `ready_for_definition`
 
 ## Problem / goal
 
@@ -2922,11 +2922,29 @@ V2 carries forward two V1 common invariants:
    - speculative future-proofing/generalization needs concrete current justification;
    - YAGNI never excuses skipping current correctness/security/testing/maintainability/compatibility/migration/observability obligations.
 
-### Final V1 salvage audit — active
+### Final V1 salvage audit — resolved
 
 `brainstorming/V1_SALVAGE_AUDIT_V2.md` identified the remaining cross-cutting keep/generalize/drop decisions for one-project-one-repo, branch-first workstreams, selective technical-contract/OpenSpec behavior, fork release versioning and locator-only fresh-context handoff UX.
 
-Definition promotion remains pending until these are reconciled.
+All identified V1 mechanisms now have an explicit keep/generalize/trigger-only/migration/drop disposition in `brainstorming/V1_TO_V2_COVERAGE_MATRIX.md`. Definition promotion remains explicitly user-owned.
+
+### GitHub Issue managed-change tracking — accepted
+
+- `#issue` and `#feature` create or recover an official GitHub Issue tracker when GitHub Issues capability is available, after dedup/recovery checks;
+- the tracker is human-visible lifecycle bookkeeping, not Project Workflow authority and not implementation authorization;
+- `#issue` still requires diagnosis + at least one user-alignment response before implementation;
+- tracker body may be refined as diagnosis/Brainstorming settles the accepted target;
+- durable workstream state stores the exact GitHub Issue reference;
+- only the final scope-completing default-branch PR uses a closing keyword such as `Closes #N` / `Fixes #N`;
+- intermediate PRs must not close the tracker prematurely;
+- Close reads back expected Issue state and may explicitly close only after durable accepted completion when auto-close is unavailable.
+
+### Selective technical contract / OpenSpec — accepted
+
+- every implementation change gets a precise Task Card/fix contract;
+- separate OpenSpec-style technical contract is trigger-only/JIT when it adds material behavior/design-contract value beyond the Card;
+- do not create duplicate OpenSpec artifacts for trivial fixes merely for ceremony;
+- preserve the mechanism tool-neutrally enough that OpenSpec is a realization, not a second authority layer.
 
 ## Current checkpoint / handoff
 
@@ -2948,7 +2966,7 @@ Deferred N topology tests are post-implementation V2 validation, not missing Bra
 
 Stage-by-stage reconciliation is still active. The cross-cutting audit is provisional architecture evidence, not Brainstorming completion authority.
 
-Current focus: final V1 salvage audit; Brainstorming temporarily reopened before Definition promotion.
+Current focus: Brainstorming complete after V1 salvage/coverage matrix; explicit user promotion to Project Definition is pending.
 
 ## Next bounded work
 
