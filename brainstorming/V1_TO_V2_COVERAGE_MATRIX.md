@@ -2,7 +2,7 @@
 
 Date: 2026-09-22
 Scope: Project Workflow V2 pre-Definition salvage audit
-Status: active — one OpenSpec granularity decision remains
+Status: complete — all identified V1 surfaces classified
 V1 authority inspected: `elmakus/chatgpt-codex-project-workflow@main`
 V2 target repo: `elmakus/project_workflow_v2` (verified empty)
 
@@ -68,7 +68,7 @@ V2 target repo: `elmakus/project_workflow_v2` (verified empty)
 | `workflow/contracts/TASK_CARDS.md` + fixed-policy `TASK_CARDS.md` | GENERALIZE | One bounded Task Card contract with exact authority refs, acceptance, tests, external/readback/review obligations. |
 | `workflow/contracts/TASK_EXECUTION.md` | GENERALIZE | Preserve Refresh Gate, readiness/start, DoD, blocker/review boundary; remove execution-policy and parallel-Card branches. |
 | `workflow/contracts/GITHUB_STATE.md` | GENERALIZE / SHRINK | Salvage only durable Git/state/recovery semantics still needed after deleting parallel scheduler machinery. |
-| `workflow/common/OPENSPEC.md` + `workflow/contracts/OPENSPEC.md` | OPEN | Every change has a Task Card/fix contract. Decision remains whether separate OpenSpec is selective/trigger-only or mandatory even for trivial bugs. Recommendation: selective separate artifact. |
+| `workflow/common/OPENSPEC.md` + `workflow/contracts/OPENSPEC.md` | TRIGGER-ONLY / GENERALIZE | Every change has a precise Task Card/fix contract. Separate technical-contract/OpenSpec artifact only when it adds material value beyond the Card; keep core semantics tool-neutral and JIT. |
 | speculative distant OpenSpec | DROP | JIT only; do not freeze unknowable implementation detail. |
 | OpenSpec as replacement for requirements/plan/Card | DROP | Never; technical contract only. |
 
@@ -178,12 +178,18 @@ The following are intentionally absent from V2, not forgotten:
 - Codex remote-repo workflow-policy fetch during ordinary operation;
 - source-branch existence as a requirement for terminal recovery.
 
+## GitHub Issue tracking addition
+
+| V2 managed-change behavior | Disposition | Notes |
+|---|---|---|
+| Official GitHub Issue for `#issue` | KEEP SUPPORT / DEFAULT TRACKER | Create/recover after dedup check; never implies implementation authorization. |
+| Official GitHub Issue for `#feature` | KEEP SUPPORT / DEFAULT TRACKER | Create/recover after dedup check; refine during discovery/Brainstorming. |
+| Workstream -> GitHub Issue exact reference | KEEP CORE POINTER | Enables recovery/correlation without making Issue canonical authority. |
+| Final PR closing keyword | KEEP SUPPORT | Use only on final scope-completing default-branch PR; intermediate PRs reference without closing. |
+| Post-merge Issue readback | KEEP CORE CLOSE CHECK | Verify expected closed/open state; explicit close only after durable GREEN completion when needed. |
+
 ## Matrix conclusion
 
-All currently identified V1 production surfaces now have one explicit V2 disposition.
+All currently identified V1 production surfaces and the newly accepted GitHub Issue tracking behavior have an explicit V2 disposition.
 
-The **only unresolved salvage decision** is separate OpenSpec granularity:
-- mandatory separate OpenSpec for every implementation change; versus
-- every change gets a precise Task Card/fix contract, while separate OpenSpec is created only when it materially adds a technical behavior/design contract.
-
-Recommendation: the second option, to preserve rigor without duplicating simple contracts or wasting Codex context.
+No unresolved V1-salvage decision remains. Selective separate OpenSpec/technical-contract creation is accepted to preserve rigor without duplicating simple Task Card contracts or wasting Codex context.
