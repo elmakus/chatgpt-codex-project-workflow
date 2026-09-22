@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "ac424265ab2897f4d647a0fd3932ce0aa18f4146"
+  head: "300c83cdcf5547f8f8a3353c24cf0f16bb15a211"
 
 research_obligation: null
 
@@ -63,7 +63,7 @@ cards:
     title: "Implement minimal durable authority/state envelope"
     milestone: "M01"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: null
     depends_on:
       - "M01-T02"
