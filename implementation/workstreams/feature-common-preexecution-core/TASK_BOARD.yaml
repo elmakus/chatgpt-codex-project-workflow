@@ -28,7 +28,7 @@ milestones:
     execution_status: in_progress
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m02--intake-through-definition-and-premium-planning"
     checkpoint: "8c955d1d9e8ba9396582753814d5b6c3283dde01"
-    implementation_head: "f978dda304ac9de8fe4806f6f31c530cc586e70e"
+    implementation_head: "6ee800aa1a43b96b3cfb9891031b72d99f21f983"
     handoff: null
     acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M02-T05-cumulative-acceptance-2026-09-22.md"
     review_state: null
@@ -207,10 +207,10 @@ cards:
       - "M02-T04"
     openspec_change: null
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M02-T05.md"
-    review_state: red
-    review_subject: "elmakus/project_workflow_v2@commit:f978dda304ac9de8fe4806f6f31c530cc586e70e|tree:5a7557e9c7f6042af8f97a21dbce4ecd5314b49d|M02-T05-card-blob:6d11a5f70d393de21e5e8b5b09c52c50c64c08b4|acceptance-evidence-blob:27b3208111bfd65f62d45ce1f8e5f0a0293d3079"
-    review_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M02-T05-independent-review-R01-2026-09-22.md"
-    result_commit: "f978dda304ac9de8fe4806f6f31c530cc586e70e"
+    review_state: pending
+    review_subject: "elmakus/project_workflow_v2@commit:6ee800aa1a43b96b3cfb9891031b72d99f21f983|tree:8514a0ac31831a1419f16138ad4e6e99b1e2c840|M02-T05-card-blob:6d11a5f70d393de21e5e8b5b09c52c50c64c08b4|acceptance-evidence-blob:eed718f4821a4dcc4aba711ec26b4bd0e0674368"
+    review_evidence: null
+    result_commit: "6ee800aa1a43b96b3cfb9891031b72d99f21f983"
     result_pr: 2
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M02-T05-cumulative-acceptance-2026-09-22.md"
-    tests_summary: "GREEN deterministic acceptance / independent review pending: target f978dda304ac9de8fe4806f6f31c530cc586e70e tree 5a7557e9c7f6042af8f97a21dbce4ecd5314b49d; sh scripts/test.sh PASS; unittest discovery 47/47 PASS; compileall + layout/drop + diff/check + clean tree PASS; draft PR #2 exact head/base mergeable. GitHub Actions run 35718260814 reports RED with no job steps/log available; no CI PASS claimed and anomaly is included in review evidence."
+    tests_summary: "GREEN corrected acceptance / fresh review pending: target 6ee800aa1a43b96b3cfb9891031b72d99f21f983 tree 8514a0ac31831a1419f16138ad4e6e99b1e2c840; R01 RED preserved; conflict accounting + material replan A/B/review/C + editorial exemption corrections applied; sh scripts/test.sh PASS; state 23/23; router 26/26; unittest discovery 49/49; compileall + layout/drop + diff/check + clean tree PASS; Actions 35721133467 SUCCESS; draft PR #2 exact head/base mergeable."
