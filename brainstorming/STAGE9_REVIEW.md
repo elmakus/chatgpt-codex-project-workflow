@@ -2,7 +2,7 @@
 
 Date: 2026-09-21
 Scope: common-preexecution-core@R1
-Status: active analysis
+Status: resolved
 Production authority: none
 Baseline: current main fixed-policy review contracts + live review evidence J/K/L/M
 
@@ -263,3 +263,31 @@ Target review frequency therefore remains proportional:
 - ordinary Cards: no automatic independent review;
 - material/high-risk/checkpoint Cards: independent review when classified;
 - normal behavioral/code workstream: at least one final-integration independent review unless exact stronger coverage is proven.
+
+
+## Stage 9 completion audit
+
+After grilling and comparison with current fixed-policy contracts:
+
+- one generic append-only review-attempt model is sufficient for Card, milestone and final-integration review;
+- REQUIRED and activated RECOMMENDED use identical blocking/independence mechanics;
+- review remains proportional: no automatic independent review for every Card;
+- normal behavioral/code workstreams retain at least one final-integration independent review unless exact stronger coverage is proven;
+- independence is exact-subject semantic independence, not product/session identity;
+- a RED reviewer may later coordinate bounded correction after leaving reviewer role, but cannot independently review a changed subject it materially produced/repaired;
+- GREEN is durable and reusable across contexts/runtimes without replay;
+- exact stronger GREEN coverage may satisfy a later final-integration gate when subject + acceptance coverage are proven;
+- canonical evidence remains semantic-only;
+- authoritative refresh + CAS protect review routing/publication;
+- Stage-8 serial Project-Card execution removes old Codex batch-review deferral requirements;
+- high-risk external writes may be reviewed at the last useful reversible checkpoint, followed by write + readback, without inventing a user-approval gate.
+
+Counterfactual challenge:
+- keeping separate mutable final-integration review state would duplicate lifecycle semantics without adding correctness;
+- keeping Tester/fresh-ChatGPT identity in canonical review state would couple semantics to runtime realization;
+- automatically reviewing every Card would add cost without corresponding risk evidence;
+- allowing a correction producer to review its own changed subject would violate the validated independence invariant.
+
+No remaining Stage-9 semantic decision is open.
+
+Stage 9 is resolved at Brainstorming level.
