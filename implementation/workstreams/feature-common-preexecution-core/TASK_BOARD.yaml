@@ -147,7 +147,7 @@ cards:
     title: "Adaptive Brainstorming, Research and Definition"
     milestone: "M02"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M02-T01"
@@ -156,16 +156,16 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "17f30348618319df04b6c4bf785d425584e8cf96"
+    result_pr: 2
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M02-T02-brainstorm-research-definition-2026-09-22.md"
+    tests_summary: "GREEN exact checkout: sh scripts/test.sh PASS; state 17/17; router 17/17; package probe/baseline PASS. Draft-PR Actions run 35717491840 is RED with no steps/log available; no CI PASS claimed and anomaly remains for T05."
 
   - id: "M02-T03"
     title: "Strategic Planning, Plan Review and premium A/B/C"
     milestone: "M02"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: null
     depends_on:
       - "M02-T02"
