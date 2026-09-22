@@ -253,6 +253,44 @@ A qualified micro-fix may then bypass full Project Definition / Strategic Planni
 
 If diagnosis exposes material product/architecture decisions or meaningful alternative outcomes, the same adaptive Brainstorming simply continues rather than silently choosing a solution.
 
+## GitHub Issue tracking for managed `#issue` / `#feature`
+
+For repositories where GitHub Issues capability is available and Issues are enabled, `#issue` and `#feature` use an official GitHub Issue as the human-visible managed-change tracker.
+
+This tracker is **not** Project Workflow authority and does not replace the workstream manifest, Task Board, accepted Definition/plan or durable evidence.
+
+### Intake behavior
+
+Before creating a new GitHub Issue:
+- search/recover an existing exact workstream and related open GitHub Issue when one already represents the same managed change;
+- do not create a duplicate merely because the user repeated `#issue` or `#feature`.
+
+When no matching tracker exists:
+- `#issue` may create an issue early from the reported symptom/problem while diagnosis is still pending;
+- `#feature` may create an issue early from the requested goal while discovery/Brainstorming is still pending;
+- the initial tracker may explicitly say that diagnosis/discovery and final acceptance are not yet settled;
+- later diagnosis/Brainstorming/Definition may update the issue summary/body so it reflects the accepted target without making the GitHub Issue a second authority source.
+
+Creating/updating the tracker is bookkeeping and does **not** authorize implementation. In particular, the `#issue` user-alignment stop remains mandatory before implementation mutation.
+
+The durable workstream should retain the exact GitHub Issue number/URL (exact V2 schema deferred to Definition) so recovery can reconnect tracker, branch/workstream and final PR.
+
+### PR lifecycle
+
+Intermediate PRs may reference the tracker without closing it.
+
+The PR that actually completes the full accepted issue/feature scope should carry a GitHub closing keyword such as `Closes #<n>` or `Fixes #<n>` when it targets the repository default branch and repository auto-closing behavior is enabled.
+
+For stacked/multi-PR work:
+- do not close the tracker on an intermediate child/parent PR that does not complete the accepted scope;
+- close only on the final integration that satisfies the tracker acceptance surface.
+
+After merge/publication, Project Workflow readback verifies both the final repository state and expected GitHub Issue state.
+
+If auto-close did not occur or no closing-eligible PR exists, Close may explicitly close the GitHub Issue only after durable acceptance/integration is GREEN.
+
+The same lifecycle applies to both bugs and features. GitHub Issue kind/labels may distinguish them, but Project Workflow semantics come from the workstream kind and accepted authority, not from a label.
+
 ## Execution Prep
 
 Execution Prep:
