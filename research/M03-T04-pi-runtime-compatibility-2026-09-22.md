@@ -8,8 +8,8 @@ Status: `complete`
 Origin role: `execution_resolution`
 Origin subject: `M03-T04@implementation/workstreams/feature-common-preexecution-core/cards/M03-T04.md`
 Return target: `execution:M03-T04@implementation/workstreams/feature-common-preexecution-core/cards/M03-T04.md`
-Return reconciliation: `pending`
-Return reconciliation result: `none`
+Return reconciliation: `applied`
+Return reconciliation result: `implementation/workstreams/feature-common-preexecution-core/evidence/M03-T04-pi-runtime-compatibility-reconciliation-2026-09-22.md; implementation/workstreams/feature-common-preexecution-core/TASK_BOARD.yaml#M03-T04`
 
 ## Scope and authority boundary
 
