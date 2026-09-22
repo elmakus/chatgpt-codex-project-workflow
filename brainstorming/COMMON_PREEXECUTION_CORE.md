@@ -3,7 +3,7 @@
 Date: `2026-09-21`
 Scope ID: `common-preexecution-core`
 Revision: `R1`
-Status: `tentative`
+Status: `ready_for_definition`
 
 ## Problem / goal
 
@@ -2912,11 +2912,11 @@ Deferred N topology tests are post-implementation V2 validation, not missing Bra
 
 Stage-by-stage reconciliation is still active. The cross-cutting audit is provisional architecture evidence, not Brainstorming completion authority.
 
-Current focus: final cross-stage reconciliation. Stages 1–11 and the V2 delivery/bootstrap surface have been compared/grilled at Brainstorming level.
+Current focus: Brainstorming completion reached; explicit user promotion to Project Definition is pending.
 
 ## Next bounded work
 
-Perform final cross-stage reconciliation and grill only remaining contradictions/material choices before considering explicit Brainstorming -> Project Definition promotion.
+Do not enter Project Definition until the user explicitly promotes the completed Brainstorming subject. Use `brainstorming/FINAL_V2_RECONCILIATION.md` as the clean Definition input and treat earlier superseded exploration only as historical evidence.
 
 Do not return to the Definition promotion gate until the remaining lifecycle stages have been reviewed individually and then reconciled cross-cutting.
 
@@ -2930,6 +2930,6 @@ Do not return to the Definition promotion gate until the remaining lifecycle sta
 - Definition promotion subject remains `none`.
 - Deferred N remains a V2 implementation-validation obligation, not a Brainstorming blocker.
 - No production workflow module has been changed.
-- Current phase/action: final Brainstorming cross-stage reconciliation.
+- Current phase/action: Brainstorming complete; explicit Project Definition promotion pending.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user authorization may promote the current exploratory scope into Definition.
