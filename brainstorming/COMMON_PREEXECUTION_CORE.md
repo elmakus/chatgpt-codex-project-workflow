@@ -2711,7 +2711,7 @@ Do not use the older experimental sections as the current V2 target.
 - difficult-to-reverse external writes are reviewed at the last useful reversible checkpoint when practical, followed by write + readback;
 - this review boundary does not invent a separate user-approval gate.
 
-### Stage 9 — Independent Implementation Review — active analysis
+### Stage 9 — Independent Implementation Review — resolved
 
 Detailed stage record:
 
@@ -2727,6 +2727,20 @@ Current baseline:
 - RED routes bounded correction without automatic user stop;
 - fresh-context and delegated-review realizations are two ways to satisfy the same common independence obligation;
 - old parallel-review deferral is superseded by the Stage-8 serial Project-Card decision.
+
+### Stage 10 — Close / Publication / Integration — active analysis
+
+Detailed stage record:
+
+`brainstorming/STAGE10_CLOSE.md`
+
+Current baseline:
+- integration-target refresh and affected verification are common correctness;
+- final-integration review uses the Stage-9 generic attempt model after refresh;
+- merge/publication requires readback;
+- workstream closure must remain recoverable after source-branch disappearance;
+- deterministic closure bookkeeping may be distinct from behavioral implementation;
+- branch cleanup realization is the main remaining ChatGPT/Codex divergence to grill.
 
 ## Current checkpoint / handoff
 
@@ -2748,11 +2762,11 @@ Deferred N topology tests are post-implementation V2 validation, not missing Bra
 
 Stage-by-stage reconciliation is still active. The cross-cutting audit is provisional architecture evidence, not Brainstorming completion authority.
 
-Current focus: Stage 9 — Independent Implementation Review. Stages 7 and 8 are resolved after grilling.
+Current focus: Stage 10 — Close / Publication / Integration. Stages 7, 8 and 9 are resolved after grilling.
 
 ## Next bounded work
 
-Consolidate Stage 9 — Independent Implementation Review from current ChatGPT-only/Codex-only contracts and live review evidence, then grill only remaining material choices.
+Continue Stage 10 — Close / Publication / Integration grilling, focusing on durable target-side closure and branch-cleanup fallback.
 
 Do not return to the Definition promotion gate until the remaining lifecycle stages have been reviewed individually and then reconciled cross-cutting.
 
@@ -2766,6 +2780,6 @@ Do not return to the Definition promotion gate until the remaining lifecycle sta
 - Definition promotion subject remains `none`.
 - Deferred N remains a V2 implementation-validation obligation, not a Brainstorming blocker.
 - No production workflow module has been changed.
-- Current phase/action: Stage 9 — Independent Implementation Review analysis.
+- Current phase/action: Stage 10 — Close / Publication / Integration analysis.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user authorization may promote the current exploratory scope into Definition.
