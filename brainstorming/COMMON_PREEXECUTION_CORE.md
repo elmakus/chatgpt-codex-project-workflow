@@ -2814,6 +2814,22 @@ Current baseline:
 - context-health is runtime/surface hygiene, not common project semantics;
 - premium stops A/B/C are deliberate explicit exceptions and must survive Recovery/rerouting.
 
+### Cross-cutting V2 delivery/bootstrap — active analysis
+
+Detailed record:
+
+`brainstorming/V2_DELIVERY_BOOTSTRAP.md`
+
+User direction:
+- one common V2 semantic workflow;
+- normal ChatGPT receives a small Project Instructions bootstrap and reads workflow authority from the GitHub workflow repository;
+- Codex receives Project Workflow through the existing plugin/Skill packaging and reads bundled workflow authority from `PLUGIN_ROOT`;
+- Codex should not enter the remote workflow repository merely to obtain policy during ordinary operation;
+- do not make common semantics infer product identity;
+- project durable state should declare the common V2 contract, not `chatgpt_only/codex_only` routing.
+
+Open bootstrap issue: prevent silent version skew between ChatGPT's repository source and Codex's installed plugin bundle.
+
 ## Current checkpoint / handoff
 
 The current compact handoff is:
