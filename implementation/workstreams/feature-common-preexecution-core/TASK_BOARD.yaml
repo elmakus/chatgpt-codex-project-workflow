@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "300c83cdcf5547f8f8a3353c24cf0f16bb15a211"
+  head: "2730d49777ab1acd6602fd76b01286455f514079"
 
 research_obligation: null
 
@@ -63,8 +63,8 @@ cards:
     title: "Implement minimal durable authority/state envelope"
     milestone: "M01"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on:
       - "M01-T02"
     openspec_change: null
