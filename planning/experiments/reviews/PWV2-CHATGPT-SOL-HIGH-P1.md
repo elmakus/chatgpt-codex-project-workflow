@@ -4,7 +4,7 @@ Date: 2026-09-22
 Experiment: `PWV2-PLAN-AB-CHATGPT-SOL-HIGH`
 Plan revision: `PWV2-CHATGPT-SOL-HIGH-P1`
 Review requirement: `REQUIRED_FOR_EXPERIMENT`
-Review state: `pending`
+Review state: `in_progress`
 Review subject: `planning/experiments/PROJECT_WORKFLOW_V2_CHATGPT_SOL_HIGH_MASTER_PLAN.md@blob:3b26780bbe29d43ac2b8ae7c1ffcd913963587fd`
 Review evidence: `pending — no independent verdict issued`
 
