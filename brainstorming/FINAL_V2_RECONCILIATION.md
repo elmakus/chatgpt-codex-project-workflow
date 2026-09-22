@@ -155,7 +155,7 @@ V2 preserves and strengthens the V1 external-prior-art rule.
 
 Research and diagnosis are **not** limited to official documentation or the project's current runtime/source.
 
-Use the smallest evidence path sufficient for the exact question, but when solution discovery, diagnosis, compatibility, failure modes or implementation strategy could materially benefit from existing practice, actively inspect relevant prior art across multiple source classes, including as applicable:
+Use the smallest evidence path sufficient for the exact question, but every Research/diagnosis performs a proportional prior-art check across relevant source classes. The check is always present; only its depth varies with the problem. Relevant source classes include, as applicable:
 - official/upstream documentation and source;
 - the project's actual code/runtime/configuration/evidence;
 - upstream GitHub issues, discussions and public issue trackers;
@@ -176,7 +176,7 @@ Source weight remains explicit:
 - materially conflicting evidence must be surfaced, not silently averaged away;
 - anecdotal/community findings should be checked against stronger evidence when practical.
 
-This is proportional, not an exhaustive web crawl. Stop when enough source-grounded evidence exists to answer the exact question and compare meaningful alternatives.
+This is mandatory-but-proportional, not an exhaustive web crawl. A trivial/local problem may need only a very small prior-art check; a complex or ecosystem-sensitive problem may require a broader one. Stop when enough source-grounded evidence exists to answer the exact question and compare meaningful alternatives.
 
 During adaptive Brainstorming, agent-findable facts remain agent-owned: use Research/prior-art investigation before asking the user to decide around facts that can be established independently.
 
