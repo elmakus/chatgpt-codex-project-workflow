@@ -2695,6 +2695,14 @@ They are superseded by the later explicit decisions recorded under Stage 7/8:
 
 Do not use the older experimental sections as the current V2 target.
 
+### Stage 9 review decisions — accepted
+
+- activated `RECOMMENDED` review is a real blocking gate just like `REQUIRED`;
+- reviewer that produced RED may later coordinate bounded correction after leaving reviewer role;
+- if that context materially produces/repairs the changed subject, it cannot independently review that changed subject;
+- Card, milestone and workstream final-integration review use one generic append-only review-attempt lifecycle;
+- canonical review evidence is semantic-only; runtime telemetry remains runtime-owned.
+
 ### Stage 9 — Independent Implementation Review — active analysis
 
 Detailed stage record:
