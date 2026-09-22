@@ -309,10 +309,10 @@ cards:
       - "M03-T04"
     openspec_change: null
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M03-T05.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "elmakus/project_workflow_v2@commit:1d9aa10721d7eb5764dec9bfae857715bd555a34|tree:4402bbb83461564717ced5ddcdf96eb6ba31e9e8|M03-T05-card-blob:4043f600450f0754af0874ea64ee104edc263ee6|acceptance-evidence-blob:9c671b9267280e1cb5c385fb6ba5260231d59a8c"
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "1d9aa10721d7eb5764dec9bfae857715bd555a34"
+    result_pr: 3
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M03-T05-cumulative-acceptance-2026-09-22.md"
+    tests_summary: "GREEN pre-review: target 1d9aa10721d7eb5764dec9bfae857715bd555a34/tree 4402bbb83461564717ced5ddcdf96eb6ba31e9e8; Actions 35751124535 PASS; state 27/27; router 38/38; execution 4/4; review and recovery suites PASS; isolated full unittest 72/72; compileall + diff/check + clean tree PASS; cumulative 26-file M03 surface remains runtime-neutral; Pi stays compatibility candidate and Codex delivery authority unchanged."
