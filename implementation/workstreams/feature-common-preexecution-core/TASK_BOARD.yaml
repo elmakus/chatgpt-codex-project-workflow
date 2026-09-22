@@ -249,7 +249,7 @@ cards:
     title: "Runtime-neutral execution, delegation and result reconciliation"
     milestone: "M03"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on:
       - "M03-T01"
