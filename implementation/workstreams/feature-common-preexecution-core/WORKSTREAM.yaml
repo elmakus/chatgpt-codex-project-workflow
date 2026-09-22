@@ -19,7 +19,7 @@ routing:
   research_obligation: null
   plan_review: null
 
-task_board: null
+task_board: "implementation/workstreams/feature-common-preexecution-core/TASK_BOARD.yaml"
 
 authority:
   requirements: "requirements/PROJECT_WORKFLOW_V2.md"
