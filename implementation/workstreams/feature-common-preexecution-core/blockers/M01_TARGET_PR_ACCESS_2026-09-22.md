@@ -41,6 +41,19 @@ The connected GitHub integration then retried creation of `feat/pwv2-m01-foundat
 
 No target branch, reviewed subject, PR or `main` state was mutated by the failed attempt. Because the exact reviewed head and target baseline are unchanged, this retry does not itself invalidate M01-T05 R01 GREEN.
 
+## Diagnostic refinement — 2026-09-22
+
+The retry was narrowed to a repository-specific Pull Requests API authorization failure rather than a general GitHub/ChatGPT write outage:
+
+- the ChatGPT GitHub App installation for account `elmakus` reports `repository_selection: all`;
+- `elmakus/project_workflow_v2` is listed by that installation and repository metadata reports the user has admin/push access;
+- ChatGPT's GitHub app-specific permission mode is `Allow all actions`;
+- on private `elmakus/newproject-skill`, a deliberately invalid `create_pull_request` probe reached GitHub endpoint validation and returned HTTP 422 `head: invalid`, proving the same connector currently reaches the PR-create endpoint with sufficient authorization there;
+- the same deliberately invalid PR-create probe against `elmakus/project_workflow_v2` returned HTTP 403 `Resource not accessible by integration` before head validation;
+- non-mutating write-authority probes against `project_workflow_v2` reached normal GitHub validation: recreating existing branch `main` returned 422 `Reference already exists`, and creating existing `README.md` without its SHA returned 422 `sha wasn't supplied`.
+
+Therefore the connector is not generally read-only and the target repository is not absent from the installation. The failure is isolated to the Pull Requests write authorization path for this repository. GitHub documents PR creation as requiring repository permission `Pull requests: write`; the connector does not expose the response's accepted-permission headers, so the exact internal token/grant mismatch cannot be read directly. Given that this is a newly created repository while older private repositories pass the same PR endpoint authorization check, the leading diagnosis is stale or inconsistent per-repository GitHub App token/grant propagation or connector credential selection for the new repository, not a Project Workflow or branch-state defect.
+
 ## Recovery / user action
 
 Resolve exactly one of:
