@@ -386,7 +386,7 @@ cards:
     title: "Trigger-only fork lineage and end-of-scope semantics"
     milestone: "M04"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: chatgpt
     depends_on:
       - "M04-T03"
