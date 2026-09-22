@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "34cbf4058245f00300c890050ed86c955634aad5"
+  head: "901baa60224a216a5264a0897e71876e552f1b7b"
 
 research_obligation: null
 
@@ -16,7 +16,7 @@ milestones:
     execution_status: in_progress
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m01--clean-foundation-durable-envelope-and-early-delivery-feasibility"
     checkpoint: null
-    implementation_head: "24bf91ce25f4a06a59b1cc674078094e69f57a35"
+    implementation_head: "f1f4ed87875877529da6dc954e785d6373de7930"
     handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/EXECUTION_PREP_ENTRY_2026-09-22.md"
     acceptance_evidence: null
     review_state: null
@@ -81,7 +81,7 @@ cards:
     title: "Implement small obligation router and progressive-disclosure boundary"
     milestone: "M01"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M01-T03"
@@ -90,10 +90,10 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
+    result_commit: "f1f4ed87875877529da6dc954e785d6373de7930"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M01-T04-router-2026-09-22.md"
+    tests_summary: "GREEN: sh scripts/test.sh PASS; T02 probe PASS; T03 state suite 8/8 PASS; T04 production-router suite 8/8 PASS + CLI smoke; exact progressive read-set/runtime-neutral routing/invalid-binding recovery/unimplemented-route fail-closed verified; GitHub readback confirms target f1f4ed87875877529da6dc954e785d6373de7930. No CI PASS claimed because combined status had no records."
 
   - id: "M01-T05"
     title: "Complete cumulative M01 deterministic validation and freeze integrated acceptance subject"
