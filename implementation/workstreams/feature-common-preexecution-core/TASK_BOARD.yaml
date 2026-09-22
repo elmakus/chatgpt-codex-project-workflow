@@ -13,7 +13,7 @@ research_obligation: null
 milestones:
   M01:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: blocked
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m01--clean-foundation-durable-envelope-and-early-delivery-feasibility"
     checkpoint: "ecd1fbe8c56b5c0ccc469758dc114be4bf6e8bda"
     implementation_head: "f1f4ed87875877529da6dc954e785d6373de7930"
