@@ -6,7 +6,7 @@ current_milestone: "M03"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "5a986d803f367e48cea8d61c270a56780977545e"
+  head: "1d9aa10721d7eb5764dec9bfae857715bd555a34"
 
 research_obligation: null
 
@@ -285,7 +285,7 @@ cards:
     title: "Execution/review recovery and deterministic continuation"
     milestone: "M03"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M03-T03"
@@ -294,10 +294,10 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "1d9aa10721d7eb5764dec9bfae857715bd555a34"
+    result_pr: 3
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M03-T04-recovery-continuation-2026-09-22.md"
+    tests_summary: "GREEN: recovered existing T04 durable implementation without replay; current Pi Research reconciled/consumed with no Definition/Plan change; target 1d9aa10721d7eb5764dec9bfae857715bd555a34/tree 4402bbb83461564717ced5ddcdf96eb6ba31e9e8; Actions 35751124535 PASS; state 27/27; router 38/38; execution 4/4; review + recovery 2/2 suites PASS; PR #3 exact head/base, draft/open/mergeable."
 
   - id: "M03-T05"
     title: "Cumulative M03 acceptance and immutable review freeze"
