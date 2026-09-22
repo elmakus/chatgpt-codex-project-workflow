@@ -6,7 +6,7 @@ Experiment ID: `PWV2-PLAN-AB-CHATGPT-SOL-HIGH`
 
 ## Purpose
 
-Produce an independent Strategic Planning artifact for Project Workflow V2 using ChatGPT GPT-5.6 Sol High, from the same frozen Definition authority available to the Astra XHigh planner, without allowing either planner to read, overwrite or influence the other's plan.
+Produce an independent Strategic Planning artifact for Project Workflow V2 using **normal ChatGPT (not Codex), model GPT-5.6 Sol High**, from the same frozen Definition authority available to the Astra XHigh planner, without allowing either planner to read, overwrite or influence the other's plan.
 
 This experiment is comparison-only. It does not replace or mutate the canonical Project Workflow workstream state.
 
@@ -20,6 +20,9 @@ Project/Definition checkpoint:
 Workflow-process authority for fair A/B comparison:
 - repository: `elmakus/chatgpt-codex-project-workflow`
 - V1 workflow ref observed at experiment creation: `7aa7512ead67a86256089d1af0171e2e655e700d`
+- execution surface: **normal ChatGPT**
+- V1 route: **`chatgpt_only`**
+- do not select or use `codex_only`, `mixed`, Codex execution adapters, Codex orchestration, or Codex worker semantics for this experiment.
 
 Canonical V2 Definition inputs on this experiment branch:
 - `requirements/PROJECT_WORKFLOW_V2.md`
@@ -38,6 +41,8 @@ Target production repository described by the authority:
 - `elmakus/project_workflow_v2`
 
 ## Isolation rules
+
+The ChatGPT planner MUST use the normal-ChatGPT V1 planning path and MUST preserve `execution_policy: chatgpt_only` for this experiment.
 
 The ChatGPT planner MUST NOT:
 
