@@ -64,6 +64,22 @@ Do not stop merely because:
 - current context could be cleaner;
 - another runtime/model might also be capable.
 
+## Issue diagnosis -> implementation alignment stop
+
+For a newly entered `#issue`, diagnosis does not authorize implementation.
+
+After read-only diagnosis is sufficient to propose the intended repair, the router must stop for at least one user-facing adaptive-Brainstorming alignment round before any implementation mutation, including a prospective micro-fix.
+
+The user may:
+- authorize the proposed repair;
+- ask for safety/impact explanation;
+- refine the desired outcome;
+- choose among material alternatives.
+
+Only a subsequent user response accepting/authorizing the bounded repair may unlock the micro-fix Execution Prep path.
+
+This is an intentional human-control boundary, distinct from premium-model stops A/B/C.
+
 ## Premium-model hard stops — deliberate exception
 
 The user explicitly requires three human-facing hard stops around the highest-leverage planning block:
