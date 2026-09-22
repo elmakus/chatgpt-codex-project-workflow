@@ -481,3 +481,23 @@ cards:
     result_pr: null
     evidence: null
     tests_summary: null
+
+  - id: "M05-T04"
+    title: "Real ChatGPT/Codex delivery checkpoints L01-L05"
+    milestone: "M05"
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on:
+      - "M05-T01"
+      - "M05-T02"
+      - "M05-T03"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M05-T04.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
