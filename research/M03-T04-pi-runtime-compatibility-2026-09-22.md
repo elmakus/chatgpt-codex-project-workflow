@@ -7,7 +7,7 @@ Research ID: `PWV2-M03-PI-R1`
 Status: `complete`
 Origin role: `execution_resolution`
 Origin subject: `M03-T04@implementation/workstreams/feature-common-preexecution-core/cards/M03-T04.md`
-Return target: `execution_resolution:M03-T04@implementation/workstreams/feature-common-preexecution-core/cards/M03-T04.md`
+Return target: `execution:M03-T04@implementation/workstreams/feature-common-preexecution-core/cards/M03-T04.md`
 Return reconciliation: `pending`
 Return reconciliation result: `none`
 
@@ -344,6 +344,10 @@ A Pi compatibility qualification should prove, without replacing existing Codex 
 14. the same semantic run is controllable through ordinary Pi and, later, RPC/SDK/web host without changing PW durable state.
 
 These should initially be recorded as Pi compatibility evidence, not retroactively substituted for existing L01-L09/Codex acceptance.
+
+## Execution-resolution classification
+
+The findings do not alter accepted Definition authority or milestone strategy. The exact final owner is **Execution for M03-T04**: resume the existing runtime-neutral recovery Card, with this Research retained as supporting evidence. No replan or Definition correction is authorized or required.
 
 ## Conclusion
 
