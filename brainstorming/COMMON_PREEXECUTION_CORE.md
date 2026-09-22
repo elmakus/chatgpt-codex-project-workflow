@@ -2888,9 +2888,23 @@ User accepted:
 
 2. Every new or materially revised Master Plan uses Independent Plan Review. `none` remains only for genuinely mechanical/editorial changes that do not alter execution strategy, milestone structure, requirement coverage or accepted gates.
 
-3. A qualified micro-fix that legitimately bypasses Master Planning also bypasses the premium planning block. It may route proportionally through Intake -> Execution Prep -> Execution -> Review -> Close without Strategic Planning/Plan Review premium stops.
+3. A qualified micro-fix that legitimately bypasses Master Planning also bypasses the premium planning block, but only after the mandatory issue diagnosis + user-alignment Brainstorming boundary. Its proportional path is Issue Intake/Diagnosis -> user alignment -> Execution Prep -> Execution -> Review -> Close.
 
 4. Current runtime/product identity is not durable Project Workflow state. ChatGPT and Codex may continue the same workstream across durable boundaries without state conversion or persistent `runtime: chatgpt|codex` fields. Runtime-specific realization data remains runtime-owned and non-canonical.
+
+### Issue intake human-control boundary — accepted
+
+User superseded the earlier direct micro-fix fast-path behavior:
+
+- `#issue` authorizes diagnosis/intake, not implementation;
+- after enough read-only diagnosis exists to propose a repair, there is a mandatory adaptive-Brainstorming user-alignment stop before any implementation mutation;
+- this boundary applies even to an apparently obvious micro-fix;
+- the agent presents diagnosis, proposed end state, material safety/side-effect considerations and a recommendation;
+- at least one subsequent user response is required to authorize/refine the repair;
+- only after that alignment may a qualified micro-fix route directly to Execution Prep and bypass full Definition/Strategic Planning;
+- the original `#issue` message by itself must never trigger diagnosis -> repair -> merge in one autonomous continuation.
+
+This supersedes the earlier shorthand `Intake -> Execution Prep -> Execution -> Review -> Close` for micro-fixes; the V2 path is `Issue Intake/Diagnosis -> user-alignment Brainstorming -> authorized micro-fix Execution Prep -> Execution -> Review -> Close`.
 
 ## Current checkpoint / handoff
 
