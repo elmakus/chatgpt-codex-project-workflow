@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "ac96c5ea3c8b52dd4c19fbb3693a36e2cb73c7ad"
+  head: "12eab1afbcd928932b7874adf66ffa6f741fcd80"
 
 research_obligation: null
 
@@ -55,6 +55,18 @@ milestones:
     implementation_head: "013c4b405875a356f863b9b381d60faa0ad8935a"
     handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M04_HANDOFF.md"
     acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M04-T05-cumulative-acceptance-R02-2026-09-22.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M05:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m05--thin-chatgptcodex-delivery-with-verified-update-propagation"
+    checkpoint: "674fb970913c393cfc6ed82a5ef67dda8b8713b7"
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
     review_state: null
     review_subject: null
     review_evidence: null
