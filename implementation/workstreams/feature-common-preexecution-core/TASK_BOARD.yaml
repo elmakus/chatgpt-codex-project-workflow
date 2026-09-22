@@ -6,17 +6,17 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "2da8e0c0f7eedb1d59848d07801b7a7c63859048"
+  head: "a72e90f6404265ab1b40d250fc81f6f46dcb0b65"
 
 research_obligation: null
 
 milestones:
   M01:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m01--clean-foundation-durable-envelope-and-early-delivery-feasibility"
     checkpoint: null
-    implementation_head: null
+    implementation_head: "2ca48653b19e5641cbc2d0edb7ba871b84aff99d"
     handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/EXECUTION_PREP_ENTRY_2026-09-22.md"
     acceptance_evidence: null
     review_state: null
@@ -28,18 +28,18 @@ cards:
     title: "Initialize clean V2 target and construction custody baseline"
     milestone: "M01"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: done
+    executor: chatgpt
     depends_on: []
     openspec_change: null
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M01-T01.md"
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
+    result_commit: "2ca48653b19e5641cbc2d0edb7ba871b84aff99d"
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M01-T01-target-baseline-2026-09-22.md"
+    tests_summary: "GREEN: target main empty-root 3b3e1198bdd7f7f145fc1d05bbd89f1a4a62a46d; target feat/pwv2-m01-foundation baseline 2ca48653b19e5641cbc2d0edb7ba871b84aff99d; sh scripts/test.sh PASS; GitHub readback confirms private repo, empty main tree, expected baseline files and no competing construction Task Board."
 
   - id: "M01-T02"
     title: "Prove isolated pw / project_workflow_v2 delivery feasibility"
