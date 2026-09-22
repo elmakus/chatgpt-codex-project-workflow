@@ -2825,6 +2825,13 @@ Current baseline:
 - no project-level version-pinning machinery is added now;
 - human phrase `project_workflow_v2` denotes the same semantic workflow on both surfaces, while each surface resolves its own instruction source.
 
+### V2 bootstrap provisioning boundary — accepted
+
+- repository-local plugin/MCP/Skill provisioning belongs to external `newproject-skill`, not Project Workflow V2;
+- Codex plugin namespace is `pw`, V2 Skill target name is `project_workflow_v2`, explicit entry is `$pw:project_workflow_v2`;
+- explicit Skill invocation is a convenient entry/recovery command, not required on every prompt after bootstrap is active;
+- V2 project state removes durable `execution_policy: chatgpt_only | codex_only`.
+
 ### Cross-cutting V2 delivery/bootstrap — active analysis
 
 Detailed record:
