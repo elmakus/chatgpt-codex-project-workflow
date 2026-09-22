@@ -37,12 +37,12 @@ milestones:
 
   M03:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m03--jit-execution-delegated-results-and-common-independent-review"
-    checkpoint: "95e4fb5b8b31a2d4a456171121d9965ac55d4d9a"
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    checkpoint: "007defc1738182787c07971fed5a40fa7c30a2de"
+    implementation_head: "0545cb38afa05cf82a536360a876583959dc3bf9"
+    handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M03_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M03-T05-cumulative-acceptance-2026-09-22.md"
     review_state: null
     review_subject: null
     review_evidence: null
