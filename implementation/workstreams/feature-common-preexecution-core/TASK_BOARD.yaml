@@ -368,7 +368,7 @@ cards:
     title: "Target-side terminal recovery and cleanup"
     milestone: "M04"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M04-T02"
@@ -377,10 +377,10 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "cc54b6d590474ebe32c4ade2b2879897f58c99b0"
+    result_pr: 4
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M04-T03-terminal-recovery-2026-09-22.md"
+    tests_summary: "GREEN: exact target cc54b6d590474ebe32c4ade2b2879897f58c99b0/tree da0a47f75b59bbafdb205cf15cd0365c085b51f2; Actions 35764621917 PASS; close 19/19 plus state 28/28, router 38/38, execution 4/4, review 1/1, recovery 2/2; compileall + diff/check PASS; A10 target-side recovery/cleanup fixtures GREEN."
 
   - id: "M04-T04"
     title: "Trigger-only fork lineage and end-of-scope semantics"
