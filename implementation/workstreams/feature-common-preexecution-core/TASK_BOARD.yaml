@@ -165,7 +165,7 @@ cards:
     title: "Strategic Planning, Plan Review and premium A/B/C"
     milestone: "M02"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M02-T02"
@@ -174,16 +174,16 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "bfc1cce52e012440ace9b8bf709ac85fd7e5a869"
+    result_pr: 2
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M02-T03-premium-planning-2026-09-22.md"
+    tests_summary: "GREEN exact checkout: sh scripts/test.sh PASS; state 20/20; router 22/22; package probe/baseline PASS. Draft-PR Actions run 35717924234 remains RED with no steps/log; no CI PASS claimed."
 
   - id: "M02-T04"
     title: "GitHub Issue tracker recovery and correlation"
     milestone: "M02"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: null
     depends_on:
       - "M02-T03"
