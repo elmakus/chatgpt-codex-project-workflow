@@ -1,0 +1,145 @@
+# Stage 11 Brainstorming — Router / Automatic Continuation / Human Stops
+
+Date: 2026-09-22
+Scope: common-preexecution-core@R1
+Status: active analysis
+Production authority: none
+Baseline: current main ChatGPT-only/Codex-only routers + common user-stop contract + resolved Stages 1-10
+
+## Purpose
+
+Define one common continuation/router behavior after each durable workflow boundary.
+
+Target property:
+
+> Continue automatically whenever the next legal obligation is deterministic and already authorized. Stop only for a real human-owned boundary or the explicit premium-model handoff boundaries accepted in this Brainstorming.
+
+The router chooses semantic obligations. Runtime-specific worker/session/context realization must not become a second project state machine.
+
+## Common routing priority
+
+Candidate high-level ordering:
+
+1. recover authoritative durable state before routing when context/runtime may be stale;
+2. preserve/recover the exact currently active obligation before selecting unrelated work;
+3. satisfy pending Research/review/correction/finalization obligations before later implementation;
+4. honor explicit accepted human authorization/product-decision gates;
+5. honor the deliberate premium-model handoff stops;
+6. otherwise select the next deterministic approved obligation;
+7. end only when approved scope is complete and no further authorized obligation exists.
+
+Exact low-level ordering remains module-specific; this stage defines the cross-stage policy.
+
+## Automatic continuation
+
+Ordinary durable boundaries are not user stops:
+- Intake completion when next route is already authorized;
+- Research completion when exact Return target exists;
+- Definition completion when no premium handoff boundary applies;
+- GREEN review when deterministic continuation is legal;
+- bounded RED correction when authority is sufficient;
+- Card completion;
+- milestone Close;
+- Recovery completion;
+- publication/readback success.
+
+The same context may continue across semantic roles when independence rules permit it.
+
+Runtime replacement is allowed at durable boundaries without changing project semantics.
+
+## Real human-owned stops
+
+A normal human stop exists only when something genuinely requires user authority/input, including:
+- unresolved product/system choice;
+- explicit accepted authorization gate;
+- missing credential/access/input that cannot be remediated by the runtime;
+- end of approved scope where starting additional work would widen authority;
+- explicit user request to stop/review before proceeding.
+
+Do not stop merely because:
+- a role/module ended;
+- a worker/reviewer completed;
+- a milestone completed;
+- deployment/live-write is occurring without an explicit accepted authorization gate;
+- current context could be cleaner;
+- another runtime/model might also be capable.
+
+## Premium-model hard stops — deliberate exception
+
+The user explicitly requires three human-facing hard stops around the highest-leverage planning block:
+
+### Premium stop A — Definition -> Strategic Planning
+
+After Project Definition is complete and durable, before Strategic Planning:
+- hard stop;
+- tell the user that the next stage should use the best currently available model;
+- do not begin Planning automatically.
+
+### Premium stop B — Strategic Planning -> Independent Plan Review
+
+After the exact Master Plan subject is frozen:
+- hard stop;
+- planner MUST NOT realize Stage-6 Plan Review through an internal subagent/worker;
+- instruct the user to use a fresh independent context with the best currently available model.
+
+### Premium stop C — approved Plan -> Execution Prep
+
+After independent Plan Review is GREEN and the reviewed plan revision is durably approved:
+- hard stop;
+- tell the user that the highest-leverage planning/review block is complete;
+- recommend switching to a lighter/cheaper model;
+- do not automatically enter Execution Prep from the premium reviewer context.
+
+These are intentional workflow/product-experience boundaries, not consequences of capability absence.
+
+## Independence interaction
+
+A context may cross role boundaries automatically unless the next obligation requires independence from work that context materially produced/repaired.
+
+Implementation review remains capability-first:
+- if a qualifying independent reviewer can be realized internally, use it;
+- otherwise persist the same obligation and hand off to a fresh independent context.
+
+Stage-6 Plan Review is the explicit exception above: user-mediated fresh top-model context is mandatory by design.
+
+## Recovery and routing
+
+Recovery does not end with a status report.
+
+After durable state is coherent:
+- rerun the common router;
+- continue into the exact pending obligation when authorized;
+- do not ask the user to say "continue" merely because Recovery succeeded.
+
+If a crash occurs at a premium hard-stop boundary:
+- durable state must make that boundary reconstructible;
+- Recovery/router must re-present the required premium handoff rather than skipping it.
+
+## Context health
+
+Current ChatGPT-only contains context-health/fresh-session mechanics that Codex does not treat as project semantics.
+
+Target V2 direction:
+- context health is surface/runtime hygiene, not Project Workflow authority;
+- it may recommend moving to a fresh context at a safe durable boundary;
+- it must not create a semantic project stop by itself unless the surface genuinely cannot safely continue;
+- premium stops A/B/C are separate explicit workflow gates and must not be conflated with context-health recommendations.
+
+## End of approved scope
+
+When the current managed workstream/project scope is durably complete:
+- do not invent a new milestone/workstream;
+- persist terminal truth;
+- report completion;
+- this is a real workflow end, not an invitation to autonomously widen scope.
+
+If another already-approved milestone exists, that is not end of scope and continuation is automatic.
+
+## Current open material questions
+
+1. Should premium stops A/B/C outrank every otherwise-deterministic automatic continuation route, including Recovery resumption?
+2. At end of approved scope, should the workflow simply report completion and stop, rather than asking "what next?" or proposing new work as part of Project Workflow?
+3. Should context-health/fresh-chat guidance be strictly advisory at safe durable boundaries, with no Project Workflow hard stop unless continuation is technically unsafe?
+4. After any ordinary Recovery, GREEN review, Card close or milestone close, should the router continue automatically without a user-facing checkpoint whenever the next obligation is already authorized?
+
+These are Brainstorming questions, not accepted Definition decisions.
