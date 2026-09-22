@@ -1,7 +1,7 @@
 # Experimental Independent Review — Astra Max over Astra XHigh PWV2-P1
 
 Date: 2026-09-22
-Status: pending
+Status: in_progress
 Experiment ID: `PWV2-ASTRA-XHIGH-P1-ASTRA-MAX-REVIEW`
 
 ## Purpose
