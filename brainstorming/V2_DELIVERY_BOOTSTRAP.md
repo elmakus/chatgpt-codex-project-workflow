@@ -2,7 +2,7 @@
 
 Date: 2026-09-22
 Scope: common-preexecution-core@R1
-Status: active analysis
+Status: resolved
 Production authority: none
 
 ## User direction
@@ -377,3 +377,24 @@ Skill
 ```
 
 The router therefore acts as the central semantic index and obligation selector for both surfaces.
+
+
+## Delivery/bootstrap completion audit
+
+Resolved:
+- one product: Project Workflow V2;
+- new clean production V2 repository;
+- one canonical `workflow/` semantic tree;
+- ChatGPT reads it from the GitHub V2 repository through user-owned Project Instructions;
+- Codex reads the same tree from the installed `pw` plugin package;
+- plugin/Skill/hook are thin delivery/bootstrap surfaces, not a second implementation;
+- normal workflow edits require no duplicate plugin-policy edits;
+- explicit Codex entry target is `$pw:project_workflow_v2`;
+- repository-local provisioning/pinning of plugin/MCP/Skill dependencies belongs to external `newproject-skill`;
+- V2 durable project state has no `chatgpt_only/codex_only` execution policy;
+- common router acts as the progressive-disclosure semantic index;
+- Skill/bootstrap loads no full workflow tree into context;
+- templates/docs/migration are trigger-only;
+- legacy migration is bounded transition tooling, not permanent V2 semantic structure.
+
+No remaining bootstrap/product-architecture decision is open at Brainstorming level. Exact file syntax/package acceptance is implementation detail to verify during Definition/Planning/Execution.
