@@ -429,3 +429,20 @@ cards:
     result_pr: 4
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M04-T05-cumulative-acceptance-R02-2026-09-22.md"
     tests_summary: "GREEN terminal: independent R02 GREEN for exact corrected subject 013c4b405875a356f863b9b381d60faa0ad8935a/tree 7367d38d41240730530ec3b16174ca7db2738807; R01 RED preserved as immutable older-subject history; Actions push 35773744806 PASS + PR 35773750088 PASS; fresh independent checkout scripts/test.sh PASS; full unittest 103/103; compileall + diff/check + clean-tree PASS."
+
+  - id: "M05-T01"
+    title: "ChatGPT bootstrap and locator-only handoff surface"
+    milestone: "M05"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M05-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
