@@ -410,10 +410,10 @@ cards:
       - "M04-T04"
     openspec_change: null
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M04-T05.md"
-    review_state: red
-    review_subject: "elmakus/project_workflow_v2@commit:f40250fa2fe88477df3f03c26adfeb2d8024581b|tree:90d5ebb7480dbc2eeab633a518bce221f09c7a45|M04-T05-card-blob:61ae9578d0df1eb7dbb4f0030d638fa846e2f6aa|acceptance-evidence-blob:759e02b5da46478672a1e45dd6121278ced61aa6"
-    review_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M04-T05-independent-review-R01-2026-09-22.md"
-    result_commit: "f40250fa2fe88477df3f03c26adfeb2d8024581b"
+    review_state: pending
+    review_subject: "elmakus/project_workflow_v2@commit:013c4b405875a356f863b9b381d60faa0ad8935a|tree:7367d38d41240730530ec3b16174ca7db2738807|M04-T05-card-blob:61ae9578d0df1eb7dbb4f0030d638fa846e2f6aa|acceptance-evidence-blob:9cbe9998860fe74517c387d9c1fed713c872deb0"
+    review_evidence: null
+    result_commit: "013c4b405875a356f863b9b381d60faa0ad8935a"
     result_pr: 4
-    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M04-T05-cumulative-acceptance-2026-09-22.md"
-    tests_summary: "GREEN pre-review freeze: exact target f40250fa2fe88477df3f03c26adfeb2d8024581b/tree 90d5ebb7480dbc2eeab633a518bce221f09c7a45; Actions push 35768949267 PASS + PR 35768955381 PASS; scripts/test.sh PASS; full unittest discovery 102/102; compileall + diff/check + clean-tree PASS; A06/A08/A09/A10/A16 and M04 terminal/readback semantics covered. Fresh independent review is pending."
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M04-T05-cumulative-acceptance-R02-2026-09-22.md"
+    tests_summary: "R01 correction GREEN on exact corrected target/tree: Actions push 35773744806 PASS + PR 35773750088 PASS; scripts/test.sh PASS; state 28/28; router 39/39; execution 4/4; review 1/1; recovery 2/2; Close+fork 29/29; full unittest 103/103; compileall + diff/check + clean-tree PASS; new exact R02 review subject frozen."
