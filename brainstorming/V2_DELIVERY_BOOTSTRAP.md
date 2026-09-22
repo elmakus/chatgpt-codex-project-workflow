@@ -165,3 +165,66 @@ Everything after acquiring the common V2 router/contract should converge on comm
 - premium-model human handoffs;
 - Codex internal worker orchestration;
 - ChatGPT user-facing fresh-context handoff where explicitly required.
+
+
+## Grilling decisions — one product, thin plugin delivery
+
+User clarified and accepted the intended maintenance model:
+
+1. **Project Workflow V2 is one product/authority.**
+   - Canonical workflow semantics live once in the V2 workflow tree in this repository.
+   - The Codex plugin packages/bundles that same tree.
+   - The plugin is not a second independently maintained implementation of Project Workflow.
+
+2. **Normal workflow changes must not require plugin-bootstrap edits.**
+   - changing V2 routing/state/review/execution/close semantics changes only the canonical V2 workflow files;
+   - after the user updates the installed Codex plugin, Codex receives that updated bundled workflow automatically;
+   - edit the plugin manifest, Skill or SessionStart hook only when the bootstrap/package contract itself changes.
+
+3. **ChatGPT Project Instructions are user-owned external configuration.**
+   - the workflow repository may provide the recommended minimal text/template;
+   - Project Workflow cannot mutate the user's ChatGPT Project Instructions;
+   - do not put self-referential instructions such as "do not copy the whole workflow into Project Instructions" inside the text intended for the user's Project Instructions unless it serves an actual runtime purpose.
+
+4. **Version skew is not currently a design priority.**
+   - the user's Codex plugins auto-update periodically;
+   - after important Project Workflow changes the user will manually force an update;
+   - do not add project-level version pinning/schema machinery solely for this operational concern in V2 unless future evidence requires it.
+
+5. **Codex installation model**
+   - Project Workflow plugin is installed globally for the user's Codex environment;
+   - the user wants an explicit Skill entry named conceptually `project_workflow_v2`;
+   - intended user invocation is a short explicit Project Workflow V2 skill marker (current package namespace convention to be validated by implementation tests);
+   - the plugin/Skill resolves the bundled V2 workflow under its package root and never treats the remote workflow repository as its ordinary policy source.
+
+## Maintenance invariant
+
+Target invariant:
+
+```text
+edit canonical Project Workflow V2 semantics
+-> commit/publish repository
+-> update Codex plugin package
+-> installed plugin now contains the same latest V2 semantics
+```
+
+No duplicate semantic copy or manual synchronization step is allowed.
+
+The Skill/hook must stay thin and stable:
+- locate package root;
+- locate project repository/durable state;
+- enter the common V2 router;
+- fail closed if the bundled workflow is missing/broken.
+
+They must not restate stage logic, review rules, routing priorities or execution policy.
+
+## Shared human phrase
+
+The user wants the human-facing phrase "use project_workflow_v2" to mean the same workflow regardless of surface.
+
+Target interpretation:
+- in a ChatGPT Project, the Project Instructions establish that `project_workflow_v2` is loaded from the linked GitHub workflow repository;
+- in Codex, the installed plugin/Skill establishes that `project_workflow_v2` is loaded from the bundled plugin package;
+- after bootstrap, both enter the same common V2 semantics and consume the same project durable state.
+
+The phrase itself is not used for runtime self-detection. Each surface's bootstrap resolves its own instruction source.
