@@ -8,7 +8,7 @@ execution_ref:
   pr: null
   head: "5a986d803f367e48cea8d61c270a56780977545e"
 
-research_obligation: null
+research_obligation: "research/M03-T04-pi-runtime-compatibility-2026-09-22.md"
 
 milestones:
   M01:
@@ -285,7 +285,7 @@ cards:
     title: "Execution/review recovery and deterministic continuation"
     milestone: "M03"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: blocked
     executor: chatgpt
     depends_on:
       - "M03-T03"
