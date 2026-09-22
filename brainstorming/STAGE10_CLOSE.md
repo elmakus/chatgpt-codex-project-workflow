@@ -167,3 +167,16 @@ Repository-host automatic branch deletion is treated as a valid cleanup realizat
 - do not recreate the branch merely to perform Project Workflow cleanup;
 - if still present and safe, delete through current capability when available;
 - otherwise persist only the minimal exact safe-to-delete fallback.
+
+
+## Grilling decisions — refresh validity, milestone checkpoint and continuation
+
+User accepted:
+
+1. Movement of the integration target alone does not invalidate an existing independent GREEN verdict. Preserve coverage when the exact reviewed workstream content/behavior and acceptance surface are unchanged and affected compatibility verification against the refreshed target is GREEN.
+2. If reconciliation against the moved target materially changes code/behavior or the reviewed acceptance surface, the previous GREEN does not cover the changed subject. Main delegates the implementation change when qualifying worker capability exists, then freezes a new exact review subject/attempt. Deterministic mechanical reconciliation that cannot change accepted behavior may remain a coordinator operation.
+3. Preserve a minimal cumulative milestone handoff/checkpoint even when the same Main continues immediately. It records only continuation-critical truth: completed checkpoint/result, exact authority/evidence/review refs and the next durable obligation. It is recovery state, not a narrative report.
+4. Deployment/live-write status alone does **not** create a user hard stop in V2. A human authorization stop exists only when accepted authority explicitly contains such an authorization gate. Review/readback/safety requirements still apply independently.
+5. After milestone Close, if the next milestone is already approved, dependencies/reviews are satisfied and no real gate/blocker exists, continue automatically through the router. Do not stop merely to ask whether to continue.
+
+This supersedes V1 wording that treated deployment/live-write as an unconditional hard stop.
