@@ -2964,19 +2964,19 @@ Deferred N topology tests are post-implementation V2 validation, not missing Bra
 
 ## Open material questions
 
-Stage-by-stage reconciliation is still active. The cross-cutting audit is provisional architecture evidence, not Brainstorming completion authority.
+None. Stage-by-stage reconciliation, cross-cutting audit and V1 salvage/coverage audit are complete at Brainstorming level.
 
-Current focus: Brainstorming complete after V1 salvage/coverage matrix; explicit user promotion to Project Definition is pending.
+Current focus: Brainstorming complete; explicit user promotion to Project Definition is pending.
 
 ## Next bounded work
 
 Do not enter Project Definition until the user explicitly promotes the completed Brainstorming subject. Use `brainstorming/FINAL_V2_RECONCILIATION.md` as the clean Definition input and treat earlier superseded exploration only as historical evidence.
 
-Do not return to the Definition promotion gate until the remaining lifecycle stages have been reviewed individually and then reconciled cross-cutting.
+All lifecycle stages and cross-cutting salvage have been reconciled. Do not enter Project Definition until explicit user promotion.
 
 ## Outcome of this session
 
-- Brainstorming status is `tentative`; the previous ready-for-definition conclusion was reopened because the lifecycle still needs stage-by-stage review.
+- Brainstorming status is `ready_for_definition`; stage-by-stage review and V1 salvage reconciliation are complete.
 - Scope remains `common-preexecution-core@R1`.
 - Cross-cutting audit is complete.
 - Target V2 common-core architecture and migration direction are resolved at Brainstorming level.
