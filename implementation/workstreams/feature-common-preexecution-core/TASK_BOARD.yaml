@@ -303,7 +303,7 @@ cards:
     title: "Cumulative M03 acceptance and immutable review freeze"
     milestone: "M03"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M03-T04"
@@ -315,4 +315,4 @@ cards:
     result_commit: "0545cb38afa05cf82a536360a876583959dc3bf9"
     result_pr: 3
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M03-T05-cumulative-acceptance-2026-09-22.md"
-    tests_summary: "GREEN corrected pre-review: R01 exact-dependency finding repaired; target 0545cb38afa05cf82a536360a876583959dc3bf9/tree 45dbcfd0e7ba9670a9e3266bd4cdf37440f1e577; Actions 35754567552 PASS; state 27/27; router 38/38 including same-path changed-result fail-closed regression; execution 4/4; review and recovery suites PASS; isolated full unittest 72/72; compileall + diff/check + clean tree PASS; cumulative 26-file M03 surface remains runtime-neutral; Pi stays compatibility candidate and Codex delivery authority unchanged."
+    tests_summary: "GREEN terminal: independent R02 GREEN for exact corrected subject 0545cb38afa05cf82a536360a876583959dc3bf9/tree 45dbcfd0e7ba9670a9e3266bd4cdf37440f1e577; R01 RED preserved as immutable older-subject history; Actions 35754567552 PASS; state 27/27; router 38/38 including same-path changed-result fail-closed regression; execution 4/4; review and recovery suites PASS; isolated full unittest 72/72; compileall + diff/check + clean tree PASS; cumulative 26-file M03 surface remains runtime-neutral; Pi stays compatibility candidate and Codex delivery authority unchanged."
