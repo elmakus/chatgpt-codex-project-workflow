@@ -143,3 +143,18 @@ If another already-approved milestone exists, that is not end of scope and conti
 4. After any ordinary Recovery, GREEN review, Card close or milestone close, should the router continue automatically without a user-facing checkpoint whenever the next obligation is already authorized?
 
 These are Brainstorming questions, not accepted Definition decisions.
+
+
+## Grilling decisions — stop precedence and context health
+
+User accepted:
+
+1. Premium hard stops A/B/C outrank otherwise-deterministic automatic continuation, including Recovery resumption. If Recovery reconstructs one of those exact boundaries, it re-presents the required premium-model handoff rather than routing past it.
+2. At true end of approved scope, Project Workflow reports durable completion and stops. It does not ask "what next?" as a workflow requirement and does not invent another milestone/workstream.
+3. Context Health / fresh-chat lifecycle is removed from V2 Project Workflow. The user reports it was not useful in practice and ordinary ChatGPT chat replacement already happens often enough. V2 therefore does not carry a common Context Health project mechanism or hard stop.
+4. After ordinary Recovery, GREEN review, Card finalization or milestone Close, the router continues automatically whenever the next obligation is deterministic and already authorized.
+
+Consequences:
+- premium A/B/C are explicit exceptional workflow stops;
+- normal chat/session replacement is handled by durable recovery, not a Context Health phase;
+- no semantic project state is added for chat length/context hygiene.
