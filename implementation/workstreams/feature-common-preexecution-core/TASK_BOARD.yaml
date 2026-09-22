@@ -130,7 +130,7 @@ cards:
     title: "Intake, issue alignment and managed-intent routing"
     milestone: "M02"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     openspec_change: null
@@ -138,16 +138,16 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "ab27aa4f33c6eb3be3f881c4259b86a8308c27a5"
+    result_pr: 2
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M02-T01-intake-alignment-2026-09-22.md"
+    tests_summary: "GREEN exact checkout: sh scripts/test.sh PASS; state 13/13; router 13/13; package probe/baseline PASS. Draft-PR CI run 35716447684 remained RED with connector logs unavailable; no CI PASS claimed and anomaly retained for M02 cumulative acceptance."
 
   - id: "M02-T02"
     title: "Adaptive Brainstorming, Research and Definition"
     milestone: "M02"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: null
     depends_on:
       - "M02-T01"
