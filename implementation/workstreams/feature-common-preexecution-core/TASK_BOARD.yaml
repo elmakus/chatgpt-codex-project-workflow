@@ -285,7 +285,7 @@ cards:
     title: "Execution/review recovery and deterministic continuation"
     milestone: "M03"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: chatgpt
     depends_on:
       - "M03-T03"
