@@ -165,8 +165,8 @@ cards:
     title: "Strategic Planning, Plan Review and premium A/B/C"
     milestone: "M02"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on:
       - "M02-T02"
     openspec_change: null
