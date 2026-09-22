@@ -28,9 +28,9 @@ milestones:
     execution_status: in_progress
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m02--intake-through-definition-and-premium-planning"
     checkpoint: "8c955d1d9e8ba9396582753814d5b6c3283dde01"
-    implementation_head: null
+    implementation_head: "f978dda304ac9de8fe4806f6f31c530cc586e70e"
     handoff: null
-    acceptance_evidence: null
+    acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M02-T05-cumulative-acceptance-2026-09-22.md"
     review_state: null
     review_subject: null
     review_evidence: null
@@ -207,10 +207,10 @@ cards:
       - "M02-T04"
     openspec_change: null
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M02-T05.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "elmakus/project_workflow_v2@commit:f978dda304ac9de8fe4806f6f31c530cc586e70e|tree:5a7557e9c7f6042af8f97a21dbce4ecd5314b49d|M02-T05-card-blob:6d11a5f70d393de21e5e8b5b09c52c50c64c08b4|acceptance-evidence-blob:27b3208111bfd65f62d45ce1f8e5f0a0293d3079"
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "f978dda304ac9de8fe4806f6f31c530cc586e70e"
+    result_pr: 2
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M02-T05-cumulative-acceptance-2026-09-22.md"
+    tests_summary: "GREEN deterministic acceptance / independent review pending: target f978dda304ac9de8fe4806f6f31c530cc586e70e tree 5a7557e9c7f6042af8f97a21dbce4ecd5314b49d; sh scripts/test.sh PASS; unittest discovery 47/47 PASS; compileall + layout/drop + diff/check + clean tree PASS; draft PR #2 exact head/base mergeable. GitHub Actions run 35718260814 reports RED with no job steps/log available; no CI PASS claimed and anomaly is included in review evidence."
