@@ -6,7 +6,7 @@ current_milestone: "M01"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "c8a8318c1057df15cf38fb49618563d12f8260a1"
+  head: "c42afceab4a40b37c42f06e1b0fdee05f9f6b03d"
 
 research_obligation: null
 
@@ -81,7 +81,7 @@ cards:
     title: "Implement small obligation router and progressive-disclosure boundary"
     milestone: "M01"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: null
     depends_on:
       - "M01-T03"
