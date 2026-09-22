@@ -33,7 +33,7 @@ authority:
   plan: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md"
 
 review:
-  requirement: null
+  requirement: RECOMMENDED
   state: null
   subject: null
   evidence: null
