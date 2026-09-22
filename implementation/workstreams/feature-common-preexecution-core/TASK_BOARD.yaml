@@ -25,11 +25,11 @@ milestones:
 
   M02:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m02--intake-through-definition-and-premium-planning"
-    checkpoint: "8c955d1d9e8ba9396582753814d5b6c3283dde01"
+    checkpoint: "1a55ff7dbd599c99ab5a3a60b1ffc90e0f486fef"
     implementation_head: "89503fafa55e052e1ee48fb8252cecb6d3028728"
-    handoff: null
+    handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M02_HANDOFF.md"
     acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M02-T05-cumulative-acceptance-2026-09-22.md"
     review_state: null
     review_subject: null
