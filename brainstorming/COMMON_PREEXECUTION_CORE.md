@@ -3,7 +3,7 @@
 Date: `2026-09-21`
 Scope ID: `common-preexecution-core`
 Revision: `R1`
-Status: `ready_for_definition`
+Status: `tentative`
 
 ## Problem / goal
 
@@ -2922,6 +2922,12 @@ V2 carries forward two V1 common invariants:
    - speculative future-proofing/generalization needs concrete current justification;
    - YAGNI never excuses skipping current correctness/security/testing/maintainability/compatibility/migration/observability obligations.
 
+### Final V1 salvage audit — active
+
+`brainstorming/V1_SALVAGE_AUDIT_V2.md` identified the remaining cross-cutting keep/generalize/drop decisions for one-project-one-repo, branch-first workstreams, selective technical-contract/OpenSpec behavior, fork release versioning and locator-only fresh-context handoff UX.
+
+Definition promotion remains pending until these are reconciled.
+
 ## Current checkpoint / handoff
 
 The current compact handoff is:
@@ -2942,7 +2948,7 @@ Deferred N topology tests are post-implementation V2 validation, not missing Bra
 
 Stage-by-stage reconciliation is still active. The cross-cutting audit is provisional architecture evidence, not Brainstorming completion authority.
 
-Current focus: Brainstorming completion reached; explicit user promotion to Project Definition is pending.
+Current focus: final V1 salvage audit; Brainstorming temporarily reopened before Definition promotion.
 
 ## Next bounded work
 
