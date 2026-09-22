@@ -10,8 +10,8 @@ Status: `complete`
 Origin role: `strategic_planning`
 Origin subject: `PWV2-P1:M03-runtime-boundary-before-execution-prep`
 Return target: `strategic_planning:PWV2-P1:M03-runtime-boundary-before-execution-prep`
-Return reconciliation: `pending`
-Return reconciliation result: `none`
+Return reconciliation: `applied`
+Return reconciliation result: `implementation/workstreams/feature-common-preexecution-core/evidence/M03-pi-preexecution-research-reconciliation-2026-09-22.md`
 
 ## Scope
 
