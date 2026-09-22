@@ -2874,6 +2874,24 @@ User direction:
 
 Open bootstrap issue: prevent silent version skew between ChatGPT's repository source and Codex's installed plugin bundle.
 
+### Final cross-stage decisions — accepted
+
+User accepted:
+
+1. A **material Strategic Planning re-entry** later in execution re-enters the full premium-model block:
+   - hard stop before Strategic Planning;
+   - planning in the best available model/context;
+   - hard stop before independent Plan Review;
+   - fresh independent best-model context for Plan Review;
+   - hard stop after GREEN/approval before returning to lighter downstream orchestration.
+   This is triggered by material Planning authority, not only by the project's first plan.
+
+2. Every new or materially revised Master Plan uses Independent Plan Review. `none` remains only for genuinely mechanical/editorial changes that do not alter execution strategy, milestone structure, requirement coverage or accepted gates.
+
+3. A qualified micro-fix that legitimately bypasses Master Planning also bypasses the premium planning block. It may route proportionally through Intake -> Execution Prep -> Execution -> Review -> Close without Strategic Planning/Plan Review premium stops.
+
+4. Current runtime/product identity is not durable Project Workflow state. ChatGPT and Codex may continue the same workstream across durable boundaries without state conversion or persistent `runtime: chatgpt|codex` fields. Runtime-specific realization data remains runtime-owned and non-canonical.
+
 ## Current checkpoint / handoff
 
 The current compact handoff is:
