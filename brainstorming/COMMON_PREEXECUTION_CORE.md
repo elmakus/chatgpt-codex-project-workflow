@@ -2703,6 +2703,14 @@ Do not use the older experimental sections as the current V2 target.
 - Card, milestone and workstream final-integration review use one generic append-only review-attempt lifecycle;
 - canonical review evidence is semantic-only; runtime telemetry remains runtime-owned.
 
+### Stage 9 review-frequency decisions — accepted
+
+- normal code/behavior/runtime-configuration workstreams retain at least one final-integration independent review gate;
+- Card/milestone review is classified proportionally and is not automatic for every Card;
+- exact stronger existing GREEN coverage is reused instead of performing duplicate final review;
+- difficult-to-reverse external writes are reviewed at the last useful reversible checkpoint when practical, followed by write + readback;
+- this review boundary does not invent a separate user-approval gate.
+
 ### Stage 9 — Independent Implementation Review — active analysis
 
 Detailed stage record:
