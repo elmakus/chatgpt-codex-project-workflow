@@ -386,7 +386,7 @@ cards:
     title: "Trigger-only fork lineage and end-of-scope semantics"
     milestone: "M04"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M04-T03"
@@ -395,16 +395,16 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "f40250fa2fe88477df3f03c26adfeb2d8024581b"
+    result_pr: 4
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M04-T04-fork-lineage-end-scope-2026-09-22.md"
+    tests_summary: "GREEN final target f40250fa2fe88477df3f03c26adfeb2d8024581b; Actions push 35768949267 PASS + PR 35768955381 PASS; state 28/28, router 39/39 incl ordinary-Close negative fork-module read-set, execution 4/4, review 1/1, recovery 2/2, close+fork 28/28. Earlier 480f9e1 run 35768681967 failed only on generated regex escaping and was corrected at 5b437da9 before final acceptance."
 
   - id: "M04-T05"
     title: "Cumulative M04 acceptance and immutable review freeze"
     milestone: "M04"
     decision_state: accepted
-    execution_status: planned
+    execution_status: in_progress
     executor: chatgpt
     depends_on:
       - "M04-T04"
