@@ -2,7 +2,7 @@
 
 Date: 2026-09-22
 Scope: common-preexecution-core@R1
-Status: active analysis
+Status: resolved
 Production authority: none
 Baseline: current main fixed-policy CLOSE/WORKSTREAMS contracts
 
@@ -180,3 +180,31 @@ User accepted:
 5. After milestone Close, if the next milestone is already approved, dependencies/reviews are satisfied and no real gate/blocker exists, continue automatically through the router. Do not stop merely to ask whether to continue.
 
 This supersedes V1 wording that treated deployment/live-write as an unconditional hard stop.
+
+
+## Stage 10 completion audit
+
+After grilling:
+
+- target refresh is mandatory before final integration/publication;
+- target movement alone does not invalidate independent GREEN;
+- material change to covered content/behavior or acceptance creates a new exact review subject;
+- deterministic/mechanical reconciliation stays coordinator-owned; behavioral implementation changes are delegated when worker capability exists;
+- publication/merge/external mutation requires readback and evidence;
+- deployment/live-write status alone is not a human authorization stop;
+- terminal workstream truth must survive source-branch disappearance;
+- GitHub auto-delete-after-merge is a valid cleanup realization and is detected by readback;
+- a minimal safe-to-delete fallback is retained only when a still-existing safe branch cannot currently be deleted;
+- closure-only lifecycle bookkeeping does not reopen implementation/review when it cannot change accepted behavior;
+- milestone close keeps only a minimal recovery checkpoint/handoff;
+- next already-approved milestone continues automatically through the router.
+
+Counterfactual challenge:
+- rerunning review solely because target SHA changed would waste review without changing the reviewed subject;
+- treating every deployment/live write as a user stop would add authority not present in the accepted contract;
+- treating merge success alone as durable closure would make terminal recovery depend on a branch GitHub may automatically delete;
+- omitting the milestone checkpoint would make cross-context/runtime continuation rely unnecessarily on prior narrative.
+
+No remaining Stage-10 semantic decision is open.
+
+Stage 10 is resolved at Brainstorming level.
