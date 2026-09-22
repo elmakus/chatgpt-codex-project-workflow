@@ -1,12 +1,12 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 workstream_id: "feature-common-preexecution-core"
 plan_revision: "PWV2-P1"
-current_milestone: "M03"
+current_milestone: "M04"
 
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "0545cb38afa05cf82a536360a876583959dc3bf9"
+  head: "ca98ad708fd773ddebfdce07233b44a5dd4ab879"
 
 research_obligation: null
 
@@ -43,6 +43,18 @@ milestones:
     implementation_head: "0545cb38afa05cf82a536360a876583959dc3bf9"
     handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M03_HANDOFF.md"
     acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M03-T05-cumulative-acceptance-2026-09-22.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M04:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m04--integration-tracker-closure-publication-and-terminal-recovery"
+    checkpoint: "29f5e1880d66949c3009afa399490a6a81bc949a"
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
     review_state: null
     review_subject: null
     review_evidence: null
@@ -316,3 +328,92 @@ cards:
     result_pr: 3
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M03-T05-cumulative-acceptance-2026-09-22.md"
     tests_summary: "GREEN terminal: independent R02 GREEN for exact corrected subject 0545cb38afa05cf82a536360a876583959dc3bf9/tree 45dbcfd0e7ba9670a9e3266bd4cdf37440f1e577; R01 RED preserved as immutable older-subject history; Actions 35754567552 PASS; state 27/27; router 38/38 including same-path changed-result fail-closed regression; execution 4/4; review and recovery suites PASS; isolated full unittest 72/72; compileall + diff/check + clean tree PASS; cumulative 26-file M03 surface remains runtime-neutral; Pi stays compatibility candidate and Codex delivery authority unchanged."
+
+  - id: "M04-T01"
+    title: "Integration refresh and review-coverage preservation"
+    milestone: "M04"
+    decision_state: accepted
+    execution_status: ready
+    executor: chatgpt
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M04-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M04-T02"
+    title: "External effects and final tracker lifecycle"
+    milestone: "M04"
+    decision_state: accepted
+    execution_status: planned
+    executor: chatgpt
+    depends_on:
+      - "M04-T01"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M04-T02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M04-T03"
+    title: "Target-side terminal recovery and cleanup"
+    milestone: "M04"
+    decision_state: accepted
+    execution_status: planned
+    executor: chatgpt
+    depends_on:
+      - "M04-T02"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M04-T03.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M04-T04"
+    title: "Trigger-only fork lineage and end-of-scope semantics"
+    milestone: "M04"
+    decision_state: accepted
+    execution_status: planned
+    executor: chatgpt
+    depends_on:
+      - "M04-T03"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M04-T04.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M04-T05"
+    title: "Cumulative M04 acceptance and immutable review freeze"
+    milestone: "M04"
+    decision_state: accepted
+    execution_status: planned
+    executor: chatgpt
+    depends_on:
+      - "M04-T04"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M04-T05.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
