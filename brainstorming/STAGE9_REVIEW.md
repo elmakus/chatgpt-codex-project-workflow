@@ -248,3 +248,18 @@ User accepted:
 4. Canonical Project Workflow review evidence remains concise and semantic. Concrete model/worker/session/invocation/worktree/runtime telemetry stays runtime-owned and is not persisted merely to prove independence.
 
 These decisions preserve the proven ChatGPT-only/Codex-only review semantics while removing product-specific realization details.
+
+
+## Grilling decisions — review frequency and coverage reuse
+
+User accepted:
+
+1. Normal intake-created issue/feature workstreams that change code, runtime configuration, external behavior or system behavior retain at least one independent final-integration review gate. Use `REQUIRED` when existing risk authority warrants it; otherwise at least `RECOMMENDED`.
+2. Card/milestone review is not automatic for every Card. Activate it only when the accepted contract/risk/checkpoint gives a concrete reason for independent review.
+3. Do not duplicate review when an already-independent GREEN verdict proves exact coverage of the final integrated subject and the entire later acceptance surface. Reuse that stronger coverage through the same generic review history model.
+4. For difficult-to-reverse/high-risk external writes, place independent review at the last useful reversible checkpoint when practical, then perform the authorized write and required post-write readback/verification. This is a review boundary, not an automatic user-approval gate.
+
+Target review frequency therefore remains proportional:
+- ordinary Cards: no automatic independent review;
+- material/high-risk/checkpoint Cards: independent review when classified;
+- normal behavioral/code workstream: at least one final-integration independent review unless exact stronger coverage is proven.
