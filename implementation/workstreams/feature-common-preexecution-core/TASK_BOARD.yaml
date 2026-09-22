@@ -6,7 +6,7 @@ current_milestone: "M04"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "ca98ad708fd773ddebfdce07233b44a5dd4ab879"
+  head: "ac96c5ea3c8b52dd4c19fbb3693a36e2cb73c7ad"
 
 research_obligation: null
 
@@ -49,7 +49,7 @@ milestones:
 
   M04:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m04--integration-tracker-closure-publication-and-terminal-recovery"
     checkpoint: "29f5e1880d66949c3009afa399490a6a81bc949a"
     implementation_head: null
@@ -333,7 +333,7 @@ cards:
     title: "Integration refresh and review-coverage preservation"
     milestone: "M04"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on: []
     openspec_change: null
