@@ -263,3 +263,36 @@ Project Workflow V2
 ```
 
 Do not duplicate new-project provisioning logic inside Project Workflow.
+
+
+## Grilling decisions — clean V2 repository and canonical workflow tree
+
+User accepted:
+
+1. Every V2 project carries a small durable Project Workflow contract marker in its project state, conceptually `project_workflow: v2`. It identifies the durable-state contract only; it does not identify ChatGPT versus Codex.
+2. V2 has exactly one canonical workflow tree consumed by both ChatGPT and Codex. **Because the user intends to create a new clean Project Workflow V2 repository with no legacy/policy-local paths, the canonical path should simply be `workflow/`, not `workflow/v2/`.**
+3. Existing legacy projects may be migrated once into V2 rather than forcing V2 to carry permanent `chatgpt_only/codex_only` semantic branches. Migration tooling/reader support may exist as a bounded transition concern, but the new clean V2 repository itself does not need legacy workflow paths.
+4. `$pw:project_workflow_v2` is only an entry/recovery Skill. Any accompanying user intent is handed to the common V2 router/intake; the Skill must not grow a second mini-router.
+
+### Clean repository consequence
+
+Target V2 repository shape is conceptually:
+
+```text
+project_workflow_v2 repo
+├── workflow/          # the one canonical semantic workflow
+├── skills/
+│   └── project_workflow_v2/
+├── hooks/
+├── .codex-plugin/
+├── prompts/           # thin human/bootstrap helpers only where useful
+├── templates/
+└── tests/
+```
+
+There are no production `workflow/chatgpt_only/`, `workflow/codex_only/`, `workflow/legacy/` or `workflow/v2/` semantic trees in the clean V2 repository.
+
+ChatGPT reads the canonical `workflow/` tree from the GitHub V2 repository.
+Codex reads the same canonical `workflow/` tree from its installed plugin package.
+
+The old repository/branches may be used as migration/reference evidence during development, but are not copied forward as permanent production structure.
