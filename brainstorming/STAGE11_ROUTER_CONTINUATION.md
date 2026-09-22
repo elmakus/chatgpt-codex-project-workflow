@@ -2,7 +2,7 @@
 
 Date: 2026-09-22
 Scope: common-preexecution-core@R1
-Status: active analysis
+Status: resolved
 Production authority: none
 Baseline: current main ChatGPT-only/Codex-only routers + common user-stop contract + resolved Stages 1-10
 
@@ -158,3 +158,18 @@ Consequences:
 - premium A/B/C are explicit exceptional workflow stops;
 - normal chat/session replacement is handled by durable recovery, not a Context Health phase;
 - no semantic project state is added for chat length/context hygiene.
+
+
+## Stage 11 completion audit
+
+Resolved:
+- premium hard stops A/B/C outrank ordinary automatic continuation, including Recovery;
+- end of approved scope is a real terminal stop and does not invite autonomous scope expansion;
+- Context Health is removed from V2 Project Workflow rather than generalized;
+- ordinary Recovery/review/Card/milestone boundaries continue automatically when the next obligation is deterministic and already authorized;
+- runtime/session replacement is recovered from durable state rather than represented as project lifecycle;
+- Stage-6 Plan Review remains the deliberate fresh-best-model exception to capability-first internal review realization.
+
+No remaining Stage-11 semantic decision is open.
+
+Stage 11 is resolved at Brainstorming level.
