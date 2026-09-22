@@ -99,7 +99,7 @@ cards:
     title: "Complete cumulative M01 deterministic validation and freeze integrated acceptance subject"
     milestone: "M01"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M01-T04"
@@ -111,4 +111,4 @@ cards:
     result_commit: "f1f4ed87875877529da6dc954e785d6373de7930"
     result_pr: null
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M01-T05-cumulative-acceptance-2026-09-22.md"
-    tests_summary: "GREEN pre-review: target f1f4ed87875877529da6dc954e785d6373de7930/tree 595a84ea2fcea446567ba7eff6f11474d6a33d29; sh scripts/test.sh PASS; cumulative unittest discovery 16/16 PASS; compileall + diff/check + clean tree PASS; T02 package/Skill/hook inputs unchanged through T04; current and missing-router SessionStart checks PASS; no CI PASS claimed."
+    tests_summary: "GREEN terminal: independent R01 GREEN;  target f1f4ed87875877529da6dc954e785d6373de7930/tree 595a84ea2fcea446567ba7eff6f11474d6a33d29; sh scripts/test.sh PASS; cumulative unittest discovery 16/16 PASS; compileall + diff/check + clean tree PASS; T02 package/Skill/hook inputs unchanged through T04; current and missing-router SessionStart checks PASS; no CI PASS claimed."
