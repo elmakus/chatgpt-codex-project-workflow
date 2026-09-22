@@ -249,7 +249,7 @@ cards:
     title: "Runtime-neutral execution, delegation and result reconciliation"
     milestone: "M03"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M03-T01"
@@ -258,10 +258,10 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "d4e9f9f261aca0c13f6f0ab36e03e421e084639d"
+    result_pr: 3
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M03-T02-runtime-neutral-execution-2026-09-22.md"
+    tests_summary: "GREEN: exact target d4e9f9f261aca0c13f6f0ab36e03e421e084639d/tree bf0ffd0675f8c359da3ca41d3154229274095f2d; Actions 35744790039 PASS; state 25/25; router 33/33; execution-contract 4/4; package/bundle/baseline PASS; delegated/direct semantic result and durable-result no-replay verified; PR #3 exact head/base mergeable."
 
   - id: "M03-T03"
     title: "Exact-subject common independent review"
