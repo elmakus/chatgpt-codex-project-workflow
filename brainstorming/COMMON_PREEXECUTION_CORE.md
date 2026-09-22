@@ -2757,20 +2757,40 @@ User proposed two explicit human-facing hard stops around the highest-leverage r
 1. before that phase, stop and recommend switching to the best currently available model;
 2. after that phase is durably complete, stop and inform the user that the highest-leverage reasoning phase is complete and normal continuation may use a lighter/cheaper model.
 
-Current recommendation, not yet user-confirmed:
-- first hard stop: after Project Definition is complete and before Strategic Planning begins;
-- premium-model window: Strategic Planning **plus its independent Plan Review**;
-- second hard stop: after the reviewed Master Plan is GREEN/approved, before Execution Prep begins.
+User-confirmed premium-model handoff pattern:
+
+1. **Hard stop A — after Project Definition, before Strategic Planning**
+   - tell the user that Strategic Planning is the highest-leverage reasoning stage;
+   - recommend switching to the best currently available model;
+   - do not begin Planning until the user resumes in the chosen context/model.
+
+2. **Strategic Planning runs in that best-model context.**
+
+3. **Hard stop B — after the exact Master Plan subject is durably frozen for independent Plan Review**
+   - the planner MUST NOT internally realize Plan Review through a subagent/worker, even if the active runtime can do so;
+   - instruct the user to start/continue with a **fresh independent context using the best available model** for Stage 6 Plan Review;
+   - the planner context ends before the independent verdict.
+
+4. **Independent Plan Review runs in that fresh best-model context.**
+
+5. **Hard stop C — after Plan Review is GREEN and the reviewed plan revision is durably approved**
+   - tell the user that the highest-leverage planning/review block is complete;
+   - recommend switching to a lighter/cheaper model for Execution Prep and downstream orchestration;
+   - do not automatically continue into Execution Prep inside the premium reviewer context.
+
+This is a deliberate exception to the general capability-first independent-review realization rule:
+- **Stage 6 Plan Review is human-mediated fresh-context review by design**;
+- implementation/final-integration review later in the workflow remains capability-first unless separately overridden.
 
 Rationale:
 - Project Definition primarily formalizes accepted product/system authority and unresolved user choices;
 - Strategic Planning has the highest downstream leverage because it defines milestone structure/order, execution strategy, requirement coverage and JIT decomposition;
-- Independent Plan Review should remain inside the same premium window so the highest-leverage plan is not validated by a materially weaker reviewer;
-- Execution Prep/Execution can then run under a lighter coordinator because they operate inside already-reviewed plan authority.
+- the exact plan should be reviewed by an equally strong but independent context, not a planner-spawned reviewer subagent;
+- after reviewed plan approval, downstream roles operate inside much stronger durable authority and can use a lighter coordinator.
 
 If only one single stage may use the premium model, prioritize Strategic Planning.
 
-This model-selection guidance must be capability/tier neutral in the workflow text (for example, “best available model” / “lighter model”), not hard-code `GPT-6 Astra` or any specific model name.
+This model-selection guidance must be capability/tier neutral in the workflow text (for example, “best available model” / “lighter model”), not hard-code a specific model name.
 
 ## Current checkpoint / handoff
 
