@@ -1,7 +1,7 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 workstream_id: "feature-common-preexecution-core"
 plan_revision: "PWV2-P1"
-current_milestone: "M04"
+current_milestone: "M05"
 
 execution_ref:
   branch: "feat/common-preexecution-core"
@@ -49,12 +49,12 @@ milestones:
 
   M04:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m04--integration-tracker-closure-publication-and-terminal-recovery"
-    checkpoint: "29f5e1880d66949c3009afa399490a6a81bc949a"
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    checkpoint: "63989dc6ee404db508d96ada033e83ea8b8dbb55"
+    implementation_head: "013c4b405875a356f863b9b381d60faa0ad8935a"
+    handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M04_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M04-T05-cumulative-acceptance-R02-2026-09-22.md"
     review_state: null
     review_subject: null
     review_evidence: null
