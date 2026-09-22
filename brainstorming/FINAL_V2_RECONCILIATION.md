@@ -149,6 +149,59 @@ Substantive implementation/debugging/testing is delegated when qualifying worker
 
 A runtime genuinely lacking delegated implementation capability may execute directly for portability.
 
+## Research / diagnosis evidence model
+
+V2 preserves and strengthens the V1 external-prior-art rule.
+
+Research and diagnosis are **not** limited to official documentation or the project's current runtime/source.
+
+Use the smallest evidence path sufficient for the exact question, but when solution discovery, diagnosis, compatibility, failure modes or implementation strategy could materially benefit from existing practice, actively inspect relevant prior art across multiple source classes, including as applicable:
+- official/upstream documentation and source;
+- the project's actual code/runtime/configuration/evidence;
+- upstream GitHub issues, discussions and public issue trackers;
+- release notes/changelogs and known bug reports;
+- practical community reports such as Reddit, technical forums, Q&A/discussion threads and other relevant public practitioner sources.
+
+The purpose is not to copy an internet solution blindly. The agent should use external practice to:
+- discover known failure modes and edge cases;
+- find existing workarounds or established patterns;
+- avoid reinventing already-solved mechanisms;
+- compare the agent's proposed solution against how others handled the same or analogous problem;
+- identify tradeoffs or compatibility concerns that local reasoning alone may miss.
+
+Source weight remains explicit:
+- primary/upstream evidence outranks anecdotal/community evidence when they conflict;
+- community consensus/popularity is not itself authority;
+- practical reports may reveal real-world behavior that official docs omit;
+- materially conflicting evidence must be surfaced, not silently averaged away;
+- anecdotal/community findings should be checked against stronger evidence when practical.
+
+This is proportional, not an exhaustive web crawl. Stop when enough source-grounded evidence exists to answer the exact question and compare meaningful alternatives.
+
+During adaptive Brainstorming, agent-findable facts remain agent-owned: use Research/prior-art investigation before asking the user to decide around facts that can be established independently.
+
+## YAGNI / proportional design
+
+V2 preserves the global V1 YAGNI invariant ("You Aren't Gonna Need It").
+
+Prefer the least-complex solution that fully satisfies all current accepted requirements, decisions, constraints, invariants and verified evidence.
+
+Do not add speculative:
+- abstractions;
+- generality/extensibility;
+- configuration;
+- dependencies/infrastructure;
+- compatibility paths;
+- future-proofing
+
+solely for hypothetical future needs.
+
+Every material increase in complexity needs a concrete current justification from accepted authority, verified evidence, an existing contract/constraint or demonstrated current reuse/variation.
+
+YAGNI does **not** mean "fewest lines" and does not permit weakening current correctness, security, testing, maintainability/refactoring, compatibility, migration, observability or other applicable quality obligations.
+
+Prefer an existing fitting mechanism when it cleanly satisfies current authority. New machinery is valid when current requirements/evidence justify it.
+
 ## Brainstorming interaction model
 
 Adaptive grilling is the default method for **every V2 Brainstorming scope**.
