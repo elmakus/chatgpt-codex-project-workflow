@@ -141,13 +141,8 @@ Accepted:
 4. retain **fork release versioning** as a trigger-only optional V2 module for projects durably declared as downstream forks;
 5. retain **locator-only ready-to-copy fresh-chat handoff UX** at explicit fresh-context gates; remove only obsolete Context Health handoff behavior.
 
-Open:
-3. OpenSpec / technical-contract granularity.
-
-Clarification under discussion:
-- every bug/change still has an explicit accepted intended result, bounded authority, acceptance and tests through Intake/Brainstorming + Task Card;
-- the open question is whether a separate OpenSpec artifact should be created for every change, including trivial bugs, or only when it adds material contract value beyond the Task Card;
-- recommendation remains selective separate OpenSpec because mandatory duplication for simple unambiguous fixes conflicts with YAGNI/context economy.
+Accepted:
+3. Preserve the technical-contract/OpenSpec mechanism **selectively**: every implementation change gets an explicit bounded Task Card/fix contract; a separate OpenSpec-style artifact is created only when it adds material behavior/design-contract value beyond that Card. This is the chosen recommendation because mandatory duplicate OpenSpec for trivial fixes would violate YAGNI/context economy. Core semantics should remain tool-neutral enough that OpenSpec is a supported realization rather than a second authority layer.
 
 ## New V2 repository
 
@@ -162,3 +157,17 @@ Verified via GitHub on 2026-09-22:
 - repository is currently empty.
 
 Do not populate it until the active V1-hosted Brainstorming/Definition/Planning authority reaches the legal execution boundary.
+
+
+## GitHub Issue tracker decision
+
+For GitHub-hosted managed projects with Issues capability:
+- `#issue` and `#feature` create or recover an official GitHub Issue tracker after duplicate/recovery checks;
+- tracker creation is bookkeeping, not implementation authorization;
+- tracker may begin with reported symptom/feature goal and be refined as diagnosis/Brainstorming settles target behavior;
+- workstream durable state stores the exact tracker reference;
+- intermediate PRs do not close the issue unless they complete the whole accepted scope;
+- final default-branch integration PR uses a closing keyword such as `Closes #N` / `Fixes #N` when appropriate;
+- Close verifies issue state after merge and may explicitly close only after accepted scope is durably complete when auto-close is unavailable/disabled.
+
+Applies analogously to both `#issue` and `#feature`.
