@@ -2,7 +2,7 @@
 
 Date: 2026-09-22
 Scope: common-preexecution-core@R1
-Status: ready_for_definition
+Status: tentative — V1 salvage audit reopened
 Promotion: explicit user authorization required
 Production authority: none
 
@@ -494,6 +494,14 @@ Counterfactual challenge results:
 - replaying review merely because target SHA moved would add cost without a changed reviewed subject.
 
 No unresolved material product/architecture choice remains in Brainstorming.
+
+## Final V1 salvage audit reopened
+
+A final cross-cutting V1 salvage audit identified a small set of mechanisms that need explicit keep/generalize/drop confirmation before Definition:
+
+`brainstorming/V1_SALVAGE_AUDIT_V2.md`
+
+Until those decisions are resolved, the prior ready-for-Definition state is temporarily reopened.
 
 ## Promotion gate
 
