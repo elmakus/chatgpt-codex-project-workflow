@@ -1,12 +1,12 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 workstream_id: "feature-common-preexecution-core"
 plan_revision: "PWV2-P1"
-current_milestone: "M01"
+current_milestone: "M02"
 
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "f5451bc7ff72d8645ebc6f7195b1473d710b94e0"
+  head: "517d6a389fa186fcb466f2e0761b24f6d40f5a6b"
 
 research_obligation: null
 
@@ -19,6 +19,18 @@ milestones:
     implementation_head: "f1f4ed87875877529da6dc954e785d6373de7930"
     handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M01_HANDOFF.md"
     acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M01-T05-cumulative-acceptance-2026-09-22.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+  M02:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m02--intake-through-definition-and-premium-planning"
+    checkpoint: "8c955d1d9e8ba9396582753814d5b6c3283dde01"
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
     review_state: null
     review_subject: null
     review_evidence: null
@@ -112,3 +124,93 @@ cards:
     result_pr: 1
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M01-T05-cumulative-acceptance-2026-09-22.md"
     tests_summary: "GREEN terminal: independent R01 GREEN;  target f1f4ed87875877529da6dc954e785d6373de7930/tree 595a84ea2fcea446567ba7eff6f11474d6a33d29; sh scripts/test.sh PASS; cumulative unittest discovery 16/16 PASS; compileall + diff/check + clean tree PASS; T02 package/Skill/hook inputs unchanged through T04; current and missing-router SessionStart checks PASS; no CI PASS claimed."
+
+
+  - id: "M02-T01"
+    title: "Intake, issue alignment and managed-intent routing"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M02-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M02-T02"
+    title: "Adaptive Brainstorming, Research and Definition"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on:
+      - "M02-T01"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M02-T02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M02-T03"
+    title: "Strategic Planning, Plan Review and premium A/B/C"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on:
+      - "M02-T02"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M02-T03.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M02-T04"
+    title: "GitHub Issue tracker recovery and correlation"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on:
+      - "M02-T03"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M02-T04.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M02-T05"
+    title: "Cumulative M02 acceptance and immutable review freeze"
+    milestone: "M02"
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on:
+      - "M02-T04"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M02-T05.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
