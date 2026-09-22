@@ -68,3 +68,13 @@ The planner did not issue an independent verdict and did not dispatch a reviewer
 4. After RED, preserve this failed subject/verdict. Bounded plan correction inside Definition may continue under Planning, but it must create a new plan revision and pending immutable review record, then stop at B for a fresh independent reviewer. Definition-owned contradiction or missing evidence follows the normal Definition/Research/real-stop route. A material later replan repeats the full A/B/C block.
 
 The original planning context must stop at B now; it must not perform Stage-6 review, spawn it internally, approve this draft or create Execution Prep/Card state.
+
+## Entry attempt — 2026-09-22
+
+Mechanical entry note only; the independent Plan Review role has not started. No GREEN/RED verdict issued; `Review state` remains `pending` and no lifecycle transition occurred.
+
+- Controlling workflow authority is `main` at `7aa7512ead67a86256089d1af0171e2e655e700d`; `workflow/chatgpt_only/PLAN_REVIEW.md` there opens by requiring review by a fresh normal ChatGPT chat that did not author the exact subject. This record additionally requires a fresh independent best-available-model normal ChatGPT context.
+- This entry ran in a Codex runtime, which does not satisfy that reviewer identity. No qualifying independent verdict exists and no automatic policy/runtime substitution is authorized.
+- Manifest `implementation/workstreams/feature-common-preexecution-core/WORKSTREAM.yaml` (`routing.plan_review`) points exactly to this pending record. Frozen plan blob `0d55b03e2a4d1a2b1a4fd9972f8365f693262503` at subject commit `4b8d2eefa04ea7511edd92e1799e0fd641f57428` still equals the branch-tip plan blob; supplemental audit blob is `26c00b4b5ec5e5e5378e121efc8b3277e67a7516`.
+- The ten Definition authority paths listed above are byte-identical between Definition commit `8055ed00acdb708c79919d470217fd87c920973a` and this branch tip.
+- Next action is unchanged: fresh independent normal ChatGPT Plan Review at this same pointer. The existing GREEN/RED return contract above remains controlling.
