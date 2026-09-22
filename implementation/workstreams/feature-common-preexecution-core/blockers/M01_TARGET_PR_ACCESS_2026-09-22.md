@@ -3,7 +3,7 @@
 Date: 2026-09-22
 Workstream: `feature-common-preexecution-core`
 Milestone: `M01`
-State: `blocked`
+State: `resolved`
 
 ## Exact pending operation
 
@@ -54,7 +54,16 @@ The retry was narrowed to a repository-specific Pull Requests API authorization 
 
 Therefore the connector is not generally read-only and the target repository is not absent from the installation. The failure is isolated to the Pull Requests write authorization path for this repository. GitHub documents PR creation as requiring repository permission `Pull requests: write`; the connector does not expose the response's accepted-permission headers, so the exact internal token/grant mismatch cannot be read directly. Given that this is a newly created repository while older private repositories pass the same PR endpoint authorization check, the leading diagnosis is stale or inconsistent per-repository GitHub App token/grant propagation or connector credential selection for the new repository, not a Project Workflow or branch-state defect.
 
-## Recovery / user action
+## Resolution — 2026-09-22
+
+After the GitHub connection was repaired, the exact reviewed target refs were re-read unchanged. PR #1 was then created successfully and merged with expected head `f1f4ed87875877529da6dc954e785d6373de7930`.
+
+Post-merge readback verified target `main` at `8c955d1d9e8ba9396582753814d5b6c3283dde01`, with no file changes between the reviewed head and integrated target beyond the merge commit.
+
+Durable integration evidence:
+`implementation/workstreams/feature-common-preexecution-core/evidence/M01-target-integration-2026-09-22.md`
+
+## Historical recovery / user action
 
 Resolve exactly one of:
 
