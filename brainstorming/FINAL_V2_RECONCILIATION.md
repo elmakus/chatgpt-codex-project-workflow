@@ -2,9 +2,16 @@
 
 Date: 2026-09-22
 Scope: common-preexecution-core@R1
-Status: ready_for_definition
-Promotion: explicit user authorization required
-Production authority: none
+Status: promoted_to_definition
+Promotion: user_authorized — 2026-09-22
+Production authority:
+- `requirements/PROJECT_WORKFLOW_V2.md`
+- `decisions/ADR_PROJECT_WORKFLOW_V2_SINGLE_SEMANTIC_CORE.md`
+- `decisions/ADR_PROJECT_WORKFLOW_V2_DELIVERY_BOOTSTRAP.md`
+- `decisions/ADR_PROJECT_WORKFLOW_V2_MANAGED_CHANGE_LIFECYCLE.md`
+- `decisions/ADR_PROJECT_WORKFLOW_V2_EXECUTION_BOUNDARY.md`
+- `decisions/ADR_PROJECT_WORKFLOW_V2_REVIEW_AND_PREMIUM_PLANNING.md`
+- `decisions/ADR_PROJECT_WORKFLOW_V2_CONTEXT_RESEARCH_YAGNI.md`
 
 ## Purpose
 
@@ -541,10 +548,13 @@ A final cross-cutting V1 salvage audit identified a small set of mechanisms that
 
 Those decisions are now resolved in `brainstorming/V1_TO_V2_COVERAGE_MATRIX.md`; the Brainstorming subject is again ready for explicit Definition promotion.
 
-## Promotion gate
+## Promotion completed
 
-Brainstorming is **ready for Project Definition**, but not promoted.
+The user explicitly promoted this exact completed Brainstorming subject into Project Definition on 2026-09-22.
 
-Project Definition MUST NOT begin until the user explicitly authorizes promotion of this completed Brainstorming subject.
+Project Definition reconciled the promoted subject into:
+- `requirements/PROJECT_WORKFLOW_V2.md` revision R1, status approved;
+- ADR-PWV2-001..006, status accepted.
 
-When promoted, Definition should use this record as the primary clean input and consult earlier records only for evidence/provenance, not to re-import superseded directions.
+This Brainstorming record is now provenance/evidence. Canonical accepted authority is the Definition output above.
+
