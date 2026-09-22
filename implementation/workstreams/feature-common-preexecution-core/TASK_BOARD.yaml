@@ -267,7 +267,7 @@ cards:
     title: "Exact-subject common independent review"
     milestone: "M03"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M03-T02"
@@ -276,10 +276,10 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "6171585098c815760f7c362994ec5fa93e81b93f"
+    result_pr: 3
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M03-T03-independent-review-semantics-2026-09-22.md"
+    tests_summary: "GREEN: exact target 6171585098c815760f7c362994ec5fa93e81b93f/tree 6e26a4e51f11eb174a666fe147117de9106e492d; Actions 35745443116 PASS; state 27/27; router 34/34; execution/review suites PASS; append-only exact-subject review, semantic independence, blocking gates and deterministic GREEN/RED continuation verified."
 
   - id: "M03-T04"
     title: "Execution/review recovery and deterministic continuation"
