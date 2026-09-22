@@ -2841,6 +2841,15 @@ Current baseline:
 - V2 projects declare only the common V2 contract marker;
 - `$pw:project_workflow_v2` enters the common router and does not duplicate routing semantics.
 
+### V2 packaging/context-economy decisions — accepted
+
+- plugin directly bundles the same canonical `workflow/` tree; no second generated semantic copy;
+- plugin namespace `pw`, Skill `project_workflow_v2`, explicit entry `$pw:project_workflow_v2`;
+- project `PROJECT.md` carries the V2 contract only, not instruction-source paths;
+- legacy migration is bounded outside normal `workflow/`;
+- production V2 moves to a new clean repository, with the current repository retained as historical/development reference;
+- Codex bootstrap/Skill must stay extremely small and use progressive disclosure; it must never preload or restate the full workflow.
+
 ### Cross-cutting V2 delivery/bootstrap — active analysis
 
 Detailed record:
