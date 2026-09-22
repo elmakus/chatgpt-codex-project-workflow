@@ -1,0 +1,114 @@
+project: "elmakus/chatgpt-codex-project-workflow"
+workstream_id: "feature-common-preexecution-core"
+plan_revision: "PWV2-P1"
+current_milestone: "M01"
+
+execution_ref:
+  branch: "feat/common-preexecution-core"
+  pr: null
+  head: null
+
+research_obligation: null
+
+milestones:
+  M01:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m01--clean-foundation-durable-envelope-and-early-delivery-feasibility"
+    checkpoint: null
+    implementation_head: null
+    handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/EXECUTION_PREP_ENTRY_2026-09-22.md"
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
+
+cards:
+  - id: "M01-T01"
+    title: "Initialize clean V2 target and construction custody baseline"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: ready
+    executor: null
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M01-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M01-T02"
+    title: "Prove isolated pw / project_workflow_v2 delivery feasibility"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on:
+      - "M01-T01"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M01-T02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M01-T03"
+    title: "Implement minimal durable authority/state envelope"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on:
+      - "M01-T02"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M01-T03.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M01-T04"
+    title: "Implement small obligation router and progressive-disclosure boundary"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on:
+      - "M01-T03"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M01-T04.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
+
+  - id: "M01-T05"
+    title: "Complete cumulative M01 deterministic validation and freeze integrated acceptance subject"
+    milestone: "M01"
+    decision_state: accepted
+    execution_status: planned
+    executor: null
+    depends_on:
+      - "M01-T04"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M01-T05.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
