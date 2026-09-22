@@ -2,7 +2,7 @@
 
 Milestone: `M01 — Clean foundation, durable envelope and early delivery feasibility`
 Plan revision: `PWV2-P1`
-Status: `GREEN / complete`
+Status: `GREEN acceptance / target integration pending`
 
 ## Completed checkpoint
 
@@ -34,6 +34,6 @@ M01 does not claim M02+ lifecycle semantics, L01-L09 live acceptance, production
 
 ## Next durable starting point
 
-Proceed automatically to JIT Execution Prep for `M02 — Intake through Definition and premium planning` on `feat/common-preexecution-core`.
+Complete the approved construction publication step first: integrate exact reviewed target branch `elmakus/project_workflow_v2:feat/pwv2-m01-foundation@f1f4ed87875877529da6dc954e785d6373de7930` into target `main` through PR with exact-head readback. After target integration is verified, finalize M01 and proceed automatically to JIT Execution Prep for `M02 — Intake through Definition and premium planning` on `feat/common-preexecution-core`.
 
 Materialize only presently knowable bounded M02 Cards from approved PWV2-P1 and exact M01 predecessor evidence. Preserve the meta-synthesis S2 Guidance Pack, especially production-semantic tests, minimal schema growth, explicit premium/review transition fixtures and current GitHub tracker mechanics JIT. No production adoption/cutover is authorized.
