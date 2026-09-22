@@ -2744,7 +2744,7 @@ Current baseline:
 - deployment/live-write does not create a user hard stop by itself; only an explicit accepted authorization gate does;
 - Close continues automatically into the next already-approved legal obligation rather than asking the user to continue.
 
-### Stage 10 — Close / Publication / Integration — active analysis
+### Stage 10 — Close / Publication / Integration — resolved
 
 Detailed stage record:
 
@@ -2800,6 +2800,20 @@ If only one single stage may use the premium model, prioritize Strategic Plannin
 
 This model-selection guidance must be capability/tier neutral in the workflow text (for example, “best available model” / “lighter model”), not hard-code a specific model name.
 
+### Stage 11 — Router / Automatic Continuation / Human Stops — active analysis
+
+Detailed stage record:
+
+`brainstorming/STAGE11_ROUTER_CONTINUATION.md`
+
+Current baseline:
+- deterministic already-authorized continuation should be automatic;
+- role completion alone is not a user stop;
+- Recovery returns to the router and does not stop merely to report success;
+- end of approved scope is terminal and must not widen authority;
+- context-health is runtime/surface hygiene, not common project semantics;
+- premium stops A/B/C are deliberate explicit exceptions and must survive Recovery/rerouting.
+
 ## Current checkpoint / handoff
 
 The current compact handoff is:
@@ -2820,11 +2834,11 @@ Deferred N topology tests are post-implementation V2 validation, not missing Bra
 
 Stage-by-stage reconciliation is still active. The cross-cutting audit is provisional architecture evidence, not Brainstorming completion authority.
 
-Current focus: Stage 10 — Close / Publication / Integration. Stages 7, 8 and 9 are resolved after grilling.
+Current focus: Stage 11 — Router / Automatic Continuation / Human Stops. Stages 7 through 10 are resolved after grilling.
 
 ## Next bounded work
 
-Continue Stage 10 — Close / Publication / Integration grilling, focusing on durable target-side closure and branch-cleanup fallback.
+Continue Stage 11 — Router / Automatic Continuation / Human Stops grilling, including premium-model hard-stop precedence and context-health boundaries.
 
 Do not return to the Definition promotion gate until the remaining lifecycle stages have been reviewed individually and then reconciled cross-cutting.
 
@@ -2838,6 +2852,6 @@ Do not return to the Definition promotion gate until the remaining lifecycle sta
 - Definition promotion subject remains `none`.
 - Deferred N remains a V2 implementation-validation obligation, not a Brainstorming blocker.
 - No production workflow module has been changed.
-- Current phase/action: Stage 10 — Close / Publication / Integration analysis.
+- Current phase/action: Stage 11 — Router / Automatic Continuation / Human Stops analysis.
 
 > Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical `requirements/` and `decisions/`. Only explicit user authorization may promote the current exploratory scope into Definition.
