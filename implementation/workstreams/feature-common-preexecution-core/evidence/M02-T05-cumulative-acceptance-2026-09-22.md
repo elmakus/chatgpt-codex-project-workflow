@@ -5,8 +5,8 @@ Card: `M02-T05`
 Result before independent review: GREEN / corrected subject review pending
 Target repository: `elmakus/project_workflow_v2`
 Target branch: `feat/pwv2-m02-intake-definition-planning`
-Frozen target commit: `fdd737fd16c7aac385bf35699782eafe1722819b`
-Frozen target tree: `dc21a3986cc0fbbec7e2d299570d0dca3181d970`
+Frozen target commit: `89503fafa55e052e1ee48fb8252cecb6d3028728`
+Frozen target tree: `a62d48b362596ab9837583d15177b3bac5a66a8b`
 Target integration baseline: `main@8c955d1d9e8ba9396582753814d5b6c3283dde01`
 Draft PR: `elmakus/project_workflow_v2#2`
 
@@ -19,7 +19,7 @@ This evidence evaluates the exact target commit against:
 - ADR-PWV2-003, ADR-PWV2-005 and ADR-PWV2-006;
 - accepted M01 foundation/integration result;
 - the S2 Execution Prep guidance;
-- immutable M02-T05 R01 and R02 independent-review evidence.
+- immutable M02-T05 R01, R02 and R03 independent-review evidence.
 
 This is deterministic M02 acceptance only. It does not claim M03+ execution/review/Close semantics, L01-L09 live-product acceptance, migration, production adoption or custody transfer.
 
@@ -33,47 +33,59 @@ Independent R01 on `f978dda304ac9de8fe4806f6f31c530cc586e70e` was RED and remain
 
 ### R02
 
-Independent R02 on `6ee800aa1a43b96b3cfb9891031b72d99f21f983` was RED and remains immutable history. Both new blockers were corrected inside already accepted M02 authority:
+Independent R02 on `6ee800aa1a43b96b3cfb9891031b72d99f21f983` was RED and remains immutable history. Both blockers remain corrected:
+1. concrete issue diagnosis requires exact proportional Intake-origin prior-art Research before repair alignment;
+2. premium A/B/C expose the accepted best-available / fresh-independent / lighter-cheaper human-facing recommendation semantics without canonical model identity.
 
-1. **Mandatory prior-art for concrete issue diagnosis**
-   - `workflow/INTAKE.md` now requires a concrete current issue `repair_subject` to materialize proportional Research with `origin_role = intake`, exact `origin_subject = repair_subject`, and `return_target = intake`;
-   - alignment cannot proceed until that exact Research result is applied and consumed;
-   - changed repair subject makes the previous diagnosis Research stale;
-   - `tools/router.py` production routing enforces the exact consumed Research binding before alignment/completion can advance;
-   - deterministic fixtures prove missing or stale diagnosis Research routes back to Intake and exact consumed Research permits the normal alignment stop/continuation.
+### R03
 
-2. **Premium A/B/C human-facing recommendation semantics**
-   - initial and re-entry A stops explicitly recommend the best available model/context for Strategic Planning without making model identity canonical;
-   - B explicitly requires a fresh independent best-available review context;
-   - C explicitly recommends switching to a lighter/cheaper model/context before Execution Prep;
-   - `DEFINITION.md`, `PLANNING.md`, `ROUTER.md` and production router reasons carry the same semantics;
-   - deterministic router fixtures assert A/B/C recommendation text.
+Independent R03 on `fdd737fd16c7aac385bf35699782eafe1722819b` was RED and remains immutable history.
 
-No Definition/PWV2-P1 strategy or product authority changed.
+R03 found that the R02 prior-art correction depended on the single current `RESEARCH.toml` continuing to contain the consumed Intake-origin diagnosis record. A later legal Brainstorming Research obligation could reuse that one slot while issue alignment remained pending, after which the router would no longer see the diagnosis proof and would incorrectly demand it again.
+
+The bounded correction keeps the single Research slot and adds only the smallest durable fact needed by Intake:
+- `INTAKE.toml` now owns `diagnosis_prior_art_subject` + `diagnosis_prior_art_result`;
+- exact consumed Intake-origin diagnosis Research must be reconciled into that binding before alignment proceeds;
+- the binding must match the current `repair_subject`; changing the repair subject clears/invalidates it and requires new proportional prior art;
+- once reconciled, later legitimate Brainstorming/Definition Research may reuse the single current Research slot without erasing diagnosis proof;
+- authorized issue state requires the exact durable prior-art binding;
+- feature/change Intake rejects diagnosis-prior-art state;
+- production router uses the stable Intake binding, while still requiring/reconciling exact consumed Intake Research when the binding is absent;
+- deterministic regression `test_later_brainstorming_research_does_not_erase_issue_diagnosis_prior_art` proves the composed path.
+
+No Research registry/history mechanism was introduced. No Definition/PWV2-P1 strategy or product authority changed.
 
 ## Exact Git readback
 
 Immediately before this corrected freeze:
-- target feature HEAD = `fdd737fd16c7aac385bf35699782eafe1722819b`;
-- target tree = `dc21a3986cc0fbbec7e2d299570d0dca3181d970`;
+- target feature HEAD = `89503fafa55e052e1ee48fb8252cecb6d3028728`;
+- target tree = `a62d48b362596ab9837583d15177b3bac5a66a8b`;
 - target `main` remains M01 integration commit `8c955d1d9e8ba9396582753814d5b6c3283dde01`;
-- feature is 70 commits ahead / 0 behind current main;
-- draft PR #2 has exact base/head above, 23 changed files and is mergeable;
-- the 23-file acceptance surface remains common M02 modules/templates plus production router/state validation/tests; no V1 policy directory was added.
+- feature is 80 commits ahead / 0 behind current main;
+- draft PR #2 has exact base/head above, 23 changed files and is mergeable/clean;
+- R03 correction delta from `fdd737f...` is 10 commits touching exactly Intake template/fixture, production router/state validation, their tests, and Intake/Research/Router/State contracts;
+- the cumulative 23-file acceptance surface remains common M02 modules/templates plus production router/state validation/tests; no V1 policy directory was added.
 
 ## Cumulative deterministic validation
 
-GitHub Actions PR run `35722629802` checked the refreshed PR merge subject containing target head `fdd737fd16c7aac385bf35699782eafe1722819b` and completed successfully.
+GitHub Actions PR run `35725824309` checked exact target head `89503fafa55e052e1ee48fb8252cecb6d3028728` and completed successfully. Job `test` and the repository-check step are GREEN.
 
 `sh scripts/test.sh` — GREEN:
 - preserved M01 package/bootstrap probe;
 - production state-contract suite **23/23 PASS**;
 - production bundle validation PASS;
-- production router suite **27/27 PASS**;
+- production router suite **28/28 PASS**;
 - router CLI smoke PASS;
 - M01 baseline checks PASS.
 
-The router suite now includes `test_issue_diagnosis_requires_exact_consumed_prior_art_research` plus A/B/C recommendation assertions. The tests import production `tools/state_contract.py` and `tools/router.py`; there is no parallel test-only workflow interpreter.
+A separate clean detached checkout on Tower at the same exact commit/tree verified:
+- `sh scripts/test.sh` — PASS;
+- `python3 -m unittest discover -v` — **51/51 PASS**;
+- `python3 -m compileall -q tools tests` — PASS;
+- `git diff --check` — PASS;
+- clean working tree after validation — PASS.
+
+The tests import production `tools/state_contract.py` and `tools/router.py`; there is no parallel test-only workflow interpreter.
 
 No separate combined-status PASS is claimed because GitHub combined commit statuses contain no status records.
 
@@ -81,11 +93,11 @@ No separate combined-status PASS is claimed because GitHub combined commit statu
 
 ### Intake / alignment / mandatory diagnosis prior art
 
-GREEN fixtures prove symptom/marker alone never authorizes repair; a later question/concern/alternative is a response but not authorization; exact authorization is bound to the current repair subject; stale alignment fails closed; micro-fix candidacy requires exact alignment; and a concrete issue diagnosis cannot reach alignment/completion without exact consumed proportional prior-art Research for the current repair subject.
+GREEN fixtures prove symptom/marker alone never authorizes repair; a later question/concern/alternative is a response but not authorization; exact authorization is bound to the current repair subject; stale alignment fails closed; micro-fix candidacy requires exact alignment; concrete issue diagnosis requires exact consumed proportional prior-art Research; that result is durably reconciled into Intake before alignment; and a later legal Brainstorming Research obligation cannot erase the diagnosis prior-art proof while issue alignment is still pending.
 
 ### Brainstorming / Research / Definition — A13
 
-GREEN fixtures prove intrinsic adaptive exploration without an active `#grill`; exact revision-bound Definition promotion; GREEN challenge audit; Research exact origin/return and once-only reconciliation; mandatory proportional accounting for official/upstream, project/runtime, tracker/discussion and practitioner/community source classes with explicit status/weight and explicit conflict accounting; Definition exact promoted subject and premium stop A.
+GREEN fixtures prove intrinsic adaptive exploration without an active `#grill`; exact revision-bound Definition promotion; GREEN challenge audit; Research exact origin/return and once-only reconciliation; mandatory proportional accounting for official/upstream, project/runtime, tracker/discussion and practitioner/community source classes with explicit status/weight and explicit conflict accounting; single current Research-slot reuse after exact return-owner reconciliation; Definition exact promoted subject and premium stop A.
 
 ### Strategic Planning / Plan Review / premium A/B/C
 
@@ -112,11 +124,11 @@ M03+ execution/delegation/final-review behavior remains explicitly unavailable r
 ## GitHub Actions / PR readback
 
 For this corrected frozen target:
-- Actions run `35722629802` is `completed/success`;
+- Actions PR run `35725824309` is `completed/success`;
 - job `test` is GREEN;
 - repository-check step is GREEN;
 - combined commit statuses contain no separate status records;
-- draft PR #2 reports exact corrected head/base and mergeable.
+- draft PR #2 reports exact corrected head/base, 23 changed files and mergeable/clean.
 
 This does not waive the later pre-merge refresh/readback required by Close.
 
@@ -129,6 +141,6 @@ The next immutable independent-review subject combines:
 - unchanged exact M02-T05 Card blob;
 - this refreshed exact acceptance-evidence blob once persisted.
 
-M02-T05 remains non-terminal. R01 and R02 RED remain historical evidence and do not apply to the corrected subject. Because this chat implemented the R02 correction, it must not independently review the new subject; a fresh independent reviewer is required before Card finalization and M02 Close/integration.
+M02-T05 remains non-terminal. R01, R02 and R03 RED remain historical evidence and do not apply to the corrected subject. Because this chat implemented the R03 correction, it must not independently review the new subject; a fresh independent reviewer is required before Card finalization and M02 Close/integration.
 
 No production adoption, migration or custody transfer is authorized.
