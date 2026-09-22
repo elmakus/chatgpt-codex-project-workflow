@@ -2814,6 +2814,17 @@ Current baseline:
 - context-health is runtime/surface hygiene, not common project semantics;
 - premium stops A/B/C are deliberate explicit exceptions and must survive Recovery/rerouting.
 
+### V2 delivery maintenance model — accepted
+
+- one canonical Project Workflow V2 semantic tree;
+- Codex plugin bundles that tree and is only a thin delivery/bootstrap layer;
+- normal V2 semantic changes require no duplicate plugin-policy edits;
+- plugin update delivers the changed canonical V2 tree to Codex;
+- Skill/hook/manifest change only when packaging/bootstrap behavior itself changes;
+- ChatGPT Project Instructions are user-owned configuration; repository provides only recommended bootstrap text;
+- no project-level version-pinning machinery is added now;
+- human phrase `project_workflow_v2` denotes the same semantic workflow on both surfaces, while each surface resolves its own instruction source.
+
 ### Cross-cutting V2 delivery/bootstrap — active analysis
 
 Detailed record:
