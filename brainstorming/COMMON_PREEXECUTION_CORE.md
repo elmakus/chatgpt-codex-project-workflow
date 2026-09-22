@@ -2736,6 +2736,14 @@ Current baseline:
 - terminal closure requires a target-side durable recovery package sufficient after source-branch disappearance;
 - deterministic closure-only bookkeeping after merge does not create a new review subject when it cannot change accepted content/behavior.
 
+### Stage 10 refresh/continuation decisions — accepted
+
+- target movement alone does not invalidate GREEN when exact covered content/behavior and acceptance remain unchanged and compatibility verification is GREEN;
+- material behavioral/content reconciliation creates a new reviewed subject; implementation changes are delegated when worker capability exists;
+- each milestone keeps a minimal durable cumulative checkpoint/handoff for recovery even when continuation is immediate;
+- deployment/live-write does not create a user hard stop by itself; only an explicit accepted authorization gate does;
+- Close continues automatically into the next already-approved legal obligation rather than asking the user to continue.
+
 ### Stage 10 — Close / Publication / Integration — active analysis
 
 Detailed stage record:
