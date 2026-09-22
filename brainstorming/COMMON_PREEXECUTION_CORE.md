@@ -2911,8 +2911,8 @@ This supersedes the earlier shorthand `Intake -> Execution Prep -> Execution -> 
 V2 carries forward two V1 common invariants:
 
 1. **Proportional external prior-art research**
-   - Research/diagnosis is not official-docs-only.
-   - As applicable, inspect upstream docs/source, actual project/runtime evidence, GitHub issues/discussions/public trackers, release/changelog evidence, Reddit/forums/Q&A/community practitioner reports.
+   - Research/diagnosis always performs a proportional prior-art check; only the depth varies with the problem.
+   - The minimum check spans relevant official/upstream evidence plus issue/community practice where available; expand as needed across actual project/runtime evidence, GitHub issues/discussions/public trackers, release/changelog evidence, Reddit/forums/Q&A/community practitioner reports.
    - Use community evidence to discover real-world failure modes, workarounds and candidate solutions, then compare/confront those findings with stronger primary/upstream evidence.
    - Do not blindly copy internet solutions; use prior art to challenge and improve the proposed solution and avoid needless reinvention.
    - Stop when sufficient evidence answers the exact question; no exhaustive crawl.
