@@ -437,14 +437,14 @@ The obligation should carry exact role/subject, exact authority refs/hashes, mec
 
 The obligation remains derived/disposable and never becomes project authority.
 
-Challenge state: pending. Main failure mode to resolve: a worker may ignore `must-open` and act on an incomplete compiled view.
+Challenge state: GREEN. The user selected PW-owned authority resolution: the kernel resolves/verifies every `must-open` source and hands OR/Paseo a complete authority bundle. OR transports/executes the package but does not decide which PW authority applies.
 
 ### Executable-policy scope
 
 User choice accepted during Brainstorming: A2 / option 1B.
 PWv2.1 should extend the existing executable router/kernel to compile exact deterministic obligations (role, subject, authority, prerequisites and completion/evidence contract) while keeping semantic role reasoning in Markdown/LLM and keeping orchestration mechanics outside Project Workflow.
 
-Challenge state: pending one bounded adversarial challenge before treating this choice as stable exploratory state.
+Challenge state: GREEN. The main failure mode—an obligation that saves context by silently omitting applicable authority—is addressed by the hybrid obligation plus PW-owned authority-bundle resolution; OR/Paseo never substitutes its own authority selection.
 
 ## Current decision tree
 
@@ -479,6 +479,14 @@ Exploratory choice accepted, challenge pending:
 - no client-private helper/session state may become project authority.
 
 
+### Authority-bundle ownership
+
+Stable exploratory choice: PW owns authority resolution and bundle construction.
+- PW kernel determines the applicable authority, validates exact refs/hashes and materializes the bounded safe subset plus every required `must-open` source into the handoff package.
+- OR/Paseo receives and transports the already-resolved package to workers.
+- OR/Paseo must not infer, add, drop or reinterpret which Project Workflow authority applies.
+- This keeps authority selection in PW while allowing OR/Paseo to own delivery, execution topology and runtime mechanics.
+
 ### Canonical mechanical-policy representation
 
 User inclination: 2C, not yet frozen.
@@ -512,7 +520,7 @@ The first material decisions to explore are:
    Stable exploratory choice: helper/reference implementation preferred, but canonical repository/workflow state must remain independently recoverable. Helper-less parity must be continuously testable.
 
 4. **Execution Obligation depth.**  
-   Accepted exploratory choice: C3 hybrid refs + bounded deterministic materialization + explicit `must-open` authority. Challenge pending on whether `must-open` must be technically enforced before execution.
+   Stable exploratory choice: C3 hybrid refs + bounded deterministic materialization. PW resolves and supplies the complete authority bundle; OR/Paseo only transports/executes it.
 
 These are Brainstorming questions, not decisions.
 
