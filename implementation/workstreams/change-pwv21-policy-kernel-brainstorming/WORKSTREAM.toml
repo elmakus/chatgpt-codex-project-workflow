@@ -28,3 +28,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/DEFI
 [planning]
 class = "planning"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/PLANNING.toml"
+
+[plan_review]
+class = "plan_review"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/PLAN_REVIEW.toml"
