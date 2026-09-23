@@ -739,3 +739,22 @@ cards:
     result_pr: 7
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T06-L08-n-capable-green-2026-09-23.md"
     tests_summary: "GREEN L08: one real top-level Codex invocation recovered the V2 fixture from locator-only input and used its configured delegated subagent harness for independent R01 RED, bounded S1->S2 correction, fresh independent R02 GREEN and same-invocation Card finalization. Exact S2 is topology-n: GOOD\\n at blob 3a446f6d934b2e63c0466e9f7b2bb596fa416268; R01 history remains append-only; R02 binds exact S2 result blob 84b94415c722bddd2f3abdf18e141f5ea915b11d; final Task Board revision 3 marks the same M01-T01 done; worktree clean. Runtime/model choice is outside PWv2 semantic state."
+
+
+  - id: "M07-T07"
+    title: "L09 N-CHATGPT two-fresh-context topology"
+    milestone: "M07"
+    decision_state: accepted
+    execution_status: in_progress
+    executor: chatgpt
+    depends_on:
+      - "M07-T06"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M07-T07.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: "READY L09 context 1: clean GitHub-backed fixture elmakus/test-pwv2 branch feat/m07-l09-topology-n-chatgpt at entry HEAD 0709b4cea544e945fad0b058293de7a9b1d0941a; one active Card, frozen S1 and pending R01. User will invoke the fresh ChatGPT contexts; prompts remain locator-only."
