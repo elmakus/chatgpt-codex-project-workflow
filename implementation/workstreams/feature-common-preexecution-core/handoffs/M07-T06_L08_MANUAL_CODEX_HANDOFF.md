@@ -1,6 +1,6 @@
 # M07-T06 — manual Codex handoff for L08 N-CAPABLE
 
-Status: READY FOR USER-MEDIATED LIVE RUN  
+Status: SUPERSEDED — L08 accepted GREEN from completed user-mediated run  
 Owning Card: `M07-T06`  
 Qualification: `L08 — N-CAPABLE live topology`
 
