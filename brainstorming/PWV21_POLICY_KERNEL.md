@@ -912,21 +912,29 @@ E3. richer capability/workspace/retry semantics in the interface
 
 ## Current frontier for continued Brainstorming
 
-The first material decisions to explore are:
+Brainstorming is now in closure-oriented grilling. Most user-visible behavior, review/recovery semantics, runtime handoff, concurrency, and PW↔OR boundaries have accepted exploratory direction.
 
-1. **How far beyond the current `tools/router.py` boundary should PWv2.1 go?**  
-   Current recommendation: selectively executable finite predicates only; the router decides the next legal obligation/stop/recovery boundary, not how semantic roles perform their work.
+Remaining material fronts:
 
-2. **How should current executable mechanical contracts and Markdown semantic contracts relate so they cannot materially drift?**  
-   Current recommendation: first evaluate the existing PWv2 pattern (executable mechanical contract + semantic Markdown + contract tests) before introducing a new transition DSL/table. Add a machine-readable policy table only if it removes more duplication than complexity it creates.
+1. **Mechanical policy truth / 2C-lite parity.**
+   - Freeze how the small machine-readable mechanical registry, Python predicates and semantic Markdown remain mutually consistent without creating a workflow DSL.
+   - Prove helper-less ChatGPT can reconstruct the same legal route.
 
-3. **Runtime portability helper dependency.**  
-   Stable exploratory choice: helper/reference implementation preferred, but canonical repository/workflow state must remain independently recoverable. Helper-less parity must be continuously testable.
+2. **Adversarial challenge closure.**
+   - Run bounded failure challenges against the accepted batches that are still marked challenge-pending, especially parallel-set lifecycle, mechanical-policy drift, mutation/readback, runtime handoff and review cost/freshness.
 
-4. **Execution Obligation depth.**  
-   Stable exploratory choice: C3 hybrid refs + bounded deterministic materialization. PW resolves and supplies the complete authority bundle; OR/Paseo only transports/executes it.
+3. **Migration and compatibility edge cases.**
+   - Confirm PWv2 -> PWv2.1 transition behavior for active workstreams, reopened Cards, stale results and mixed old/new durable records.
 
-These are Brainstorming questions, not decisions.
+4. **Small operator/UX details.**
+   - Optional OR/Paseo worker telemetry visibility and a few real-stop/handoff edge cases that do not alter authority.
+
+5. **Definition readiness synthesis.**
+   - Reconcile duplicate/superseded brainstorming notes, mark stable exploratory choices, identify explicit rejects/open questions, and determine whether any Research is still required.
+
+Expected remaining grilling should be a small number of focused batches, not another full architecture discovery cycle.
+
+These remain Brainstorming questions, not requirements/decisions.
 
 ## Definition promotion
 
