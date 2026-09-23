@@ -509,7 +509,32 @@ PWv2.1 candidate direction requested by the user:
 
 Accepted exploratory choice: allow bounded plan-authorized parallel Cards, replacing the V2 one-Card invariant with a deterministic independence/parallel-set invariant.
 
-Challenge state: pending. Main failure mode to resolve: two Cards may be dependency-independent yet still conflict through shared files, shared external effects or overlapping authority.
+Challenge state: GREEN. Parallelism is not inferred opportunistically by the kernel. Plan/JIT must explicitly declare a bounded parallel set plus the information needed to justify it; the kernel validates dependencies, declared write scopes, external effects and relevant overlap. Any uncertainty collapses the set back to serial execution.
+
+### Parallel-card execution details
+
+Accepted exploratory choices:
+
+11. **Parallelism declaration and validation**
+   - Plan/JIT explicitly declares bounded parallel sets; kernel does not invent concurrency solely from dependency absence.
+   - Kernel validates declared parallelism against dependencies, declared write scopes, external effects and relevant authority/scope overlap.
+   - Uncertainty or overlap fails closed to serial execution.
+
+12. **Write-scope ownership**
+   - Plan/JIT defines each Card's declared `write_scope` when materializing/refining the Card.
+   - Kernel validates and compares scopes; it does not author them.
+
+13. **Conflict after concurrent execution**
+   - Do not auto-merge semantic conflicts.
+   - A result whose relevant base/state has been invalidated by a competing accepted result becomes stale/conflicted and must be reconciled/re-routed.
+
+14. **Execution isolation**
+   - OR/Paseo should realize parallel Cards in separate execution worktrees/branches or equivalent isolated environments.
+   - PW stores only semantic Card/result identity, not runtime worktree topology.
+
+15. **Parallel review**
+   - Independent reviews may run concurrently when their exact review subjects are independent.
+   - Milestone/final integration still requires an integrated compatibility/acceptance check across the combined result.
 
 ## Current decision tree
 
