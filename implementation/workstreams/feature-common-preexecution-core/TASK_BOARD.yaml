@@ -654,7 +654,7 @@ cards:
     title: "Real L03 tracker and Close qualification"
     milestone: "M07"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on:
       - "M07-T01"
