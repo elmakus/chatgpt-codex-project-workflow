@@ -1,7 +1,7 @@
 # Project Workflow V2 — Master Plan
 
 Plan revision: `PWV2-P2`
-Status: `draft`
+Status: `approved`
 Date: `2026-09-23`
 Definition subject: `project-workflow-v2@R1`
 Independent Plan Review: `REQUIRED`
