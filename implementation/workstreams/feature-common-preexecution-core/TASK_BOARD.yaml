@@ -72,7 +72,7 @@ milestones:
     review_evidence: null
   M06:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m06--bounded-v1-migration-and-cutover-rehearsal"
     checkpoint: "27b9132e173850e7d596092e023b0af7e0507472"
     implementation_head: null
@@ -536,7 +536,7 @@ cards:
     title: "Bounded V1 readers and deterministic dry run"
     milestone: "M06"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on: []
     openspec_change: null
