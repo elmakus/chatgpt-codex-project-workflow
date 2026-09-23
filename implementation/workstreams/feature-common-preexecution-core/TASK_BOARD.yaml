@@ -85,11 +85,11 @@ milestones:
 
   M07:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: blocked
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m07--system-qualification-and-first-production-ready-adoption"
     checkpoint: "2d010a95bac89dfd561dcc3accad6c5e8a0bda7a"
     implementation_head: null
-    handoff: null
+    handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M07_ADOPTION_AUTHORIZATION_GATE.md"
     acceptance_evidence: null
     review_state: null
     review_subject: null
