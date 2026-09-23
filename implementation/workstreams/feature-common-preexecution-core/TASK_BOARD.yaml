@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "5576ee61f61f8d250f95bafcbbc4dd923bd91634"
+  head: "0a4b055f73b9ff0b0366f2dc2ce08308fa8333e8"
 
 research_obligation: null
 
@@ -486,7 +486,7 @@ cards:
     title: "Real ChatGPT/Codex delivery checkpoints L01-L05"
     milestone: "M05"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: blocked
     executor: chatgpt
     depends_on:
       - "M05-T01"
@@ -499,8 +499,8 @@ cards:
     review_evidence: null
     result_commit: null
     result_pr: null
-    evidence: null
-    tests_summary: null
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M05-T04-live-checkpoints-blocker-2026-09-23.md"
+    tests_summary: "BLOCKED on required user-run live surfaces: L01 not run; L02/L03 not run; L04 real Codex package/invocation-resolution/missing-router/no-V1 evidence is partial but lacks ordinary model-backed V2 project execution; L05 GREEN via real isolated Codex 0.2.0->0.2.1 supported update/readback. Candidate fbd208c1c26eef2a227ea90aced05fd8ac32a9a4; Actions 35814931203 PASS."
 
   - id: "M05-T05"
     title: "Cumulative M05 acceptance and immutable review freeze"
