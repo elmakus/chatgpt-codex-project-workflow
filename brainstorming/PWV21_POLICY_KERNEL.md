@@ -428,7 +428,7 @@ User choice accepted during Brainstorming:
 - do **not** make that helper a prerequisite for reconstructing the legal continuation;
 - canonical repository state plus portable workflow contracts must remain sufficient for a fresh capable runtime to recover without private runtime/session state.
 
-Challenge state: pending one bounded adversarial challenge before treating this choice as stable exploratory state.
+Challenge state: GREEN. The user reconfirmed this choice after the bounded failure-mode challenge that a helper-preferred path can silently drift from helper-less recovery unless parity is continuously tested.
 
 ### Executable-policy scope
 
@@ -469,6 +469,20 @@ Exploratory choice accepted, challenge pending:
 - executable helper/reference implementation is preferred when available but not a mandatory runtime dependency;
 - no client-private helper/session state may become project authority.
 
+
+### Canonical mechanical-policy representation
+
+User inclination: 2C, not yet frozen.
+
+Analysis against the actual PWv2 implementation:
+- a full declarative rewrite of the entire router would likely create a custom workflow DSL because many current predicates involve exact-subject binding, stale-state checks, read-set validation, reconciliation and fail-closed recovery;
+- a narrower 2C is promising: a small canonical machine-readable registry for finite mechanical policy facts/rules, stable rule IDs, route/stop kinds, precedence and owner-module mapping;
+- Python should evaluate reusable typed predicates and produce route/obligation outputs from that registry rather than duplicating policy values in prose;
+- Markdown semantic modules should reference/explain the same rule IDs and remain authoritative for semantic role behavior, not restate executable condition trees;
+- generated/contract-tested documentation views are acceptable, but the registry must not grow into a general workflow programming language.
+
+Current recommendation: pursue 2C-lite rather than a full data-driven router DSL. New machinery is acceptable when it measurably removes duplicated policy interpretation and improves parity/testability.
+
 ### E. PW ↔ orchestration boundary
 
 E1. simple role + refs contract  
@@ -486,7 +500,7 @@ The first material decisions to explore are:
    Current recommendation: first evaluate the existing PWv2 pattern (executable mechanical contract + semantic Markdown + contract tests) before introducing a new transition DSL/table. Add a machine-readable policy table only if it removes more duplication than complexity it creates.
 
 3. **Runtime portability helper dependency.**  
-   User selected the portable-fallback option: helper/reference implementation preferred, but canonical repository/workflow state must remain independently recoverable. One bounded challenge remains before this is stable exploratory state.
+   Stable exploratory choice: helper/reference implementation preferred, but canonical repository/workflow state must remain independently recoverable. Helper-less parity must be continuously testable.
 
 4. **How rich should the Execution Obligation be?**  
    Initial recommendation remains hybrid refs + bounded materialization, with exact canonical refs/hashes and no provider-specific runtime details.
