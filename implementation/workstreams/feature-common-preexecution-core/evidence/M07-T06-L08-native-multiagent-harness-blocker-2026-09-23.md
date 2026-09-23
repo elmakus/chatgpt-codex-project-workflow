@@ -130,3 +130,7 @@ Observed local sequence on `feat/m07-l08-topology-n`:
 Transcript readback shows the delegated reviewer/corrector/reviewer roles were launched through `~/.codex/codex_workflow/runtime/muse_worker.py`. The active `muse-max` runtime profile assigns those roles to Muse Spark 1.3 Contributor with max reasoning. Therefore this run violated the explicit qualification-run constraint that every model-backed call use only `codex-lb-clean`, `gpt-6-sol`, reasoning `low`. It also does not establish the intended internal Codex multi-agent surface for this run.
 
 Disposition: preserve as diagnostic evidence only; do not mark L08 GREEN and do not push/merge the local six-commit result. The remote fixture remains at the original entry HEAD and is reusable for a clean rerun.
+
+## Superseded qualification interpretation
+
+The later user-mediated live run is accepted as L08 GREEN. The earlier requirement that all delegated calls use a specific provider/model/effort was a local harness constraint, not an M07.P3/PWv2 semantic requirement, and was withdrawn. The configured Codex subagent harness provided genuine separate delegated contexts with bounded task input and result return, which satisfies the runtime-neutral delegation contract. Canonical L08 evidence is now `implementation/workstreams/feature-common-preexecution-core/evidence/M07-T06-L08-n-capable-green-2026-09-23.md`.
