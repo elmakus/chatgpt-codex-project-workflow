@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "fe659268756127d68bf2f97cef05ff4d1e1770c9"
+  head: "dcd04490d29c5fdc6c50d0c9338a6f8b1b94ccab"
 
 research_obligation: null
 
@@ -486,7 +486,7 @@ cards:
     title: "Real ChatGPT/Codex delivery checkpoints L01-L05"
     milestone: "M05"
     decision_state: accepted
-    execution_status: blocked
+    execution_status: in_progress
     executor: chatgpt
     depends_on:
       - "M05-T01"
@@ -500,7 +500,7 @@ cards:
     result_commit: null
     result_pr: null
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M05-T04-live-checkpoints-blocker-2026-09-23.md"
-    tests_summary: "BLOCKED: L01 and L02 remain required user-driven ChatGPT Android scenarios; L03 remains behind the real L02 issue flow. L04 progressed to real model-backed codex exec with exact $pw:project_workflow_v2 and attempted first policy read from bundled local 0.2.1 workflow/ROUTER.md, but final completion is blocked by authenticated Codex usage limit until 2026-09-26 10:10; prior package-resolution/SessionStart/missing-router/no-V1 evidence remains valid. L05 GREEN via real isolated 0.2.0->0.2.1 update/readback. Candidate fbd208c1c26eef2a227ea90aced05fd8ac32a9a4; Actions 35814931203 PASS; full continuation evidence in M05-T04-live-checkpoints-blocker-2026-09-23.md."
+    tests_summary: "IN PROGRESS bounded correction from live ChatGPT Android evidence: L01 GREEN; L02 human-control boundary GREEN; live Premium UX exposed missing handoff rendering. Accepted correction: Premium A optional ready-to-copy cross-context/harness locator; Premium B mandatory fresh independent handoff prompt; Premium C optional lighter-context/harness locator; every real stop deterministically includes workflow/USER_STOP.md in the router read-set; add regression coverage. L03 continues after correction. L04 remains partially blocked by Codex usage limit until 2026-09-26 10:10; L05 GREEN."
 
   - id: "M05-T05"
     title: "Cumulative M05 acceptance and immutable review freeze"
