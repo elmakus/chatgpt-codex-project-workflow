@@ -213,3 +213,21 @@ Compatibility assessment for retained L04/L05 evidence:
 - canonical workflow bytes changed as intended and package byte-preservation tests remain GREEN.
 
 Per PWV2-P1 M05.P4, the later semantic edit therefore requires the affected regression plus compatibility assessment rather than replaying unrelated live evidence. L05 remains applicable; L04 still requires its final model-backed completion when runtime capacity is available.
+
+
+## Live ChatGPT Android evidence — Premium B independent Plan Review
+
+Consumer repository: `elmakus/test-pwv2`; branch: `fix/user-setting-persistence-restart`.
+
+A fresh normal ChatGPT Project chat was started from the locator-only Premium B handoff. It independently recovered the exact frozen P1 subject from durable state and performed Plan Review without relying on prior-chat narrative.
+
+Observed result:
+- review attempt: R01;
+- verdict: GREEN;
+- evidence: `evidence/plan-review-user-setting-persistence-P1-R01.md`;
+- reviewed immutable subject: `elmakus/test-pwv2@c66ffe7729989b488291914dcc632b4e1331c082:planning/USER_SETTING_PERSISTENCE_PLAN.md@f2a1891bb2f3c769cd9dc452aae7869acf1a3bc7`;
+- evidence explicitly records that the reviewer context did not materially author or repair the exact frozen P1 subject;
+- Planning consumed the GREEN verdict;
+- P1 is now `state = approved`, `premium_b = satisfied`, and `premium_c = due` for the same immutable subject.
+
+This provides live evidence that the Stage-6 Plan Review boundary really uses a fresh independent context and that GREEN is consumed deterministically into Premium C rather than directly entering Execution Prep.
