@@ -1,6 +1,6 @@
 # V1 -> V2 workstream migration provenance
 
-Status: STAGED / NOT YET LIVE
+Status: LIVE / ACTIVATED
 
 ## Exact V1 source
 
@@ -32,18 +32,28 @@ The exact source establishes:
 
 The V2 `challenge_audit = "green"` field is a schema-compatible representation of the completed source Brainstorming audit. It is not new product authority.
 
-No exploratory content is promoted by this migration. The exact source Brainstorming Markdown/blob above remains the semantic exploration evidence for later Definition if the user separately authorizes promotion.
+No exploratory content was promoted by this migration. The exact source Brainstorming Markdown/blob above remains semantic exploration evidence for later Definition if the user separately authorizes promotion.
 
-## V2 package used for staging
+## V2 package used for activation
 
 - Authority repository: `elmakus/project_workflow_v2`
-- Main commit at staging: `986affffb7ba816e260e48549bf56e198ed51c21`
-- Main tree at staging: `d357b57059cc73770ca85340226272bae29b76c1`
+- Main commit at validation/activation: `986affffb7ba816e260e48549bf56e198ed51c21`
+- Main tree at validation/activation: `d357b57059cc73770ca85340226272bae29b76c1`
 
-Operational authority is still current `main`; these exact refs exist only to make this migration event auditable.
+Operational authority remains current `elmakus/project_workflow_v2@main`; these exact refs make the migration event auditable and are not an ongoing project pin.
 
-## Ownership boundary
+## Activation
 
-This staging branch is not a live Project Workflow owner. The original workstream branch remains the sole live owner until staged validation is GREEN and the original branch is non-force fast-forwarded to the exact staged commit.
+- Staging branch: `migration/pwv21-policy-kernel-pwv2-staging`
+- Exact staged commit: `fd462d6e7a34fb312ccb044ff0d954433eeae52a`
+- Exact staged tree: `691f993a45d0588dbe0f32a42d58163775373cb5`
+- Staged commit direct parent: `e2dd13b6a92cf14233a81a08ee86bcd5f5d84244`
+- Live branch activation: non-force fast-forward of `work/pwv21-policy-kernel-brainstorming` from `e2dd13b6a92cf14233a81a08ee86bcd5f5d84244` to `fd462d6e7a34fb312ccb044ff0d954433eeae52a`.
+- Consumer integration target remained unchanged at `main@7aa7512ead67a86256089d1af0171e2e655e700d`.
+- Immediate readback verified V2 PROJECT/WORKSTREAM/INTAKE/BRAINSTORM blobs and unchanged V1 evidence blobs.
 
-Definition is explicitly outside migration authorization.
+## Live-owner boundary
+
+The live workstream branch is now the sole mutable Project Workflow V2 owner for this workstream. The staging branch is migration evidence only and must not be treated as a second workflow owner.
+
+Any reverse transition would require separate explicit verified migration handling; do not blindly roll back after V2 activation.
