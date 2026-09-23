@@ -1,6 +1,6 @@
 id: "feature-common-preexecution-core"
 kind: "feature"
-status: "planning"
+status: "done"
 
 branch: "feat/common-preexecution-core"
 base_ref: "fd2dc95f539d982e1009d71bbf1301f3098900f6"
@@ -47,4 +47,4 @@ branch_cleanup:
   evidence: null
 
 pr: null
-result: null
+result: "implementation/workstreams/feature-common-preexecution-core/handoffs/M07_TERMINAL_CONSTRUCTION_CUSTODY_TRANSFER.md"

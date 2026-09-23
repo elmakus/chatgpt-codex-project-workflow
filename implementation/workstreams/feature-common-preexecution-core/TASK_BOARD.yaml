@@ -6,7 +6,7 @@ current_milestone: "M07"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "d260a04defc1cce80772beb3c42d1d86f65e690b"
+  head: "3f7911af47518bd90f9372c2a89f88f195337a36"
 
 research_obligation: null
 
@@ -85,11 +85,11 @@ milestones:
 
   M07:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: superseded
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m07--system-qualification-and-first-production-ready-adoption"
     checkpoint: "2d010a95bac89dfd561dcc3accad6c5e8a0bda7a"
     implementation_head: null
-    handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M07_FINAL_INTEGRATION_REVIEW.md"
+    handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M07_TERMINAL_CONSTRUCTION_CUSTODY_TRANSFER.md"
     acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T08-final-production-freeze-R02-2026-09-23.md"
     review_state: null
     review_subject: null
@@ -782,7 +782,7 @@ cards:
     title: "Controlled first production adoption on orchestration-runtime"
     milestone: "M07"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: superseded
     executor: chatgpt
     depends_on:
       - "M07-T08"
@@ -793,5 +793,5 @@ cards:
     review_evidence: null
     result_commit: null
     result_pr: null
-    evidence: null
-    tests_summary: "IN PROGRESS: controlled adoption started after exact GREEN final-integration gate and unchanged pre-activation candidate/pilot rollback readback."
+    evidence: "implementation/workstreams/feature-common-preexecution-core/handoffs/M07_TERMINAL_CONSTRUCTION_CUSTODY_TRANSFER.md"
+    tests_summary: "TRANSFERRED: V1 representation is superseded by the sole-live V2 custody workstream at elmakus/project_workflow_v2 custody/feature-common-preexecution-core@d6186bce8a39db105bd2e10c88a83c33e5e15682; production adoption itself remains in progress there."
