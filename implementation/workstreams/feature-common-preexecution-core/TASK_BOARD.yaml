@@ -672,7 +672,7 @@ cards:
     title: "Full ordinary model-backed Codex L04 qualification"
     milestone: "M07"
     decision_state: accepted
-    execution_status: blocked
+    execution_status: in_progress
     executor: chatgpt
     depends_on:
       - "M07-T02"
