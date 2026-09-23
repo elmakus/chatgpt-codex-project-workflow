@@ -589,7 +589,7 @@ cards:
     title: "Disposable migration rehearsal and boundary documentation"
     milestone: "M06"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on:
       - "M06-T03"
