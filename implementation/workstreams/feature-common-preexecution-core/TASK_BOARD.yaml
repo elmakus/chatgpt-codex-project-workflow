@@ -6,7 +6,7 @@ current_milestone: "M06"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "07429472b47efe045b8db612984dc0f08d1a89be"
+  head: "ae3d5271acca7c9bf16a8015194ea9192824e29b"
 
 research_obligation: null
 
@@ -598,10 +598,10 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: "768cf3b3a2fa2013103d43730d3cb9fb0ef0d7b9"
+    result_commit: "960351d98ff44e6fde60d035ab4b0000eb33c63b"
     result_pr: 6
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M06-T04-disposable-rehearsal-2026-09-23.md"
-    tests_summary: "GREEN: exact target 768cf3b3a2fa2013103d43730d3cb9fb0ef0d7b9/tree adba3db05aaef2b7825ac4f48be3f7f352b0f12c; Actions push 35847846522 job 107138204950 PASS + PR 35847852710 job 107138225341 PASS; finite nested V1 manifest validation, fail-closed preexecution/stacked obligations, active/result/review/legacy rehearsal and ordinary-router migration isolation verified."
+    tests_summary: "GREEN: corrected exact target 960351d98ff44e6fde60d035ab4b0000eb33c63b/tree f7737105fff7840dcbb4b84efaea31103d636441; Actions 35848053057 job 107138872691 PASS; final migration/close/delivery group 75/75 and full unittest discovery 149/149; pending/RED/GREEN review obligations block until exact GREEN; A17 authority matrix blob aafd4a916ae11f8a3ff0c6edb799d8ced996a4bf has 97 classified rows and 0 OPEN."
 
   - id: "M06-T05"
     title: "Cumulative M06 acceptance and immutable review freeze"
