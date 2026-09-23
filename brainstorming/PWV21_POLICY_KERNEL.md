@@ -853,6 +853,28 @@ Accepted exploratory choices:
 
 Challenge state: migration batch accepted; adversarial validation still required before Definition promotion.
 
+### Adversarial closure batch 146-160
+
+Accepted exploratory choices and challenge resolutions:
+
+146. Parallel sibling results are revalidated against relevant changed inputs before acceptance; affected results become stale/revalidation-bound rather than blindly integrated.
+147. A result completed against an older workstream state is accepted only after proving intervening commits did not invalidate its relevant preconditions.
+148. Handoff prompts are locators only; current canonical Git state always outranks stale prompt narrative.
+149. Loss of all OR/Paseo sessions/state must not prevent project recovery from canonical repository/PW state.
+150. Unknown external side-effect completion after crash requires readback/reconciliation before any retry; no blind duplicate effect.
+151. A reviewer contaminated by Worker transcript/context does not satisfy a fresh-independent-review requirement; launch a clean reviewer.
+152. Any post-GREEN mutation changes the exact subject; if the prior Reviewer made that mutation it also becomes ineligible to independently verdict the new subject.
+153. Fresh Milestone review should not be anchored by prior Card GREEN verdicts; provide current subject/authority/raw evidence instead.
+154. Mechanical-kernel versus semantic-document contradiction routes to workflow Recovery; never silently choose one interpretation.
+155. Helper/router unavailability must not block legal continuation when canonical repo contracts are sufficient; fresh ChatGPT can reconstruct manually.
+156. Helper/manual route disagreement is a parity/contract defect, not an ignorable mismatch; repair workflow before risky continuation.
+157. Ambiguous migration blocks only the dependent path; independent workstreams/Cards may continue.
+158. Valid sibling results in a parallel set are preserved when another sibling blocks/fails unless a dependency/invalidation reaches them.
+159. Final integration incompatibility creates bounded integration correction first; constituent Cards are reopened only when evidence assigns the defect to them.
+160. Definition readiness requires the destructive recovery thought-test: discard chat memory, OR state and helper cache, then prove canonical Git alone identifies the exact legal continuation.
+
+Challenge outcome: GREEN for the major stale-state, runtime-loss, reviewer-freshness, migration-locality, integration and helper-parity failure classes covered by this batch. Remaining Brainstorming work is limited to final policy-registry parity details and synthesis/cleanup unless a new contradiction is found.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
