@@ -6,7 +6,7 @@ current_milestone: "M06"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "158a4e0a03ecd4fb88d413a983f72ab84d707e18"
+  head: "f02e062705cc988911a7dd8a59489552f7d3b73d"
 
 research_obligation: null
 
@@ -571,7 +571,7 @@ cards:
     title: "Idempotent apply, readback, restart and rollback"
     milestone: "M06"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M06-T02"
@@ -580,16 +580,16 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "0f96b202ff7906cecc3d3a15f8090c6f27933681"
+    result_pr: 6
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M06-T03-apply-restart-rollback-2026-09-23.md"
+    tests_summary: "GREEN: exact target 0f96b202ff7906cecc3d3a15f8090c6f27933681/tree 7385bc787f96adb7fecdef3c5618304b128ac175; PR #6 exact head/base, draft/open/mergeable; Actions pull_request 35847087543 job 107135729086 PASS and push 35847081707 PASS; fixture-only exact authorization, source/destination divergence, repeated no-op, crash recovery, unactivated rollback and uncertain-effect readback covered by repository checks."
 
   - id: "M06-T04"
     title: "Disposable migration rehearsal and boundary documentation"
     milestone: "M06"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: chatgpt
     depends_on:
       - "M06-T03"
