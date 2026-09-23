@@ -85,12 +85,12 @@ milestones:
 
   M07:
     decision_state: accepted
-    execution_status: blocked
+    execution_status: in_progress
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m07--system-qualification-and-first-production-ready-adoption"
     checkpoint: "2d010a95bac89dfd561dcc3accad6c5e8a0bda7a"
     implementation_head: null
-    handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M07_L08_CORRECTION_BLOCKER.md"
-    acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T08-final-production-freeze-2026-09-23.md"
+    handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M07_FINAL_INTEGRATION_REVIEW.md"
+    acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T08-final-production-freeze-R02-2026-09-23.md"
     review_state: null
     review_subject: null
     review_evidence: null
@@ -726,7 +726,7 @@ cards:
     title: "L08 N-CAPABLE live RED/correction/GREEN topology"
     milestone: "M07"
     decision_state: accepted
-    execution_status: blocked
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M07-T05"
@@ -737,8 +737,8 @@ cards:
     review_evidence: null
     result_commit: "15978113e46abc8498ceaef594461c8613fcadb8"
     result_pr: 7
-    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T06-L08-durable-evidence-blocker-2026-09-23.md"
-    tests_summary: "BLOCKED after independent final-integration R01 RED: prior L08 terminal Git objects are not durably recoverable; GitHub consumer branch remains S1 BAD/R01 pending; current ChatGPT runtime cannot start the genuine nested capable Codex/multi-agent rerun required by M07-T06. Exact blocker/evidence path recorded; no synthetic substitute accepted."
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T06-L08-n-capable-green-2026-09-23.md"
+    tests_summary: "GREEN L08 retained with explicit user-accepted evidence limitation: the actual N-CAPABLE run remains durably reported as RED -> genuine delegated correction -> GREEN -> same-invocation finalization; terminal disposable consumer Git objects are no longer re-readable. User decision decisions/DECISION_M07_L08_DURABLE_EVIDENCE_LIMITATION.md accepts that historical retention gap as non-blocking and does not require rerun; R01 RED remains immutable history and the limitation must be judged in the new final-integration subject."
 
 
   - id: "M07-T07"
@@ -775,8 +775,8 @@ cards:
     review_evidence: null
     result_commit: "15978113e46abc8498ceaef594461c8613fcadb8"
     result_pr: 7
-    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T08-final-production-freeze-2026-09-23.md"
-    tests_summary: "GREEN freeze: exact candidate 15978113e46abc8498ceaef594461c8613fcadb8/tree f05d86d72f9bbe941583b4ccf92e2c46b5decf83; A01-A17 and L01-L09 all GREEN; named pilot elmakus/orchestration-runtime explicitly authorized; pre-activation PWv1 rollback refs main@c4130e63760d08c3656552f4a92c479239acbea3 and work/orchestration-prior-art-findings@636a9ec2b7760fc6a24eddb00319bfff9d583165 frozen; no pilot mutation or Definition promotion performed."
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T08-final-production-freeze-R02-2026-09-23.md"
+    tests_summary: "GREEN R02 freeze: candidate unchanged at 15978113e46abc8498ceaef594461c8613fcadb8/tree f05d86d72f9bbe941583b4ccf92e2c46b5decf83; A01-A17/L01-L09 qualification retained; R01 RED preserved; explicit user decision accepts only the historical L08 terminal-fixture re-readability gap as non-blocking, with no L08 rerun required; pilot/rollback boundary unchanged; new independent final-integration review required before M07-T09."
 
   - id: "M07-T09"
     title: "Controlled first production adoption on orchestration-runtime"
