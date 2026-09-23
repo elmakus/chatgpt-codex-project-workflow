@@ -667,3 +667,21 @@ cards:
     result_pr: 7
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T02-L03-live-close-qualification-2026-09-23.md"
     tests_summary: "GREEN L03 live Close qualification by exact external readback: test-pwv2 PR #3 merged exact base ea8b963b064669fd41818909c2a6346a652b4228 + head a52530eb58ffb546ad40927f28c46c950f86020e to main a31047259c92a7c6a6054a1b9bf618fc0f6ac69a; Issue #2 closed from final PR linkage; exact dedup search returns one Issue; source ref absent after GitHub auto-delete; target-side complete workstream package recovered; M03-T01 independent R01 GREEN and reviewed app blob 1f7118be9360cf8cac8e0f7c12cfb15c15e3d6d9 unchanged on main; M07 candidate compatibility proven because only adoption helper/test differ from M06 baseline. L04/L06-L09 remain open."
+
+  - id: "M07-T03"
+    title: "Full ordinary model-backed Codex L04 qualification"
+    milestone: "M07"
+    decision_state: accepted
+    execution_status: ready
+    executor: chatgpt
+    depends_on:
+      - "M07-T02"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M07-T03.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
