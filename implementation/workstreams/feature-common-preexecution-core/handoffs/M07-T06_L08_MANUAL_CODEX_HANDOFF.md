@@ -24,7 +24,7 @@ Use only:
 - model: `gpt-6-sol`
 - reasoning effort: `low`
 
-This is an external runtime constraint, not Project Workflow policy.
+This is an external runtime constraint, not Project Workflow policy. For this qualification run, do not use the Muse/codex_workflow worker harness because its active profile does not satisfy the required model/effort constraint. Any delegated model context must be an internal Codex context using the same provider/model/effort; if that is unavailable, stop with a capability blocker.
 
 ## Ready-to-copy prompt
 
@@ -43,4 +43,4 @@ Start from `PROJECT.md`, reconstruct the current workstream from repository stat
 
 Treat the repository and exact Project Workflow candidate as authority. Do not treat this prompt as task or workflow authority.
 
-For this run use only `codex-lb-clean`, model `gpt-6-sol`, reasoning effort `low`. Do not fall back to another model/provider.
+For this run use only `codex-lb-clean`, model `gpt-6-sol`, reasoning effort `low` for the top-level session and every delegated model context. Do not use Muse or the codex_workflow worker harness for delegated contexts in this run. Do not fall back to another model/provider. If an internal delegated context cannot satisfy the same provider/model/effort, stop and report a capability blocker.
