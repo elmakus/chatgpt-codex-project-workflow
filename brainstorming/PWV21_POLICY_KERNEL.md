@@ -507,7 +507,9 @@ PWv2.1 candidate direction requested by the user:
 - parallel Cards remain separate PW Cards with separate obligations/results/review subjects; runtime workers do not become Cards;
 - avoid introducing a general scheduler or arbitrary lane machinery into PW.
 
-Current recommendation: allow bounded plan-authorized parallel Cards, replacing the V2 one-Card invariant with a deterministic independence/parallel-set invariant.
+Accepted exploratory choice: allow bounded plan-authorized parallel Cards, replacing the V2 one-Card invariant with a deterministic independence/parallel-set invariant.
+
+Challenge state: pending. Main failure mode to resolve: two Cards may be dependency-independent yet still conflict through shared files, shared external effects or overlapping authority.
 
 ## Current decision tree
 
