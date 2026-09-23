@@ -702,10 +702,10 @@ Accepted exploratory choices:
 62. Previous runtime identity is not canonical authority; retain it only as non-authoritative evidence when concretely useful.
 63. After mid-Card runtime loss, fresh recovery checks for reusable durable/observable result before replay.
 64. If execution completed but handoff/reconciliation was interrupted, recovery reuses valid result/evidence when provable.
-65. OR may decompose one PW Card internally across multiple workers/subagents while PW still sees one Card/obligation/result boundary.
+65. **Superseded by 161-163.** OR may use bounded non-mutating helper lanes inside one Card, but the Card has one primary mutating Worker; multiple mutating owners require separate PW Cards.
 66. OR must not erase the semantic boundaries of distinct PW Cards by merging them into one indistinguishable result.
 67. **Single worker layer under OR/Main.** Workers may not directly spawn their own workers/subagents. A worker may request additional help from OR, and OR may start another sibling worker/helper within the same PW Card. Recursive/nested delegation is out of scope for the initial OR design.
-68. OR may change provider/model during Card execution without PW involvement.
+68. **Superseded by 81/82/164.** Worker/reviewer model assignment is fixed by OR configuration; no silent mid-Card provider/model switching.
 69. Provider/model failure is an OR runtime concern unless OR cannot complete the legal obligation and a real blocker remains.
 70. A fresh runtime receiving the locator prompt should reconstruct and continue the exact legal obligation without asking the user what to do.
 
@@ -737,12 +737,12 @@ User corrections reconcile PWv2.1 with already durable orchestration-runtime exp
 
 Accepted exploratory choices, reconciled with later corrections:
 
-71. OR may adapt worker count to the bounded task only within the already-legal PW Card and runtime concurrency rules; this does not create new PW Cards.
+71. **Superseded by 161-163 for mutation.** OR may add bounded read-only/advisory helpers within a Card, but one Card has one primary mutating Worker.
 72. Every PW Card and every Milestone requires independent review. Each new Card gets a fresh independent Reviewer assignment; each Milestone gets its own fresh independent Reviewer.
 73. Implementing Worker may self-test but cannot satisfy its own formal independent review.
 74. Reviewer for a Card starts only after an exact review subject/result is frozen; implementation and formal review of the same subject do not run concurrently.
 75. OR may replace a struggling Worker without user input when scope/authority remain unchanged.
-76. Duplicate competing Workers on the same problem are exceptional, not default; use only when Plan/JIT or explicit strategy justifies comparison.
+76. Duplicate competing mutating Workers for one Card are not allowed under 161-163. Comparative read-only/advisory lanes may be used when explicitly useful without creating competing mutation ownership.
 77. Worker-proposed architecture changes outside Card scope return to PW rather than being accepted by OR.
 78. Worker may choose among legally available tools/extensions/MCP capabilities inside its bounded assignment.
 79. Missing tooling should first be handled within OR/runtime alternatives; escalate only a real unresolved blocker.
@@ -874,6 +874,33 @@ Accepted exploratory choices and challenge resolutions:
 160. Definition readiness requires the destructive recovery thought-test: discard chat memory, OR state and helper cache, then prove canonical Git alone identifies the exact legal continuation.
 
 Challenge outcome: GREEN for the major stale-state, runtime-loss, reviewer-freshness, migration-locality, integration and helper-parity failure classes covered by this batch. Remaining Brainstorming work is limited to final policy-registry parity details and synthesis/cleanup unless a new contradiction is found.
+
+### Policy-kernel closure batch 161-175
+
+Accepted exploratory choices:
+
+161. **One Card = one primary mutating Worker.** OR must not fan one PW Card/Execution Obligation out across multiple concurrent mutating Workers. If implementation is materially parallelizable, Planning/JIT should model the independent mutation units as separate Cards in an authorized parallel set.
+162. The Card Worker may request bounded read-only/advisory help (for example Scout/Researcher/test investigation) through OR. Helpers do not become additional mutating owners of the Card.
+163. Earlier exploratory allowance for multiple mutating Workers inside one Card is superseded. A Card that genuinely needs multiple independently mutating owners should be split into Cards rather than hidden inside runtime fan-out.
+164. Fixed worker-model resolution remains fail-closed: no silent fallback to another model/provider.
+165. Helper-less ChatGPT must reconstruct the legal route from canonical repository contracts rather than escalating merely because confidence is lower; only an actual contradiction/ambiguity is Recovery.
+166. Mechanical policy must not be independently duplicated in machine registry and prose condition trees. Mechanical facts/rules need one canonical representation with checked/documented semantic projection.
+167. Changes to a mechanical rule must have tests/contract checks that detect stale human-facing documentation or references where mechanically verifiable.
+168. Markdown changes that contradict mechanically checkable policy must be caught before merge where feasible; otherwise parity tests must fail closed at runtime/recovery.
+169. Do not move all Project Workflow semantics into a general YAML/TOML workflow DSL. The machine-readable layer remains deliberately small and mechanical.
+170. Rules requiring semantic interpretation of intent/product meaning remain owned by the appropriate LLM role/module, not the deterministic kernel.
+171. Acceptance testing must compare representative canonical repo states across executable helper and helper-less fresh ChatGPT and require the same legal next obligation/stop.
+172. Parity fixtures must include RED/recovery, fresh-review boundaries, parallel Cards, migration from PWv2 and other high-risk states.
+173. A PWv2.1 feature that is only recoverable/understandable through the Python helper and cannot be reconstructed from canonical contracts is rejected.
+174. Serialization/file-format details of the small policy registry are implementation choices for Definition/Planning unless they change user-visible semantics or authority.
+175. After this batch, Brainstorming should move to a bounded completion audit/final challenge pass rather than another broad grilling cycle.
+
+Supersession note:
+- Earlier choices 65 and 71 that could be read as permitting several mutating Workers inside one Card are superseded by 161-163. OR may still use bounded non-mutating helpers inside a Card.
+- Earlier choice 68 permitting runtime model/provider switching is superseded by the later fixed-model choices 81/82/164: no silent model/provider substitution.
+- Issue `chatgpt-codex-project-workflow#56` is resolved by rejecting internal mutating fan-out within a single Card; legal mutation parallelism is represented as multiple PW Cards in an explicitly authorized parallel set.
+
+Challenge outcome: GREEN for the remaining policy-kernel portability/parity direction, subject to final completion audit.
 
 ## Current decision tree
 
