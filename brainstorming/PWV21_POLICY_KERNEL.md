@@ -733,6 +733,26 @@ User corrections reconcile PWv2.1 with already durable orchestration-runtime exp
    - After that Card is terminal, the Worker is closed/archived; the next Card gets a new fresh Worker.
    - This preserves bounded context and prevents cross-Card contamination while avoiding needless rediscovery during repair loops.
 
+### Worker operation choices 71-85
+
+Accepted exploratory choices, reconciled with later corrections:
+
+71. OR may adapt worker count to the bounded task only within the already-legal PW Card and runtime concurrency rules; this does not create new PW Cards.
+72. Every PW Card and every Milestone requires independent review (later correction; supersedes selective-review wording).
+73. Implementing Worker may self-test but cannot satisfy its own formal independent review.
+74. Reviewer for a Card starts only after an exact review subject/result is frozen; implementation and formal review of the same subject do not run concurrently.
+75. OR may replace a struggling Worker without user input when scope/authority remain unchanged.
+76. Duplicate competing Workers on the same problem are exceptional, not default; use only when Plan/JIT or explicit strategy justifies comparison.
+77. Worker-proposed architecture changes outside Card scope return to PW rather than being accepted by OR.
+78. Worker may choose among legally available tools/extensions/MCP capabilities inside its bounded assignment.
+79. Missing tooling should first be handled within OR/runtime alternatives; escalate only a real unresolved blocker.
+80. Concrete model identity is runtime detail, not PW canonical state.
+81. No automatic stronger-model escalation; exceptional stronger-model use requires explicit user approval (later correction).
+82. Worker/reviewer model assignment is fixed by OR configuration; no silent mid-Card model/provider switching (later correction).
+83. One PW Card gets one fresh Worker assignment; the same Worker continues through ordinary repairs for that Card; next Card gets a fresh Worker (later correction).
+84. Worker receives only the authority/context needed for its bounded Card, not the entire project/Plan by default.
+85. OR/Main may hold broader coordination context than Workers, but may not become a second source of PW authority.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
