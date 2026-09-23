@@ -637,15 +637,15 @@ cards:
     title: "Full automated qualification and acceptance-gap reconciliation"
     milestone: "M07"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     openspec_change: null
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M07-T01.md"
     review_state: null
     review_subject: null
-    review_evidence: null
-    result_commit: null
-    result_pr: null
+    review_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T01-automated-qualification-2026-09-23.md"
+    result_commit: "15978113e46abc8498ceaef594461c8613fcadb8"
+    result_pr: 7
     evidence: null
-    tests_summary: null
+    tests_summary: "GREEN automated M07.P1: exact candidate 15978113e46abc8498ceaef594461c8613fcadb8/tree f05d86d72f9bbe941583b4ccf92e2c46b5decf83; PR #7 exact head/base open/draft/mergeable; push Actions 35858945879 and PR Actions 35858978373 success; full discovery 161/161 plus package/state/router/execution/review/recovery/combined suites, compileall/diff/clean-tree PASS; A01-A17, PWV2-REQ-001..076 and 97-row/0-OPEN salvage accounting reconciled; custody-transfer interruption deterministic gap added and GREEN; mandatory live L03/L04/L06-L09 remain explicit and block production acceptance."
