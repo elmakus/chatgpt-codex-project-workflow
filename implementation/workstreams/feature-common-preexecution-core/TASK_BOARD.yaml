@@ -690,7 +690,7 @@ cards:
     title: "Cross-runtime L06 continuity and completed-result reuse"
     milestone: "M07"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on:
       - "M07-T03"
