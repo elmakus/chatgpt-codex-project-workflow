@@ -689,6 +689,26 @@ Accepted exploratory choices:
 
 Challenge state: pending only for runtime-handoff/telemetry UX details; the remaining accepted choices are stable exploratory direction unless later evidence reopens them.
 
+### Cross-runtime handoff choices
+
+Accepted exploratory choices:
+
+56. Prefer handoff at durable boundaries; if the user requests an earlier runtime switch, current runtime first persists a safe resumable state before handing off.
+57. Use one runtime-neutral handoff/locator prompt for ChatGPT and OR/Paseo rather than separate prompt formats.
+58. Handoff prompt stays locator-only: repo, branch/workstream, entry obligation and durable pointer; do not copy project history.
+59. On continuation, current repository/Git state outranks any stale detail in the handoff prompt.
+60. The user may switch ChatGPT ↔ OR/Paseo multiple times within one workstream.
+61. Runtime switching does not mutate canonical Task Board semantics merely because the runtime changed.
+62. Previous runtime identity is not canonical authority; retain it only as non-authoritative evidence when concretely useful.
+63. After mid-Card runtime loss, fresh recovery checks for reusable durable/observable result before replay.
+64. If execution completed but handoff/reconciliation was interrupted, recovery reuses valid result/evidence when provable.
+65. OR may decompose one PW Card internally across multiple workers/subagents while PW still sees one Card/obligation/result boundary.
+66. OR must not erase the semantic boundaries of distinct PW Cards by merging them into one indistinguishable result.
+67. Clarification pending only on nested delegation semantics; intended question is whether a worker may ask OR for an additional helper subagent within the same PW Card.
+68. OR may change provider/model during Card execution without PW involvement.
+69. Provider/model failure is an OR runtime concern unless OR cannot complete the legal obligation and a real blocker remains.
+70. A fresh runtime receiving the locator prompt should reconstruct and continue the exact legal obligation without asking the user what to do.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
