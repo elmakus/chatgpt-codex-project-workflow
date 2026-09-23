@@ -11,11 +11,11 @@ parent_branch: null
 parent_dependency: null
 
 intake:
-  state: "active"
+  state: "complete"
   record: "implementation/workstreams/change-pwv2-architecture-prior-art-research/INTAKE.md"
 
 routing:
-  exploratory_scope: null
+  exploratory_scope: "brainstorming/PWV2_ARCHITECTURE_PRIOR_ART_R1.md"
   research_obligation: null
   plan_review: null
 

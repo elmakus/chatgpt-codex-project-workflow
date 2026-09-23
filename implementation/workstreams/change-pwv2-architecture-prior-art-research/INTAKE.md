@@ -3,7 +3,7 @@
 Date: 2026-09-23
 Workstream ID: `change-pwv2-architecture-prior-art-research`
 Intake kind: `change`
-State: `active`
+State: `complete`
 
 ## Authorized bounded scope
 
@@ -11,10 +11,9 @@ Perform architectural research of the current PWv2 only. Compare four explicit p
 
 ## Identity / collision discovery
 
-- Deterministic branch candidate: `work/pwv2-architecture-prior-art-research`.
-- Deterministic workstream ID: `change-pwv2-architecture-prior-art-research`.
-- No matching branch or workstream was present on the inspected current `main`.
-- No open pull request matched this subject at intake time.
+- Branch: `work/pwv2-architecture-prior-art-research`.
+- Workstream ID: `change-pwv2-architecture-prior-art-research`.
+- No matching pre-existing branch/workstream or open PR was found before creation.
 
 ## Base / dependency classification
 
@@ -25,4 +24,8 @@ Perform architectural research of the current PWv2 only. Compare four explicit p
 
 ## Downstream classification
 
-Pending durable exploratory/research anchor creation. No implementation path is authorized.
+- Path: `brainstorming`.
+- Next route: `brainstorming:pwv2-architecture-prior-art@R1`.
+- Durable owner: `brainstorming/PWV2_ARCHITECTURE_PRIOR_ART_R1.md`.
+- Rationale: the requested output is exploratory architectural evidence and candidate improvements, not accepted Definition/Planning authority. The exact Brainstorming scope owns the exploratory question and may yield to formal Research for source verification.
+- Implementation path: not authorized.
