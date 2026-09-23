@@ -512,10 +512,10 @@ cards:
       - "M05-T04"
     openspec_change: null
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M05-T05.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "elmakus/project_workflow_v2@commit:e95bea2e828e86601cb127fd7564d013a51b0846|tree:978f34a76758d6bbd953d1d3b10f7e12ced5f519|M05-T05-card-blob:26265f3e4d74ba5a15627887d1cdad87ec210d56|acceptance-evidence-blob:8372af2cfdc2ae984f8197184fb897335fee39ef"
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "e95bea2e828e86601cb127fd7564d013a51b0846"
+    result_pr: 5
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M05-T05-cumulative-acceptance-P2-2026-09-23.md"
+    tests_summary: "GREEN candidate frozen under PWV2-P2: exact head e95bea2e828e86601cb127fd7564d013a51b0846/tree 978f34a76758d6bbd953d1d3b10f7e12ced5f519; sh scripts/test.sh PASS; full unittest discovery 116/116 PASS; compileall + diff/check + clean tree PASS; Actions 35826499078 success; PR #5 P2 metadata readback exact. M05 live acceptance matches P2 and explicitly leaves full L03 + missing full model-backed L04 to mandatory M07. RECOMMENDED independent review pending."
