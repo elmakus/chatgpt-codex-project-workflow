@@ -486,7 +486,7 @@ cards:
     title: "Real ChatGPT/Codex delivery checkpoints L01-L05"
     milestone: "M05"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M05-T01"
@@ -497,10 +497,10 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
+    result_commit: "e95bea2e828e86601cb127fd7564d013a51b0846"
+    result_pr: 5
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M05-T04-live-checkpoints-blocker-2026-09-23.md"
-    tests_summary: "READY after PWV2-P2 GREEN/approval + Premium C satisfaction and Execution Prep reconciliation of M05-T04/M05-T05. Live M05 evidence includes L01 GREEN, L02 human-control GREEN, same-flow recovery from runtime/input blocker, implementation with 3/3 GREEN regressions, and correct REQUIRED-review independence stop; exact Codex installed-package/CLI/bootstrap/missing-router/no-V1 evidence plus L05 update/readback remains durable. User explicitly ended further M05 manual driving and skipped the additional model-backed Codex run. P2 defers L03 final PR/tracker closure and any still-missing full model-backed L04 continuation to M07/first-production acceptance without relabeling them GREEN. Evidence: implementation/workstreams/feature-common-preexecution-core/evidence/M05-P2-replan-2026-09-23.md."
+    tests_summary: "GREEN under approved PWV2-P2 M05 checkpoint: L01 GREEN, L02 human-control GREEN, same-flow recovery from runtime/input blocker, implementation with 3/3 GREEN regressions, and correct REQUIRED-review independence stop; exact Codex installed-package/CLI/bootstrap/missing-router/no-V1 evidence plus L05 update/readback remains durable. same-flow runtime/input blocker recovery + implementation 3/3 regressions + REQUIRED-review independence stop; exact installed Codex Skill/local-router/thin-bootstrap/missing-router/no-V1 evidence; L05 update/readback GREEN; corrected candidate e95bea2e828e86601cb127fd7564d013a51b0846, PR #5 head exact/mergeable, Actions 35826499078 success. Full L03 final closure and missing full model-backed L04 remain mandatory M07 obligations and are not GREEN."
 
   - id: "M05-T05"
     title: "Cumulative M05 acceptance and immutable review freeze"
