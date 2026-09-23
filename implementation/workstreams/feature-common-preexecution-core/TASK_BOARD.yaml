@@ -506,8 +506,8 @@ cards:
     title: "Cumulative M05 acceptance and immutable review freeze"
     milestone: "M05"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on:
       - "M05-T04"
     openspec_change: null
