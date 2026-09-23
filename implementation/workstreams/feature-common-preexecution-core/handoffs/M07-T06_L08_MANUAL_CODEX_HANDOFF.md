@@ -14,6 +14,7 @@ Qualification: `L08 — N-CAPABLE live topology`
 - repository: `elmakus/test-pwv2`
 - branch: `feat/m07-l08-topology-n`
 - required entry HEAD: `7a2cf09bf505ba62e0ecfc32385429b9fe77e7d8`
+- prepared fresh local checkout: `/home/codex/Documents/ChatGPT/test-pwv2-l08-rerun`
 
 The repository state is the test input. Do not duplicate task semantics, expected routing, expected verdicts, or acceptance progression in the user prompt.
 
@@ -32,6 +33,9 @@ Use Project Workflow V2 from `elmakus/project_workflow_v2` at exact commit `1597
 
 Repo projektu:
 `elmakus/test-pwv2`
+
+Prepared local checkout:
+`/home/codex/Documents/ChatGPT/test-pwv2-l08-rerun`
 
 Branch:
 `feat/m07-l08-topology-n`
