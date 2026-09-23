@@ -1,6 +1,6 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 workstream_id: "feature-common-preexecution-core"
-plan_revision: "PWV2-P1"
+plan_revision: "PWV2-P2"
 current_milestone: "M05"
 
 execution_ref:
@@ -500,7 +500,7 @@ cards:
     result_commit: null
     result_pr: null
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M05-T04-live-checkpoints-blocker-2026-09-23.md"
-    tests_summary: "BLOCKED pending PWV2-P2 plan review/approval. Live M05 evidence now includes L01 GREEN, L02 human-control GREEN, same-flow recovery from runtime/input blocker, implementation with 3/3 GREEN regressions, and correct REQUIRED-review independence stop; exact Codex installed-package/CLI/bootstrap/missing-router/no-V1 evidence plus L05 update/readback remains durable. User explicitly ended further M05 manual driving and skipped the additional model-backed Codex run. P2 defers L03 final PR/tracker closure and any still-missing full model-backed L04 continuation to M07/first-production acceptance without relabeling them GREEN. Evidence: implementation/workstreams/feature-common-preexecution-core/evidence/M05-P2-replan-2026-09-23.md."
+    tests_summary: "BLOCKED at premium_stop_C after PWV2-P2 approval; Execution Prep must reconcile M05-T04/M05-T05 to approved P2 before execution resumes. Live M05 evidence now includes L01 GREEN, L02 human-control GREEN, same-flow recovery from runtime/input blocker, implementation with 3/3 GREEN regressions, and correct REQUIRED-review independence stop; exact Codex installed-package/CLI/bootstrap/missing-router/no-V1 evidence plus L05 update/readback remains durable. User explicitly ended further M05 manual driving and skipped the additional model-backed Codex run. P2 defers L03 final PR/tracker closure and any still-missing full model-backed L04 continuation to M07/first-production acceptance without relabeling them GREEN. Evidence: implementation/workstreams/feature-common-preexecution-core/evidence/M05-P2-replan-2026-09-23.md."
 
   - id: "M05-T05"
     title: "Cumulative M05 acceptance and immutable review freeze"
