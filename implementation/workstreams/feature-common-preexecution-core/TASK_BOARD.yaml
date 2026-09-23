@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "b515771d7a64855de1c43decaadda08d93f188ab"
+  head: "d3c2cd0f97368f06f1c36769ad277dc6964c8bdd"
 
 research_obligation: null
 
@@ -451,7 +451,7 @@ cards:
     title: "Codex plugin package and thin local bootstrap"
     milestone: "M05"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: null
     depends_on: []
     openspec_change: null
