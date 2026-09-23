@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "78424f4054082e903dc380d1f874a0afe7c8ac96"
+  head: "d43989874f947e87234de526b74d39fffe15d1a8"
 
 research_obligation: null
 
@@ -468,7 +468,7 @@ cards:
     title: "Semantic package update propagation and readback"
     milestone: "M05"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: null
     depends_on:
       - "M05-T02"
