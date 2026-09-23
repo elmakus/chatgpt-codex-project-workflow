@@ -1,0 +1,8 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+scope_id = "pwv21-policy-kernel"
+revision = 1
+state = "ready_for_definition"
+challenge_audit = "green"
+explicit_user_stop = false
+promotion_state = "pending"
+promotion_subject = ""
