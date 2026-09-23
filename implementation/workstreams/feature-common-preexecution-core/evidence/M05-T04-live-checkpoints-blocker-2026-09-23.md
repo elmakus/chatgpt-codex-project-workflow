@@ -253,3 +253,30 @@ Fixture surface:
 The fixture intentionally reproduces the authorized issue: save reports success and updates the in-memory value, but restart still restores the previous durable value. Independent local readback on the exact fixture commit ran `python3 -m unittest tests.test_settings_persistence` and produced the expected RED assertion: restarted `theme = light` instead of expected `dark`, while unrelated settings remained present.
 
 The existing M01-T01 blocker record and Task Board remain unchanged intentionally. The next user-driven Android step is to tell the same live chat that the missing input is now present and continue. This probes whether PWv2 Recovery can verify and consume a resolved `runtime_access_input` stop instead of replaying/sticking on stale blocker state.
+
+
+## PWV2-P2 acceptance reconciliation — 2026-09-23
+
+After independent PWV2-P2 Plan Review GREEN, deterministic plan approval and explicit Premium C satisfaction, Execution Prep reconciled M05-T04 to the approved P2 acceptance surface.
+
+Fresh external readback confirms the corrected M05 candidate remains:
+- repository: `elmakus/project_workflow_v2`;
+- branch: `feat/pwv2-m05-delivery`;
+- head: `e95bea2e828e86601cb127fd7564d013a51b0846`;
+- draft PR: #5, open, base `main`, mergeable;
+- PR-head Actions run `35826499078`: completed / success;
+- test job `107069277763`: completed / success, including the repository-check step.
+
+The existing live evidence satisfies the **M05** checkpoint now defined by PWV2-P2:
+- L01 real ChatGPT acceptance is GREEN;
+- L02 human-control boundary is GREEN;
+- the same issue flow demonstrated recovery from the real runtime/input blocker, bounded implementation with 3/3 GREEN regressions, and the correct REQUIRED independent-review freeze/stop;
+- installed Codex package/CLI evidence proves explicit Skill resolution, bundled local router authority, thin Skill/hook, missing-router fail-closed/no-V1 behavior;
+- L05 supported update/readback is GREEN;
+- the later premium-handoff semantic correction has affected regression + Actions GREEN and unchanged Skill/hook/plugin hashes.
+
+No deferred acceptance is upgraded by this reconciliation:
+- full L03 final PR/default-branch tracker closure remains outstanding and mandatory in M07 before first production acceptance;
+- L04 remains PARTIAL for the still-missing full ordinary model-backed semantic completion, which remains mandatory in M07 before first production acceptance.
+
+M05-T04 therefore meets its **PWV2-P2** Card contract without claiming full L03 or L04 GREEN.
