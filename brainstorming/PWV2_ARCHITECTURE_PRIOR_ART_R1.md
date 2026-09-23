@@ -1,9 +1,9 @@
 # Brainstorm — PWv2 architecture prior art
 
-Date: `2026-09-23`
-Scope ID: `pwv2-architecture-prior-art`
-Revision: `R1`
-Status: `tentative`
+Date: 2026-09-23
+Scope ID: pwv2-architecture-prior-art
+Revision: R1
+Status: tentative
 
 ## Problem / goal
 
@@ -13,9 +13,10 @@ Evaluate whether four named prior-art mechanisms could materially improve the cu
 
 ### Verified facts
 
-- Current PWv2 uses repository-backed durable authority and branch-isolated managed workstreams under `chatgpt_only`.
-- `WORKSTREAM.yaml`, Task Board, Task Cards, requirements, decisions, review evidence and Git remain canonical durable state.
+- Current PWv2 uses repository-backed durable authority and branch-isolated managed workstreams under chatgpt_only.
+- WORKSTREAM.yaml, Task Board, Task Cards, requirements, decisions, review evidence and Git remain canonical durable state.
 - The current request explicitly limits this scope to research and candidate evaluation.
+- Research completed at research/PWV2_ARCHITECTURE_PRIOR_ART_R1.md.
 
 ### Existing accepted constraints
 
@@ -26,16 +27,19 @@ Evaluate whether four named prior-art mechanisms could materially improve the cu
 
 ### Assumptions to verify
 
-- The named prior-art projects expose mechanisms materially comparable to PWv2 routing/context/recovery problems.
-- Some deterministic or typed mechanisms may reduce interpretation/context cost without weakening role isolation or reviewer freshness.
+Resolved by the research artifact. The four prior-art families all contain useful mechanisms, but their fit differs sharply: graph/cycle validation and derived context/tool views fit incrementally; executable routing is a larger refactor; probabilistic typed classifiers are safe only as bounded/advisory mechanisms unless domain calibration proves otherwise.
 
 ## Ideas / alternatives considered
 
-Research only. No architecture choice is accepted here.
+No architecture choice is accepted here. Candidate improvements are grouped in the research artifact under:
+- PWv2 — low-risk incremental
+- PWv2 — architectural refactor
+- PWv3 prior art
+- Reject / no material benefit
 
 ## Trade-offs / questions
 
-For each prior-art area, determine mechanism, overlap with existing PWv2 behavior, context/determinism/recovery/review impacts, failure modes, and whether it belongs as an incremental PWv2 improvement, architectural refactor, PWv3 prior art, or reject/no material benefit.
+The research records context, determinism/recoverability, role-isolation/review, authority, complexity and failure-mode trade-offs for each prior-art family.
 
 ## Adaptive discovery state
 
@@ -45,10 +49,11 @@ For each prior-art area, determine mechanism, overlap with existing PWv2 behavio
 |---|---|---|
 | Preserve the current durable authority model as a hard constraint. | Not challenged: explicit scope constraint. | Stable for R1. |
 | Research only; do not implement or promote findings. | Not challenged: explicit scope constraint. | Stable for R1. |
+| Treat external runtimes/classifiers/UI as derived execution aids only. | Research found concrete second-authority failure modes if they own state. | Stable candidate constraint; not promoted. |
 
 ### Unresolved material decisions / dependencies
 
-No product/strategic choice is to be resolved in this scope. The unresolved items are evidence questions delegated to Research.
+No product/strategic choice was resolved in this scope. Any decision to adopt a candidate must enter the normal future Project Definition / Planning route.
 
 ### Reopened choices
 
@@ -56,23 +61,20 @@ None.
 
 ## Research needed
 
-1. `pi-fabric`: code-mode / typed tool composition, capability discovery/search/describe, multi-call branching/loops/fan-out outside the main transcript, intermediate-output/context control.
-2. Laya / System One: typed/non-autoregressive classification, choice/score/boolean/probability decisions, routing/tool/evidence classification, escalation, confidence/calibration and safety boundaries.
-3. Dagu and comparable deterministic workflow/state-machine patterns: retries, structured validation, approval gates, DAG/state transitions, and whether executable routing can replace some Markdown interpretation without replacing authority.
-4. `rpiv-todo`: dependency graph, `blockedBy`, cycle detection, reload/compaction queue recovery, live progress UX, while keeping PWv2 Task Board/Cards canonical.
+Completed for R1. See research/PWV2_ARCHITECTURE_PRIOR_ART_R1.md.
 
 ## Open questions
 
-Evidence-dependent only; no user/product decision is required before the research.
+Only future product/architecture choices remain, for example which candidate experiments, if any, the user wants to authorize. They are intentionally not decided here.
 
 ## Outcome of this session
 
-- Tentative conclusions: none before Research.
+- Tentative conclusions: low-risk value exists in derived dependency/cycle validation, on-demand capability discovery, bounded read-only tool composition and schema validation; executable routing/context-package compilation is promising but architectural; probabilistic classification needs domain-specific calibration and must not own hard authority gates.
 - Explicit user/product choices to promote through Project Definition: none.
-- Research still needed: all four named areas.
-- Open questions: source-grounded comparison against the current PWv2.
-- Next phase/action: `research`
-- Definition promotion authorization: `pending`
-- Definition promotion subject: `none`
+- Research still needed: none within R1.
+- Open questions: which candidate improvements, if any, should be promoted into a future definition.
+- Next phase/action: approved research scope complete; no deterministic downstream work is authorized.
+- Definition promotion authorization: pending
+- Definition promotion subject: none
 
-> Nothing in this file becomes accepted requirement/decision authority by itself.
+> Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical requirements/ and decisions/.
