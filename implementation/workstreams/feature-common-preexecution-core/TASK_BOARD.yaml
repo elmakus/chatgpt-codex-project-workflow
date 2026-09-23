@@ -672,7 +672,7 @@ cards:
     title: "Full ordinary model-backed Codex L04 qualification"
     milestone: "M07"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M07-T02"
@@ -681,7 +681,7 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T03-L04-model-backed-blocker-2026-09-23.md"
-    tests_summary: "BLOCKED: exact M07 candidate marketplace HEAD 15978113e46abc8498ceaef594461c8613fcadb8 installed as isolated pw@project-workflow-v2 0.2.1; disposable test-pwv2 main clone a31047259c92a7c6a6054a1b9bf618fc0f6ac69a remained clean; real Codex CLI 0.155.0-alpha.9.2 model-backed exec reached OpenAI provider but exited 1 before semantic continuation because account usage limit reports retry at 2026-09-26 10:10. Live Codex home remains without project-workflow-v2; no existing custom model_provider is configured, so codex-lb-clean is not treated as an invented fallback. L04 remains non-GREEN."
+    result_commit: "15978113e46abc8498ceaef594461c8613fcadb8"
+    result_pr: 7
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T03-L04-model-backed-green-2026-09-23.md"
+    tests_summary: "GREEN L04: exact M07 candidate 15978113e46abc8498ceaef594461c8613fcadb8 installed in fresh isolated CODEX_HOME; real Codex CLI 0.155.0-alpha.9.2 used authorized codex-lb-clean provider with model gpt-6-sol and reasoning low; model-backed $pw:project_workflow_v2 read exact bundled local ROUTER.md, PROJECT.md, selected user-setting-persistence-restart, TASK_BOARD revision 12 and CLOSE.md; production router returned route/close; exact GREEN review/result/target blob and terminal handoff were recovered; pre/post consumer git status clean; no V1 fallback, remote workflow-policy fetch or production mutation. Model-side gh auth absence correctly stayed fail-closed; separate L03 GitHub readback already proves Issue #2 closure."
