@@ -492,7 +492,11 @@ The runtime return should contain only Project-Workflow-relevant semantic result
 
 It should not make provider/model/worker/session/retry/worktree/Paseo telemetry canonical PW state.
 
-Challenge state: pending. Main failure mode to resolve: a result can be structurally well-typed while still being stale or attached to an obsolete obligation/current Git state.
+Challenge state: GREEN. The user accepted exact obligation binding plus a fingerprint of the canonical derivation inputs/current relevant Git state. PW must validate freshness before accepting the result; stale results cannot be accepted blindly and must be re-routed/reconciled against current canonical state.
+
+### Result freshness / stale-result protection
+
+Stable exploratory choice: bind each typed `Execution Result` to the exact obligation identity plus a fingerprint of the canonical inputs that determined that obligation. Before accepting a result, PW verifies the current relevant canonical state against that fingerprint. A mismatch is stale and requires re-derivation/reconciliation rather than blind acceptance.
 
 ### Authority-bundle ownership
 
