@@ -446,6 +446,34 @@ PWv2.1 should extend the existing executable router/kernel to compile exact dete
 
 Challenge state: GREEN. The main failure mode—an obligation that saves context by silently omitting applicable authority—is addressed by the hybrid obligation plus PW-owned authority-bundle resolution; OR/Paseo never substitutes its own authority selection.
 
+### Additional accepted exploratory choices
+
+The user accepted the following recommendations as a batch:
+
+1. **Obligation fingerprint scope**
+   - Fingerprint only the exact canonical inputs that materially determined the obligation.
+   - Do not fingerprint the entire repository/commit merely for convenience.
+
+2. **Obligation durability**
+   - `Execution Obligation` remains derived/disposable rather than canonical durable project state.
+   - Durable state retains only the canonical source state plus exact subject/fingerprint/result references needed for recovery and validation.
+
+3. **Kernel mutation boundary**
+   - PWv2.1 policy kernel remains read-only with respect to canonical project state for the 2.1 scope.
+   - Kernel responsibilities are validation, routing, obligation compilation and result validation/reconciliation checks.
+   - Canonical writes remain explicit coordinator/role actions governed by PW.
+
+4. **2C-lite mechanical-policy representation**
+   - Use a small versioned machine-readable registry containing stable rule IDs, precedence, outcomes, owners and named typed predicates.
+   - Do not introduce arbitrary expression syntax or a general-purpose workflow DSL.
+
+5. **PW ↔ orchestration-runtime contract**
+   - Use versioned transport-neutral schemas for typed `Execution Obligation` and `Execution Result`.
+   - JSON is the preferred interchange serialization.
+   - Provider/model/session/Paseo/runtime telemetry stays outside canonical PW contract/state.
+
+Challenge state: pending one bounded challenge for this accepted batch before the dependent choices are treated as stable exploratory state.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
