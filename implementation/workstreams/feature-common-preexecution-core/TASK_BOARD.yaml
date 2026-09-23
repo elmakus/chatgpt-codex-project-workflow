@@ -85,12 +85,12 @@ milestones:
 
   M07:
     decision_state: accepted
-    execution_status: blocked
+    execution_status: in_progress
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m07--system-qualification-and-first-production-ready-adoption"
     checkpoint: "2d010a95bac89dfd561dcc3accad6c5e8a0bda7a"
     implementation_head: null
-    handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M07_ADOPTION_AUTHORIZATION_GATE.md"
-    acceptance_evidence: null
+    handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M07_FINAL_INTEGRATION_REVIEW.md"
+    acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T08-final-production-freeze-2026-09-23.md"
     review_state: null
     review_subject: null
     review_evidence: null
@@ -758,3 +758,40 @@ cards:
     result_pr: 7
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T07-L09-n-chatgpt-green-2026-09-23.md"
     tests_summary: "GREEN L09: fresh ChatGPT context 1 independently RED-reviewed immutable S1, performed same-chat bounded correction, froze exact S2 GOOD and stopped only for new independence; fresh ChatGPT context 2 independently GREEN-reviewed exact S2, finalized the same Card without a verdict-only stop, continued through Close, merged test-pwv2 PR #4 to main 145aa5b81f2c222844e20dc14fc90784fc0585ac and reached end_of_scope_stop. Target-side readback confirms Task Board revision 3/done, append-only R01 RED then R02 GREEN, exact product blob 3a446f6d934b2e63c0466e9f7b2bb596fa416268 and deleted source branch."
+
+
+  - id: "M07-T08"
+    title: "Freeze final production candidate and activate final integration review"
+    milestone: "M07"
+    decision_state: accepted
+    execution_status: done
+    executor: chatgpt
+    depends_on:
+      - "M07-T07"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M07-T08.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: "15978113e46abc8498ceaef594461c8613fcadb8"
+    result_pr: 7
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T08-final-production-freeze-2026-09-23.md"
+    tests_summary: "GREEN freeze: exact candidate 15978113e46abc8498ceaef594461c8613fcadb8/tree f05d86d72f9bbe941583b4ccf92e2c46b5decf83; A01-A17 and L01-L09 all GREEN; named pilot elmakus/orchestration-runtime explicitly authorized; pre-activation PWv1 rollback refs main@c4130e63760d08c3656552f4a92c479239acbea3 and work/orchestration-prior-art-findings@636a9ec2b7760fc6a24eddb00319bfff9d583165 frozen; no pilot mutation or Definition promotion performed."
+
+  - id: "M07-T09"
+    title: "Controlled first production adoption on orchestration-runtime"
+    milestone: "M07"
+    decision_state: accepted
+    execution_status: planned
+    executor: chatgpt
+    depends_on:
+      - "M07-T08"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M07-T09.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: "WAITING: selected-workstream final-integration review must be GREEN before release/custody/pilot activation."
