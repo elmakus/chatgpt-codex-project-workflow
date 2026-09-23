@@ -85,11 +85,11 @@ milestones:
 
   M07:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: blocked
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m07--system-qualification-and-first-production-ready-adoption"
     checkpoint: "2d010a95bac89dfd561dcc3accad6c5e8a0bda7a"
     implementation_head: null
-    handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M07_FINAL_INTEGRATION_REVIEW.md"
+    handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M07_L08_CORRECTION_BLOCKER.md"
     acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T08-final-production-freeze-2026-09-23.md"
     review_state: null
     review_subject: null
@@ -726,7 +726,7 @@ cards:
     title: "L08 N-CAPABLE live RED/correction/GREEN topology"
     milestone: "M07"
     decision_state: accepted
-    execution_status: done
+    execution_status: blocked
     executor: chatgpt
     depends_on:
       - "M07-T05"
@@ -737,8 +737,8 @@ cards:
     review_evidence: null
     result_commit: "15978113e46abc8498ceaef594461c8613fcadb8"
     result_pr: 7
-    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T06-L08-n-capable-green-2026-09-23.md"
-    tests_summary: "GREEN L08: one real top-level Codex invocation recovered the V2 fixture from locator-only input and used its configured delegated subagent harness for independent R01 RED, bounded S1->S2 correction, fresh independent R02 GREEN and same-invocation Card finalization. Exact S2 is topology-n: GOOD\\n at blob 3a446f6d934b2e63c0466e9f7b2bb596fa416268; R01 history remains append-only; R02 binds exact S2 result blob 84b94415c722bddd2f3abdf18e141f5ea915b11d; final Task Board revision 3 marks the same M01-T01 done; worktree clean. Runtime/model choice is outside PWv2 semantic state."
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T06-L08-durable-evidence-blocker-2026-09-23.md"
+    tests_summary: "BLOCKED after independent final-integration R01 RED: prior L08 terminal Git objects are not durably recoverable; GitHub consumer branch remains S1 BAD/R01 pending; current ChatGPT runtime cannot start the genuine nested capable Codex/multi-agent rerun required by M07-T06. Exact blocker/evidence path recorded; no synthetic substitute accepted."
 
 
   - id: "M07-T07"
