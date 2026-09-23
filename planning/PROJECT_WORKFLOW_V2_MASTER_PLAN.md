@@ -1,12 +1,12 @@
 # Project Workflow V2 — Master Plan
 
-Plan revision: `PWV2-P1`
-Status: `approved`
-Date: `2026-09-22`
+Plan revision: `PWV2-P2`
+Status: `draft`
+Date: `2026-09-23`
 Definition subject: `project-workflow-v2@R1`
 Independent Plan Review: `REQUIRED`
-Plan Review record: `planning/reviews/PWV2-P1.md`
-Planner-side audit: `planning/audits/PWV2-P1.md`
+Plan Review record: `planning/reviews/PWV2-P2.md`
+Planner-side audit: `planning/audits/PWV2-P2.md`
 Control workstream: `feature-common-preexecution-core`
 Control branch: `feat/common-preexecution-core`
 Implementation destination: `elmakus/project_workflow_v2`
@@ -33,6 +33,8 @@ The V2 Definition baseline is source-repository commit `8055ed00acdb708c79919d47
 | Definition GREEN/start boundary | `implementation/workstreams/feature-common-preexecution-core/handoffs/DEFINITION_COMPLETE_2026-09-22.md` |
 
 The manifest selects those six ADRs and requirements. Old root project pointers describe the integrated V1 project; historical exploratory conclusions and V1 experiments cannot overrule the selected V2 Definition. The old exploratory locator can be cleared because Definition completion is durable. No production V2 implementation, Task Board or Cards exist at this boundary.
+
+**PWV2-P2 correction boundary:** P2 preserves the accepted Definition, M01–M04 results and M05-T01..T03 delivery work. It changes only the remaining M05 qualification strategy after user-driven live evidence proved the core ChatGPT control path and package/runtime evidence proved the Codex delivery mechanics. Full L03 final-PR/tracker closure and any still-missing ordinary model-backed L04 completion remain mandatory before first production acceptance in M07; they are no longer hard blockers for the M05 delivery checkpoint. The active M05-T04 Card remains blocked on this replan and must be reconciled by Execution Prep only after P2 is independently reviewed and approved.
 
 **Session completion contract:** planner completeness/challenge audit → freeze this exact draft → separate pending V1 Plan Review record + manifest locator → `premium_stop_B`. The planner must neither perform nor spawn Stage-6 review and must not enter Execution Prep. In the next independent context, GREEN may be consumed into plan approval, but the explicitly accepted premium block requires **`premium_stop_C` before Execution Prep**. A plan-only RED correction creates a new revision and a new B boundary; a Definition-owned contradiction returns to Definition. Material re-entry into Strategic Planning repeats A/B/C. These explicit workstream boundaries constrain the V1 default automatic continuation without changing its execution policy.
 
@@ -243,9 +245,9 @@ At every milestone: acceptance uses exact delivered V2 subject and applicable au
 - **M05.P1 — ChatGPT bootstrap and prompts.** Provide minimal user-owned Project Instructions template for the V2 repository and common router; entry recovers the consumer's repository and exact workstream. Provide locator-only fresh-gate prompt. A start prompt is optional convenience, not a policy copy. Explain actual required access without requiring a second project store.
 - **M05.P2 — Codex package.** Package canonical `workflow/` directly with `pw` + `project_workflow_v2`; Skill and SessionStart locate local installed root and router only. Verify package contents/path containment, malformed/missing root/router failure, expected startup/resume/compaction behavior and normal hook trust. Missing bundled authority fails closed; no remote workflow fetch or memory reconstruction. Avoid duplicate V1/V2 `pw` activation and source ambiguity in the test environment. Runtime compaction support does not create a V2 Context Health lifecycle.
 - **M05.P3 — Semantic update readback.** Use an isolated candidate distribution and one harmless observable canonical module change; retain unchanged Skill/hook/bootstrap hashes, update via the supported external installer, start a fresh session and read back installed module bytes and observed behavior. Record source/version/hash in package test evidence, not canonical project execution state. No project patch pin, update daemon or alternate semantic route is introduced.
-- **M05.P4 — Real surface checkpoints.** Run L01, L02+L03, L04+L05 at the earliest complete applicable slice. Reuse sessions/fixtures to minimize user effort while retaining distinct scenario evidence. Failed tests feed bounded correction and affected re-review; they do not count as GREEN because a simulator passed.
+- **M05.P4 — Real surface checkpoints.** At M05, require enough real-surface evidence to prove each delivery surface and the highest-risk human-control/runtime boundaries without forcing full end-to-end repetition. ChatGPT live qualification requires L01 GREEN, L02 human-control GREEN, and continuation of the same issue flow through blocker recovery, implementation, required-review freeze and the fresh-independence stop. The final PR/default-branch tracker-close portion of L03 remains a mandatory M07/first-production acceptance obligation. Codex M05 qualification uses the real installed CLI/package evidence for exact `$pw:project_workflow_v2` resolution, bundled local router authority, thin Skill/hook, missing-router fail-closed/no-V1 behavior and the supported update/readback path; an additional ordinary model-backed completion is not an M05 blocker when that package/runtime evidence is already exact. Any still-missing full model-backed L04 completion remains mandatory before first production acceptance in M07. Reuse exact evidence only with an explicit compatibility assessment after later semantic edits.
 
-**Checkpoint / acceptance:** A01/A02/A17 package/context regression and L01–L05 GREEN on exact delivered candidate(s), with unaffected control project/installation checked. Automated package hash/read-set/trust/path tests cover deterministic parts; human driving is confined to actual Android/installed-product behavior. Later semantic edits require only affected regression plus a documented compatibility assessment for retained live evidence.
+**Checkpoint / acceptance:** A01/A02/A17 package/context regression stays GREEN; L01 and L02 are GREEN on the real ChatGPT surface; the combined L02/L03 issue flow has demonstrated durable recovery from a real input blocker, implementation with GREEN regression tests, and correct stop at a required independent-review boundary; Codex delivery has exact installed-package/CLI evidence for explicit Skill resolution, bundled local authority, thin bootstrap, missing-router/no-V1 fail-closed behavior, plus L05 supported update/readback GREEN. Full L03 final integration/tracker closure and any still-missing ordinary model-backed L04 completion are deferred, not waived: both remain mandatory before first production acceptance in M07. Later semantic edits require affected regression plus a documented compatibility assessment for retained evidence.
 
 **JIT:** supported installer command/manifest details, hook trust setup, package version and observed read traces. Do not freeze those from old V1 evidence. If exact accepted invocation cannot work, return to Definition; do not silently substitute hyphens, another namespace or another Skill.
 
@@ -321,15 +323,15 @@ Supplement A01–A17 with deterministic cases for **issue alignment/promotion**,
 |---|---|---|
 | L01 | M05 after M02; Android Project | V2 GitHub bootstrap, nontrivial feature, correlated tracker, automatic numbered/recommended grilling, agent-owned Research when needed, no implementation. |
 | L02 | M05 after M02/M03; combine L03 | Symptom-only Android issue; diagnosis; safety-question response continues discussion; only later explicit aligned repair proceeds; one correlated Issue. |
-| L03 | M05 after M04; same L02 flow | Intermediate PR does not close tracker; final default-branch PR has correct linkage; post-merge Issue readback and accepted-completion-only fallback close; no duplicate after recovery. |
-| L04 | M05 after M01 probe; installed Codex | Exact `$pw:project_workflow_v2`, bundled local authority/current module, thin Skill/hook, failed missing-router case and no V1 route. |
+| L03 | Partial continuity evidence in M05; full completion required in M07 before first production acceptance | M05 may stop after the same real L02 issue flow proves blocker recovery, implementation and a correct fresh independent-review boundary. Full acceptance still requires: intermediate PR does not close tracker; final default-branch PR has correct linkage; post-merge Issue readback and accepted-completion-only fallback close; no duplicate after recovery. |
+| L04 | Delivery mechanics qualified in M05; full ordinary model-backed completion required in M07 before first production acceptance if not already obtained | Exact `$pw:project_workflow_v2` resolution on the real installed CLI/package, bundled local authority path, thin Skill/hook, failed missing-router case and no V1 route are sufficient for the M05 delivery checkpoint. The full ordinary model-backed semantic continuation remains part of first-production live acceptance. |
 | L05 | M05 paired L04 | Harmless canonical module update with unchanged bootstrap hashes; installed updated files observed in fresh session; exact source disambiguated. |
 | L06 | M07 after both bootstraps and complete lifecycle | Same workstream ChatGPT → Codex → ChatGPT, identical state schema/authority and completed-result reuse. |
 | L07 | M07; may reuse pilot planning sequence | Actual A → best-context Planning → B → fresh independent review → approved GREEN → C → cheaper-context Prep; restart at gates re-presents them. |
 | L08 | M07 after M03/M04 and capable runtime | Actual N-CAPABLE RED → delegated correction → independent GREEN → finalization in one invocation, no artificial stop. |
 | L09 | M07 after M03/M04; two fresh ChatGPT contexts | RED → same-chat correction → stop for new subject; next GREEN → same-chat finalization, with no verdict-only stops. |
 
-User-driven work is limited to actual surface/model/context interactions and genuine human decisions. Agents prepare disposable fixtures, inspect evidence and run automatable checks. Optional exploratory smoke scenarios from validation section C are not additional first-release blockers if equivalent automated coverage is strong. The missing/broken router failure explicitly required in L04 remains covered there; optional smoke wording cannot waive L04.
+User-driven work is limited to actual surface/model/context interactions and genuine human decisions. Agents prepare disposable fixtures, inspect evidence and run automatable checks. Optional exploratory smoke scenarios from validation section C are not additional first-release blockers if equivalent automated coverage is strong. The missing/broken router failure remains mandatory delivery evidence and is already exercised in M05; P2 only defers the still-missing full model-backed L04 continuation and L03 final integration/closure to M07. This changes milestone timing, not first-production acceptance: §8 still requires all mandatory L01–L09 GREEN.
 
 Evidence must identify exact candidate content, test setup, expected/actual outcome, durable results and limitations. Runtime-specific observational metadata may live in surface test reports where necessary; it must not become canonical workflow routing/state/provenance. A V1 or synthetic run cannot be relabeled as a V2 live PASS. A later material change invalidates only affected evidence, with an explicit compatibility decision for reused evidence.
 
