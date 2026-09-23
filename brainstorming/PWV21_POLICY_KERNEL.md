@@ -430,6 +430,15 @@ User choice accepted during Brainstorming:
 
 Challenge state: GREEN. The user reconfirmed this choice after the bounded failure-mode challenge that a helper-preferred path can silently drift from helper-less recovery unless parity is continuously tested.
 
+### Execution Obligation depth
+
+User choice accepted during Brainstorming: C3 / hybrid obligation.
+The obligation should carry exact role/subject, exact authority refs/hashes, mechanically safe constraints, prerequisites, completion/test/evidence contract, bounded deterministic materialization, and an explicit `must-open` set for authority that cannot be safely substituted by the compiled view.
+
+The obligation remains derived/disposable and never becomes project authority.
+
+Challenge state: pending. Main failure mode to resolve: a worker may ignore `must-open` and act on an incomplete compiled view.
+
 ### Executable-policy scope
 
 User choice accepted during Brainstorming: A2 / option 1B.
@@ -502,8 +511,8 @@ The first material decisions to explore are:
 3. **Runtime portability helper dependency.**  
    Stable exploratory choice: helper/reference implementation preferred, but canonical repository/workflow state must remain independently recoverable. Helper-less parity must be continuously testable.
 
-4. **How rich should the Execution Obligation be?**  
-   Initial recommendation remains hybrid refs + bounded materialization, with exact canonical refs/hashes and no provider-specific runtime details.
+4. **Execution Obligation depth.**  
+   Accepted exploratory choice: C3 hybrid refs + bounded deterministic materialization + explicit `must-open` authority. Challenge pending on whether `must-open` must be technically enforced before execution.
 
 These are Brainstorming questions, not decisions.
 
