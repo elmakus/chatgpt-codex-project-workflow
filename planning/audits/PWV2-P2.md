@@ -4,6 +4,8 @@ Date: `2026-09-23`
 Role: `strategic_planner`
 Audit result: `GREEN — ready for independent Plan Review`
 Plan: `planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md`
+Audited plan blob: `128ebb5f1bfcd02b80cea7716e02f217964001b1`
+Audited plan commit: `d67a7961ce9853766b9ea151ea40fe00ed314ddf`
 Definition baseline: `8055ed00acdb708c79919d470217fd87c920973a`
 Superseded approved planning revision: `PWV2-P1`
 Controlling V1 main: `7aa7512ead67a86256089d1af0171e2e655e700d`

@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "4a0f3be16915440d13324799b7ffd592311dafa8"
+  head: "d67a7961ce9853766b9ea151ea40fe00ed314ddf"
 
 research_obligation: null
 
