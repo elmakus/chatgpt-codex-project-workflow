@@ -1,12 +1,12 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 4
+revision = 5
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
 
 [[cards]]
 id = "M01-T01"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
