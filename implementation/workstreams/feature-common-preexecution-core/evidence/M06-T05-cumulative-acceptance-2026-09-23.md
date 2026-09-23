@@ -53,6 +53,10 @@ Exact-head GitHub Actions:
 - pull_request run `35848155642`, job `107139204326`: completed / success;
 - push run `35848149974`, job `107139185943`: completed / success.
 
+Exact PR-head logs report the cumulative migration/close/delivery group 76/76 GREEN and full unittest discovery 150/150 GREEN. Because those commands are inside `scripts/test.sh`, the same successful job also proves `compileall`, `git diff --check` and clean-tree verification.
+
+A17 exact authority readback: `brainstorming/V1_TO_V2_COVERAGE_MATRIX.md` blob `aafd4a916ae11f8a3ff0c6edb799d8ced996a4bf` has 97 classified table rows, 0 `OPEN` rows and no unclassified disposition row.
+
 The accepted migration boundary documentation is `docs/V1_MIGRATION_REHEARSAL.md`.
 
 ## Review freeze inputs
