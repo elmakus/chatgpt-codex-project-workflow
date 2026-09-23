@@ -8,7 +8,7 @@ Result: GREEN
 - Repository: `elmakus/project_workflow_v2`
 - Branch: `feat/pwv2-m06-migration`
 - Commit: `0f96b202ff7906cecc3d3a15f8090c6f27933681`
-- Tree: `unknown`
+- Tree: `7385bc787f96adb7fecdef3c5618304b128ac175`
 - Draft PR: #6
 - Base: `main@27b9132e173850e7d596092e023b0af7e0507472`
 
