@@ -690,7 +690,7 @@ cards:
     title: "Cross-runtime L06 continuity and completed-result reuse"
     milestone: "M07"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M07-T03"
@@ -699,7 +699,7 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "15978113e46abc8498ceaef594461c8613fcadb8"
+    result_pr: 7
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T04-L06-cross-runtime-green-2026-09-23.md"
+    tests_summary: "GREEN L06: same test-pwv2 user-setting-persistence-restart crossed ChatGPT -> real Codex CLI via codex-lb-clean gpt-6-sol/low -> ChatGPT; returning remote readback still main a31047259c92a7c6a6054a1b9bf618fc0f6ac69a, TASK_BOARD revision 12/blob b247ee52615154244e0f1e50bfce89d49654360f, exact M03 result blob 1cbfca173504376e6a5895034fd8a34a9aaf9289 and independent GREEN review blob f537c26cb3c57a3b557fa1522abbf73092eaaaf6; Issue #2 remains sole closed tracker; source branch remains absent; no replay, conversion or duplicate external effect."
