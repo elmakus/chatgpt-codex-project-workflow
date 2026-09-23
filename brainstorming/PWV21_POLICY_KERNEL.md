@@ -536,6 +536,32 @@ Accepted exploratory choices:
    - Independent reviews may run concurrently when their exact review subjects are independent.
    - Milestone/final integration still requires an integrated compatibility/acceptance check across the combined result.
 
+### Parallel-set lifecycle choices
+
+Accepted exploratory choices:
+
+16. **Parallel-set authority location**
+   - Plan/JIT durably declares the `parallel_set` as execution intent/contract.
+   - Task Board stores only current Card execution state, not a competing source of concurrency intent.
+
+17. **Single active membership**
+   - A Card belongs to at most one active parallel set at a time.
+   - Later stages may place the same logical work into a new set only after the earlier set/stage is complete or reconciled.
+
+18. **Partial launch**
+   - A parallel set means Cards are permitted to overlap, not that they must start simultaneously.
+   - A legal subset may start when Plan/JIT does not require synchronized start and remaining prerequisites stay valid.
+
+19. **Localized blocking**
+   - A blocked Card stops itself and dependent successors, not automatically all independent Cards in the set.
+   - A whole-set stop occurs only when Plan/JIT declares a shared gate or kernel detects a shared invalidating conflict.
+
+20. **Integrated compatibility obligation**
+   - After parallel Card results are composed, PW emits a distinct integration/compatibility obligation for the combined result before downstream milestone/final progression.
+   - This obligation validates cross-Card compatibility and accepted integration behavior; it is separate from individual Card reviews.
+
+Challenge state: pending one bounded challenge for this accepted batch before all dependent concurrency choices are treated as stable exploratory state.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
