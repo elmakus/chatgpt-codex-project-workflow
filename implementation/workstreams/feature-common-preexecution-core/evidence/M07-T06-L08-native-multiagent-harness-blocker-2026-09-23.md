@@ -102,3 +102,15 @@ The blocker is `live_harness_write_execution_unavailable`: the underlying Codex 
 Per M07.P3, no direct execution, synthetic child, multiple top-level calls, or no-capability fixture may substitute for N-CAPABLE evidence.
 
 L09 and production acceptance are not claimed while this active Card is blocked.
+
+## User-mediated recovery handoff prepared
+
+The user authorized a manual Codex run outside the blocked Remote Desktop launch surface.
+
+A durable GitHub-backed fixture and copy-ready handoff are now prepared:
+- consumer repo: `elmakus/test-pwv2`;
+- branch: `feat/m07-l08-topology-n`;
+- required entry HEAD: `7a2cf09bf505ba62e0ecfc32385429b9fe77e7d8`;
+- durable handoff: `implementation/workstreams/feature-common-preexecution-core/handoffs/M07-T06_L08_MANUAL_CODEX_HANDOFF.md`.
+
+This preparation does not change the L08 verdict. M07-T06 remains BLOCKED until the user-mediated run produces durable RED/correction/GREEN/finalization evidence that can be independently read back from GitHub.
