@@ -753,6 +753,26 @@ Accepted exploratory choices, reconciled with later corrections:
 84. Worker receives only the authority/context needed for its bounded Card, not the entire project/Plan by default.
 85. OR/Main may hold broader coordination context than Workers, but may not become a second source of PW authority.
 
+### Review/recovery choices 86-100
+
+Accepted exploratory choices:
+
+86. After Card review GREEN, PW continues automatically to the next legal Card without user confirmation.
+87. When all Cards in a Milestone are ready, PW automatically launches Milestone review.
+88. Card review RED enters automatic repair/re-review while the defect remains implementation-local and within accepted scope.
+89. Repair loops are bounded; after the configured failure ceiling Main analyzes cause and escalates only when a real user-owned decision remains.
+90. Milestone review findings should create only the bounded corrective work needed rather than rolling back an entire Milestone by default.
+91. GREEN Milestone advances automatically to the next legal Milestone unless an explicit user gate exists.
+92. PW may materialize missing Cards/JIT work that is necessary to realize the already accepted Plan without changing product goal/scope.
+93. Work that expands product goal/scope requires return to a user-owned decision boundary.
+94. Ordinary defects discovered in review remain repair work for the affected Card rather than automatically becoming separate Cards.
+95. Milestone review is performed by a fresh independent Reviewer that did not implement or review the constituent Cards.
+96. **Fresh Milestone Reviewer must not receive prior Card-review opinions/verdict rationales by default.** It receives the canonical Milestone subject, accepted authority, relevant Card outputs/artifacts, and the raw/required test evidence needed to independently verify the Milestone. Prior review conclusions are not used as anchoring context; they may be consulted only through an explicit bounded investigation when a known issue requires it.
+97. A GREEN verdict lacking required evidence is invalid and must fail closed.
+98. A temporarily unexecutable required test does not become deferred GREEN unless the accepted Plan already defines an allowed alternate verification path.
+99. Every User Stop should concisely state why PW stopped and the exact user input/authorization needed.
+100. Fresh ChatGPT/Paseo after an arbitrary pause must be able to reconstruct and continue from repository state alone; this is a core PWv2.1 acceptance property.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
