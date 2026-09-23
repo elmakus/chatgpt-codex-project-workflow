@@ -6,7 +6,7 @@ Research question: Which mechanisms from pi-fabric, Laya/System One, Dagu-style 
 ## Durable continuation metadata — chatgpt_only
 
 Research ID: pwv2-architecture-prior-art-r1
-Status: complete
+Status: consumed
 Origin role: brainstorming
 Origin subject: pwv2-architecture-prior-art@R1
 Return target: brainstorming:pwv2-architecture-prior-art@R1
