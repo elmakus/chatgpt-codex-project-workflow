@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "dcd04490d29c5fdc6c50d0c9338a6f8b1b94ccab"
+  head: "4a0f3be16915440d13324799b7ffd592311dafa8"
 
 research_obligation: null
 
@@ -500,7 +500,7 @@ cards:
     result_commit: null
     result_pr: null
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M05-T04-live-checkpoints-blocker-2026-09-23.md"
-    tests_summary: "IN PROGRESS bounded correction from live ChatGPT Android evidence: L01 GREEN; L02 human-control boundary GREEN; live Premium UX exposed missing handoff rendering. Accepted correction: Premium A optional ready-to-copy cross-context/harness locator; Premium B mandatory fresh independent handoff prompt; Premium C optional lighter-context/harness locator; every real stop deterministically includes workflow/USER_STOP.md in the router read-set; add regression coverage. L03 continues after correction. L04 remains partially blocked by Codex usage limit until 2026-09-26 10:10; L05 GREEN."
+    tests_summary: "IN PROGRESS: L01 GREEN; L02 human-control boundary GREEN. Premium handoff omission corrected on target e95bea2e828e86601cb127fd7564d013a51b0846/tree 978f34a76758d6bbd953d1d3b10f7e12ced5f519: A optional ready-to-copy cross-context/harness locator; B mandatory fresh independent handoff prompt; C optional lighter-context/harness locator; every real stop deterministically reads workflow/USER_STOP.md. sh scripts/test.sh PASS; package 9/9, state 28/28, router 39/39, execution 4/4, review 1/1, recovery 2/2, combined 42/42; Actions push 35826495396 + PR 35826499078 GREEN; Skill/hook/plugin hashes unchanged, retained L05 compatibility recorded. L03 continues; L04 final model-backed run remains blocked by Codex usage limit until 2026-09-26 10:10."
 
   - id: "M05-T05"
     title: "Cumulative M05 acceptance and immutable review freeze"
