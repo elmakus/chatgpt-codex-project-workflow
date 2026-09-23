@@ -3,7 +3,7 @@
 Date: 2026-09-23
 Scope ID: pwv21-policy-kernel
 Revision: R1
-Status: tentative
+Status: ready_for_definition
 
 ## Goal
 
@@ -472,7 +472,7 @@ The user accepted the following recommendations as a batch:
    - JSON is the preferred interchange serialization.
    - Provider/model/session/Paseo/runtime telemetry stays outside canonical PW contract/state.
 
-Challenge state: pending one bounded challenge for this accepted batch before the dependent choices are treated as stable exploratory state.
+Challenge state: GREEN after adversarial closure and final completion audit (146-181).
 
 ### Additional accepted exploratory choices — batch 2
 
@@ -494,7 +494,7 @@ The user accepted recommendations 6–9:
    - Runtime retries remain internal to orchestration-runtime/Paseo.
    - PW sees only semantic success/result or a real unresolved blocker; retry/session telemetry is not canonical PW state.
 
-Challenge state: pending one bounded challenge for this accepted batch before all dependent choices are treated as stable exploratory state.
+Challenge state: GREEN after adversarial closure and final completion audit (146-181).
 
 ### Parallel Project Workflow Cards — reopened material choice
 
@@ -560,7 +560,7 @@ Accepted exploratory choices:
    - After parallel Card results are composed, PW emits a distinct integration/compatibility obligation for the combined result before downstream milestone/final progression.
    - This obligation validates cross-Card compatibility and accepted integration behavior; it is separate from individual Card reviews.
 
-Challenge state: pending one bounded challenge for this accepted batch before all dependent concurrency choices are treated as stable exploratory state.
+Challenge state: GREEN after stale/conflict/parallel-set challenges in 146, 157-159 and final simplification 176-177.
 
 ### Parallel-set safety choices
 
@@ -570,23 +570,19 @@ Accepted exploratory choices:
    - Card `write_scope` should be machine-checkable: repository paths/globs plus named external resources/effect domains.
    - Free text may explain intent but cannot be the only basis for concurrency validation.
 
-22. **Overlap override**
-   - Overlapping write scopes serialize by default.
-   - Plan/JIT may explicitly authorize a bounded `parallel_override` only with exact overlap scope and rationale.
+22. **Superseded by 177.** Overlapping mutating write scopes always serialize; no `parallel_override` escape hatch remains for overlapping mutation.
 
 23. **Integrated compatibility timing**
    - Run the combined compatibility obligation before the first downstream obligation that consumes results from more than one Card in the parallel set.
    - Do not force it after every individual Card completion.
 
-24. **Relationship to individual review**
-   - Integrated compatibility review/check does not normally replace individual Card review.
-   - It may cover individual reviews only when the exact combined review subject demonstrably covers each Card's full acceptance surface and satisfies independence.
+24. **Superseded by 176.** Integrated compatibility review/check never replaces mandatory individual Card review; it covers composition only.
 
 25. **Concurrency limit ownership**
    - PW defines only the finite legal `parallel_set`.
    - Actual simultaneous worker/Card execution count is runtime policy owned by OR/Paseo, subject to budget/capability limits.
 
-Challenge state: pending one bounded challenge for this accepted batch before all dependent concurrency choices are treated as stable exploratory state.
+Challenge state: GREEN after stale/conflict/parallel-set challenges in 146, 157-159 and final simplification 176-177.
 
 ### Kernel interface and portability choices
 
@@ -611,7 +607,7 @@ Accepted exploratory choices:
    - OR/Paseo never directly mutates canonical PW durable state as a result of Card execution.
    - OR returns typed `Execution Result`; PW/coordinator validates and performs the governed canonical write + readback.
 
-Challenge state: pending one bounded challenge for this accepted batch before all dependent choices are treated as stable exploratory state.
+Challenge state: GREEN after adversarial closure and final completion audit (146-181).
 
 ### User-facing behavior choices
 
@@ -682,12 +678,12 @@ Accepted exploratory choices:
    - That same durable locator prompt may be opened in fresh ChatGPT or supplied to Paseo/OR.
    - PW semantics and legal continuation must be identical regardless of which runtime receives the handoff.
    - No canonical PW field selects a preferred runtime.
-52. Worker-level telemetry remains non-canonical and is not part of normal PW progress reporting. Clarification pending only on how/where the user may optionally inspect OR/Paseo-native worker telemetry.
+52. Worker-level telemetry remains non-canonical and outside PWv2.1 scope. Optional worker inspection/progress UX belongs entirely to orchestration-runtime/Paseo.
 53. GREEN results from unaffected parallel Cards are preserved when another Card is RED.
 54. Integrated compatibility failure should preserve valid Card results and create only bounded corrective integration work where possible.
 55. Mandatory portability acceptance should include removing/ignoring OR/Paseo runtime state and proving that a fresh ChatGPT can reconstruct the same legal continuation from canonical repository state.
 
-Challenge state: pending only for runtime-handoff/telemetry UX details; the remaining accepted choices are stable exploratory direction unless later evidence reopens them.
+Challenge state: GREEN. Runtime-handoff failure cases were challenged in 148-150; telemetry scope was resolved by 178.
 
 ### Cross-runtime handoff choices
 
@@ -716,7 +712,7 @@ User corrections reconcile PWv2.1 with already durable orchestration-runtime exp
 72. **Independent review coverage**
    - PWv2.1 should require an independent review for every Project Workflow Card and every Milestone.
    - OR does not invent this requirement; it executes the review obligation supplied by PW.
-   - Challenge pending: this deliberately increases review cost/latency and should be retained only because the user values systematic verification over cheaper selective review.
+   - Challenge GREEN via 179: retain systematic per-Card, per-Milestone and final integration review despite deliberate cost/latency.
 
 81. **No automatic stronger-model escalation**
    - Normal worker/reviewer model assignment remains fixed according to OR configuration.
@@ -851,7 +847,7 @@ Accepted exploratory choices:
 144. Contradictions among legacy manifest/Task Board/Git state must not be resolved by probability or convenience; fail closed to Recovery.
 145. Migration acceptance must include real PWv2 workstreams in multiple lifecycle states and prove correct PWv2.1 continuation/recovery.
 
-Challenge state: migration batch accepted; adversarial validation still required before Definition promotion.
+Challenge state: GREEN after adversarial migration/recovery validation in 146-160.
 
 ### Adversarial closure batch 146-160
 
@@ -916,6 +912,19 @@ The bounded completion audit found six remaining material questions. They are in
 A small additional synthesis issue is already non-product: stale "challenge pending" labels and historical decision-tree text must be reconciled after these questions; no user choice is required for that cleanup.
 
 
+### Final completion-audit choices 176-181
+
+Accepted exploratory choices:
+
+176. Integrated compatibility review never replaces mandatory per-Card independent review. Every Card retains its own review; compatibility review covers composition only.
+177. Overlapping mutating write scopes serialize. Remove the earlier `parallel_override` escape hatch for overlapping mutation; legal parallel Cards require non-overlapping mutation ownership.
+178. Worker-level telemetry/worker-progress UX is fully deferred to orchestration-runtime/Paseo and is not a PWv2.1 feature or canonical concern.
+179. Retain the full review stack despite cost/latency: independent review for every Card, every Milestone, plus fresh final workstream integration review.
+180. A fresh-review obligation does not create a User Stop when OR/Paseo can automatically launch a qualifying fresh independent Reviewer. User handoff is required only when the current runtime cannot satisfy the freshness/independence obligation.
+181. No executable mechanical routing predicate may exist only in Python. Canonical repository contracts must describe its legal semantics sufficiently for helper-less fresh ChatGPT recovery; code and contract parity is continuously tested.
+
+Completion challenge outcome: GREEN. These choices resolve the remaining review-cost, concurrency-exception, telemetry-scope, fresh-review automation and helper-less parity questions.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
@@ -943,7 +952,7 @@ C3. hybrid refs + bounded materialization + expandable sources
 
 ### D. Runtime portability
 
-Exploratory choice accepted, challenge pending:
+Stable exploratory choice, challenge GREEN:
 - canonical Git/workflow contracts remain sufficient for recovery;
 - executable helper/reference implementation is preferred when available but not a mandatory runtime dependency;
 - no client-private helper/session state may become project authority.
@@ -978,7 +987,7 @@ Stable exploratory choice: PW owns authority resolution and bundle construction.
 
 ### Canonical mechanical-policy representation
 
-User inclination: 2C, not yet frozen.
+Accepted exploratory direction: 2C-lite, challenged GREEN by 154-156 and 165-173.
 
 Analysis against the actual PWv2 implementation:
 - a full declarative rewrite of the entire router would likely create a custom workflow DSL because many current predicates involve exact-subject binding, stale-state checks, read-set validation, reconciliation and fail-closed recovery;
@@ -997,29 +1006,29 @@ E3. richer capability/workspace/retry semantics in the interface
 
 ## Current frontier for continued Brainstorming
 
-Brainstorming is now in closure-oriented grilling. Most user-visible behavior, review/recovery semantics, runtime handoff, concurrency, and PW↔OR boundaries have accepted exploratory direction.
+Completion audit result: **no unresolved material user/product/strategic decisions remain**.
 
-Remaining material fronts:
+Deferred implementation details that do not block Definition:
+- exact registry serialization/file naming;
+- exact schema field names and module layout;
+- OR/Paseo-native worker telemetry UI;
+- low-level test fixture organization.
 
-1. **Mechanical policy truth / 2C-lite parity.**
-   - Freeze how the small machine-readable mechanical registry, Python predicates and semantic Markdown remain mutually consistent without creating a workflow DSL.
-   - Prove helper-less ChatGPT can reconstruct the same legal route.
+Research needed before Definition: **none identified**. Existing repository/PWv2 inspection and prior-art Research are sufficient for formalization.
 
-2. **Adversarial challenge closure.**
-   - Run bounded failure challenges against the accepted batches that are still marked challenge-pending, especially parallel-set lifecycle, mechanical-policy drift, mutation/readback, runtime handoff and review cost/freshness.
+Another Brainstorming round now has low expected value unless materially new evidence or a contradiction reopens a choice.
 
-3. **Migration and compatibility edge cases.**
-   - Confirm PWv2 -> PWv2.1 transition behavior for active workstreams, reopened Cards, stale results and mixed old/new durable records.
+## Outcome of this Brainstorming
 
-4. **Small operator/UX details.**
-   - Optional OR/Paseo worker telemetry visibility and a few real-stop/handoff edge cases that do not alter authority.
+- Tentative conclusions: PWv2.1 should evolve the existing PWv2 executable kernel conservatively, preserve Git-only recovery and ChatGPT/Pi interchangeability, introduce bounded typed obligation/result contracts, support plan-authorized parallel Cards with one mutating Worker per Card, and strengthen systematic fresh independent review.
+- Explicit user/product choices to promote through Project Definition: accepted exploratory choices recorded in this file, including later supersessions 161-181.
+- Research still needed: none.
+- Open material questions: none.
+- Next phase/action: ready for definition.
+- Definition promotion authorization: pending
+- Definition promotion subject: none
 
-5. **Definition readiness synthesis.**
-   - Reconcile duplicate/superseded brainstorming notes, mark stable exploratory choices, identify explicit rejects/open questions, and determine whether any Research is still required.
-
-Expected remaining grilling should be a small number of focused batches, not another full architecture discovery cycle.
-
-These remain Brainstorming questions, not requirements/decisions.
+> Nothing in this file becomes accepted requirement/decision authority by itself. Project Definition owns promotion into canonical requirements and decisions.
 
 ## Definition promotion
 
