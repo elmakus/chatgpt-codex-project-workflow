@@ -638,6 +638,31 @@ Accepted exploratory choices:
 
 Challenge state: pending one bounded challenge for this accepted batch before all dependent behavior choices are treated as stable exploratory state.
 
+### Resilience and migration behavior choices
+
+Accepted exploratory choices:
+
+36. **OR/Paseo outage fallback**
+   - If OR/Paseo is unavailable but the current obligation can be legally executed directly by ChatGPT, PW should continue without OR rather than block unnecessarily.
+
+37. **Parallel-result conflict handling**
+   - PW should attempt bounded safe reconciliation before escalating to the user.
+   - User input is required only when the conflict becomes product/strategic/authorization-owned.
+
+38. **Stale-result reuse**
+   - A stale result is not automatically discarded.
+   - PW first attempts safe reuse/rebase/reconciliation against current authority; repeat execution only when reuse cannot be proven safe.
+
+39. **PWv2 -> PWv2.1 migration**
+   - Prefer incremental migration at natural durable workflow boundaries rather than a flag-day cutover.
+   - Existing PWv2 projects should remain recoverable during transition.
+
+40. **Kernel/docs disagreement**
+   - Fail closed on contradictory mechanical answers.
+   - Do not guess which interpretation is intended; route to workflow recovery/fix before risky continuation.
+
+Challenge state: pending one bounded challenge for this accepted batch before all dependent resilience/migration choices are treated as stable exploratory state.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
