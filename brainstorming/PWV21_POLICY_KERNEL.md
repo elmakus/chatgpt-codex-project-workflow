@@ -588,6 +588,31 @@ Accepted exploratory choices:
 
 Challenge state: pending one bounded challenge for this accepted batch before all dependent concurrency choices are treated as stable exploratory state.
 
+### Kernel interface and portability choices
+
+Accepted exploratory choices:
+
+26. **Authority bundle form**
+   - Use exact refs/hashes plus deterministic materialization of required authority.
+   - LLM summaries may aid navigation but never substitute for authority.
+
+27. **Obligation/result versioning**
+   - Version the typed interchange contract with explicit schema versioning and fail closed on unsupported breaking versions.
+
+28. **ChatGPT ↔ Pi parity source**
+   - The 2C-lite machine-readable registry is the shared mechanical-policy source.
+   - Python executes it; helper-less ChatGPT reads the same registry plus semantic Markdown rather than relying on a separately maintained router copy.
+
+29. **Kernel output form**
+   - Stable machine-readable JSON is the canonical interface.
+   - Human-readable rendering is optional and non-authoritative.
+
+30. **OR mutation boundary**
+   - OR/Paseo never directly mutates canonical PW durable state as a result of Card execution.
+   - OR returns typed `Execution Result`; PW/coordinator validates and performs the governed canonical write + readback.
+
+Challenge state: pending one bounded challenge for this accepted batch before all dependent choices are treated as stable exploratory state.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
