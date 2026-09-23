@@ -7,8 +7,8 @@ Result: GREEN
 
 - Repository: `elmakus/project_workflow_v2`
 - Branch: `feat/pwv2-m06-migration`
-- Commit: `768cf3b3a2fa2013103d43730d3cb9fb0ef0d7b9`
-- Tree: `adba3db05aaef2b7825ac4f48be3f7f352b0f12c`
+- Commit: `960351d98ff44e6fde60d035ab4b0000eb33c63b`
+- Tree: `f7737105fff7840dcbb4b84efaea31103d636441`
 - Draft PR: #6
 - Base: `main@27b9132e173850e7d596092e023b0af7e0507472`
 
@@ -40,11 +40,14 @@ Documentation: `docs/V1_MIGRATION_REHEARSAL.md`.
 ## Verification
 
 Exact-head Actions:
-- push run `35847846522`, job `107138204950`: success;
-- pull_request run `35847852710`, job `107138225341`: success.
+- run `35848053057`, job `107138872691`: success.
 
-The repository checks include the T01/T02/T03 migration suites plus `tests.test_migration_rehearsal`.
+The repository checks include the T01/T02/T03 migration suites plus `tests.test_migration_rehearsal`; the final migration/close/delivery group is 75/75 GREEN and full unittest discovery is 149/149 GREEN.
+
+A semantic audit after the first T04 candidate found one missing edge: an exact migrated `pending`/ `in_progress` review could retain a terminal Card status. The exact target above fixes that by keeping every nonterminal review blocking until GREEN and adds a dedicated pending-review regression.
+
+A17 authority readback against `brainstorming/V1_TO_V2_COVERAGE_MATRIX.md` at blob `aafd4a916ae11f8a3ff0c6edb799d8ced996a4bf` found 97 classified rows, 0 `OPEN`, and no unclassified disposition rows.
 
 ## Acceptance
 
-M06-T04 is GREEN. A02/A03/A05/A06/A07/A10/A15/A17 migration-relevant boundaries are represented by deterministic repository tests/documented disposition; no real-project migration or production custody transfer was performed.
+M06-T04 is GREEN on the corrected exact target. A02/A03/A05/A06/A07/A10/A15/A17 migration-relevant boundaries are represented by deterministic repository tests/documented disposition; pending/RED/GREEN review obligations remain blocking until exact GREEN; no real-project migration or production custody transfer was performed.
