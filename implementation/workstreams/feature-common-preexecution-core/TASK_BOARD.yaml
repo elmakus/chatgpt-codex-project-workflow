@@ -649,3 +649,21 @@ cards:
     result_pr: 7
     evidence: null
     tests_summary: "GREEN automated M07.P1: exact candidate 15978113e46abc8498ceaef594461c8613fcadb8/tree f05d86d72f9bbe941583b4ccf92e2c46b5decf83; PR #7 exact head/base open/draft/mergeable; push Actions 35858945879 and PR Actions 35858978373 success; full discovery 161/161 plus package/state/router/execution/review/recovery/combined suites, compileall/diff/clean-tree PASS; A01-A17, PWV2-REQ-001..076 and 97-row/0-OPEN salvage accounting reconciled; custody-transfer interruption deterministic gap added and GREEN; mandatory live L03/L04/L06-L09 remain explicit and block production acceptance."
+
+  - id: "M07-T02"
+    title: "Real L03 tracker and Close qualification"
+    milestone: "M07"
+    decision_state: accepted
+    execution_status: ready
+    executor: chatgpt
+    depends_on:
+      - "M07-T01"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M07-T02.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
