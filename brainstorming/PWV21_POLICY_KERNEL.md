@@ -404,6 +404,18 @@ The material question is now where to stop extending the existing executable obl
 
 The earlier candidate migration sequence remains historical brainstorming context, not the current implementation baseline.
 
+## Environment assumption: Paseo
+
+User clarified that the intended agent backend will always be Paseo.
+
+Current architectural interpretation:
+- treat Paseo as the expected concrete realization of orchestration-runtime capabilities such as agent/provider/model launching, sessions, delegation, worktrees and runtime coordination;
+- do not duplicate those mechanics inside Project Workflow;
+- do not make Paseo daemon/session/runtime state canonical Project Workflow authority;
+- keep PW obligations/runtime contracts semantically portable so ChatGPT can still reconstruct project legality from repository state without needing Paseo private state.
+
+This assumption may justify a thinner PW ↔ runtime interface and fewer hypothetical portability layers, while preserving repository-based authority interchangeability.
+
 ## Accepted exploratory choices
 
 ### Runtime portability / helper dependency
