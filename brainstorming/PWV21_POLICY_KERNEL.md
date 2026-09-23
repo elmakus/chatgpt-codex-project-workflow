@@ -738,7 +738,7 @@ User corrections reconcile PWv2.1 with already durable orchestration-runtime exp
 Accepted exploratory choices, reconciled with later corrections:
 
 71. OR may adapt worker count to the bounded task only within the already-legal PW Card and runtime concurrency rules; this does not create new PW Cards.
-72. Every PW Card and every Milestone requires independent review (later correction; supersedes selective-review wording).
+72. Every PW Card and every Milestone requires independent review. Each new Card gets a fresh independent Reviewer assignment; each Milestone gets its own fresh independent Reviewer.
 73. Implementing Worker may self-test but cannot satisfy its own formal independent review.
 74. Reviewer for a Card starts only after an exact review subject/result is frozen; implementation and formal review of the same subject do not run concurrently.
 75. OR may replace a struggling Worker without user input when scope/authority remain unchanged.
@@ -766,12 +766,24 @@ Accepted exploratory choices:
 92. PW may materialize missing Cards/JIT work that is necessary to realize the already accepted Plan without changing product goal/scope.
 93. Work that expands product goal/scope requires return to a user-owned decision boundary.
 94. Ordinary defects discovered in review remain repair work for the affected Card rather than automatically becoming separate Cards.
-95. Milestone review is performed by a fresh independent Reviewer that did not implement or review the constituent Cards.
+95. Milestone review is performed by a fresh independent Reviewer that did not implement or review the constituent Cards; Reviewer identity is not reused from any Card review in that Milestone.
 96. **Fresh Milestone Reviewer must not receive prior Card-review opinions/verdict rationales by default.** It receives the canonical Milestone subject, accepted authority, relevant Card outputs/artifacts, and the raw/required test evidence needed to independently verify the Milestone. Prior review conclusions are not used as anchoring context; they may be consulted only through an explicit bounded investigation when a known issue requires it.
 97. A GREEN verdict lacking required evidence is invalid and must fail closed.
 98. A temporarily unexecutable required test does not become deferred GREEN unless the accepted Plan already defines an allowed alternate verification path.
 99. Every User Stop should concisely state why PW stopped and the exact user input/authorization needed.
 100. Fresh ChatGPT/Paseo after an arbitrary pause must be able to reconstruct and continue from repository state alone; this is a core PWv2.1 acceptance property.
+
+### Fresh-review identity refinement
+
+Accepted exploratory refinement, preserving the existing PWv2 semantic-independence rule:
+
+- **Every new Card review subject gets a fresh independent Reviewer assignment.** A Reviewer from a different Card is not reused for the new Card.
+- **Every Milestone review gets a fresh independent Reviewer assignment** that did not implement or review the constituent Cards.
+- **Same-Card OR/Paseo repair loop:** when the Worker repairs its own Card after RED, the same Reviewer that previously reviewed that Card may recheck the repaired exact subject, provided that Reviewer did not materially produce/repair the new subject. This preserves reviewer continuity without violating independence.
+- **ChatGPT-only corrective path:** a ChatGPT review context may participate in corrective implementation if the router legally returns it to corrective execution, but once that context materially repairs the subject it becomes ineligible to issue the next independent verdict on that repaired subject. The next review therefore requires a fresh independent context.
+- The underlying invariant is subject-relative semantic independence, not provider/session naming: `produced_or_repaired(subject) => cannot_independently_review(subject)`.
+
+PWv2 baseline verification: current `workflow/REVIEW.md` already states that a context which materially produced or repaired the exact subject cannot issue its independent verdict; changed reviewed subject/new verdict attempt is a new attempt.
 
 ## Current decision tree
 
