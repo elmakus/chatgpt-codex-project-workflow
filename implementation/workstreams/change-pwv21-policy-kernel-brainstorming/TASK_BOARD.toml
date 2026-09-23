@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 6
+revision = 7
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -26,8 +26,16 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M01-T01-R02.toml"
 
+[[cards]]
+id = "M02-T01"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02-T01.md"
+
 [[jit_triggers]]
 id = "after-M01-T01"
 after_card = "M01-T01"
-state = "satisfied"
+state = "consumed"
 condition = "Materialize M02 only after M01 is DONE so exact registry/kernel seam paths from the accepted M01 result can be bound into the stable M02 Card contract."
