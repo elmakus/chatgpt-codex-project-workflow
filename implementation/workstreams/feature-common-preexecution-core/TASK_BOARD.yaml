@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "d43989874f947e87234de526b74d39fffe15d1a8"
+  head: "a56f67ed9ed1b0695f37d287c26237da335127e1"
 
 research_obligation: null
 
@@ -468,8 +468,8 @@ cards:
     title: "Semantic package update propagation and readback"
     milestone: "M05"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on:
       - "M05-T02"
     openspec_change: null
