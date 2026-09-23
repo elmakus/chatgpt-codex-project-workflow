@@ -1,0 +1,20 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M01-T01"
+attempt = "R01"
+verdict = "pending"
+evidence_path = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "41fb9e075668a785a441b450560c99686ce55d19"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M01-T01.md"
+blob = "c7c9597542c2564bb8b5b2d888c4f617cf1190ff"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M01-T01.md"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "R01 is reserved for a fresh independent review context that did not materially produce or repair the exact M01-T01 result subject; the implementing context freezes the obligation but does not issue its verdict."
