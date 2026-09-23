@@ -6,7 +6,7 @@ current_milestone: "M06"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "8f4f8259f2876e283c2d885e212041c53fd2c53b"
+  head: "340525b3c5313fb30414a10914263ccf8658e411"
 
 research_obligation: null
 
@@ -536,24 +536,24 @@ cards:
     title: "Bounded V1 readers and deterministic dry run"
     milestone: "M06"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     openspec_change: null
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M06-T01.md"
     review_state: null
     review_subject: null
-    review_evidence: null
-    result_commit: null
-    result_pr: null
+    review_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M06-T01-bounded-readers-dry-run-2026-09-23.md"
+    result_commit: "026b784a6ab45bd65f4d6841f98d4371b39ee1ce"
+    result_pr: 6
     evidence: null
-    tests_summary: null
+    tests_summary: "GREEN: exact target 026b784a6ab45bd65f4d6841f98d4371b39ee1ce/tree ce56d3e8efda6d77ca1640a3a9d936643e9dbca8; PR #6 exact head/base and mergeable; Actions 35841918124 job 107118750956 PASS running sh scripts/test.sh; state 28/28, router 39/39, execution 4/4, review 1/1, recovery 2/2, combined close/fork/delivery/migration 49/49 plus shell probes PASS."
 
   - id: "M06-T02"
     title: "Safe semantic conversion and obligation preservation"
     milestone: "M06"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: chatgpt
     depends_on:
       - "M06-T01"
