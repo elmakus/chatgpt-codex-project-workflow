@@ -663,6 +663,32 @@ Accepted exploratory choices:
 
 Challenge state: pending one bounded challenge for this accepted batch before all dependent resilience/migration choices are treated as stable exploratory state.
 
+### Runtime handoff and operational behavior choices
+
+Accepted exploratory choices:
+
+41. Independent workstreams may progress concurrently when they have no dependency/conflict.
+42. A blocker in one independent workstream does not stop unrelated workstreams.
+43. User-facing concurrency notices stay concise and Card/workstream-level.
+44. If Cards prove not independent during execution, PW should collapse to safe serial continuation without user interruption when goal/authority do not change.
+45. Workers must not silently repair out-of-scope findings; surface them for PW/JIT classification.
+46. Tiny adjacent fixes may remain in-card only when clearly inside accepted goal/scope/risk.
+47. Ordinary implementation defects found by review should route automatically through correction and re-review.
+48. Review findings that challenge requirements/product authority route back to Definition/Brainstorming and user-owned decision when needed.
+49. Research that invalidates planning strategy but not product intent routes automatically back to Planning.
+50. Research that requires product-goal change routes to the user-owned decision boundary.
+51. **Runtime handoff is user-directed, not auto-preferred.**
+   - The user may tell the current Main/runtime to finish the current bounded obligation and produce the normal fresh-session locator prompt.
+   - That same durable locator prompt may be opened in fresh ChatGPT or supplied to Paseo/OR.
+   - PW semantics and legal continuation must be identical regardless of which runtime receives the handoff.
+   - No canonical PW field selects a preferred runtime.
+52. Worker-level telemetry remains non-canonical and is not part of normal PW progress reporting. Clarification pending only on how/where the user may optionally inspect OR/Paseo-native worker telemetry.
+53. GREEN results from unaffected parallel Cards are preserved when another Card is RED.
+54. Integrated compatibility failure should preserve valid Card results and create only bounded corrective integration work where possible.
+55. Mandatory portability acceptance should include removing/ignoring OR/Paseo runtime state and proving that a fresh ChatGPT can reconstruct the same legal continuation from canonical repository state.
+
+Challenge state: pending only for runtime-handoff/telemetry UX details; the remaining accepted choices are stable exploratory direction unless later evidence reopens them.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
