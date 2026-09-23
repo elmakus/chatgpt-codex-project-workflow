@@ -704,7 +704,7 @@ Accepted exploratory choices:
 64. If execution completed but handoff/reconciliation was interrupted, recovery reuses valid result/evidence when provable.
 65. OR may decompose one PW Card internally across multiple workers/subagents while PW still sees one Card/obligation/result boundary.
 66. OR must not erase the semantic boundaries of distinct PW Cards by merging them into one indistinguishable result.
-67. Clarification pending only on nested delegation semantics; intended question is whether a worker may ask OR for an additional helper subagent within the same PW Card.
+67. **Single worker layer under OR/Main.** Workers may not directly spawn their own workers/subagents. A worker may request additional help from OR, and OR may start another sibling worker/helper within the same PW Card. Recursive/nested delegation is out of scope for the initial OR design.
 68. OR may change provider/model during Card execution without PW involvement.
 69. Provider/model failure is an OR runtime concern unless OR cannot complete the legal obligation and a real blocker remains.
 70. A fresh runtime receiving the locator prompt should reconstruct and continue the exact legal obligation without asking the user what to do.
