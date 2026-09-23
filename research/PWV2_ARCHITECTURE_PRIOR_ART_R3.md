@@ -6,7 +6,7 @@ Research question: Re-evaluate pi-fabric, Laya/System One, Dagu, rpiv-todo and p
 ## Durable continuation metadata — chatgpt_only
 
 Research ID: pwv2-architecture-prior-art-r3
-Status: complete
+Status: consumed
 Origin role: brainstorming
 Origin subject: pwv2-architecture-prior-art@R3
 Return target: brainstorming:pwv2-architecture-prior-art@R3
