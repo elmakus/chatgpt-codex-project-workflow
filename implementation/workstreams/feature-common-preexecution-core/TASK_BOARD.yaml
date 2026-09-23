@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "0a4b055f73b9ff0b0366f2dc2ce08308fa8333e8"
+  head: "7987959b713e72e290e0c49d2047eb8a4d7ce1f8"
 
 research_obligation: null
 
@@ -424,11 +424,11 @@ cards:
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M04-T05.md"
     review_state: green
     review_subject: "elmakus/project_workflow_v2@commit:013c4b405875a356f863b9b381d60faa0ad8935a|tree:7367d38d41240730530ec3b16174ca7db2738807|M04-T05-card-blob:61ae9578d0df1eb7dbb4f0030d638fa846e2f6aa|acceptance-evidence-blob:9cbe9998860fe74517c387d9c1fed713c872deb0"
-    review_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M04-T05-independent-review-R02-2026-09-22.md"
+    review_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M04-T05-independent-review-R03-2026-09-23.md"
     result_commit: "013c4b405875a356f863b9b381d60faa0ad8935a"
     result_pr: 4
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M04-T05-cumulative-acceptance-R02-2026-09-22.md"
-    tests_summary: "GREEN terminal: independent R02 GREEN for exact corrected subject 013c4b405875a356f863b9b381d60faa0ad8935a/tree 7367d38d41240730530ec3b16174ca7db2738807; R01 RED preserved as immutable older-subject history; Actions push 35773744806 PASS + PR 35773750088 PASS; fresh independent checkout scripts/test.sh PASS; full unittest 103/103; compileall + diff/check + clean-tree PASS."
+    tests_summary: "GREEN terminal: independent R03 revalidation GREEN for unchanged exact subject 013c4b405875a356f863b9b381d60faa0ad8935a/tree 7367d38d41240730530ec3b16174ca7db2738807; R01 RED and R02 historical record preserved; R03 does not rely on R02 verdict provenance; exact Card/evidence blobs independently read back; Actions push 35773744806 PASS + PR 35773750088 PASS; logged suites state 28/28, router 39/39, execution 4/4, review 1/1, recovery 2/2, close+fork 29/29; cumulative evidence records full unittest 103/103 plus compileall/diff-check/clean-tree PASS."
 
   - id: "M05-T01"
     title: "ChatGPT bootstrap and locator-only handoff surface"
