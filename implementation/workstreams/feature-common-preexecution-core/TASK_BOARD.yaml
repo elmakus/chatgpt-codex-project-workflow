@@ -506,7 +506,7 @@ cards:
     title: "Cumulative M05 acceptance and immutable review freeze"
     milestone: "M05"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M05-T04"
@@ -518,4 +518,4 @@ cards:
     result_commit: "e95bea2e828e86601cb127fd7564d013a51b0846"
     result_pr: 5
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M05-T05-cumulative-acceptance-P2-2026-09-23.md"
-    tests_summary: "GREEN candidate frozen under PWV2-P2: exact head e95bea2e828e86601cb127fd7564d013a51b0846/tree 978f34a76758d6bbd953d1d3b10f7e12ced5f519; sh scripts/test.sh PASS; full unittest discovery 116/116 PASS; compileall + diff/check + clean tree PASS; Actions 35826499078 success; PR #5 P2 metadata readback exact. M05 live acceptance matches P2 and explicitly leaves full L03 + missing full model-backed L04 to mandatory M07. RECOMMENDED independent review pending."
+    tests_summary: "GREEN terminal: independent M05-T05 R01 GREEN on unchanged exact subject e95bea2e828e86601cb127fd7564d013a51b0846/tree 978f34a76758d6bbd953d1d3b10f7e12ced5f519; PR #5 still exact/open/draft/mergeable at post-review readback; sh scripts/test.sh PASS; full unittest discovery 116/116 PASS; compileall + diff/check + clean tree PASS; Actions 35826499078 success. PWV2-P2 M05 acceptance is satisfied while full L03 + missing full model-backed L04 remain mandatory M07 obligations."
