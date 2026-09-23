@@ -709,6 +709,30 @@ Accepted exploratory choices:
 69. Provider/model failure is an OR runtime concern unless OR cannot complete the legal obligation and a real blocker remains.
 70. A fresh runtime receiving the locator prompt should reconstruct and continue the exact legal obligation without asking the user what to do.
 
+### Worker/review lifecycle corrections
+
+User corrections reconcile PWv2.1 with already durable orchestration-runtime exploratory choices:
+
+72. **Independent review coverage**
+   - PWv2.1 should require an independent review for every Project Workflow Card and every Milestone.
+   - OR does not invent this requirement; it executes the review obligation supplied by PW.
+   - Challenge pending: this deliberately increases review cost/latency and should be retained only because the user values systematic verification over cheaper selective review.
+
+81. **No automatic stronger-model escalation**
+   - Normal worker/reviewer model assignment remains fixed according to OR configuration.
+   - OR must not automatically upgrade to a stronger model because a Card looks difficult.
+   - In an exceptional case where a stronger model appears genuinely necessary, Main may stop and ask the user for explicit approval.
+
+82. **Fixed worker model is an invariant**
+   - The configured worker model is fixed; no silent provider/model substitution or automatic mid-Card model switching.
+   - If the configured model is unavailable or inadequate beyond normal repair/retry, OR fails closed or escalates to Main/user according to the runtime contract.
+
+83. **One Card = one fresh Worker assignment**
+   - A new PW Card gets a fresh Worker session/assignment.
+   - The same Worker session persists through implementation and ordinary repair iterations for that same Card.
+   - After that Card is terminal, the Worker is closed/archived; the next Card gets a new fresh Worker.
+   - This preserves bounded context and prevents cross-Card contamination while avoiding needless rediscovery during repair loops.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
