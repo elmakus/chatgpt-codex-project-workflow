@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "3a45f63490abc5bd5d916942754402db3b0f8c11"
+  head: "b515771d7a64855de1c43decaadda08d93f188ab"
 
 research_obligation: null
 
@@ -434,7 +434,7 @@ cards:
     title: "ChatGPT bootstrap and locator-only handoff surface"
     milestone: "M05"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on: []
     openspec_change: null
@@ -442,10 +442,10 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "5302a06c9ddf5360f71c722c6d78c774a27f51e7"
+    result_pr: 5
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M05-T01-chatgpt-delivery-2026-09-23.md"
+    tests_summary: "GREEN: exact target 5302a06c9ddf5360f71c722c6d78c774a27f51e7/tree f7cbcc58b441c733d8b56d8800f8017a348421eb; PR #5 exact head/base; Actions 35776625360 PASS running sh scripts/test.sh; state 28/28, router 39/39, execution 4/4, review 1/1, recovery 2/2, close/fork/ChatGPT-delivery 33/33; total Python unittest 107/107 plus shell probes PASS."
 
   - id: "M05-T02"
     title: "Codex plugin package and thin local bootstrap"
