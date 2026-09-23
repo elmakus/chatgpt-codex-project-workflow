@@ -6,7 +6,7 @@ current_milestone: "M07"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "c5a7453dd0f538674955d55771a4667e2f794fe8"
+  head: "d260a04defc1cce80772beb3c42d1d86f65e690b"
 
 research_obligation: null
 
@@ -782,7 +782,7 @@ cards:
     title: "Controlled first production adoption on orchestration-runtime"
     milestone: "M07"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on:
       - "M07-T08"
@@ -794,4 +794,4 @@ cards:
     result_commit: null
     result_pr: null
     evidence: null
-    tests_summary: "READY: M07-T08 done; selected-workstream final-integration R02 GREEN on exact frozen candidate; immediate candidate/pilot rollback refs re-read unchanged; scoped pilot authorization already durable."
+    tests_summary: "IN PROGRESS: controlled adoption started after exact GREEN final-integration gate and unchanged pre-activation candidate/pilot rollback readback."
