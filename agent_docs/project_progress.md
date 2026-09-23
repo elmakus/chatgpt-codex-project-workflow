@@ -1,13 +1,13 @@
 # Project progress
 
-## Current continuation — 2026-09-23
+## Current continuation — 2026-09-24
 
-Goal: complete Strategic Planning for `change-pwv21-policy-kernel-brainstorming` on `work/pwv21-policy-kernel-brainstorming`, through the required premium B boundary.
+Goal: complete the material P2 Planning correction for `change-pwv21-policy-kernel-brainstorming` under accepted Definition R1.
 
-Strategic Planning P1, cycle 1, is complete and frozen. The planner completeness/challenge audit is GREEN, with 107/107 requirements and all five accepted ADRs covered across seven serial milestones. This is the planner's audit; independent Stage-6 Plan Review has not occurred.
+The optional Premium A/C handoff concern is classified as an existing-authority Planning omission. The exact source derivation, P1 gap, correction scope and acceptance scenarios have one canonical home: `implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/PLANNING_CORRECTION_OPTIONAL_PREMIUM_HANDOFF_2026-09-24.md`. Definition R1 remains GREEN and unchanged. Classification and lawful correction entry are complete; the material plan correction is still outstanding.
 
-Premium A is satisfied from the user's explicit "Kontynuuj tutaj" selection on 2026-09-23. No repeated A confirmation is due for this cycle.
+Current canonical state is Planning cycle 2 / P2 draft, planner audit pending, premium A due for `definition:R1|planning-cycle:2`, B/C not_due. The durable start pointer is `implementation/workstreams/change-pwv21-policy-kernel-brainstorming/PLANNING.toml`; its plan path points to a separate P2 entry scaffold. Frozen P1 and its historical cycle-1 gates remain intact. Its earlier GREEN planner audit does not establish completeness after this finding and is not an independent Plan Review.
 
-The next real boundary is premium B for the exact frozen P1 subject. Canonical continuation and immutable subject identity are owned by `implementation/workstreams/change-pwv21-policy-kernel-brainstorming/PLANNING.toml`. Present the required fresh independent best-available-context handoff. The planning context must not perform or internally spawn Stage-6 Plan Review. After that review, follow normal V2 consumption and premium C before Execution Prep.
+Next: present the new A context recommendation and optional locator handoff. A cycle-2 choice to stay or deliberately take the offered fresh handoff satisfies this exact A after governed persistence/readback; do not ask for a duplicate confirmation of that choice. Cycle-1 satisfaction cannot authorize cycle 2. Then complete the bounded P2 correction, obtain a GREEN planner completeness/challenge audit and freeze its new exact subject before making B due. The producer context must not perform or internally spawn Stage-6 Plan Review.
 
-No implementation Task Board, Cards, product changes, or independent review verdict were created. These notes are operational handoff, not V2 workflow authority.
+No implementation Task Board, Cards, product code, accepted-authority amendment or independent Plan Review was created. These notes are operational handoff, not V2 workflow authority.
