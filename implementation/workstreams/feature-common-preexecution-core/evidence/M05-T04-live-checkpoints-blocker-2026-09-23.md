@@ -156,3 +156,60 @@ Exact consumer issue-workstream branch readback after authorization: `fix/user-s
 GitHub Issue #2 remains open, as expected before final integration/Close.
 
 This proves the critical L02 regression boundary: post-diagnosis user discussion, concern and Definition promotion were all kept distinct from implementation authorization. The combined L02/L03 scenario continues through Planning/Execution/PR/Close so that implementation-start timing and final Issue closure can also be observed.
+
+
+## Bounded correction from live Premium handoff omission
+
+The Android issue-flow was intentionally continued beyond the minimum L02 boundary and exposed a delivery/stop-format defect: at Premium B the agent correctly required a fresh independent context but did not render the ready-to-copy locator-only handoff prompt.
+
+The live ChatGPT Project bootstrap resolves the current default branch, so the observed chat itself was running against the integrated pre-M05 `project_workflow_v2@main`. Independent inspection of the M05 candidate confirmed that the candidate also contained the same effective defect:
+- Premium A/B/C stops were semantically selected correctly;
+- stop owner modules remained Definition/Planning as intended;
+- `workflow/USER_STOP.md` existed on the M05 candidate, but router execution did not deterministically add it to every real-stop read-set;
+- the formatter did not explicitly distinguish optional A/C handoff from mandatory fresh B handoff.
+
+User-authorized bounded correction was therefore applied to the M05 candidate without changing premium gate semantics.
+
+Corrected target:
+- commit: `e95bea2e828e86601cb127fd7564d013a51b0846`
+- tree: `978f34a76758d6bbd953d1d3b10f7e12ced5f519`
+
+Correction:
+- every `disposition = stop` route now loads `workflow/USER_STOP.md` deterministically while preserving the semantic owner module;
+- Premium A: current context may continue, but a ready-to-copy optional cross-context/harness locator is always rendered;
+- Premium B: fresh independent context/harness remains mandatory and the same response must render the ready-to-copy locator;
+- Premium C: current context may continue or switch to a lighter/cheaper context/harness, with an optional ready-to-copy locator always rendered;
+- receiving harness bootstrap remains external to the locator, preserving the runtime-neutral handoff invariant;
+- regression coverage asserts the `USER_STOP.md` read-set for A/B/C and the A/B/C formatter contract.
+
+Changed files are bounded to:
+- `tools/router.py`
+- `workflow/ROUTER.md`
+- `workflow/USER_STOP.md`
+- `workflow/DEFINITION.md`
+- `workflow/PLANNING.md`
+- `tests/test_router.py`
+- `tests/test_chatgpt_delivery.py`
+
+Verification on exact corrected checkout:
+- `sh scripts/test.sh`: PASS / exit 0;
+- package bootstrap: 9/9 PASS;
+- state: 28/28 PASS;
+- router: 39/39 PASS, including A/B/C real-stop `USER_STOP.md` read-set;
+- execution: 4/4 PASS;
+- review: 1/1 PASS;
+- recovery: 2/2 PASS;
+- combined close/fork/delivery suite: 42/42 PASS;
+- `git diff --check`: PASS;
+- clean worktree: PASS;
+- GitHub Actions push run `35826495396`: GREEN;
+- GitHub Actions PR run `35826499078`: GREEN.
+
+Compatibility assessment for retained L04/L05 evidence:
+- Skill SHA-256 remains `5a8ccfa19d8d2596eede309c1c3a30f662b6d5e1dd326b0c203ddffab67e19ee`;
+- SessionStart SHA-256 remains `8426d8a1f8eb8d8ccce3f4afabb80a3a7d2a1585ecff289ba3b66a8f4359366c`;
+- plugin manifest SHA-256 remains `9ec08599b349d1a7ae049e535fac16771c6b22d7d6be15ce5f5b108a57716aa7`;
+- package identity/update/bootstrap mechanics are unchanged;
+- canonical workflow bytes changed as intended and package byte-preservation tests remain GREEN.
+
+Per PWV2-P1 M05.P4, the later semantic edit therefore requires the affected regression plus compatibility assessment rather than replaying unrelated live evidence. L05 remains applicable; L04 still requires its final model-backed completion when runtime capacity is available.
