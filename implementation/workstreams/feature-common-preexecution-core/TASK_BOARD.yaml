@@ -72,12 +72,12 @@ milestones:
     review_evidence: null
   M06:
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m06--bounded-v1-migration-and-cutover-rehearsal"
-    checkpoint: "27b9132e173850e7d596092e023b0af7e0507472"
-    implementation_head: null
-    handoff: null
-    acceptance_evidence: null
+    checkpoint: "eef54a965252172ddba1b24820cc5aa6f9ead382"
+    implementation_head: "e38d92f87ff1f93fae79d9763e1127295dc3ed92"
+    handoff: "implementation/workstreams/feature-common-preexecution-core/handoffs/M06_HANDOFF.md"
+    acceptance_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M06-T05-cumulative-acceptance-R02-2026-09-23.md"
     review_state: null
     review_subject: null
     review_evidence: null
