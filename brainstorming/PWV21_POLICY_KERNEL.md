@@ -474,6 +474,41 @@ The user accepted the following recommendations as a batch:
 
 Challenge state: pending one bounded challenge for this accepted batch before the dependent choices are treated as stable exploratory state.
 
+### Additional accepted exploratory choices — batch 2
+
+The user accepted recommendations 6–9:
+
+6. **Canonical mutation guard**
+   - Kernel emits expected mutation preconditions/postconditions.
+   - Coordinator/role performs the canonical write.
+   - Kernel performs required readback + validation after the write.
+
+7. **Deterministic obligation identity**
+   - `obligation_id` should be content-derived/deterministic from rule/subject/fingerprint rather than random.
+
+8. **2C-lite registry boundary**
+   - Registry contains only mechanical rule metadata: stable `rule_id`, precedence, route/stop/recovery outcome, owner module and named typed predicates.
+   - Predicate implementations remain in executable code; natural-language reasoning stays outside the registry.
+
+9. **OR/Paseo retry boundary**
+   - Runtime retries remain internal to orchestration-runtime/Paseo.
+   - PW sees only semantic success/result or a real unresolved blocker; retry/session telemetry is not canonical PW state.
+
+Challenge state: pending one bounded challenge for this accepted batch before all dependent choices are treated as stable exploratory state.
+
+### Parallel Project Workflow Cards — reopened material choice
+
+Current PWv2 has a one-Card invariant: at most one Project Workflow Card may be `in_progress` in a workstream.
+
+PWv2.1 candidate direction requested by the user:
+- permit multiple Cards in the same workstream to execute concurrently only when the accepted Plan/JIT decomposition explicitly marks them as parallel-safe;
+- kernel must derive a bounded legal parallel set from canonical dependencies/authority and fail closed on overlap or uncertainty;
+- OR/Paseo owns scheduling/execution of that legal set, not the legality decision;
+- parallel Cards remain separate PW Cards with separate obligations/results/review subjects; runtime workers do not become Cards;
+- avoid introducing a general scheduler or arbitrary lane machinery into PW.
+
+Current recommendation: allow bounded plan-authorized parallel Cards, replacing the V2 one-Card invariant with a deterministic independence/parallel-set invariant.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
