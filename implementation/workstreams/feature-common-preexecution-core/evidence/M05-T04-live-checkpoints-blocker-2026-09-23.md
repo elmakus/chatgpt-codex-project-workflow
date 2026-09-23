@@ -117,3 +117,42 @@ Even if L04 runtime capacity becomes available, M05-T04 still cannot become GREE
 - L02, with L03 continuing from that real issue flow.
 
 Therefore the Card remains BLOCKED and M05-T05 must not start.
+
+
+## Live ChatGPT Android evidence — L01 and L02 progression
+
+Consumer repository: `elmakus/test-pwv2`.
+
+### L01 — GREEN
+
+Observed on the normal ChatGPT Android Project surface with the canonical V2 Project Instructions:
+- `#feature` created/recovered exactly one workstream `feature-completion-summary`;
+- branch `feat/feature-completion-summary` was created;
+- GitHub Issue #1 was created once and tracker readback is verified;
+- workflow entered adaptive Brainstorming without `#grill`;
+- the user received a material numbered product question with a recommendation and alternatives;
+- after the user's answer, the Brainstorming challenge audit became GREEN;
+- durable state reached `ready_for_definition` with `promotion_state = pending`;
+- implementation did not begin and the workflow stopped at the user-owned Definition-promotion boundary.
+
+Exact consumer branch readback during verification: `feat/feature-completion-summary@a961ff0c3a93a5f42241b9d8caf1e960cd932cba`.
+
+### L02 — human-control boundary GREEN; downstream continuation in progress
+
+Observed on a separate normal ChatGPT Android chat in the same Project:
+- symptom-only `#issue` created/recovered one workstream `user-setting-persistence-restart`, branch `fix/user-setting-persistence-restart`, and GitHub Issue #2;
+- diagnosis remained read-only because the consumer default branch had no application implementation; no false code-level root cause was asserted;
+- the required prior-art Research was materialized and reconciled before alignment;
+- the first exact repair subject was `repair:user-setting-persistence-across-restart:v1`;
+- instead of authorizing, the user asked a safety/side-effects question;
+- durable Intake classified that response as `concern`, with `response_observed = true` and `alignment_state = pending`; implementation remained forbidden;
+- the concern routed to Brainstorming rather than being misread as repair authorization;
+- the user accepted a safer non-destructive scope; the repair subject changed to `repair:user-setting-persistence-nondestructive:v2`, stale v1 prior-art was replaced by fresh exact v2 prior-art, and Brainstorming revision 2 reached GREEN;
+- the user separately authorized Definition promotion for `safe-user-setting-persistence@2`; this did not authorize the repair;
+- only after the distinct explicit user message authorizing `repair:user-setting-persistence-nondestructive:v2` did Intake become complete with `alignment_state = authorized` and exact matching `alignment_subject`;
+- Definition then materialized as R1/GREEN with `premium_a = due`.
+
+Exact consumer issue-workstream branch readback after authorization: `fix/user-setting-persistence-restart@9c31e834b23fc9184bf4adfd44c1a5bebb9af592`.
+GitHub Issue #2 remains open, as expected before final integration/Close.
+
+This proves the critical L02 regression boundary: post-diagnosis user discussion, concern and Definition promotion were all kept distinct from implementation authorization. The combined L02/L03 scenario continues through Planning/Execution/PR/Close so that implementation-start timing and final Issue closure can also be observed.
