@@ -409,10 +409,13 @@ The earlier candidate migration sequence remains historical brainstorming contex
 User clarified that the intended agent backend will always be Paseo.
 
 Current architectural interpretation:
-- treat Paseo as the expected concrete realization of orchestration-runtime capabilities such as agent/provider/model launching, sessions, delegation, worktrees and runtime coordination;
+- `orchestration-runtime` is the separate orchestration layer that owns worker/subagent execution mechanics;
+- Paseo is the expected backend/infrastructure used by `orchestration-runtime`, not a replacement for that layer;
+- Project Workflow owns governance, legal obligations, authority and durable workflow transitions;
+- `orchestration-runtime` owns concrete orchestration such as worker realization, provider/model selection, sessions, retries, fan-out/fan-in and worktree/runtime mechanics, potentially through Paseo;
 - do not duplicate those mechanics inside Project Workflow;
-- do not make Paseo daemon/session/runtime state canonical Project Workflow authority;
-- keep PW obligations/runtime contracts semantically portable so ChatGPT can still reconstruct project legality from repository state without needing Paseo private state.
+- neither OR nor Paseo daemon/session/runtime state may become canonical Project Workflow authority;
+- keep PW obligations/runtime contracts semantically portable so ChatGPT can still reconstruct project legality from repository state without needing OR/Paseo private state.
 
 This assumption may justify a thinner PW ↔ runtime interface and fewer hypothetical portability layers, while preserving repository-based authority interchangeability.
 
@@ -424,6 +427,13 @@ User choice accepted during Brainstorming:
 - prefer/use the executable helper/reference implementation when available;
 - do **not** make that helper a prerequisite for reconstructing the legal continuation;
 - canonical repository state plus portable workflow contracts must remain sufficient for a fresh capable runtime to recover without private runtime/session state.
+
+Challenge state: pending one bounded adversarial challenge before treating this choice as stable exploratory state.
+
+### Executable-policy scope
+
+User choice accepted during Brainstorming: A2 / option 1B.
+PWv2.1 should extend the existing executable router/kernel to compile exact deterministic obligations (role, subject, authority, prerequisites and completion/evidence contract) while keeping semantic role reasoning in Markdown/LLM and keeping orchestration mechanics outside Project Workflow.
 
 Challenge state: pending one bounded adversarial challenge before treating this choice as stable exploratory state.
 
