@@ -85,7 +85,7 @@ milestones:
 
   M07:
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m07--system-qualification-and-first-production-ready-adoption"
     checkpoint: "2d010a95bac89dfd561dcc3accad6c5e8a0bda7a"
     implementation_head: null
@@ -637,7 +637,7 @@ cards:
     title: "Full automated qualification and acceptance-gap reconciliation"
     milestone: "M07"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on: []
     openspec_change: null
