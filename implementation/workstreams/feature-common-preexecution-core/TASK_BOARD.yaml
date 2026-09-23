@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "7987959b713e72e290e0c49d2047eb8a4d7ce1f8"
+  head: "fe659268756127d68bf2f97cef05ff4d1e1770c9"
 
 research_obligation: null
 
@@ -500,7 +500,7 @@ cards:
     result_commit: null
     result_pr: null
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M05-T04-live-checkpoints-blocker-2026-09-23.md"
-    tests_summary: "BLOCKED on required user-run live surfaces: L01 not run; L02/L03 not run; L04 real Codex package/invocation-resolution/missing-router/no-V1 evidence is partial but lacks ordinary model-backed V2 project execution; L05 GREEN via real isolated Codex 0.2.0->0.2.1 supported update/readback. Candidate fbd208c1c26eef2a227ea90aced05fd8ac32a9a4; Actions 35814931203 PASS."
+    tests_summary: "BLOCKED: L01 and L02 remain required user-driven ChatGPT Android scenarios; L03 remains behind the real L02 issue flow. L04 progressed to real model-backed codex exec with exact $pw:project_workflow_v2 and attempted first policy read from bundled local 0.2.1 workflow/ROUTER.md, but final completion is blocked by authenticated Codex usage limit until 2026-09-26 10:10; prior package-resolution/SessionStart/missing-router/no-V1 evidence remains valid. L05 GREEN via real isolated 0.2.0->0.2.1 update/readback. Candidate fbd208c1c26eef2a227ea90aced05fd8ac32a9a4; Actions 35814931203 PASS; full continuation evidence in M05-T04-live-checkpoints-blocker-2026-09-23.md."
 
   - id: "M05-T05"
     title: "Cumulative M05 acceptance and immutable review freeze"
