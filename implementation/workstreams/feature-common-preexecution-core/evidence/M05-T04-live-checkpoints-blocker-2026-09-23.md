@@ -231,3 +231,25 @@ Observed result:
 - P1 is now `state = approved`, `premium_b = satisfied`, and `premium_c = due` for the same immutable subject.
 
 This provides live evidence that the Stage-6 Plan Review boundary really uses a fresh independent context and that GREEN is consumed deterministically into Premium C rather than directly entering Execution Prep.
+
+
+## L02/L03 continuation fixture after correct runtime/input blocker
+
+The live issue flow correctly reached a durable `runtime_access_input` blocker on M01-T01 because the disposable consumer branch contained no application implementation.
+
+To continue the same L02 -> L03 workstream without inventing architecture inside the agent, an external disposable input fixture was added to the existing branch without mutating PWv2 durable blocker/Card state and without implementing the accepted repair.
+
+Fixture commit:
+- repository: `elmakus/test-pwv2`
+- branch: `fix/user-setting-persistence-restart`
+- commit: `a945251f80023864ca71abcdea82fd9ad063f4f5`
+- tree: `c2014a907c6b208833594a9b705aed90cc7bd598`
+
+Fixture surface:
+- `app/settings_store.py` supplies startup read and one-setting save paths;
+- `tests/test_settings_persistence.py` supplies a deterministic restart regression surface;
+- `FIXTURE.md` identifies the commit as external live-test input, not the repair.
+
+The fixture intentionally reproduces the authorized issue: save reports success and updates the in-memory value, but restart still restores the previous durable value. Independent local readback on the exact fixture commit ran `python3 -m unittest tests.test_settings_persistence` and produced the expected RED assertion: restarted `theme = light` instead of expected `dark`, while unrelated settings remained present.
+
+The existing M01-T01 blocker record and Task Board remain unchanged intentionally. The next user-driven Android step is to tell the same live chat that the missing input is now present and continue. This probes whether PWv2 Recovery can verify and consume a resolved `runtime_access_input` stop instead of replaying/sticking on stale blocker state.
