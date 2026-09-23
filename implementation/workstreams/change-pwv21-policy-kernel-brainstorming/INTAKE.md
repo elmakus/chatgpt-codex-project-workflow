@@ -33,3 +33,10 @@ The earlier prior-art research branch is evidence/provenance only; this Brainsto
 Brainstorming.
 
 The exact exploratory record will be materialized before Intake is completed.
+
+## Intake result
+
+- Intake state: complete.
+- Independent workstream confirmed.
+- Downstream route: Brainstorming.
+- Exploratory scope: `brainstorming/PWV21_POLICY_KERNEL.md`.

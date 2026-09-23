@@ -11,11 +11,11 @@ parent_branch: null
 parent_dependency: null
 
 intake:
-  state: "active"
+  state: "complete"
   record: "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/INTAKE.md"
 
 routing:
-  exploratory_scope: null
+  exploratory_scope: "brainstorming/PWV21_POLICY_KERNEL.md"
   research_obligation: null
   plan_review: null
 
