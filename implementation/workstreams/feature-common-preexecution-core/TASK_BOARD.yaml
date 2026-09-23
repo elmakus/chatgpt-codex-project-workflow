@@ -607,7 +607,7 @@ cards:
     title: "Cumulative M06 acceptance and immutable review freeze"
     milestone: "M06"
     decision_state: accepted
-    execution_status: ready
+    execution_status: in_progress
     executor: chatgpt
     depends_on:
       - "M06-T04"
