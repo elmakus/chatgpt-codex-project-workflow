@@ -811,6 +811,26 @@ Accepted exploratory choices:
 
 Baseline note: this matches current PWv2 `workflow/USER_STOP.md`, which distinguishes ordinary user-action stops from optional Premium A/C fresh handoffs and mandatory Premium B fresh independent handoff.
 
+### Milestone and final-integration review choices 116-130
+
+Accepted exploratory choices:
+
+116. Milestone-review corrections should route back to clearly identified existing Cards or bounded new Cards rather than unstructured global repair.
+117. A Milestone review may cause a new Card to be materialized when the missing work is still within the accepted Plan.
+118. If the discovered work changes product goal/scope, PW stops at the appropriate user-owned authority boundary.
+119. Repairing one Card after Milestone review does not automatically force re-review of every Card; only materially affected Cards are revalidated.
+120. The same Milestone Reviewer may recheck the repaired Milestone if that Reviewer did not materially produce/repair the changed subject.
+121. If the Milestone Reviewer materially repairs the subject, it loses eligibility to issue the next independent verdict; a fresh Reviewer is required.
+122. Final integration review of the completed workstream is a separate fresh independent review beyond Card and Milestone reviews.
+123. Final integration Reviewer receives the exact final subject, authority and raw/relevant evidence, not prior GREEN opinions as anchoring context.
+124. Final integration review may invalidate an earlier GREEN Card/Milestone when new evidence shows a real defect.
+125. Final integration RED routes automatically to bounded corrective work when product goal/scope remain unchanged.
+126. PW must mechanically enforce reviewer freshness/semantic independence rather than relying on prompt convention alone.
+127. If the current runtime cannot provide a qualifying fresh Reviewer, PW produces the required fresh-context locator handoff.
+128. Switching ChatGPT ↔ Paseo does not change review requirements or acceptance semantics.
+129. Out-of-scope-looking review findings are classified rather than blindly discarded: blocker, needed in-scope work, or true out-of-scope note.
+130. Workstream close is permitted only after GREEN final integration review and all required acceptance evidence are satisfied.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
