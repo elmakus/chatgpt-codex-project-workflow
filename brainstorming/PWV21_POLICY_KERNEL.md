@@ -785,6 +785,32 @@ Accepted exploratory refinement, preserving the existing PWv2 semantic-independe
 
 PWv2 baseline verification: current `workflow/REVIEW.md` already states that a context which materially produced or repaired the exact subject cannot issue its independent verdict; changed reviewed subject/new verdict attempt is a new attempt.
 
+### Review, reopening, recovery and stop UX choices 101-115
+
+Accepted exploratory choices:
+
+101. RED Card review should return concrete findings plus the evidence/conditions required for recheck.
+102. The Worker repairing a RED Card sees the prior review findings for that same Card.
+103. The same Reviewer rechecking the same Card may see its own prior RED findings and verify their correction, provided it did not materially repair the subject.
+104. A fresh Reviewer for a new Card does not receive prior Card-review opinions by default; only subject-relevant canonical authority/evidence.
+105. A previously GREEN Card may be reopened when new evidence genuinely invalidates its prior result/assumptions.
+106. A reopened Card gets a fresh Worker assignment for the new repair cycle.
+107. A reopened Card gets a fresh independent Reviewer assignment.
+108. If an earlier defect may invalidate later Cards, PW marks affected downstream results potentially stale rather than assuming prior GREEN remains valid.
+109. After repairing an earlier Card, PW determines which downstream Cards/tests/reviews require revalidation.
+110. Revalidation is bounded to the actually invalidated acceptance surface; it does not imply redoing unaffected work from zero.
+111. Successful automatic Recovery may be surfaced briefly to the user but should not create a stop.
+112. If durable Plan/authority already selects the legal continuation, Recovery follows it without asking the user again.
+113. If multiple legal continuations remain, PW may choose among purely technical equivalents; product/strategy differences return to the user.
+114. **User Stop formatting is stop-type specific, not always an authorization phrase.**
+   - Ordinary authorization stop: give the smallest explicit action, ideally a ready short phrase the user can approve.
+   - Optional fresh-context handoff (for example Premium A/C): user may continue here, but the response must also include a ready-to-copy runtime-neutral `NEW CHAT START PROMPT`.
+   - Mandatory fresh independent handoff (for example Premium B, or an independent-review boundary where the current context produced/repaired the exact subject and no internal qualifying reviewer exists): the legal next action is to start a fresh context/harness, and the response must include the ready-to-copy locator prompt.
+   - End-of-scope or informational stop may require no authorization template at all.
+115. After the user supplies the required authorization/input, PW reruns the router and continues until the next real workflow stop.
+
+Baseline note: this matches current PWv2 `workflow/USER_STOP.md`, which distinguishes ordinary user-action stops from optional Premium A/C fresh handoffs and mandatory Premium B fresh independent handoff.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
