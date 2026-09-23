@@ -1,7 +1,7 @@
 project: "elmakus/chatgpt-codex-project-workflow"
 workstream_id: "feature-common-preexecution-core"
 plan_revision: "PWV2-P2"
-current_milestone: "M06"
+current_milestone: "M07"
 
 execution_ref:
   branch: "feat/common-preexecution-core"
@@ -82,6 +82,18 @@ milestones:
     review_subject: null
     review_evidence: null
 
+
+  M07:
+    decision_state: accepted
+    execution_status: ready
+    contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m07--system-qualification-and-first-production-ready-adoption"
+    checkpoint: "2d010a95bac89dfd561dcc3accad6c5e8a0bda7a"
+    implementation_head: null
+    handoff: null
+    acceptance_evidence: null
+    review_state: null
+    review_subject: null
+    review_evidence: null
 
 cards:
   - id: "M01-T01"
@@ -620,3 +632,20 @@ cards:
     result_pr: 6
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M06-T05-cumulative-acceptance-R02-2026-09-23.md"
     tests_summary: "GREEN terminal: independent R02 GREEN on unchanged exact subject e38d92f87ff1f93fae79d9763e1127295dc3ed92/tree 05819376a634372259061d5e14e4529778d3f466; R01 RED retained for prior subject; PR #6 exact head/base remains open/draft/mergeable; exact-head Actions PASS; migration/close/delivery group 80/80; full unittest discovery 154/154; compileall + diff/check + clean-tree PASS; no real migration or M07 adoption."
+
+  - id: "M07-T01"
+    title: "Full automated qualification and acceptance-gap reconciliation"
+    milestone: "M07"
+    decision_state: accepted
+    execution_status: ready
+    executor: chatgpt
+    depends_on: []
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M07-T01.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
