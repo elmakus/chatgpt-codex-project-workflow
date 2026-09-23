@@ -613,6 +613,31 @@ Accepted exploratory choices:
 
 Challenge state: pending one bounded challenge for this accepted batch before all dependent choices are treated as stable exploratory state.
 
+### User-facing behavior choices
+
+Accepted exploratory choices:
+
+31. **Automatic continuation**
+   - PW continues automatically while the next legal obligation is deterministic and already authorized.
+   - It stops only at real user/product/authorization/blocker boundaries.
+
+32. **Agent-owned verification**
+   - If uncertainty can be resolved by permitted research/readback/tools, PW resolves it without asking the user.
+   - User questions are reserved for genuine user-owned decisions or unavailable required input.
+
+33. **Human-facing output**
+   - Normal user-facing responses stay concise: what happened, what it means, and what happens next.
+   - obligation/result/fingerprint/internal telemetry remains in durable evidence or machine interfaces unless materially relevant.
+
+34. **OR/Paseo visibility**
+   - OR/Paseo remain implementation/runtime details during normal operation.
+   - Surface them to the user only when a runtime-specific problem, decision or authorization makes them relevant.
+
+35. **Automatic use of approved parallelism**
+   - When accepted Plan/JIT already authorizes a legal parallel set, PW/OR may use it automatically without asking the user again.
+
+Challenge state: pending one bounded challenge for this accepted batch before all dependent behavior choices are treated as stable exploratory state.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
