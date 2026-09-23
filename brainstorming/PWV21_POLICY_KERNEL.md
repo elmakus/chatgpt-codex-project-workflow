@@ -902,6 +902,20 @@ Supersession note:
 
 Challenge outcome: GREEN for the remaining policy-kernel portability/parity direction, subject to final completion audit.
 
+### Completion audit — final unresolved material questions
+
+The bounded completion audit found six remaining material questions. They are intentionally limited to contradictions/simplifications that could still change Definition:
+
+176. Whether parallel integrated compatibility may ever replace mandatory per-Card independent review.
+177. Whether `parallel_override` should exist for overlapping mutating write scopes or overlapping mutation should always serialize.
+178. Whether optional worker-level telemetry UX should be fully deferred to orchestration-runtime and removed from PWv2.1 scope.
+179. Final challenge of the mandatory review stack: every Card + every Milestone + final workstream integration review despite added cost/latency.
+180. Whether fresh-review obligations may be satisfied automatically by a new internal independent OR/Paseo reviewer without a user stop.
+181. Whether every executable mechanical predicate must have a canonical human-readable contract sufficient for helper-less recovery, so no legal routing semantics exist only in Python code.
+
+A small additional synthesis issue is already non-product: stale "challenge pending" labels and historical decision-tree text must be reconciled after these questions; no user choice is required for that cleanup.
+
+
 ## Current decision tree
 
 ### A. Executable-policy scope
