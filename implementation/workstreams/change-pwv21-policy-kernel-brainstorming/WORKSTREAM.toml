@@ -32,3 +32,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/PLAN
 [plan_review]
 class = "plan_review"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/PLAN_REVIEW.toml"
+
+[task_board]
+class = "task_board"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/TASK_BOARD.toml"
