@@ -6,7 +6,7 @@ current_milestone: "M06"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "ae3d5271acca7c9bf16a8015194ea9192824e29b"
+  head: "b93839c161ad084183676b58e47bfd7ded8b269b"
 
 research_obligation: null
 
@@ -613,10 +613,10 @@ cards:
       - "M06-T04"
     openspec_change: null
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M06-T05.md"
-    review_state: null
-    review_subject: null
+    review_state: pending
+    review_subject: "elmakus/project_workflow_v2@commit:5b3d195e61645d541821f238f5374cca7e121e58|tree:82b7a601c3fe21f8f11219b0f5b0cf02e5ee3386|M06-T05-card-blob:ded11bcd22c639d529867adbd95544b198508fa3|acceptance-evidence-blob:a1753e83fa17b6b11cec874800487a8639e2d2a5"
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "5b3d195e61645d541821f238f5374cca7e121e58"
+    result_pr: 6
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M06-T05-cumulative-acceptance-2026-09-23.md"
+    tests_summary: "GREEN candidate awaiting independent review: exact target 5b3d195e61645d541821f238f5374cca7e121e58/tree 82b7a601c3fe21f8f11219b0f5b0cf02e5ee3386; PR #6 exact/open/draft/mergeable-clean; Actions PR 35848155642 job 107139204326 PASS + push 35848149974 job 107139185943 PASS; sh scripts/test.sh includes full unittest discovery, compileall, diff-check and clean-tree; repeated conversion idempotency and pending/in-progress review blocking regressions included."
