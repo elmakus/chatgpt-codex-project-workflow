@@ -479,6 +479,21 @@ Exploratory choice accepted, challenge pending:
 - no client-private helper/session state may become project authority.
 
 
+### Execution Result contract
+
+User choice accepted during Brainstorming: C / typed semantic `Execution Result`.
+
+The runtime return should contain only Project-Workflow-relevant semantic result data, such as:
+- exact obligation/subject binding;
+- result subject/status;
+- changed artifacts or exact result refs;
+- tests/evidence/readback outcomes;
+- blocker or semantic outcome needed for PW continuation.
+
+It should not make provider/model/worker/session/retry/worktree/Paseo telemetry canonical PW state.
+
+Challenge state: pending. Main failure mode to resolve: a result can be structurally well-typed while still being stale or attached to an obsolete obligation/current Git state.
+
 ### Authority-bundle ownership
 
 Stable exploratory choice: PW owns authority resolution and bundle construction.
