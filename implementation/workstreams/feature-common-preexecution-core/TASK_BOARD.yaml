@@ -61,7 +61,7 @@ milestones:
 
   M05:
     decision_state: accepted
-    execution_status: blocked
+    execution_status: in_progress
     contract: "planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md#m05--thin-chatgptcodex-delivery-with-verified-update-propagation"
     checkpoint: "674fb970913c393cfc6ed82a5ef67dda8b8713b7"
     implementation_head: null
@@ -486,7 +486,7 @@ cards:
     title: "Real ChatGPT/Codex delivery checkpoints L01-L05"
     milestone: "M05"
     decision_state: accepted
-    execution_status: blocked
+    execution_status: ready
     executor: chatgpt
     depends_on:
       - "M05-T01"
@@ -500,7 +500,7 @@ cards:
     result_commit: null
     result_pr: null
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M05-T04-live-checkpoints-blocker-2026-09-23.md"
-    tests_summary: "BLOCKED at premium_stop_C after PWV2-P2 approval; Execution Prep must reconcile M05-T04/M05-T05 to approved P2 before execution resumes. Live M05 evidence now includes L01 GREEN, L02 human-control GREEN, same-flow recovery from runtime/input blocker, implementation with 3/3 GREEN regressions, and correct REQUIRED-review independence stop; exact Codex installed-package/CLI/bootstrap/missing-router/no-V1 evidence plus L05 update/readback remains durable. User explicitly ended further M05 manual driving and skipped the additional model-backed Codex run. P2 defers L03 final PR/tracker closure and any still-missing full model-backed L04 continuation to M07/first-production acceptance without relabeling them GREEN. Evidence: implementation/workstreams/feature-common-preexecution-core/evidence/M05-P2-replan-2026-09-23.md."
+    tests_summary: "READY after PWV2-P2 GREEN/approval + Premium C satisfaction and Execution Prep reconciliation of M05-T04/M05-T05. Live M05 evidence includes L01 GREEN, L02 human-control GREEN, same-flow recovery from runtime/input blocker, implementation with 3/3 GREEN regressions, and correct REQUIRED-review independence stop; exact Codex installed-package/CLI/bootstrap/missing-router/no-V1 evidence plus L05 update/readback remains durable. User explicitly ended further M05 manual driving and skipped the additional model-backed Codex run. P2 defers L03 final PR/tracker closure and any still-missing full model-backed L04 continuation to M07/first-production acceptance without relabeling them GREEN. Evidence: implementation/workstreams/feature-common-preexecution-core/evidence/M05-P2-replan-2026-09-23.md."
 
   - id: "M05-T05"
     title: "Cumulative M05 acceptance and immutable review freeze"
