@@ -831,6 +831,28 @@ Accepted exploratory choices:
 129. Out-of-scope-looking review findings are classified rather than blindly discarded: blocker, needed in-scope work, or true out-of-scope note.
 130. Workstream close is permitted only after GREEN final integration review and all required acceptance evidence are satisfied.
 
+### PWv2 -> PWv2.1 migration choices 131-145
+
+Accepted exploratory choices:
+
+131. PWv2.1 should continue active PWv2 workstreams without a manual migration ceremony when legacy durable state is unambiguous and safely interpretable.
+132. Ambiguous legacy state must fail closed to Recovery rather than be guessed.
+133. An active PWv2 Card may continue under PWv2.1 only after validating that its authority, subject and evidence can be bound unambiguously to the new contract.
+134. Migration is lazy/on-entry at natural workstream boundaries rather than a flag-day migration of every repository.
+135. Historical PWv2 GREEN remains valid when its exact subject/evidence still proves the accepted result; do not re-review without cause.
+136. A historical GREEN that lacks newly required evidence is not retroactively RED; route to bounded revalidation when that evidence becomes material.
+137. New review semantics apply to continued active work, but do not automatically reopen correctly closed historical stages.
+138. Missing historical Milestone review is backfilled only when that Milestone remains material to the active continuation path, not as blanket retroactive cleanup.
+139. PWv2.1 may mechanically add missing durable fields when their values are uniquely derivable from existing canonical state.
+140. A new durable field whose value requires semantic interpretation or a user decision cannot be invented; route to Recovery or the owning user gate.
+141. Preserve historical records and apply minimal migration rather than rewriting project history into a new format.
+142. Valid old-format results should be normalized/adapted into the new contract rather than rejected solely for serialization/version age.
+143. Safe mechanical migration should not itself create a user stop.
+144. Contradictions among legacy manifest/Task Board/Git state must not be resolved by probability or convenience; fail closed to Recovery.
+145. Migration acceptance must include real PWv2 workstreams in multiple lifecycle states and prove correct PWv2.1 continuation/recovery.
+
+Challenge state: migration batch accepted; adversarial validation still required before Definition promotion.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
