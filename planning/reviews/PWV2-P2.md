@@ -2,7 +2,7 @@
 
 Plan revision: `PWV2-P2`
 Review requirement: `REQUIRED`
-Review state: `pending`
+Review state: `in_progress`
 Review subject: `planning/PROJECT_WORKFLOW_V2_MASTER_PLAN.md@blob:128ebb5f1bfcd02b80cea7716e02f217964001b1`
 Review subject commit: `d67a7961ce9853766b9ea151ea40fe00ed314ddf`
 Review evidence: `pending`
