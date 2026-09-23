@@ -35,9 +35,9 @@ authority:
 
 review:
   requirement: RECOMMENDED
-  state: in_progress
+  state: green
   subject: "elmakus/project_workflow_v2@commit:15978113e46abc8498ceaef594461c8613fcadb8|tree:f05d86d72f9bbe941583b4ccf92e2c46b5decf83|M07-user-decision-blob:6031951f2021f14c363eac52eb7843da80dec838|M07-final-freeze-R02-blob:e6a078fc7fa9b6d01da33dd939bdf2bb2979cb19"
-  evidence: null
+  evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-final-integration-independent-review-R02-2026-09-23.md"
   covered_by: null
 
 branch_cleanup:
