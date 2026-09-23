@@ -5,6 +5,12 @@ created_from = "7aa7512ead67a86256089d1af0171e2e655e700d"
 integration_target = "main"
 authority = [
   { class = "authority", path = "workflow/PWV2_ADOPTION.md" },
+  { class = "authority", path = "requirements/PWV21_POLICY_KERNEL.md" },
+  { class = "authority", path = "decisions/ADR_PWV21_POLICY_KERNEL.md" },
+  { class = "authority", path = "decisions/ADR_PWV21_ORCHESTRATION_CONTRACT.md" },
+  { class = "authority", path = "decisions/ADR_PWV21_PARALLEL_CARDS.md" },
+  { class = "authority", path = "decisions/ADR_PWV21_REVIEW_LIFECYCLE.md" },
+  { class = "authority", path = "decisions/ADR_PWV21_RECOVERY_MIGRATION_HANDOFF.md" },
 ]
 
 [intake]

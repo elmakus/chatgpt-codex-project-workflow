@@ -8,6 +8,6 @@ workstream_root = "implementation/workstreams"
 
 Project-level identity only.
 
-This branch contains the migrated Project Workflow V2 envelope for the existing PWv2.1 Policy Kernel exploratory workstream. Product Definition has not started. The exact V1 source state remains immutable migration evidence at `e2dd13b6a92cf14233a81a08ee86bcd5f5d84244`.
+This repository is managed under Project Workflow V2. Current managed-change phase, accepted authority and continuation belong to the exact selected workstream-local V2 records; do not infer them from this prose or from historical V1 files.
 
-The current legal continuation is recovered from the selected V2 workstream-local state and the canonical `elmakus/project_workflow_v2` router, not from this prose.
+The canonical workflow authority is current `elmakus/project_workflow_v2@main`.

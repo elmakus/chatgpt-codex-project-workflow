@@ -1,10 +1,16 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 source_scope_subject = "pwv21-policy-kernel@1"
 revision = "R1"
-state = "active"
-completeness_audit = "pending"
-premium_a = "not_due"
-decisions = []
+state = "green"
+completeness_audit = "green"
+premium_a = "due"
+decisions = [
+  { class = "authority", path = "decisions/ADR_PWV21_POLICY_KERNEL.md" },
+  { class = "authority", path = "decisions/ADR_PWV21_ORCHESTRATION_CONTRACT.md" },
+  { class = "authority", path = "decisions/ADR_PWV21_PARALLEL_CARDS.md" },
+  { class = "authority", path = "decisions/ADR_PWV21_REVIEW_LIFECYCLE.md" },
+  { class = "authority", path = "decisions/ADR_PWV21_RECOVERY_MIGRATION_HANDOFF.md" },
+]
 
 [requirements]
 class = "authority"
