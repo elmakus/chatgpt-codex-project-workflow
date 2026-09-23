@@ -6,7 +6,7 @@ Research question: What mechanisms in pi-extensible-workflows are relevant to cu
 ## Durable continuation metadata — chatgpt_only
 
 Research ID: pwv2-architecture-prior-art-r2
-Status: complete
+Status: consumed
 Origin role: brainstorming
 Origin subject: pwv2-architecture-prior-art@R2
 Return target: brainstorming:pwv2-architecture-prior-art@R2

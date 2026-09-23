@@ -16,7 +16,7 @@ intake:
 
 routing:
   exploratory_scope: "brainstorming/PWV2_ARCHITECTURE_PRIOR_ART_R2.md"
-  research_obligation: "research/PWV2_ARCHITECTURE_PRIOR_ART_R2.md"
+  research_obligation: null
   plan_review: null
 
 task_board: null
