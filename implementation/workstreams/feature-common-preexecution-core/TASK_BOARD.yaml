@@ -6,7 +6,7 @@ current_milestone: "M06"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "340525b3c5313fb30414a10914263ccf8658e411"
+  head: "158a4e0a03ecd4fb88d413a983f72ab84d707e18"
 
 research_obligation: null
 
@@ -553,7 +553,7 @@ cards:
     title: "Safe semantic conversion and obligation preservation"
     milestone: "M06"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M06-T01"
@@ -561,17 +561,17 @@ cards:
     contract: "implementation/workstreams/feature-common-preexecution-core/cards/M06-T02.md"
     review_state: null
     review_subject: null
-    review_evidence: null
-    result_commit: null
-    result_pr: null
+    review_evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M06-T02-safe-conversion-2026-09-23.md"
+    result_commit: "ca92f27192eb4e54901a31de78c206cf814ed98c"
+    result_pr: 6
     evidence: null
-    tests_summary: null
+    tests_summary: "GREEN: exact target ca92f27192eb4e54901a31de78c206cf814ed98c/tree bccae82be133b38240aaad8044877f81d66d1b6d; Actions 35842412193 job 107120370741 PASS; common V2 converted state validates; unproven review verdicts become blockers; exact RED->GREEN remains append-only; final combined group 56/56 plus prior suites/probes PASS."
 
   - id: "M06-T03"
     title: "Idempotent apply, readback, restart and rollback"
     milestone: "M06"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: chatgpt
     depends_on:
       - "M06-T02"
