@@ -1,0 +1,11 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+source_scope_subject = "pwv21-policy-kernel@1"
+revision = "R1"
+state = "active"
+completeness_audit = "pending"
+premium_a = "not_due"
+decisions = []
+
+[requirements]
+class = "authority"
+path = "requirements/PWV21_POLICY_KERNEL.md"

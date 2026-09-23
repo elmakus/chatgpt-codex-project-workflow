@@ -14,3 +14,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/INTA
 [brainstorm]
 class = "brainstorm"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/BRAINSTORM.toml"
+
+[definition]
+class = "definition"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/DEFINITION.toml"
