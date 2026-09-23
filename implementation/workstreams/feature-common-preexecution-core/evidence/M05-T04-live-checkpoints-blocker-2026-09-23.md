@@ -88,3 +88,32 @@ The remaining M05-T04 acceptance cannot be completed without the required user-d
 - final ordinary model-backed Codex L04 invocation in a disposable V2 project.
 
 No production project adoption or live plugin installation has been performed to bypass this gate.
+
+
+## Continuation attempt — 2026-09-23
+
+The blocked Card was resumed under the current Project Workflow router to exhaust agent-operable work before returning to the user.
+
+### L04 model-backed invocation attempt
+
+A disposable V2 consumer project was created from the candidate's own valid router fixture under `/tmp`; no production project or live plugin installation was modified.
+
+The isolated installed candidate remained `pw@project-workflow-v2 0.2.1`. The real Codex CLI `0.155.0-alpha.9.2` was invoked with exact `$pw:project_workflow_v2` in the disposable V2 project.
+
+Observed before the runtime stop:
+- the Skill resolved successfully;
+- the model-backed agent explicitly entered `pw:project_workflow_v2`;
+- its first workflow-policy read attempted the exact bundled local `/tmp/pwv2-m05-t03-home/plugins/cache/project-workflow-v2/pw/0.2.1/workflow/ROUTER.md`;
+- no remote workflow-policy fetch or V1 fallback was observed;
+- the isolated home initially lacked model authentication; a temporary copy of the existing Codex login credential was used only inside the disposable `/tmp` home, leaving the live Codex plugin state unchanged;
+- the read-only sandbox command itself hit the workstation's unavailable unprivileged bubblewrap namespace, after which the invocation reached the account service but could not continue because the authenticated Codex account reported a usage-limit stop: retry available at **2026-09-26 10:10** local product-reported time.
+
+This is a concrete runtime/access blocker for completing the final model-backed L04 evidence in this environment. It does not invalidate the already-GREEN L04 package-resolution, SessionStart, local-source, missing-router fail-closed or no-V1 evidence, but L04 remains PARTIAL rather than GREEN until one ordinary model-backed run completes.
+
+### Remaining real user boundary
+
+Even if L04 runtime capacity becomes available, M05-T04 still cannot become GREEN without the accepted user-driven ChatGPT Android scenarios:
+- L01;
+- L02, with L03 continuing from that real issue flow.
+
+Therefore the Card remains BLOCKED and M05-T05 must not start.
