@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "a56f67ed9ed1b0695f37d287c26237da335127e1"
+  head: "7990f84b31a8a437ef6d8e64604326a7beabf938"
 
 research_obligation: null
 
@@ -468,7 +468,7 @@ cards:
     title: "Semantic package update propagation and readback"
     milestone: "M05"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M05-T02"
@@ -477,10 +477,10 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "fbd208c1c26eef2a227ea90aced05fd8ac32a9a4"
+    result_pr: 5
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M05-T03-update-propagation-2026-09-23.md"
+    tests_summary: "GREEN: isolated real Codex CLI 0.155.0-alpha.9.2 update 0.2.0 -> 0.2.1 via marketplace upgrade + plugin add; installed router hash changed and sentinel PWV2_M05_UPDATE_SENTINEL_92AF read back; Skill/hook SHA-256 unchanged; fresh SessionStart + debug prompt-input resolve local 0.2.1 source; live control remained absent; target fbd208c1c26eef2a227ea90aced05fd8ac32a9a4/tree 66a57d7abb53b87fde528352bba06e511cb5df1e; Actions 35814931203 PASS."
 
   - id: "M05-T04"
     title: "Real ChatGPT/Codex delivery checkpoints L01-L05"
