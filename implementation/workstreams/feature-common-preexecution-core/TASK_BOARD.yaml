@@ -6,7 +6,7 @@ current_milestone: "M05"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "28b2fd2bb2d5a547714d2ca7c5a502f772df4fa0"
+  head: "5576ee61f61f8d250f95bafcbbc4dd923bd91634"
 
 research_obligation: null
 
@@ -486,8 +486,8 @@ cards:
     title: "Real ChatGPT/Codex delivery checkpoints L01-L05"
     milestone: "M05"
     decision_state: accepted
-    execution_status: ready
-    executor: null
+    execution_status: in_progress
+    executor: chatgpt
     depends_on:
       - "M05-T01"
       - "M05-T02"
