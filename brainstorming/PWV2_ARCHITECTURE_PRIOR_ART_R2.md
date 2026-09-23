@@ -16,7 +16,9 @@ Extend the completed R1 architectural prior-art research with one additional bou
 - R1 is complete and consumed at `research/PWV2_ARCHITECTURE_PRIOR_ART_R1.md`.
 - R1 covered pi-fabric, Laya/System One, Dagu and rpiv-todo.
 - The user explicitly requested adding `pi-extensible-workflows` as a fifth prior-art source.
-- This is a substantive extension of the exploratory evidence scope, so this record advances the same stable scope ID to R2 rather than rewriting R1 history.
+- R2 Research is complete at `research/PWV2_ARCHITECTURE_PRIOR_ART_R2.md`.
+- `pi-extensible-workflows` is a Pi-native deterministic JavaScript workflow runtime with isolated agent sessions, role/resource selectors, output schemas, structural journaling/replay, checkpoints, worktrees and recovery.
+- It materially strengthens R1's A2/A3 direction, but does not remove the need for a canonical deterministic PWv2 router/authority-package compiler.
 
 ### Existing accepted constraints
 
@@ -29,8 +31,7 @@ Extend the completed R1 architectural prior-art research with one additional bou
 
 ### Assumptions to verify
 
-- `pi-extensible-workflows` is a distinct enough mechanism to add evidence beyond R1 rather than merely duplicating pi-fabric or existing PWv2 patterns.
-- Any useful mechanism can be expressed as a derived/executable aid while keeping canonical durable state in the repository.
+Resolved for R2. The source is materially distinct enough to add evidence: it is more directly applicable to a future Pi-native execution substrate than Dagu, but its runtime journal and built-in reviewLoop cannot be adopted as PWv2 authority/review semantics without additional constraints.
 
 ## Ideas / alternatives considered
 
@@ -38,16 +39,13 @@ No architecture choice is accepted here.
 
 ## Trade-offs / questions
 
-For `pi-extensible-workflows`, determine:
-- how it works;
-- what PWv2 problem it could solve;
-- what PWv2 already solves;
-- context impact;
-- determinism/recoverability impact;
-- role isolation / independent-review impact;
-- new failure modes;
-- whether it belongs in low-risk PWv2, architectural refactor, PWv3 prior art, or reject/no material benefit;
-- whether it changes any R1 candidate classification.
+R2 records:
+- exact execution/recovery mechanism;
+- overlap with R1 pi-fabric/Dagu candidates;
+- context, determinism/recoverability and role-isolation effects;
+- fresh-review compatibility;
+- runtime-state and side-effect failure modes;
+- updated candidate classifications.
 
 ## Adaptive discovery state
 
@@ -58,10 +56,12 @@ For `pi-extensible-workflows`, determine:
 | Preserve the current durable authority model. | Explicit user constraint and R1 finding. | Stable for R2. |
 | Research only; no implementation/promotion. | Explicit user constraint. | Stable for R2. |
 | Treat R1 as immutable historical evidence and extend via R2. | Rewriting R1 would obscure the later scope extension. | Stable for R2. |
+| Treat pi-extensible-workflows runtime state as execution cache/journal only, never PWv2 authority. | Its recovery is useful but can be lost/stale independently of Git. | Stable research conclusion, not promoted. |
+| Do not use bundled reviewLoop as the PWv2 independent-review gate as-is. | It creates separate reviewer sessions, but explicitly feeds implementation summaries and previous review findings into them. | Stable research conclusion, not promoted. |
 
 ### Unresolved material decisions / dependencies
 
-No product/strategic decision is to be made in R2. The open item is evidence-only and delegated to Research.
+No product/strategic decision was made in R2. Any adoption decision must enter a future normal Project Definition / Planning route.
 
 ### Reopened choices
 
@@ -69,22 +69,24 @@ None.
 
 ## Research needed
 
-1. Identify the authoritative/current `pi-extensible-workflows` repository/source.
-2. Inspect architecture, execution/routing model, state/recovery, context/tool behavior and validation.
-3. Compare directly against current PWv2 and R1 findings.
-4. Update the comparison/candidate analysis only where the new evidence materially changes it.
+Completed for R2.
 
 ## Open questions
 
-Evidence-dependent only.
+Only future product/architecture choices remain:
+- whether to evaluate pi-extensible-workflows as a concrete Pi-native execution substrate;
+- whether to prototype a custom PWv2 fresh-review worker launch;
+- whether to prototype a deterministic context-package compiler feeding its role/contextFiles/tool selectors.
+
+These are intentionally not authorized here.
 
 ## Outcome of this session
 
-- Tentative conclusions: pending R2 Research.
+- Tentative conclusions: pi-extensible-workflows strongly validates the R1 idea of deterministic orchestration around bounded workers and gives a Pi-native implementation path; its role/context isolation and journal replay are particularly relevant. It does not replace the canonical router/authority model, and its bundled reviewLoop is not compatible with PWv2 fresh independent review as-is.
 - Explicit user/product choices to promote through Project Definition: none.
-- Research still needed: `pi-extensible-workflows`.
-- Open questions: exact fit against current PWv2 and R1.
-- Next phase/action: research
+- Research still needed: none within R2.
+- Open questions: which candidate experiments, if any, should later be promoted.
+- Next phase/action: approved R2 research scope complete; no deterministic downstream work is authorized.
 - Definition promotion authorization: pending
 - Definition promotion subject: none
 
