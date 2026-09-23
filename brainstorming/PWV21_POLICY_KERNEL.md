@@ -386,17 +386,45 @@ A second invariant:
 
 > Switch from ChatGPT to Pi or Pi to ChatGPT at any durable workflow boundary. Both must derive the same legal current obligation from the repository.
 
+## Baseline correction from the actual PWv2 implementation
+
+The initial hypothesis above predated direct inspection of the current target implementation in `elmakus/project_workflow_v2`.
+
+Established implementation facts from current PWv2:
+- PWv2 already has one canonical semantic `workflow/` tree;
+- `tools/router.py` is already the production runtime-neutral obligation selector;
+- `tools/state_contract.py` already provides executable validation for the durable state envelope;
+- ChatGPT bootstrap points to canonical `workflow/ROUTER.md` in the workflow repository;
+- Codex bootstrap points to the bundled copy of the same canonical `workflow/` tree;
+- runtime/model/session/worker identity is deliberately non-canonical;
+- the executable router already handles many deterministic route/stop/recovery transitions through the lifecycle.
+
+Therefore PWv2.1 does **not** start from “Markdown router only -> shadow executable router”.
+The material question is now where to stop extending the existing executable obligation selector and which mechanical predicates should remain in executable contracts versus semantic Markdown/LLM modules.
+
+The earlier candidate migration sequence remains historical brainstorming context, not the current implementation baseline.
+
+## Accepted exploratory choices
+
+### Runtime portability / helper dependency
+
+User choice accepted during Brainstorming:
+- prefer/use the executable helper/reference implementation when available;
+- do **not** make that helper a prerequisite for reconstructing the legal continuation;
+- canonical repository state plus portable workflow contracts must remain sufficient for a fresh capable runtime to recover without private runtime/session state.
+
+Challenge state: pending one bounded adversarial challenge before treating this choice as stable exploratory state.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
 
-A1. validators only  
-A2. validators + shadow router  
-A3. selective executable finite transitions  
-A4. broad executable router
+A1. keep the current PWv2 boundary: executable validation + deterministic obligation selection; semantic role procedures stay Markdown/LLM  
+A2. selectively move additional proven finite predicates from semantic modules into the existing executable router/contracts while keeping the router an obligation selector  
+A3. broaden the executable layer into a substantially more complete workflow state machine
 
-Dependency:
-A3/A4 require evidence from shadow equivalence tests.
+Current recommendation:
+A2, conservatively. PWv2 already proves the executable-router pattern; PWv2.1 should extend it only for predicates that are mechanically derivable from canonical state and fail closed on semantic/user gates.
 
 ### B. Source-of-truth relation between Markdown and code
 
@@ -414,9 +442,10 @@ C3. hybrid refs + bounded materialization + expandable sources
 
 ### D. Runtime portability
 
-D1. helper optional; Markdown path always supported  
-D2. helper required everywhere but implemented as portable CLI/library  
-D3. helper exposed natively by each client/runtime
+Exploratory choice accepted, challenge pending:
+- canonical Git/workflow contracts remain sufficient for recovery;
+- executable helper/reference implementation is preferred when available but not a mandatory runtime dependency;
+- no client-private helper/session state may become project authority.
 
 ### E. PW ↔ orchestration boundary
 
@@ -428,17 +457,17 @@ E3. richer capability/workspace/retry semantics in the interface
 
 The first material decisions to explore are:
 
-1. **How far should executable routing go in PWv2.1?**  
-   Initial recommendation: start with validators + shadow router; do not authorize broad executable routing before parity evidence.
+1. **How far beyond the current `tools/router.py` boundary should PWv2.1 go?**  
+   Current recommendation: selectively executable finite predicates only; the router decides the next legal obligation/stop/recovery boundary, not how semantic roles perform their work.
 
-2. **What is the one canonical representation of mechanical policy so Markdown and code cannot drift?**  
-   Initial recommendation: investigate a small machine-readable contract/transition table that code consumes and Markdown tests/reference, but compare its complexity against keeping code shadow-only.
+2. **How should current executable mechanical contracts and Markdown semantic contracts relate so they cannot materially drift?**  
+   Current recommendation: first evaluate the existing PWv2 pattern (executable mechanical contract + semantic Markdown + contract tests) before introducing a new transition DSL/table. Add a machine-readable policy table only if it removes more duplication than complexity it creates.
 
-3. **Should the helper be mandatory for ChatGPT/Pi or an optimization?**  
-   Initial recommendation: preserve a manual Markdown recovery path even if the helper becomes the normal path, so ChatGPT ↔ Pi interchangeability does not depend on a specific host extension.
+3. **Runtime portability helper dependency.**  
+   User selected the portable-fallback option: helper/reference implementation preferred, but canonical repository/workflow state must remain independently recoverable. One bounded challenge remains before this is stable exploratory state.
 
 4. **How rich should the Execution Obligation be?**  
-   Initial recommendation: hybrid refs + bounded materialization, with exact canonical refs/hashes and no provider-specific runtime details.
+   Initial recommendation remains hybrid refs + bounded materialization, with exact canonical refs/hashes and no provider-specific runtime details.
 
 These are Brainstorming questions, not decisions.
 
