@@ -685,3 +685,21 @@ cards:
     result_pr: 7
     evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M07-T03-L04-model-backed-green-2026-09-23.md"
     tests_summary: "GREEN L04: exact M07 candidate 15978113e46abc8498ceaef594461c8613fcadb8 installed in fresh isolated CODEX_HOME; real Codex CLI 0.155.0-alpha.9.2 used authorized codex-lb-clean provider with model gpt-6-sol and reasoning low; model-backed $pw:project_workflow_v2 read exact bundled local ROUTER.md, PROJECT.md, selected user-setting-persistence-restart, TASK_BOARD revision 12 and CLOSE.md; production router returned route/close; exact GREEN review/result/target blob and terminal handoff were recovered; pre/post consumer git status clean; no V1 fallback, remote workflow-policy fetch or production mutation. Model-side gh auth absence correctly stayed fail-closed; separate L03 GitHub readback already proves Issue #2 closure."
+
+  - id: "M07-T04"
+    title: "Cross-runtime L06 continuity and completed-result reuse"
+    milestone: "M07"
+    decision_state: accepted
+    execution_status: ready
+    executor: chatgpt
+    depends_on:
+      - "M07-T03"
+    openspec_change: null
+    contract: "implementation/workstreams/feature-common-preexecution-core/cards/M07-T04.md"
+    review_state: null
+    review_subject: null
+    review_evidence: null
+    result_commit: null
+    result_pr: null
+    evidence: null
+    tests_summary: null
