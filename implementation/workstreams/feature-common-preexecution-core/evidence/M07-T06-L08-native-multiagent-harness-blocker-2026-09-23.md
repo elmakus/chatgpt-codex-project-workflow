@@ -114,3 +114,19 @@ A durable GitHub-backed fixture and copy-ready handoff are now prepared:
 - durable handoff: `implementation/workstreams/feature-common-preexecution-core/handoffs/M07-T06_L08_MANUAL_CODEX_HANDOFF.md`.
 
 This preparation does not change the L08 verdict. M07-T06 remains BLOCKED until the user-mediated run produces durable RED/correction/GREEN/finalization evidence that can be independently read back from GitHub.
+
+## User-mediated run 1 — non-qualifying
+
+A user-mediated Codex Desktop run started from the durable fixture entry and reached a locally finalized Card state, but it is not accepted as L08 evidence.
+
+Observed local sequence on `feat/m07-l08-topology-n`:
+- entry origin: `7a2cf09bf505ba62e0ecfc32385429b9fe77e7d8`;
+- local final HEAD: `5b2c058d02ac...`;
+- durable sequence: R01 RED -> bounded product correction -> S2 result freeze -> R02 GREEN -> Card `done`;
+- final product bytes: exactly `topology-n: GOOD\n`;
+- worktree clean;
+- local branch remained six commits ahead of origin and was not pushed.
+
+Transcript readback shows the delegated reviewer/corrector/reviewer roles were launched through `~/.codex/codex_workflow/runtime/muse_worker.py`. The active `muse-max` runtime profile assigns those roles to Muse Spark 1.3 Contributor with max reasoning. Therefore this run violated the explicit qualification-run constraint that every model-backed call use only `codex-lb-clean`, `gpt-6-sol`, reasoning `low`. It also does not establish the intended internal Codex multi-agent surface for this run.
+
+Disposition: preserve as diagnostic evidence only; do not mark L08 GREEN and do not push/merge the local six-commit result. The remote fixture remains at the original entry HEAD and is reusable for a clean rerun.
