@@ -6,7 +6,7 @@ current_milestone: "M06"
 execution_ref:
   branch: "feat/common-preexecution-core"
   pr: null
-  head: "f02e062705cc988911a7dd8a59489552f7d3b73d"
+  head: "07429472b47efe045b8db612984dc0f08d1a89be"
 
 research_obligation: null
 
@@ -589,7 +589,7 @@ cards:
     title: "Disposable migration rehearsal and boundary documentation"
     milestone: "M06"
     decision_state: accepted
-    execution_status: in_progress
+    execution_status: done
     executor: chatgpt
     depends_on:
       - "M06-T03"
@@ -598,16 +598,16 @@ cards:
     review_state: null
     review_subject: null
     review_evidence: null
-    result_commit: null
-    result_pr: null
-    evidence: null
-    tests_summary: null
+    result_commit: "768cf3b3a2fa2013103d43730d3cb9fb0ef0d7b9"
+    result_pr: 6
+    evidence: "implementation/workstreams/feature-common-preexecution-core/evidence/M06-T04-disposable-rehearsal-2026-09-23.md"
+    tests_summary: "GREEN: exact target 768cf3b3a2fa2013103d43730d3cb9fb0ef0d7b9/tree adba3db05aaef2b7825ac4f48be3f7f352b0f12c; Actions push 35847846522 job 107138204950 PASS + PR 35847852710 job 107138225341 PASS; finite nested V1 manifest validation, fail-closed preexecution/stacked obligations, active/result/review/legacy rehearsal and ordinary-router migration isolation verified."
 
   - id: "M06-T05"
     title: "Cumulative M06 acceptance and immutable review freeze"
     milestone: "M06"
     decision_state: accepted
-    execution_status: planned
+    execution_status: ready
     executor: chatgpt
     depends_on:
       - "M06-T04"
