@@ -562,6 +562,32 @@ Accepted exploratory choices:
 
 Challenge state: pending one bounded challenge for this accepted batch before all dependent concurrency choices are treated as stable exploratory state.
 
+### Parallel-set safety choices
+
+Accepted exploratory choices:
+
+21. **Structured write scope**
+   - Card `write_scope` should be machine-checkable: repository paths/globs plus named external resources/effect domains.
+   - Free text may explain intent but cannot be the only basis for concurrency validation.
+
+22. **Overlap override**
+   - Overlapping write scopes serialize by default.
+   - Plan/JIT may explicitly authorize a bounded `parallel_override` only with exact overlap scope and rationale.
+
+23. **Integrated compatibility timing**
+   - Run the combined compatibility obligation before the first downstream obligation that consumes results from more than one Card in the parallel set.
+   - Do not force it after every individual Card completion.
+
+24. **Relationship to individual review**
+   - Integrated compatibility review/check does not normally replace individual Card review.
+   - It may cover individual reviews only when the exact combined review subject demonstrably covers each Card's full acceptance surface and satisfies independence.
+
+25. **Concurrency limit ownership**
+   - PW defines only the finite legal `parallel_set`.
+   - Actual simultaneous worker/Card execution count is runtime policy owned by OR/Paseo, subject to budget/capability limits.
+
+Challenge state: pending one bounded challenge for this accepted batch before all dependent concurrency choices are treated as stable exploratory state.
+
 ## Current decision tree
 
 ### A. Executable-policy scope
