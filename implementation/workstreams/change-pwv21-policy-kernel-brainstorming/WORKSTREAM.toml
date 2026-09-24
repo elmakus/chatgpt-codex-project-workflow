@@ -12,6 +12,7 @@ authority = [
   { class = "authority", path = "decisions/ADR_PWV21_REVIEW_LIFECYCLE.md" },
   { class = "authority", path = "decisions/ADR_PWV21_DECOMPOSITION_FIDELITY.md" },
   { class = "authority", path = "decisions/ADR_PWV21_LIVE_VALIDATION.md" },
+  { class = "authority", path = "decisions/ADR_PWV21_EXECUTION_DISCIPLINE.md" },
   { class = "authority", path = "decisions/ADR_PWV21_RECOVERY_MIGRATION_HANDOFF.md" },
 ]
 
