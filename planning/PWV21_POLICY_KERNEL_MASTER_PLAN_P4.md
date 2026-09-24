@@ -103,7 +103,7 @@ Therefore:
 - M02R is implemented under current canonical V2 governance, with P4 itself
   freezing the bootstrap Card seams needed to prevent another mega-Card;
 - M03 is the first **authority-level dogfood** of the R2 decomposition/review
-  rules: Execution Prep must follow the accepted P3 seam classifications;
+  rules: Execution Prep must follow the accepted P4 seam classifications;
 - M03 also runs the candidate PWv2.1 branch in shadow/replay where applicable
   against its real materialization/review evidence;
 - this is not misreported as proof that `project_workflow_v2@main` already
@@ -228,8 +228,8 @@ the kernel, returns to Strategic Planning.
 
 ## M02 — Typed Execution Obligation and Result contracts
 
-**P3 lifecycle note:** historical terminal milestone. M02 has terminal fresh
-Card GREEN and fresh Milestone GREEN on the corrected exact subject. P3 does
+**P4 lifecycle note:** historical terminal milestone. M02 has terminal fresh
+Card GREEN and fresh Milestone GREEN on the corrected exact subject. P4 does
 not reopen it; its real failure history is used only as immutable regression
 input for M02R.
 
@@ -977,10 +977,10 @@ and migration:
   retroactively invalidated; bounded material-only revalidation/backfill
   applies where new evidence is material to active continuation
   (REQ-098/099/125).
-- M01/M02 remain terminal. P3 does not reopen them. M02 is additionally
+- M01/M02 remain terminal. P4 does not reopen them. M02 is additionally
   replayed as immutable regression evidence by M02R.
 - The existing waiting `after-M02-T01` JIT state must be reconciled after
-  P3 approval: it must not materialize M03 directly. Execution Prep first
+  P4 approval: it must not materialize M03 directly. Execution Prep first
   materializes M02R under its three required seams; only after M02R terminal
   GREEN may the downstream M03 trigger be created/satisfied/consumed.
 - Migration preserves history, normalizes minimally, adapts valid
@@ -1198,7 +1198,7 @@ Full P4 audit evidence:
 
 - Definition R2 is GREEN with 127 accepted requirements and 7 accepted ADRs.
 - Premium A for `definition:R2|planning-cycle:4` was satisfied before
-  material P3 planning.
+  material P4 planning.
 - M01/M02 remain terminal and are not rematerialized.
 - P4 preserves one bounded bootstrap milestone M02R with 3 required seams and
   unique ownership of REQ-108…127.
