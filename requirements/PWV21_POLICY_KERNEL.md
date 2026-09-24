@@ -1,11 +1,11 @@
 # PWv2.1 Policy Kernel Requirements
 
-Revision: `R1`
+Revision: `R2`
 Status: `approved`
-Updated: `2026-09-23`
-Definition subject: `pwv21-policy-kernel@1`
+Updated: `2026-09-24`
+Definition subject: `pwv21-policy-kernel@2`
 Source Brainstorming: `brainstorming/PWV21_POLICY_KERNEL.md`
-Exact promoted source: `elmakus/chatgpt-codex-project-workflow@e2dd13b6a92cf14233a81a08ee86bcd5f5d84244:brainstorming/PWV21_POLICY_KERNEL.md@2e35a3cc2aeeb8f1bd950de0e1da324615db99b2`
+Exact promoted source: `elmakus/chatgpt-codex-project-workflow@2ff3280d3b186ba8a89ae300557eed3d24e8b938:brainstorming/PWV21_POLICY_KERNEL.md@d16d7d6ac094d117abf134c3cd689f408e3e87ef`
 
 ## Goal / target state
 
@@ -157,6 +157,41 @@ PWv2.1 is an extension of the existing executable V2 router/state-contract basel
 | PWV21-REQ-106 | User Stops MUST state what happened, what the durable state means, and the smallest exact next action. Authorization stops SHOULD provide a ready short approval phrase; optional/mandatory handoffs MUST follow the applicable V2 ready-to-copy locator contract. | MUST | accepted |
 | PWV21-REQ-107 | After user-supplied authorization/input, the router MUST immediately re-evaluate durable state and continue all deterministic authorized transitions until the next real stop. | MUST | accepted |
 
+### Review completeness, convergence and epochs
+
+| ID | Requirement | Priority | Status |
+|---|---|---|---|
+| PWV21-REQ-108 | PWv2.1 MUST distinguish bounded finding-closure/repair verification from a fresh full-scope review. A verification pass over known findings MUST NOT satisfy a required subsequent fresh full-scope review. | MUST | accepted |
+| PWV21-REQ-109 | A fresh full-scope review MUST evaluate the complete applicable acceptance surface from accepted authority, the exact current subject/artifacts and raw evidence; discovery of one blocking defect MUST NOT terminate the pass before all independently discovered material findings are recorded. | MUST | accepted |
+| PWV21-REQ-110 | After RED, repair MUST address the defect class/root cause and materially adjacent sibling/negative-space cases, with generalized regression coverage where feasible, rather than patching only the literal reported example. | MUST | accepted |
+| PWV21-REQ-111 | Review-loop accounting MUST use a stable authority/acceptance epoch. Ordinary implementation/test repair MUST NOT reset that epoch; only a material accepted authority/acceptance redesign MAY start a new epoch and its reset basis MUST be durable. | MUST | accepted |
+| PWV21-REQ-112 | Default hard ceilings per stable review epoch MUST be 5 qualifying fresh full-scope Card reviews, 4 qualifying fresh full-scope Milestone reviews and 3 qualifying fresh full-scope final-integration reviews. Bounded finding-verification passes MUST NOT count toward those ceilings. | MUST | accepted |
+| PWV21-REQ-113 | Reaching a hard review ceiling MUST switch out of the ordinary RED/repair/re-review loop into Main/root-cause convergence analysis; the ceiling MUST NOT permit acceptance of RED. After convergence analysis, one fresh post-convergence validation MAY run. | MUST | accepted |
+| PWV21-REQ-114 | If the post-convergence validation remains RED, PW MUST route to broader structural classification/restructuring through the correct owner (for example Execution Prep, Strategic Planning, Project Definition or Recovery) rather than automatically starting another ordinary fresh-review loop. | MUST | accepted |
+
+### Planning-to-Execution-Prep decomposition fidelity
+
+| ID | Requirement | Priority | Status |
+|---|---|---|---|
+| PWV21-REQ-115 | Strategic Planning MUST be able to classify meaningful decomposition intent as `required_seam`, `preferred_seam` or `illustrative` without requiring speculative future Card IDs. | MUST | accepted |
+| PWV21-REQ-116 | Execution Prep MUST NOT merge a `required_seam` into another Card boundary. Evidence that a required seam is wrong MUST return to Strategic Planning for accepted revision rather than be silently overridden by JIT refinement. | MUST | accepted |
+| PWV21-REQ-117 | Execution Prep MUST preserve a `preferred_seam` by default. Merge/split deviation requires durable technical rationale grounded in concrete coupling, atomicity, invalid intermediate state, non-separable acceptance or new predecessor evidence; generic convenience/same-milestone rationale is insufficient. | MUST | accepted |
+| PWV21-REQ-118 | Before materializing or merging non-trivial Card scope, Execution Prep MUST audit decomposition quality across independent implementability, testability/falsifiability, reviewability, invariant/contract family, dependency ordering, atomic mutation/migration constraints and cross-surface coupling. | MUST | accepted |
+| PWV21-REQ-119 | Materially risky Card topology MUST receive a fresh independent decomposition/topology challenge before first launch, including merger of planner-declared preferred seams, a Card spanning multiple independently falsifiable invariant families, whole-milestone absorption despite explicit seams, or other material deviation from accepted decomposition intent. | MUST | accepted |
+| PWV21-REQ-120 | The topology challenge MUST remain narrower than Plan Review and MUST evaluate concrete Card-boundary fidelity/falsifiability/review separation. Simple/non-risky Execution Prep MUST NOT incur a mandatory fresh topology review solely for ceremony. | MUST | accepted |
+| PWV21-REQ-121 | Card topology MUST preserve the layered review architecture: Card Review owns bounded local correctness, while Milestone Review owns broader composition/integration acceptance. Execution Prep MUST avoid a Card boundary so broad that Card Review effectively substitutes for Milestone integration review without accepted atomicity rationale. | MUST | accepted |
+
+### Live validation and safe incorporation of workflow discoveries
+
+| ID | Requirement | Priority | Status |
+|---|---|---|---|
+| PWV21-REQ-122 | Material observations discovered during real execution MUST be classified before authority mutation as implementation defect, review/process realization defect, Planning-to-Execution-Prep fidelity defect, accepted-authority defect, or speculative future hardening. | MUST | accepted |
+| PWV21-REQ-123 | At a safe downstream boundary, PW MUST reconcile durable live findings explicitly classified as materially affecting the next downstream authority/topology/semantics before the affected JIT trigger is consumed. Unrelated or speculative findings MUST NOT become blockers merely because they exist. | MUST | accepted |
+| PWV21-REQ-124 | GitHub issues/comments and similar trackers MAY record live findings but MUST remain untrusted bookkeeping/input; they MUST NOT themselves approve scope, alter accepted authority, reset review epochs or authorize repair. | MUST | accepted |
+| PWV21-REQ-125 | Newly accepted workflow semantics MUST NOT retroactively rewrite or reopen correctly terminal historical Cards/Milestones merely to make history conform. Historical failures MAY be replayed as immutable regression fixtures/evidence without mutating their terminal project state. | MUST | accepted |
+| PWV21-REQ-126 | Material real-world workflow failures SHOULD be promoted into a regression corpus that tests the corrected semantic class, including historical M02-style decomposition, review-completeness, class-level repair and convergence behaviors. | SHOULD | accepted |
+| PWV21-REQ-127 | Before downstream work that is intentionally serving as a live consumer test is materialized, the corrected authority and required planning/review gates MUST be complete; the consumer test MUST exercise the new rules without special-case instructions that substitute for missing workflow semantics. | MUST | accepted |
+
 ## Constraints
 
 - Canonical project/workflow truth remains repository-backed; no runtime/session database becomes authority.
@@ -183,4 +218,15 @@ PWv2.1 is an extension of the existing executable V2 router/state-contract basel
 
 ## Definition completeness statement
 
-The promoted Brainstorming completion audit reports no unresolved material product/strategic decisions and no Research need. This Definition preserves all later supersessions: one primary mutating Worker per Card; no silent model switching; no compatibility-review substitution for Card review; no mutating write-scope overlap override; worker telemetry outside PW; helper-less canonical recovery mandatory.
+The promoted Brainstorming R2 completion audit reports no unresolved material product/strategic decisions and no Research need. This Definition preserves all R1 supersessions and adds the R2 live-validation corrections: one primary mutating Worker per Card; no silent model switching; no compatibility-review substitution for Card review; no mutating write-scope overlap override; worker telemetry outside PW; helper-less canonical recovery mandatory.
+
+
+## R2 Definition delta summary
+
+R2 adds PWV21-REQ-108 through PWV21-REQ-127. The accepted delta is deliberately split into three bounded semantic families:
+
+- fresh-full-review completeness, defect-class repair, stable review epochs, hard ceilings and convergence mode-switch;
+- Planning-to-Execution-Prep seam fidelity plus risk-based independent topology challenge;
+- live-finding classification/reconciliation and immutable historical regression replay.
+
+Correctly terminal M02 state remains valid under PWV21-REQ-125. The R2 correction applies prospectively to affected downstream work, beginning before M03 materialization.
