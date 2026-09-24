@@ -1,0 +1,5 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02R-T02"
+class = "runtime_access_input"
+summary = "R06 identified one bounded accepted-scope repair, but the current execution environment has no safe write-capable path to apply the candidate code change: remote command execution is unavailable and the repository connector only exposes whole-file replacement for the affected large source file."
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02R-T02_REVIEW_R06_2026-09-24.md"
