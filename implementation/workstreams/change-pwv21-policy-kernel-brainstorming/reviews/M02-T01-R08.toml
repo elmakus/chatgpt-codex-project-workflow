@@ -1,0 +1,20 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02-T01"
+attempt = "M02-T01-R08"
+verdict = "pending"
+evidence_path = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "49fef2531c7a57036894dfb17c66662be7a69a80"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02-T01.md"
+blob = "73f6015bca9b3345bf3e70c447aed0c1521f9e88"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02-T01.md"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Fresh independent full-scope Card review required for the repaired exact M02-T01 result subject. The M02-T01-R07 context materially performed the bounded correction and is ineligible to issue this verdict."
