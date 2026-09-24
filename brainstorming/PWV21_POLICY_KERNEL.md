@@ -3,7 +3,7 @@
 Date: 2026-09-24
 Scope ID: pwv21-policy-kernel
 Revision: R2
-Status: active
+Status: ready_for_definition
 
 ## Goal
 
@@ -1198,10 +1198,156 @@ Current recommendation:
 - option 3.
 - This prevents known-bad semantics from propagating without turning every unrelated tracker idea into a blocker.
 
+## Accepted R2 choices
+
+The user accepted all four current recommendations without modification:
+
+1. **Review convergence defaults**
+   - Card hard ceiling: 5 qualifying fresh full-scope reviews per stable authority/acceptance epoch.
+   - Milestone hard ceiling: 4 qualifying fresh full-scope reviews per stable epoch.
+   - Final Integration hard ceiling: 3 qualifying fresh full-scope reviews per stable epoch.
+   - Bounded finding verification does not count toward the fresh-review ceiling.
+   - Ordinary implementation repair does not reset the epoch.
+   - A material accepted authority/acceptance redesign may start a new epoch.
+   - Reaching the ceiling switches to Main/root-cause convergence analysis; one post-convergence fresh validation is permitted before broader restructuring/escalation.
+
+2. **Planner seam classes**
+   - Adopt three semantic classes: `required_seam`, `preferred_seam`, and `illustrative`.
+   - `required_seam` cannot be merged by Execution Prep without returning to Strategic Planning.
+   - `preferred_seam` is preserved by default and may be merged/split only with durable technical rationale.
+   - `illustrative` is non-binding.
+   - Planning need not materialize speculative future Card IDs; seam intent constrains later JIT topology.
+
+3. **Risk-based Execution Prep topology challenge**
+   - Do not require a fresh independent topology review for every trivial Execution Prep.
+   - Require a fresh independent decomposition/topology challenge when topology is materially risky, including merger of preferred seams, multi-invariant mega-Card formation, whole-milestone absorption despite explicit seams, or material deviation from accepted decomposition intent.
+   - The challenge is narrow: Card topology fidelity/falsifiability/review boundaries, not a second full Plan Review.
+
+4. **Downstream live-finding reconciliation gate**
+   - Do not block downstream JIT on every open issue/idea.
+   - Before affected downstream materialization, reconcile only durable live findings explicitly classified as materially affecting that downstream authority/topology/semantics.
+   - Such findings must be incorporated or explicitly resolved before the affected JIT trigger is consumed.
+   - Unrelated or speculative findings do not become blockers merely because they exist.
+
+These choices remain exploratory until exact R2 promotion through Project Definition.
+
+## R2 adversarial challenge pass
+
+Challenge questions applied after the accepted choices:
+
+### C1 — Can a planner over-constrain implementation with `required_seam`?
+
+Resolution:
+- Yes, if used casually. Therefore `required_seam` must be reserved for boundaries where topology itself protects correctness, reviewability, authority separation, atomicity, or accepted strategy.
+- Ordinary planner preference belongs in `preferred_seam`.
+- A later fact showing the required boundary is wrong routes back to Strategic Planning rather than letting Execution Prep silently override it.
+
+Outcome: GREEN.
+
+### C2 — Could `preferred_seam` rationale become a loophole for mega-Cards?
+
+Resolution:
+- A merge rationale must prove a concrete coupling reason such as atomic migration, invalid intermediate state, non-separable acceptance, or predecessor evidence invalidating the original seam.
+- Generic statements such as "same milestone", "simpler", "all details known", "fewer Cards", or "shared files" are insufficient.
+- Risky merge still triggers the independent topology challenge.
+
+Outcome: GREEN.
+
+### C3 — Could topology challenge duplicate Plan Review and add ceremony everywhere?
+
+Resolution:
+- No universal gate.
+- It activates only for materially risky topology/deviation.
+- Its acceptance surface is narrower than Plan Review: it checks fidelity of concrete Card boundaries against accepted decomposition intent and independent falsifiability/reviewability.
+
+Outcome: GREEN.
+
+### C4 — Could fixed review ceilings weaken quality by forcing acceptance?
+
+Resolution:
+- No. Ceiling is a mode-switch, never an acceptance rule.
+- RED remains RED.
+- At ceiling the workflow stops the ordinary reviewer loop, performs convergence/root-cause analysis, then allows one post-convergence fresh validation.
+- Another RED after that does not auto-accept; it routes to broader restructuring/Planning/Definition/Recovery as classified.
+
+Outcome: GREEN.
+
+### C5 — Could review epochs be reset opportunistically?
+
+Resolution:
+- Ordinary code/test/repair changes never reset the epoch.
+- Only a material accepted authority/acceptance redesign can start a new epoch.
+- The reset reason must be durable and bound to the changed accepted subject, not inferred from a new commit/reviewer/session.
+
+Outcome: GREEN.
+
+### C6 — Could the live-finding gate make GitHub Issues accidental authority?
+
+Resolution:
+- No. Issues remain untrusted bookkeeping/input.
+- A finding affects downstream only after canonical workflow classification records that the accepted authority/topology/semantics must change or be reconciled before the named downstream boundary.
+- The issue itself never authorizes the correction.
+
+Outcome: GREEN.
+
+### C7 — Should terminal M02 be reopened under the new rules?
+
+Resolution:
+- No.
+- M02 retains truthful terminal Card and Milestone GREEN history on the corrected implementation.
+- M02 is promoted into a regression-replay fixture for the new workflow semantics, without mutating historical Task Board/Card/review state.
+
+Outcome: GREEN.
+
+### C8 — Could M03 be materialized before R2 corrections are formally accepted?
+
+Resolution:
+- No.
+- `after-M02-T01` remains waiting until R2 Definition/Planning/review/gates complete and the corrected downstream authority is ready.
+- This is the earliest safe boundary that avoids encoding known-bad review/decomposition semantics into M03.
+
+Outcome: GREEN.
+
+### C9 — Does Final Integration = 3 need user-specific override machinery?
+
+Resolution:
+- The accepted exploratory default is 3.
+- Plans may lower the ceiling when accepted risk/strategy warrants it.
+- Raising the default should not be a casual JIT choice; it requires explicit accepted Planning rationale because repeated Final Integration RED is strong evidence of structural/integration failure.
+
+Outcome: GREEN.
+
+### C10 — Does the correction accidentally make runtime identity canonical?
+
+Resolution:
+- No.
+- Reviewer freshness, topology challenge and convergence are semantic Project Workflow obligations.
+- ChatGPT, OR/Paseo or another runtime may realize them differently, but model/session/worker identity remains non-canonical.
+
+Outcome: GREEN.
+
+## R2 completion audit
+
+- Material user/product/strategy choices: resolved.
+- Conflicts with accepted R1 direction: none requiring R1 rollback; R2 refines review convergence, decomposition fidelity and live-validation handling.
+- Research required before Definition: none.
+- Historical M02 state: preserved terminal; no reopen.
+- Downstream M03: intentionally unmaterialized until corrected authority/planning completes.
+- Remaining details suitable for Definition/Planning/JIT rather than further Brainstorming:
+  - exact field names/serialization for seam classes and review epochs;
+  - exact topology-challenge durable record shape;
+  - exact fixture organization for M02 regression replay;
+  - exact mechanical counters/state representation;
+  - exact modules/tests changed to enforce downstream live-finding reconciliation.
+
+Completion challenge outcome: GREEN.
+
 ## R2 current frontier
 
-No additional Research is currently required; the reopened questions arise from first-party durable M02 evidence and accepted workflow structure.
+Completion audit result: **no unresolved material R2 user/product/strategic decisions remain**.
 
-The next useful Brainstorming step is user resolution/challenge of R2-Q1 through R2-Q4. After those choices, perform one bounded adversarial completion audit before marking R2 `ready_for_definition`.
+Research needed before Definition: **none identified**.
+
+The exact R2 exploratory subject is ready for user promotion to Project Definition. Nothing in R2 becomes accepted authority until the user explicitly authorizes promotion of `pwv21-policy-kernel@2`.
 
 Nothing in this R2 section is accepted requirement/decision authority until exact `pwv21-policy-kernel@2` promotion through Project Definition.
