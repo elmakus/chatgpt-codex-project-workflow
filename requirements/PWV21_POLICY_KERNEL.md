@@ -1,11 +1,11 @@
 # PWv2.1 Policy Kernel Requirements
 
-Revision: `R2`
+Revision: `R3`
 Status: `approved`
 Updated: `2026-09-24`
-Definition subject: `pwv21-policy-kernel@2`
+Definition subject: `pwv21-policy-kernel@3`
 Source Brainstorming: `brainstorming/PWV21_POLICY_KERNEL.md`
-Exact promoted source: `elmakus/chatgpt-codex-project-workflow@2ff3280d3b186ba8a89ae300557eed3d24e8b938:brainstorming/PWV21_POLICY_KERNEL.md@d16d7d6ac094d117abf134c3cd689f408e3e87ef`
+Exact promoted source: `elmakus/chatgpt-codex-project-workflow@e883bf29ad7d2e3dd1e3ec1d62408c4e597c60b6:brainstorming/PWV21_POLICY_KERNEL.md@51494b79be9ffba5dfc8108f2bc1bf01f1c68a02`
 
 ## Goal / target state
 
@@ -99,7 +99,7 @@ PWv2.1 is an extension of the existing executable V2 router/state-contract basel
 | PWV21-REQ-058 | Every completed workstream MUST receive a separate fresh final-integration review before close. | MUST | accepted |
 | PWV21-REQ-059 | Review independence is subject-relative: any context/agent that materially produced or repaired the exact current subject MUST NOT issue its independent verdict. | MUST | accepted |
 | PWV21-REQ-060 | Each new Card MUST receive a fresh independent Reviewer assignment distinct from reviewers of other Cards. | MUST | accepted |
-| PWV21-REQ-061 | After Worker repair of the same Card, the same Card Reviewer MAY re-review the repaired subject if that Reviewer did not materially repair the subject. | MUST | accepted |
+| PWV21-REQ-061 | After Worker repair of the same Card, the Reviewer that discovered the finding MAY perform bounded finding-closure verification if that Reviewer did not materially repair the subject. Such verification does not satisfy the next required fresh full-scope discovery review. | MUST | accepted |
 | PWV21-REQ-062 | If a Reviewer materially repairs the subject, its prior verdict no longer covers the changed subject and a fresh independent Reviewer is required. | MUST | accepted |
 | PWV21-REQ-063 | A Milestone Reviewer MUST be fresh, MUST NOT have implemented or reviewed constituent Cards, and MUST NOT receive prior Card-review opinions/verdict rationales by default. | MUST | accepted |
 | PWV21-REQ-064 | Milestone review receives the canonical Milestone subject, accepted authority, relevant Card outputs/artifacts and raw/required test evidence needed for independent verification. | MUST | accepted |
@@ -161,12 +161,12 @@ PWv2.1 is an extension of the existing executable V2 router/state-contract basel
 
 | ID | Requirement | Priority | Status |
 |---|---|---|---|
-| PWV21-REQ-108 | PWv2.1 MUST distinguish bounded finding-closure/repair verification from a fresh full-scope review. A verification pass over known findings MUST NOT satisfy a required subsequent fresh full-scope review. | MUST | accepted |
+| PWV21-REQ-108 | PWv2.1 MUST distinguish bounded finding-closure verification from fresh full-scope discovery review. Closure verification MUST evaluate the known findings, repair diff, required regression evidence and materially implicated causal blast radius (including reachable callers/consumers/providers/contracts, sibling representations and negative-space cases) and MUST NOT satisfy the next required fresh full-scope discovery review. | MUST | accepted |
 | PWV21-REQ-109 | A fresh full-scope review MUST evaluate the complete applicable acceptance surface from accepted authority, the exact current subject/artifacts and raw evidence; discovery of one blocking defect MUST NOT terminate the pass before all independently discovered material findings are recorded. | MUST | accepted |
 | PWV21-REQ-110 | After RED, repair MUST address the defect class/root cause and materially adjacent sibling/negative-space cases, with generalized regression coverage where feasible, rather than patching only the literal reported example. | MUST | accepted |
 | PWV21-REQ-111 | Review-loop accounting MUST use a stable authority/acceptance epoch. Ordinary implementation/test repair MUST NOT reset that epoch; only a material accepted authority/acceptance redesign MAY start a new epoch and its reset basis MUST be durable. | MUST | accepted |
-| PWV21-REQ-112 | Default hard ceilings per stable review epoch MUST be 5 qualifying fresh full-scope Card reviews, 4 qualifying fresh full-scope Milestone reviews and 3 qualifying fresh full-scope final-integration reviews. Bounded finding-verification passes MUST NOT count toward those ceilings. | MUST | accepted |
-| PWV21-REQ-113 | Reaching a hard review ceiling MUST switch out of the ordinary RED/repair/re-review loop into Main/root-cause convergence analysis; the ceiling MUST NOT permit acceptance of RED. After convergence analysis, one fresh post-convergence validation MAY run. | MUST | accepted |
+| PWV21-REQ-112 | Review-loop accounting MUST distinguish material defect-class discovery epochs from repair/closure rounds. Default hard ceilings per stable authority/acceptance epoch MUST be 5 Card discovery epochs, 4 Milestone discovery epochs and 3 Final Integration discovery epochs. A discovery epoch is consumed only when a qualifying fresh full-scope RED review discovers at least one genuinely new material defect class; closure verification, ordinary repair, GREEN fresh review and recurrence/reopening of an already-known class MUST NOT increment the discovery counter. | MUST | accepted |
+| PWV21-REQ-113 | Reaching either a material-discovery ceiling or the accepted per-defect-class repair/closure ceiling MUST switch out of the ordinary RED/repair/re-review loop into Main/root-cause convergence analysis; no ceiling permits acceptance of RED. After convergence analysis, one fresh post-convergence validation MAY run. | MUST | accepted |
 | PWV21-REQ-114 | If the post-convergence validation remains RED, PW MUST route to broader structural classification/restructuring through the correct owner (for example Execution Prep, Strategic Planning, Project Definition or Recovery) rather than automatically starting another ordinary fresh-review loop. | MUST | accepted |
 
 ### Planning-to-Execution-Prep decomposition fidelity
@@ -191,6 +191,21 @@ PWv2.1 is an extension of the existing executable V2 router/state-contract basel
 | PWV21-REQ-125 | Newly accepted workflow semantics MUST NOT retroactively rewrite or reopen correctly terminal historical Cards/Milestones merely to make history conform. Historical failures MAY be replayed as immutable regression fixtures/evidence without mutating their terminal project state. | MUST | accepted |
 | PWV21-REQ-126 | Material real-world workflow failures SHOULD be promoted into a regression corpus that tests the corrected semantic class, including historical M02-style decomposition, review-completeness, class-level repair and convergence behaviors. | SHOULD | accepted |
 | PWV21-REQ-127 | Before downstream work that is intentionally serving as a live consumer test is materialized, the corrected authority and required planning/review gates MUST be complete; the consumer test MUST exercise the new rules without special-case instructions that substitute for missing workflow semantics. | MUST | accepted |
+
+### Card semantic right-sizing, Worker discipline and review-observation closure
+
+| ID | Requirement | Priority | Status |
+|---|---|---|---|
+| PWV21-REQ-128 | Execution Prep MUST treat a Card as the smallest meaningful execution-and-review ownership unit that produces one coherent independently falsifiable outcome substantial enough to justify its own execution/result/review lifecycle. | MUST | accepted |
+| PWV21-REQ-129 | A candidate Card containing two or more separable acceptance, contract, invariant or independently useful/consumable delivery outcomes MUST normally be split when each can reach a valid independently verifiable state and GREEN on one can remain valid/useful while another is RED. The split presumption is rebutted only by concrete atomicity, invalid-intermediate-state, materially inseparable-acceptance or material-coupling evidence. File/module/layer/test/tool/step boundaries alone MUST NOT require a split. | MUST | accepted |
+| PWV21-REQ-130 | When execution or review produces material evidence that a Card is oversized or contains newly exposed separable review-worthy outcomes, the Worker MUST NOT silently broaden, merge or self-split Card authority. At the smallest safe durable boundary, independently valid evidence MUST be preserved and remaining unaccepted scope MUST return to Execution Prep for bounded re-decomposition; stronger accepted Planning seams remain authoritative unless revised by their owning stage. | MUST | accepted |
+| PWV21-REQ-131 | Worker implementation SHOULD be falsification-first/test-first where the accepted Card outcome can be meaningfully expressed as an automated or observable failing check, followed by the minimum implementation needed to satisfy accepted authority and GREEN evidence. | SHOULD | accepted |
+| PWV21-REQ-132 | Worker implementation MUST remain YAGNI-bounded: speculative functionality, abstraction or adjacent scope outside the Card is forbidden. After GREEN local evidence, bounded in-scope refactoring is permitted; DRY is guidance rather than an absolute invariant when abstraction would increase coupling, risk or scope. | MUST | accepted |
+| PWV21-REQ-133 | A review finding MUST block GREEN only when concrete evidence shows it is materially load-bearing for the applicable acceptance/correctness/safety/security/data-integrity/dependency/compatibility/invariant/contract/required-evidence surface. Advisory, stylistic, optional-cleanup, preference or speculative-hardening observations MUST NOT by themselves keep the subject RED. | MUST | accepted |
+| PWV21-REQ-134 | Every non-load-bearing review observation MUST remain durably traceable to its originating review evidence and MUST retain an explicit disposition until reconciled; convenience, repair cost, reviewer fatigue or desire to finish MUST NOT justify downgrading a real load-bearing defect. | MUST | accepted |
+| PWV21-REQ-135 | Before Final Integration may complete, all still-open non-load-bearing observations MUST be reconciled as resolved, cleanup_candidate, deferred, promoted or tracked. GitHub Issues/trackers MAY receive intentionally exported follow-up work but remain optional bookkeeping and MUST NOT become the primary canonical review-observation store or workflow authority. | MUST | accepted |
+| PWV21-REQ-136 | Concrete bounded safe in-scope cleanup candidates SHOULD be grouped into the smallest meaningful cleanup work, with their own exact subject, tests/evidence and independent review before Final Integration evaluates the final codebase. Cleanup MUST NOT become a loophole for speculative redesign/new product scope and MUST NOT recursively stay open merely because further advisory improvement is conceivable. | SHOULD | accepted |
+| PWV21-REQ-137 | After all known material findings from one discovery review are verified closed, PW MUST require one fresh full-scope discovery review before the applicable Card/Milestone/Final review obligation can become GREEN. A fresh RED that discovers a genuinely new material defect class opens the next discovery epoch; a fresh RED showing only persistence/recurrence of an already-known class reopens that class without consuming a new discovery epoch. Each material defect class has a default ceiling of 3 failed repair→closure-verification rounds per stable authority/acceptance epoch before Main convergence/root-cause analysis is required. | MUST | accepted |
 
 ## Constraints
 
@@ -218,7 +233,7 @@ PWv2.1 is an extension of the existing executable V2 router/state-contract basel
 
 ## Definition completeness statement
 
-The promoted Brainstorming R2 completion audit reports no unresolved material product/strategic decisions and no Research need. This Definition preserves all R1 supersessions and adds the R2 live-validation corrections: one primary mutating Worker per Card; no silent model switching; no compatibility-review substitution for Card review; no mutating write-scope overlap override; worker telemetry outside PW; helper-less canonical recovery mandatory.
+The promoted Brainstorming R3 completion audit reports no unresolved material product/strategic decisions and no additional Research need. This Definition preserves the accepted R1/R2 architecture and live-validation corrections while adding R3 Card semantic right-sizing, discovery-vs-closure review convergence, material defect-class discovery accounting, bounded per-class repair convergence, Worker falsification/YAGNI discipline, late oversized-Card re-decomposition, and durable reconciliation/cleanup of non-load-bearing review observations.
 
 
 ## R2 Definition delta summary
@@ -230,3 +245,19 @@ R2 adds PWV21-REQ-108 through PWV21-REQ-127. The accepted delta is deliberately 
 - live-finding classification/reconciliation and immutable historical regression replay.
 
 Correctly terminal M02 state remains valid under PWV21-REQ-125. The R2 correction applies prospectively to affected downstream work, beginning before M03 materialization.
+
+
+## R3 Definition delta summary
+
+R3 preserves PW as a thin Git-backed policy/authority layer and does not migrate PWv2.1 onto Spec Kit, BMAD, Superpowers, Kiro or another control plane. Runtime scheduling/checkpoint/fan-out mechanics remain outside PW.
+
+The accepted R3 delta:
+- defines the primary semantic decision function for Card right-sizing and protects against both mega-Cards and meaningless micro-Cards;
+- refines review into exhaustive fresh discovery followed by bounded causal finding-closure verification and a fresh full-scope rediscovery gate after closure;
+- changes the 5/4/3 review accounting unit from fresh-review invocations to genuinely new material defect-class discovery epochs;
+- adds a default 3-round repair/closure breaker for one material defect class before Main convergence analysis;
+- adds bounded Worker falsification-first/test-first + YAGNI/minimal-implementation discipline without making DRY absolute;
+- returns newly discovered oversized Card topology to Execution Prep rather than allowing Workers to self-authorize scope changes;
+- distinguishes load-bearing blocking findings from durable non-load-bearing observations and requires pre-Final reconciliation plus bounded cleanup for worthwhile safe in-scope candidates.
+
+No fixed small/medium/large project classes, LOC/file/token/time limits or PWv2.1 wall-clock optimization policy are introduced.
