@@ -1,19 +1,15 @@
 # Latest session handoff
 
 Date: 2026-09-24
-Scope: classify the post-freeze optional A/C handoff concern and persist its lawful Planning correction entry for `change-pwv21-policy-kernel-brainstorming` on `work/pwv21-policy-kernel-brainstorming`.
+Repository: `elmakus/chatgpt-codex-project-workflow`
+Branch: `work/pwv21-policy-kernel-brainstorming`
 
-## Verified correction entry
+## Safe boundary
 
-- Reconstructed from consumer baseline `2e61bfbd9f19a7d756305b7facd2ff7657723260` and current operational V2 authority `elmakus/project_workflow_v2@986affffb7ba816e260e48549bf56e198ed51c21`.
-- Accepted Definition R1, 107 requirements, five ADRs and promoted source remain unchanged. The combined authority requires deliberate offered A/C handoff selection to satisfy the exact optional gate, receiver persistence/readback and immediate deterministic continuation. The durable classification distinguishes this derivation from an explicit single clause and records the competing interpretation; it is not a new product requirement or a Plan Review verdict.
-- Correction evidence: `implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/PLANNING_CORRECTION_OPTIONAL_PREMIUM_HANDOFF_2026-09-24.md`. It owns the exact source pins, P1 omission, correction scope and future acceptance scenarios.
-- Frozen P1 remains byte-identical at `planning/PWV21_POLICY_KERNEL_MASTER_PLAN.md`: commit `f4d7a13a295918c37afd23f4f55c5b6e4543e1b9`, blob `59c3a3c3927d8572b6a8f98124652c17554cb012`. Historical cycle-1 PLANNING is preserved at freeze commit `585840afa41b0000f5d5bc5efd0bacda7edb9fc1`. Its pending B is superseded as the active route by the new cycle, without changing the historical subject or claiming RED.
-- Canonical state/schema checks pass. The current V2 router returns `stop / premium_A`, subject `definition:R1|planning-cycle:2`, owned by `workflow/PLANNING.md`. Active PLANNING is P2/cycle 2 draft, audit pending, A due, B/C not_due, no frozen subject. Definition R1's old satisfied A is unchanged.
-- Independent bounded verification passed the correction entry, source identities and unchanged authority; the current V2 router suite passed all 39 tests. This verifies the state transition and evidence, not Stage-6 Plan Review or the pending material P2 correction.
-- `planning/PWV21_POLICY_KERNEL_MASTER_PLAN_P2.md` is only a separate entry scaffold. Material correction, its planner audit and new freeze remain outstanding. Future implementation/acceptance scenarios have been specified as correction obligations, not executed against an implementation.
-- No accepted-authority amendment, product code, Task Board/Cards, unsupported Research/hold state or independent Plan Review was created.
+The selected workstream was recovered from the exact R06 runtime-access blocker after fetching the consumer branch. The current runtime supplied a safe write path. M02R-T02 F1 was repaired in `elmakus/project_workflow_v2@b1934ede935ee0dc1a6365858c1390f8c62a9772`, independently reviewed R07 GREEN, and finalized DONE. Execution Prep then materialized and launched M02R-T03 as the last BOOT-A outcome.
+
+M02R-T03 implementation is pushed at `elmakus/project_workflow_v2@736c55f32cc80f42b8e5c7d6aac80d8a9eb931a5`. Clean exact-head `bash scripts/test.sh` passed (246 tests); exact-head push run `36050562553` and PR run `36050567590` completed successfully; implementation QA was GREEN. The consumer result and evidence are pinned at commit `7316b3b39db64a7a58a5fac0344ce741dcb774af`, result blob `14d468a40f1553d6a7a0eed0649a4bc04f6c18e3`. A required independent Card review is frozen as pending R01 in `implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T03-R01.toml`; the Task Board is revision 46, M02R-T03 `in_progress`, with no terminal review verdict. All changes are committed and pushed at the safe handoff.
 
 ## Continuation
 
-The current goal and exact next sequence are in `project_progress.md`. Start at `implementation/workstreams/change-pwv21-policy-kernel-brainstorming/PLANNING.toml`. New cycle-2 premium A is the current user context-choice boundary; it cannot reuse cycle-1 satisfaction. Once this A is satisfied and persisted, continue the P2 correction through audit/freeze before B becomes due. B remains a mandatory fresh-independent handoff, never producer-context Plan Review. The workstream is not complete.
+Use the current default branch of `elmakus/project_workflow_v2` as the workflow authority. Read its canonical `workflow/ROUTER.md` first, then consumer `PROJECT.md`, exact workstream and pointed records. Start from the pending R01 locator above. The next work is a fresh independent exact-subject M02R-T03 review; do not treat pre-result QA as that formal review. Keep R01 evidence/verdict and later Board finalization separate, preserving the exact subject and prior history. Do not materialize BOOT-B/C/D or M03 before router-directed transitions.
