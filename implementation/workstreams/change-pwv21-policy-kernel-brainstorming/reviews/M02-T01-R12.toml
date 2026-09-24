@@ -1,8 +1,8 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02-T01"
 attempt = "M02-T01-R12"
-verdict = "pending"
-evidence_path = ""
+verdict = "green"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02-T01-R12_2026-09-24.md"
 
 [subject]
 class = "git_blob"
@@ -17,4 +17,4 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/card
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Single post-convergence fresh independent full-scope validation authorized after the durable R11-ceiling root-cause analysis. The reviewer must reconstruct correctness from stable accepted M02 authority, this exact current subject, current implementation artifacts, and raw test/readback evidence; prior review findings, repair narratives, and convergence conclusions are lifecycle context only and must not be used as correctness evidence. A RED verdict must persist the complete finding set and route to Main/Recovery convergence escalation; it must not automatically spawn an R13/R14 repair-review loop."
+basis = "Fresh independent exhaustive full-scope validation of the exact R12 subject. This reviewer did not materially produce or repair the subject. Correctness was reconstructed from the stable M02-T01 Task Card, accepted P2/REQ-018..033/applicable ADR authority, exact current implementation artifacts, and raw current CI/readback evidence. Prior Card/Milestone findings, repair narratives, convergence conclusions, and verdict rationales were not used as correctness evidence or as a review checklist."

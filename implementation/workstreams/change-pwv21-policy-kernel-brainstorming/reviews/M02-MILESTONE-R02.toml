@@ -1,0 +1,19 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+attempt = "M02-MILESTONE-R02"
+verdict = "pending"
+evidence_path = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "eb17e9a9fd95195544426d7fc8dba5ae48f30cf0"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02-T01.md"
+blob = "46ce3ec63f7c0ae82fa5c0c13c90f6428d6e9800"
+
+[acceptance]
+class = "authority"
+path = "planning/PWV21_POLICY_KERNEL_MASTER_PLAN_P2.md"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Fresh M02 Milestone re-review boundary frozen after M02-T01-R12 GREEN. The eventual Milestone reviewer must not have materially produced or repaired the exact subject, must not have performed any constituent M02 Card review, and must reconstruct milestone correctness without prior verdict rationales/opinions as correctness evidence. The context freezing this pending attempt performed M02-T01-R12 and is not eligible to issue the Milestone verdict."
