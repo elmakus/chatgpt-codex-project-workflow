@@ -1,16 +1,16 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-plan_revision = "P4"
-planning_cycle = 4
+plan_revision = "P5"
+planning_cycle = 5
 attempt = "R01"
-verdict = "green"
-evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/PLAN_REVIEW_P4_R01_2026-09-24.md"
+verdict = "pending"
+evidence_path = ""
 
 [subject]
 class = "git_blob"
 repository = "elmakus/chatgpt-codex-project-workflow"
-commit = "71de528901e2e19ee2cbdaf2c5caeb47d16296ad"
-path = "planning/PWV21_POLICY_KERNEL_MASTER_PLAN_P4.md"
-blob = "abe96de5adf92e46cd1b3cb89466d3f567750792"
+commit = "5b4270fecd246cac8f6fac459a9887c82d0d348b"
+path = "planning/PWV21_POLICY_KERNEL_MASTER_PLAN_P5.md"
+blob = "ef82cfa76bf5af9ea336902ca4bfd39891e4a2a9"
 
 [acceptance]
 class = "authority"
@@ -18,4 +18,4 @@ path = "requirements/PWV21_POLICY_KERNEL.md"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Fresh independent Premium-B context reviewed the exact frozen P4 subject against Definition R2, all 127 accepted requirements, all seven accepted ADRs, plan-level acceptance/gates, and baseline seam evidence; this context did not materially author or repair P4."
+basis = "Fresh independent Premium-B context reviewing the exact frozen P5 subject; this context did not materially author or repair P5."
