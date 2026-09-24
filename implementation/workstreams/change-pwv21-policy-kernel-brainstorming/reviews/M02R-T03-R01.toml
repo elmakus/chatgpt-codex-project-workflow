@@ -1,8 +1,8 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02R-T03"
 attempt = "R01"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02R-T03_REVIEW_R01_2026-09-24.md"
 
 [subject]
 class = "git_blob"
@@ -17,4 +17,4 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/card
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Pending exact-subject review is reserved for a fresh independent context that did not materially produce or repair the result or implementation; no verdict has been issued."
+basis = "Fresh independent R01 context reconstructed the applicable M02R-T03 acceptance surface from exact authority, result, product commit, tests and raw CI evidence; it did not materially produce or repair the reviewed subject or implementation."
