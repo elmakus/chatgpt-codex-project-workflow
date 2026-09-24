@@ -2,8 +2,8 @@ workstream_id = "change-pwv21-policy-kernel-brainstorming"
 plan_revision = "P6"
 planning_cycle = 6
 attempt = "R01"
-verdict = "pending"
-evidence_path = ""
+verdict = "green"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/PLAN_REVIEW_P6_R01_2026-09-24.md"
 
 [subject]
 class = "git_blob"
@@ -18,4 +18,4 @@ path = "requirements/PWV21_POLICY_KERNEL.md"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Pending Premium-B fresh independent review of exact frozen P6 subject. The planning context that produced/repaired P6 is not eligible to issue the verdict."
+basis = "Fresh independent Premium-B context reviewed the exact frozen P6 subject against Definition R3, all 137 accepted requirements, all eight accepted ADRs, predecessor P5/R01 findings, plan-level acceptance/gates and exact authority pins; this context did not materially author or repair P6."
