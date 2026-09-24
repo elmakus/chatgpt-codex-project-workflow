@@ -2,8 +2,8 @@ workstream_id = "change-pwv21-policy-kernel-brainstorming"
 plan_revision = "P5"
 planning_cycle = 5
 attempt = "R01"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/PLAN_REVIEW_P5_R01_2026-09-24.md"
 
 [subject]
 class = "git_blob"
