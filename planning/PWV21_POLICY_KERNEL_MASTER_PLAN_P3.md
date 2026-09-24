@@ -6,15 +6,15 @@ Lifecycle: owned by `PLANNING.toml`; this P3 text is the immutable review
 subject once frozen and states no mutable lifecycle of its own.
 Review requirement: REQUIRED independent Stage-6 Plan Review (review_mode `independent`)
 Workstream: `change-pwv21-policy-kernel-brainstorming`
-Predecessor: cycle 1 / P1 exact frozen subject
-`elmakus/chatgpt-codex-project-workflow@f4d7a13a295918c37afd23f4f55c5b6e4543e1b9:planning/PWV21_POLICY_KERNEL_MASTER_PLAN.md@59c3a3c3927d8572b6a8f98124652c17554cb012`
-(bytes preserved unchanged).
+Predecessor: cycle 2 / P2 exact frozen subject
+`elmakus/chatgpt-codex-project-workflow@ca046952a4d249d9ed74af6408db71b0ded73a8f:planning/PWV21_POLICY_KERNEL_MASTER_PLAN_P2.md@79ee0b6588be32767ba283b9f20a48a192999001`.
 Correction authority/derivation:
-`implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/PLANNING_CORRECTION_OPTIONAL_PREMIUM_HANDOFF_2026-09-24.md`.
-P2 preserves Definition R1, all seven milestones, and 127/127 requirement
-ownerships; its material correction makes optional Premium A/C handoff
-selection an exact gate-input lifecycle rather than an informational-only
-handoff.
+`implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/DEFINITION_R2_COMPLETE_2026-09-24.md`.
+P3 preserves terminal M01/M02 history, adds bounded bootstrap milestone M02R
+before the still-unmaterialized M03, and maps all 127 accepted requirements
+exactly once. Its material change implements and dogfoods the R2
+review-convergence, decomposition-fidelity and live-validation semantics
+without rewriting historical M02.
 
 ## Authority
 
@@ -614,9 +614,10 @@ Milestone/final-integration lifecycle rather than redefine.
 5. Apply Card/Milestone/final independence rigor to this plan's own
    execution from the start, using current V2 mechanics plus the accepted
    plan controls (separate reviewers, evidence gating, no-prior-opinion
-   boundary): every implementation Card gets independent review, every
-   milestone a separate Milestone review, and — only after M01–M07 are
-   complete — the workstream a separate fresh final-integration review
+   boundary): every new implementation Card gets independent review, every new milestone
+   a separate Milestone review, and — only after M02R plus M03–M07 are
+   complete, with historical M01/M02 already terminal — the workstream a
+   separate fresh final-integration review
    before Close. The new kernel mechanics are not required to implement
    themselves.
 
@@ -646,8 +647,8 @@ Milestone/final-integration lifecycle rather than redefine.
 - Eligibility-vs-handoff decision tests across runtime capability
   fixtures, asserting PW's obligation verdicts with semantic evidence
   only (no provider/session telemetry in fixtures or canonical state).
-- This plan's own execution Card/Milestone reviews serve as live
-  conformance evidence during M01–M07; the workstream final-integration
+- This plan's new execution Card/Milestone reviews serve as live
+  conformance evidence during M02R and M03–M07; the workstream final-integration
   review is post-M07 lifecycle evidence, never a prerequisite for M07's
   own GREEN.
 
@@ -949,7 +950,7 @@ and migration:
 6. V2 baseline regression stays GREEN throughout; each milestone re-runs
    the baseline suite plus all prior milestone suites.
 7. This plan's own execution demonstrates the lifecycle in order:
-   independent Card review and separate Milestone reviews during M01–M07,
+   independent Card review and separate Milestone reviews during M02R and M03–M07,
    then a separate fresh final-integration review with complete evidence
    before close.
 
@@ -1032,8 +1033,8 @@ Beyond the Definition non-goals, this plan explicitly excludes:
   milestones. Existing correctly closed historical stages still retain
   REQ-099 protection (valid closed reviews stay valid; new semantics
   apply to active stages only).
-- Only after M01–M07 are complete does the separate fresh workstream
-  final-integration review occur; workstream close then requires that
+- Only after M02R and M03–M07 are complete, with historical M01/M02 already
+  terminal, does the separate fresh workstream final-integration review occur; workstream close then requires that
   review GREEN with complete evidence.
 - Escalation paths: JIT/Execution Prep detail → Execution Prep; milestone
   strategy/order/outcome change → Strategic Planning (new cycle, new A/B/C
