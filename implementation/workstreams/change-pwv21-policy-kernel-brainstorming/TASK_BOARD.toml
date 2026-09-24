@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 40
+revision = 41
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -134,7 +134,7 @@ condition = "After M02R-T01 is DONE with a durable result, Execution Prep must r
 
 [[cards]]
 id = "M02R-T02"
-status = "blocked"
+status = "in_progress"
 
 [cards.contract]
 class = "task_card"
@@ -143,12 +143,8 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/card
 [cards.result]
 class = "result"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02R-T02.md"
-commit = "1d03180fc2e4bc0ac1b968dd762286bb6ff0441d"
-blob = "c71f8a8067177ecd7926d41a0133aa7f946f3300"
-
-[cards.blocker]
-class = "blocker"
-path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/blockers/M02R-T02-R06-runtime-access.toml"
+commit = "538cd7f450da312bf75b24c5409a88facc0ef688"
+blob = "96fc29a505db6d6855f5308db6cf926c5ca6ad57"
 
 [[cards.review_attempts]]
 class = "review_attempt"
