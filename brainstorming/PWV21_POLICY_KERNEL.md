@@ -1,9 +1,9 @@
 # Brainstorm — PWv2.1 policy kernel
 
-Date: 2026-09-23
+Date: 2026-09-24
 Scope ID: pwv21-policy-kernel
-Revision: R1
-Status: ready_for_definition
+Revision: R2
+Status: active
 
 ## Goal
 
@@ -1036,3 +1036,172 @@ Another Brainstorming round now has low expected value unless materially new evi
 - Definition promotion subject: none
 
 Do not enter Project Definition until the user explicitly authorizes promotion of this exact scope/revision.
+
+
+---
+
+# Revision R2 — live-validation corrections after terminal M02
+
+Date: 2026-09-24
+Revision trigger: terminal M02 live implementation/review evidence
+Status: active exploratory delta over promoted R1
+
+This R2 section reopens Brainstorming only for newly observed workflow-semantics questions. It does not revoke the already-promoted R1 authority by itself. Existing accepted requirements/ADRs/P2 remain authoritative until Project Definition explicitly promotes an R2 correction.
+
+M02 remains terminal historical project state. R2 must not reopen or rewrite M02 merely to make history look as if it ran under future rules.
+
+## Durable evidence that reopened Brainstorming
+
+The material trigger is not tracker prose. It is the durable M02 execution/review history, including:
+
+- `implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02-T01_CONVERGENCE_ANALYSIS_2026-09-24.md`;
+- the exhaustive R09-R11 review/repair sequence;
+- post-convergence `M02-T01-R12` GREEN on the corrected exact subject;
+- `implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02-MILESTONE-R02_2026-09-24.md` GREEN;
+- `after-M02-T01` still waiting, with M03 unmaterialized.
+
+GitHub issues #57, #58 and #59 are bookkeeping/discussion inputs only. They do not authorize or define Project Workflow semantics.
+
+## R2 scope
+
+R2 is intentionally limited to three connected workflow gaps discovered by the M02 live test.
+
+### A. Fresh full-review and convergence semantics
+
+Observed failure pattern:
+- fresh context alone did not guarantee a genuinely fresh full-scope review;
+- some earlier review passes were repair-focused or lacked an explicit requirement to finish the entire acceptance surface after finding a blocker;
+- local repairs could close the literal example while leaving sibling members of the same defect class exposed;
+- repeated fresh review needs a bounded mode switch rather than an unlimited RED -> repair -> fresh-review loop.
+
+Tentative direction:
+- distinguish bounded finding closure/repair verification from fresh full-scope review;
+- a fresh full-scope review reconstructs correctness from accepted authority + exact current subject/artifacts + raw evidence, not prior verdict rationales;
+- finding one blocker never terminates the full pass;
+- freeze the complete material finding set before repair;
+- repair root cause/defect class and inspect siblings/negative space;
+- ordinary repair does not reset the review epoch;
+- after a configured hard ceiling, switch to Main/root-cause convergence analysis;
+- after that analysis, permit one fresh post-convergence validation rather than silently restarting an unlimited ordinary loop.
+
+M02 empirical sequence under the strengthened protocol:
+- R09: 4 material classes;
+- R10: 2;
+- R11: 1;
+- hard-ceiling convergence analysis;
+- R12 post-convergence validation: GREEN.
+
+This supports the mode-switch concept but does not by itself settle universal numeric ceilings.
+
+### B. Planning -> Execution Prep decomposition fidelity
+
+Observed failure pattern:
+- approved P2 explicitly identified four natural M02 seams: schema, derivation/resolution, acceptance/reconciliation and mutation-handoff;
+- Execution Prep legally collapsed all four into one `M02-T01` mega-Card covering PWV21-REQ-018..033;
+- the convergence analysis identified that over-broad Card as the main process multiplier;
+- late V1 had a similar weakness: it could split/merge Cards and audit sizing, but did not require preservation of independently falsifiable planner seams or a durable rationale for merging them.
+
+Tentative direction:
+- Planning may classify meaningful decomposition intent without pre-materializing speculative future Card IDs;
+- candidate seam classes:
+  - `required_seam`: must stay a separate Card boundary unless Strategic Planning is revised;
+  - `preferred_seam`: preserve by default; Execution Prep may deviate only with durable technical rationale;
+  - `illustrative`: non-binding example;
+- Execution Prep owns exact JIT Card topology and dependency/result binding, but not silent semantic override of planner decomposition intent;
+- before combining surfaces, apply a decomposition-quality test: independent implementability, testability/falsifiability, reviewability, invariant family, dependency ordering, atomicity/migration constraints and cross-surface coupling;
+- "same milestone" or "all details are knowable" is not sufficient merge rationale;
+- Card Review should remain local; Milestone Review should remain meaningfully broader and integration-focused.
+
+### C. Live-validation feedback loop
+
+Observed value:
+- several important workflow defects were visible only under real execution, not static design review;
+- fixing them only after all of PWv2.1 would let downstream milestones encode known-bad semantics;
+- changing authority continuously inside an active reviewed Card would destroy reproducibility.
+
+Tentative direction:
+- classify live observations before changing authority:
+  1. implementation defect under existing authority;
+  2. review/process realization defect;
+  3. Planning->Execution Prep fidelity defect;
+  4. accepted authority defect;
+  5. speculative future hardening;
+- incorporate workflow-semantic corrections at the earliest safe boundary before affected downstream JIT materialization;
+- never treat a GitHub issue as authority;
+- preserve terminal historical milestones instead of reopening them merely to test new workflow semantics;
+- promote valuable historical failures into regression-replay fixtures;
+- use M03 as the first in-workstream live consumer of the corrected semantics;
+- use Paseo/Pi later as a second independent consumer validation after PWv2.1 semantics stabilize.
+
+## M02 regression replay principle
+
+After R2 corrections are promoted and implemented, M02 should be replayed as workflow regression evidence, not as reopened project execution.
+
+The replay should prove at least:
+- the historical one-mega-Card M02 topology fails the new decomposition-quality rule unless a valid merge rationale exists;
+- the corrected review lifecycle distinguishes finding verification from fresh full review;
+- full review does not stop at first RED;
+- class-level repair and sibling coverage are required;
+- the configured convergence mode switch occurs without rewriting historical M02 state.
+
+Historical `M02-T01 = done` remains truthful and unchanged.
+
+## Material choices still open in R2
+
+### R2-Q1 — hard convergence ceilings
+
+Candidate current default:
+- Card: maximum 5 qualifying fresh full-scope reviews in one stable authority/acceptance epoch;
+- Milestone: maximum 4 qualifying fresh full-scope reviews in one stable epoch;
+- bounded finding verification does not count;
+- ordinary repair does not reset the epoch;
+- material accepted authority/acceptance redesign may start a new epoch.
+
+Open point:
+- whether final-integration review should use the same ceiling as Milestone, a stricter independent ceiling, or leave the exact value as a configured Planning/JIT choice under a common bounded semantic rule.
+
+Current recommendation:
+- keep Card=5 and Milestone=4 as explicit defaults because M02 showed useful continued discovery through the fifth Card pass;
+- use Final Integration=3 by default because its subject is broader and repeated RED there is stronger evidence of structural/integration failure;
+- allow a plan to lower, but not silently raise, these defaults only with explicit accepted rationale.
+
+### R2-Q2 — strength of planner seam classes
+
+Options:
+1. guidance only: one non-binding seam list;
+2. two levels: required vs advisory;
+3. three levels: required / preferred / illustrative.
+
+Current recommendation:
+- option 3. It preserves strong planner intent where correctness depends on topology, allows JIT technical judgment for preferred seams, and keeps examples from accidentally becoming authority.
+
+### R2-Q3 — independent Execution Prep topology challenge
+
+Options:
+1. no independent challenge; Execution Prep self-audits decomposition;
+2. fresh independent challenge for every Execution Prep;
+3. risk-based fresh challenge only for materially risky topology/deviation.
+
+Current recommendation:
+- option 3.
+- Trigger when Execution Prep merges planner-declared preferred seams, spans multiple independently falsifiable invariant families, absorbs most/all of a milestone despite explicit seams, or materially changes accepted decomposition intent.
+- Simple/obvious Cards keep only the normal Execution Prep self-audit.
+
+### R2-Q4 — live-finding reconciliation gate before downstream JIT
+
+Options:
+1. no explicit gate; rely on normal routing;
+2. at every terminal milestone, reconcile all open workflow observations before downstream materialization;
+3. reconcile only durable live findings explicitly classified as affecting the next downstream authority/materialization.
+
+Current recommendation:
+- option 3.
+- This prevents known-bad semantics from propagating without turning every unrelated tracker idea into a blocker.
+
+## R2 current frontier
+
+No additional Research is currently required; the reopened questions arise from first-party durable M02 evidence and accepted workflow structure.
+
+The next useful Brainstorming step is user resolution/challenge of R2-Q1 through R2-Q4. After those choices, perform one bounded adversarial completion audit before marking R2 `ready_for_definition`.
+
+Nothing in this R2 section is accepted requirement/decision authority until exact `pwv21-policy-kernel@2` promotion through Project Definition.
