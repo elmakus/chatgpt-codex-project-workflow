@@ -1,0 +1,10 @@
+audit_kind = "m02r_t03_shadow_review"
+audit_suffix = "qtwej69101xxxxiuw6a79wly"
+consumer_repository = "elmakus/chatgpt-codex-project-workflow"
+consumer_subject_commit = "5b76ffe03259ff141afc6bfb5b7b546041a48b41"
+consumer_result_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02R-T03-R02.md"
+consumer_result_blob = "b357ba85d4975540f3ae87b05e73e3fcf8e0471a"
+implementation_repository = "elmakus/project_workflow_v2"
+implementation_subject_commit = "180cc0af3a9b56c8c2808827bf5548b8ae040608"
+branch = "audit/m02r-t03-shadow-qtwej69101xxxxiuw6a79wly"
+out_of_band = true
