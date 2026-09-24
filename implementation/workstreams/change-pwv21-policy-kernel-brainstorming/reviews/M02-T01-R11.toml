@@ -1,8 +1,8 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02-T01"
 attempt = "M02-T01-R11"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02-T01_R11_REVIEW_2026-09-24.md"
 
 [subject]
 class = "git_blob"
@@ -17,4 +17,4 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/card
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Fresh independent full-scope Card review boundary for the repaired exact M02-T01 subject. The M02-T01-R10 context materially performed the bounded R10 correction and updated this Result, so it is ineligible to issue R11. The user-defined Card convergence ceiling remains applicable; this record freezes the fresh-review boundary and does not itself authorize another qualifying full-scope review in this context."
+basis = "Fresh independent exhaustive full-scope Card review of the exact frozen M02-T01 subject from stable accepted authority, current implementation artifacts, and raw test/readback evidence. This context did not materially produce or repair the reviewed subject. Prior review findings, verdict rationales, repair narratives, and convergence summaries were excluded from correctness input. R11 is the fifth and final qualifying fresh Card review in the user-defined R07-R11 convergence sequence."
