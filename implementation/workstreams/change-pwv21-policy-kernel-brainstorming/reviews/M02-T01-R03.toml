@@ -1,0 +1,20 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02-T01"
+attempt = "R03"
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02-T01_REVIEW_R03_2026-09-24.md"
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "36d340f20af470216f09ad510b1422996f88ef74"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02-T01.md"
+blob = "7f479d6a6fe4c0b5a5d3687473a0c82d70239ebd"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02-T01.md"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "R03 independently evaluated the exact frozen result and implementation subject from accepted authority, exact artifacts, the full M01-to-M02 range, and raw CI/readback evidence. This review context did not materially produce or repair the implementation subject or create/modify the frozen result subject; prior R01/R02 opinions were not used as correctness evidence."
