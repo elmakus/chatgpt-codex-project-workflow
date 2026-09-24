@@ -1434,3 +1434,111 @@ replacing it:
   focused.
 
 Status: accepted exploratory R3 choice; not authority until R3 promotion.
+
+
+## R3-Q2 — Review discovery and closure convergence
+
+Research finding:
+The current R2 direction is strong on exhaustive discovery, class-level repair,
+fresh independence and bounded convergence, but repeated fresh full-scope
+reviews are a poor inner-loop mechanism for proving closure of already-known
+defects. Current prior art, especially Superpowers and BMAD empirical failure
+evidence, supports separating discovery from closure.
+
+### Accepted direction
+
+The user accepted all current recommendations without modification.
+
+#### 1. Hybrid discovery / closure lifecycle
+
+PW review should distinguish two semantically different operations:
+
+**Discovery review**
+- fresh and independent;
+- full applicable acceptance surface;
+- reconstructs correctness from accepted authority + exact current subject +
+  raw evidence;
+- does not stop at first blocker;
+- records and freezes the complete independently discovered material finding
+  set before ordinary repair.
+
+**Finding-closure verification**
+- intentionally scoped to known findings;
+- evaluates the repair diff, regression evidence and the material **causal
+  blast radius** of repaired contracts/invariants, including reachable
+  callers, consumers, providers, sibling representations and negative-space
+  cases where materially implicated;
+- may be performed by the reviewer that discovered the finding if that
+  reviewer did not materially repair the subject;
+- does not qualify as the next fresh full-scope discovery review.
+
+The ordinary sequence becomes:
+
+fresh exhaustive discovery
+→ freeze material findings
+→ root-cause / defect-class repair
+→ scoped causal closure verification
+→ repeat repair/closure only for still-open known classes
+→ after all known material findings close, require a fresh full-scope
+  discovery review.
+
+A fresh post-closure review:
+- GREEN → closes that review obligation;
+- RED with a genuinely new material defect class → opens the next discovery
+  epoch;
+- RED showing only persistence/recurrence of an already-known class →
+  reopens that class without pretending a new discovery epoch occurred.
+
+This refines, rather than weakens, R2 independence: fresh review remains the
+mechanism for discovering unknown defects, while scoped verification proves
+closure of known defects.
+
+#### 2. 5/4/3 counts material discovery epochs
+
+The existing accepted default values remain provisionally:
+
+- Card: 5
+- Milestone: 4
+- Final Integration: 3
+
+But R3 changes the recommended semantic unit from "every qualifying fresh
+full-scope review invocation" to **material defect-class discovery epochs**.
+
+A material discovery epoch is consumed when a qualifying fresh full-scope RED
+review discovers at least one material defect class that is not already open or
+a recurrence/reopening of an already-known class in the same stable
+authority/acceptance epoch.
+
+The discovery counter does not increment for:
+- bounded finding-closure verification;
+- ordinary repair attempts;
+- a GREEN fresh discovery review;
+- a fresh RED whose only material result is persistence/recurrence of an
+  already-known class.
+
+Ordinary implementation repair still does not reset the stable
+authority/acceptance epoch.
+
+#### 3. Separate breaker for one defect class
+
+Each material defect class receives a separate ordinary repair/closure budget.
+
+Accepted exploratory default:
+- after **3 failed repair → scoped-verification rounds for the same defect
+  class** within one stable authority/acceptance epoch, ordinary closure mode
+  stops and Main performs convergence/root-cause analysis.
+
+The breaker:
+- never turns RED into GREEN;
+- may justify changing implementation approach or replacing the Worker within
+  already accepted authority;
+- does not silently authorize a stronger/different model where existing
+  runtime/model-authorization rules require user authority;
+- is distinct from the Card/Milestone/Final material-discovery ceilings.
+
+After Main convergence analysis, the existing structural principle remains:
+one appropriate post-convergence fresh validation may run; continuing material
+RED routes to the correct broader structural owner instead of restarting an
+unbounded ordinary loop.
+
+Status: accepted exploratory R3 choice; not authority until R3 promotion.
