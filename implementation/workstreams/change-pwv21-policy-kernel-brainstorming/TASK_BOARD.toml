@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 50
+revision = 51
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -210,7 +210,7 @@ condition = "After M02R-T03 is DONE with a durable GREEN-reviewed result, Execut
 
 [[cards]]
 id = "M02R-T04"
-status = "ready"
+status = "in_progress"
 
 [cards.contract]
 class = "task_card"
