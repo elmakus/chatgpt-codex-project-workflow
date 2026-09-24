@@ -1,8 +1,8 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02-T01"
 attempt = "M02-T01-R08"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02-T01_REVIEW_R08_2026-09-24.md"
 
 [subject]
 class = "git_blob"
