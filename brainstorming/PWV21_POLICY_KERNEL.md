@@ -1831,3 +1831,90 @@ The exact R3 exploratory subject is ready for explicit user promotion to
 Project Definition. Nothing in R3 becomes accepted requirement/decision
 authority until the user explicitly authorizes promotion of
 `pwv21-policy-kernel@3`.
+
+
+## R3-Q6a — Non-load-bearing finding reconciliation and cleanup
+
+### Accepted direction
+
+Non-load-bearing findings do not block the local Card/Milestone GREEN, but they
+must not disappear or remain indefinitely implicit.
+
+Each non-load-bearing review observation MUST:
+- remain durably traceable to its originating review evidence;
+- retain a current disposition;
+- be reconciled before Final Integration is allowed to complete.
+
+Reconciliation classifies each still-open observation as one of:
+
+- **resolved** — later accepted work removed the observation without needing a
+  dedicated cleanup change;
+- **cleanup_candidate** — concrete, bounded, safe and still in-scope quality
+  improvement worth implementing before Final Integration;
+- **deferred** — intentionally left unchanged because it is advisory or not
+  worth the implementation/blast-radius cost inside the current approved scope;
+- **promoted** — evidence now shows the observation is load-bearing or requires
+  new product/architecture scope, so it routes to the appropriate workflow
+  owner rather than being hidden inside cleanup;
+- **tracked** — intentionally exported to an external backlog/tracker for
+  future work when that bookkeeping is useful.
+
+GitHub Issues are optional bookkeeping destinations, never the primary
+canonical storage for review observations and never workflow authority.
+
+Where one or more cleanup candidates exist, PW SHOULD group them into the
+smallest meaningful bounded cleanup work rather than mutating already-GREEN
+Cards ad hoc. Cleanup receives its own exact subject, tests/evidence and
+independent review before Final Integration evaluates the final codebase.
+
+Cleanup MUST NOT become a loophole for speculative redesign, new product
+scope, or architecture expansion. A cleanup observation whose safe repair is
+no longer bounded/in-scope is deferred, tracked, or promoted instead.
+
+This preserves two distinct semantics:
+- local GREEN means the accepted correctness contract is satisfied;
+- pre-Final reconciliation ensures useful quality observations are either
+  actually cleaned up or explicitly dispositioned rather than forgotten.
+
+Status: accepted exploratory R3 choice; not authority until R3 promotion.
+
+## R3-Q6a adversarial challenge
+
+### C11 — Could cleanup re-open endless advisory review churn?
+
+Resolution:
+- cleanup is materialized as bounded explicit work, not as mutation of an
+  already-GREEN subject under the old review;
+- its scope is limited to concrete accepted cleanup candidates;
+- the cleanup subject receives normal tests/evidence and independent review;
+- non-load-bearing observations discovered during cleanup may be recorded but
+  cannot recursively force another cleanup merely because improvement remains
+  possible;
+- Final Integration requires disposition of observations, not perfection or
+  exhaustion of every conceivable refactor.
+
+Outcome: GREEN.
+
+### C12 — Could the follow-up ledger become a second workflow authority store?
+
+Resolution:
+- no separate authority store is required;
+- canonical review evidence remains the durable source observation;
+- any follow-up index/ledger is derived bookkeeping that points back to source
+  evidence and carries only disposition/reconciliation state;
+- tracker Issues remain optional external bookkeeping and never authorize
+  workflow transitions.
+
+Outcome: GREEN.
+
+## R3 completion audit addendum after Q6a
+
+Q6a does not reopen any unresolved product/strategy question. It completes the
+lifecycle for non-load-bearing findings by requiring durable capture, explicit
+pre-Final reconciliation, bounded cleanup for worthwhile in-scope items, and
+durable disposition for the rest.
+
+The prior R3 completion result remains GREEN:
+- no unresolved material R3 user/product/strategic decisions remain;
+- no additional Research is required before Definition;
+- exact subject `pwv21-policy-kernel@3` remains ready for explicit promotion.
