@@ -143,12 +143,16 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/card
 [cards.result]
 class = "result"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02R-T02.md"
-commit = "e26037e7fb2e489e577221b5bbb295328985ef5e"
-blob = "a557244b7276a9cc1cf7c52e8f726eeae70314ff"
+commit = "33daa3abb49296eb61103b95d1c35c8694c3fe7c"
+blob = "962171769922c49ff5ed06a6310882dff0f9fffb"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T02-R01.toml"
+
+[[cards.review_attempts]]
+class = "review_attempt"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T02-R02.toml"
 
 [[jit_triggers]]
 id = "after-M02R-T02"
