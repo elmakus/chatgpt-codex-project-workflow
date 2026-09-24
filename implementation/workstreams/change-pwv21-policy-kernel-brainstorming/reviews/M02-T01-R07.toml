@@ -1,0 +1,19 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+attempt = "M02-T01-R07"
+verdict = "pending"
+evidence_path = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "80672e9e8633ea37c157bc45020c3972d8e52420"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02-T01.md"
+blob = "1df51b151f70f07c85da1ce41568ac397ebe63c3"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02-T01.md"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Pending fresh independent Card review for the repaired M02 subject. The context that performed the milestone-review correction is ineligible to issue this Card-review verdict."
