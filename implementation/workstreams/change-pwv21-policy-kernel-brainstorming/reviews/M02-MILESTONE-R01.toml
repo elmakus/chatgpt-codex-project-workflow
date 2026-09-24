@@ -1,0 +1,19 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+attempt = "M02-MILESTONE-R01"
+verdict = "pending"
+evidence_path = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "9c6148044fa140319dc5fc38283ef5665904bc03"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02-T01.md"
+blob = "d3cca7d34e8ea08e33fa7d2026d9ffbe84cee176"
+
+[acceptance]
+class = "authority"
+path = "planning/PWV21_POLICY_KERNEL_MASTER_PLAN_P2.md"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Pending separate fresh M02 Milestone Review required by accepted P2. The context that completed M02-T01-R06 is ineligible for this Milestone Review because P2 requires a fresh Milestone Reviewer that did not implement or review constituent Cards and does not receive prior Card-review opinions or verdict rationales by default."
