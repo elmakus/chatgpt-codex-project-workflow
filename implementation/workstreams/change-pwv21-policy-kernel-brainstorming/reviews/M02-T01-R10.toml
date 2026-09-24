@@ -1,8 +1,8 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02-T01"
 attempt = "M02-T01-R10"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02-T01_R10_REVIEW_2026-09-24.md"
 
 [subject]
 class = "git_blob"
@@ -17,4 +17,4 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/card
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Frozen pending boundary for the exact corrected M02-T01 result subject. The M02-T01-R09 context materially performed the bounded correction and is ineligible to issue this verdict. The user-requested repeated-review convergence ceiling requires separate Main/root-cause convergence analysis before formal R10 execution."
+basis = "R10 was performed as a fresh independent exhaustive full-scope Card review of the exact frozen subject from stable M02 authority, current implementation artifacts, and raw CI/readback evidence. This context did not materially produce or repair the reviewed subject; prior review findings and repair narratives were excluded from correctness input. The earlier pre-R10 convergence stop was superseded by the user before execution."
