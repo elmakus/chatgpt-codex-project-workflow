@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 8
+revision = 9
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -34,8 +34,24 @@ status = "in_progress"
 class = "task_card"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02-T01.md"
 
+[cards.result]
+class = "result"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02-T01.md"
+commit = "ec9e06448bd6c339ae5839eb6d95f4f959bd8c64"
+blob = "026631a2e7a44fc05015c2f44249a5b52d2b3860"
+
+[[cards.review_attempts]]
+class = "review_attempt"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02-T01-R01.toml"
+
 [[jit_triggers]]
 id = "after-M01-T01"
 after_card = "M01-T01"
 state = "consumed"
 condition = "Materialize M02 only after M01 is DONE so exact registry/kernel seam paths from the accepted M01 result can be bound into the stable M02 Card contract."
+
+[[jit_triggers]]
+id = "after-M02-T01"
+after_card = "M02-T01"
+state = "waiting"
+condition = "Materialize M03 only after M02 is DONE so the accepted typed Obligation/Result contract and exact M02 seam paths can be bound into the stable M03 Card contract."
