@@ -1,8 +1,8 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 scope_id = "pwv21-policy-kernel"
-revision = 2
-state = "promoted"
-challenge_audit = "green"
+revision = 3
+state = "active"
+challenge_audit = "pending"
 explicit_user_stop = false
-promotion_state = "authorized"
-promotion_subject = "pwv21-policy-kernel@2"
+promotion_state = "pending"
+promotion_subject = ""
