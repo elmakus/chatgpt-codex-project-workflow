@@ -1,16 +1,16 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-plan_revision = "P3"
-planning_cycle = 3
+plan_revision = "P4"
+planning_cycle = 4
 attempt = "R01"
-verdict = "red"
-evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/PLAN_REVIEW_P3_R01_2026-09-24.md"
+verdict = "pending"
+evidence_path = ""
 
 [subject]
 class = "git_blob"
 repository = "elmakus/chatgpt-codex-project-workflow"
-commit = "77d0104c414f7f2d81a3c961a6cf3efec10a2ce4"
-path = "planning/PWV21_POLICY_KERNEL_MASTER_PLAN_P3.md"
-blob = "3f75c11c8da01fa05ab39938d44b3e6daa89e933"
+commit = "71de528901e2e19ee2cbdaf2c5caeb47d16296ad"
+path = "planning/PWV21_POLICY_KERNEL_MASTER_PLAN_P4.md"
+blob = "abe96de5adf92e46cd1b3cb89466d3f567750792"
 
 [acceptance]
 class = "authority"
@@ -18,4 +18,4 @@ path = "requirements/PWV21_POLICY_KERNEL.md"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Fresh Premium-B independent review context did not materially produce or repair the exact P3 subject; full review completed against pinned R2 authority and exact baseline evidence."
+basis = "Pending Premium-B fresh independent review of exact frozen P4 subject. The planning context that produced/repaired P4 is not eligible to issue the verdict."
