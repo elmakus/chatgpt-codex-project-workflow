@@ -1663,3 +1663,171 @@ This distinction is severity/acceptance semantics, not permission to ignore
 real defects.
 
 Status: accepted exploratory R3 choice; not authority until R3 promotion.
+
+
+## R3 adversarial challenge pass
+
+The accepted R3 directions were challenged against current Definition R2,
+accepted ADRs and approved P4. The purpose is to identify contradictions and
+required authority changes before promotion; this pass does not itself amend
+authority.
+
+### C1 — Could the new Card invariant force micro-Cards?
+
+Resolution:
+- No split follows merely from file/module/layer/test/step separability.
+- A split presumption requires independently meaningful acceptance/contract/
+  invariant/delivery outcomes whose valid GREEN evidence can survive another
+  outcome being RED.
+- Atomicity, invalid intermediate state, inseparable acceptance and material
+  coupling rebut the split.
+- Setup/scaffolding normally rides with the outcome that needs it.
+
+Outcome: GREEN.
+
+### C2 — Does Q1 duplicate the existing topology challenge?
+
+Resolution:
+- No. Q1 supplies the missing primary decision function for Card right-sizing.
+- The existing risk-based topology challenge remains a second-order safeguard
+  for materially risky concrete topology/deviation.
+- Planning seam classes remain unchanged.
+
+Outcome: GREEN.
+
+### C3 — Does the hybrid review loop weaken fresh independence?
+
+Resolution:
+- No. Fresh full-scope discovery remains mandatory after known findings close.
+- Scoped closure is intentionally anchored to known findings and cannot satisfy
+  the next fresh discovery obligation.
+- The discovering Reviewer may verify closure only if it did not materially
+  repair the subject.
+
+Outcome: GREEN.
+
+### C4 — Can "material discovery epoch" be gamed by relabeling findings?
+
+Resolution:
+- Defect-class identity is semantic review evidence, not a free counter label.
+- Each discovery RED must durably identify the material defect class/root cause
+  basis and whether it is new, open, or a recurrence/reopening.
+- A recurrence of an existing class cannot be renamed merely to reset or
+  increment counters.
+- Ambiguous/contested classification routes to Main/review reconciliation,
+  not silent counter mutation.
+- Ordinary repair cannot reset the stable authority/acceptance epoch.
+
+Outcome: GREEN.
+
+### C5 — Could the three-round class breaker force acceptance or premature user escalation?
+
+Resolution:
+- No. Three failed ordinary repair/closure rounds switch to Main
+  convergence/root-cause analysis only.
+- RED remains RED.
+- Main may change implementation approach or Worker inside existing authority.
+- User input is required only if a genuine user-owned product/strategy/model
+  authorization/blocker boundary is reached.
+
+Outcome: GREEN.
+
+### C6 — Could non-load-bearing classification hide real defects?
+
+Resolution:
+- A finding may be non-load-bearing only when it does not materially violate
+  the applicable accepted acceptance/correctness/safety/dependency/invariant/
+  evidence surface.
+- Convenience, repair cost, reviewer fatigue or desire to finish are not valid
+  downgrade reasons.
+- Required evidence/test failures remain load-bearing under existing REQ-069.
+- The finding remains durable and may be promoted later if concrete evidence
+  establishes material impact.
+- A reviewer asserting RED must state the concrete load-bearing effect; an
+  advisory observation without such effect cannot indefinitely keep the
+  subject RED.
+
+Outcome: GREEN.
+
+### C7 — Does Worker test-first discipline incorrectly require automated TDD for every Card?
+
+Resolution:
+- No. The rule is falsification-first where a meaningful failing automated or
+  observable check exists.
+- Documentation, migration, workflow-policy and other non-unit-test outcomes
+  may use another explicit observable acceptance check.
+- YAGNI/minimal implementation constrains scope; DRY remains non-absolute to
+  avoid premature abstraction.
+
+Outcome: GREEN.
+
+### C8 — Can a Worker self-split and thereby create new authority?
+
+Resolution:
+- No. Execution can only report topology evidence.
+- Remaining unaccepted scope returns to Execution Prep at a safe durable
+  boundary; Strategic Planning still owns changes to stronger accepted seams.
+- Valid independent evidence can be preserved without rewriting terminal
+  history.
+
+Outcome: GREEN.
+
+### C9 — Does retaining custom PWv2.1 ignore the landscape evidence?
+
+Resolution:
+- No. R3 explicitly retains PW only as policy/authority, not as a generic
+  scheduler/checkpoint/fan-out runtime.
+- Spec Kit, Superpowers, BMAD and other systems remain prior art and potential
+  future components/prototypes.
+- PWv2.1 does not add commodity runtime machinery merely to reproduce them.
+
+Outcome: GREEN.
+
+### C10 — Which accepted R2/P4 surfaces become stale if R3 is promoted?
+
+Resolution:
+- Q1/Q5 require material Definition/ADR refinement of Card right-sizing and
+  late re-decomposition semantics.
+- Q2 materially changes REQ-112 accounting from fresh-review invocation count
+  to material defect-class discovery epochs and adds a separate per-class
+  closure breaker; Definition R2/ADR-PWV21-004 must be revised.
+- Q4 adds Worker execution-discipline authority/guidance and must be placed in
+  the appropriate Definition/Execution contract rather than inferred from
+  research.
+- Q6 adds explicit blocking/non-blocking finding semantics while preserving
+  REQ-069 required-evidence rules.
+- Therefore approved P4 cannot simply proceed to Premium C after R3 promotion;
+  a new Definition revision and material Planning cycle are required.
+- Until promotion, R2/P4 remain authoritative and Premium C remains due but
+  intentionally unconsumed.
+
+Outcome: GREEN.
+
+## R3 completion audit
+
+- Material user/product/strategy choices: resolved through Q1-Q6.
+- Conflicts requiring rollback of the core R1/R2 architecture: none.
+- Material refinements requiring a new Definition revision if promoted: yes.
+- Research required before Definition: none; the three durable research reports
+  are sufficient evidence.
+- Historical M01/M02 state: preserved terminal; no reopen.
+- M03: remains unmaterialized.
+- P4: remains truthful approved historical planning state but will be
+  superseded prospectively by a new planning cycle if R3 is promoted.
+- Premium C P4: remains due and must not be consumed while R3 is pending.
+- Performance/wall-clock optimization: explicitly deferred from PWv2.1.
+- Fixed project-size classes: explicitly rejected.
+
+Completion challenge outcome: GREEN.
+
+## R3 current frontier
+
+Completion audit result: **no unresolved material R3 user/product/strategic
+decisions remain**.
+
+Research needed before Definition: **none identified**.
+
+The exact R3 exploratory subject is ready for explicit user promotion to
+Project Definition. Nothing in R3 becomes accepted requirement/decision
+authority until the user explicitly authorizes promotion of
+`pwv21-policy-kernel@3`.
