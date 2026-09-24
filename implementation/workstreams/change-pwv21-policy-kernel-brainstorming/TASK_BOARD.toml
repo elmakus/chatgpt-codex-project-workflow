@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 41
+revision = 42
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -134,7 +134,7 @@ condition = "After M02R-T01 is DONE with a durable result, Execution Prep must r
 
 [[cards]]
 id = "M02R-T02"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
@@ -169,6 +169,10 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T02-R06.toml"
+
+[[cards.review_attempts]]
+class = "review_attempt"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T02-R07.toml"
 
 [[jit_triggers]]
 id = "after-M02R-T02"
