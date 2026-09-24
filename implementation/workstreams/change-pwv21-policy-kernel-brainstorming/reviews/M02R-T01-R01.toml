@@ -1,0 +1,20 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02R-T01"
+attempt = "R01"
+verdict = "pending"
+evidence_path = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "6de7e482a90a0427f9b29959c120644f991740bf"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02R-T01.md"
+blob = "7aa28f8db208c2452aeeee54a7679b428f072bcd"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T01.md"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Pending fresh independent Card review. The implementation/result-producing context is not eligible to issue the verdict."
