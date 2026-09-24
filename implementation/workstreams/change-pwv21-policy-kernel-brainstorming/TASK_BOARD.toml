@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 30
+revision = 31
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -96,7 +96,7 @@ condition = "Materialize M02 only after M01 is DONE so exact registry/kernel sea
 
 [[cards]]
 id = "M02R-T01"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
