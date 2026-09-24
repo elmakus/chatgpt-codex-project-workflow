@@ -1542,3 +1542,124 @@ RED routes to the correct broader structural owner instead of restarting an
 unbounded ordinary loop.
 
 Status: accepted exploratory R3 choice; not authority until R3 promotion.
+
+
+## R3-Q3 — Architecture direction for PWv2.1
+
+### Accepted direction
+
+PWv2.1 remains on the current architectural path.
+
+- PW remains a thin custom policy/authority layer.
+- Git/repository state remains canonical workflow truth.
+- Pi/OR/Paseo or future runtimes realize execution; PW does not become a
+  generic scheduler/checkpoint/fan-out engine.
+- PWv2.1 does not migrate to Spec Kit, BMAD, Superpowers, Kiro or another
+  external product as its control plane in this revision.
+- External systems remain prior art and possible future components/prototypes.
+- Commodity orchestration/runtime capabilities should not be duplicated inside
+  PW merely because they exist elsewhere.
+
+A future version may evaluate replacing generic infrastructure underneath PW,
+but that is not a prerequisite for completing PWv2.1 quality semantics.
+
+Status: accepted exploratory R3 choice; not authority until R3 promotion.
+
+## R3-Q4 — Worker implementation discipline
+
+### Accepted direction
+
+PW should give Workers a bounded implementation discipline without creating a
+new ceremony layer.
+
+Default discipline:
+- use test-first / falsification-first where the Card outcome can be
+  meaningfully expressed as an automated or observable failing check;
+- implement the minimum change needed to satisfy accepted Card authority;
+- prefer YAGNI: do not add speculative functionality, abstraction or adjacent
+  scope not required by the Card;
+- after GREEN, allow bounded refactoring only where it improves the accepted
+  implementation without expanding scope;
+- DRY is guidance, not an absolute invariant: duplication may remain preferable
+  to premature abstraction when abstraction would increase coupling or exceed
+  Card authority.
+
+Conceptual inner loop where applicable:
+
+failing test / observable check
+→ minimal implementation
+→ GREEN
+→ bounded in-scope refactor
+
+This is Worker execution discipline, not a new Milestone/Card/gate hierarchy.
+
+Status: accepted exploratory R3 choice; not authority until R3 promotion.
+
+## R3-Q5 — Card discovered oversized during Execution
+
+### Accepted direction
+
+A Worker may discover topology evidence but cannot silently redefine Card
+authority.
+
+If implementation/review produces material evidence that the current Card:
+- contains multiple separable review-worthy outcomes;
+- cannot be completed reliably as one bounded Worker ownership unit; or
+- has a newly exposed semantic seam that would preserve independent valid
+  acceptance/result evidence,
+
+then the Worker must not arbitrarily broaden, merge or self-split accepted
+authority.
+
+At the smallest safe durable boundary:
+- preserve already valid durable evidence where it is independently meaningful;
+- leave historical accepted/terminal evidence truthful;
+- return remaining unaccepted scope to Execution Prep for bounded
+  re-decomposition;
+- preserve accepted Planning seam authority unless the new evidence requires
+  returning to Strategic Planning.
+
+Execution may report topology evidence; Execution Prep/Planning remain the
+owners of topology changes according to the existing escalation boundary.
+
+Status: accepted exploratory R3 choice; not authority until R3 promotion.
+
+## R3-Q6 — Load-bearing versus non-load-bearing review findings
+
+### Accepted direction
+
+A review finding blocks GREEN only when it is materially load-bearing for the
+applicable review obligation.
+
+A finding is load-bearing when concrete evidence shows it affects at least one
+accepted correctness surface such as:
+- explicit acceptance;
+- required behavior;
+- safety/security;
+- data integrity;
+- dependency or compatibility correctness;
+- a required invariant/contract;
+- required evidence/test validity;
+- another material correctness property owned by the Card/Milestone/Final
+  review.
+
+A finding that is merely advisory, stylistic, optional cleanup, speculative
+hardening, preference, or otherwise non-load-bearing MUST NOT by itself keep
+the subject RED.
+
+Non-load-bearing findings:
+- remain durable and visible;
+- may be deferred to a broader review, cleanup opportunity or separately
+  authorized future scope;
+- do not disappear merely because they do not block;
+- become blocking only when concrete evidence promotes them to a load-bearing
+  correctness/acceptance concern.
+
+Reviewers must not create work merely to keep a review loop alive. Conversely,
+a finding cannot be downgraded to non-load-bearing merely because fixing it is
+inconvenient.
+
+This distinction is severity/acceptance semantics, not permission to ignore
+real defects.
+
+Status: accepted exploratory R3 choice; not authority until R3 promotion.
