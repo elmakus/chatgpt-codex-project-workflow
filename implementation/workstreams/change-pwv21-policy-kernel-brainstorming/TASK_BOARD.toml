@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 32
+revision = 33
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -134,7 +134,7 @@ condition = "After M02R-T01 is DONE with a durable result, Execution Prep must r
 
 [[cards]]
 id = "M02R-T02"
-status = "ready"
+status = "in_progress"
 
 [cards.contract]
 class = "task_card"
