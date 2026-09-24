@@ -1,8 +1,8 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02R-T02"
 attempt = "R06"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02R-T02_REVIEW_R06_2026-09-24.md"
 
 [subject]
 class = "git_blob"
@@ -17,4 +17,4 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/card
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Pending exact R06 review is frozen for a fresh independent context. The current context materially repaired the M02R-T02 implementation candidate after R05 RED and reconciled the changed durable result, so it is not eligible to issue this verdict."
+basis = "Fresh independent R06 context reconstructed the complete applicable M02R-T02 acceptance surface from exact authority, implementation, tests and raw CI evidence; it did not materially produce or repair the reviewed subject."
