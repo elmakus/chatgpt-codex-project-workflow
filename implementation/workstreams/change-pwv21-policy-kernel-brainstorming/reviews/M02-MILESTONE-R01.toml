@@ -1,7 +1,7 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 attempt = "M02-MILESTONE-R01"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02-MILESTONE-R01_2026-09-24.md"
 
 [subject]
 class = "git_blob"
@@ -16,4 +16,4 @@ path = "planning/PWV21_POLICY_KERNEL_MASTER_PLAN_P2.md"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Pending separate fresh M02 Milestone Review required by accepted P2. The context that completed M02-T01-R06 is ineligible for this Milestone Review because P2 requires a fresh Milestone Reviewer that did not implement or review constituent Cards and does not receive prior Card-review opinions or verdict rationales by default."
+basis = "This context did not materially produce or repair the exact M02 result/implementation subject and did not perform any constituent M02 Card review. The verdict was derived from direct inspection of the exact subject, accepted P2/REQ-018..033 authority, implementation bytes, and raw CI evidence."
