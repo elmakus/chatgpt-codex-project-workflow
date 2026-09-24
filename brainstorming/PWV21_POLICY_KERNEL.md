@@ -1351,3 +1351,86 @@ Research needed before Definition: **none identified**.
 The exact R2 exploratory subject is ready for user promotion to Project Definition. Nothing in R2 becomes accepted authority until the user explicitly authorizes promotion of `pwv21-policy-kernel@2`.
 
 Nothing in this R2 section is accepted requirement/decision authority until exact `pwv21-policy-kernel@2` promotion through Project Definition.
+
+
+---
+
+# Revision R3 — post-research synthesis
+
+Date: 2026-09-24
+Revision trigger: three completed external research reports after approved P4 / before Premium C
+Status: active exploratory delta over promoted R2
+
+R3 exists to evaluate material new evidence before Execution Prep. It does not
+silently supersede Definition R2 or approved Planning P4. Those remain accepted
+authority until an exact R3 promotion and any required downstream Definition /
+Planning correction.
+
+Research inputs:
+
+- `implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/RESEARCH_TASK_CARD_RIGHT_SIZING_2026-09-24.md`
+- `implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/RESEARCH_REVIEW_REPAIR_CONVERGENCE_2026-09-24.md`
+- `implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/RESEARCH_AGENTIC_WORKFLOW_LANDSCAPE_2026-09-24.md`
+
+Premium C for P4 remains due and MUST NOT be consumed while R3 is active.
+M02 remains terminal; M03 remains unmaterialized.
+
+## R3 principles already preserved from prior user decisions
+
+- No fixed small/medium/large project classes.
+- The LLM/planning process decides the appropriate number of Milestones and
+  Cards from the actual semantic decomposition.
+- PWv2.1 does not optimize wall-clock latency/time as a primary design target;
+  quality/correctness comes first. Performance/latency tuning may be evaluated
+  later (for example PWv2.2) from real use evidence.
+- Research evidence is not authority and cannot silently overwrite accepted
+  R2/P4 decisions.
+
+## R3-Q1 — Card semantic right-sizing
+
+Research finding:
+R2 already has strong decomposition dimensions but lacks an explicit primary
+decision function that says when a candidate Card is presumptively too broad.
+
+### Accepted direction
+
+The user accepted the current recommendation.
+
+PW should treat a Card as the **smallest meaningful execution-and-review
+ownership unit** that produces one coherent independently falsifiable outcome.
+
+A split is presumptively required when a candidate Card contains two or more
+separable acceptance, contract, invariant, or independently useful/consumable
+delivery outcomes such that:
+
+1. each can reach a valid independently verifiable state;
+2. GREEN on one can remain valid and useful even if another is RED; and
+3. each is substantial enough to justify its own execution/result/review
+   lifecycle.
+
+The split presumption is rebutted by concrete evidence of:
+
+- atomicity;
+- invalid intermediate state;
+- materially inseparable acceptance;
+- material coupling that makes separate ownership/review artificial.
+
+Different files, modules, architectural layers, tests, commands, tools or
+implementation steps do not by themselves establish separate Cards.
+
+Setup, scaffolding, configuration and documentation normally stay with the
+meaningful outcome that requires them unless they form an independently
+consumable prerequisite.
+
+This direction strengthens the R2 seam/decomposition model rather than
+replacing it:
+
+- Planning still owns `required_seam` / `preferred_seam` /
+  `illustrative`;
+- Execution Prep still owns exact JIT Card topology;
+- the new semantic Card invariant becomes the primary right-sizing rule;
+- risk-based topology challenge remains a second-order safeguard;
+- Card Review stays local and Milestone Review stays integration/composition
+  focused.
+
+Status: accepted exploratory R3 choice; not authority until R3 promotion.
