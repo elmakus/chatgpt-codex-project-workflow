@@ -1,8 +1,8 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02R-T02"
 attempt = "R01"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02R-T02_REVIEW_R01_2026-09-24.md"
 
 [subject]
 class = "git_blob"
@@ -17,4 +17,4 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/card
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Pending exact review is frozen for a fresh independent context. The context that materially produced the M02R-T02 implementation candidate is not eligible to issue this verdict."
+basis = "Fresh independent R01 review context; this context did not materially produce or repair the exact reviewed result or implementation candidate."
