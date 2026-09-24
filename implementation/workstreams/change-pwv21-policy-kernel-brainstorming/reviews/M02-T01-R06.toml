@@ -1,8 +1,8 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02-T01"
 attempt = "R06"
-verdict = "pending"
-evidence_path = ""
+verdict = "green"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02-T01_REVIEW_R06_2026-09-24.md"
 
 [subject]
 class = "git_blob"
@@ -17,4 +17,4 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/card
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Pending fresh independent review required for the repaired exact Result subject after R05 RED. The R05 correction context is ineligible because it materially repaired the implementation and persisted this Result subject."
+basis = "R06 independently evaluated the exact frozen Result subject, accepted M02 authority, the accepted-M01-to-M02 implementation range, exact implementation artifacts, schemas, regression coverage and exact CI/readback. This review context did not materially produce or repair the implementation subject and did not create or modify the reviewed Result subject."
