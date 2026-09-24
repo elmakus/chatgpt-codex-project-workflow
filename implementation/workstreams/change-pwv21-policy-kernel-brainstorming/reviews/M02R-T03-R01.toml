@@ -1,0 +1,20 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02R-T03"
+attempt = "R01"
+verdict = "pending"
+evidence_path = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "7316b3b39db64a7a58a5fac0344ce741dcb774af"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02R-T03.md"
+blob = "14d468a40f1553d6a7a0eed0649a4bc04f6c18e3"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T03.md"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Pending exact-subject review is reserved for a fresh independent context that did not materially produce or repair the result or implementation; no verdict has been issued."
