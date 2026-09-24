@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 49
+revision = 50
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -205,5 +205,19 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02R-T03"
 after_card = "M02R-T03"
-state = "satisfied"
+state = "consumed"
 condition = "After M02R-T03 is DONE with a durable GREEN-reviewed result, Execution Prep must read back that result and materialize the next smallest meaningful remaining M02R Card under P6 within the remaining required BOOT-B/C/D seams; BOOT-A completes with M02R-T03, and do not materialize M03 before all M02R required seams and Milestone review are GREEN."
+
+[[cards]]
+id = "M02R-T04"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T04.md"
+
+[[jit_triggers]]
+id = "after-M02R-T04"
+after_card = "M02R-T04"
+state = "waiting"
+condition = "After M02R-T04 is DONE with a durable GREEN-reviewed result, Execution Prep must read back that result and materialize the next smallest meaningful remaining M02R Card under P6 within the remaining required BOOT-B seams, then BOOT-C/D; do not materialize M03 before all M02R required seams and Milestone review are GREEN."
