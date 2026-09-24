@@ -1,0 +1,20 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02R-T01"
+attempt = "R02"
+verdict = "pending"
+evidence_path = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "811a9f14232870e8ee1f11e5a7ba04e7e87a1318"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02R-T01.md"
+blob = "88677517820f30f8c4943a71bec375573be22a1a"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T01.md"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Pending fresh independent review of the repaired exact subject. The context that performed the R01 bounded repair is not eligible to issue this verdict."
