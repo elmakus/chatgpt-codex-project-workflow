@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 93
+revision = 94
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -401,8 +401,22 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02R-T11"
 after_card = "M02R-T11"
-state = "satisfied"
+state = "consumed"
 condition = "After M02R-T11 is DONE with a durable GREEN-reviewed intentional live-consumer prerequisite result, Execution Prep must read it back and materialize the next smallest required BOOT-D Card for falsification-first/YAGNI Worker discipline (REQ-131/132). M03 remains unmaterialized until BOOT-D Card work and M02R Milestone review are GREEN."
+
+[[cards]]
+id = "M02R-T12"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T12.md"
+
+[[jit_triggers]]
+id = "after-M02R-T12"
+after_card = "M02R-T12"
+state = "waiting"
+condition = "After M02R-T12 is DONE with a durable GREEN-reviewed falsification-first Worker evidence result, Execution Prep must read it back and materialize the separate remaining BOOT-D Card for binding YAGNI scope, bounded post-GREEN refactor and non-absolute DRY (REQ-132). M02R Milestone Review and M03 remain unmaterialized until all BOOT-D Card work is terminal GREEN, then stop at the user audit-reconciliation checkpoint before Milestone Review."
 
 # Structured readback of the pre-materialization audit already recorded in
 # evidence/M02R-T05_EXECUTION_PREP_2026-09-25.md at commit 646f9eb4da680c27ec34b66a38fc2e0608aef463.
@@ -748,6 +762,56 @@ card_id = "M02R-T11"
 risk = "simple"
 triggers = []
 risk_basis = "One REQ-127 intentional live-consumer admission family with a prospective M03-style fixture, separate BOOT-D outcome and local Card Review; no required/preferred seam merge or milestone absorption."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# Structured readback of M02R-T12 pre-materialization audit in
+# evidence/M02R-T12_EXECUTION_PREP_2026-09-25.md at commit d7debff.
+[[sizing_audits]]
+card_id = "M02R-T12"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "meaningful-failing-baseline"
+kind = "invariant"
+statement = "Falsifiable accepted Card outcome begins from a meaningful failing automated or observable check before implementation."
+family = "worker-falsification-first"
+independently_verifiable = true
+independently_useful = false
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = false
+
+[[sizing_audits.outcomes]]
+id = "bounded-green-closure"
+kind = "contract"
+statement = "The in-scope implementation changes the earlier failing/observable check to verified GREEN without retrospective or ceremonial test claims."
+family = "worker-falsification-first"
+independently_verifiable = true
+independently_useful = false
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = false
+
+[sizing_audits.dimensions]
+independent_implementability = "A failing baseline without bounded GREEN and a GREEN claim without prior falsification are not independent outcomes; REQ-132 scope discipline is separately useful and remains T13."
+falsifiability_testability = "Real automated/observable RED baseline before implementation plus GREEN proof passes; retrospective, generic, absent or artificial checks reject."
+reviewability = "One local review covers REQ-131 evidence sequence without certifying T13 YAGNI/refactor/DRY or M02R Milestone integration."
+invariant_contract_family = "Pre-implementation falsification and GREEN closure form one truthful Worker evidence family; REQ-132 is separately reviewable."
+dependency_ordering = "Consumes exact GREEN-reviewed T11 result; T13 follows by JIT, then checkpoint before Milestone Review/M03."
+atomic_mutation_migration = "Prospective semantic evidence contract is independently useful, with historical valid results unchanged and no runtime identity migration."
+cross_surface_coupling = "Execution guidance and evidence validation share REQ-131; no coupling forces REQ-132 into this Card."
+
+[[topology_audits]]
+card_id = "M02R-T12"
+risk = "simple"
+triggers = []
+risk_basis = "One REQ-131 falsification-first Worker evidence family, with separate T13 REQ-132 outcome and local review; no required seam merge, preferred merge or milestone absorption."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
