@@ -479,15 +479,17 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source subjects: elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045
 - Independent-report frequency: 6 independent PWv2 source audits
 - Claimed invariant/requirement: STATE durable result recovery truth; EXECUTION/RECOVERY no-replay.
-- Shared core claim: Result reconciliation can be gated to in_progress while validators permit durable results on READY/blocked/planned states, allowing status to drive replay.
+- Shared core claim: Result reconciliation is status-gated to `in_progress` while validators permit result-bearing READY/blocked/planned Cards; the confirmed minimal vector is READY + valid durable result -> Execution Prep.
 - Distinct reproduction vectors: READY plus result routes Execution Prep; blocked plus result routes Execution; planned plus result sibling variant.
-- Existing reproduction artifacts: READY/blocked fixture scripts in source reports.
-- Source limitations: READY and blocked vectors may require different repairs even if state-coherence root is shared.
+- Existing reproduction artifacts: READY/blocked fixture scripts in source reports, including S016-F03, S023-F04 and S028-F04.
+- Source limitations: READY and blocked variants may require separate repair interactions; this verdict is anchored to the independently reproduced READY vector.
 - Current ownership hypothesis: `canonical_pw_v2`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H025.md`
+- Current candidate check: `persists` at `aa729e9a3b06af6e90a6884f8613629d6cd519f0`
 
 ## H026 — JIT lifecycle can be omitted from routing and terminal completeness
 
