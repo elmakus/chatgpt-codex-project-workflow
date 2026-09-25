@@ -1,15 +1,16 @@
 # Latest session handoff
 
-Date: 2026-09-24
+Date: 2026-09-25
 Repository: `elmakus/chatgpt-codex-project-workflow`
 Branch: `work/pwv21-policy-kernel-brainstorming`
+Durable pointer: `implementation/workstreams/change-pwv21-policy-kernel-brainstorming/TASK_BOARD.toml`
 
-## Safe boundary
+## Verified state
 
-The selected workstream was recovered from the exact R06 runtime-access blocker after fetching the consumer branch. The current runtime supplied a safe write path. M02R-T02 F1 was repaired in `elmakus/project_workflow_v2@b1934ede935ee0dc1a6365858c1390f8c62a9772`, independently reviewed R07 GREEN, and finalized DONE. Execution Prep then materialized and launched M02R-T03 as the last BOOT-A outcome.
+Task Board revision 104 has M02R-T01…T13 DONE; required Card reviews are GREEN. The last Card, M02R-T13, has product subject `elmakus/project_workflow_v2@07c724085de591c2a0bb51aaaae0ec23009880bf`, consumer result `results/M02R-T13.md@75033ebe450d602b7ffd1e36a44bd15db9704342:326c7a4d63df550be36e896d1b4d2473c660fd09`, and independent review `reviews/M02R-T13-R01.toml`. Its exact-head `sh scripts/test.sh` and two exact-head CI runs passed. Its own ModuleNotFoundError precheck was scaffolding, so no falsification-first self-record is claimed; `legacy_compatible` is the truthful disposition.
 
-M02R-T03 implementation is pushed at `elmakus/project_workflow_v2@736c55f32cc80f42b8e5c7d6aac80d8a9eb931a5`. Clean exact-head `bash scripts/test.sh` passed (246 tests); exact-head push run `36050562553` and PR run `36050567590` completed successfully; implementation QA was GREEN. The consumer result and evidence are pinned at commit `7316b3b39db64a7a58a5fac0344ce741dcb774af`, result blob `14d468a40f1553d6a7a0eed0649a4bc04f6c18e3`. A required independent Card review is frozen as pending R01 in `implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T03-R01.toml`; the Task Board is revision 46, M02R-T03 `in_progress`, with no terminal review verdict. All changes are committed and pushed at the safe handoff.
+M02R-T12 is likewise DONE with independent R01 GREEN. All earlier M02R Card attempts and exact result/review history remain in the Board and workstream files. The installed canonical router was used to select current obligations after the separate precedence hotfix; there was no replay of terminal M02 history or out-of-band audit branches.
 
-## Continuation
+## Stop and next action
 
-Use the current default branch of `elmakus/project_workflow_v2` as the workflow authority. Read its canonical `workflow/ROUTER.md` first, then consumer `PROJECT.md`, exact workstream and pointed records. Start from the pending R01 locator above. The next work is a fresh independent exact-subject M02R-T03 review; do not treat pre-result QA as that formal review. Keep R01 evidence/verdict and later Board finalization separate, preserving the exact subject and prior history. Do not materialize BOOT-B/C/D or M03 before router-directed transitions.
+The user requires an audit-reconciliation checkpoint before M02R Milestone Review or M03. Neither the Milestone Review nor M03 has been frozen/materialized, and M02R has not been declared milestone GREEN. Await the user's accumulated out-of-band audit findings, reconcile them under current PWV2 authority, then decide the exact next obligation from the canonical router and durable Board. Preserve the work branch and all untracked trajectory files.
