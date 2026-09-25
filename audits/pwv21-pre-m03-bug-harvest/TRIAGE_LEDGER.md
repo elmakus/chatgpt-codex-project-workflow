@@ -408,9 +408,12 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source limitations: Sources explicitly distinguish this from the exact serialization format of entry_subject.
 - Current ownership hypothesis: `canonical_pw_v2`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H021.md`
+- Current candidate check: `persists` at `003f8a9a7c12a21d0c73b07163e449b8ae63bad8`
 
 ## H022 — Definition can bind a Brainstorm revision not durably promoted
 
