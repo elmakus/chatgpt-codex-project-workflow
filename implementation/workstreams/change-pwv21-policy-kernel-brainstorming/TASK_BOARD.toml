@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 92
+revision = 93
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -382,7 +382,7 @@ condition = "After M02R-T10 is DONE with a durable GREEN-reviewed immutable hist
 
 [[cards]]
 id = "M02R-T11"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
@@ -401,7 +401,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02R-T11"
 after_card = "M02R-T11"
-state = "waiting"
+state = "satisfied"
 condition = "After M02R-T11 is DONE with a durable GREEN-reviewed intentional live-consumer prerequisite result, Execution Prep must read it back and materialize the next smallest required BOOT-D Card for falsification-first/YAGNI Worker discipline (REQ-131/132). M03 remains unmaterialized until BOOT-D Card work and M02R Milestone review are GREEN."
 
 # Structured readback of the pre-materialization audit already recorded in
