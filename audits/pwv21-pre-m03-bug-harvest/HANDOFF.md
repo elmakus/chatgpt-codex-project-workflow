@@ -3,24 +3,25 @@
 
 ## Latest technical triage
 
-- Batch completed: `H003 + H004`
+- Batch completed: `H005 + H006`
 - Batch candidate snapshot: `elmakus/project_workflow_v2@31764d82911de523e36d2de5c5d98ce7c3cedb18`
 - Original PWv2 subject for both candidates: `elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045`
-- H003 verdict: `CONFIRMED_MATERIAL`
-- H003 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H003.md`
-- H003 current-candidate status: `persists`
-- H003 checkpoint commit: `806b429e05faab7943101769c63475a3fa25b65d`
-- H004 verdict: `CONFIRMED_MATERIAL`
-- H004 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H004.md`
-- H004 current-candidate status: `persists`
-- Next READY item: `H005`
-- Next worker obligation: begin from `H005` and process only the next explicitly authorized batch. Do not infer authorization for later candidates from this handoff.
+- H005 verdict: `CONFIRMED_MATERIAL`
+- H005 current-candidate status: `persists`
+- H005 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H005.md`
+- H005 checkpoint commit: `9b9e855f6459d66776b85d379a1234a7a25669af`
+- H006 verdict: `CONFIRMED_MATERIAL`
+- H006 current-candidate status: `persists`
+- H006 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H006.md`
+- H006 checkpoint commit: `cd28ef909eeaae01c697117c5ee9530100dc6f41`
+- Next READY item: `H007`
+- Next worker obligation: begin from `H007` only when a later worker is explicitly authorized. This batch does not authorize H007.
 
 ## What was completed
 
 The first-stage out-of-band workspace was initialized from the exact active-workstream HEAD captured before branch creation. Both persisted aggregate reports were normalized without performing a broad new product audit, without repairing product code, and without mutating canonical Project Workflow state.
 
-All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were ingested. One clear semantic family was merged as **CROSS-SOURCE OVERLAP**: PWV2:C003 with M02R-T03:C02 (durable evidence locators accepted without proving the referenced artifact exists). This leaves 30 normalized harvest candidates. H001 through H004 have now been independently triaged and persisted; H003 and H004 are both `confirmed_material` / `reproduced` / `pending_repair`. H005+ remain untouched by this batch.
+All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were ingested. One clear semantic family was merged as **CROSS-SOURCE OVERLAP**: PWV2:C003 with M02R-T03:C02 (durable evidence locators accepted without proving the referenced artifact exists). This leaves 30 normalized harvest candidates. H001 through H006 have now been independently triaged and persisted; H005 and H006 are both `confirmed_material` / `reproduced` / `pending_repair`. H007+ remain untouched by this batch.
 
 ## Exact durable workspace state
 
@@ -59,15 +60,15 @@ These immutable subjects are different and must not be conflated.
 - M02R-T03 shadow classes ingested: 4
 - Cross-source merged semantic families: 1
 - Normalized harvest candidates: 30
-- READY reproduction items: 26
-- Completed reproduction items: 4
-- First READY item: `H005`
+- READY reproduction items: 24
+- Completed reproduction items: 6
+- First READY item: `H007`
 
 ## Next worker obligation
 
-The next READY item is **H005**. A later worker must read this handoff and queue first, verify H005 is still the first READY item, and then process only the candidate set explicitly authorized in that later worker's batch instruction. It must not treat this handoff as authorization to advance H006 or later.
+The next READY item is **H007**. A later worker must read this handoff and queue first, verify H007 is still the first READY item, and process only the candidate set explicitly authorized in that later worker's instruction. This completed H005+H006 batch does not authorize H007.
 
-The `31764d82911de523e36d2de5c5d98ce7c3cedb18` candidate SHA was frozen for the completed H003+H004 batch only; a later batch must resolve its own candidate snapshot according to its authorization instead of silently reusing this one.
+The `31764d82911de523e36d2de5c5d98ce7c3cedb18` candidate SHA is the immutable snapshot used for both H005 and H006 only; a later batch must resolve its own candidate snapshot according to its authorization.
 
 ## Prohibited next-worker actions
 
