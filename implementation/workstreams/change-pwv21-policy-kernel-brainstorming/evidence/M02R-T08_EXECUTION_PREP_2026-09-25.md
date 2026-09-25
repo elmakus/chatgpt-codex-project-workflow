@@ -1,0 +1,15 @@
+# M02R-T08 Execution Prep — BOOT-C materialization audit
+
+Date: 2026-09-25. Authority: accepted P6/Definition R3 and ADR-PWV21-007. Predecessor T07 result `results/M02R-T07.md@537707840509071fefdf57374010ba56172dec54:4c86131a0781c7fdabf2ff9f5e7f94097fca2aae` is independently GREEN at R01; `after-M02R-T07` is satisfied. The T07 implementation result at product `31764d82911de523e36d2de5c5d98ce7c3cedb18` preserves a late-oversize return. BOOT-C remains separate from BOOT-B and BOOT-D.
+
+## Seven-dimension decomposition audit
+
+- Independent implementability: five-class live-observation classification is usable before the downstream JIT gate exists. Tracker non-authority at this intake is the negative trust boundary of the same classification decision: a tracker-only claim cannot be promoted to a classified authorized mutation. Neither a free-standing tracker check without intake nor classification that trusts tracker approval is a valid independently consumable result. Affected-JIT gating (REQ-123/127) and immutable historical replay/corpus (REQ-125/126) can each remain RED while this classification is GREEN, so they stay downstream.
+- Falsifiability/testability: five positive class fixtures contrast with missing, ambiguous and evidence-free classifications and tracker-only attempts to approve scope, authorize repair, change authority or reset epochs. Existing terminal history remains unchanged.
+- Reviewability: one local Card Review can assess the classification and intake trust boundary without certifying downstream JIT policy or historical replay; M02R Milestone Review still owns composition.
+- Invariant/contract family: classification before authority mutation and untrusted tracker intake form one live-finding authority-boundary outcome. Affected-JIT reconciliation is a later transition outcome; immutable replay is a distinct history/regression outcome.
+- Dependency ordering: T08 consumes exact GREEN-reviewed T07 late-oversize result and transitive BOOT-A/B authority. T09 may consume this classification for affected-JIT gating; a later BOOT-C Card handles historical replay, then BOOT-D remains required.
+- Atomic mutation/migration: classification and its non-authorizing tracker guard land together so no newly classified observation can borrow tracker authority. No historical M02 mutation or accepted Definition/P6 revision occurs.
+- Cross-surface coupling: a small durable classification contract may touch state, Recovery, Execution Prep and tracker-facing checks. That coupling does not justify merging the downstream gate, historical corpus, BOOT-D, or Milestone Review.
+
+The two T08 facets are inseparable positive/negative sides of one intake authority boundary. No preferred or required seam is merged; the candidate does not absorb the milestone, cross multiple independently GREEN-able families, or substitute its review for Milestone Review. Its prelaunch topology is simple. Materialize only M02R-T08 as READY and retain a waiting trigger for the next BOOT-C outcome. M03 remains unmaterialized.
