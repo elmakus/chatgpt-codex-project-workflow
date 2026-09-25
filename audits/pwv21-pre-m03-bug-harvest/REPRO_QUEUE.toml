@@ -154,7 +154,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H016"
-status = "ready"
+status = "done"
 priority_basis = "authorization/prior-art bypass; independently rediscovered concrete repros"
 source_classes = ["PWV2:C022"]
 recommended_repro_surface = ["Intake prior-art validation", "Research result binding", "source repros"]
