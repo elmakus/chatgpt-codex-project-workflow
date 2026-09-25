@@ -24,7 +24,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H003"
-status = "ready"
+status = "done"
 priority_basis = "wrong-route and human-boundary risk; 13-way rediscovery"
 source_classes = ["PWV2:C007"]
 recommended_repro_surface = ["tools/router.py", "Research routing fixtures"]

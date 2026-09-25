@@ -55,9 +55,9 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source limitations: The reported effects differ and later reproduction may split one ordering issue into multiple owner-specific defects.
 - Current ownership hypothesis: `canonical_pw_v2`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
 
 ## H004 — DONE status can bypass result and required-review proof
 
