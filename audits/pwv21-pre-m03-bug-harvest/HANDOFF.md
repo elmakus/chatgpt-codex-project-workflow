@@ -8,15 +8,18 @@
 - H010 verdict: `CONFIRMED_MATERIAL`
 - H010 current-candidate status: `persists`
 - H010 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H010.md`
-- H010 checkpoint commit: `3a6ac9a30eec63de6dc4041b95d59b2057a5477b`
-- Next READY item: `H011`
-- Current worker obligation: process `H011` next, then H012; do not process H013.
+- H011 verdict: `REJECTED`
+- H011 current-candidate status: `unchanged_nondefect`
+- H011 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H011.md`
+- H011 checkpoint commit: `b27c80050add7927842878bac7f25c8d61946b38`
+- Next READY item: `H012`
+- Current worker obligation: process `H012` next; do not process H013.
 
 ## What was completed
 
 The first-stage out-of-band workspace was initialized from the exact active-workstream HEAD captured before branch creation. Both persisted aggregate reports were normalized without performing a broad new product audit, without repairing product code, and without mutating canonical Project Workflow state.
 
-All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were ingested. One clear semantic family was merged as **CROSS-SOURCE OVERLAP**: PWV2:C003 with M02R-T03:C02 (durable evidence locators accepted without proving the referenced artifact exists). This leaves 30 normalized harvest candidates. H001 through H010 have now been independently triaged and persisted. H010 is `confirmed_material` / `reproduced` / `pending_repair`. H011 is the next READY item in the authorized batch.
+All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were ingested. One clear semantic family was merged as **CROSS-SOURCE OVERLAP**: PWV2:C003 with M02R-T03:C02 (durable evidence locators accepted without proving the referenced artifact exists). This leaves 30 normalized harvest candidates. H001 through H011 have now been independently triaged and persisted. H010 is `confirmed_material` / `reproduced` / `pending_repair`; H011 is `rejected` / `rejected` / `no_repair`. H012 is the next READY item in the authorized batch.
 
 ## Exact durable workspace state
 
@@ -55,13 +58,13 @@ These immutable subjects are different and must not be conflated.
 - M02R-T03 shadow classes ingested: 4
 - Cross-source merged semantic families: 1
 - Normalized harvest candidates: 30
-- READY reproduction items: 20
-- Completed reproduction items: 10
-- First READY item: `H011`
+- READY reproduction items: 19
+- Completed reproduction items: 11
+- First READY item: `H012`
 
 ## Next worker obligation
 
-The current authorized worker must process **H011** next using frozen candidate `e75a261df0dea3170f3f9c9c0fd535fd055abd6f`, then H012. H013 and later items remain out of scope.
+The current authorized worker must process **H012** next using frozen candidate `e75a261df0dea3170f3f9c9c0fd535fd055abd6f`. H013 and later items remain out of scope.
 
 ## Prohibited next-worker actions
 
