@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 105
+revision = 106
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -888,7 +888,7 @@ atomicity_rationale = ""
 # evidence/M02Q-T01_EXECUTION_PREP_2026-09-25.md at commit b0d009d637558b21071c3ffe9c04eb3cb2516b5a.
 [[cards]]
 id = "M02Q-T01"
-status = "ready"
+status = "in_progress"
 
 [cards.contract]
 class = "task_card"
