@@ -74,7 +74,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H008"
-status = "ready"
+status = "done"
 priority_basis = "review-bypass/corrective-authority risk in current M02R scope"
 source_classes = ["M02R-T03:C04"]
 recommended_repro_surface = ["M02R-T03 review-history compatibility path", "S2-F1", "S4-F3"]
