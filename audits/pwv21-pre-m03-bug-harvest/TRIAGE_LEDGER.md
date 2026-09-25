@@ -149,9 +149,12 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source limitations: Both source reviews were negative-space/static analyses; one lacked a clean clone and one could not make a fresh clone because of DNS.
 - Current ownership hypothesis: `m02r_bootstrap`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H008.md`
+- Current candidate check: `persists` at `e75a261df0dea3170f3f9c9c0fd535fd055abd6f`
 
 ## H009 — Terminal implementation review attempt can be rewritten in place
 
