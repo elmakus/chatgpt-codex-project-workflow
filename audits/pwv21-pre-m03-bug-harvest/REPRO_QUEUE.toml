@@ -104,7 +104,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H011"
-status = "ready"
+status = "done"
 priority_basis = "review-lifecycle parity; direct representability counterexample"
 source_classes = ["PWV2:C024"]
 recommended_repro_surface = ["Review requirement schema", "tools/router.py", "repros/router_counterexamples.py F4"]
