@@ -558,18 +558,22 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 
 - Source classes:
   - PWV2:C014
-- Source subjects: elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045
+- Exact historical subject: elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045
+- Frozen current candidate: elmakus/project_workflow_v2@aa729e9a3b06af6e90a6884f8613629d6cd519f0
 - Independent-report frequency: 2 independent PWv2 source audits
 - Claimed invariant/requirement: AUTHORITY/WORKSTREAM class confinement; traversal/cross-workstream fail-closed rule.
-- Shared core claim: A locator may pass lexical class/workstream checks then resolve differently under host filesystem semantics while still remaining under the broad project root.
-- Distinct reproduction vectors: Windows backslash traversal; in-repository symlink escaping the declared semantic root.
-- Existing reproduction artifacts: repro_windows_locator.py and repro_symlink_locator.py.
-- Source limitations: Windows impact is platform-conditional; symlink vector was locally exercised. Mechanisms may need separate technical dispositions.
-- Current ownership hypothesis: `canonical_pw_v2`
-- Downstream relevance hypothesis: `unknown`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Observed historical behavior: locator validation uses `PurePosixPath` and raw prefix/exact-path checks, but `Reads._read_path()` resolves the accepted path with host filesystem semantics and only rechecks containment under the broad project/package root. A repository symlink can therefore keep an authority-looking lexical path while resolving outside that authority class root; on Windows a backslash-containing component can similarly evade POSIX `..` token checks and normalize across a workstream boundary.
+- Technical verdict: `CONFIRMED_MATERIAL`
+- Current-candidate status: `persists`
+- Current-candidate observation: both `_safe_relative_path()` and `Reads._read_path()` retain the same semantic structure at aa729e9a3b06af6e90a6884f8613629d6cd519f0; the latter still records the declared raw locator after resolution and verifies only broad-root containment. No symlink semantic-root or backslash negative test is present in the current state-contract suite.
+- Smallest relevant implementation boundary: locator class/workstream validation in `tools/state_contract.py::validate_locator()` plus filesystem realization in `tools/router.py::Reads._read_path()`; the resolved path must preserve the same semantic class/workstream confinement as the declared locator under supported host separator/symlink semantics.
+- Useful future regression-test shape: (1) authority locator `workflow/ALIAS.md` symlinked to an in-repo non-authority directory must fail closed; (2) Task Card locator containing Windows backslash traversal must fail before host resolution on Windows semantics; (3) valid in-root nonescaping paths and valid symlinks that remain inside the same allowed semantic root retain expected behavior if symlinks are intentionally supported.
+- Important limitations: the Windows traversal impact is platform-conditional. The verdict is independently anchored by the in-repository symlink vector, which does not require Windows. The newer exact Git blob reader solves separate immutable-subject readback paths and does not change the working-tree `Reads._read_path()` semantic-root behavior under test here.
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H029.md`
+- Current candidate check: `persists` at `aa729e9a3b06af6e90a6884f8613629d6cd519f0`
 
 ## H030 — Malformed TOML parse error can escape Recovery
 

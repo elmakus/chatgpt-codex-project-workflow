@@ -284,7 +284,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H029"
-status = "ready"
+status = "done"
 priority_basis = "authority path safety; two concrete platform/filesystem reproducers"
 source_classes = ["PWV2:C014"]
 recommended_repro_surface = ["locator validation/resolution", "repro_windows_locator.py", "repro_symlink_locator.py"]
