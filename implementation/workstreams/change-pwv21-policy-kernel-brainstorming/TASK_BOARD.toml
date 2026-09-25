@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 123
+revision = 124
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1093,7 +1093,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02Q-T04"
 after_card = "M02Q-T04"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T04 is DONE with an exact durable RF017 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-5 RF002 Brainstorm-to-Definition promotion-precedence seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -1128,6 +1128,73 @@ card_id = "M02Q-T04"
 risk = "simple"
 triggers = []
 risk_basis = "One parser-normalization invariant and one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q order-5 RF002 is semantically split: this Card owns the promoted-state
+# Definition entry gate; its JIT trigger owns the separate explicit-stop outcome.
+# Execution Prep evidence: evidence/M02Q-T05_EXECUTION_PREP_2026-09-25.md.
+[[cards]]
+id = "M02Q-T05"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T05.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T05"
+after_card = "M02Q-T05"
+state = "waiting"
+condition = "After M02Q-T05 is DONE with an exact durable promotion-entry result and GREEN independent Card Review, Execution Prep must materialize the second separate RF002 explicit-user-stop precedence Card from this real JIT allocation. Only after both RF002 outcomes are DONE/GREEN may P7 order-6 RF016 be materialized. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T05"
+decision = "split"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "rf002-promotion-entry"
+kind = "invariant"
+statement = "Definition entry requires Brainstorming state promoted, exact current revision authorization and matching Definition source."
+family = "rf002-promotion-entry"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+allocated_to = "card:M02Q-T05"
+
+[[sizing_audits.outcomes]]
+id = "rf002-explicit-stop-precedence"
+kind = "invariant"
+statement = "An explicit Brainstorming user stop retains owning precedence over downstream Definition and Planning dispatch."
+family = "rf002-explicit-stop-precedence"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+allocated_to = "jit:after-M02Q-T05"
+
+[sizing_audits.dimensions]
+independent_implementability = "Promoted-state Definition entry can be GREEN and useful while explicit-stop precedence remains RED; the latter can be corrected later without invalidating the former."
+falsifiability_testability = "RF002 B1/B2 distinguish forbidden active/ready authorization entry; A1/A2 independently distinguish stop shadowing; valid promoted controls remain separate."
+reviewability = "Each outcome has a distinct acceptance and fresh Card Review; composed RF002 behavior and M02Q milestone remain downstream obligations."
+invariant_contract_family = "Promotion eligibility and explicit-stop precedence are two separable invariant families, not file/module/test-step fragments."
+dependency_ordering = "RF002 follows exact DONE/GREEN RF017 in serial P7; after-M02Q-T05 allocates the second RF002 outcome before RF016."
+atomic_mutation_migration = "Promotion gate first yields a safe fail-closed intermediate state for contradictory records; no coupled atomic mutation or history rewrite requires one Card."
+cross_surface_coupling = "Brainstorming validator and Definition router entry couple within the first outcome; explicit-stop owner ordering remains independently useful and assigned to real JIT."
+
+[[topology_audits]]
+card_id = "M02Q-T05"
+risk = "simple"
+triggers = []
+risk_basis = "The split leaves only one invariant family in this Card and assigns the other to its own downstream JIT; no preferred-seam merge, multi-family Card, milestone absorption or review substitution."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
