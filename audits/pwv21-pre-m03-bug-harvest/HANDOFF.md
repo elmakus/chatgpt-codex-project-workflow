@@ -3,25 +3,20 @@
 
 ## Latest technical triage
 
-- Batch completed: `H005 + H006`
-- Batch candidate snapshot: `elmakus/project_workflow_v2@31764d82911de523e36d2de5c5d98ce7c3cedb18`
-- Original PWv2 subject for both candidates: `elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045`
-- H005 verdict: `CONFIRMED_MATERIAL`
-- H005 current-candidate status: `persists`
-- H005 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H005.md`
-- H005 checkpoint commit: `9b9e855f6459d66776b85d379a1234a7a25669af`
-- H006 verdict: `CONFIRMED_MATERIAL`
-- H006 current-candidate status: `persists`
-- H006 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H006.md`
-- H006 checkpoint commit: `cd28ef909eeaae01c697117c5ee9530100dc6f41`
-- Next READY item: `H007`
-- Next worker obligation: begin from `H007` only when a later worker is explicitly authorized. This batch does not authorize H007.
+- Batch in progress: `H007 + H008 + H009`
+- Frozen batch candidate snapshot: `elmakus/project_workflow_v2@e75a261df0dea3170f3f9c9c0fd535fd055abd6f`
+- H007 verdict: `CONFIRMED_MATERIAL`
+- H007 current-candidate status: `persists`
+- H007 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H007.md`
+- H007 checkpoint commit: `6e38fb0f242979a82c3134e8c697c7dd0481b1ad`
+- Next READY item: `H008`
+- Current worker obligation: process `H008` next, then `H009`; do not process H010.
 
 ## What was completed
 
 The first-stage out-of-band workspace was initialized from the exact active-workstream HEAD captured before branch creation. Both persisted aggregate reports were normalized without performing a broad new product audit, without repairing product code, and without mutating canonical Project Workflow state.
 
-All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were ingested. One clear semantic family was merged as **CROSS-SOURCE OVERLAP**: PWV2:C003 with M02R-T03:C02 (durable evidence locators accepted without proving the referenced artifact exists). This leaves 30 normalized harvest candidates. H001 through H006 have now been independently triaged and persisted; H005 and H006 are both `confirmed_material` / `reproduced` / `pending_repair`. H007+ remain untouched by this batch.
+All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were ingested. One clear semantic family was merged as **CROSS-SOURCE OVERLAP**: PWV2:C003 with M02R-T03:C02 (durable evidence locators accepted without proving the referenced artifact exists). This leaves 30 normalized harvest candidates. H001 through H007 have now been independently triaged and persisted. H007 is `confirmed_material` / `reproduced` / `pending_repair`. H008 is the next READY item in the authorized batch.
 
 ## Exact durable workspace state
 
@@ -60,15 +55,13 @@ These immutable subjects are different and must not be conflated.
 - M02R-T03 shadow classes ingested: 4
 - Cross-source merged semantic families: 1
 - Normalized harvest candidates: 30
-- READY reproduction items: 24
-- Completed reproduction items: 6
-- First READY item: `H007`
+- READY reproduction items: 23
+- Completed reproduction items: 7
+- First READY item: `H008`
 
 ## Next worker obligation
 
-The next READY item is **H007**. A later worker must read this handoff and queue first, verify H007 is still the first READY item, and process only the candidate set explicitly authorized in that later worker's instruction. This completed H005+H006 batch does not authorize H007.
-
-The `31764d82911de523e36d2de5c5d98ce7c3cedb18` candidate SHA is the immutable snapshot used for both H005 and H006 only; a later batch must resolve its own candidate snapshot according to its authorization.
+The current authorized worker must process **H008** next and then **H009**, strictly sequentially, using frozen candidate `e75a261df0dea3170f3f9c9c0fd535fd055abd6f`. H010 and later items remain out of scope.
 
 ## Prohibited next-worker actions
 
