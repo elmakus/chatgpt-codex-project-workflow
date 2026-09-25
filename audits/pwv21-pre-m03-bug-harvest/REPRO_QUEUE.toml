@@ -84,7 +84,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H009"
-status = "ready"
+status = "done"
 priority_basis = "review-history integrity and recovery risk; concrete reproducer"
 source_classes = ["PWV2:C026"]
 recommended_repro_surface = ["review-attempt validation", "tools/router.py", "repros/repro_findings.py F5"]
