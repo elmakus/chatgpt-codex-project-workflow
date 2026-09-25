@@ -94,7 +94,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H010"
-status = "ready"
+status = "done"
 priority_basis = "cross-source review/provenance integrity; high rediscovery plus exact M02R recurrence"
 source_classes = ["PWV2:C003", "M02R-T03:C02"]
 recommended_repro_surface = ["durable evidence readers", "tools/router.py", "M02R-T03 observation provenance helper"]
