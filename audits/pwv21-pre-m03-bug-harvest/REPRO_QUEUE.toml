@@ -194,7 +194,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H020"
-status = "ready"
+status = "done"
 priority_basis = "exact-subject integrity; universal 34-audit rediscovery"
 source_classes = ["PWV2:C001"]
 recommended_repro_surface = ["tools/state_contract.py", "tools/router.py", "Git subject/readback helpers"]
