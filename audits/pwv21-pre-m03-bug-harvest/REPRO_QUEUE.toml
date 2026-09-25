@@ -174,7 +174,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H018"
-status = "ready"
+status = "done"
 priority_basis = "current M02R Final/recovery integrity; 4-of-4 rediscovery"
 source_classes = ["M02R-T03:C01"]
 recommended_repro_surface = ["M02R-T03 Final reconciliation helper", "Task Board review_attempts history", "shadow source repros"]
