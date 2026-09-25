@@ -495,18 +495,22 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 
 - Source classes:
   - PWV2:C009
-- Source subjects: elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045
+- Exact historical subject: elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045
+- Frozen current candidate: elmakus/project_workflow_v2@aa729e9a3b06af6e90a6884f8613629d6cd519f0
 - Independent-report frequency: 8 independent PWv2 source audits
 - Claimed invariant/requirement: EXECUTION_PREP JIT waiting/satisfied/consumed; STATE Task Board; CLOSE end-of-approved-scope.
-- Shared core claim: Selector terminality may ignore JIT state; consumed may also lack proof of downstream Card materialization.
-- Distinct reproduction vectors: Satisfied trigger plus all Cards DONE routes Close; consumed trigger without downstream Card routes Close; absent consumed-by binding.
-- Existing reproduction artifacts: Multiple JIT fixture scripts in source reports.
-- Source limitations: Sources disagree on whether Close could legally bounce back; satisfied-trigger dispatch and consumed-proof may be separate defects.
-- Current ownership hypothesis: `canonical_pw_v2`
-- Downstream relevance hypothesis: `unknown`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Observed historical behavior: a Board with all materialized Cards DONE and a valid JIT trigger in `satisfied` state passes Board validation, but the selector computes terminality from Card statuses and routes Close without dispatching the satisfied JIT obligation. A sibling vector accepts `consumed` after a DONE predecessor/result without a durable consumed-by/materialized-downstream-Card binding.
+- Technical verdict: `CONFIRMED_MATERIAL`
+- Current-candidate status: `persists`
+- Current-candidate observation: at aa729e9a3b06af6e90a6884f8613629d6cd519f0, `validate_board()` still admits `satisfied` and `consumed` from predecessor completion alone (plus the newer bound late-oversize exception), while mechanical rule `PWV21-K012` depends only on `board.cards` and routes all-DONE Cards to Close. The later live-finding/JIT reconciliation branch is below K012 and does not give an ordinary satisfied JIT trigger precedence over terminal routing.
+- Smallest relevant implementation boundary: Task Board JIT lifecycle validation in `tools/state_contract.py::validate_board()` plus terminal selection in `tools/router.py` / mechanical predicate `board_all_cards_done` and rule `PWV21-K012`.
+- Useful future regression-test shape: (1) all-DONE Cards + one valid `satisfied` trigger must not route Close; (2) `consumed` without exact durable downstream materialization proof must be rejected or remain nonterminal; (3) a genuinely consumed trigger bound to the exact materialized downstream Card must preserve normal terminal routing only after no authorized obligation remains.
+- Important limitations: the verdict is anchored to the repeatedly rediscovered `satisfied`-trigger vector. The missing consumed-by proof is a sibling in the same lifecycle family and may require a separate implementation change. Source reports disagreed only about whether Close could theoretically bounce back; the production selector itself still hands Close an already-authorized satisfied trigger.
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H026.md`
+- Current candidate check: `persists` at `aa729e9a3b06af6e90a6884f8613629d6cd519f0`
 
 ## H027 — Close to end-of-scope stop may be disconnected from production selector
 

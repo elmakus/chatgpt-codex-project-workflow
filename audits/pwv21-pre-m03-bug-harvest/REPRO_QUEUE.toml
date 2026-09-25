@@ -254,7 +254,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H026"
-status = "ready"
+status = "done"
 priority_basis = "approved-scope completeness and replay/omission risk; eight-way rediscovery"
 source_classes = ["PWV2:C009"]
 recommended_repro_surface = ["JIT state validation", "tools/router.py", "Close handoff fixtures"]
