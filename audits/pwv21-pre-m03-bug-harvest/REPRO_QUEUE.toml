@@ -214,7 +214,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H022"
-status = "ready"
+status = "done"
 priority_basis = "authority lifecycle mismatch; concrete fixture"
 source_classes = ["PWV2:C018"]
 recommended_repro_surface = ["Brainstorming/Definition cross-binding", "tools/router.py", "source repro"]
