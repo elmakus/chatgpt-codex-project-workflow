@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 108
+revision = 109
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -888,7 +888,7 @@ atomicity_rationale = ""
 # evidence/M02Q-T01_EXECUTION_PREP_2026-09-25.md at commit b0d009d637558b21071c3ffe9c04eb3cb2516b5a.
 [[cards]]
 id = "M02Q-T01"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
@@ -907,7 +907,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02Q-T01"
 after_card = "M02Q-T01"
-state = "waiting"
+state = "satisfied"
 condition = "After M02Q-T01 is DONE with a durable exact result and GREEN Card Review, Execution Prep must read back the RF008 result and materialize the next P7 required seam RF007 without cross-RF merging. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
