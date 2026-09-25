@@ -114,7 +114,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H012"
-status = "ready"
+status = "done"
 priority_basis = "review-exemption integrity; concrete policy counterexample"
 source_classes = ["PWV2:C023"]
 recommended_repro_surface = ["Planning editorial_exempt validation", "Plan Review routing", "source repro"]
