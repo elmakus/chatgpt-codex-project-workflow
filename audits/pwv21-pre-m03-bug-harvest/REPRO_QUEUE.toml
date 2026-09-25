@@ -244,7 +244,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H025"
-status = "ready"
+status = "done"
 priority_basis = "replay/recovery integrity; six-way rediscovery"
 source_classes = ["PWV2:C010"]
 recommended_repro_surface = ["tools/state_contract.py", "tools/router.py", "result-reconciliation fixtures"]
