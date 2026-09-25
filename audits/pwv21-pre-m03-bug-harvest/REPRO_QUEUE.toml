@@ -234,7 +234,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H024"
-status = "ready"
+status = "done"
 priority_basis = "execution authority without bounded contract; fixture contradiction"
 source_classes = ["PWV2:C019"]
 recommended_repro_surface = ["tools/router.py", "Task Card parser", "repro_router_semantic_holes.py F4"]
