@@ -231,9 +231,12 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source limitations: Singleton; source notes editorial classification inherently needs semantic judgment not represented by the schema.
 - Current ownership hypothesis: `canonical_pw_v2`
 - Downstream relevance hypothesis: `unknown`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H012.md`
+- Current candidate check: `persists` at `e75a261df0dea3170f3f9c9c0fd535fd055abd6f`
 
 ## H013 — Close review reuse can treat acceptance-surface shrink as unchanged coverage
 
