@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 131
+revision = 132
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1232,7 +1232,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02Q-T06"
 after_card = "M02Q-T06"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T06 is DONE with exact durable RF002 stop-precedence result and GREEN independent Card Review, both split RF002 outcomes are complete; Execution Prep must read them back and materialize separate P7 order-6 RF016 SessionStart integrity seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -1267,6 +1267,59 @@ card_id = "M02Q-T06"
 risk = "simple"
 triggers = []
 risk_basis = "One stop-precedence invariant, one allocated RF002 outcome and separate Card review; no preferred-seam merge, multi-family Card, milestone absorption or material plan deviation."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q order-6 RF016 materialization consumes the exact DONE/GREEN RF002
+# stop-precedence result. Execution Prep evidence:
+# evidence/M02Q-T07_EXECUTION_PREP_2026-09-25.md.
+[[cards]]
+id = "M02Q-T07"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T07.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T07"
+after_card = "M02Q-T07"
+state = "waiting"
+condition = "After M02Q-T07 is DONE with an exact durable RF016 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-7 RF012 Definition-authority-key seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T07"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "sessionstart-router-integrity"
+kind = "invariant"
+statement = "SessionStart enables only exact manifest-bound canonical router bytes verified offline; marker-preserving corruption or missing/malformed/mismatched manifest/router fails closed."
+family = "sessionstart-router-integrity"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "Exact router-byte verification is independently useful after DONE/GREEN RF002; RF012 Definition-authority key remains a separate downstream Card."
+falsifiability_testability = "H028 two-marker-only and marker-preserving contradictory/truncated routers fail before correction; untouched exact-manifest router enables; missing/malformed/mismatch, escape and root controls discriminate."
+reviewability = "One Card Review covers SessionStart integrity and thin-bootstrap preservation without certifying RF012 authority binding or M02Q composition."
+invariant_contract_family = "One delivery-integrity invariant couples shipped manifest identity with offline router-byte verification; manifest/mismatch/escape cases are siblings, not separate outcomes."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T06 and transitive T05 completing both split RF002 outcomes in P7 serial order; RF012 follows by its JIT trigger."
+atomic_mutation_migration = "Manifest and SessionStart verification land together so no intermediate state enables a corrupted router; historical M01/M02/M02R and valid package behavior unchanged."
+cross_surface_coupling = "SessionStart hook, package manifest and delivery tests share one RF016-local invariant; no coupling requires merging RF012 or another RF seam."
+
+[[topology_audits]]
+card_id = "M02Q-T07"
+risk = "simple"
+triggers = []
+risk_basis = "One delivery-integrity invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
