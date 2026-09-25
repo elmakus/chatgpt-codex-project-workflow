@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 115
+revision = 116
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -969,7 +969,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02Q-T02"
 after_card = "M02Q-T02"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T02 is DONE with an exact durable RF007 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-3 RF005 Plan Review lifecycle seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -1004,6 +1004,58 @@ card_id = "M02Q-T02"
 risk = "simple"
 triggers = []
 risk_basis = "One exact-locator invariant family within one P7 required seam, with no preferred-seam merger, multiple independently useful families, milestone absorption, review substitution or material strategy deviation."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q order-3 RF005 materialization consumes the exact DONE/GREEN RF007
+# result. Execution Prep evidence: evidence/M02Q-T03_EXECUTION_PREP_2026-09-25.md.
+[[cards]]
+id = "M02Q-T03"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T03.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T03"
+after_card = "M02Q-T03"
+state = "waiting"
+condition = "After M02Q-T03 is DONE with an exact durable RF005 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-4 RF017 malformed-durable-TOML Recovery seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T03"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "plan-review-verdict-domain"
+kind = "invariant"
+statement = "Only pending, green and red Plan Review verdicts enter their exact frozen-plan route; every unsupported value fails closed."
+family = "plan-review-verdict-domain"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "Plan Review state validation and exhaustive route form one independently useful RF005 correction. RF017 and RF004 remain separate P7 required seams."
+falsifiability_testability = "H007 in_progress under frozen Planning must fail closed; pending, green and red retain distinct legal routes, while unknown and approved/editorial siblings cannot bypass."
+reviewability = "One Card Review covers Plan Review verdict validation and frozen-plan dispatch without certifying acceptance-key binding or M02Q composition."
+invariant_contract_family = "One Plan Review verdict-domain invariant couples accepted state values with their exhaustive owners; partial validation or partial dispatch is not a useful result."
+dependency_ordering = "Follows exact DONE/GREEN M02Q-T02 in P7 serial order despite no RF dependency; RF017 is next."
+atomic_mutation_migration = "Validator and router must agree in one accepted subject to prevent unsupported-state fallthrough; historical terminal records are not rewritten."
+cross_surface_coupling = "Plan Review state, router, policy predicate and lifecycle docs share one RF005-local invariant with no cross-RF merge."
+
+[[topology_audits]]
+card_id = "M02Q-T03"
+risk = "simple"
+triggers = []
+risk_basis = "One Plan Review verdict-domain family and one P7 required seam; no preferred-seam merge, multiple-family boundary, whole-milestone absorption, review substitution or material plan deviation."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
