@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 130
+revision = 131
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1213,7 +1213,7 @@ atomicity_rationale = ""
 # Execution Prep evidence: evidence/M02Q-T06_EXECUTION_PREP_2026-09-25.md.
 [[cards]]
 id = "M02Q-T06"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
@@ -1232,7 +1232,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02Q-T06"
 after_card = "M02Q-T06"
-state = "waiting"
+state = "satisfied"
 condition = "After M02Q-T06 is DONE with exact durable RF002 stop-precedence result and GREEN independent Card Review, both split RF002 outcomes are complete; Execution Prep must read them back and materialize separate P7 order-6 RF016 SessionStart integrity seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
