@@ -1,0 +1,458 @@
+[meta]
+source_repository = "elmakus/chatgpt-codex-project-workflow"
+source_branch = "audit/pwv21-pre-m03-bug-harvest"
+source_harvest_head = "7ff23a18e6966ece83eaf8bda45c8923e49791e8"
+original_terminal_items = 30
+confirmed_material = 28
+rejected = 2
+repair_family_count = 17
+must_reconcile_before_m03_count = 1
+can_defer_count = 7
+requires_checkpoint_readback_count = 9
+product_repair_performed = false
+canonical_workflow_state_modified = false
+active_pwv21_workstream_modified = false
+
+[[repair_family]]
+id = "RF001"
+title = "Card status must not outrank durable blocker/result/review truth"
+members = ["H001", "H004", "H025"]
+violated_invariant = "Task Board status is a derived lifecycle projection. It must not contradict or override a real blocker, a durable Card Result, or required exact review proof; durable blocker/result/review truth has routing precedence."
+affected_surfaces = ["workflow/STATE.md", "workflow/EXECUTION.md", "workflow/REVIEW.md", "TASK_BOARD", "tools/state_contract.py::validate_board", "tools/router.py Card routing"]
+likely_ownership = "canonical_pw_v2"
+depends_on = ["RF004", "RF006", "RF007"]
+materially_affects_m03 = true
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+proposed_corrective_card_boundary = "One narrow Card for Task Board cross-field coherence plus blocker/result/review-first routing. Do not fold review-contract redesign into this Card."
+regression_tests = ["in_progress + human_authority blocker must fail closed or route the real user stop, never ordinary Execution", "done without a valid Result and required exact GREEN review must be rejected/recovered", "ready/blocked/planned + durable Result must reconcile from durable truth or fail closed, never replay implementation", "positive controls preserve ordinary READY-without-result and valid reviewed DONE flows"]
+authority_ambiguity = "none"
+downstream_relevance_basis = "Directly affects M03 stale-result, recovery, and no-replay parity fixtures. The harvest only proves persistence at frozen candidate snapshots, so the future M02R→M03 checkpoint must read back the then-current implementation before opening repair."
+
+[[repair_family]]
+id = "RF002"
+title = "Brainstorm owner state must govern downstream Definition entry"
+members = ["H002", "H022"]
+violated_invariant = "A durable Brainstorm explicit stop remains authoritative, and Definition may consume only the exact Brainstorm revision that is durably promoted as well as promotion-authorized."
+affected_surfaces = ["workflow/BRAINSTORMING.md", "workflow/DEFINITION.md", "workflow/USER_STOP.md", "tools/state_contract.py::validate_brainstorm", "tools/router.py Brainstorm→Definition routing"]
+likely_ownership = "canonical_pw_v2"
+depends_on = []
+materially_affects_m03 = false
+reconciliation_classification = "CAN_DEFER"
+proposed_corrective_card_boundary = "One Brainstorm→Definition lifecycle Card: enforce promoted state and explicit-stop precedence at the cross-record routing boundary."
+regression_tests = ["explicit_user_stop plus otherwise-valid downstream Definition/Planning/Board must still stop", "active or ready_for_definition plus exact promotion authorization must not authorize Definition", "durably promoted exact revision with cleared/no stop remains a legal Definition source"]
+authority_ambiguity = "none"
+downstream_relevance_basis = "The current PWv2.1 workstream is already past Brainstorm/Definition and REQ-125 forbids reopening correctly terminal history merely to conform it. M03 does not intentionally consume a new Brainstorm transition."
+
+[[repair_family]]
+id = "RF003"
+title = "Generic Research dispatch must not preempt the owning workflow boundary"
+members = ["H003"]
+violated_invariant = "Research is non-authoritative and must return to its exact owner; generic Research routing cannot outrun a higher-precedence explicit/premium stop, Intake obligation, result reconciliation, or Board-owned continuation."
+affected_surfaces = ["workflow/RESEARCH.md", "workflow/ROUTER.md", "workflow/INTAKE.md", "workflow/DEFINITION.md", "Task Board Research continuation", "tools/router.py"]
+likely_ownership = "canonical_pw_v2"
+depends_on = ["RF009"]
+materially_affects_m03 = false
+reconciliation_classification = "CAN_DEFER"
+proposed_corrective_card_boundary = "One router-precedence Card that evaluates the owning boundary before generic Research dispatch and preserves exact Research return ownership."
+regression_tests = ["active Research plus due premium/explicit stop must honor the owner stop", "unrelated Research must not bypass Intake diagnosis/alignment ownership", "Board-bound Research must return to its exact owning continuation", "ordinary active Research remains routable when no higher-precedence owner boundary exists"]
+authority_ambiguity = "none"
+downstream_relevance_basis = "P6 M03 does not require a Research transition as part of its defined JIT/acceptance surface. Keep as durable regression debt unless the future checkpoint discovers that M03 itself has acquired a Research dependency."
+
+[[repair_family]]
+id = "RF004"
+title = "GREEN review must bind the exact current acceptance authority"
+members = ["H005", "H006"]
+violated_invariant = "A GREEN review is reusable only for the exact current acceptance surface: implementation review must bind the selected stable Task Card contract, and Plan Review must bind the current Definition/requirements/decisions authority rather than any merely well-shaped path."
+affected_surfaces = ["workflow/REVIEW.md", "workflow/PLAN_REVIEW.md", "templates/TASK_CARD.md", "DEFINITION.toml", "PLANNING.toml", "tools/state_contract.py review validators", "tools/router.py review consumption"]
+likely_ownership = "cross_cutting"
+depends_on = ["RF007", "RF012"]
+materially_affects_m03 = true
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+proposed_corrective_card_boundary = "One exact-acceptance-binding Card spanning implementation review and Plan Review, using the same canonical exact-authority key/readback contract rather than two unrelated ad hoc checks."
+regression_tests = ["same Card ID at an alternate acceptance path must not inherit GREEN", "same-path Task Card acceptance/test mutation must stale prior GREEN", "Plan Review acceptance path outside the current Definition authority set must reject", "exact current Task Card and exact current Definition authority positive cases remain GREEN-consumable"]
+authority_ambiguity = "none"
+downstream_relevance_basis = "M03 is the first authority-level dogfood and explicitly exercises fresh-review boundaries/shadow replay. Final applicability still depends on the then-current candidate implementation, so read back before creating corrective work."
+
+[[repair_family]]
+id = "RF005"
+title = "Plan Review verdict domain must be closed and exhaustively routed"
+members = ["H007"]
+violated_invariant = "Only canonical Plan Review lifecycle verdicts may be consumed, and RED semantics may be assigned only to an explicit RED terminal verdict; unsupported shared-review states must not fall through as RED."
+affected_surfaces = ["workflow/PLAN_REVIEW.md", "tools/state_contract.py::validate_plan_review", "shared review validator", "policy/mechanical_policy.json", "tools/router.py Planning correction path"]
+likely_ownership = "canonical_pw_v2"
+depends_on = []
+materially_affects_m03 = true
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+proposed_corrective_card_boundary = "One Plan Review state-domain Card: narrow validation or exhaustively route pending/green/red and fail closed for every other state."
+regression_tests = ["pending routes to Plan Review", "green routes to GREEN consumption", "red routes to RED correction", "in_progress or any unsupported verdict never receives RED authority and fails closed or follows an explicitly authorized active-review path"]
+authority_ambiguity = "none"
+downstream_relevance_basis = "A pre-M03 reconciliation may itself require Planning/Plan Review, and M03 exercises review boundaries. Because the active implementation may have changed since the harvest snapshot, this is a checkpoint-readback item."
+
+[[repair_family]]
+id = "RF006"
+title = "Review history must be immutable, provenance-backed, and complete"
+members = ["H008", "H009", "H018"]
+violated_invariant = "Review history is append-only durable truth: terminal attempts cannot be rewritten, legacy treatment must be proven by durable historicity rather than schema shape, and current Board locators cannot truncate previously durable attempts/observations from canonical history."
+affected_surfaces = ["workflow/REVIEW.md", "Task Board review_attempts", "tools/state_contract.py::validate_review_history", "tools/router.py review loading", "tools/close_contract.py observation reconciliation", "M02R review/observation closure"]
+likely_ownership = "cross_cutting"
+depends_on = ["RF007"]
+materially_affects_m03 = true
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+proposed_corrective_card_boundary = "One review-history identity/completeness Card: establish immutable attempt identity, durable legacy provenance, and append-only complete history readback consumed by Final observation reconciliation."
+regression_tests = ["newly authored legacy-shaped R01 RED cannot manufacture historical exemption", "terminal R01 RED rewritten in place to GREEN is rejected; R01 RED + appended valid R02 GREEN is legal", "removing a previously durable R01 locator from the current Board cannot make its open observation disappear", "genuinely migrated historical attempt with authorized durable provenance remains compatible"]
+authority_ambiguity = "If accepted authority does not already define a durable legacy cutoff/provenance representation, that choice must return to Definition/Planning; implementation must not invent a historical cutoff."
+downstream_relevance_basis = "M02R review convergence and durable observation closure are explicit prerequisites for M03 dogfood. Persistence was proved only at frozen candidate snapshots, so the future checkpoint must verify the current history implementation before repair."
+
+[[repair_family]]
+id = "RF007"
+title = "A locator is not proof until the actual target is resolved and identity-checked"
+members = ["H010", "H020", "H029"]
+violated_invariant = "Workflow proof locators must resolve to real bytes that still satisfy their semantic class/workstream confinement and, when an immutable Git subject is declared, match the exact repository/commit/path/blob identity actually consumed."
+affected_surfaces = ["locator validation", "tools/router.py Reads", "tools/execution_contract.py evidence refs", "READY dependency refresh", "Git exact-subject readback", "filesystem semantic-root confinement"]
+likely_ownership = "cross_cutting"
+depends_on = []
+materially_affects_m03 = true
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+proposed_corrective_card_boundary = "One reusable locator/readback foundation Card: resolve existence, semantic root and exact Git object identity before any consumer treats a locator/declaration as workflow proof."
+regression_tests = ["dangling result/review/observation evidence locator fails before consumption", "same-path dependency bytes changed while commit/blob declarations stay unchanged fails READY refresh", "authority/Card symlink resolving outside its declared semantic root fails before bytes are consumed", "Windows-style backslash traversal is rejected under supported host semantics", "positive exact target/readback cases remain accepted"]
+authority_ambiguity = "none; the serialization/helper choice may remain an implementation detail under accepted exact-subject and fail-closed semantics."
+downstream_relevance_basis = "This is directly on M03's Git-alone recovery, portability, stale-result and evidence-locking acceptance path. The future checkpoint must test the then-current resolver/readback behavior rather than assume the older snapshot still applies."
+
+[[repair_family]]
+id = "RF008"
+title = "editorial_exempt needs authority-owned proof, not self-attestation"
+members = ["H012"]
+violated_invariant = "Plan Review may be skipped only for a genuinely editorial/mechanical change that preserves strategy, milestone structure, requirement coverage and accepted gates, with proof bound to the exact prior and changed plan subjects."
+affected_surfaces = ["workflow/PLANNING.md", "workflow/PLAN_REVIEW.md", "Planning authority", "editorial_exempt validation"]
+likely_ownership = "authority_decision"
+depends_on = []
+materially_affects_m03 = true
+reconciliation_classification = "MUST_RECONCILE_BEFORE_M03"
+proposed_corrective_card_boundary = "Do not create an implementation Card first. Return the proof rule to Definition/Planning, accept the durable old/new-subject classification mechanism, then materialize one narrow enforcement Card if implementation work remains."
+regression_tests = ["pure editorial change with accepted durable classification bound to exact old/new subjects may reuse the prior review", "strategy/milestone/requirement/gate change must force a new material Planning/Plan Review cycle", "new plan blob plus only self-authored 'wording only' prose must fail closed", "stale or unbound exemption proof must fail closed"]
+authority_ambiguity = "Authority ambiguity is material: the accepted semantics define what may be exempt but do not select the durable proof mechanism. That mechanism must be accepted by Definition/Planning rather than silently chosen by implementation."
+downstream_relevance_basis = "REQ-127 requires corrected authority and Planning/review gates before M03 is materialized. This is therefore the one unconditional pre-M03 authority reconciliation family in this package."
+
+[[repair_family]]
+id = "RF009"
+title = "Research provenance and return ownership must be exact"
+members = ["H014", "H016"]
+violated_invariant = "A Research result must be durably bound to its exact origin role/subject and exact return owner, and Intake prior-art completion must reference the actual consumed/applied Research result rather than an arbitrary non-empty string."
+affected_surfaces = ["workflow/RESEARCH.md", "workflow/INTAKE.md", "RESEARCH.toml", "INTAKE.toml", "Task Board Research ownership", "tools/state_contract.py", "tools/router.py"]
+likely_ownership = "canonical_pw_v2"
+depends_on = ["RF007"]
+materially_affects_m03 = false
+reconciliation_classification = "CAN_DEFER"
+proposed_corrective_card_boundary = "One Research referential-integrity Card: exact origin↔return-target binding plus exact prior-art-result provenance consumed by Intake/Board owners."
+regression_tests = ["origin subject and return target pointing at a different/nonexistent Card fails closed", "forged diagnosis_prior_art_result without matching applied Research result is rejected", "completed Research returns only to the exact durable owner and exact result binding"]
+authority_ambiguity = "none"
+downstream_relevance_basis = "The accepted M03 plan does not require Research as part of its materialization or acceptance path. Preserve these failures as regression debt and reconcile before the first downstream stage that actually consumes the affected Research flows."
+
+[[repair_family]]
+id = "RF010"
+title = "Issue alignment cannot precede a concrete repair subject"
+members = ["H015"]
+violated_invariant = "Issue Intake remains diagnosis-owned until a concrete repair outcome/subject exists and required pre-repair diagnosis obligations are complete; an empty repair subject cannot become a human alignment stop."
+affected_surfaces = ["workflow/INTAKE.md", "INTAKE.toml", "tools/router.py issue_alignment", "workflow/USER_STOP.md"]
+likely_ownership = "canonical_pw_v2"
+depends_on = ["RF009"]
+materially_affects_m03 = false
+reconciliation_classification = "CAN_DEFER"
+proposed_corrective_card_boundary = "One Intake issue-lifecycle Card: gate issue_alignment on a concrete repair subject plus completed exact diagnosis/prior-art proof."
+regression_tests = ["pending issue alignment with empty repair_subject remains in Intake diagnosis and does not stop the user", "concrete repair subject with incomplete prior-art proof remains in Intake", "concrete subject plus completed exact diagnosis proof may reach the authorized alignment stop"]
+authority_ambiguity = "none"
+downstream_relevance_basis = "M03 is continuation of an already-defined change workstream, not a new issue-intake flow. REQ-123 therefore does not make this an M03 blocker."
+
+[[repair_family]]
+id = "RF011"
+title = "Recovery/cleanup completion proof must be derived, not caller-attested"
+members = ["H017", "H019"]
+violated_invariant = "Recovery and Final cleanup completeness must be established from the canonical mandatory durable package and exact cleanup subject/evidence/independent review, never from caller-supplied empty required sets, shape-only identities, non-empty strings or booleans."
+affected_surfaces = ["workflow/RECOVERY.md", "workflow/CLOSE.md", "tools/close_contract.py recovery verification", "cleanup-work validation", "Final reconciliation"]
+likely_ownership = "cross_cutting"
+depends_on = ["RF006", "RF007"]
+materially_affects_m03 = false
+reconciliation_classification = "CAN_DEFER"
+proposed_corrective_card_boundary = "One Close/Recovery proof-derivation Card: derive the mandatory package and cleanup proof from durable state using exact readback; remove self-attested completeness inputs from authority decisions."
+regression_tests = ["required_artifacts=[] and present_artifacts=[] cannot certify source-ref-independent recovery", "fabricated 40-hex cleanup subject, dangling evidence and independent_review_green=true cannot unblock Final", "real cleanup subject + real evidence + exact independent GREEN review + correct candidate coverage succeeds"]
+authority_ambiguity = "If the accepted recovery authority does not fully enumerate the mandatory source-ref-independent package, that package definition must return to Definition/Planning before implementation fills the gap."
+downstream_relevance_basis = "These findings sit on source-ref cleanup/Final completion surfaces planned for M07, not M03's disposable runtime/helper-state recovery. They should not block M03 merely because they exist."
+
+[[repair_family]]
+id = "RF012"
+title = "Planning must be fresh to the current Definition authority"
+members = ["H021"]
+violated_invariant = "An approved Planning/Plan Review/premium chain may be reused only when its entry authority exactly matches the current Definition revision and accepted requirements/decision authority; upstream Definition change makes the old cycle stale."
+affected_surfaces = ["DEFINITION.toml", "PLANNING.toml", "PLAN_REVIEW.toml", "tools/state_contract.py Definition/Planning validators", "tools/router.py Planning entry/freshness"]
+likely_ownership = "canonical_pw_v2"
+depends_on = ["RF007"]
+materially_affects_m03 = true
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+proposed_corrective_card_boundary = "One Definition→Planning freshness Card using a durable exact authority key shared by Planning, Plan Review and router freshness checks."
+regression_tests = ["valid R1 Definition + approved R1 Planning baseline remains executable", "change only current Definition to R2 while old Planning stays internally valid -> fail closed/re-enter Planning", "change accepted requirements/decision authority under the current Definition key -> stale old Planning", "new Planning/review/premium cycle bound to the new exact Definition authority becomes legal"]
+authority_ambiguity = "none"
+downstream_relevance_basis = "M03 materialization must be governed by the corrected current Definition/Planning authority. The future checkpoint must verify whether the current candidate already has this freshness binding."
+
+[[repair_family]]
+id = "RF013"
+title = "Execution authority and Card Result require semantic validity, not mere presence"
+members = ["H023", "H024"]
+violated_invariant = "Execution may start only from a valid stable Task Card contract, and a durable Card Result may become recovery truth only after semantically successful tests/readback and the rest of the accepted result contract; readability or non-empty prose is insufficient."
+affected_surfaces = ["templates/TASK_CARD.md", "templates/CARD_RESULT.md", "tools/state_contract.py::parse_task_card", "tools/execution_contract.py::parse_card_result", "workflow/EXECUTION.md", "workflow/EXECUTION_PREP.md", "tools/router.py active/result branches"]
+likely_ownership = "canonical_pw_v2"
+depends_on = ["RF007"]
+materially_affects_m03 = true
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+proposed_corrective_card_boundary = "One execution/result semantic-validation Card: validate the stable Card before recovered Execution and use a structured success predicate before a Result can authorize reconciliation/review/no-replay recovery."
+regression_tests = ["active result-less malformed/truncated Task Card routes Recovery, never Execution", "Card Result with explicit failed tests/readback cannot route result_reconciliation/review/finalization", "complete stable Card + successful structured result preserves normal Execution and result reconciliation", "retain separate exact-subject/evidence-readback regressions from RF007"]
+authority_ambiguity = "No policy change is required if a machine-readable success representation can be introduced without changing accepted semantics; do not use substring heuristics as a substitute for a structured contract."
+downstream_relevance_basis = "M03 explicitly revalidates M01/M02 outputs, exercises stale results and helper-less recovery, and requires Git state alone to reconstruct the legal continuation. Current implementation applicability must be read back."
+
+[[repair_family]]
+id = "RF014"
+title = "JIT lifecycle must participate in terminality and prove materialization"
+members = ["H026"]
+violated_invariant = "A satisfied JIT trigger is an already-authorized Execution Prep obligation and therefore prevents Close; a consumed trigger must carry exact proof of the downstream Card/materialization that consumed it."
+affected_surfaces = ["workflow/EXECUTION_PREP.md", "Task Board JIT records", "tools/state_contract.py::validate_board", "policy/mechanical_policy.json PWV21-K012", "tools/policy_kernel.py board_all_cards_done", "tools/router.py terminal dispatch"]
+likely_ownership = "canonical_pw_v2"
+depends_on = ["RF001", "RF013"]
+materially_affects_m03 = true
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+proposed_corrective_card_boundary = "One JIT-terminality Card: make pending/satisfied JIT obligations part of terminal completeness and require exact consumed-by/materialized-downstream binding."
+regression_tests = ["all current Cards DONE + satisfied trigger + no downstream Card must not route Close", "consumed trigger without exact downstream materialization evidence fails closed", "exact consumed-by binding plus terminal downstream Cards restores Close eligibility", "all-DONE with no pending JIT obligation remains a valid Close candidate"]
+authority_ambiguity = "none"
+downstream_relevance_basis = "M03 is explicitly the first downstream JIT dogfood of the R2+R3 decomposition rules, so this family materially affects the M02R→M03 boundary if it still exists. Read back the then-current candidate before repair."
+
+[[repair_family]]
+id = "RF015"
+title = "Close continuation must be connected to the production selector"
+members = ["H027"]
+violated_invariant = "All Cards DONE routes into Close, but durable approved-scope completion with no next authorized obligation must subsequently produce the real end_of_scope_stop through the production selector and USER_STOP contract rather than loop on Close forever."
+affected_surfaces = ["workflow/CLOSE.md", "workflow/ROUTER.md", "tools/close_contract.py::close_continuation", "tools/router.py terminal dispatch", "workflow/USER_STOP.md"]
+likely_ownership = "canonical_pw_v2"
+depends_on = ["RF011", "RF014"]
+materially_affects_m03 = false
+reconciliation_classification = "CAN_DEFER"
+proposed_corrective_card_boundary = "One Close-composition Card that gives the selector durable Close-completion input/readback and emits end_of_scope_stop/USER_STOP when the oracle says true end."
+regression_tests = ["first all-DONE entry routes Close", "after canonical durable Close-completion evidence, re-entry emits stop/end_of_scope_stop and reads USER_STOP", "remaining authorized obligation continues deterministically", "explicit authorization gate produces authorization stop rather than end-of-scope stop"]
+authority_ambiguity = "none"
+downstream_relevance_basis = "P6 places full Close integration in M07. This should remain regression debt unless an earlier milestone explicitly begins consuming true-end Close semantics."
+
+[[repair_family]]
+id = "RF016"
+title = "SessionStart must verify canonical router integrity beyond marker strings"
+members = ["H028"]
+violated_invariant = "The runtime bootstrap may advertise an installed router as canonical only when the installed authority bytes/package identity are valid; preserving two marker strings cannot make semantically destroyed or stale content canonical."
+affected_surfaces = ["hooks/session-start.py::canonical_router", "skills/project_workflow_v2/SKILL.md", "workflow/ROUTER.md delivery", "SessionStart tests/package integrity"]
+likely_ownership = "canonical_pw_v2"
+depends_on = []
+materially_affects_m03 = false
+reconciliation_classification = "CAN_DEFER"
+proposed_corrective_card_boundary = "One delivery-integrity Card for SessionStart canonical-router verification and marker-preserving corruption tests; keep workflow semantics in the router, not the bootstrap."
+regression_tests = ["two-marker-only ROUTER.md must produce blocking package error", "marker-preserving contradictory/truncated router must fail", "if digest/manifest identity is used, one-byte mutation fails", "untouched valid installed package remains enabled"]
+authority_ambiguity = "none; the integrity mechanism is an implementation choice as long as malformed/stale authority fails closed."
+downstream_relevance_basis = "This is primarily the M06 runtime/handoff delivery surface. M03 acceptance intentionally reconstructs from canonical Git/contracts and does not require SessionStart package certification."
+
+[[repair_family]]
+id = "RF017"
+title = "Malformed durable TOML must deterministically route Recovery"
+members = ["H030"]
+violated_invariant = "Syntactically invalid durable workflow state is an invalid binding and must fail closed to Recovery; parser exceptions must never escape the production selector as uncontrolled runtime errors."
+affected_surfaces = ["tools/state_contract.py::read_toml/read_project", "tools/router.py exception boundaries", "workflow/RECOVERY.md", "all selector-read TOML records"]
+likely_ownership = "canonical_pw_v2"
+depends_on = []
+materially_affects_m03 = true
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+proposed_corrective_card_boundary = "One parser-normalization Card: normalize TOML decode failures at the durable-state read boundary (or exhaustively catch them) so every selector-owned TOML surface returns deterministic Recovery."
+regression_tests = ["malformed WORKSTREAM/Intake/Research/Definition/Planning/Plan Review/TASK_BOARD/review/blocker TOML each returns recovery_boundary instead of raising", "semantic-invalid but syntactically valid TOML keeps the existing ValidationError recovery behavior", "valid TOML control paths are unchanged"]
+authority_ambiguity = "none"
+downstream_relevance_basis = "M03 requires parity disagreements/invalid canonical state to fail closed to Recovery. Whether this still needs repair must be established against the future current implementation."
+
+[[rejected_no_repair]]
+id = "H011"
+disposition = "REJECTED / NO_REPAIR"
+reason = "Stable Task Card review requirement 'recommended' is currently the durable activation surface; the claimed missing activation state was not established as a defect."
+
+[[rejected_no_repair]]
+id = "H013"
+disposition = "REJECTED / NO_REPAIR"
+reason = "Close review reuse for a current acceptance subset is explicitly permitted when stronger prior GREEN coverage and compatibility conditions hold."
+
+[[mapping]]
+h = "H001"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF001"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H002"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF002"
+reconciliation_classification = "CAN_DEFER"
+
+[[mapping]]
+h = "H003"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF003"
+reconciliation_classification = "CAN_DEFER"
+
+[[mapping]]
+h = "H004"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF001"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H005"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF004"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H006"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF004"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H007"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF005"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H008"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF006"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H009"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF006"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H010"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF007"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H011"
+disposition = "REJECTED / NO_REPAIR"
+reconciliation_classification = "NO_REPAIR"
+
+[[mapping]]
+h = "H012"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF008"
+reconciliation_classification = "MUST_RECONCILE_BEFORE_M03"
+
+[[mapping]]
+h = "H013"
+disposition = "REJECTED / NO_REPAIR"
+reconciliation_classification = "NO_REPAIR"
+
+[[mapping]]
+h = "H014"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF009"
+reconciliation_classification = "CAN_DEFER"
+
+[[mapping]]
+h = "H015"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF010"
+reconciliation_classification = "CAN_DEFER"
+
+[[mapping]]
+h = "H016"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF009"
+reconciliation_classification = "CAN_DEFER"
+
+[[mapping]]
+h = "H017"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF011"
+reconciliation_classification = "CAN_DEFER"
+
+[[mapping]]
+h = "H018"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF006"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H019"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF011"
+reconciliation_classification = "CAN_DEFER"
+
+[[mapping]]
+h = "H020"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF007"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H021"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF012"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H022"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF002"
+reconciliation_classification = "CAN_DEFER"
+
+[[mapping]]
+h = "H023"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF013"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H024"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF013"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H025"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF001"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H026"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF014"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H027"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF015"
+reconciliation_classification = "CAN_DEFER"
+
+[[mapping]]
+h = "H028"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF016"
+reconciliation_classification = "CAN_DEFER"
+
+[[mapping]]
+h = "H029"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF007"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
+[[mapping]]
+h = "H030"
+disposition = "REPAIR_FAMILY"
+repair_family = "RF017"
+reconciliation_classification = "REQUIRES_CHECKPOINT_READBACK"
+
