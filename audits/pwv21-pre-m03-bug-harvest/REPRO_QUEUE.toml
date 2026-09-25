@@ -264,7 +264,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H027"
-status = "ready"
+status = "done"
 priority_basis = "finalization semantics; direct helper-selector parity check"
 source_classes = ["PWV2:C020"]
 recommended_repro_surface = ["tools/router.py", "Close continuation helper", "repros/repro_findings.py F04"]

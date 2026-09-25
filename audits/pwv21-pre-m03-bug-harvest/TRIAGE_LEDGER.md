@@ -516,18 +516,22 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 
 - Source classes:
   - PWV2:C020
-- Source subjects: elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045
+- Exact historical subject: elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045
+- Frozen current candidate: elmakus/project_workflow_v2@aa729e9a3b06af6e90a6884f8613629d6cd519f0
 - Independent-report frequency: 1 independent PWv2 source audit
 - Claimed invariant/requirement: ROUTER Close/end-of-scope semantics; CLOSE true-end helper; USER_STOP.
-- Shared core claim: All-DONE selector may repeatedly return route/close without a production path consuming close_continuation into a real end_of_scope_stop.
-- Distinct reproduction vectors: Call select_route twice on unchanged all-DONE state; call close_continuation separately and compare outputs.
-- Existing reproduction artifacts: repros/repro_findings.py F04.
-- Source limitations: Singleton, high-to-moderate confidence; module separation may be intentional and later integration may own composition.
-- Current ownership hypothesis: `canonical_pw_v2`
-- Downstream relevance hypothesis: `can_be_reconciled_later_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Observed historical behavior: all-DONE Task Board state routes `select_route()` to `route/close`. Re-running unchanged durable state repeats `route/close`. `tools/close_contract.py::close_continuation()` can independently derive `end_of_scope_stop`, but the production selector neither imports/calls it nor accepts durable Close-completion inputs that can turn the documented Close continuation into a real selector stop.
+- Technical verdict: `CONFIRMED_MATERIAL`
+- Current-candidate status: `persists`
+- Current-candidate observation: `PWV21-K012` still maps all-DONE `board.cards` to `route/close`; current `tools/router.py` contains no `close_continuation` or `end_of_scope_stop` path. Current `tools/close_contract.py` still returns `end_of_scope_stop` only as a separate helper result, and current tests exercise the helper independently rather than an end-to-end selector transition.
+- Smallest relevant implementation boundary: the boundary between `tools/router.py` / `PWV21-K012` and `tools/close_contract.py::close_continuation()`, including representation/readback of durable Close completion and conversion to a real `RouteResult(stop, end_of_scope_stop)` that loads USER_STOP.
+- Useful future regression-test shape: drive one fixture from all-DONE -> Close ownership -> durable Close completion -> the same production routing entrypoint returning a real `end_of_scope_stop`; assert unchanged pre-completion state continues Close; assert an authorized remaining obligation prevents the stop.
+- Important limitations: singleton source finding. The module split could be intentional only if another production composition layer is the documented owner of Close continuation, but no such selector integration or durable input path is present in the exact historical/current production router inspected here.
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H027.md`
+- Current candidate check: `persists` at `aa729e9a3b06af6e90a6884f8613629d6cd519f0`
 
 ## H028 — SessionStart can accept semantically destroyed router content if markers survive
 
