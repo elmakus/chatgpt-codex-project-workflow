@@ -368,9 +368,12 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source limitations: This class partially touches general exact-subject and evidence-existence themes but is retained separately because its semantic claim is the composite cleanup proof contract.
 - Current ownership hypothesis: `m02r_bootstrap`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H019.md`
+- Current candidate check: `persists` at `003f8a9a7c12a21d0c73b07163e449b8ae63bad8`
 
 ## H020 — Declared immutable Git subject can differ from consumed bytes
 
