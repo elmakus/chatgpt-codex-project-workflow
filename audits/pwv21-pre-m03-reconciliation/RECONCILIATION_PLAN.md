@@ -10,13 +10,21 @@
 - Rejected / no repair: **2** (`H011`, `H013`)
 - Resulting semantic repair families: **17**
 - Family classifications: **1 MUST_RECONCILE_BEFORE_M03 / 7 CAN_DEFER / 9 REQUIRES_CHECKPOINT_READBACK**
+- User-selected resolution policy: **QUALITY_FIRST_PRE_M03**
+- User resolution target: `resolve_before_m03_if_still_applicable`
+- Checkpoint applicability readback under this policy: **17 / 17 repair families**
+- Authority-first families: **1** (`RF008`)
 - Product repair performed in this reconciliation workspace: **no**
 
 ## Reconciliation rule used
 
-PWV21-REQ-122..127 are applied as the boundary rule: classify each live finding before authority mutation; reconcile only findings that materially affect the next downstream authority/topology/semantics; keep trackers non-authoritative; never reopen correctly terminal historical Cards/Milestones merely to conform history; preserve the historical failures as regression fixtures; and do not materialize M03 until the corrected authority plus required Planning/review gates are complete. M03 is the first intended downstream live consumer of the corrected M02R semantics.
+PWV21-REQ-122..127 remain the technical/downstream-relevance boundary: each live finding keeps its existing semantic classification, trackers remain non-authoritative, correctly terminal historical Cards/Milestones are not reopened merely to conform history, historical failures remain regression fixtures, and M03 is not materialized until the accepted authority plus required Planning/review gates are complete.
 
-A historical or frozen-candidate persistence check is not treated as proof that the future checkpoint implementation still contains the defect. Every family whose final applicability depends on that then-current implementation is therefore classified `REQUIRES_CHECKPOINT_READBACK`.
+The user has separately selected `QUALITY_FIRST_PRE_M03`. This is a resolution-policy dimension, not a rewrite of technical materiality. Therefore `MUST_RECONCILE_BEFORE_M03`, `REQUIRES_CHECKPOINT_READBACK`, and `CAN_DEFER` remain recorded exactly as semantic/downstream-relevance classifications; `CAN_DEFER` does not mean the user wants a still-applicable defect intentionally left unresolved before M03.
+
+Under `QUALITY_FIRST_PRE_M03`, the future reconciliation checkpoint performs current-state applicability readback for all 17 repair families against the exact then-current candidate and current accepted authority. If a defect is already corrected, record the family as satisfied by current implementation. If it still applies and accepted M02R authority already authorizes the correction, propose the smallest coherent corrective Card in dependency order. If it still applies but accepted M02R authority does not authorize that correction, do not broaden M02R silently: mark it as requiring explicit pre-M03 authority/replan or a separate authorized maintenance workstream.
+
+RF008 remains authority-first. If RF008 is still applicable, Definition/Planning must first accept the durable proof mechanism before implementation chooses or enforces one. No implementation Card is created from this audit package.
 
 ## Repair-family summary
 
@@ -77,20 +85,33 @@ A historical or frozen-candidate persistence check is not treated as proof that 
 
 Coverage check: every H001-H030 appears exactly once; all 28 confirmed findings are members of exactly one repair family; H011 and H013 remain REJECTED / NO_REPAIR.
 
+## User-selected resolution policy
+
+Policy: `QUALITY_FIRST_PRE_M03`  
+User resolution target: `resolve_before_m03_if_still_applicable`
+
+Technical relevance classification and user-selected resolution policy are separate dimensions. All 17 repair families receive checkpoint applicability readback. A still-applicable family is targeted for resolution before M03 unless the necessary correction is not yet authorized; in that case the family requires explicit pre-M03 authority/replan or a separate authorized maintenance workstream. No silent M02R scope expansion is permitted.
+
 ## Pre-M03 relevance classification
+
+The classifications below remain semantic/downstream-relevance metadata only. They are not rewritten to imply that every family is intrinsically an M03 blocker, and they do not override the quality-first user resolution target.
 
 - **MUST_RECONCILE_BEFORE_M03:** H012. This is an accepted-authority/proof ambiguity on the Planning/Plan Review gate and must return to Definition/Planning before implementation chooses a proof mechanism.
 - **REQUIRES_CHECKPOINT_READBACK:** H001, H004, H025, H005, H006, H007, H008, H009, H018, H010, H020, H029, H021, H023, H024, H026, H030. These findings map to M03's Git-alone recovery, portability, stale-result, review-boundary, JIT or fail-closed acceptance surfaces, but the harvest snapshots are not current-state proof.
 - **CAN_DEFER:** H002, H022, H003, H014, H016, H015, H017, H019, H027, H028. These map to already-passed Brainstorm/Intake/Research surfaces or to M06/M07 runtime/Close cleanup surfaces and therefore are not made M03 blockers merely because they exist.
 
-## Dependency order if corrective work is activated
+## Dependency-aware quality-first resolution order
 
-1. **Authority first:** RF008. Resolve the editorial-exemption proof rule in Definition/Planning before any implementation Card is authored for it.
-2. **Foundational truth/readback and fail-closed primitives:** RF007, RF005, RF017; RF002/RF016 may be handled independently when their deferred stages are reached.
-3. **Freshness and semantic contract layers:** RF012, RF013, RF009.
-4. **Review and owner binding:** RF004 after RF007+RF012; RF006 after RF007; RF003 after RF009; RF010 after RF009.
-5. **Card/JIT coherence:** RF001 after RF004+RF006+RF007; RF014 after RF001+RF013.
-6. **Later Close/Recovery integration:** RF011 after RF006+RF007; RF015 after RF011+RF014.
+Checkpoint applicability readback applies to all 17 families before corrective Cards are created. For families still applicable and already authorized, use this dependency-aware resolution order:
+
+1. **Authority first:** RF008. If still applicable, return to accepted Definition/Planning and accept the proof mechanism before implementation.
+2. **Independent/foundational families:** RF007, RF005, RF017, RF002, RF016.
+3. **Freshness, execution, provenance and history layers:** RF012, RF013, RF009, RF006.
+4. **Dependent authority/owner bindings:** RF004 after RF007+RF012; RF003 after RF009; RF010 after RF009; RF011 after RF006+RF007.
+5. **Board/JIT coherence:** RF001 after RF004+RF006+RF007; RF014 after RF001+RF013.
+6. **Close composition:** RF015 after RF011+RF014.
+
+This order covers all 17 repair families. It is a proposed resolution sequence, not repair authorization. For any still-applicable family lacking accepted authority, stop that family at the authority boundary and record the need for explicit pre-M03 authority/replan or a separate authorized maintenance workstream; do not silently expand M02R.
 
 ## Proposed corrective Card boundaries and proof
 
@@ -396,11 +417,22 @@ Regression/evidence that should prove repair:
 - semantic-invalid but syntactically valid TOML keeps the existing ValidationError recovery behavior
 - valid TOML control paths are unchanged
 
-## Explicit checkpoint-readback list
+## Checkpoint applicability readback under QUALITY_FIRST_PRE_M03
 
-H001, H004, H025, H005, H006, H007, H008, H009, H018, H010, H020, H029, H021, H023, H024, H026, H030
+All 17 repair families require current-state applicability readback:
 
-At the future audit-reconciliation checkpoint, these families must be checked against the exact then-current PWv2.1 candidate HEAD and current accepted authority. Re-run or reconstruct the smallest negative regression for each family, record whether the class is still applicable, already closed, or partially closed, and only then materialize corrective Cards through the normal workflow. Do not infer persistence from the harvest's older candidate SHAs.
+RF001, RF002, RF003, RF004, RF005, RF006, RF007, RF008, RF009, RF010, RF011, RF012, RF013, RF014, RF015, RF016, RF017.
+
+For each family at the future reconciliation checkpoint:
+
+1. Read back the exact then-current candidate and determine whether the defect still exists.
+2. If already corrected, record `SATISFIED_BY_CURRENT_IMPLEMENTATION`.
+3. If still applicable, determine whether accepted M02R authority already authorizes the corrective work.
+4. If authorized, propose the smallest coherent corrective Card in the dependency-aware order above.
+5. If not authorized, record `REQUIRES_EXPLICIT_PRE_M03_AUTHORITY_OR_REPLAN` or `REQUIRES_SEPARATE_AUTHORIZED_MAINTENANCE_WORKSTREAM`; never broaden M02R silently.
+6. RF008 remains authority-first and must return to accepted Definition/Planning before implementation selects a proof mechanism.
+
+H011 and H013 remain REJECTED / NO_REPAIR and are not repair families. Do not infer current persistence from the harvest's frozen candidate SHAs.
 
 ## Historical preservation
 
