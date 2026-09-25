@@ -224,7 +224,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H023"
-status = "ready"
+status = "done"
 priority_basis = "recovery truth integrity; multiple concrete semantic counterexamples"
 source_classes = ["PWV2:C013"]
 recommended_repro_surface = ["Card Result parser/validator", "tools/router.py", "PWV2:C013 source repros"]
