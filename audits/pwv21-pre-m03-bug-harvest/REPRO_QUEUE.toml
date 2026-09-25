@@ -4,7 +4,7 @@
 
 [[items]]
 id = "H001"
-status = "ready"
+status = "done"
 priority_basis = "human-authority boundary; direct concrete reproducer"
 source_classes = ["PWV2:C027"]
 recommended_repro_surface = ["tools/state_contract.py", "tools/router.py", "PWV2:C027 source repro"]

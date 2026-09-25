@@ -1,10 +1,22 @@
 # Sequential Bug Harvest Handoff
 
+
+## Latest technical triage
+
+- Candidate: `H001`
+- Verdict: `CONFIRMED_MATERIAL`
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H001.md`
+- Original subject tested: `elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045`
+- Current candidate snapshot tested: `elmakus/project_workflow_v2@8a24fb66c447e7a5dc22d2f398d13ddb54ebf481`
+- Current candidate status: `persists`
+- Next READY item: `H002`
+- Next worker obligation: reproduce or reject **H002 only** against its exact audited subject, perform its required current-candidate check, and persist only H002 harvest evidence/state. Do not advance any later queue item.
+
 ## What was completed
 
 The first-stage out-of-band workspace was initialized from the exact active-workstream HEAD captured before branch creation. Both persisted aggregate reports were normalized without performing a broad new product audit, without repairing product code, and without mutating canonical Project Workflow state.
 
-All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were ingested. One clear semantic family was merged as **CROSS-SOURCE OVERLAP**: PWV2:C003 with M02R-T03:C02 (durable evidence locators accepted without proving the referenced artifact exists). This leaves 30 normalized harvest candidates. Every normalized candidate is still `untriaged` / `not_started` / `pending`.
+All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were ingested. One clear semantic family was merged as **CROSS-SOURCE OVERLAP**: PWV2:C003 with M02R-T03:C02 (durable evidence locators accepted without proving the referenced artifact exists). This leaves 30 normalized harvest candidates. H001 has now been independently triaged as `confirmed_material` / `reproduced` / `pending_repair`; all other normalized candidates remain untouched.
 
 ## Exact durable workspace state
 
@@ -17,7 +29,7 @@ All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were i
 - Product repair in this workspace: forbidden
 - Stage: `source_normalization`
 - Stage complete: `false`
-- The branch HEAD containing this file is the durable initialization snapshot for the next sequential worker.
+- The branch HEAD containing this file is the durable triage snapshot for the next sequential worker.
 
 ## Sources ingested
 
@@ -43,21 +55,13 @@ These immutable subjects are different and must not be conflated.
 - M02R-T03 shadow classes ingested: 4
 - Cross-source merged semantic families: 1
 - Normalized harvest candidates: 30
-- READY reproduction items: 30
-- First READY item: `H001`
+- READY reproduction items: 29
+- Completed reproduction items: 1
+- First READY item: `H002`
 
 ## Next worker obligation
 
-The next worker must:
-
-- read this `HANDOFF.md` first;
-- select the first READY `REPRO_QUEUE.toml` item;
-- independently reproduce or reject that **one** candidate class against the exact relevant audited subject;
-- write durable evidence under this same audit directory;
-- update only the harvest ledger, queue, handoff, and new harvest evidence under this directory;
-- make no product repair.
-
-A candidate's ownership/downstream labels are hypotheses only. They must not be used to skip reproduction. A singleton is first-class evidence and cannot be skipped because only one reviewer reported it.
+The next worker must reproduce or reject **H002 only**. It must read this handoff and queue first, verify H002 is still the first READY item, work against H002's exact audited subject, perform the required current-candidate check, persist only H002 harvest evidence/state, and make no product repair or canonical workflow mutation.
 
 ## Prohibited next-worker actions
 

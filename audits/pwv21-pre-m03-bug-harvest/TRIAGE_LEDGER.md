@@ -17,9 +17,11 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source limitations: Singleton finding based on direct branch-order reasoning; persisted repro was not reported as freshly executed.
 - Current ownership hypothesis: `canonical_pw_v2`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H001.md`
+- Current candidate check: `persists` at `8a24fb66c447e7a5dc22d2f398d13ddb54ebf481`
 
 ## H002 — Explicit Brainstorming stop can be bypassed by downstream state
 
