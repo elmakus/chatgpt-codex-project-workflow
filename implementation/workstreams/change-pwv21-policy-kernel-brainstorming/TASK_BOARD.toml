@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 68
+revision = 69
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -281,8 +281,22 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02R-T06"
 after_card = "M02R-T06"
-state = "satisfied"
+state = "consumed"
 condition = "After M02R-T06 is DONE with a durable GREEN-reviewed result, Execution Prep must read back its independent prelaunch topology-challenge and review-layer result and materialize the next smallest meaningful remaining BOOT-B Card for REQ-130 late-oversize evidence preservation and return, then BOOT-C/D; M03 remains unmaterialized until M02R Card work and Milestone review are GREEN."
+
+[[cards]]
+id = "M02R-T07"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T07.md"
+
+[[jit_triggers]]
+id = "after-M02R-T07"
+after_card = "M02R-T07"
+state = "waiting"
+condition = "After M02R-T07 is DONE with a durable GREEN-reviewed result, Execution Prep must read back its REQ-130 late-oversize return result and materialize the next smallest meaningful M02R Card within the separate required BOOT-C seam (REQ-122..127), then BOOT-D; do not materialize M03 before all M02R Card work and Milestone review are GREEN."
 
 # Structured readback of the pre-materialization audit already recorded in
 # evidence/M02R-T05_EXECUTION_PREP_2026-09-25.md at commit 646f9eb4da680c27ec34b66a38fc2e0608aef463.
@@ -373,6 +387,58 @@ card_id = "M02R-T06"
 risk = "simple"
 triggers = []
 risk_basis = "The Card implements one prelaunch topology-guard family under REQ-119..121, preserves all required BOOT seams, does not merge a preferred seam or absorb the milestone, and leaves REQ-130/BOOT-C/D for later Cards. Its local review does not replace M02R integration review."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# Structured readback of M02R-T07 pre-materialization audit in
+# evidence/M02R-T07_EXECUTION_PREP_2026-09-25.md at commit 7a3a71eb1c47bcf5c960a5975f6f8f114b76bcc5.
+[[sizing_audits]]
+card_id = "M02R-T07"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "late-oversize-handoff"
+kind = "invariant"
+statement = "Material newly exposed oversized Card scope returns from execution or review to Execution Prep at the smallest safe boundary."
+family = "late-oversize-return"
+independently_verifiable = true
+independently_useful = false
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = false
+
+[[sizing_audits.outcomes]]
+id = "valid-evidence-preservation"
+kind = "contract"
+statement = "Independently valid evidence is preserved while residual unaccepted scope is re-decomposed without Worker self-authorization or terminal-history rewrite."
+family = "late-oversize-return"
+independently_verifiable = true
+independently_useful = false
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = false
+
+[sizing_audits.dimensions]
+independent_implementability = "Evidence preservation and residual return are coupled facets of one late-oversize handoff; neither is independently consumable."
+falsifiability_testability = "Execution/review oversize positives contrast with self-split/broaden/merge, premature GREEN, trivial-fragment and ordinary-bug negatives."
+reviewability = "One bounded Card Review covers the handoff and evidence boundary without BOOT-C live-finding or BOOT-D Worker policy."
+invariant_contract_family = "Both outcomes govern the same late-oversize evidence-preserving return invariant under REQ-130."
+dependency_ordering = "Consumes exact GREEN-reviewed M02R-T06 result with transitive T05 sizing/T04 seam authority; BOOT-C/D remain JIT downstream."
+atomic_mutation_migration = "Valid evidence and residual scope move together at the smallest safe durable boundary; historical terminal M02 remains unchanged."
+cross_surface_coupling = "Execution, Recovery, Execution Prep and Board validation share one handoff; no coupling requires BOOT-C/D merge."
+
+# T07 is a simple single-family topology under its pre-materialization audit;
+# no preferred/required seam merge, milestone absorption or review substitution.
+[[topology_audits]]
+card_id = "M02R-T07"
+risk = "simple"
+triggers = []
+risk_basis = "One late-oversize return family under REQ-130, preserving BOOT-B/C/D required seams and local Card Review; no preferred merge, whole-milestone absorption, multiple-family boundary or material strategy deviation."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
