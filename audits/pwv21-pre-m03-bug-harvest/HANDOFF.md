@@ -8,14 +8,17 @@
 - H013 verdict: `REJECTED`
 - H013 current-candidate status: `unchanged_nondefect`
 - H013 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H013.md`
-- Next READY item: `H014`
-- Current worker obligation: process `H014` next; do not process H016 or later.
+- H014 verdict: `CONFIRMED_MATERIAL`
+- H014 current-candidate status: `persists`
+- H014 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H014.md`
+- Next READY item: `H015`
+- Current worker obligation: process `H015` next; do not process H016 or later.
 
 ## What was completed
 
 The first-stage out-of-band workspace was initialized from the exact active-workstream HEAD captured before branch creation. Both persisted aggregate reports were normalized without performing a broad new product audit, without repairing product code, and without mutating canonical Project Workflow state.
 
-All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were ingested. One clear semantic family was merged as **CROSS-SOURCE OVERLAP**: PWV2:C003 with M02R-T03:C02 (durable evidence locators accepted without proving the referenced artifact exists). This leaves 30 normalized harvest candidates. H001 through H013 have now been independently triaged and persisted. H013 is `rejected` / `rejected` / `no_repair`. H014 is the next READY item in the authorized batch.
+All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were ingested. One clear semantic family was merged as **CROSS-SOURCE OVERLAP**: PWV2:C003 with M02R-T03:C02 (durable evidence locators accepted without proving the referenced artifact exists). This leaves 30 normalized harvest candidates. H001 through H014 have now been independently triaged and persisted. H013 is `rejected` / `rejected` / `no_repair`; H014 is `confirmed_material` / `reproduced` / `pending_repair`. H015 is the next READY item in the authorized batch.
 
 ## Exact durable workspace state
 
@@ -54,13 +57,13 @@ These immutable subjects are different and must not be conflated.
 - M02R-T03 shadow classes ingested: 4
 - Cross-source merged semantic families: 1
 - Normalized harvest candidates: 30
-- READY reproduction items: 17
-- Completed reproduction items: 13
-- First READY item: `H014`
+- READY reproduction items: 16
+- Completed reproduction items: 14
+- First READY item: `H015`
 
 ## Next worker obligation
 
-The current authorized worker must process **H014** next using frozen candidate `e75a261df0dea3170f3f9c9c0fd535fd055abd6f`. H016 and later items remain out of scope until H015 is completed.
+The current authorized worker must process **H015** next using frozen candidate `e75a261df0dea3170f3f9c9c0fd535fd055abd6f`. H016 and later items remain out of scope until H015 is completed.
 
 ## Prohibited next-worker actions
 
