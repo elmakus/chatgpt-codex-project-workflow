@@ -169,9 +169,12 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source limitations: Singleton; persisted repro was not reported as executed.
 - Current ownership hypothesis: `canonical_pw_v2`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H009.md`
+- Current candidate check: `persists` at `e75a261df0dea3170f3f9c9c0fd535fd055abd6f`
 
 ## H010 — Durable evidence locator can be accepted without proving the artifact exists
 
