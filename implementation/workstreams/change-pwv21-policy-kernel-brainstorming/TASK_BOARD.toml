@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 100
+revision = 101
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -430,7 +430,7 @@ condition = "After M02R-T12 is DONE with a durable GREEN-reviewed falsification-
 
 [[cards]]
 id = "M02R-T13"
-status = "ready"
+status = "in_progress"
 
 [cards.contract]
 class = "task_card"
