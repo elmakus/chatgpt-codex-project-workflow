@@ -109,9 +109,12 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source limitations: Primarily validator/control-flow demonstrations; no material source disagreement.
 - Current ownership hypothesis: `canonical_pw_v2`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H006.md`
+- Current candidate check: `persists` at `31764d82911de523e36d2de5c5d98ce7c3cedb18`
 
 ## H007 — Plan Review in_progress can be consumed as RED
 

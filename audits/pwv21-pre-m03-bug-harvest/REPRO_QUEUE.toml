@@ -54,7 +54,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H006"
-status = "ready"
+status = "done"
 priority_basis = "review of wrong authority; concrete cross-binding vectors"
 source_classes = ["PWV2:C005"]
 recommended_repro_surface = ["Plan Review validator", "tools/router.py", "PWV2:C005 source repros"]
