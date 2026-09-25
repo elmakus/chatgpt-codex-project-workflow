@@ -308,12 +308,14 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Shared core claim: Matching prior-art subject plus any non-empty diagnosis_prior_art_result may be treated as completed proof without binding to an actual Research result.
 - Distinct reproduction vectors: Use forged:never-produced or forged-no-research as the prior-art result with no qualifying Research record.
 - Existing reproduction artifacts: f2_forged_prior_art_binding.py and f4_forged_prior_art_binding.py.
-- Source limitations: Sources reported execution constraints but provide concrete exact-checkout counterexamples.
+- Source limitations: Source repros were not freshly executed; exact historical and frozen-candidate predicates were inspected directly.
 - Current ownership hypothesis: `canonical_pw_v2`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H016.md`
+- Current candidate check: `persists` at `003f8a9a7c12a21d0c73b07163e449b8ae63bad8`
 
 ## H017 — Close recovery can be certified from an empty caller-declared artifact set
 
