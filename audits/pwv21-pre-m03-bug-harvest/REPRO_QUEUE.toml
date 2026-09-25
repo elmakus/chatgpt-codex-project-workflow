@@ -164,7 +164,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H017"
-status = "ready"
+status = "done"
 priority_basis = "recovery integrity before destructive cleanup; concrete helper counterexample"
 source_classes = ["PWV2:C017"]
 recommended_repro_surface = ["Close recovery verifier", "repros/f4_empty_close_recovery_package.py"]
