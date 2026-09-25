@@ -2,12 +2,13 @@
 
 ## Latest technical triage
 
-- Items completed in current batch: `H026 + H027`
+- Items completed in current batch: `H026 + H027 + H028`
 - Frozen five-item batch candidate snapshot: `elmakus/project_workflow_v2@aa729e9a3b06af6e90a6884f8613629d6cd519f0`
 - H026: `CONFIRMED_MATERIAL` / `persists`
 - H027: `CONFIRMED_MATERIAL` / `persists`
-- Evidence: `evidence/H026.md`, `evidence/H027.md`
-- Next READY item: `H028`
+- H028: `CONFIRMED_MATERIAL` / `persists`
+- Evidence: `evidence/H026.md`, `evidence/H027.md`, `evidence/H028.md`
+- Next READY item: `H029`
 - This batch is authorized only through H030 and remains sequential.
 
 ## Exact durable workspace state
@@ -19,9 +20,9 @@
 - Active product workstream remains read-only: `work/pwv21-policy-kernel-brainstorming`
 - Canonical workflow state mutation: forbidden
 - Product repair: forbidden
-- Technical triage progress: H001 through H027 terminal; H028 through H030 READY
-- Completed reproduction items: 27
-- READY reproduction items: 3
+- Technical triage progress: H001 through H028 terminal; H029 through H030 READY
+- Completed reproduction items: 28
+- READY reproduction items: 2
 
 ## Frozen candidate for this batch
 
@@ -33,11 +34,9 @@ H026 through H030 use `elmakus/project_workflow_v2@aa729e9a3b06af6e90a6884f86136
 - M02R-T03 shadow consumer subject: `5b76ffe03259ff141afc6bfb5b7b546041a48b41`
 - M02R-T03 exact implementation subject: `180cc0af3a9b56c8c2808827bf5548b8ae040608`
 
-These immutable subjects must not be conflated.
-
 ## Next worker obligation
 
-Process H028 only next. H029/H030 remain untouched until their predecessor item is durably committed.
+Process H029 only next. H030 remains untouched until H029 is durably committed.
 
 ## Prohibited actions
 

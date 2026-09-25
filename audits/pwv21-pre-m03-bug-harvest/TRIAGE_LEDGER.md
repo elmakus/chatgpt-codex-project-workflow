@@ -537,18 +537,22 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 
 - Source classes:
   - PWV2:C012
-- Source subjects: elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045
+- Exact historical subject: elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045
+- Frozen current candidate: elmakus/project_workflow_v2@aa729e9a3b06af6e90a6884f8613629d6cd519f0
 - Independent-report frequency: 6 independent PWv2 source audits
 - Claimed invariant/requirement: SessionStart/Skill fail-closed bootstrap; installed canonical router authority.
-- Shared core claim: Two marker substrings may be sufficient for router integrity, allowing truncated/counterfeit/stale policy to be advertised as canonical.
-- Distinct reproduction vectors: Two-line router; marker-preserving corrupted body; contradictory text retaining required sentinels.
-- Existing reproduction artifacts: Temporary-package hook repros; some reportedly executed.
-- Source limitations: Not all auditors agreed the installed-package trust model requires semantic-content validation.
-- Current ownership hypothesis: `canonical_pw_v2`
-- Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Observed historical behavior: `hooks/session-start.py::canonical_router()` establishes router content validity by requiring only two substrings, the V2 router header and production-selector sentence. A truncated/counterfeit router retaining those strings is returned as canonical and `build_context()` advertises the package as enabled rather than emitting the blocking package error.
+- Technical verdict: `CONFIRMED_MATERIAL`
+- Current-candidate status: `persists`
+- Current-candidate observation: the hook's `canonical_router()` implementation and the relevant malformed-router negative test are materially unchanged at aa729e9a3b06af6e90a6884f8613629d6cd519f0; no manifest/hash/version/content-integrity binding was added. The test still uses `not a V2 router`, which removes both required sentinels and therefore does not cover marker-preserving semantic destruction.
+- Smallest relevant implementation boundary: `hooks/session-start.py::canonical_router()` and its package-integrity contract/tests; any repair should authenticate the installed router/package strongly enough that marker-preserving truncation or stale payload cannot be certified as canonical.
+- Useful future regression-test shape: temporary installed package with an otherwise valid hook and a router containing both accepted sentinels but no routing semantics must produce the blocking package error; add a contradictory/stale marker-preserving body case and a positive exact-installed-package case.
+- Important limitations: some source auditors interpreted installed-package trust as sufficient and did not promote this class. The confirmed defect is specifically the hook's explicit claim to fail closed on malformed router authority while its implemented content test accepts semantically empty marker-preserving content.
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H028.md`
+- Current candidate check: `persists` at `aa729e9a3b06af6e90a6884f8613629d6cd519f0`
 
 ## H029 — Lexically safe locator can escape semantic root after filesystem resolution
 

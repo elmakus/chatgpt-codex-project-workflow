@@ -274,7 +274,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H028"
-status = "ready"
+status = "done"
 priority_basis = "bootstrap authority integrity; six-way rediscovery"
 source_classes = ["PWV2:C012"]
 recommended_repro_surface = ["SessionStart hook", "installed router integrity check", "source temporary-package repros"]
