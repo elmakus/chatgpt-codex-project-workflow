@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 64
+revision = 65
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -355,3 +355,14 @@ invariant_contract_family = "Both candidate outcomes govern the same prelaunch t
 dependency_ordering = "Consumes exact GREEN-reviewed M02R-T05 sizing result and transitive T04 seam result; REQ-130 late oversize follows after this prelaunch guard."
 atomic_mutation_migration = "Risky-case challenge and simple-case exemption land together; historical DONE M02 Card and review evidence stay immutable."
 cross_surface_coupling = "Execution Prep, Board/router validation and review contract share one prelaunch decision; no coupling requires BOOT-C/D or later REQ-130."
+
+# Topology risk readback for M02R-T06 from its pre-materialization audit in
+# evidence/M02R-T06_EXECUTION_PREP_2026-09-25.md at commit 0411a211a36b8e883cef7f2dd0e4daadf5a832c2.
+[[topology_audits]]
+card_id = "M02R-T06"
+risk = "simple"
+triggers = []
+risk_basis = "The Card implements one prelaunch topology-guard family under REQ-119..121, preserves all required BOOT seams, does not merge a preferred seam or absorb the milestone, and leaves REQ-130/BOOT-C/D for later Cards. Its local review does not replace M02R integration review."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
