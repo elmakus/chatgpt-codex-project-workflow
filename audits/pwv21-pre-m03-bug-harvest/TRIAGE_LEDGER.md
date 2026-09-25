@@ -191,9 +191,12 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source limitations: CROSS-SOURCE OVERLAP. Both populations identify missing durable readback, but one is broad result/review consumption and one is observation-provenance binding.
 - Current ownership hypothesis: `cross_cutting`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H010.md`
+- Current candidate check: `persists` at `e75a261df0dea3170f3f9c9c0fd535fd055abd6f`
 
 ## H011 — RECOMMENDED review has no durable activation state
 
