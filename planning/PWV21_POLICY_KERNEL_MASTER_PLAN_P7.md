@@ -1080,7 +1080,7 @@ and migration:
 6. V2 baseline regression stays GREEN throughout; each milestone re-runs
    the baseline suite plus all prior milestone suites.
 7. This plan's own execution demonstrates the lifecycle in order:
-   independent Card review and separate Milestone reviews during M02R and M03–M07,
+   independent Card review and separate Milestone reviews during M02Q and M03–M07 (with terminal M02R retained as historical evidence),
    then a separate fresh final-integration review with complete evidence
    before close.
 
@@ -1119,7 +1119,7 @@ and migration:
 | R-10 | Serialization/naming choices leaking into authority semantics | Low / Medium | REQ-010 invariance boundary reviewed at plan review and enforced at Execution Prep |
 | R-11 | Milestone coupling causing cascade rework (M02↔M04 staleness) | Medium / Medium | Staleness contract finalized in M02 acceptance before M04 starts; M04 consumes, never redefines |
 | R-12 | Optional A/C fresh handoff loops on a second confirmation or accepts a stale locator | Medium / High | Exact-subject gate-input matrix, governed write+readback, idempotent recovery, stale/wrong-subject rejection, and B-distinct negative tests in M06/M07 |
-| R-13 | Execution Prep collapses planner seams/outcomes into another mega-Card | Medium / High | Four required M02R seams + semantic right-sizing audit + risk-based topology challenge; M02 regression replay |
+| R-13 | Execution Prep collapses planner seams/outcomes into another mega-Card | Medium / High | Historical four M02R seams plus seventeen P7 M02Q required RF seams + semantic right-sizing audit + risk-based topology challenge; M02 regression replay |
 | R-14 | Review loops stop at first blocker or degenerate into unbounded rediscovery/repair | Medium / High | Exhaustive discovery + class repair + stable epoch + 5/4/3 new-class ceilings + 3-round per-class breaker + fresh rediscovery after closure |
 | R-15 | Live finding mutates active history or tracker text becomes authority | Low / High | Classification + affected-downstream reconciliation + tracker non-authority + immutable historical replay |
 | R-16 | M03 is falsely presented as deployed PWv2.1 dogfood while consumer authority is still main | Medium / Medium | Explicit authority-level dogfood + candidate shadow/replay distinction; deployed consumer validation deferred to post-release Paseo/Pi |
