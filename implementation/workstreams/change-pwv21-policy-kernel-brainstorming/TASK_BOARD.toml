@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 102
+revision = 103
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -441,6 +441,10 @@ class = "result"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02R-T13.md"
 commit = "75033ebe450d602b7ffd1e36a44bd15db9704342"
 blob = "326c7a4d63df550be36e896d1b4d2473c660fd09"
+
+[[cards.review_attempts]]
+class = "review_attempt"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T13-R01.toml"
 
 # Structured readback of the pre-materialization audit already recorded in
 # evidence/M02R-T05_EXECUTION_PREP_2026-09-25.md at commit 646f9eb4da680c27ec34b66a38fc2e0608aef463.
