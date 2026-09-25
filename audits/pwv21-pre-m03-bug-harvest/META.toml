@@ -5,8 +5,8 @@ workspace_branch = "audit/pwv21-pre-m03-bug-harvest"
 workspace_base_commit = "598ac506012aa22c9b126ecf23dc01fa23598d64"
 canonical_state_mutation = false
 product_repairs_allowed = false
-stage = "source_normalization"
-stage_complete = false
+stage = "technical_triage_complete"
+stage_complete = true
 
 [source_a]
 name = "canonical_pwv2_swarm_aggregate"

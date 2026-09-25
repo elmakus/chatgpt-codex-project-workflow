@@ -579,16 +579,20 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 
 - Source classes:
   - PWV2:C015
-- Source subjects: elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045
+- Exact historical subject: elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045
+- Frozen current candidate: elmakus/project_workflow_v2@aa729e9a3b06af6e90a6884f8613629d6cd519f0
 - Independent-report frequency: 1 independent PWv2 source audit
-- Claimed invariant/requirement: Malformed durable state must fail closed to Recovery.
-- Shared core claim: TOMLDecodeError may escape selector state-read exception boundaries and return control to runtime exception behavior.
-- Distinct reproduction vectors: Replace TASK_BOARD.toml or another selector-read TOML with malformed syntax such as revision = [.
-- Existing reproduction artifacts: No persisted script; minimal mutation is fully described by the source finding.
-- Source limitations: Singleton based on source/exception-boundary reasoning; no fresh selector run reported.
-- Current ownership hypothesis: `canonical_pw_v2`
-- Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Claimed invariant/requirement: malformed durable state must fail closed to Recovery.
+- Observed historical behavior: `read_toml()` and `read_project()` delegate TOML parsing to `tomllib`, whose syntax failures raise `tomllib.TOMLDecodeError`. The selector's bootstrap and selected-workstream exception boundaries catch `OSError`, `ValidationError` and selected other contract exceptions, but not `TOMLDecodeError`; malformed durable TOML therefore escapes the selector instead of producing `recovery/recovery_boundary`.
+- Technical verdict: `CONFIRMED_MATERIAL`
+- Current-candidate status: `persists`
+- Current-candidate observation: the current `read_toml()/read_project()` parse behavior is unchanged, and the main `select_route()` catch boundaries still omit `tomllib.TOMLDecodeError`. The state-contract CLI explicitly catches that exception, demonstrating that the exception class is known elsewhere but is not normalized by the production selector. Current router tests contain no malformed-TOML negative case.
+- Smallest relevant implementation boundary: selector-side TOML read/exception normalization across `tools/state_contract.py::read_toml()/read_project()` and `tools/router.py::select_route()`; syntactic durable-state corruption must be converted to deterministic Recovery at every selector read boundary.
+- Useful future regression-test shape: mutate each selector-owned TOML surface one at a time to invalid syntax such as `revision = [`; assert `select_route()` returns `disposition=recovery`, `obligation=recovery_boundary`, and never raises `TOMLDecodeError`; retain a valid-TOML semantic-invalid control for `ValidationError`.
+- Important limitations: singleton source finding and no source-side fresh selector run. The technical reproduction is nevertheless direct from the exact exception types and catch lists in both immutable subjects; Python `tomllib` syntax errors are outside the caught exception set.
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H030.md`
+- Current candidate check: `persists` at `aa729e9a3b06af6e90a6884f8613629d6cd519f0`
 

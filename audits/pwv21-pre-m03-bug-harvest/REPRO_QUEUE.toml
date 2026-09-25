@@ -294,7 +294,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H030"
-status = "ready"
+status = "done"
 priority_basis = "fail-closed recovery integrity; minimal deterministic mutation"
 source_classes = ["PWV2:C015"]
 recommended_repro_surface = ["durable TOML readers", "tools/router.py", "malformed TASK_BOARD fixture"]
