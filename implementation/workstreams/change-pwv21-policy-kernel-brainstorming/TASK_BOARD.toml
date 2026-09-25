@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 119
+revision = 120
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1031,7 +1031,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02Q-T03"
 after_card = "M02Q-T03"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T03 is DONE with an exact durable RF005 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-4 RF017 malformed-durable-TOML Recovery seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -1066,6 +1066,58 @@ card_id = "M02Q-T03"
 risk = "simple"
 triggers = []
 risk_basis = "One Plan Review verdict-domain family and one P7 required seam; no preferred-seam merge, multiple-family boundary, whole-milestone absorption, review substitution or material plan deviation."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q order-4 RF017 materialization consumes the exact DONE/GREEN RF005
+# Result. Execution Prep evidence: evidence/M02Q-T04_EXECUTION_PREP_2026-09-25.md.
+[[cards]]
+id = "M02Q-T04"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T04.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T04"
+after_card = "M02Q-T04"
+state = "waiting"
+condition = "After M02Q-T04 is DONE with an exact durable RF017 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-5 RF002 Brainstorm-to-Definition promotion-precedence seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T04"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "durable-toml-parse-recovery"
+kind = "invariant"
+statement = "Malformed selector-owned durable TOML becomes deterministic Recovery without leaking parser exceptions; valid and parseable-invalid controls retain their distinct outcomes."
+family = "durable-toml-parse-recovery"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "One complete RF017 parser-normalization outcome stands alone; RF002 promotion precedence and RF001 Board coherence remain separate required seams."
+falsifiability_testability = "Malformed Board and Workstream TOML reproduce H030 before correction; representative selector siblings, valid and semantic-invalid controls distinguish proper fail-closed routing."
+reviewability = "One Card Review can inspect read-boundary/router behavior and regression evidence without certifying cross-RF composition or M02Q milestone completion."
+invariant_contract_family = "All selector-owned durable TOML parse failures share one Recovery normalization contract; file-by-file Cards would fragment the same invariant."
+dependency_ordering = "Follows exact DONE/GREEN M02Q-T03 in accepted P7 serial order despite no RF prerequisite; RF002 follows."
+atomic_mutation_migration = "Read-boundary normalization and selector handling must agree in one accepted subject so no selector path leaks a parser exception; no history rewrite or migration."
+cross_surface_coupling = "State-contract reader, router and focused tests share one RF017-local parse-failure invariant with no other RF merger."
+
+[[topology_audits]]
+card_id = "M02Q-T04"
+risk = "simple"
+triggers = []
+risk_basis = "One parser-normalization invariant and one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
