@@ -14,7 +14,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H002"
-status = "ready"
+status = "done"
 priority_basis = "human-authority stop bypass; independent rediscovery"
 source_classes = ["PWV2:C008"]
 recommended_repro_surface = ["tools/router.py", "Brainstorming stop fixtures"]
