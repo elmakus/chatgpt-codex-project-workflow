@@ -150,7 +150,7 @@ Preferred sequencing:
 
 `PWv2.2 = DAG first, System-One-aware architecture only`
 
-`PWv2.3 = evaluate and potentially integrate the System-One layer`
+`PWv2.3 = System-One integration, initially with Jev as primary provider`
 
 Do not couple first-time DAG implementation and first-time probabilistic decision enforcement into the same rollout unless later Research produces strong evidence that the two cannot be separated cleanly.
 
@@ -169,6 +169,32 @@ During DAG Brainstorming / Project Definition, consider whether to provide:
 
 These are preparation candidates, not an instruction to ship a System-One model in PWv2.2.
 
+### Initial provider strategy for PWv2.3
+
+Preferred starting strategy:
+
+- use hosted Jev as the initial primary/production evaluator;
+- run Laya, Von and poorjev locally on Unraid in parallel shadow/benchmark mode;
+- feed the same eligible PW decision traces to Jev and the local candidates;
+- do not let shadow providers influence control flow while benchmarking;
+- keep the Project Workflow integration provider-neutral so switching away from Jev does not require redesign.
+
+The initial default should be to keep Jev while its quality, latency, availability and cumulative cost remain acceptable.
+
+If Jev cost, availability, privacy or another operational constraint becomes material, use the accumulated PW-specific benchmark data to select the best local replacement rather than starting a new evaluation from scratch.
+
+### Local benchmark deployment direction
+
+The free candidates are expected to run locally.
+
+Initial deployment target:
+
+- Unraid CPU-only is acceptable for first benchmarking;
+- Laya, Von and poorjev may run as separate local services/containers;
+- GPU acceleration is optional, not a requirement for starting the benchmark;
+- an existing NVIDIA GTX 1080 Ti may be evaluated later if CPU latency becomes a practical constraint, subject to compatibility with the then-current CUDA/PyTorch/runtime stack;
+- do not make PW depend on the presence of that GPU.
+
 ### Candidate uses to evaluate in PWv2.3
 
 Potentially useful decision classes include:
@@ -182,31 +208,37 @@ Potentially useful decision classes include:
 
 Do not assume model routing or conversation compaction are the primary PW use cases. They may be evaluated, but available `pi-jev` evidence does not justify making compaction a core architectural dependency.
 
-### Provider-neutral evaluation
+### Benchmark requirements
 
-Do not bind PW to Jev or any one open implementation.
+For each eligible PW decision, capture enough data to compare:
 
-At minimum, future evaluation should treat these as first-class candidates:
+- actual/accepted PW outcome or later ground truth;
+- provider answer;
+- probabilities/confidence;
+- abstention/escalation behavior where supported;
+- latency;
+- local CPU/GPU resource cost where applicable;
+- Jev input-token usage and cumulative monetary cost;
+- disagreement between providers.
 
+At minimum, future evaluation should include:
+
+- Jev as the primary/reference provider;
 - Laya;
 - Von;
 - poorjev.
 
-Hosted Jev may be included as a reference/baseline when available, but the future architecture should remain usable with free/local providers.
+Laya, Von and poorjev are peer local candidates. Do not pre-select a local winner based only on generic public benchmarks.
 
-Laya is not a fallback-only candidate. Its Jev-compatible typed-decision interface and local/open deployment make it a peer candidate; known weaknesses on high-cardinality classification must be evaluated against actual PW decision shapes rather than assumed to disqualify it.
+### Evaluation before broader enforcement
 
-### Evaluation before enforcement
-
-Before any System-One output influences Project Workflow control flow:
+Before expanding System-One influence beyond narrowly accepted advisory hooks:
 
 1. build/replay a PW-specific evaluation corpus from real or representative Project Workflow traces;
-2. compare candidate providers on the actual PW decision classes;
-3. measure at least accuracy, calibration/confidence quality, abstention/escalation behavior, false-negative risk, latency and local resource cost;
-4. run the selected evaluator in shadow mode against normal PW decisions;
-5. only then decide which advisory decisions, if any, may influence routing.
-
-Do not select a provider based only on generic support-ticket/classification benchmarks.
+2. compare providers on the actual PW decision classes;
+3. measure at least accuracy, calibration/confidence quality, abstention/escalation behavior, false-negative risk, latency, resource cost and Jev monetary cost;
+4. keep local alternatives in shadow mode long enough to obtain meaningful evidence;
+5. only then decide whether Jev remains primary or whether a local provider should replace it.
 
 ### Authority boundary
 
@@ -221,7 +253,6 @@ The System-One layer must not become canonical authority for:
 - canonical shared-state mutation.
 
 Those remain governed by deterministic PW contracts and the existing human/reviewer authority model.
-
 
 ---
 
