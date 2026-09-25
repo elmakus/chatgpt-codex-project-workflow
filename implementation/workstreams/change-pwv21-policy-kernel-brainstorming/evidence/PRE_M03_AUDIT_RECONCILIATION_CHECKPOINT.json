@@ -1,0 +1,508 @@
+{
+  "audit_branch": "audit/pwv21-pre-m03-reconciliation",
+  "audit_files": [
+    "audits/pwv21-pre-m03-reconciliation/HANDOFF.md",
+    "audits/pwv21-pre-m03-reconciliation/REPAIR_GROUPS.toml",
+    "audits/pwv21-pre-m03-reconciliation/RECONCILIATION_PLAN.md"
+  ],
+  "audit_sha": "e0fdcbf5021f7b50a347edc169beaa8a01eeb58b",
+  "board_revision": 104,
+  "candidate_repo": "elmakus/project_workflow_v2",
+  "candidate_sha": "07c724085de591c2a0bb51aaaae0ec23009880bf",
+  "closure_statements": {
+    "audit_branch_mutation": false,
+    "awaiting_fresh_independent_review_of_synthesized_readback": true,
+    "corrective_card_created": false,
+    "corrective_implementation_performed": false,
+    "historical_rewrite_performed": false,
+    "m02r_milestone_review_performed": false,
+    "m03_materialized": false
+  },
+  "consumer_sha": "6e47749782cac0cdf01b8e65a95ddf2d5be7c2ec",
+  "counts": {
+    "authority_reconciliation_required": 3,
+    "can_defer": 7,
+    "must_reconcile_before_m03": 1,
+    "needs_more_current_evidence": 0,
+    "requires_checkpoint_readback": 9,
+    "satisfied_by_current_implementation": 0,
+    "still_applicable": 14,
+    "total_families": 17
+  },
+  "dependency_aware_order": [
+    "RF008",
+    "RF007",
+    "RF005",
+    "RF017",
+    "RF002",
+    "RF016",
+    "RF012",
+    "RF013",
+    "RF009",
+    "RF006",
+    "RF004",
+    "RF003",
+    "RF010",
+    "RF011",
+    "RF001",
+    "RF014",
+    "RF015"
+  ],
+  "document": "PRE_M03_AUDIT_RECONCILIATION_CHECKPOINT",
+  "families": [
+    {
+      "code_refs": [
+        "tools/router.py:751-873",
+        "tools/state_contract.py:863-872",
+        "tools/state_contract.py:850-851",
+        "tools/policy_kernel.py:81-83",
+        "tools/router.py:934-939",
+        "tools/router.py:250-303",
+        "tools/router.py:1030"
+      ],
+      "current_disposition": "STILL_APPLICABLE",
+      "dependencies": [
+        "RF004",
+        "RF006",
+        "RF007"
+      ],
+      "id": "RF001",
+      "likely_future_repair_boundary": "One narrow Card for Task Board cross-field coherence plus blocker/result/review-first routing; no review-contract redesign; after RF004/RF006/RF007.",
+      "m02r_authority_assessment": "Insufficient: no accepted REQ or BOOT-A/B/C/D seam covers Board cross-field coherence or blocker/result/review-first routing; P6 M02R scope is review convergence, decomposition fidelity, live-validation, Worker discipline. Requires explicit pre-M03 authority/replan or separate maintenance.",
+      "members": [
+        "H001",
+        "H004",
+        "H025"
+      ],
+      "observed_result": "in_progress+human_authority blocker routes route/execution (identical to no-blocker positive). done+result/no-review (present and dangling file) routes route/close. ready+result routes route/execution_prep launch; blocked+dangling-result routes research_handoff; planned+result falls to execution_prep fallback. Positives preserved; 99 tests pass; no closing test.",
+      "probe_mutation": "Disposable copies of tests/fixtures/router/valid-project: set in_progress+human_authority blocker; done+result (present and dangling) with no review; ready/blocked/planned+result; controls in_progress/no-blocker and ready/no-result; call select_route.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_04.json",
+      "technical_classification": "REQUIRES_CHECKPOINT_READBACK"
+    },
+    {
+      "code_refs": [
+        "tools/router.py:469-475",
+        "tools/router.py:582-590",
+        "tools/state_contract.py:355-384",
+        "tools/router.py:460-466"
+      ],
+      "current_disposition": "STILL_APPLICABLE",
+      "dependencies": [],
+      "id": "RF002",
+      "likely_future_repair_boundary": "One Brainstorm-to-Definition lifecycle Card: enforce state==promoted plus exact promotion authorization at cross-record boundary (router plus validator) and evaluate explicit_user_stop before downstream Definition/Planning dispatch.",
+      "m02r_authority_assessment": "Insufficient: M02R owns REQ-108..114/133..137 review convergence/observation/Card sizing/Worker/live-validation; all 13 M02R Cards done at rev104; no M02R Card owns Brainstorm promotion lifecycle. Requires explicit pre-M03 authority/replan or separate maintenance.",
+      "members": [
+        "H002",
+        "H022"
+      ],
+      "observed_result": "Promoted+authorized stop=true plus active Definition returns route/definition, not stop; explicit stop shadowed by definition branch before brainstorm stop check. Stop-alone control correctly stops. active|ready_for_definition plus exact promotion authorization validates and routes route/definition. Promoted no-stop positive routes definition. Suites pass (55 router, 46 state).",
+      "probe_mutation": "Disposable select_route fixtures on valid-project copy: A1 promoted+authorized stop=true plus definition active; A2 same plus definition green/A-due; A3 stop-alone control; B1/B2 state active|ready_for_definition plus exact promotion authorization plus definition active; C positive promoted no-stop.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_01.json",
+      "technical_classification": "CAN_DEFER"
+    },
+    {
+      "code_refs": [
+        "tools/router.py:342-366",
+        "tools/router.py:368",
+        "tools/router.py:449-483"
+      ],
+      "current_disposition": "STILL_APPLICABLE",
+      "dependencies": [
+        "RF009"
+      ],
+      "id": "RF003",
+      "likely_future_repair_boundary": "One router-precedence Card after RF009: evaluate owning boundary (explicit/premium stop, Intake obligation, result reconciliation, Board continuation) before generic Research dispatch; preserve exact return ownership.",
+      "m02r_authority_assessment": "Insufficient: M02R scope contains no Research precedence/return-ownership correction; terminal at rev104. Requires explicit pre-M03 authority/replan or separate maintenance after RF009.",
+      "members": [
+        "H003"
+      ],
+      "observed_result": "All three precedence cases return route/research (Active Research owns next factual obligation): active Research preempts explicit stop, Intake diagnosis obligation, and premium_A. Positives pass: lone active Research routes research; complete Research routes exact return owner brainstorming. Suites OK.",
+      "probe_mutation": "Disposable select_route fixtures: A active Research plus brainstorm explicit stop; B active unrelated Research (brainstorming/scope-a@1) plus issue Intake concrete repair:v2 without prior-art binding; C active Research plus promoted brainstorm plus definition green/A-due; D/E positive controls.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_01.json",
+      "technical_classification": "CAN_DEFER"
+    },
+    {
+      "code_refs": [
+        "tools/state_contract.py:211-214",
+        "tools/state_contract.py:1031-1035",
+        "tools/state_contract.py:762-768",
+        "tools/router.py:796-806",
+        "tools/state_contract.py:594",
+        "tools/router.py:517",
+        "tools/state_contract.py:1025-1026",
+        "tools/state_contract.py:249-251"
+      ],
+      "current_disposition": "STILL_APPLICABLE",
+      "dependencies": [
+        "RF007",
+        "RF012"
+      ],
+      "id": "RF004",
+      "likely_future_repair_boundary": "One exact-acceptance-binding Card spanning implementation review and Plan Review with a shared canonical exact-authority key/readback contract; after RF007 plus RF012.",
+      "m02r_authority_assessment": "M02R corrective authority not established. Tester judged the canonical semantic rule accepted (workflow/REVIEW.md exact subject+acceptance; PLAN_REVIEW.md judges against accepted Definition; M02R-T01 acceptance; REQ-108), but a separate bounded P6 map found no explicit M02R corrective Card authority; RF004 belongs to general review/M05. Do not authorize work.",
+      "members": [
+        "H005",
+        "H006"
+      ],
+      "observed_result": "H005 PERSISTS: harvest repro ACCEPTED (alternate cards/archive/M01-T01.md vs selected cards/M01-T01.md); router alternate-acceptance GREEN routes route/post_review_finalization identical to exact control, while result-subject-mismatch control correctly freezes. Same-path mutation proven by structural absence of content identity. H006 PERSISTS: harvest repro ACCEPTED (acceptance workflow/ROUTER.md vs Definition authority); router unrelated-acceptance GREEN consumed identically to baseline.",
+      "probe_mutation": "Harvest validator repros rerun on current candidate plus new router probes with disposable fixtures: H005 alternate-path vs exact-acceptance control plus result-subject-mismatch control; H006 unrelated-acceptance GREEN vs baseline.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_02.json",
+      "technical_classification": "REQUIRES_CHECKPOINT_READBACK"
+    },
+    {
+      "code_refs": [
+        "tools/state_contract.py:1011",
+        "tools/state_contract.py:614-618",
+        "tools/router.py:547-551",
+        "tools/router.py:564",
+        "tools/policy_kernel.py plan_review_pending/green"
+      ],
+      "current_disposition": "STILL_APPLICABLE",
+      "dependencies": [],
+      "id": "RF005",
+      "likely_future_repair_boundary": "One Plan Review state-domain Card: narrow validation to pending/green/red or exhaustively route all three and fail closed for every other state.",
+      "m02r_authority_assessment": "M02R corrective authority not established. Tester judged the canonical lifecycle accepted (workflow/PLAN_REVIEW.md pending/green/red), but the P6 map found no explicit M02R corrective Card authority; RF005 belongs to Plan Review/M05. Prospective-only if later authorized (M02 terminal GREEN, REQ-125). Do not authorize work.",
+      "members": [
+        "H007"
+      ],
+      "observed_result": "in_progress routes route/planning with RED-correction reason, identical to true-RED. Controls correct: pending routes route/plan_review, green routes GREEN-consumption, red routes RED-correction. Router frozen branch falls through to unconditional RED after K006/K007 miss; approved-branch path already fails closed for non-green.",
+      "probe_mutation": "Router probe with disposable fixtures: frozen Planning plus premium-B satisfied; verdict varied pending/green/red/in_progress.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_02.json",
+      "technical_classification": "REQUIRES_CHECKPOINT_READBACK"
+    },
+    {
+      "code_refs": [
+        "tools/state_contract.py:1273-1279",
+        "tools/state_contract.py:1235-1243",
+        "tools/state_contract.py:228-232",
+        "tools/router.py:768-770",
+        "tools/close_contract.py:563-581",
+        "test_close_contract.py:836"
+      ],
+      "current_disposition": "AUTHORITY_RECONCILIATION_REQUIRED",
+      "dependencies": [
+        "RF007"
+      ],
+      "id": "RF006",
+      "likely_future_repair_boundary": "One review-history identity/completeness Card (immutable attempt identity, durable legacy provenance, append-only complete readback consumed by Final reconciliation) AFTER Definition/Planning accepts the legacy cutoff/provenance representation, and after RF007.",
+      "m02r_authority_assessment": "Authority reconciliation required: accepted authority (REQ-097..102, REQ-125, P6, Definition R3, M02R-T01..T03) defines no durable legacy cutoff/provenance representation; REQ-097 requires ambiguous legacy to fail closed (current code violates); REQ-098 conditions validity on subject/evidence proof. Cutoff/provenance must return to Definition/Planning; must not invent. Defects persist but durable mechanism missing.",
+      "members": [
+        "H008",
+        "H009",
+        "H018"
+      ],
+      "observed_result": "H008 PERSISTS: newly authored legacy-shaped R01 RED ACCEPTED as initial legacy prefix; explicit-RED controls correctly rejected. Accepted consumer M02R-T01..T07 are legacy-shaped yet DONE, so Board DONE must not imply closure. H009 PERSISTS: [R01 RED] and same-ID rewritten [R01 GREEN] both validate; locator path-only, bogus keys ignored; router reads current bytes only. H018 PERSISTS: close gate completes on truncated board (review_attempts empty) while durable R01 plus open O1 exists on disk; listed-board control correctly rejects empty proposal.",
+      "probe_mutation": "Validator/locator probes plus close-gate fixture probe plus test-suite review: newly authored legacy-shaped R01 RED vs explicit-RED controls; [R01 RED] vs same-ID rewritten [R01 GREEN] with bogus commit/blob keys; close gate on truncated board with durable R01 plus open O1 vs listed-board control.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_02.json",
+      "technical_classification": "REQUIRES_CHECKPOINT_READBACK"
+    },
+    {
+      "code_refs": [
+        "tools/execution_contract.py:70-82",
+        "tools/router.py:758-777",
+        "tools/review_contract.py:553-585",
+        "tools/router.py:278-297",
+        "tools/router.py:95-105",
+        "tools/state_contract.py:189-194"
+      ],
+      "current_disposition": "STILL_APPLICABLE",
+      "dependencies": [],
+      "id": "RF007",
+      "likely_future_repair_boundary": "One reusable locator/readback foundation Card: resolve existence, semantic root, and exact Git object identity before any consumer treats a locator/declaration as workflow proof.",
+      "m02r_authority_assessment": "M02R corrective authority not established (report insufficient/false): no M02R Card owns the locator/readback foundation. Requires explicit pre-M03 authority/replan or separate maintenance.",
+      "members": [
+        "H010",
+        "H020",
+        "H029"
+      ],
+      "observed_result": "H010: dangling evidence accepted by parse_card_result; router active-result branch never dereferences refs; dangling locator plus #O1 accepted on string binding only. H020: same-path byte mutation with unchanged declared tuple still routes execution_prep; existing stale test misses it. H029: symlink locator passes and Reads follows it outside declared root; backslash traversal passes on POSIX.",
+      "probe_mutation": "Disposable fixture copies on exact candidate: dangling evidence/DOES-NOT-EXIST.md result plus dangling locator plus #O1; same-path byte mutation with unchanged (path,commit,blob) tuple through refresh_ready_card; workflow/ALIAS.md symlink to ../untrusted/ISSUE_TEXT.md plus backslash-traversal string.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_03.json",
+      "technical_classification": "REQUIRES_CHECKPOINT_READBACK"
+    },
+    {
+      "code_refs": [
+        "tools/state_contract.py:522-526",
+        "tools/router.py:553-562"
+      ],
+      "current_disposition": "AUTHORITY_RECONCILIATION_REQUIRED",
+      "dependencies": [],
+      "id": "RF008",
+      "likely_future_repair_boundary": "No implementation Card first. Return proof rule to Definition/Planning, accept the durable old/new-subject classification mechanism, then materialize one narrow enforcement Card if work remains.",
+      "m02r_authority_assessment": "Authority reconciliation required, authority-first: accepted semantics (PWV2-REQ-039; workflow/PLANNING.md; PLAN_REVIEW.md; consumer P6 independent review_mode) define what may be exempt but select no durable old/new-subject classification/proof mechanism. Must return to Definition/Planning before any implementation Card; do not broaden M02R. No editorial_exempt proof invented.",
+      "members": [
+        "H012"
+      ],
+      "observed_result": "validate_planning ACCEPTED self-attested wording only and mechanical fix; router routes route/execution_prep without new Stage-6 review. Empty basis and stale base correctly fail closed, proving only shape/binding is enforced, not editorial-vs-material proof. Authority search finds prose only and zero durable proof mechanism in consumer PWV21_POLICY_KERNEL requirements/decisions/P6.",
+      "probe_mutation": "Authority-first readback, no proof mechanism designed. Code: disposable no-board fixture with green Definition plus planning approved editorial_exempt basis wording only (changed blob c*40, base b*40) plus prior GREEN plan_review; variants mechanical fix, empty basis, stale base. Authority search over consumer requirements/decisions/P6 and candidate requirements.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_01.json",
+      "technical_classification": "MUST_RECONCILE_BEFORE_M03"
+    },
+    {
+      "code_refs": [
+        "tools/state_contract.py:387-448",
+        "tools/router.py:351-366",
+        "tools/state_contract.py:324-328",
+        "tools/router.py:372-399"
+      ],
+      "current_disposition": "STILL_APPLICABLE",
+      "dependencies": [
+        "RF007"
+      ],
+      "id": "RF009",
+      "likely_future_repair_boundary": "One Research referential-integrity Card after RF007: exact origin-to-return-target binding plus exact prior-art-result provenance consumed by Intake/Board owners.",
+      "m02r_authority_assessment": "Insufficient: M02R owns no Research referential-integrity/provenance correction and is terminal at rev104. Requires explicit pre-M03 authority/replan or separate maintenance in order RF007 to RF009.",
+      "members": [
+        "H014",
+        "H016"
+      ],
+      "observed_result": "validate_research ACCEPTED all origin/return mismatches; router routes each to declared return_target, never recovery. validate_intake ACCEPTED forged bindings; router accepts stable binding without verifying consumed Research, so both forged cases return stop/issue_alignment identical to exact control. Exact control correctly stops.",
+      "probe_mutation": "Disposable select_route plus validator fixtures: complete Research with mismatched origin/return (intake-to-brainstorming; definition-to-intake; nonexistent scope@99); forged Intake binding repair:v9/forged-string with no Research; forged binding mismatched vs consumed real result; exact-binding control.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_01.json",
+      "technical_classification": "CAN_DEFER"
+    },
+    {
+      "code_refs": [
+        "tools/router.py:372",
+        "tools/router.py:400-408",
+        "tools/state_contract.py:329-332"
+      ],
+      "current_disposition": "STILL_APPLICABLE",
+      "dependencies": [
+        "RF009"
+      ],
+      "id": "RF010",
+      "likely_future_repair_boundary": "One Intake issue-lifecycle Card after RF009: gate issue_alignment on concrete repair_subject plus completed exact diagnosis/prior-art proof; empty subject stays in Intake diagnosis.",
+      "m02r_authority_assessment": "Insufficient: M02R owns no Intake issue-lifecycle/alignment-gate correction and is terminal at rev104. Requires explicit pre-M03 authority/replan or separate maintenance after RF009.",
+      "members": [
+        "H015"
+      ],
+      "observed_result": "Empty-subject pending issue returns stop/issue_alignment with empty subject because the router guard skips the prior-art gate when empty and then unconditionally stops on pending plus none; validator permits pending with empty repair_subject. Concrete-without-proof correctly routes intake; concrete plus exact proof correctly stops. Only empty-subject path defective; family still applicable.",
+      "probe_mutation": "Disposable select_route fixtures: issue pending response none with empty repair_subject; concrete repair:v2 without prior-art proof; concrete plus exact prior-art binding plus matching consumed Research.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_01.json",
+      "technical_classification": "CAN_DEFER"
+    },
+    {
+      "code_refs": [
+        "tools/close_contract.py:179-202",
+        "tools/close_contract.py:251-318",
+        "CLOSE.md:61",
+        "WORKSTREAMS.md:27"
+      ],
+      "current_disposition": "AUTHORITY_RECONCILIATION_REQUIRED",
+      "dependencies": [
+        "RF006",
+        "RF007"
+      ],
+      "id": "RF011",
+      "likely_future_repair_boundary": "Blocked until Definition/Planning accepts the exact mandatory source-ref-independent package enumeration; then one Close/Recovery proof-derivation Card deriving mandatory package plus cleanup proof from durable state via exact readback (H019 readback portion implementable once RF007 lands).",
+      "m02r_authority_assessment": "Authority reconciliation required: per audit authority_ambiguity, the exact mandatory source-ref-independent package definition must return to Definition/Planning; implementation must not invent it. Defects persist but durable package definition missing.",
+      "members": [
+        "H017",
+        "H019"
+      ],
+      "observed_result": "H017: required=present=empty set returns source_ref_independent_recovery and reaches delete_exact_ref. H019: fabricated 40-hex commit/blob, dangling evidence string, and boolean flags accepted; repo positive test still encodes a*40/b*40 acceptance. Package definition exists only as prose categories, with no exact artifact set or per-class completeness rule in candidate or consumer authority roots.",
+      "probe_mutation": "verify_target_side_recovery with required=present=empty frozenset fed to cleanup_branch_action; validate_cleanup_work with fabricated 40-hex commit/blob, dangling evidence, boolean flags, plus repo positive-test review; authority search over candidate workflow/requirements/planning plus consumer HEAD.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_03.json",
+      "technical_classification": "CAN_DEFER"
+    },
+    {
+      "code_refs": [
+        "tools/state_contract.py:543",
+        "tools/router.py:485-522"
+      ],
+      "current_disposition": "STILL_APPLICABLE",
+      "dependencies": [
+        "RF007"
+      ],
+      "id": "RF012",
+      "likely_future_repair_boundary": "One Definition-to-Planning freshness Card using a durable exact authority key shared by Planning, Plan Review, and router freshness checks; after RF007.",
+      "m02r_authority_assessment": "M02R corrective authority not established. Tester judged Planning-derives-from-current-Definition accepted (workflow/PLANNING.md), but the P6 map found no explicit M02R corrective Card authority; RF012 belongs to Definition→Planning freshness/M06. Prospective-only if later authorized (M02 terminal GREEN, REQ-125). Do not authorize work.",
+      "members": [
+        "H021"
+      ],
+      "observed_result": "Baseline R1 routes route/execution M01-T04; R2 mutant with old Planning untouched routes identically route/execution instead of failing closed or re-entering Planning; changed-requirements/decisions-under-R1 mutant also executes. validate_planning takes no Definition; router loads Definition and Planning separately and never compares entry authority; no freshness predicate exists.",
+      "probe_mutation": "Router probe with disposable fixtures: approved Planning plus GREEN Plan Review plus satisfied C plus live board; Definition varied R1 to R2 and requirements/decisions swapped under R1.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_02.json",
+      "technical_classification": "REQUIRES_CHECKPOINT_READBACK"
+    },
+    {
+      "code_refs": [
+        "tools/execution_contract.py:63-65",
+        "tools/execution_contract.py:84-88",
+        "tools/router.py:772-777",
+        "tools/router.py:757",
+        "tools/router.py:867-873"
+      ],
+      "current_disposition": "STILL_APPLICABLE",
+      "dependencies": [
+        "RF007"
+      ],
+      "id": "RF013",
+      "likely_future_repair_boundary": "One execution/result semantic-validation Card: validate the stable Card before recovered Execution; use a structured success predicate before a Result can authorize reconciliation/review/no-replay recovery (no substring heuristics).",
+      "m02r_authority_assessment": "M02R corrective authority not established (report insufficient/false). Requires explicit pre-M03 authority/replan or separate maintenance after RF007.",
+      "members": [
+        "H023",
+        "H024"
+      ],
+      "observed_result": "H023: FAILED Tests/readback summary accepted as non-empty string; router active-result branch with review none returns route/result_reconciliation as valid semantic result. H024: default 2-line active/result-less fixture card routes route/execution while parse_task_card rejects the same file; active/no-result branch reads but never parses the Card.",
+      "probe_mutation": "Disposable fixture copies: Card Result with Tests/readback summary FAILED: acceptance test failed through parse_card_result plus router active-result branch with review none; default 2-line cards/M01-T04.md through select_route vs parse_task_card.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_03.json",
+      "technical_classification": "REQUIRES_CHECKPOINT_READBACK"
+    },
+    {
+      "code_refs": [
+        "tools/policy_kernel.py:81-83",
+        "tools/router.py:934-939",
+        "tools/router.py:957-1028",
+        "tools/state_contract.py:891-905"
+      ],
+      "current_disposition": "STILL_APPLICABLE",
+      "dependencies": [
+        "RF001",
+        "RF013"
+      ],
+      "id": "RF014",
+      "likely_future_repair_boundary": "One JIT-terminality Card: pending/satisfied JIT obligations part of terminal completeness; exact consumed-by/materialized-downstream binding; after RF001 plus RF013.",
+      "m02r_authority_assessment": "Insufficient: REQ-123/REQ-127 authorize only affected-JIT (live-finding) and intentional live-consumer holds, both implemented; ordinary satisfied-JIT terminality and consumed-by materialization proof have no accepted requirement or BOOT seam. Requires explicit pre-M03 authority/replan or separate maintenance.",
+      "members": [
+        "H026"
+      ],
+      "observed_result": "all-DONE plus satisfied ordinary trigger with no downstream Card routes route/close, identical to no-JIT positive; all-DONE plus consumed trigger with no downstream evidence likewise routes close. K012 fires before JIT holds, which cover only live-finding/live-consumer gates; validate_board requires only DONE predecessor/bound-handoff; no consumed_by field validated anywhere. Board rev104 carries 14 consumed triggers with prose-only keys, tolerated as terminal history under REQ-125. No closing test.",
+      "probe_mutation": "all-DONE plus satisfied ordinary trigger with no downstream Card; all-DONE plus consumed trigger with no downstream evidence; validate_board direct; positive all-DONE/no-JIT.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_04.json",
+      "technical_classification": "REQUIRES_CHECKPOINT_READBACK"
+    },
+    {
+      "code_refs": [
+        "tools/close_contract.py:606-632",
+        "test_close_contract.py:327-375",
+        "tools/router.py: terminal dispatch (zero end_of_scope_stop refs)",
+        "ROUTER.md:64-65",
+        "CLOSE.md:93"
+      ],
+      "current_disposition": "STILL_APPLICABLE",
+      "dependencies": [
+        "RF011",
+        "RF014"
+      ],
+      "id": "RF015",
+      "likely_future_repair_boundary": "One Close-composition Card: selector durable Close-completion input/readback emitting end_of_scope_stop/USER_STOP at true end; after RF011 plus RF014. Technical CAN_DEFER preserved (M07 surface).",
+      "m02r_authority_assessment": "Insufficient: P6 places close continuation semantics in M07; no M02R requirement authorizes Close-composition/selector wiring. Requires explicit pre-M03 authority/replan or separate maintenance.",
+      "members": [
+        "H027"
+      ],
+      "observed_result": "First all-DONE entry routes route/close; immediate re-entry routes route/close again, never stop/end_of_scope_stop. Oracle close_continuation correctly returns end_of_scope_stop/authorization_stop and is unit-tested, but has zero production callers and zero end_of_scope_stop references in tools/router.py; docs claim a continuation the selector never implements.",
+      "probe_mutation": "First all-DONE entry; immediate re-entry on same board; close_continuation unit oracle; static grep for production callers and end_of_scope_stop in tools/router.py.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_04.json",
+      "technical_classification": "CAN_DEFER"
+    },
+    {
+      "code_refs": [
+        "hooks/session-start.py:34-53",
+        "test_codex_delivery.py:126-142"
+      ],
+      "current_disposition": "STILL_APPLICABLE",
+      "dependencies": [],
+      "id": "RF016",
+      "likely_future_repair_boundary": "One delivery-integrity Card for SessionStart canonical-router verification plus marker-preserving corruption tests; keep workflow semantics in router, not bootstrap.",
+      "m02r_authority_assessment": "Insufficient: SessionStart delivery integrity is an M06 runtime/handoff surface; no M02R requirement or BOOT seam authorizes it. Requires explicit pre-M03 authority/replan or separate maintenance. Technical CAN_DEFER preserved.",
+      "members": [
+        "H028"
+      ],
+      "observed_result": "Two-marker-only ROUTER.md ENABLED (returns path, should BLOCK); marker-preserving contradictory/truncated ROUTER.md ENABLED (should BLOCK); canonical_router checks only ROUTER_HEADER plus ROUTER_SELECTOR substring presence; no digest/manifest/hash reference; positive untouched candidate root ENABLED. Existing tests cover only missing/markerless/escape cases.",
+      "probe_mutation": "hooks/session-start.py canonical_router with two-marker-only ROUTER.md; marker-preserving contradictory/truncated ROUTER.md; positive untouched candidate root; digest/manifest grep.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_04.json",
+      "technical_classification": "CAN_DEFER"
+    },
+    {
+      "code_refs": [
+        "tools/state_contract.py:159-174",
+        "tools/router.py:313",
+        "tools/router.py:665",
+        "tools/router.py:867",
+        "tools/router.py:883",
+        "tools/router.py:918",
+        "tools/state_contract.py:1523"
+      ],
+      "current_disposition": "STILL_APPLICABLE",
+      "dependencies": [],
+      "id": "RF017",
+      "likely_future_repair_boundary": "One parser-normalization Card: normalize TOML decode failures at the durable-state read boundary (or exhaustively catch) so every selector-owned TOML surface returns deterministic Recovery.",
+      "m02r_authority_assessment": "M02R corrective authority not established (report insufficient/false). Requires explicit pre-M03 authority/replan or separate maintenance.",
+      "members": [
+        "H030"
+      ],
+      "observed_result": "Malformed TASK_BOARD.toml and WORKSTREAM.toml (revision = [) raise uncaught tomllib.TOMLDecodeError out of select_route instead of recovery_boundary; read_toml/read_project do not normalize; selector catches OSError/ValidationError/KeyError only; only state_contract CLI catches TOMLDecodeError. Controls: valid TOML routes normally; semantic-invalid TOML returns recovery via ValidationError; no router malformed-TOML test exists.",
+      "probe_mutation": "Malformed TASK_BOARD.toml and WORKSTREAM.toml (revision = [) through select_route; controls valid TOML and semantic-invalid TOML.",
+      "source_report": "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_03.json",
+      "technical_classification": "REQUIRES_CHECKPOINT_READBACK"
+    }
+  ],
+  "limitations": [
+    "Candidate behavior established by four probe reports against disposable fixtures on exact candidate SHA; this draft did not re-execute probes or replay the full consumer workstream.",
+    "Board-coupled plan_gate_passed_with_board, Board execution_prep/execution Research return variants, and live-Board editorial paths probed only as stated per family; several families note workstream-level dispatch only.",
+    "RF006 router end-to-end rewrite flip follows deterministically from cited control flow but was not separately executed; legacy-vs-historical determination for already-terminal consumer reviews is Main-owned.",
+    "RF007 Windows backslash vector confirmed at lexical layer only (platform-conditional); Git-identity negative cases follow from same missing-resolve path without separate execution.",
+    "Authority searches covered stated consumer/candidate authority roots; they did not re-read every M02R evidence file.",
+    "RF004 same-path Card-content mutation proven by structural code absence plus alternate-path router probe, not a dedicated same-path router run."
+  ],
+  "lists": {
+    "authority_reconciliation_required": [
+      "RF006",
+      "RF008",
+      "RF011"
+    ],
+    "needs_more_current_evidence": [],
+    "satisfied_by_current_implementation": [],
+    "still_applicable": [
+      "RF001",
+      "RF002",
+      "RF003",
+      "RF004",
+      "RF005",
+      "RF007",
+      "RF009",
+      "RF010",
+      "RF012",
+      "RF013",
+      "RF014",
+      "RF015",
+      "RF016",
+      "RF017"
+    ]
+  },
+  "policy": "QUALITY_FIRST_PRE_M03",
+  "probe_reports": [
+    "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_01.json",
+    "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_02.json",
+    "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_03.json",
+    "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/pre_m03_audit_readback/PROBE_BATCH_04.json"
+  ],
+  "status": "READBACK_COMPLETE_INDEPENDENT_REVIEW_PENDING",
+  "technical_classifications": {
+    "can_defer": [
+      "RF002",
+      "RF003",
+      "RF009",
+      "RF010",
+      "RF011",
+      "RF015",
+      "RF016"
+    ],
+    "must_reconcile_before_m03": [
+      "RF008"
+    ],
+    "requires_checkpoint_readback": [
+      "RF001",
+      "RF004",
+      "RF005",
+      "RF006",
+      "RF007",
+      "RF012",
+      "RF013",
+      "RF014",
+      "RF017"
+    ]
+  }
+}
