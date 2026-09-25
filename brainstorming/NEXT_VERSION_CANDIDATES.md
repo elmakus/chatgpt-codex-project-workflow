@@ -256,12 +256,186 @@ Those remain governed by deterministic PW contracts and the existing human/revie
 
 ---
 
+## FUT-006 — Agent-facing `pw doctor` / `pw explain`
+
+Status: `parked`
+Target horizon: PWv2.2 candidate
+Origin: user
+
+### Intent
+
+Investigate a read-only diagnostic/explanation interface that lets an agent mechanically inspect current Project Workflow state instead of repeatedly reconstructing it from several durable artifacts.
+
+Potential outputs include:
+
+- selected workstream and current obligation;
+- exact reason/rule for the route;
+- blockers and stale pointers/fingerprints;
+- DAG ready/blocked frontier;
+- due review/Research/user gates;
+- bounded explanation for why a specific node is blocked or selected.
+
+Primary consumer is the agent/runtime; human-readable output is a useful secondary UX.
+
+### Research requirement before promotion
+
+Research this candidate independently before Definition. Determine overlap with the existing router/state-contract tooling, expected context/token savings, failure modes, stable explanation schema, and whether a single `doctor` surface plus machine-readable output is preferable to multiple commands.
+
+---
+
+## FUT-007 — Atomic canonical transition applier
+
+Status: `parked`
+Target horizon: PWv2.2 candidate
+Origin: user
+
+### Intent
+
+Investigate applying logically related canonical Project Workflow state changes as one validated transition rather than a sequence of partially durable mutations.
+
+Candidate shape:
+
+`expected current state/hashes → proposed transition → validate complete resulting state → one durable Git commit → readback/verification`
+
+The mechanism should fail closed if preconditions changed or the resulting state violates invariants.
+
+### Research requirement before promotion
+
+Research this candidate independently before Definition. Evaluate transaction boundaries, optimistic concurrency/fingerprint strategy, Git commit semantics, rollback/failure behavior, interaction with parallel DAG completion, and which transitions are safe to automate without creating a second state authority.
+
+---
+
+## FUT-008 — DAG crash/recovery simulation and property testing
+
+Status: `parked`
+Target horizon: PWv2.2 candidate
+Origin: user
+Dependency: FUT-001 DAG-based execution orchestration
+
+### Intent
+
+Investigate a dedicated test harness that generates or replays DAG workflow states and deliberately injects interruption/crash boundaries to prove deterministic recovery from canonical repository state.
+
+Scenarios should include interruption around:
+
+- node launch;
+- returned-but-not-yet-reconciled result;
+- review freeze/verdict/finalization;
+- parallel node completion and integration;
+- dynamic/JIT graph extension;
+- atomic transition boundaries;
+- stale-result and dependency changes.
+
+Core properties include no duplicate execution solely due to runtime loss, no illegal dependency advance, no lost valid result, no invalid GREEN, no unrecoverable deadlock, and deterministic next-obligation reconstruction.
+
+### Research requirement before promotion
+
+Research this candidate independently before Definition. Compare example-based replay, generated state-machine/property testing, fault injection, model checking/state-space approaches, and realistic scope so the harness gives high confidence without becoming a second workflow implementation.
+
+---
+
+## FUT-009 — Lightweight non-authoritative execution trace / replay
+
+Status: `parked`
+Target horizon: PWv2.2 candidate, only if complexity/runtime cost remains low
+Origin: user
+
+### Intent
+
+Investigate a lightweight non-authoritative trace of mechanical workflow decisions for debugging, regression replay, observability and future PWv2.3 System-One evaluation.
+
+Possible trace fields include:
+
+- obligation/subject identity;
+- canonical input fingerprint;
+- matched mechanical rule IDs;
+- DAG frontier and selected node(s);
+- transition/result classification;
+- next obligation;
+- timing/cost metadata where useful.
+
+Canonical Git/project state remains the only workflow authority. Trace loss must not impair recovery or legality.
+
+### Scope constraint
+
+Adopt only if the implementation does not materially complicate Project Workflow, increase agent context load, or create a maintenance-heavy parallel state system.
+
+### Research requirement before promotion
+
+Research this candidate independently before Definition. Quantify storage/runtime/context overhead, retention strategy, privacy/sensitive-data boundaries, usefulness for regression replay and Jev/Laya/Von/poorjev benchmarking, and whether derived-on-demand traces can replace persistent logging.
+
+---
+
+## FUT-010 — DAG-node context compiler
+
+Status: `parked`
+Target horizon: PWv2.2 candidate
+Origin: user
+Dependency: FUT-001 DAG-based execution orchestration
+
+### Intent
+
+Investigate mechanically compiling the smallest lossless authority/context package needed by one executable DAG node.
+
+The compiler may resolve:
+
+- exact requirements/decisions applicable to the node;
+- dependency results and immutable bindings;
+- code/write scope;
+- tests/evidence/readback obligations;
+- must-open sources;
+- exclusions and authorization boundaries.
+
+The compiler must derive from canonical PW authority and references; it must not invent scope or become a new authority layer.
+
+Expected benefits to validate are lower worker context/token cost, less irrelevant project-history loading, reduced cross-node contamination and more reproducible worker inputs.
+
+### Research requirement before promotion
+
+Research this candidate independently before Definition. Measure losslessness, context-size reduction, derivation/fingerprint rules, interaction with dynamic DAG changes, caching/content-addressing opportunities, and failure behavior when required authority cannot be resolved.
+
+---
+
+## FUT-011 — Requirement-to-evidence traceability graph
+
+Status: `parked`
+Target horizon: PWv2.2 candidate subject to scope; may defer if DAG scope becomes too large
+Origin: user
+
+### Intent
+
+Investigate a provenance/traceability graph distinct from the execution DAG.
+
+The execution DAG answers `what depends on what to execute`.
+
+The traceability graph should answer `why does this work exist and what evidence proves the accepted requirement/decision is satisfied`.
+
+Potential relations include:
+
+`requirement → decision/ADR → milestone/Card → implementation/result → tests/evidence → review attempt/verdict`
+
+Potential uses:
+
+- detect accepted requirements without implementation/evidence coverage;
+- detect Cards/results without clear authority coverage;
+- support Final Integration coverage checks;
+- perform impact analysis when a requirement/decision changes;
+- identify potentially stale downstream tests/reviews/evidence after authority changes.
+
+### Research requirement before promotion
+
+Research this candidate independently before Definition. Determine the minimum useful graph, source-of-truth ownership, whether edges can be derived rather than manually maintained, how stale coverage is detected, and whether the value justifies inclusion in PWv2.2 versus deferral to a later version.
+
+
+---
+
 ## Next-version intake rule
 
 When the next Project Workflow version is started:
 
 1. Read every unresolved candidate in this file before completing initial Brainstorming.
 2. Re-evaluate each candidate against the then-current architecture and evidence.
-3. Explicitly classify each as `promoted`, `deferred`, or `rejected/superseded`.
-4. Promote accepted intent through normal Project Definition.
-5. Do not implement directly from this file.
+3. Where a candidate declares a Research requirement, investigate that candidate as its own bounded Research question before promotion; do not treat acceptance of one candidate as evidence for another merely because they are architecturally related.
+4. Explicitly classify each candidate as `promoted`, `deferred`, or `rejected/superseded`.
+5. Promote accepted intent through normal Project Definition.
+6. Do not implement directly from this file.
