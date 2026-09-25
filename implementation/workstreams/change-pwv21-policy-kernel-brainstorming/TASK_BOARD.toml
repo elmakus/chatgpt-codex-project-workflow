@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 89
+revision = 90
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -382,7 +382,7 @@ condition = "After M02R-T10 is DONE with a durable GREEN-reviewed immutable hist
 
 [[cards]]
 id = "M02R-T11"
-status = "ready"
+status = "in_progress"
 
 [cards.contract]
 class = "task_card"
