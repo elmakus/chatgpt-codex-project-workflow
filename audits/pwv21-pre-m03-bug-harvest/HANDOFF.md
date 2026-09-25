@@ -3,7 +3,7 @@
 
 ## Latest technical triage
 
-- Batch in progress: `H019 + H020 + H021`
+- Batch completed: `H019 + H020 + H021`
 - Frozen batch candidate snapshot: `elmakus/project_workflow_v2@003f8a9a7c12a21d0c73b07163e449b8ae63bad8`
 - H019 verdict: `CONFIRMED_MATERIAL`
 - H019 current-candidate status: `persists`
@@ -11,14 +11,17 @@
 - H020 verdict: `CONFIRMED_MATERIAL`
 - H020 current-candidate status: `persists`
 - H020 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H020.md`
-- Next READY item: `H021`
-- Current authorization continues with H021 only. H022 is not authorized by this batch.
+- H021 verdict: `CONFIRMED_MATERIAL`
+- H021 current-candidate status: `persists`
+- H021 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H021.md`
+- Next READY item: `H022`
+- Next worker obligation: begin from `H022` only when a later worker is explicitly authorized. This batch does not authorize H022.
 
 ## What was completed
 
 The first-stage out-of-band workspace was initialized from the exact active-workstream HEAD captured before branch creation. Both persisted aggregate reports were normalized without performing a broad new product audit, without repairing product code, and without mutating canonical Project Workflow state.
 
-All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were ingested. One clear semantic family was merged as **CROSS-SOURCE OVERLAP**: PWV2:C003 with M02R-T03:C02 (durable evidence locators accepted without proving the referenced artifact exists). This leaves 30 normalized harvest candidates. H001 through H020 have now been independently triaged and persisted. H019 and H020 are `confirmed_material` / `reproduced` / `pending_repair`. H021 remains the final authorized READY item; H022+ remain untouched by this batch.
+All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were ingested. One clear semantic family was merged as **CROSS-SOURCE OVERLAP**: PWV2:C003 with M02R-T03:C02 (durable evidence locators accepted without proving the referenced artifact exists). This leaves 30 normalized harvest candidates. H001 through H021 have now been independently triaged and persisted. H019, H020 and H021 are each `confirmed_material` / `reproduced` / `pending_repair`. H022+ remain untouched by this batch.
 
 ## Exact durable workspace state
 
@@ -57,15 +60,15 @@ These immutable subjects are different and must not be conflated.
 - M02R-T03 shadow classes ingested: 4
 - Cross-source merged semantic families: 1
 - Normalized harvest candidates: 30
-- READY reproduction items: 10
-- Completed reproduction items: 20
-- First READY item: `H021`
+- READY reproduction items: 9
+- Completed reproduction items: 21
+- First READY item: `H022`
 
 ## Next worker obligation
 
-The next READY item is **H021**. Continue this authorized batch with H021 only. Do not process H022 or anything later.
+The next READY item is **H022**. A later worker must read this handoff and queue first, verify H022 is still the first READY item, and process only the candidate set explicitly authorized in that later worker's instruction. This completed H019+H020+H021 batch does not authorize H022.
 
-The `003f8a9a7c12a21d0c73b07163e449b8ae63bad8` candidate SHA is the immutable snapshot for the entire H019+H020+H021 batch.
+The `003f8a9a7c12a21d0c73b07163e449b8ae63bad8` candidate SHA is the immutable snapshot used for H019, H020 and H021 only; a later batch must resolve its own candidate snapshot according to its authorization.
 
 ## Prohibited next-worker actions
 
