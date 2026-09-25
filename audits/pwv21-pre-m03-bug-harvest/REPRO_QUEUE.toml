@@ -64,7 +64,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H007"
-status = "ready"
+status = "done"
 priority_basis = "review misclassification with corrective authority; executable counterexample"
 source_classes = ["PWV2:C016"]
 recommended_repro_surface = ["Plan Review validator", "tools/router.py", "repros/router_counterexamples.py F3"]
