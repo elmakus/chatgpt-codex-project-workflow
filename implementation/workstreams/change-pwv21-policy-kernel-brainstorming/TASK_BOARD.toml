@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 109
+revision = 110
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -907,7 +907,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02Q-T01"
 after_card = "M02Q-T01"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T01 is DONE with a durable exact result and GREEN Card Review, Execution Prep must read back the RF008 result and materialize the next P7 required seam RF007 without cross-RF merging. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -942,6 +942,58 @@ card_id = "M02Q-T01"
 risk = "simple"
 triggers = []
 risk_basis = "One P7 required seam and one independently falsifiable editorial-exemption-proof invariant; no preferred/required seam merge, multiple-family boundary, whole-milestone absorption, review substitution or material plan deviation."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q order-2 RF007 materialization consumes the exact DONE/GREEN RF008
+# result. Execution Prep evidence: evidence/M02Q-T02_EXECUTION_PREP_2026-09-25.md.
+[[cards]]
+id = "M02Q-T02"
+status = "planned"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T02.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T02"
+after_card = "M02Q-T02"
+state = "waiting"
+condition = "After M02Q-T02 is DONE with an exact durable RF007 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-3 RF005 Plan Review lifecycle seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T02"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "exact-locator-readback"
+kind = "invariant"
+statement = "A reusable resolver proves target existence, declared semantic root and exact Git identity before an implicated workflow consumer treats a locator as proof."
+family = "exact-locator-readback"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "Existence, semantic-root confinement and exact immutable identity are inseparable validity facets; none alone yields a safely consumable locator proof. RF005 and RF007-dependent seams remain separate Cards."
+falsifiability_testability = "H010 dangling evidence, H020 same-path byte mutation and H029 symlink/traversal escape each fail before correction and pass only when an exact valid target is resolved; positive valid locators still route."
+reviewability = "One local Card Review can assess the reusable RF007 proof foundation and its implicated consumers without substituting for later RF seams or M02Q Milestone Review."
+invariant_contract_family = "One exact-locator-readback family combines target existence, authorized root, Git identity and before-use enforcement; none is independently useful as a partial proof."
+dependency_ordering = "Consumes the exact DONE/GREEN M02Q-T01 result in the serial P7 M02Q order; RF005 follows and RF012/RF013/RF009/RF006/RF011/RF001 depend on RF007."
+atomic_mutation_migration = "Resolver and affected consumer enforcement form one accepted subject; partial rollout leaves an unverified-locator bypass. Historical terminal evidence is not rewritten."
+cross_surface_coupling = "Result/evidence, observation provenance, READY refresh and path readers share locator validity; this RF007-local coupling does not merge another required seam."
+
+[[topology_audits]]
+card_id = "M02Q-T02"
+risk = "simple"
+triggers = []
+risk_basis = "One exact-locator invariant family within one P7 required seam, with no preferred-seam merger, multiple independently useful families, milestone absorption, review substitution or material strategy deviation."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
