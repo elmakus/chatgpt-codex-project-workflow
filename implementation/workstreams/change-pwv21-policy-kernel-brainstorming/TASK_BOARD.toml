@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 72
+revision = 73
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -286,7 +286,7 @@ condition = "After M02R-T06 is DONE with a durable GREEN-reviewed result, Execut
 
 [[cards]]
 id = "M02R-T07"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
@@ -305,7 +305,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02R-T07"
 after_card = "M02R-T07"
-state = "waiting"
+state = "satisfied"
 condition = "After M02R-T07 is DONE with a durable GREEN-reviewed result, Execution Prep must read back its REQ-130 late-oversize return result and materialize the next smallest meaningful M02R Card within the separate required BOOT-C seam (REQ-122..127), then BOOT-D; do not materialize M03 before all M02R Card work and Milestone review are GREEN."
 
 # Structured readback of the pre-materialization audit already recorded in
