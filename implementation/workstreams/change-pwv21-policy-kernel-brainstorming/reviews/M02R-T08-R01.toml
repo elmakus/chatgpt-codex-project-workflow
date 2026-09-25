@@ -1,11 +1,11 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02R-T08"
 attempt = "R01"
-verdict = "pending"
-evidence_path = ""
+verdict = "green"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02R-T08_REVIEW_R01_2026-09-25.md"
 review_kind = "discovery"
 source_discovery_attempt = ""
-discovery_complete = false
+discovery_complete = true
 material_finding_ids = []
 review_scope = "card"
 review_epoch = "E01"
