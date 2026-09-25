@@ -1,0 +1,303 @@
+# Deterministic ordering: (1) human authority/review-bypass/wrong-route/recovery integrity,
+# (2) immutable identity, (3) pre-M03 relevance hypothesis, (4) concrete reproducer,
+# (5) independent rediscovery frequency. Frequency never removes or invalidates a singleton.
+
+[[items]]
+id = "H001"
+status = "ready"
+priority_basis = "human-authority boundary; direct concrete reproducer"
+source_classes = ["PWV2:C027"]
+recommended_repro_surface = ["tools/state_contract.py", "tools/router.py", "PWV2:C027 source repro"]
+repro_goal = "Prove or reject whether a valid human-authority blocker can be ignored while the Card remains in_progress."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H002"
+status = "ready"
+priority_basis = "human-authority stop bypass; independent rediscovery"
+source_classes = ["PWV2:C008"]
+recommended_repro_surface = ["tools/router.py", "Brainstorming stop fixtures"]
+repro_goal = "Prove or reject whether explicit_user_stop can lose precedence once legal downstream state exists."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H003"
+status = "ready"
+priority_basis = "wrong-route and human-boundary risk; 13-way rediscovery"
+source_classes = ["PWV2:C007"]
+recommended_repro_surface = ["tools/router.py", "Research routing fixtures"]
+repro_goal = "Prove or reject one minimal vector where generic Research dispatch violates the higher-precedence durable owner."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H004"
+status = "ready"
+priority_basis = "review bypass and recovery-integrity risk; 24-way rediscovery"
+source_classes = ["PWV2:C002"]
+recommended_repro_surface = ["tools/state_contract.py", "tools/router.py", "DONE-state fixtures"]
+repro_goal = "Prove or reject whether DONE can reach Close/finalization without the required valid result and review proof."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H005"
+status = "ready"
+priority_basis = "review-integrity bypass; 11-way rediscovery"
+source_classes = ["PWV2:C004"]
+recommended_repro_surface = ["tools/state_contract.py", "tools/router.py", "implementation-review fixtures"]
+repro_goal = "Prove or reject whether a prior GREEN can authorize a current Card acceptance surface the reviewer did not evaluate."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H006"
+status = "ready"
+priority_basis = "review of wrong authority; concrete cross-binding vectors"
+source_classes = ["PWV2:C005"]
+recommended_repro_surface = ["Plan Review validator", "tools/router.py", "PWV2:C005 source repros"]
+repro_goal = "Prove or reject whether Plan Review GREEN can be recorded against authority unrelated to the current Definition."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H007"
+status = "ready"
+priority_basis = "review misclassification with corrective authority; executable counterexample"
+source_classes = ["PWV2:C016"]
+recommended_repro_surface = ["Plan Review validator", "tools/router.py", "repros/router_counterexamples.py F3"]
+repro_goal = "Prove or reject whether an unfinished Plan Review can gain RED/correction semantics."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H008"
+status = "ready"
+priority_basis = "review-bypass/corrective-authority risk in current M02R scope"
+source_classes = ["M02R-T03:C04"]
+recommended_repro_surface = ["M02R-T03 review-history compatibility path", "S2-F1", "S4-F3"]
+repro_goal = "Prove or reject whether a newly created legacy-shaped RED is indistinguishable from genuinely historical compatible state."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H009"
+status = "ready"
+priority_basis = "review-history integrity and recovery risk; concrete reproducer"
+source_classes = ["PWV2:C026"]
+recommended_repro_surface = ["review-attempt validation", "tools/router.py", "repros/repro_findings.py F5"]
+repro_goal = "Prove or reject whether a terminal review attempt can be semantically replaced without an append-only successor."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H010"
+status = "ready"
+priority_basis = "cross-source review/provenance integrity; high rediscovery plus exact M02R recurrence"
+source_classes = ["PWV2:C003", "M02R-T03:C02"]
+recommended_repro_surface = ["durable evidence readers", "tools/router.py", "M02R-T03 observation provenance helper"]
+repro_goal = "Prove or reject the common semantic family: acceptance of an evidence reference whose target durable artifact does not exist."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H011"
+status = "ready"
+priority_basis = "review-lifecycle parity; direct representability counterexample"
+source_classes = ["PWV2:C024"]
+recommended_repro_surface = ["Review requirement schema", "tools/router.py", "repros/router_counterexamples.py F4"]
+repro_goal = "Prove or reject whether an unactivated RECOMMENDED review can be represented without becoming mandatory."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H012"
+status = "ready"
+priority_basis = "review-exemption integrity; concrete policy counterexample"
+source_classes = ["PWV2:C023"]
+recommended_repro_surface = ["Planning editorial_exempt validation", "Plan Review routing", "source repro"]
+repro_goal = "Prove or reject whether materially changed plan content can self-classify as editorial_exempt and bypass required review."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H013"
+status = "ready"
+priority_basis = "final-review exactness; concrete reproducer despite policy ambiguity"
+source_classes = ["PWV2:C025"]
+recommended_repro_surface = ["Close review reuse helper", "repros/repro_close_acceptance_shrink.py"]
+repro_goal = "Prove or reject whether acceptance-surface shrink is intentionally legal reuse or an exact-review mismatch."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H014"
+status = "ready"
+priority_basis = "wrong-route/recovery ownership; 11-way rediscovery"
+source_classes = ["PWV2:C006"]
+recommended_repro_surface = ["Research state validation", "tools/router.py", "Research fixtures"]
+repro_goal = "Prove or reject whether a structurally valid Research record can return to an owner/subject different from its exact origin."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H015"
+status = "ready"
+priority_basis = "fabricated human boundary in Intake; direct reproducer"
+source_classes = ["PWV2:C021"]
+recommended_repro_surface = ["Intake routing", "tools/router.py", "repros/f1_pre_repair_issue_stop.py"]
+repro_goal = "Prove or reject whether legal pre-repair diagnosis continuation is stopped as alignment before a repair subject exists."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H016"
+status = "ready"
+priority_basis = "authorization/prior-art bypass; independently rediscovered concrete repros"
+source_classes = ["PWV2:C022"]
+recommended_repro_surface = ["Intake prior-art validation", "Research result binding", "source repros"]
+repro_goal = "Prove or reject whether mandatory issue prior-art can be satisfied by an unauthenticated non-empty result string."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H017"
+status = "ready"
+priority_basis = "recovery integrity before destructive cleanup; concrete helper counterexample"
+source_classes = ["PWV2:C017"]
+recommended_repro_surface = ["Close recovery verifier", "repros/f4_empty_close_recovery_package.py"]
+repro_goal = "Prove or reject whether empty caller-declared recovery requirements can authorize destructive source-ref cleanup."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H018"
+status = "ready"
+priority_basis = "current M02R Final/recovery integrity; 4-of-4 rediscovery"
+source_classes = ["M02R-T03:C01"]
+recommended_repro_surface = ["M02R-T03 Final reconciliation helper", "Task Board review_attempts history", "shadow source repros"]
+repro_goal = "Prove or reject one minimal exact-subject vector where Final succeeds while a durable unreconciled observation still exists."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H019"
+status = "ready"
+priority_basis = "current M02R cleanup gate integrity; 4-of-4 rediscovery"
+source_classes = ["M02R-T03:C03"]
+recommended_repro_surface = ["validate_cleanup_work", "M02R-T03 cleanup_candidate fixtures", "shadow source repros"]
+repro_goal = "Prove or reject whether fabricated-but-well-shaped cleanup proof can cease blocking Final."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H020"
+status = "ready"
+priority_basis = "exact-subject integrity; universal 34-audit rediscovery"
+source_classes = ["PWV2:C001"]
+recommended_repro_surface = ["tools/state_contract.py", "tools/router.py", "Git subject/readback helpers"]
+repro_goal = "Prove or reject whether consumed bytes can differ from the declared immutable Git subject on one minimal canonical path."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H021"
+status = "ready"
+priority_basis = "authority freshness; independently rediscovered stale-plan route"
+source_classes = ["PWV2:C011"]
+recommended_repro_surface = ["Planning/Definition cross-binding", "tools/router.py", "stale-Definition fixtures"]
+repro_goal = "Prove or reject whether an approved plan remains authoritative after its Definition authority is superseded."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H022"
+status = "ready"
+priority_basis = "authority lifecycle mismatch; concrete fixture"
+source_classes = ["PWV2:C018"]
+recommended_repro_surface = ["Brainstorming/Definition cross-binding", "tools/router.py", "source repro"]
+repro_goal = "Prove or reject whether downstream Definition can remain valid while the upstream Brainstorm owner still says active."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H023"
+status = "ready"
+priority_basis = "recovery truth integrity; multiple concrete semantic counterexamples"
+source_classes = ["PWV2:C013"]
+recommended_repro_surface = ["Card Result parser/validator", "tools/router.py", "PWV2:C013 source repros"]
+repro_goal = "Prove or reject one minimal case where a semantically failed/non-exact Result becomes accepted no-replay recovery truth."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H024"
+status = "ready"
+priority_basis = "execution authority without bounded contract; fixture contradiction"
+source_classes = ["PWV2:C019"]
+recommended_repro_surface = ["tools/router.py", "Task Card parser", "repro_router_semantic_holes.py F4"]
+repro_goal = "Prove or reject whether active execution can proceed on a Card that the canonical Task Card parser rejects."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H025"
+status = "ready"
+priority_basis = "replay/recovery integrity; six-way rediscovery"
+source_classes = ["PWV2:C010"]
+recommended_repro_surface = ["tools/state_contract.py", "tools/router.py", "result-reconciliation fixtures"]
+repro_goal = "Prove or reject whether durable result truth can be ignored because the Card status is nonterminal."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H026"
+status = "ready"
+priority_basis = "approved-scope completeness and replay/omission risk; eight-way rediscovery"
+source_classes = ["PWV2:C009"]
+recommended_repro_surface = ["JIT state validation", "tools/router.py", "Close handoff fixtures"]
+repro_goal = "Prove or reject one minimal vector where approved JIT work disappears from executable/terminal completeness."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H027"
+status = "ready"
+priority_basis = "finalization semantics; direct helper-selector parity check"
+source_classes = ["PWV2:C020"]
+recommended_repro_surface = ["tools/router.py", "Close continuation helper", "repros/repro_findings.py F04"]
+repro_goal = "Prove or reject whether production routing can deterministically reach the documented real end-of-scope stop."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H028"
+status = "ready"
+priority_basis = "bootstrap authority integrity; six-way rediscovery"
+source_classes = ["PWV2:C012"]
+recommended_repro_surface = ["SessionStart hook", "installed router integrity check", "source temporary-package repros"]
+repro_goal = "Prove or reject whether marker-preserving semantic destruction passes the canonical-router bootstrap check."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H029"
+status = "ready"
+priority_basis = "authority path safety; two concrete platform/filesystem reproducers"
+source_classes = ["PWV2:C014"]
+recommended_repro_surface = ["locator validation/resolution", "repro_windows_locator.py", "repro_symlink_locator.py"]
+repro_goal = "Prove or reject each semantic-root escape mechanism without broadening into unrelated path-hardening review."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
+
+[[items]]
+id = "H030"
+status = "ready"
+priority_basis = "fail-closed recovery integrity; minimal deterministic mutation"
+source_classes = ["PWV2:C015"]
+recommended_repro_surface = ["durable TOML readers", "tools/router.py", "malformed TASK_BOARD fixture"]
+repro_goal = "Prove or reject whether malformed durable TOML escapes the selector Recovery contract."
+requires_current_candidate_check = true
+notes = "Reproduce only against the exact relevant audited subject; write durable evidence here; do not repair product code."
