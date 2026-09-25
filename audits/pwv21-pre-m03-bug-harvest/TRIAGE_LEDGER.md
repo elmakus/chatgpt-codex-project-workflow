@@ -422,15 +422,17 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source subjects: elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045
 - Independent-report frequency: 1 independent PWv2 source audit
 - Claimed invariant/requirement: BRAINSTORMING promotion lifecycle; DEFINITION exact promoted source.
-- Shared core claim: Cross-record checks may prove promotion authorization/subject but not brainstorm.state=promoted.
+- Shared core claim: Cross-record checks prove promotion authorization/subject but do not require the bound Brainstorm revision itself to be durably promoted.
 - Distinct reproduction vectors: Take a normal GREEN Definition fixture and change Brainstorm state from promoted to active while preserving exact promotion authorization.
 - Existing reproduction artifacts: repros/repro_router_state_gaps.py F4.
-- Source limitations: Singleton; persisted selector repro not reported as executed.
+- Source limitations: Singleton; persisted selector repro was not reported as freshly executed; exact historical and frozen-candidate predicates were inspected directly.
 - Current ownership hypothesis: `canonical_pw_v2`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H022.md`
+- Current candidate check: `persists` at `aa729e9a3b06af6e90a6884f8613629d6cd519f0`
 
 ## H023 — Card Result can pass shape checks without semantic success or exactness
 
