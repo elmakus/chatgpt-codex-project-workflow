@@ -184,7 +184,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H019"
-status = "ready"
+status = "done"
 priority_basis = "current M02R cleanup gate integrity; 4-of-4 rediscovery"
 source_classes = ["M02R-T03:C03"]
 recommended_repro_surface = ["validate_cleanup_work", "M02R-T03 cleanup_candidate fixtures", "shadow source repros"]
