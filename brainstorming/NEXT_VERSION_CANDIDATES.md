@@ -98,6 +98,39 @@ The permanent location and exact schema should be decided during that version's 
 
 ---
 
+## FUT-004 — Premium handoff may satisfy the target premium gate
+
+Status: `parked`
+Target horizon: next Project Workflow version after the current version is completed
+Origin: user
+
+### Intent
+
+Investigate whether an explicit user choice to follow a generated Premium A/C fresh-context handoff should itself be sufficient durable evidence of selecting that handoff, so the receiving context can satisfy the matching premium gate and continue deterministically without asking for a second equivalent confirmation.
+
+### Observed UX problem
+
+Current semantics keep the handoff and gate authorization separate. This can produce a redundant sequence:
+
+`Premium stop → user chooses generated fresh-context handoff → receiving context reconstructs the same due gate → receiving context asks the user to confirm again → continuation`
+
+The extra confirmation is logically consistent with the current contract, but creates avoidable friction after the user has already deliberately chosen the generated handoff.
+
+### Reconsideration topics
+
+- whether launching/using an exact generated premium handoff can be treated as explicit authorization for that exact gate subject;
+- how to bind such authorization to the exact premium gate, planning cycle, subject and handoff so stale/copied prompts cannot authorize unrelated work;
+- whether the semantics should differ between optional Premium A/C handoffs and mandatory fresh-independent Premium B;
+- preserving locator-only handoffs without smuggling workflow policy or mutable session identity into them;
+- ensuring REQ-style auto-continuation semantics apply immediately after handoff authorization, with no duplicate user stop;
+- regression coverage for stale handoffs, replayed prompts, wrong cycle/subject and intentional user cancellation.
+
+### Why parked
+
+PWv2.1 currently defines premium handoff selection and premium-gate satisfaction as separate actions. This candidate records a future UX/authority-model improvement only and must not alter the current PWv2.1 scope or semantics.
+
+---
+
 ## Next-version intake rule
 
 When the next Project Workflow version is started:
