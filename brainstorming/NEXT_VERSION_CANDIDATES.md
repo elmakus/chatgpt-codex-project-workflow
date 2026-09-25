@@ -94,7 +94,45 @@ At the start of a new Project Workflow version / major iteration, unresolved par
 - `deferred` — remains parked for a later horizon;
 - `rejected` / `superseded` — no longer pursued, with a short reason.
 
-The permanent location and exact schema should be decided during that version's Brainstorming. A likely direction is a dedicated roadmap/future-candidates artifact rather than overloading `#feature`.
+### Storage-isolation problem to research
+
+The permanent location is itself a design question and MUST be researched before promotion.
+
+A parked future idea should not cause unrelated active work to observe its integration base or consumer branch moving merely because the parking record was updated. Even an unrelated documentation-only commit on a shared branch can force an active agent to fetch, compare, reconcile/rebase unpublished work, re-check freshness and prove that the remote movement does not affect its current obligation.
+
+Therefore the future mechanism should aim to avoid:
+
+- mutating `main` merely to record a future idea;
+- mutating an active product/workstream branch merely to record out-of-scope future intent;
+- creating false base/fingerprint drift for unrelated active agents;
+- forcing unrelated workers to spend tool calls/context/tokens proving a parking-only change is harmless;
+- turning the parking store into workflow authority or another mutable project-state source.
+
+Research should compare at least:
+
+- a dedicated metadata/future-candidates branch that active workstreams never use as their execution/integration base;
+- GitHub Issue/Discussion or equivalent repository-side metadata;
+- a separate repository or other project-level metadata store;
+- any version-agnostic repository artifact that can be updated without perturbing active execution branches.
+
+Selection criteria should include:
+
+- durability and recoverability;
+- discoverability at next-version intake;
+- concurrent-write behavior;
+- isolation from `main` and active workstream movement;
+- low reconciliation/token overhead for unrelated agents;
+- portability across ChatGPT/Pi/Paseo;
+- simple promotion/defer/reject lifecycle;
+- clear non-authoritative semantics.
+
+Do not pre-select the final storage mechanism from this bootstrap file. The current `NEXT_VERSION_CANDIDATES.md` is only a temporary ledger.
+
+### Research requirement before promotion
+
+Research the storage/location question as its own bounded Research task before Definition, using real concurrent-workflow behavior as evidence. The outcome should explicitly decide where parked candidates live, how they are updated without disturbing active work, and how a new version discovers them deterministically.
+
+The permanent location and exact schema should then be decided during that version's Brainstorming rather than overloading `#feature`.
 
 ---
 
