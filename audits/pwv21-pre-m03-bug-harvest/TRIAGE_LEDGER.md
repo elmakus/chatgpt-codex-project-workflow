@@ -72,9 +72,9 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source limitations: Some reports emphasize missing result validity and others required-review bypass, but the terminal-status shortcut is common.
 - Current ownership hypothesis: `canonical_pw_v2`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
 
 ## H005 — Implementation GREEN can remain bound only to a mutable/path-only acceptance surface
 

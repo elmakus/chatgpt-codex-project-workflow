@@ -3,20 +3,24 @@
 
 ## Latest technical triage
 
-- Candidate: `H002`
-- Verdict: `CONFIRMED_MATERIAL`
-- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H002.md`
-- Original subject tested: `elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045`
-- Current candidate snapshot tested: `elmakus/project_workflow_v2@8a24fb66c447e7a5dc22d2f398d13ddb54ebf481`
-- Current candidate status: `persists`
-- Next READY item: `H003`
-- Next worker obligation: reproduce or reject **H003 only** against its exact audited subject, perform its required current-candidate check, and persist only H003 harvest evidence/state. Do not advance any later queue item.
+- Batch completed: `H003 + H004`
+- Batch candidate snapshot: `elmakus/project_workflow_v2@31764d82911de523e36d2de5c5d98ce7c3cedb18`
+- Original PWv2 subject for both candidates: `elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045`
+- H003 verdict: `CONFIRMED_MATERIAL`
+- H003 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H003.md`
+- H003 current-candidate status: `persists`
+- H003 checkpoint commit: `806b429e05faab7943101769c63475a3fa25b65d`
+- H004 verdict: `CONFIRMED_MATERIAL`
+- H004 evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H004.md`
+- H004 current-candidate status: `persists`
+- Next READY item: `H005`
+- Next worker obligation: begin from `H005` and process only the next explicitly authorized batch. Do not infer authorization for later candidates from this handoff.
 
 ## What was completed
 
 The first-stage out-of-band workspace was initialized from the exact active-workstream HEAD captured before branch creation. Both persisted aggregate reports were normalized without performing a broad new product audit, without repairing product code, and without mutating canonical Project Workflow state.
 
-All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were ingested. One clear semantic family was merged as **CROSS-SOURCE OVERLAP**: PWV2:C003 with M02R-T03:C02 (durable evidence locators accepted without proving the referenced artifact exists). This leaves 30 normalized harvest candidates. H001 and H002 have now been independently triaged as `confirmed_material` / `reproduced` / `pending_repair`; H003+ remain untouched.
+All 27 PWv2 aggregate classes and all 4 M02R-T03 shadow aggregate classes were ingested. One clear semantic family was merged as **CROSS-SOURCE OVERLAP**: PWV2:C003 with M02R-T03:C02 (durable evidence locators accepted without proving the referenced artifact exists). This leaves 30 normalized harvest candidates. H001 through H004 have now been independently triaged and persisted; H003 and H004 are both `confirmed_material` / `reproduced` / `pending_repair`. H005+ remain untouched by this batch.
 
 ## Exact durable workspace state
 
@@ -55,13 +59,15 @@ These immutable subjects are different and must not be conflated.
 - M02R-T03 shadow classes ingested: 4
 - Cross-source merged semantic families: 1
 - Normalized harvest candidates: 30
-- READY reproduction items: 28
-- Completed reproduction items: 2
-- First READY item: `H003`
+- READY reproduction items: 26
+- Completed reproduction items: 4
+- First READY item: `H005`
 
 ## Next worker obligation
 
-The next worker must reproduce or reject **H003 only**. It must read this handoff and queue first, verify H003 is still the first READY item, work against H003's exact audited subject, perform the required current-candidate check, persist only H003 harvest evidence/state, and make no product repair or canonical workflow mutation.
+The next READY item is **H005**. A later worker must read this handoff and queue first, verify H005 is still the first READY item, and then process only the candidate set explicitly authorized in that later worker's batch instruction. It must not treat this handoff as authorization to advance H006 or later.
+
+The `31764d82911de523e36d2de5c5d98ce7c3cedb18` candidate SHA was frozen for the completed H003+H004 batch only; a later batch must resolve its own candidate snapshot according to its authorization instead of silently reusing this one.
 
 ## Prohibited next-worker actions
 
