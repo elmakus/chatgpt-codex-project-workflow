@@ -251,9 +251,12 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source limitations: Singleton policy/semantics dispute; repository tests reportedly assert the subset behavior.
 - Current ownership hypothesis: `canonical_pw_v2`
 - Downstream relevance hypothesis: `unknown`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `rejected`
+- Reproduction status: `rejected`
+- Final disposition: `no_repair`
+
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H013.md`
+- Current candidate check: `unchanged_nondefect` at `e75a261df0dea3170f3f9c9c0fd535fd055abd6f`
 
 ## H014 — Research return target can contradict its durable origin owner
 
