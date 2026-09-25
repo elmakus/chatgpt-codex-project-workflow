@@ -204,7 +204,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H021"
-status = "ready"
+status = "done"
 priority_basis = "authority freshness; independently rediscovered stale-plan route"
 source_classes = ["PWV2:C011"]
 recommended_repro_surface = ["Planning/Definition cross-binding", "tools/router.py", "stale-Definition fixtures"]
