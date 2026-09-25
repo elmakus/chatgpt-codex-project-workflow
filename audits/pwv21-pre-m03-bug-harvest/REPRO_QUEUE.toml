@@ -144,7 +144,7 @@ notes = "Reproduce only against the exact relevant audited subject; write durabl
 
 [[items]]
 id = "H015"
-status = "ready"
+status = "done"
 priority_basis = "fabricated human boundary in Intake; direct reproducer"
 source_classes = ["PWV2:C021"]
 recommended_repro_surface = ["Intake routing", "tools/router.py", "repros/f1_pre_repair_issue_stop.py"]
