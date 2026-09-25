@@ -346,12 +346,14 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Shared core claim: Final reconciliation may derive its canonical observation set from a current Board/history slice not proven complete, omitting durable observations outside that slice.
 - Distinct reproduction vectors: Remove prior review locator while review file with open observation remains; invoke Final for Card A while Card B has open observation; duplicate-Card shadowing variant.
 - Existing reproduction artifacts: Shadow source counterexamples S1-F1, S2-F3, S3-F1, S4-F1.
-- Source limitations: Vectors are not identical; some target prior-locator truncation, one sibling-Card scope, and one malformed duplicate-Card path. Several were static analyses.
+- Source limitations: The confirmed vector is prior-locator truncation; sibling-Card and malformed duplicate-Card variants were not independently required for this verdict. Fresh runtime execution was unavailable.
 - Current ownership hypothesis: `cross_cutting`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H018.md`
+- Current candidate check: `persists` at `003f8a9a7c12a21d0c73b07163e449b8ae63bad8`
 
 ## H019 — Cleanup completion can rely on self-attested subject, evidence, and review claims
 
