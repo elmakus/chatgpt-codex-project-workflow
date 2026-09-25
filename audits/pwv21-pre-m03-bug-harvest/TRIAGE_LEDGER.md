@@ -460,15 +460,17 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source subjects: elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045
 - Independent-report frequency: 1 independent PWv2 source audit
 - Claimed invariant/requirement: EXECUTION_PREP stable Card contract; EXECUTION recovery; ROUTER fail-closed binding.
-- Shared core claim: Active/no-result routing may check only that the Card file exists and route Execution without parsing the stable Task Card contract.
-- Distinct reproduction vectors: Use an active fixture that routes Execution while parse_task_card rejects the same file for missing stable fields.
-- Existing reproduction artifacts: repro_router_semantic_holes.py F4; existing fixture expectation cited by source.
-- Source limitations: Singleton; fresh probe unavailable in the source audit.
+- Shared core claim: Active/no-result routing reads the Card file but does not parse the stable Task Card contract before routing Execution.
+- Distinct reproduction vectors: The shipped active fixture routes Execution while `parse_task_card` rejects the exact same two-line Card for missing stable fields.
+- Existing reproduction artifacts: `repro_router_semantic_holes.py` F4; repository fixture and `test_active_card_routes_to_runtime_neutral_execution`.
+- Source limitations: Singleton; fresh execution was not required for triage because the fixture, parser requirements and positive selector expectation remain directly contradictory.
 - Current ownership hypothesis: `canonical_pw_v2`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H024.md`
+- Current candidate check: `persists` at `aa729e9a3b06af6e90a6884f8613629d6cd519f0`
 
 ## H025 — Nonterminal Card status can override durable result and replay work
 
