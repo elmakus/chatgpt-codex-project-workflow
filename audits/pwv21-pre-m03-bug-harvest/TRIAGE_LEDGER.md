@@ -441,15 +441,17 @@ Normalized candidates: 30. Cross-source merged semantic families: 1.
 - Source subjects: elmakus/project_workflow_v2@4fb4bfb7d7b1481d6f347c182fc96a5a1135e045
 - Independent-report frequency: 4 independent PWv2 source audits
 - Claimed invariant/requirement: EXECUTION accepted semantic result; STATE durable result as recovery truth.
-- Shared core claim: Result consume boundary may accept non-empty fields without proving successful tests/readback, exact implementation identity, or evidence validity.
+- Shared core claim: Result consume boundary accepts non-empty fields without proving semantic success; the confirmed minimal vector is an explicitly FAILED tests/readback summary accepted as a valid result.
 - Distinct reproduction vectors: Tests/readback summary explicitly FAILED; Implementation subject banana; nonexistent evidence with otherwise valid shape.
-- Existing reproduction artifacts: Parser/router scripts; some parser cases reportedly executed in isolation.
-- Source limitations: Contains distinct missing semantic predicates and overlaps partially with exact-identity/evidence classes; later reproduction may split.
+- Existing reproduction artifacts: Parser/router scripts; S024 reports the direct historical parser counterexample was executed.
+- Source limitations: The class contains distinct missing predicates and overlaps exact-identity/evidence classes; this verdict is anchored to the independent explicit-FAILED-summary predicate.
 - Current ownership hypothesis: `canonical_pw_v2`
 - Downstream relevance hypothesis: `blocks_pre_m03_if_confirmed`
-- Technical status: `untriaged`
-- Reproduction status: `not_started`
-- Final disposition: `pending`
+- Technical status: `confirmed_material`
+- Reproduction status: `reproduced`
+- Final disposition: `pending_repair`
+- Evidence: `audits/pwv21-pre-m03-bug-harvest/evidence/H023.md`
+- Current candidate check: `persists` at `aa729e9a3b06af6e90a6884f8613629d6cd519f0`
 
 ## H024 — Active execution can trust Card existence without stable Task Card contract
 
