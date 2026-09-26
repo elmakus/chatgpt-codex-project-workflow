@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 15
+# PWv2.2 Program Brainstorming — Revision 16
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@15`
+Scope subject: `pwv22-program@16`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -347,3 +347,18 @@ Current disposition:
 19. Each semantic PWv2.2.x release reruns common core acceptance on required hosts; documentation/cosmetic-only releases do not require the full semantic matrix.
 20. After this owner-question round and one additional requested round, Brainstorming proceeds to the previously accepted whole-scope challenge instead of generating questions indefinitely.
 21. **Worker lifecycle cleanup:** runtime workers are scoped to a concrete Card/attempt/role. Once that obligation reaches a terminal state and no accepted plan explicitly requires reuse of that same worker, Pi/Paseo closes/releases the worker before moving on. New Cards use fresh appropriately assigned workers. Terminal or abandoned workers must not accumulate as zombie runtime capacity; cleanup is automatic and noncanonical. ChatGPT realization may have nothing explicit to close.
+
+
+## 23. Owner decisions captured in Revision 16
+
+1. **Worker means all runtime subagents.** Executor, repair, reviewer, tester, research lane, synthesis/helper and equivalent runtime subagents are all subject to the same lifecycle principle: when their bounded obligation is terminal and no accepted active obligation requires them, Pi/Paseo closes/releases them automatically. New Cards/attempts normally use fresh workers.
+2. **Worker lifecycle is runtime-local.** Capacity, worker slots, session handles, shutdown mechanics and reuse implementation are runtime concerns, not canonical Project Workflow state.
+3. **Runtime cleanup before capacity blocker.** Pi/Paseo should reclaim terminal/stale/abandoned subagents before reporting worker-capacity exhaustion.
+4. **No durable worker/session affinity.** Canonical workflow binds semantic roles/obligations, not worker UUIDs, sessions or concrete models. Runtime restart may reconstruct needed workers from durable state.
+5. **Late or stale worker output lacks authority.** Output arriving after cancellation/supersession/authority loss may be retained diagnostically but cannot become canonical Result without current legal authority.
+6. **Fresh independent review requires a fresh qualifying review context/worker, not persistence of an old runtime worker.**
+7. **Research/synthesis workers follow the same cleanup discipline.**
+8. **Runtime scheduling never relaxes semantic authority, dependency, independence or Premium-stop rules.**
+9. **Project Workflow is a semantic contract: primarily specify what Main/coordinator must guarantee, not how a particular runtime implements it.** A capable Main/runtime owns orchestration mechanics, worker lifecycle, capacity management, session topology, tool selection and other realization details unless a mechanism is itself necessary to preserve a workflow invariant.
+10. **Mechanism-admission rule:** prescriptive implementation mechanics belong in canonical Project Workflow only when removing that prescription would make an accepted semantic invariant ambiguous, non-deterministic, unsafe, non-recoverable or non-portable. Otherwise implementation detail stays in runtime-specific adapters/configuration/tooling.
+11. All twenty recommendations from the preceding worker-lifecycle round are accepted, including terminal worker cleanup, no canonical worker registry, bounded same-Card reuse, fresh final reviewers, cleanup on fan-in, cancellation of superseded work, authority recheck before mutation, and runtime-local capacity handling.
