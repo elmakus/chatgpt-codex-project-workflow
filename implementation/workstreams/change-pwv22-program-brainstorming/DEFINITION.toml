@@ -1,0 +1,13 @@
+workstream_id = "change-pwv22-program-brainstorming"
+source_scope_subject = "pwv22-program@19"
+revision = "R1"
+state = "active"
+completeness_audit = "pending"
+premium_a = "not_due"
+decisions = [
+  { class = "authority", path = "decisions/ADR_PWV22_PROGRAM.md" },
+]
+
+[requirements]
+class = "authority"
+path = "requirements/PWV22_PROGRAM.md"
