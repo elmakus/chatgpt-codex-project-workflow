@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 157
+revision = 158
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1671,7 +1671,7 @@ atomicity_rationale = ""
 # Execution Prep evidence: evidence/M02Q-T13_EXECUTION_PREP_2026-09-26.md.
 [[cards]]
 id = "M02Q-T13"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
@@ -1686,13 +1686,13 @@ blob = "cea61d48c3fe0f927a420fb96024b42a509c5120"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T13-R01.toml"
-commit = "f1d32fc5272b4f7ae5f7e57a987490ddd0b4f261"
-blob = "2562d865e17ea24e7c8c8a04d8f1bd46b2bbe4cc"
+commit = "41489c60e8564b8158a1f4a74be023f35ad83f25"
+blob = "53efd815542c28006976b482e0cc7f08565de31a"
 
 [[jit_triggers]]
 id = "after-M02Q-T13"
 after_card = "M02Q-T13"
-state = "waiting"
+state = "satisfied"
 condition = "After M02Q-T13 is DONE with exact durable RF004 H005 result and GREEN independent Card Review, Execution Prep must materialize the separate RF004 H006 Plan Review authority-binding Card. Only after both RF004 outcomes are DONE/GREEN may P7 order-12 RF003 be materialized. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
