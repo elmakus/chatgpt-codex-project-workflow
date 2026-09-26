@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 4
+# PWv2.2 Program Brainstorming — Revision 5
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@4`
+Scope subject: `pwv22-program@5`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -181,3 +181,12 @@ Current disposition:
 - special candidate backend/store: REJECTED;
 - Git-native branches/refs/isolated commits/candidate build mechanics: ALLOWED when needed;
 - non-Git canonical or shadow truth store: FORBIDDEN without a new explicit owner decision.
+
+
+## 12. Owner decisions captured in Revision 5
+
+1. **Result identity:** canonical consumed Result identity is exact repository + commit + path + blob, not merely Card ID/status or mutable path.
+2. **Dependency binding:** downstream dependency means consumption of an exact accepted predecessor Result, not merely predecessor DONE.
+3. **Material freshness:** freshness is node/input-local and derived from the exact authority/Result/material inputs that matter to the Card. Global Task Board revision may protect writes/CAS but is not universal semantic freshness.
+4. **2.1 -> 2.2 migration:** compatible reading during migration is allowed, but canonical mutation uses one atomic cutover; no dual canonical writers.
+5. **Policy-package evolution / FR-17:** remains OPEN for YAGNI challenge. Owner questions whether explicit package provenance is necessary when an LLM can interpret the current workflow. Brainstorming must distinguish the minimum durable compatibility fact needed for deterministic cross-version recovery from unnecessary per-fact/version bookkeeping.
