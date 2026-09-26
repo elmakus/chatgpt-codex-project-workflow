@@ -199,12 +199,3 @@ Current disposition:
 3. **JIT Cards:** do not create speculative placeholder Cards when a stable Card contract depends on a predecessor result. Keep a bounded JIT obligation and materialize the Card only once its contract is knowable.
 4. **External-effect uncertainty:** ambiguous non-idempotent effects use UNKNOWN -> required exact external readback -> only then retry / accept / compensate. Blind retry is forbidden.
 5. **RED repair closure:** the original reviewer may perform bounded verification of its specific RED findings, but final full-scope closure after repair requires a fresh independent reviewer.
-
-
-## 13. Owner decisions captured in Revision 6
-
-1. **FR-17 minimal semantic-evolution rule:** do not version-tag every durable fact. When a workflow update changes semantics that can affect existing durable state, the new policy package must explicitly classify affected prior state as preserve / revalidate / stale / Recovery. Unaffected state requires no ceremony.
-2. **Canonical Work-DAG representation:** persist only minimal direct canonical dependency facts and exact Result bindings. READY/frontier/reachability and similar graph views are derived.
-3. **JIT materialization:** do not create placeholder Cards when the stable contract is not yet knowable. Persist only the bounded JIT obligation/trigger and materialize the Card once predecessor evidence makes its exact contract knowable.
-4. **External effects:** uncertain real-world mutation outcome becomes UNKNOWN; retry is forbidden until exact external readback resolves whether the effect occurred. Then route to accept / retry / compensate / Recovery as appropriate.
-5. **RED repair closure:** the original reviewer may perform bounded verification of its own RED findings, but final full-scope closure after material repair requires a fresh independent reviewer. Repair provenance removes the repairer from independent-final-review eligibility for that subject.
