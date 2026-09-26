@@ -1,4 +1,4 @@
-# PWv2.2 Program Requirements — Definition R2
+# PWv2.2 Program Requirements — Definition R3
 
 Status: ACTIVE Definition authority
 Source Brainstorming subject: `pwv22-program@19`
@@ -26,7 +26,7 @@ Before Definition becomes GREEN, the retained product capabilities that would ot
 11. **Immutable Result history.** Re-execution/repair creates a new Result; prior Results remain immutable history.
 12. **Append-only Review history.** Review attempts remain append-only and exact-subject-bound. Finalization is deterministic and non-semantic.
 13. **Review independence.** A context/agent that materially authored or repaired the exact subject cannot issue its independent verdict. Model identity is irrelevant to independence.
-14. **Premium stops.** Premium A/B/C remain real user-facing stops. Model quality recommendations are advisory; Premium B MUST preserve semantic independence and exact-subject review.
+14. **Premium stops.** Premium A/B/C remain real user-facing stops and PWv2.2 adds Premium D as a real post-Initial-Execution-Prep hand-back stop before first Execution. Model/context quality recommendations are advisory; Premium B MUST preserve semantic independence and exact-subject review.
 15. **Bounded parallelism anti-regression.** PWv2.2.0 MUST preserve at least accepted PWv2.1 bounded parallel-safe Card semantics. Overlapping mutating write scopes serialize; no override exists.
 16. **One mutating ownership domain per Card.** Runtime helpers may exist, but competing independent mutating owners for one Card are forbidden. Independent mutation belongs in separate Cards.
 17. **Integrated compatibility.** Downstream consumption of multiple sibling Results requires the accepted integrated compatibility obligation; it does not replace individual Card review.
@@ -60,3 +60,12 @@ Before Definition becomes GREEN, the retained product capabilities that would ot
 45. **Close.** Managed change completes only after accepted implementation, integration, target-side readback and durable confirmation. Purely mechanical Close may proceed automatically when no real user boundary remains.
 46. **Deferred capabilities remain visible.** Deferred PWv2.2.x obligations remain durable until implemented or explicitly rejected.
 47. **Direct-pivot anti-loss reconciliation.** PWv2.2 does not wait for terminal PWv2.1. Before Definition GREEN, reconcile the still-desired capabilities from the unstarted PWv2.1 M03-M07 scope into PWv2.2 and disposition each as retained, superseded by PWv2.2 semantics, deferred or explicitly rejected.
+
+
+48. **Eager stable-Card classification and materialization.** Strategic Planning MUST classify every planned execution seam whose future realization matters as either `materialization_ready` or `jit_dependent`, with a concrete reason for any JIT dependency. A seam is `materialization_ready` only when its stable Card contract is fully knowable from accepted authority and already-durable facts. After Plan approval and Premium C, Initial Execution Prep MUST materialize all currently `materialization_ready` Cards whose stable contracts still validate against current durable truth. JIT is reserved for seams whose stable Card contract genuinely depends on a future predecessor Result or other not-yet-durable fact; it MUST NOT be used merely for convenience or deferral.
+
+49. **Initial Execution Prep quality recommendation.** Premium C remains the real stop before Execution Prep, but for PWv2.2 its user-facing recommendation is to use the best available strong reasoning context for the Initial Execution Prep pass. That pass performs the one-time high-quality decomposition/materialization check over the approved Plan, validates the ready-vs-JIT classification, materializes all currently knowable Cards, and records bounded JIT triggers for the rest. Runtime/model identity is never canonical authority.
+
+50. **Premium D hand-back before Execution.** After Initial Execution Prep has durably materialized and read back all currently knowable Cards/JIT triggers, PW MUST stop before the first Execution obligation. Premium D exists so the owner can deliberately remain in the current context or switch to a lighter/normal execution context before implementation begins. Premium D is an exact-subject user-facing gate, not a new workflow stage; satisfying it authorizes continuation from the already-prepared execution state and MUST NOT alter Plan/Card semantics. After exact satisfaction/readback, normal deterministic Execution/Review continuation resumes without duplicate confirmation.
+
+51. **Routine JIT stays lightweight by default.** Subsequent JIT Execution Prep should remain a bounded refinement task suitable for the normal execution context whenever the accepted Plan plus newly durable predecessor Results determine the Card contract. If a later JIT exposes a genuine strategy/outcome ambiguity, it escalates to Strategic Planning rather than using a stronger model to invent strategy inside Execution Prep.
