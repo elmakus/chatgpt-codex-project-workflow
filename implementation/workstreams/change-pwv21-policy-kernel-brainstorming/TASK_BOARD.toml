@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 179
+revision = 180
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2205,6 +2205,54 @@ card_id = "M02Q-T20"
 risk = "simple"
 triggers = []
 risk_basis = "One JIT-terminality materialization-proof invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q P7 order-17 RF015 materialization reads back the exact DONE/GREEN RF014
+# and RF011 results. after-M02Q-T20 remains satisfied in rev180 until Main binds
+# the exact consumed_proof commit/blob after the Card freeze in a separate commit.
+# Execution Prep evidence: evidence/M02Q-T21_EXECUTION_PREP_2026-09-27.md.
+[[cards]]
+id = "M02Q-T21"
+status = "in_progress"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T21.md"
+
+[[sizing_audits]]
+card_id = "M02Q-T21"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "close-continuation-durable-completion-stop"
+kind = "invariant"
+statement = "Production selector composes the Close continuation oracle with durable Close-completion readback and emits true end_of_scope_stop only after durable completion; incomplete or forged states continue Close or fail closed, never stop."
+family = "close-continuation-durable-completion-stop"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "Close-continuation composition with durable-completion readback is independently useful after DONE/GREEN RF011 and RF014 on the RF001 and RF007 foundations; it neither reopens them nor pulls milestone obligations or M03 forward."
+falsifiability_testability = "H027 re-entry-without-completion and durable-completion stop fixtures fail before correction; missing/dangling/stale/sibling/unproved/forged completion negatives discriminate while first-entry close, exact-proved stop, authorization-stop and live-write-continue controls pass."
+reviewability = "One Card Review covers the continuation-composition table and selector/Close enforcement without certifying OBL-M02Q-01/02/03 composition/migration/compatibility, 33-trigger proof migration or M02Q integration."
+invariant_contract_family = "One Close-continuation durable-completion contract; re-entry non-stop and proved-stop are sibling probes of that table with a REQ-129 inseparable-acceptance rebuttal."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T20 (RF014) plus M02Q-T17 and M02Q-T18 (RF011) in P7 serial order with RF001 and RF007 as readback foundations; no downstream RF Card follows this terminal seam."
+atomic_mutation_migration = "Selector composition, durable-completion validation and Close terminality land together so no intermediate state stops without proof or routes proved completion back to Close; no terminal history rewrite; legacy prose-only consumed bindings stay immutable history only."
+cross_surface_coupling = "Board validation, exact-locator/Git identity, durable Close-completion readback, router dispatch and Close terminality couple inside this outcome; OBL-M02Q-01/02/03 and 33-trigger migration are separate downstream obligations."
+
+[[topology_audits]]
+card_id = "M02Q-T21"
+risk = "simple"
+triggers = []
+risk_basis = "One Close-continuation durable-completion invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
