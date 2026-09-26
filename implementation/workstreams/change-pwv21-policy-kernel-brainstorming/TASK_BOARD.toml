@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 160
+revision = 161
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1749,7 +1749,7 @@ atomicity_rationale = ""
 # Execution Prep evidence: evidence/M02Q-T14_EXECUTION_PREP_2026-09-26.md.
 [[cards]]
 id = "M02Q-T14"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
@@ -1764,13 +1764,13 @@ blob = "9dff8074c0c265e577a7f5af3c66d3397c9c952b"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T14-R01.toml"
-commit = "5b4c5f2b0ea3391f96b616db1563c7d07749bb73"
-blob = "4ce08a1f422f5e4d525bf96d9b5908feffd32ac3"
+commit = "d84f317089b8d4caa857ba0bbe86f0be7529f6c9"
+blob = "35cc18919e8fc3e76196b26abf1f5697ba77e306"
 
 [[jit_triggers]]
 id = "after-M02Q-T14"
 after_card = "M02Q-T14"
-state = "waiting"
+state = "satisfied"
 condition = "After M02Q-T14 is DONE with exact durable RF004 H006 result and GREEN independent Card Review, both RF004 outcomes are complete; Execution Prep must read back T13 and T14 and materialize separate P7 order-12 RF003 router-precedence seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
