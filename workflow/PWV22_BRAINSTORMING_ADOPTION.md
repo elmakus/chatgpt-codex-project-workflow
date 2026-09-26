@@ -22,6 +22,6 @@ Owner intent:
 - include the completed FR-19 Simplification Review research and all retained PWv2.2 research candidates as prior-art inputs;
 - do not create PWv2.1.x releases;
 - do not mutate the active PWv2.1 workstream from this branch;
-- do not promote to Definition until the Brainstorming challenge audit is GREEN, the exact revision is explicitly authorized, and the final PWv2.1 predecessor rebind has been reconciled as required.
+- Definition entry is allowed once the Brainstorming challenge audit is GREEN and the exact revision is explicitly authorized. The final PWv2.1 predecessor rebind remains mandatory before Definition may become GREEN or finalize any predecessor-dependent representation/implementation choice.
 
 This file is workflow/bootstrap authority only. It is not PWv2.2 product Definition authority and does not convert research conclusions into accepted requirements.
