@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 2
+# PWv2.2 Program Brainstorming — Revision 3
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@2`
+Scope subject: `pwv22-program@3`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -141,3 +141,21 @@ Open:
 `PENDING`.
 
 Revision 2 has fixed the release model, P/X day-one non-blocking status, and always-on owner-controlled Simplification Review. R/K and the remaining architecture/product choices continue through adaptive grilling.
+
+
+## 10. Owner decisions captured in Revision 3
+
+1. **R and K retention:** R and K are not blockers for PWv2.2.0, but both remain mandatory durable PWv2.2.x backlog capabilities. They may not disappear during Definition/Planning. R remains gated by RRE-02; K remains gated by RRE-01.
+2. **E/S labels:** accepted recommendation — retire E/S as top-level architecture/release-phase names. Preserve them only where useful as internal sequencing/risk history/classification.
+3. **FR-08:** accepted recommendation — target Reviewer-owned append-only exact attempt/evidence persistence with deterministic finalization, subject to exact eligibility/freshness/CAS/readback and final-PWv2.1 Review-identity rebind.
+4. **Core model:** accepted recommendation — PWv2.2 is identity/freshness/guarded-transition centric; Work-DAG/readiness is built on top of those canonical facts rather than being treated as the sole conceptual center.
+5. **R product intent:** still OPEN because owner requested a concrete explanation before deciding whether Pi/Paseo should eventually become an autonomous canonical writer.
+6. **K implementation choice:** still OPEN; special production candidate store is deferred. Brainstorming must compare Git-native candidate isolation first and only retain a dedicated backend if a real requirement cannot be met otherwise.
+
+### Anti-forgetting invariant
+
+Before Brainstorming can become GREEN/ready_for_definition:
+- R/FR-09/RRE-02 must have an explicit disposition;
+- K/FR-11/RRE-01 must have an explicit disposition;
+- if either is deferred beyond 2.2.0, Definition/Planning must retain a durable post-2.2.0 delivery/gate obligation or explicitly reject it by owner decision;
+- neither may disappear merely because it is outside first-launch scope.
