@@ -1,6 +1,6 @@
-# ADR — PWv2.2 Program Definition R2
+# ADR — PWv2.2 Program Definition R3
 
-- Decision ID: `ADR-PWV22-PROGRAM-R2`
+- Decision ID: `ADR-PWV22-PROGRAM-R3`
 - Status: accepted Definition authority; supersedes the earlier predecessor-rebind/backward-compatibility assumption
 - Source subject: `pwv22-program@19`
 
@@ -30,3 +30,13 @@
 - Intentional transfer of an old project into PWv2.2 is a separate owner-authorized reconstruction/adoption task that establishes fresh PWv2.2-native authority from current product facts and useful evidence; preserving old workflow-state semantics is not required.
 - Definition completion does not depend on terminal PWv2.1 or a final PWv2.1 rebind.
 - The direct pivot must still perform an anti-loss reconciliation so desired capabilities from the unstarted PWv2.1 M03-M07 scope are retained, superseded deliberately, deferred or explicitly rejected rather than disappearing accidentally.
+
+
+## Execution preparation and hand-back decisions
+
+- Strategic Planning must classify execution seams as `materialization_ready` or `jit_dependent`; JIT requires a real not-yet-durable dependency and is not the default deferral mechanism.
+- Premium C remains the real stop before Execution Prep, but its PWv2.2 recommendation is to move to the best available strong reasoning context for the Initial Execution Prep pass rather than to a cheaper context.
+- Initial Execution Prep is the one-time high-quality pass that validates Plan decomposition, eagerly materializes every currently knowable stable Card, and leaves only genuinely predecessor-dependent work behind bounded JIT triggers.
+- PWv2.2 adds Premium D immediately after Initial Execution Prep and before first Execution. D is a user-facing hand-back gate so the owner can deliberately stay or return to a lighter/normal execution context before implementation begins.
+- Premium D is not a new workflow stage and does not alter Plan or Card authority. Once its exact satisfaction is durably read back, normal Execution/Review auto-continuation resumes.
+- Routine later JIT refinement stays in the normal execution context by default. A true strategy/outcome ambiguity routes back to Strategic Planning instead of being solved by silently escalating inside Execution Prep.
