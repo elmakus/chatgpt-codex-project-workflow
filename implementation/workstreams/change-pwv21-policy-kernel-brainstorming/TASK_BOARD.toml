@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 172
+revision = 173
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2021,7 +2021,7 @@ atomicity_rationale = ""
 # Execution Prep evidence: evidence/M02Q-T18_EXECUTION_PREP_2026-09-26.md.
 [[cards]]
 id = "M02Q-T18"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
@@ -2036,13 +2036,13 @@ blob = "10cd54ff3eec37b609855a090b685d2c2dc6c7d7"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T18-R01.toml"
-commit = "909cbbdd8cd2b3eaa4f4ba9e9d4bfeee7757fbf7"
-blob = "f9a6a57a65b7fa93c17396a0c90e1e6cebdb91ef"
+commit = "bdc4619491ae220771cbb0b40aad3c00c0a248f8"
+blob = "eb6affa311bdc3ec8cbeae6397ef0d05ce77c53c"
 
 [[jit_triggers]]
 id = "after-M02Q-T18"
 after_card = "M02Q-T18"
-state = "waiting"
+state = "satisfied"
 condition = "After M02Q-T18 is DONE with exact durable RF011 H019 result and GREEN independent Card Review, both RF011 outcomes are complete; Execution Prep must read back T17 and T18 and materialize separate P7 order-15 RF001 Task Board coherence seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
