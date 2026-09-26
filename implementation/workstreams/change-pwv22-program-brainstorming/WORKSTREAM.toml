@@ -5,6 +5,8 @@ created_from = "7aa7512ead67a86256089d1af0171e2e655e700d"
 integration_target = "main"
 authority = [
   { class = "authority", path = "workflow/PWV22_BRAINSTORMING_ADOPTION.md" },
+  { class = "authority", path = "requirements/PWV22_PROGRAM.md" },
+  { class = "authority", path = "decisions/ADR_PWV22_PROGRAM.md" },
 ]
 
 [intake]
@@ -14,3 +16,7 @@ path = "implementation/workstreams/change-pwv22-program-brainstorming/INTAKE.tom
 [brainstorm]
 class = "brainstorm"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/BRAINSTORM.toml"
+
+[definition]
+class = "definition"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/DEFINITION.toml"
