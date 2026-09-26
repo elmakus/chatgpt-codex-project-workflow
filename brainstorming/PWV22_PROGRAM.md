@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 10
+# PWv2.2 Program Brainstorming — Revision 11
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@10`
+Scope subject: `pwv22-program@11`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -251,3 +251,17 @@ Current disposition:
 8. **Rollback after cutover:** if post-publication acceptance fails before irreversible external effects make rollback unsafe, restore the exact previous Git state/ref rather than patching a partially migrated canonical state in place.
 9. **Cross-host compatibility:** ChatGPT and Pi/Paseo must pass the same canonical behavioral acceptance fixtures; implementation/runtime internals may differ.
 10. **Brainstorming completion challenge:** before ready_for_definition, run one final whole-scope challenge focused on YAGNI/removals, missing requirements, contradictions, unnecessary mechanisms and forgotten retained obligations.
+
+
+## 18. Owner decisions captured in Revision 11
+
+1. **Definition scope:** Definition owns product guarantees, requirements and accepted decisions only; implementation ordering, milestones and Cards remain Planning concerns.
+2. **Definition completeness:** Definition reaches GREEN only when every retained Brainstorming capability/obligation has an explicit disposition such as required / deferred / rejected / already satisfied.
+3. **Deferred obligations remain durable:** capabilities intentionally deferred beyond PWv2.2.0 remain explicit Definition obligations with their delivery condition/gate; omission is not an allowed form of deferral.
+4. **Planning cannot delete product scope:** Planning may decompose and sequence accepted requirements but cannot independently remove or weaken them; material product-scope change returns to Definition/owner authority.
+5. **Plan Review role:** Plan Review checks correctness, completeness, Definition alignment, dependencies, rollback/recovery and plan binding; it does not repeat the full Simplification Review.
+6. **Execution Prep authority:** Execution Prep/JIT may resolve bounded implementation detail that does not change accepted strategy, outcome, requirement, or gate.
+7. **Return to Planning:** changes to strategy, milestone ordering, migration approach, material dependency structure, acceptance gates or equivalent planning semantics return to Planning.
+8. **Return to Definition:** changes to product requirements or accepted guarantees return to Definition and require owner authority.
+9. **Shared acceptance fixtures:** core PWv2.2 semantics are expressed as common behavioral fixtures/contracts that required hosts must satisfy independently of runtime implementation details.
+10. **Release-blocker threshold:** PWv2.2.0 release blockers are violations of canonical semantics, migration/recovery, required cross-host acceptance and other MUST guarantees; noncritical UX/diagnostic defects may be deferred.
