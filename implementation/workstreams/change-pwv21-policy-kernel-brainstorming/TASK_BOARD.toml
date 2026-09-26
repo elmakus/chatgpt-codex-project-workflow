@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 158
+revision = 159
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1692,7 +1692,7 @@ blob = "53efd815542c28006976b482e0cc7f08565de31a"
 [[jit_triggers]]
 id = "after-M02Q-T13"
 after_card = "M02Q-T13"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T13 is DONE with exact durable RF004 H005 result and GREEN independent Card Review, Execution Prep must materialize the separate RF004 H006 Plan Review authority-binding Card. Only after both RF004 outcomes are DONE/GREEN may P7 order-12 RF003 be materialized. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -1741,6 +1741,58 @@ card_id = "M02Q-T13"
 risk = "simple"
 triggers = []
 risk_basis = "The split leaves one Card Review acceptance-binding invariant family in this Card and assigns H006 Plan Review authority to its real downstream JIT; no preferred seam merge, multiple-family Card, milestone absorption, material deviation or review substitution."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q P7 order-11 second RF004 outcome follows DONE/GREEN H005.
+# Execution Prep evidence: evidence/M02Q-T14_EXECUTION_PREP_2026-09-26.md.
+[[cards]]
+id = "M02Q-T14"
+status = "in_progress"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T14.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T14"
+after_card = "M02Q-T14"
+state = "waiting"
+condition = "After M02Q-T14 is DONE with exact durable RF004 H006 result and GREEN independent Card Review, both RF004 outcomes are complete; Execution Prep must read back T13 and T14 and materialize separate P7 order-12 RF003 router-precedence seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T14"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "rf004-plan-review-authority-binding"
+kind = "invariant"
+statement = "Plan Review GREEN binds the exact current Definition authority key/subject plus exact acceptance; unrelated or stale authority cannot authorize GREEN."
+family = "rf004-plan-review-authority-binding"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "Plan Review authority binding is independently useful after DONE/GREEN H005 Card Review; its correction does not reopen T13 or RF012."
+falsifiability_testability = "Unrelated-acceptance GREEN, stale/sibling/changed-authority and missing/mismatched fixtures fail; exact current frozen Plan plus exact Definition key plus accepted acceptance controls pass."
+reviewability = "One Card Review covers Plan Review authority binding, not T13 Card Review acceptance or whole-M02Q integration."
+invariant_contract_family = "One Plan Review Definition-authority binding contract; unrelated/stale/sibling/changed-authority variants are siblings, not separate outcomes."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T13 and RF007+RF012 in P7 order; P7 order-12 RF003 follows once both RF004 Cards are DONE/GREEN."
+atomic_mutation_migration = "Plan Review acceptance/authority identity and review/router enforcement land together to avoid an unrelated/stale bypass; no terminal history rewrite."
+cross_surface_coupling = "Plan Review validation, Definition authority key and router dispatch couple inside this outcome; Card Review foundation is a stable dependency, not merged rework."
+
+[[topology_audits]]
+card_id = "M02Q-T14"
+risk = "simple"
+triggers = []
+risk_basis = "One H006 Plan Review authority invariant family remains after the RF004 split; no preferred seam merge, multi-family Card, milestone absorption, material deviation or review substitution."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
