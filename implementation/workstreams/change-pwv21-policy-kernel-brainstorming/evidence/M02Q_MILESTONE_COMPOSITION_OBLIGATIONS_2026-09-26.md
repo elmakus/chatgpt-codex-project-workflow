@@ -30,3 +30,19 @@ The current consumer's path-only terminal legacy Review locators fail the
 H017/H019 gates until valid RF006 migration provenance is supplied. This is
 the separate RF006 migration obligation. Correctly terminal history stays
 unchanged; replay only as immutable fixtures/evidence.
+
+## OBL-M02Q-03 (serving compatibility): legacy Result semantics
+
+After T19 GREEN, the candidate product router `5e10e4b3424ada7ba21d9f50b4794daf320f1672`
+was run against the current consumer Board rev 176. It returned Recovery at
+DONE M01-T01 because the original Result is a legacy record without
+`Result status: success`; its frozen Git identity and evidence remain present.
+The RF001 DONE Close proof correctly rejects an unstructured success claim.
+This is a real serving compatibility obligation before the candidate router
+can close the whole historical Board. Preserve M01/M02/M02R terminal bytes and
+history. Resolve through a separately reviewed, append-only migration or an
+explicit compatibility proof derived from immutable historical evidence, then
+retest the full consumer Board. Do not weaken RF001's exact current-result
+gate, rewrite terminal Results in place, or absorb this work into RF014/RF015.
+M02Q Milestone Review cannot be GREEN while the candidate router cannot serve
+the current consumer state.
