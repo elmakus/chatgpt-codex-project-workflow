@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 11
+# PWv2.2 Program Brainstorming — Revision 12
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@11`
+Scope subject: `pwv22-program@12`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -265,3 +265,28 @@ Current disposition:
 8. **Return to Definition:** changes to product requirements or accepted guarantees return to Definition and require owner authority.
 9. **Shared acceptance fixtures:** core PWv2.2 semantics are expressed as common behavioral fixtures/contracts that required hosts must satisfy independently of runtime implementation details.
 10. **Release-blocker threshold:** PWv2.2.0 release blockers are violations of canonical semantics, migration/recovery, required cross-host acceptance and other MUST guarantees; noncritical UX/diagnostic defects may be deferred.
+
+
+## 19. Owner decisions captured in Revision 12
+
+1. Active PWv2.1 workstreams migrate to PWv2.2 before their next canonical mutation.
+2. New managed work after PWv2.2.0 starts natively in PWv2.2.
+3. PWv2.2 reads/recovers supported PWv2.1 state; reverse compatibility is not required.
+4. Canonical schema identity stays minimal: only enough for deterministic parsing, compatibility and migration.
+5. Unsupported mandatory semantics fail closed rather than being ignored.
+6. Multi-file canonical changes are built and validated Git-native, then published by one guarded ref update/CAS plus readback.
+7. Unpublished commits/refs/worktrees are noncanonical and may be cleaned after deterministic readback confirms they are not authoritative.
+8. Every official PWv2.2 release has an exact Git commit/tag identity with its policy package, tests and migration tooling.
+9. A PWv2.2.x semantic change affecting existing state must define preserve / revalidate / stale / Recovery behavior.
+10. Required release hosts are ChatGPT and Pi/Paseo; Codex remains non-blocking unless explicitly restored.
+
+11. Upgrade of an active project occurs only at a quiescent boundary; never mid-mutation or mid-Card.
+12. There is no normal automatic downgrade from PWv2.2 to PWv2.1. Emergency rollback restores the exact pre-cutover state under its bounded rollback procedure.
+13. PWv2.2.0 uses an exact release candidate. ChatGPT + Pi/Paseo acceptance and migration rehearsal run against that immutable candidate; any candidate change creates a new candidate and requires renewed acceptance.
+14. Release-candidate/beta status belongs to the workflow package/release process, not to every project/workstream canonical state.
+15. Recovery first derives durable facts and deterministic legal continuation options; owner input is requested only when a genuine owner choice remains.
+16. Purely mechanical recoverable drift may be repaired automatically with readback when no semantic decision changes.
+17. Acceptance focuses on shared semantic fixtures per required host rather than a host x model x feature combinatorial matrix; model identity is not canonical.
+18. Host-specific acceptance is added only for host-specific realization boundaries such as filesystem/Git integration.
+19. Stable release may carry dispositioned non-blocking warnings/deferred items once all MUST semantics and required acceptance are GREEN.
+20. If one legal next obligation is deterministically derivable and no owner/human stop is due, ChatGPT or Pi/Paseo continues automatically rather than asking for redundant permission.
