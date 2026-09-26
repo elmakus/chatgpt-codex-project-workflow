@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 12
+# PWv2.2 Program Brainstorming — Revision 13
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@12`
+Scope subject: `pwv22-program@13`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -290,3 +290,17 @@ Current disposition:
 18. Host-specific acceptance is added only for host-specific realization boundaries such as filesystem/Git integration.
 19. Stable release may carry dispositioned non-blocking warnings/deferred items once all MUST semantics and required acceptance are GREEN.
 20. If one legal next obligation is deterministically derivable and no owner/human stop is due, ChatGPT or Pi/Paseo continues automatically rather than asking for redundant permission.
+
+
+## 20. Owner decisions captured in Revision 13
+
+1. **Automatic continuation exception — Premium A/B/C are mandatory user-facing stops.** Automatic continuation must never cross Premium A, B, or C. Premium A stops before material Planning and offers the choice to continue in the current context or move to a best-available model/context. Premium B stops after exact plan freeze and requires a fresh independent best-available context/harness for Plan Review; the planner/orchestrator must not silently delegate this review to an arbitrary cheap worker. Premium C stops after GREEN Plan Review and offers the choice to continue or move to a lighter/cheaper context for Execution Prep. These stops remain required even when no other product/owner decision is pending.
+2. **User-stop quality:** every real user stop states what completed/was found, what it means for durable state, the exact action required, available options when applicable, and a recommendation.
+3. **Local invalidation:** changing a Result/input invalidates only Cards/Results whose material freshness actually depends on that exact input, rather than invalidating unrelated downstream work by default.
+4. **Bounded revalidation:** when a stale result can be deterministically revalidated against a limited changed input without fresh execution, bounded revalidation is allowed unless accepted authority explicitly requires rerun.
+5. **Review-attempt binding:** every review attempt binds the exact reviewed subject/Result; a GREEN verdict for an older Result cannot authorize a repaired/new Result.
+6. **Git-native cleanup:** noncanonical candidate refs/worktrees/commits may be cleaned automatically after deterministic proof that canonical state and required rollback/recovery no longer reference them.
+7. **Managed-change branch lifecycle:** each managed change keeps its branch through formal Close; branch deletion occurs only after integration/readback is confirmed and required durable history is preserved in the integration target.
+8. **Mechanical Close:** when all required results/reviews/integration/readback are GREEN and no human/owner boundary remains, Close may proceed automatically. A user stop remains required only for a real accepted boundary or external/irreversible choice.
+9. **Deferred capability visibility:** PWv2.2.x obligations deferred from 2.2.0 remain durably visible until implemented or explicitly rejected by owner authority.
+10. **Brainstorming completion rule:** do not continue asking questions merely to extend the process. Before ready_for_definition, run a whole-scope challenge for contradictions, missing requirements, overengineering, duplicate mechanisms, forgotten obligations and simplification opportunities; only material unresolved findings generate another owner-question round.
