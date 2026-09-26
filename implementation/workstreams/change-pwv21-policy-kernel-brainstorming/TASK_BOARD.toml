@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 135
+revision = 136
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1295,7 +1295,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02Q-T07"
 after_card = "M02Q-T07"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T07 is DONE with an exact durable RF016 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-7 RF012 Definition-authority-key seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -1330,6 +1330,59 @@ card_id = "M02Q-T07"
 risk = "simple"
 triggers = []
 risk_basis = "One delivery-integrity invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q order-7 RF012 materialization consumes the exact DONE/GREEN RF016
+# result. Execution Prep evidence:
+# evidence/M02Q-T08_EXECUTION_PREP_2026-09-26.md.
+[[cards]]
+id = "M02Q-T08"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T08.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T08"
+after_card = "M02Q-T08"
+state = "waiting"
+condition = "After M02Q-T08 is DONE with an exact durable RF012 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-8 RF013 recovered-Execution contract seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T08"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "definition-authority-key"
+kind = "invariant"
+statement = "Planning and Plan Review bind a deterministic exact Definition-authority key covering the Definition subject plus exact requirements/decision Git identities; stale authority cannot execute."
+family = "definition-authority-key"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "Exact Definition-authority freshness is independently useful after DONE/GREEN RF016 on top of the RF007 resolver; RF013 Execution contract remains a separate downstream Card."
+falsifiability_testability = "H021 R1/R2 and swapped requirements/decisions fixtures fail before correction and pass after; stale/missing/mismatched-key negatives and a valid-unchanged-plan positive discriminate."
+reviewability = "One Card Review covers the authority-key contract and its Planning/Plan Review/router enforcement without certifying RF013 execution semantics or M02Q composition."
+invariant_contract_family = "One Definition-authority freshness invariant couples the exact key identity with stale-authority fail-closed enforcement; key-variant and legacy-derivation cases are siblings, not separate outcomes."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T07 in P7 serial order with RF007 as the readback foundation; RF013 follows by its JIT trigger."
+atomic_mutation_migration = "Key representation and serving-path freshness enforcement land together so no intermediate state can execute on stale authority; historical M01/M02/M02R and valid current plans stay unchanged except through the verified key."
+cross_surface_coupling = "Planning validation, Plan Review binding and router freshness checks share one RF012-local key contract; no coupling requires merging RF004, RF013 or another RF seam."
+
+[[topology_audits]]
+card_id = "M02Q-T08"
+risk = "simple"
+triggers = []
+risk_basis = "One Definition-authority freshness invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
