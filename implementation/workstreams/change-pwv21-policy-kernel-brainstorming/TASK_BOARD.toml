@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 167
+revision = 168
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1898,7 +1898,7 @@ blob = "de311badcbd1e05f821897311607e66a5f5ff7b8"
 [[jit_triggers]]
 id = "after-M02Q-T16"
 after_card = "M02Q-T16"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T16 is DONE with an exact durable RF010 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-14 RF011 recovery/cleanup-proof seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -1933,6 +1933,74 @@ card_id = "M02Q-T16"
 risk = "simple"
 triggers = []
 risk_basis = "One issue-alignment gate invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q P7 order-14 RF011 is split into two independently useful outcomes.
+# The first H017 outcome consumes the exact DONE/GREEN RF010, RF006 and RF007
+# results; H019 cleanup proof is assigned to its JIT trigger.
+# Execution Prep evidence: evidence/M02Q-T17_EXECUTION_PREP_2026-09-26.md.
+[[cards]]
+id = "M02Q-T17"
+status = "in_progress"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T17.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T17"
+after_card = "M02Q-T17"
+state = "waiting"
+condition = "After M02Q-T17 is DONE with exact durable RF011 H017 result and GREEN independent Card Review, Execution Prep must materialize the separate RF011 H019 cleanup-proof Card. Only after both RF011 outcomes are DONE/GREEN may P7 order-15 RF001 be materialized. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T17"
+decision = "split"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "rf011-derived-package-completeness"
+kind = "invariant"
+statement = "Target-side recovery package is lifecycle-derived from durable workstream/Board state with exact Git identity per locator; empty is valid only for a genuinely empty workstream and never authorizes cleanup with accepted history."
+family = "rf011-derived-package-completeness"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+allocated_to = "card:M02Q-T17"
+
+[[sizing_audits.outcomes]]
+id = "rf011-cleanup-work-proof"
+kind = "invariant"
+statement = "Bounded cleanup work requires exact subject/tests/evidence identity plus durable GREEN independent review proof; fabricated inputs and bare booleans fail closed."
+family = "rf011-cleanup-work-proof"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+allocated_to = "jit:after-M02Q-T17"
+
+[sizing_audits.dimensions]
+independent_implementability = "Derived package completeness is useful while H019 cleanup semantic proof remains RED; H019 can later consume identity-proved package locators."
+falsifiability_testability = "H017 empty-with-history, omitted-class and locator-identity probes separate from the H019 fabricated-cleanup probe."
+reviewability = "T17 Card Review covers package derivation and cleanup gating; a separate H019 Card Review covers cleanup-work proof; M02Q integration remains a Milestone Review."
+invariant_contract_family = "H017 owns one lifecycle-derived package-completeness contract; H019 is a separable per-work exact-proof contract."
+dependency_ordering = "RF011 follows exact DONE/GREEN RF010 (T16), RF006 (T11+T12) and RF007 (T02) in P7 order; H019 is allocated to after-M02Q-T17 before RF001."
+atomic_mutation_migration = "Package derivation, exact-identity proof and cleanup gating land together to avoid an empty/caller-attested bypass; H019 can follow a fail-closed package foundation."
+cross_surface_coupling = "Board/workstream enumeration, locator identity and Close/recovery dispatch couple within H017; per-work cleanup validation is separate and consumes exact identities."
+
+[[topology_audits]]
+card_id = "M02Q-T17"
+risk = "simple"
+triggers = []
+risk_basis = "The split leaves one derived package-completeness invariant family in this Card and assigns H019 cleanup proof to its real downstream JIT; no preferred seam merge, multiple-family Card, milestone absorption, material deviation or review substitution."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
