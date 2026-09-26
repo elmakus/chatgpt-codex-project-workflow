@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 5
+# PWv2.2 Program Brainstorming — Revision 6
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@5`
+Scope subject: `pwv22-program@6`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -190,3 +190,12 @@ Current disposition:
 3. **Material freshness:** freshness is node/input-local and derived from the exact authority/Result/material inputs that matter to the Card. Global Task Board revision may protect writes/CAS but is not universal semantic freshness.
 4. **2.1 -> 2.2 migration:** compatible reading during migration is allowed, but canonical mutation uses one atomic cutover; no dual canonical writers.
 5. **Policy-package evolution / FR-17:** remains OPEN for YAGNI challenge. Owner questions whether explicit package provenance is necessary when an LLM can interpret the current workflow. Brainstorming must distinguish the minimum durable compatibility fact needed for deterministic cross-version recovery from unnecessary per-fact/version bookkeeping.
+
+
+## 13. Owner decisions captured in Revision 6
+
+1. **Policy-package evolution / FR-17:** use the minimal semantic migration rule. Do not version-tag every durable fact. When a workflow update materially changes the meaning/validity of existing state, the new workflow must classify affected historical state as preserve / revalidate / stale / Recovery.
+2. **Work-DAG representation:** canonical graph storage keeps only minimal direct dependency facts. READY/frontier/reachability and other graph projections are derived, not separately mutable truth.
+3. **JIT Cards:** do not create speculative placeholder Cards when a stable Card contract depends on a predecessor result. Keep a bounded JIT obligation and materialize the Card only once its contract is knowable.
+4. **External-effect uncertainty:** ambiguous non-idempotent effects use UNKNOWN -> required exact external readback -> only then retry / accept / compensate. Blind retry is forbidden.
+5. **RED repair closure:** the original reviewer may perform bounded verification of its specific RED findings, but final full-scope closure after repair requires a fresh independent reviewer.
