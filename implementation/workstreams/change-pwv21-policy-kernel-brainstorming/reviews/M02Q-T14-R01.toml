@@ -1,0 +1,33 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02Q-T14"
+attempt = "R01"
+verdict = "pending"
+evidence_path = ""
+review_kind = "discovery"
+source_discovery_attempt = ""
+discovery_complete = false
+material_finding_ids = []
+review_scope = "card"
+review_epoch = "E01"
+epoch_reset_basis = ""
+material_defect_class_ids = []
+failed_material_defect_class_ids = []
+post_convergence_validation = false
+convergence_basis = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "b95b5d9a8d6cbaab299eef75db8d700f69bddd05"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T14.md"
+blob = "9dff8074c0c265e577a7f5af3c66d3397c9c952b"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T14.md"
+commit = "1fce63e6f30ed48e9da8a63a55dc8702b8e15a46"
+blob = "e40d593ae37d6a026e232619e2d762614a4349ae"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "R01 is reserved for a fresh independent context that did not materially produce or repair the exact Result or product implementation."
