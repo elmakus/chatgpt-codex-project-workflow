@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 147
+revision = 148
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1484,7 +1484,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02Q-T10"
 after_card = "M02Q-T10"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T10 is DONE with an exact durable RF009 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-10 RF006 review-history identity/completeness seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -1519,6 +1519,74 @@ card_id = "M02Q-T10"
 risk = "simple"
 triggers = []
 risk_basis = "One Research referential-integrity invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q P7 order-10 RF006 is split into two independently useful outcomes.
+# The first H008/H009 outcome consumes the exact DONE/GREEN RF009 and RF007
+# results; H018 complete-history consumption is assigned to its JIT trigger.
+# Execution Prep evidence: evidence/M02Q-T11_EXECUTION_PREP_2026-09-26.md.
+[[cards]]
+id = "M02Q-T11"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T11.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T11"
+after_card = "M02Q-T11"
+state = "waiting"
+condition = "After M02Q-T11 is DONE with exact durable RF006 H008/H009 result and GREEN independent Card Review, Execution Prep must materialize the separate RF006 H018 complete review-history readback Card. Only after both RF006 outcomes are DONE/GREEN may P7 order-11 RF004 be materialized. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T11"
+decision = "split"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "rf006-attempt-identity-provenance"
+kind = "invariant"
+statement = "Current review attempts have immutable Git identity and append-only IDs; legacy status requires explicit uniquely derived exact source attempt/Git/workstream migration provenance."
+family = "rf006-attempt-identity-provenance"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+allocated_to = "card:M02Q-T11"
+
+[[sizing_audits.outcomes]]
+id = "rf006-complete-history-readback"
+kind = "invariant"
+statement = "Final reconciliation enumerates and proves the complete append-only review and observation history, rejecting truncated Board lists and vacuous Close completion."
+family = "rf006-complete-history-readback"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+allocated_to = "jit:after-M02Q-T11"
+
+[sizing_audits.dimensions]
+independent_implementability = "Attempt identity/provenance can be GREEN while Close completeness remains RED; H018 can consume the identity foundation later without invalidating it."
+falsifiability_testability = "H008/H009 legacy-shape, unique/ambiguous provenance, same-ID rewrite and bogus identity probes separate from H018 truncated-history Close probe."
+reviewability = "T11 Card Review covers attempt identity and legacy provenance; a separate H018 Card Review covers complete Close readback; M02Q integration remains a Milestone Review."
+invariant_contract_family = "H008/H009 share one exact attempt source/current identity contract; H018 is a separable complete-history consumption invariant."
+dependency_ordering = "RF006 follows exact DONE/GREEN RF009 and RF007 in P7 order; H018 is allocated to after-M02Q-T11 before RF004."
+atomic_mutation_migration = "Identity and legacy provenance land atomically to avoid shape-only migration bypass; H018 can follow a fail-closed identity foundation."
+cross_surface_coupling = "Attempt locator, Board and review dispatch couple within H008/H009; Close enumeration is separate and consumes their exact identities."
+
+[[topology_audits]]
+card_id = "M02Q-T11"
+risk = "simple"
+triggers = []
+risk_basis = "The split leaves one exact attempt-identity/provenance invariant family in this Card and assigns H018 completeness to its real downstream JIT; no preferred seam merge, multiple-family Card, milestone absorption, material deviation or review substitution."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
