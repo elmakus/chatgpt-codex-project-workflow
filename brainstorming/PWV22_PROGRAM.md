@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 1
+# PWv2.2 Program Brainstorming — Revision 2
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@1`
+Scope subject: `pwv22-program@2`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -111,24 +111,33 @@ Brainstorming may merge, split, rename, defer or reject candidates, but every ID
 - Substantive scope change increments this Brainstorming revision.
 - Do not promote to Definition until challenge audit is GREEN and the exact revision receives explicit owner authorization.
 
-## 7. Revision-1 open decision register
+## 7. Owner decisions captured in Revision 2
+
+1. **Release model:** PWv2.2.0 ships the accepted safe/core launch scope; additional PWv2.2 capabilities may arrive later as PWv2.2.x. No PWv2.1.x release path is restored.
+2. **P/X initial launch:** generalized mutating parallel/fan-in (P) and effect-bearing DAG paths (X) are not mandatory blockers for PWv2.2.0. They remain designed-for and separately gated capabilities.
+3. **Simplification Review applicability:** every material Planning cycle gets the simplification/YAGNI review.
+4. **Owner authority over simplification:** the review produces a concrete list of simplification candidates with explanation, tradeoffs and recommendation. It does **not** apply material simplifications automatically. The owner decides which proposed simplifications to accept or reject. Accepted choices then route through the normal authority path required by their semantic effect.
+5. **R/K initial launch:** still OPEN pending explanation/grilling.
+
+## 8. Revision-2 open decision register
 
 Open:
-1. exact first-launch boundary: minimal C only versus selected P/X/R/K;
-2. whether the old E/S labels remain useful beyond sequencing/risk notation;
-3. exact identity/graph/freshness architecture;
-4. FR-08 placement relative to core;
-5. whether P/X/R/K are truly separable after final predecessor rebind;
-6. FR-19 applicability model and representation;
-7. evidence inheritance scope;
-8. receiver/runtime qualification;
-9. candidate-store necessity;
-10. migration/cutover model;
-11. what to simplify or reject from FR-01..FR-19;
-12. any owner decision surfaced by further grilling.
+1. whether R (non-ChatGPT canonical continuation) is required in PWv2.2.0;
+2. whether K (production future-candidate physical storage) is required in PWv2.2.0;
+3. whether the old E/S labels remain useful beyond sequencing/risk notation;
+4. exact identity/graph/freshness architecture;
+5. FR-08 placement relative to core;
+6. whether P/X/R/K remain truly separable after final predecessor rebind;
+7. exact representation/output contract for always-on Simplification Review;
+8. evidence inheritance scope;
+9. receiver/runtime qualification details;
+10. candidate-store necessity/backend;
+11. migration/cutover model;
+12. what to simplify or reject from FR-01..FR-19;
+13. any owner decision surfaced by further grilling.
 
-## 8. Current challenge status
+## 9. Current challenge status
 
 `PENDING`.
 
-Revision 1 is intentionally broad. The first grilling round should reduce the problem into a smaller set of real owner choices before any additional Research is launched.
+Revision 2 has fixed the release model, P/X day-one non-blocking status, and always-on owner-controlled Simplification Review. R/K and the remaining architecture/product choices continue through adaptive grilling.
