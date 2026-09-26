@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 150
+revision = 151
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1529,7 +1529,7 @@ atomicity_rationale = ""
 # Execution Prep evidence: evidence/M02Q-T11_EXECUTION_PREP_2026-09-26.md.
 [[cards]]
 id = "M02Q-T11"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
@@ -1548,7 +1548,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02Q-T11"
 after_card = "M02Q-T11"
-state = "waiting"
+state = "satisfied"
 condition = "After M02Q-T11 is DONE with exact durable RF006 H008/H009 result and GREEN independent Card Review, Execution Prep must materialize the separate RF006 H018 complete review-history readback Card. Only after both RF006 outcomes are DONE/GREEN may P7 order-11 RF004 be materialized. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
