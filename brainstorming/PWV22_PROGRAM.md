@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 16
+# PWv2.2 Program Brainstorming — Revision 17
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@16`
+Scope subject: `pwv22-program@17`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -362,3 +362,59 @@ Current disposition:
 9. **Project Workflow is a semantic contract: primarily specify what Main/coordinator must guarantee, not how a particular runtime implements it.** A capable Main/runtime owns orchestration mechanics, worker lifecycle, capacity management, session topology, tool selection and other realization details unless a mechanism is itself necessary to preserve a workflow invariant.
 10. **Mechanism-admission rule:** prescriptive implementation mechanics belong in canonical Project Workflow only when removing that prescription would make an accepted semantic invariant ambiguous, non-deterministic, unsafe, non-recoverable or non-portable. Otherwise implementation detail stays in runtime-specific adapters/configuration/tooling.
 11. All twenty recommendations from the preceding worker-lifecycle round are accepted, including terminal worker cleanup, no canonical worker registry, bounded same-Card reuse, fresh final reviewers, cleanup on fan-in, cancellation of superseded work, authority recheck before mutation, and runtime-local capacity handling.
+
+
+## 24. Revision 17 whole-scope challenge — semantic contract versus runtime realization
+
+Challenge status: material findings found; owner decisions still required before GREEN.
+
+### 24.1 Top-level finding
+
+PWv2.2 should treat Project Workflow as a semantic obligation/authority/recovery contract. Runtime topology and realization mechanics belong to ChatGPT or Pi/Paseo unless a concrete mechanism is necessary to make a semantic invariant deterministic, portable, safe or recoverable.
+
+Live canonical V2 already substantially follows this boundary. The main over-prescription risk is inherited PWv2.1 consumer requirements that encode worker/session/transport/retry/model or implementation-style choices.
+
+### 24.2 FR-01..FR-19 challenge disposition
+
+- **FR-01:** retain bounded delegation, no self-authorized sibling/successor/JIT work and non-authoritative worker output; do not require a universal runtime assignment/result envelope beyond the semantic Card/Result contract.
+- **FR-02:** retain legality-before-concurrency and semantic-conflict return to Main; harvest/merge/scheduling realization is runtime-owned.
+- **FR-03:** retain Main-owned Research/Brainstorming semantics but supersede ChatGPT-only realization. PWv2.2 is host-neutral with ChatGPT and Pi/Paseo required realizations.
+- **FR-04a:** fold review-and-repair choreography into ordinary Review/repair semantics; do not retain it as a separate named PW capability.
+- **FR-04b:** reject new assignment-internal canonical authorization unless a later concrete semantic requirement proves it necessary.
+- **FR-05:** diagnostic actor/runtime provenance is optional runtime telemetry, not a canonical PWv2.2 feature.
+- **FR-06:** Context Compiler, trace index, shadow DAG/frontier and similar projections are optional disposable runtime optimizations, not release requirements or authority.
+- **FR-07:** retain guarded expected-old mutation plus mandatory readback as semantic law; generic helper/candidate-builder implementation is tooling/runtime realization.
+- **FR-08:** retain in PWv2.2.0: append-only exact Review attempts/evidence plus deterministic non-semantic finalization, rebound to final PWv2.1 Review identity.
+- **FR-09:** retain in PWv2.2.0 as receiver freshness/continuation guarantees for required hosts ChatGPT and Pi/Paseo; exact attestation/transport mechanics are runtime/acceptance realization.
+- **FR-10:** collapse into Git-native atomic publication/migration mechanics where needed; no standalone future-candidate product/state model.
+- **FR-11:** reject dedicated physical candidate backend/store.
+- **FR-12:** retain core exact Result/dependency identity plus node/material-input-local freshness. Exact representation is a Definition/Planning/implementation choice after final PWv2.1 rebind, constrained by accepted semantic invariants.
+- **FR-13:** retain minimal direct dependency/Result-binding facts and derived readiness. Do not introduce a separately authoritative Work-DAG subsystem or persisted READY/frontier authority.
+- **FR-14:** retain atomic PWv2.1 -> PWv2.2 migration/publication/readback guarantees; tooling mechanics are implementation-owned.
+- **FR-15:** PWv2.2.0 must preserve accepted PWv2.1 bounded parallel-safe Card semantics. Generalization beyond that is deferred and separately gated.
+- **FR-16:** external-effect intent/attempt/readback/UNKNOWN safety is universal semantic law. Additional new effect-bearing DAG/JIT/fan-in capability is deferred unless later explicitly required.
+- **FR-17:** retain minimal semantic-evolution rule: affected historical state is preserve / revalidate / stale / Recovery; avoid pervasive package/version metadata.
+- **FR-18:** reject runtime/session/provider identity as canonical semantic identity.
+- **FR-19:** retain mandatory Planning-owned Simplification Review for each material Planning cycle, with material owner dispositions before freeze and no new top-level workflow stage.
+
+### 24.3 Research-blocker disposition
+
+- **F21-01:** exact READY migration/subordination representation is not an owner product choice; choose the minimum technical representation that leaves one derived readiness authority.
+- **F21-02:** exact predecessor primitive is not an owner product choice once exact consumed Result binding is guaranteed.
+- **F21-03:** exact fan-in compatibility representation is a technical choice subject to the existing bounded-parallel anti-regression contract; broader fan-in remains deferred.
+- **F21-04:** owner-level Result identity is fixed as repository + commit + path + blob; publication encoding is technical.
+- **F21-05:** owner-level freshness law is fixed as material-input-local; exact fingerprint/read-set encoding is technical.
+- **F21-06:** owner-level external-effect law is fixed as intent/attempt/readback/UNKNOWN/no-blind-retry; exact record schema is technical.
+- **RRE-01:** closed with rejection of a dedicated candidate backend.
+- **RRE-02:** remains release-critical acceptance evidence for ChatGPT + Pi/Paseo.
+
+### 24.4 Superseded research assumptions
+
+- ChatGPT-only Research/Brainstorming realization is superseded by the later host-neutral owner decision.
+- A dedicated candidate backend is superseded/rejected.
+- The original research idea that generalized parallelism could be absent from 2.2.0 is narrowed: generalized expansion may be deferred, but already-accepted PWv2.1 bounded parallelism may not regress.
+- Premium-B best-available-model language is advisory quality guidance; semantic independence and exact-subject review remain mandatory.
+
+### 24.5 Remaining material owner questions
+
+The challenge found a small set of inherited PWv2.1 requirements whose placement in canonical PW versus runtime realization materially affects PWv2.2 scope. These require owner disposition before challenge GREEN.
