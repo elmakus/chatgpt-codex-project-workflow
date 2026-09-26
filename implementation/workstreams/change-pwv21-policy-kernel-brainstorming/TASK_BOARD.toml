@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 161
+revision = 162
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1770,7 +1770,7 @@ blob = "35cc18919e8fc3e76196b26abf1f5697ba77e306"
 [[jit_triggers]]
 id = "after-M02Q-T14"
 after_card = "M02Q-T14"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T14 is DONE with exact durable RF004 H006 result and GREEN independent Card Review, both RF004 outcomes are complete; Execution Prep must read back T13 and T14 and materialize separate P7 order-12 RF003 router-precedence seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -1805,6 +1805,58 @@ card_id = "M02Q-T14"
 risk = "simple"
 triggers = []
 risk_basis = "One H006 Plan Review authority invariant family remains after the RF004 split; no preferred seam merge, multi-family Card, milestone absorption, material deviation or review substitution."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q P7 order-12 RF003 materialization consumes the exact DONE/GREEN RF004
+# results. Execution Prep evidence: evidence/M02Q-T15_EXECUTION_PREP_2026-09-26.md.
+[[cards]]
+id = "M02Q-T15"
+status = "in_progress"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T15.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T15"
+after_card = "M02Q-T15"
+state = "waiting"
+condition = "After M02Q-T15 is DONE with an exact durable RF003 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-13 RF010 issue-alignment seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T15"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "research-dispatch-precedence"
+kind = "invariant"
+statement = "The owning explicit/premium/Intake/result/Board boundary is evaluated before generic active-Research dispatch while exact Research return ownership is preserved."
+family = "research-dispatch-precedence"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "Research-dispatch precedence is independently useful after DONE/GREEN RF004 on top of the RF009 provenance foundation; RF010 issue alignment remains a separate downstream Card."
+falsifiability_testability = "H003 A/B/C preemption fixtures fail before correction and pass after; stale/sibling/missing/mismatched negatives plus Board-level controls discriminate, while lone-active and complete-return-owner positives pass."
+reviewability = "One Card Review covers the Research-precedence contract and its validation/router enforcement without certifying RF010 alignment semantics or M02Q composition."
+invariant_contract_family = "One owning-boundary-before-Research dispatch invariant; stop/Intake/premium/result/Board precedence variants are siblings, not separate outcomes."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T14 in P7 serial order with RF009 as the provenance foundation; RF010 follows by its JIT trigger."
+atomic_mutation_migration = "Precedence reordering and exact-return-owner preservation land together so no intermediate state drops an owning boundary or a verified return; historical M01/M02/M02R and valid current Research stay unchanged."
+cross_surface_coupling = "Research dispatch, Intake/Board ownership readback and router precedence share one RF003-local contract; no coupling requires merging RF010 or another RF seam."
+
+[[topology_audits]]
+card_id = "M02Q-T15"
+risk = "simple"
+triggers = []
+risk_basis = "One Research-dispatch precedence invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
