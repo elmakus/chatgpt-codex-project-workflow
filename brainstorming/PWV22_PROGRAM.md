@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 6
+# PWv2.2 Program Brainstorming — Revision 7
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@6`
+Scope subject: `pwv22-program@7`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -199,3 +199,18 @@ Current disposition:
 3. **JIT Cards:** do not create speculative placeholder Cards when a stable Card contract depends on a predecessor result. Keep a bounded JIT obligation and materialize the Card only once its contract is knowable.
 4. **External-effect uncertainty:** ambiguous non-idempotent effects use UNKNOWN -> required exact external readback -> only then retry / accept / compensate. Blind retry is forbidden.
 5. **RED repair closure:** the original reviewer may perform bounded verification of its specific RED findings, but final full-scope closure after repair requires a fresh independent reviewer.
+
+
+## 14. Owner decisions captured in Revision 7
+
+1. **PWv2.2.0 parallelism anti-regression:** preserve at least the accepted PWv2.1 model: Plan/JIT-authorized finite parallel-safe Card sets, one primary mutating Worker per Card, serialized overlapping write scopes, stale-result handling, and integrated compatibility before downstream consumption of multiple sibling Results.
+2. **Concurrent overlapping mutation:** do not add an override allowing two workers to mutate the same write scope concurrently.
+3. **External-effect paths:** every PWv2.2.0 path that can cause real external mutation follows intent -> attempt -> readback -> known result; uncertainty becomes UNKNOWN and blind retry is forbidden.
+4. **Required release hosts:** PWv2.2.0 acceptance is required on ChatGPT and Pi/Paseo. Codex is not a release-blocking host.
+5. **Simplification Review owner surface:** before Planning freeze, present each material simplification candidate with proposed simplification, rationale, risk/tradeoff, recommendation, and explicit owner disposition. No material simplification is applied without owner accept/reject.
+6. **Canonical mutation discipline:** canonical workflow-state transitions use exact-old-state comparison/CAS semantics plus target-side readback; concurrent change causes refetch/re-evaluation rather than overwrite.
+7. **Runtime provenance:** runtime/model/provider provenance may be retained diagnostically but must not affect transition legality, freshness, routing, or review eligibility.
+8. **Research orchestration:** Main/coordinator owns research questions, lane decomposition, synthesis and return routing. Workers may gather bounded evidence but do not make product/owner decisions.
+9. **Brainstorming delegation:** subagents may gather facts, red-team options and prepare alternatives, but they cannot close owner decisions or promote scope into Definition.
+10. **Final PWv2.1 rebind:** Brainstorming proceeds now; after PWv2.1 reaches its terminal accepted state, perform one source-bound revalidation against that exact predecessor. Reopen only decisions materially affected by the final predecessor, then allow Definition promotion.
+11. **Owner-facing terminology:** use descriptive capability names rather than internal one-letter research labels.
