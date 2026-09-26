@@ -1,11 +1,15 @@
-# PWv2.2 Program Requirements — Definition R1
+# PWv2.2 Program Requirements — Definition R2
 
 Status: ACTIVE Definition authority
 Source Brainstorming subject: `pwv22-program@19`
 
-## Completion blocker
+## Completion condition
 
-Definition may proceed before terminal PWv2.1 exists, but it MUST NOT become GREEN and MUST NOT freeze predecessor-dependent representation or implementation choices until the exact terminal accepted PWv2.1 predecessor has been rebound and revalidated.
+PWv2.2 is defined as a new workflow product/contract rather than a backward-compatible migration target for PWv1, PWv2.0, PWv2.1, or other historical Project Workflow states.
+
+Definition completion does NOT depend on a terminal PWv2.1 release or predecessor rebind.
+
+Before Definition becomes GREEN, the retained product capabilities that would otherwise have been delivered by the unstarted PWv2.1 M03-M07 scope must be reconciled into PWv2.2 authority so no desired capability is accidentally lost during the direct pivot.
 
 ## Product requirements
 
@@ -45,14 +49,14 @@ Definition may proceed before terminal PWv2.1 exists, but it MUST NOT become GRE
 34. **Evidence reuse.** Reuse is property-, authority- and environment-scoped and fails closed. If proving reuse is harder or less reliable than rerunning a cheap deterministic test, rerun the test.
 35. **Git-native atomic publication.** Multi-file canonical transitions may be assembled off-canonical and validated, then published via one guarded Git-native ref/commit transition plus readback.
 36. **No dedicated candidate store.** A non-Git candidate backend/store is rejected. Git-native isolation may be used when required.
-37. **Migration.** PWv2.1 -> PWv2.2 uses compatible reading where needed, one atomic canonical writer cutover, exact rehearsal, publication/readback and no dual canonical writers.
-38. **Backward compatibility direction.** PWv2.2 reads/recovers supported PWv2.1 durable state. Reverse compatibility is not required.
-39. **Active legacy migration.** After PWv2.2.0, an active PWv2.1 workstream migrates before its next canonical mutation; new workstreams start natively in PWv2.2.
-40. **Semantic evolution.** A workflow update affecting existing durable meaning MUST classify affected state as preserve / revalidate / stale / Recovery.
-41. **Release identity.** Every official PWv2.2 release has an exact Git commit/tag identity covering policy package, acceptance tests and migration tooling.
+37. **No backward-compatibility contract.** PWv2.2 does not promise to read, continue, validate, recover or preserve canonical workflow state created under PWv1, PWv2.0, PWv2.1 or any other earlier workflow version.
+38. **No in-product legacy migration.** PWv2.2 does not include a required schema/workstream migration engine, mixed-version reader/writer mode, downgrade path, legacy-state compatibility matrix or automatic conversion of old projects.
+39. **Legacy project adoption is outside PWv2.2 semantics.** If an older project is intentionally moved to PWv2.2, treat that as a separate owner-authorized reconstruction/adoption task: recover the current product facts, scope, requirements and useful evidence, then establish fresh PWv2.2-native durable authority. Historical workflow-state compatibility is not required.
+40. **Native semantic evolution.** Once a project is native to PWv2.2, a later workflow update affecting its existing durable meaning MUST classify affected PWv2.2-native state as preserve / revalidate / stale / Recovery.
+41. **Release identity.** Every official PWv2.2 release has an exact Git commit/tag identity covering the policy package and required acceptance tests/tooling.
 42. **Required-host acceptance.** Semantic releases run shared behavioral fixtures on ChatGPT and Pi/Paseo; host-specific tests exist only where host realization materially differs.
-43. **Release blockers.** MUST-semantic, migration/recovery and required-host acceptance failures block release. Dispositioned noncritical UX/diagnostic defects may be deferred.
-44. **Recovery.** Recovery reconstructs facts and legal continuation from durable state, automates deterministic mechanical repair where safe, and asks the owner only when a genuine owner choice remains.
+43. **Release blockers.** MUST-semantic, recovery and required-host acceptance failures block release. Lack of backward compatibility with historical workflow versions is not a release defect.
+44. **Recovery.** Recovery reconstructs facts and legal continuation from PWv2.2-native durable state, automates deterministic mechanical repair where safe, and asks the owner only when a genuine owner choice remains.
 45. **Close.** Managed change completes only after accepted implementation, integration, target-side readback and durable confirmation. Purely mechanical Close may proceed automatically when no real user boundary remains.
 46. **Deferred capabilities remain visible.** Deferred PWv2.2.x obligations remain durable until implemented or explicitly rejected.
-47. **Final predecessor rebind.** Before Definition GREEN, rebind this authority to the exact terminal accepted PWv2.1 predecessor and reopen only requirements/decisions materially affected by that predecessor.
+47. **Direct-pivot anti-loss reconciliation.** PWv2.2 does not wait for terminal PWv2.1. Before Definition GREEN, reconcile the still-desired capabilities from the unstarted PWv2.1 M03-M07 scope into PWv2.2 and disposition each as retained, superseded by PWv2.2 semantics, deferred or explicitly rejected.
