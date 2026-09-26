@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 155
+revision = 156
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1626,7 +1626,7 @@ blob = "d6725fe8999cbfab9b35f032d10c71062ed79024"
 [[jit_triggers]]
 id = "after-M02Q-T12"
 after_card = "M02Q-T12"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T12 is DONE with exact durable RF006 H018 result and GREEN independent Card Review, both RF006 outcomes are complete; Execution Prep must read back T11 and T12 and materialize separate P7 order-11 RF004 subject/acceptance-binding seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -1661,6 +1661,74 @@ card_id = "M02Q-T12"
 risk = "simple"
 triggers = []
 risk_basis = "One H018 complete-history invariant family remains after the RF006 split; no preferred seam merge, multi-family Card, milestone absorption, material deviation or review substitution."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q P7 order-11 RF004 is split into two independently useful outcomes.
+# The first H005 outcome consumes the exact DONE/GREEN RF006, RF007 and RF012
+# results; H006 Plan Review authority binding is assigned to its JIT trigger.
+# Execution Prep evidence: evidence/M02Q-T13_EXECUTION_PREP_2026-09-26.md.
+[[cards]]
+id = "M02Q-T13"
+status = "in_progress"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T13.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T13"
+after_card = "M02Q-T13"
+state = "waiting"
+condition = "After M02Q-T13 is DONE with exact durable RF004 H005 result and GREEN independent Card Review, Execution Prep must materialize the separate RF004 H006 Plan Review authority-binding Card. Only after both RF004 outcomes are DONE/GREEN may P7 order-12 RF003 be materialized. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T13"
+decision = "split"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "rf004-card-review-acceptance-binding"
+kind = "invariant"
+statement = "Implementation/Card Review GREEN binds the exact current selected Task Card subject plus exact acceptance content identity and the exact review Result subject; alternate same-stem path or stale/same-path mutated acceptance fails closed."
+family = "rf004-card-review-acceptance-binding"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+allocated_to = "card:M02Q-T13"
+
+[[sizing_audits.outcomes]]
+id = "rf004-plan-review-authority-binding"
+kind = "invariant"
+statement = "Plan Review GREEN binds the exact current Definition authority key/subject plus exact acceptance; unrelated or stale authority cannot authorize GREEN."
+family = "rf004-plan-review-authority-binding"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+allocated_to = "jit:after-M02Q-T13"
+
+[sizing_audits.dimensions]
+independent_implementability = "Card Review subject/acceptance binding can be GREEN while Plan Review authority binding remains RED; H006 can consume the exact-identity foundation later without invalidating it."
+falsifiability_testability = "H005 alternate-path, stale/same-path mutation and result-subject-mismatch probes separate from the H006 unrelated-acceptance GREEN probe."
+reviewability = "T13 Card Review covers Card Review acceptance binding; a separate H006 Card Review covers Plan Review authority; M02Q integration remains a Milestone Review."
+invariant_contract_family = "H005 owns one Card Review subject-plus-acceptance contract; H006 is a separable Plan Review Definition-authority contract."
+dependency_ordering = "RF004 follows exact DONE/GREEN RF006 (T11+T12) and RF007+RF012 in P7 order; H006 is allocated to after-M02Q-T13 before RF003."
+atomic_mutation_migration = "Card acceptance identity and review/router enforcement land together to avoid an alternate/stale bypass; H006 can follow a fail-closed Card Review foundation."
+cross_surface_coupling = "Task Card locator, review acceptance binding and router dispatch couple within H005; Plan Review Definition-authority gating is separate and consumes exact identities."
+
+[[topology_audits]]
+card_id = "M02Q-T13"
+risk = "simple"
+triggers = []
+risk_basis = "The split leaves one Card Review acceptance-binding invariant family in this Card and assigns H006 Plan Review authority to its real downstream JIT; no preferred seam merge, multiple-family Card, milestone absorption, material deviation or review substitution."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
