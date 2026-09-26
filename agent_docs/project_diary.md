@@ -1,5 +1,9 @@
 # Project diary
 
+## 2026-09-27 — RF001/RF014 proof boundaries and pre-M03 stop
+
+Independent GREEN Card reviews completed RF001 T19 and RF014 T20 without absorbing adjacent P7 seams. Main found and repaired RF001's review-free path-only DONE Result bypass, and RF014's unrelated-Card consumed-proof bypass before their clean-tree commits. RF014 exact proof requires Git identity, Board order and a causal consumer edge; immutable prose-only historical triggers remain shape-valid but cannot authorize terminal Close. T21 RF015 is frozen with exact T20 consumed proof. The remaining legacy Result/Review/JIT migrations and H017/H019 composition are separate pre-M03 obligations; preserving terminal bytes does not make candidate serving successful until those obligations are proved. Muse quota exhaustion is an external dispatch blocker, not a semantic Card failure or a reason to change profile. The hard authorized stop is before M03 after all pre-M03 obligations and fresh M02Q Milestone Review are truly GREEN.
+
 ## 2026-09-23 — V2 continuation authority
 
 Use current `elmakus/project_workflow_v2@main` as operational authority, as specified by `PROJECT.md` and `workflow/PWV2_ADOPTION.md`. A migration package pin records that migration event; legacy in-repository V1 contracts do not override V2 routing.

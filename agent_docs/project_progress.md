@@ -1,5 +1,13 @@
 # Project progress
 
+## M02Q pre-M03 continuation — 2026-09-27
+
+Current durable pointer: `implementation/workstreams/change-pwv21-policy-kernel-brainstorming/TASK_BOARD.toml` rev181 on consumer `work/pwv21-policy-kernel-brainstorming@3684374f3e6b544a584ceeae477aad6f41c35bf0`. P7 order 1–16 RF families are DONE with independent GREEN, including T19 RF001 and T20 RF014. Product candidate is `work/pwv21-policy-kernel@d01c46eec1df1a3bf6e89d271e9aa777bc9e1f33`, pushed with 1188/1188 clean-tree tests, shell gates and exact-commit CI success.
+
+Current Card M02Q-T21, final P7 order-17 RF015 H027, is `in_progress` with frozen exact Card and verified `after-M02Q-T20` consumed proof. No T21 implementation, Result or Review exists. The Muse Senior Executor's first invocation failed on model stream idle timeout; its resume failed with 429 quota exhaustion, reset reported at 2026-09-28 00:00 UTC. Resume under `muse-max` after reset from the exact Board/Card; details in `agent_docs/latest_session_work.md`. The old sections below are historical checkpoints, not current instructions.
+
+After T21, complete separate M02Q obligations OBL-01 H017/H019 composition, OBL-02 legacy Review migration, OBL-03 legacy Result serving compatibility and the historical JIT consumed-proof migration, then full candidate-on-consumer acceptance and a fresh independent M02Q Milestone Review with bounded repairs/reviews until GREEN. M03 remains unmaterialized and must stay so; stop before consuming its transition and leave an explicit owner-replan pointer only after pre-M03 is terminal GREEN. Terminal M01/M02/M02R bytes and untracked trajectories remain preserved. Candidate product branch is not installed as plugin or merged into main.
+
 ## M02Q P7 continuation — 2026-09-26
 
 Current goal: implement and independently review all 17 P7 RF repair families, then perform a fresh M02Q Milestone Review before any M03 materialization. Task Board revision 149 has M02Q-T01…T10 DONE/GREEN, including RF009 H014/H016 at T10. T10 Result is `results/M02Q-T10.md@49f67ffad711c091fcd63e5bbccb61466d229183:74d01cbc0b9398c97623a9a4c3a8fd9f7e7d4b40`; its fresh independent R01 is GREEN. Product `work/pwv21-policy-kernel@003879a9c80b3e86ee730c4bc6c4e13070f65fc8` passed clean-tree 1023/1023, eight shell gates and exact-commit push/PR CI. Consumer branch `work/pwv21-policy-kernel-brainstorming@25d24236f972669c2b65f68ac6773a8787990d70` is pushed. Terminal M01/M02/M02R history is preserved.
