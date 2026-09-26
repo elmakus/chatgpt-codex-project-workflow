@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 17
+# PWv2.2 Program Brainstorming — Revision 18
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@17`
+Scope subject: `pwv22-program@18`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -418,3 +418,13 @@ Live canonical V2 already substantially follows this boundary. The main over-pre
 ### 24.5 Remaining material owner questions
 
 The challenge found a small set of inherited PWv2.1 requirements whose placement in canonical PW versus runtime realization materially affects PWv2.2 scope. These require owner disposition before challenge GREEN.
+
+
+## 25. Owner decisions captured in Revision 18
+
+1. **Worker cleanup remains an explicit semantic expectation, implementation is runtime-owned.** When subagents are no longer needed for the current Card/attempt/role, the runtime must release/close them before accumulating stale capacity; how Pi/Paseo implements shutdown/reaping is outside Project Workflow.
+2. **Mutating ownership:** one Card has one mutating ownership domain. Runtime-internal helpers may exist, but competing independent mutating owners for the same Card are forbidden. Genuine independent mutation belongs in separate Cards.
+3. **Recursive subagent mechanics:** Project Workflow does not prescribe whether a runtime technically exposes nested subagent spawn. Canonical law only forbids a subagent from self-authorizing new PW Cards, scope, siblings, successors or authority. Pi/Paseo may disable nested spawn entirely as runtime configuration.
+4. **Review convergence ceilings remain canonical PW semantics.** Keep the accepted PWv2.1 discovery/repair ceilings and convergence routing because they define when ordinary repair/re-review must stop and Main/root-cause analysis or broader routing becomes mandatory; these are workflow-control semantics, not worker implementation mechanics.
+5. **Execution Obligation/Result serialization remains OPEN for final disposition.**
+6. **Falsification-first/test-first placement remains OPEN for final disposition.**
