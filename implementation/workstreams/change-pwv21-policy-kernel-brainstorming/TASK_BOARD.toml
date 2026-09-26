@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 162
+revision = 163
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1818,6 +1818,18 @@ status = "in_progress"
 [cards.contract]
 class = "task_card"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T15.md"
+
+[cards.result]
+class = "result"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T15.md"
+commit = "5bbc8f25a9ab2d835fd641b26d8e66a7466b9363"
+blob = "c3c6fc832c78a554d9dc3a048ae4bcd2597ae24d"
+
+[[cards.review_attempts]]
+class = "review_attempt"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T15-R01.toml"
+commit = "d531793e46f0f47bf0170691f3510b56be2faa01"
+blob = "4564d9cf5945be6cc5f7064114483abb3985428a"
 
 [[jit_triggers]]
 id = "after-M02Q-T15"
