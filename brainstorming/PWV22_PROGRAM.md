@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 9
+# PWv2.2 Program Brainstorming — Revision 10
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@9`
+Scope subject: `pwv22-program@10`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -237,3 +237,17 @@ Current disposition:
 8. **Simplification rejection memory:** an owner-rejected simplification for an exact unchanged plan/evidence subject remains dispositioned and is not repeatedly re-asked unless relevant plan/evidence changes.
 9. **Human interaction batching:** preserve distinct Cards/authorities but optimize sequencing to minimize attended sessions, grouping compatible login/OTP/pairing/manual-smoke work where dependencies permit.
 10. **Mid-execution simplification:** completed or active work is not rewritten merely for simplification. Accepted durable evidence may trigger simplification proposals for unstarted future scope, and the owner explicitly accepts/rejects material removal.
+
+
+## 17. Owner decisions captured in Revision 10
+
+1. **Plan freeze identity:** a frozen Planning subject is bound to exact repository + commit + path + blob so downstream review cannot silently drift onto edited content.
+2. **Material change after freeze:** any material plan change returns to Planning, creates a new exact subject, and reruns the applicable Simplification Review plus Plan Review before execution authority resumes.
+3. **Deterministic review finalizer:** the finalizer is intentionally non-semantic; it validates exact subject, reviewer eligibility, terminal verdict, required evidence/readback and other formal closure conditions, but does not reinterpret review prose.
+4. **Projection/cache disagreement:** stale or divergent Context Compiler/shadow index/cached READY data is discarded and rebuilt from canonical state; cache disagreement alone is not Recovery.
+5. **Evidence reuse:** workflow should propose reuse when prior evidence proves the same property for an unchanged relevant subject/environment and all invalidators are ruled out; ambiguity fails closed to a fresh test.
+6. **Cheap rerun preference:** if proving reuse equivalence is more complex or less reliable than rerunning the test, rerun the test.
+7. **Migration rehearsal:** before PWv2.2 canonical cutover, perform a full rehearsal against an exact copy of terminal PWv2.1 state, including crash/restart/readback paths.
+8. **Rollback after cutover:** if post-publication acceptance fails before irreversible external effects make rollback unsafe, restore the exact previous Git state/ref rather than patching a partially migrated canonical state in place.
+9. **Cross-host compatibility:** ChatGPT and Pi/Paseo must pass the same canonical behavioral acceptance fixtures; implementation/runtime internals may differ.
+10. **Brainstorming completion challenge:** before ready_for_definition, run one final whole-scope challenge focused on YAGNI/removals, missing requirements, contradictions, unnecessary mechanisms and forgotten retained obligations.
