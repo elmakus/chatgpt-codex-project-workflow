@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 14
+# PWv2.2 Program Brainstorming — Revision 15
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@14`
+Scope subject: `pwv22-program@15`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -322,3 +322,28 @@ Current disposition:
 12. Credentials, tokens, OTPs and secrets never become canonical workflow state.
 13. External-effect evidence records only non-secret operation/resource/readback identifiers needed for recovery.
 14. Managed-change completion remains integration -> target-side readback -> durable confirmation -> Close/cleanup.
+
+
+## 22. Owner decisions captured in Revision 15
+
+1. Premium A recommends the best available planning model/context but does not hard-gate a specific model; after the stop the owner may explicitly continue on the current Pi/Paseo Main.
+2. Premium C similarly recommends a lighter/cheaper execution-prep context without forcing a model switch.
+3. Reviewer independence does not require a different model; a fresh independent context/worker on the same model is valid if it did not author or repair the subject.
+4. Pi/Paseo review realization needs semantic independence, exact frozen-subject binding, and non-mutation of the plan; canonical worker/model identity is unnecessary.
+5. Final full-scope review after repair may use any fresh independent Pi/Paseo worker; higher-quality models improve assurance but are not canonical requirements.
+6. Owner choice may lower reviewer model quality after the Premium B stop, but may not waive semantic independence.
+7. Preserve bounded editorial_exempt handling for truly non-material post-review corrections with no strategy/milestone/coverage/gate change.
+8. Simplification Review precedes exact plan freeze: planner audit -> Simplification Review -> owner dispositions -> freeze -> Premium B.
+9. Owner rejection of all simplification candidates leaves the plan eligible to freeze unchanged.
+10. Simplification Review requires owner disposition only for material simplifications; trivial cosmetic/mechanical cleanup may remain planner-owned.
+11. Planning may reorder human-interactive Cards later to batch attended work when dependencies/gates remain valid.
+12. Do not merge semantically distinct risky human actions into one mega-Card merely for convenience.
+13. External mutations should use idempotency/request identifiers when supported by the target system.
+14. An ambiguous irreversible external effect with no reliable readback fails closed; blind retry is forbidden.
+15. PWv2.2 is host-neutral. ChatGPT and Pi/Paseo are required realizations, replacing product-level ChatGPT-only semantics.
+16. Required hosts may implement different orchestration mechanics but consume the same canonical workflow authority.
+17. Pi/Paseo may automatically spawn authorized research/review/execution workers without per-worker owner approval; real owner/Premium/human stops still apply.
+18. Leaf workers do not autonomously spawn new workflow orchestration outside their assigned scope.
+19. Each semantic PWv2.2.x release reruns common core acceptance on required hosts; documentation/cosmetic-only releases do not require the full semantic matrix.
+20. After this owner-question round and one additional requested round, Brainstorming proceeds to the previously accepted whole-scope challenge instead of generating questions indefinitely.
+21. **Worker lifecycle cleanup:** runtime workers are scoped to a concrete Card/attempt/role. Once that obligation reaches a terminal state and no accepted plan explicitly requires reuse of that same worker, Pi/Paseo closes/releases the worker before moving on. New Cards use fresh appropriately assigned workers. Terminal or abandoned workers must not accumulate as zombie runtime capacity; cleanup is automatic and noncanonical. ChatGPT realization may have nothing explicit to close.
