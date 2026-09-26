@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 18
+# PWv2.2 Program Brainstorming — Revision 19
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@18`
+Scope subject: `pwv22-program@19`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -428,3 +428,38 @@ The challenge found a small set of inherited PWv2.1 requirements whose placement
 4. **Review convergence ceilings remain canonical PW semantics.** Keep the accepted PWv2.1 discovery/repair ceilings and convergence routing because they define when ordinary repair/re-review must stop and Main/root-cause analysis or broader routing becomes mandatory; these are workflow-control semantics, not worker implementation mechanics.
 5. **Execution Obligation/Result serialization remains OPEN for final disposition.**
 6. **Falsification-first/test-first placement remains OPEN for final disposition.**
+
+
+## 26. Owner decisions captured in Revision 19
+
+1. **Execution Obligation / Execution Result interchange:** retain one common typed transport-neutral contract with JSON as the standard portable interchange serialization across supported hosts. A runtime may use RPC, native objects, text, internal APIs or other mechanisms internally, but portable exchange/acceptance must be representable in the shared JSON contract.
+2. **Falsification-first / test-first discipline:** retain the accepted PWv2.1 rule as SHOULD, not MUST. When an accepted Card outcome can be meaningfully expressed as an automated or observable failing check, implementation should prove the failing condition first and then make the minimum change required to reach GREEN. Cards where that shape is artificial or inapplicable are not illegal merely for using another execution approach.
+
+## 27. Whole-scope challenge closure
+
+Challenge result: **GREEN**.
+
+The whole-scope review covered:
+- FR-01 through FR-19;
+- F21-01 through F21-06;
+- RRE-01 and RRE-02;
+- retained PWv2.1 bounded parallelism and review-convergence semantics;
+- ChatGPT and Pi/Paseo host requirements;
+- Premium A/B/C stops;
+- worker/subagent lifecycle and cleanup;
+- Result/review identity and material freshness;
+- migration, release, rollback and recovery;
+- external-effect UNKNOWN/readback safety;
+- Simplification Review/YAGNI;
+- separation of canonical semantic law from runtime realization mechanics.
+
+No further material owner/product questions remain at this Brainstorming revision.
+
+The resulting design principle is:
+- Project Workflow specifies semantic obligations, authority, invariants, evidence, acceptance, transition legality, recovery and owner boundaries;
+- capable runtimes own orchestration mechanics, worker/session lifecycle, scheduling, capacity, tool selection and other realization details unless a specific mechanism is required to preserve a semantic invariant;
+- runtime implementation choices must not become hidden authority.
+
+Final PWv2.1 predecessor rebind/revalidation remains mandatory before Definition is allowed to finalize any representation choice or implementation plan that depends on the terminal PWv2.1 contract. The rebind reopens only decisions materially affected by the final predecessor.
+
+Revision 19 is ready for Definition promotion, but promotion still requires explicit owner authorization for the exact subject pwv22-program@19.
