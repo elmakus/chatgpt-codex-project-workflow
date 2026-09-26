@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 139
+revision = 140
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1358,7 +1358,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02Q-T08"
 after_card = "M02Q-T08"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T08 is DONE with an exact durable RF012 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-8 RF013 recovered-Execution contract seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -1393,6 +1393,59 @@ card_id = "M02Q-T08"
 risk = "simple"
 triggers = []
 risk_basis = "One Definition-authority freshness invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q order-8 RF013 materialization consumes the exact DONE/GREEN RF012
+# result. Execution Prep evidence:
+# evidence/M02Q-T09_EXECUTION_PREP_2026-09-26.md.
+[[cards]]
+id = "M02Q-T09"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T09.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T09"
+after_card = "M02Q-T09"
+state = "waiting"
+condition = "After M02Q-T09 is DONE with an exact durable RF013 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-9 RF009 Research-provenance seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T09"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "recovered-execution-contract"
+kind = "invariant"
+statement = "Recovered Execution validates the full stable Card contract first; Execution Results carry structured semantic status and only accepted success can authorize reconciliation, review, or no-replay recovery."
+family = "recovered-execution-contract"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "Recovered-Execution Card validation plus structured Result status is independently useful after DONE/GREEN RF012 on top of the RF007 resolver; RF009 Research provenance remains a separate downstream Card."
+falsifiability_testability = "H023 FAILED-summary and H024 minimal-card fixtures fail before correction and pass after; invalid/missing-status negatives, malformed-Card controls and a valid-Card/accepted-success positive discriminate."
+reviewability = "One Card Review covers the recovered-Execution contract and its execution/router enforcement without certifying RF009 provenance semantics or M02Q composition."
+invariant_contract_family = "One Execution-authority semantic-validity invariant couples full-Card validation with structured-success gating; status-variant and malformed-Card cases are siblings, not separate outcomes."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T08 in P7 serial order with RF007 as the readback foundation; RF009 follows by its JIT trigger."
+atomic_mutation_migration = "Card-parse gating and structured-status enforcement land together so no intermediate state can execute on an invalid Card or reconcile on a non-success Result; historical M01/M02/M02R and valid current executions stay unchanged."
+cross_surface_coupling = "Execution-contract parsing, router active branches and review/reconciliation gating share one RF013-local validity contract; no coupling requires merging RF009, RF004 or another RF seam."
+
+[[topology_audits]]
+card_id = "M02Q-T09"
+risk = "simple"
+triggers = []
+risk_basis = "One Execution-authority semantic-validity invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
