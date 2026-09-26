@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 164
+revision = 165
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1834,7 +1834,7 @@ blob = "74ec235d59e0bb6a1052af80fea6b85b657dca30"
 [[jit_triggers]]
 id = "after-M02Q-T15"
 after_card = "M02Q-T15"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T15 is DONE with an exact durable RF003 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-13 RF010 issue-alignment seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -1869,6 +1869,58 @@ card_id = "M02Q-T15"
 risk = "simple"
 triggers = []
 risk_basis = "One Research-dispatch precedence invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q P7 order-13 RF010 materialization consumes the exact DONE/GREEN RF003
+# result. Execution Prep evidence: evidence/M02Q-T16_EXECUTION_PREP_2026-09-26.md.
+[[cards]]
+id = "M02Q-T16"
+status = "in_progress"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T16.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T16"
+after_card = "M02Q-T16"
+state = "waiting"
+condition = "After M02Q-T16 is DONE with an exact durable RF010 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-14 RF011 recovery/cleanup-proof seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T16"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "issue-alignment-gate"
+kind = "invariant"
+statement = "Issue alignment requires a concrete repair subject plus completed exact diagnosis/prior-art proof; an empty subject remains in Intake diagnosis."
+family = "issue-alignment-gate"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "Issue-alignment gating is independently useful after DONE/GREEN RF003 on top of the RF009 provenance foundation; RF011 recovery/cleanup proof remains a separate downstream Card."
+falsifiability_testability = "H015 empty-subject fixture fails before correction and passes after; stale/sibling/mismatched/declared-only negatives discriminate, while concrete-no-proof and exact-positive controls pass."
+reviewability = "One Card Review covers the alignment-gate contract and its validation/router enforcement without certifying RF011 recovery semantics or M02Q composition."
+invariant_contract_family = "One concrete-subject-plus-exact-proof alignment invariant; stale/sibling/mismatched/declared-only variants are siblings, not separate outcomes."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T15 in P7 serial order with RF009 as the provenance foundation; RF011 follows by its JIT trigger."
+atomic_mutation_migration = "Gate correction and exact-proof preservation land together so no intermediate state aligns an empty subject or drops a verified proof; historical M01/M02/M02R and valid current Intake stay unchanged."
+cross_surface_coupling = "Intake validation, prior-art proof readback and router alignment share one RF010-local contract; no coupling requires merging RF011 or another RF seam."
+
+[[topology_audits]]
+card_id = "M02Q-T16"
+risk = "simple"
+triggers = []
+risk_basis = "One issue-alignment gate invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
