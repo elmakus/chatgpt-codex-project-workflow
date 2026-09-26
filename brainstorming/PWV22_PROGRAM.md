@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 3
+# PWv2.2 Program Brainstorming — Revision 4
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@3`
+Scope subject: `pwv22-program@4`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -159,3 +159,25 @@ Before Brainstorming can become GREEN/ready_for_definition:
 - K/FR-11/RRE-01 must have an explicit disposition;
 - if either is deferred beyond 2.2.0, Definition/Planning must retain a durable post-2.2.0 delivery/gate obligation or explicitly reject it by owner decision;
 - neither may disappear merely because it is outside first-launch scope.
+
+
+## 11. Owner decisions captured in Revision 4
+
+1. **R is required in PWv2.2.0.** Cross-runtime Project Workflow continuation is existing expected product behavior and must not regress in PWv2.2. The R boundary is therefore reinterpreted as a release-critical qualification of existing cross-runtime canonical continuation under the new PWv2.2 identity/freshness model, not as a later optional feature. RRE-02 remains the proof obligation that receivers refetch, bind the exact current subject, and do not continue from stale handoff/session state.
+2. **K dedicated candidate store is rejected.** No separate production candidate-store backend is desired. Candidate isolation/publication must use Git-native mechanisms where needed. FR-11/K as a dedicated physical backend is rejected unless a future explicit owner decision reopens it in response to a concrete unmet requirement.
+3. **FR-10 may remain only as Git-native logical/isolated candidate mechanics.** Any candidate/candidate-builder semantics must not introduce a second non-Git authority or truth store.
+4. **Simplification Review disposition:** accepted recommendation — every material finding must receive explicit owner disposition before plan freeze; the review presents candidate, rationale, tradeoff and recommendation, while the owner chooses accept/reject. The review itself never silently applies material simplifications.
+5. **FR-08:** accepted recommendation — include Reviewer-owned append-only attempt/evidence persistence plus deterministic finalization in PWv2.2.0, subject to final-PWv2.1 Review identity rebind and exact freshness/CAS/readback qualification.
+6. **READY:** accepted recommendation — READY/frontier is derived from canonical graph/dependency/Result/gate facts and is not an independently mutable canonical truth.
+7. **Core architecture remains:** identity + freshness + guarded transitions are foundational; graph/readiness is derived on top.
+
+### R anti-regression requirement
+
+PWv2.2 release qualification must include explicit cross-runtime compatibility/continuation acceptance. A runtime that is an accepted PW host before PWv2.2 must not lose the ability to start/recover/continue a managed workstream merely because the 2.2 state model changes. Any narrower runtime support must be an explicit product decision, not an accidental migration effect.
+
+### K disposition
+
+Current disposition:
+- special candidate backend/store: REJECTED;
+- Git-native branches/refs/isolated commits/candidate build mechanics: ALLOWED when needed;
+- non-Git canonical or shadow truth store: FORBIDDEN without a new explicit owner decision.
