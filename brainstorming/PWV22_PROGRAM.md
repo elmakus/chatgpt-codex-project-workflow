@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 8
+# PWv2.2 Program Brainstorming — Revision 9
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@8`
+Scope subject: `pwv22-program@9`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -223,3 +223,17 @@ Current disposition:
 3. **Result history:** Card Results are immutable historical artifacts. Re-execution/repair creates a new Result; the current Card binds the exact accepted Result without overwriting earlier results.
 4. **Review history:** review attempts are append-only. RED/GREEN/recheck attempts remain durable; deterministic finalization identifies the terminal accepted attempt for the exact subject without rewriting prior attempts.
 5. **Human-interaction-last ownership:** Planning plus Simplification Review identifies and defers human-interactive work as far as dependencies safely allow; Execution Prep/JIT materializes exact Cards/dependencies/timing. No separate Human Interaction workflow stage is introduced.
+
+
+## 16. Owner decisions captured in Revision 9
+
+1. **Worker scope discipline:** a worker may report discovered follow-on work but cannot self-authorize a new sibling/successor/JIT obligation outside its assigned scope.
+2. **Automatic bounded repair after RED:** repair may start automatically when it stays inside the already-authorized Card scope/requirements/strategy. Owner input is required only when repair needs new scope, requirements, strategy, or authority.
+3. **Review cannot expand authority:** a reviewer may identify out-of-scope repair needs but cannot authorize them; routing returns to Execution Prep, Planning, Definition, or another proper owner as required.
+4. **Mechanical clean merge:** orchestrator may automatically harvest, clean-merge, test, and read back compatible independent results when there is no semantic conflict or overlapping mutation scope.
+5. **Context Compiler:** optional acceleration only; PWv2.2.0 correctness must not depend on it.
+6. **Shared CAS/readback mechanics:** use common mechanical helpers for expected-old comparison, guarded write, and target-side readback where practical; helpers do not own semantic transition choice.
+7. **Git-native candidate publication:** multi-file canonical changes may be assembled and validated as isolated Git commits/refs before atomic/promotional publication. No separate candidate store is introduced.
+8. **Simplification rejection memory:** an owner-rejected simplification for an exact unchanged plan/evidence subject remains dispositioned and is not repeatedly re-asked unless relevant plan/evidence changes.
+9. **Human interaction batching:** preserve distinct Cards/authorities but optimize sequencing to minimize attended sessions, grouping compatible login/OTP/pairing/manual-smoke work where dependencies permit.
+10. **Mid-execution simplification:** completed or active work is not rewritten merely for simplification. Accepted durable evidence may trigger simplification proposals for unstarted future scope, and the owner explicitly accepts/rejects material removal.
