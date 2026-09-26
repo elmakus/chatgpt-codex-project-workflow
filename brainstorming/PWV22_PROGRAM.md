@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 13
+# PWv2.2 Program Brainstorming — Revision 14
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@13`
+Scope subject: `pwv22-program@14`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -304,3 +304,21 @@ Current disposition:
 8. **Mechanical Close:** when all required results/reviews/integration/readback are GREEN and no human/owner boundary remains, Close may proceed automatically. A user stop remains required only for a real accepted boundary or external/irreversible choice.
 9. **Deferred capability visibility:** PWv2.2.x obligations deferred from 2.2.0 remain durably visible until implemented or explicitly rejected by owner authority.
 10. **Brainstorming completion rule:** do not continue asking questions merely to extend the process. Before ready_for_definition, run a whole-scope challenge for contradictions, missing requirements, overengineering, duplicate mechanisms, forgotten obligations and simplification opportunities; only material unresolved findings generate another owner-question round.
+
+
+## 21. Owner decisions captured in Revision 14
+
+1. Premium B remains a mandatory user-facing stop and explicitly signals that a stronger/fresher reviewer may improve assurance.
+2. Reviewer quality is a recommendation, not a hard model gate. Canonical requirements are semantic independence from the plan author/repairer and review of the exact frozen subject.
+3. In ChatGPT, Premium B provides a fresh-session locator for a new independent chat/context.
+4. In Pi/Paseo, after the stop the owner may either move to a new session or explicitly continue; Pi/Paseo may then dispatch its configured independent review worker on its assigned model.
+5. Owner-authorized continuation with a lower-cost reviewer is allowed after the stop; the workflow communicates the assurance tradeoff but does not block it.
+6. Review remains non-mutating. The main quality risk from a weaker reviewer is false GREEN or missed defects, not modification of the frozen plan.
+7. Premium A/C and all previously accepted Revision 13 decisions remain accepted.
+8. Handoff remains locator-only and runtime-neutral.
+9. Canonical state does not persist current host/model identity.
+10. Workflow authority uses the current default branch operationally, with exact commit identity only where release/migration/evidence subjects require it.
+11. Semantic workflow updates affecting active durable state use preserve / revalidate / stale / Recovery handling rather than silently reinterpreting prior state.
+12. Credentials, tokens, OTPs and secrets never become canonical workflow state.
+13. External-effect evidence records only non-secret operation/resource/readback identifiers needed for recovery.
+14. Managed-change completion remains integration -> target-side readback -> durable confirmation -> Close/cleanup.
