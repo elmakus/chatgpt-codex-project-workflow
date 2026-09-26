@@ -1,7 +1,7 @@
-# ADR — PWv2.2 Program Definition R1
+# ADR — PWv2.2 Program Definition R2
 
-- Decision ID: `ADR-PWV22-PROGRAM-R1`
-- Status: accepted from promoted Brainstorming, pending final PWv2.1 predecessor rebind for Definition completion
+- Decision ID: `ADR-PWV22-PROGRAM-R2`
+- Status: accepted Definition authority; supersedes the earlier predecessor-rebind/backward-compatibility assumption
 - Source subject: `pwv22-program@19`
 
 ## Decisions
@@ -25,5 +25,8 @@
 - Dedicated candidate storage is rejected; Git-native isolation/publication is allowed.
 - External-effect uncertainty uses UNKNOWN + exact readback; blind retry is forbidden.
 - Policy evolution uses minimal preserve/revalidate/stale/Recovery handling.
-- Migration is forward-oriented and atomic at canonical writer cutover.
-- Final terminal PWv2.1 rebind is mandatory before Definition may become GREEN.
+- PWv2.2 is a new native workflow contract, not a compatibility layer over PWv1/PWv2.0/PWv2.1 durable state.
+- No backward-compatible legacy reader, old-state continuation guarantee, automatic workstream/schema migration, mixed-version mode or downgrade path is required.
+- Intentional transfer of an old project into PWv2.2 is a separate owner-authorized reconstruction/adoption task that establishes fresh PWv2.2-native authority from current product facts and useful evidence; preserving old workflow-state semantics is not required.
+- Definition completion does not depend on terminal PWv2.1 or a final PWv2.1 rebind.
+- The direct pivot must still perform an anti-loss reconciliation so desired capabilities from the unstarted PWv2.1 M03-M07 scope are retained, superseded deliberately, deferred or explicitly rejected rather than disappearing accidentally.
