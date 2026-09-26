@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 151
+revision = 152
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1548,7 +1548,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02Q-T11"
 after_card = "M02Q-T11"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T11 is DONE with exact durable RF006 H008/H009 result and GREEN independent Card Review, Execution Prep must materialize the separate RF006 H018 complete review-history readback Card. Only after both RF006 outcomes are DONE/GREEN may P7 order-11 RF004 be materialized. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -1597,6 +1597,58 @@ card_id = "M02Q-T11"
 risk = "simple"
 triggers = []
 risk_basis = "The split leaves one exact attempt-identity/provenance invariant family in this Card and assigns H018 completeness to its real downstream JIT; no preferred seam merge, multiple-family Card, milestone absorption, material deviation or review substitution."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q P7 order-10 second RF006 outcome follows DONE/GREEN H008/H009.
+# Execution Prep evidence: evidence/M02Q-T12_EXECUTION_PREP_2026-09-26.md.
+[[cards]]
+id = "M02Q-T12"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T12.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T12"
+after_card = "M02Q-T12"
+state = "waiting"
+condition = "After M02Q-T12 is DONE with exact durable RF006 H018 result and GREEN independent Card Review, both RF006 outcomes are complete; Execution Prep must read back T11 and T12 and materialize separate P7 order-11 RF004 subject/acceptance-binding seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T12"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "rf006-complete-history-readback"
+kind = "invariant"
+statement = "Final reconciliation derives and proves complete append-only review and observation history rather than accepting a truncated Board/caller list."
+family = "rf006-complete-history-readback"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "Close completeness is independently useful after DONE/GREEN attempt identity; its correction does not reopen T11."
+falsifiability_testability = "Truncated Board R01/open O1 and listed-board omitted O1 fail; genuinely empty and fully reconciled controls pass."
+reviewability = "One Card Review covers complete-history readback, not T11 identity or whole-M02Q integration."
+invariant_contract_family = "One durable history-inventory completeness invariant with attempt/observation omission siblings."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T11 and RF007; RF004 follows this Card's DONE/GREEN result."
+atomic_mutation_migration = "Completeness gate follows a fail-closed attempt identity foundation and needs no terminal history mutation."
+cross_surface_coupling = "Close, Board and Git history inventory couple in one proof; no cross-RF merger is required."
+
+[[topology_audits]]
+card_id = "M02Q-T12"
+risk = "simple"
+triggers = []
+risk_basis = "One H018 complete-history invariant family remains after the RF006 split; no preferred seam merge, multi-family Card, milestone absorption, material deviation or review substitution."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
