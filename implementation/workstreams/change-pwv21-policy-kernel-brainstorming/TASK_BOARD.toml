@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 143
+revision = 144
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -1421,7 +1421,7 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/revi
 [[jit_triggers]]
 id = "after-M02Q-T09"
 after_card = "M02Q-T09"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T09 is DONE with an exact durable RF013 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-9 RF009 Research-provenance seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -1456,6 +1456,59 @@ card_id = "M02Q-T09"
 risk = "simple"
 triggers = []
 risk_basis = "One Execution-authority semantic-validity invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q order-9 RF009 materialization consumes the exact DONE/GREEN RF013
+# result. Execution Prep evidence:
+# evidence/M02Q-T10_EXECUTION_PREP_2026-09-26.md.
+[[cards]]
+id = "M02Q-T10"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T10.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T10"
+after_card = "M02Q-T10"
+state = "waiting"
+condition = "After M02Q-T10 is DONE with an exact durable RF009 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-10 RF006 review-history identity/completeness seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T10"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "research-provenance-binding"
+kind = "invariant"
+statement = "Research origin/return and consumed prior-art result provenance are exact referential bindings read back by owning validators and routers; mismatched, forged or missing provenance fails closed."
+family = "research-provenance-binding"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "Exact origin/return binding plus consumed prior-art provenance is independently useful after DONE/GREEN RF013 on top of the RF007 resolver; RF006 review-history identity remains a separate downstream Card."
+falsifiability_testability = "H014/H016 mismatch and forged-binding fixtures fail before correction and pass after; sibling-origin, mismatched-result and missing-Research negatives plus exact-binding/valid-origin positives discriminate."
+reviewability = "One Card Review covers the Research-provenance contract and its validation/router enforcement without certifying RF006 history semantics or M02Q composition."
+invariant_contract_family = "One Research referential-integrity invariant couples origin/return binding with consumed-result provenance readback; origin-variant and binding-variant cases are siblings, not separate outcomes."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T09 in P7 serial order with RF007 as the readback foundation; RF006 follows by its JIT trigger."
+atomic_mutation_migration = "Origin/return validation and consumed-provenance enforcement land together so no intermediate state can route on a declared-only return or align on an unverified binding; historical M01/M02/M02R and valid current Research stay unchanged."
+cross_surface_coupling = "Research validation, Intake/Board provenance readback and router dispatch share one RF009-local integrity contract; no coupling requires merging RF006, RF004 or another RF seam."
+
+[[topology_audits]]
+card_id = "M02Q-T10"
+risk = "simple"
+triggers = []
+risk_basis = "One Research referential-integrity invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
