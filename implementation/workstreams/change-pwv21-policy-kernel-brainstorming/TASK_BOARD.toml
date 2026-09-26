@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 173
+revision = 174
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2042,7 +2042,7 @@ blob = "eb6affa311bdc3ec8cbeae6397ef0d05ce77c53c"
 [[jit_triggers]]
 id = "after-M02Q-T18"
 after_card = "M02Q-T18"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T18 is DONE with exact durable RF011 H019 result and GREEN independent Card Review, both RF011 outcomes are complete; Execution Prep must read back T17 and T18 and materialize separate P7 order-15 RF001 Task Board coherence seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
 [[sizing_audits]]
@@ -2077,6 +2077,58 @@ card_id = "M02Q-T18"
 risk = "simple"
 triggers = []
 risk_basis = "One H019 cleanup-work proof invariant family remains after the RF011 split; no preferred seam merge, multi-family Card, milestone absorption, material deviation or review substitution."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q P7 order-15 RF001 materialization consumes the exact DONE/GREEN RF011
+# results. Execution Prep evidence: evidence/M02Q-T19_EXECUTION_PREP_2026-09-26.md.
+[[cards]]
+id = "M02Q-T19"
+status = "in_progress"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T19.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T19"
+after_card = "M02Q-T19"
+state = "waiting"
+condition = "After M02Q-T19 is DONE with an exact durable RF001 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-16 RF014 JIT-terminality seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T19"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "board-coherence-routing-precedence"
+kind = "invariant"
+statement = "Task Board status/result/review/blocker cross-field coherence holds and blocker/result/review-first routing applies; invalid combinations fail closed with an exact reason."
+family = "board-coherence-routing-precedence"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "Board coherence plus blocker/result/review-first routing is independently useful on DONE/GREEN RF004/RF006/RF007/RF011 foundations; it neither reopens them nor pulls RF014 forward."
+falsifiability_testability = "H001 blocker-ignored, H004 done-without-review and H025 premature/dangling-result fixtures fail before correction; status/result/review/blocker negatives discriminate while exact positives pass."
+reviewability = "One Card Review covers the coherence table and routing precedence without certifying RF014 terminality, OBL-M02Q-01 package composition or M02Q integration."
+invariant_contract_family = "One status/result/review/blocker coherence and routing-precedence contract; H001/H004/H025 are sibling probes of that table with a REQ-129 inseparable-acceptance rebuttal."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T17+T18 in P7 serial order with RF004 (T13+T14), RF006 (T11+T12) and RF007 (T02) as readback foundations; P7 order-16 RF014 follows once this Card is DONE/GREEN."
+atomic_mutation_migration = "Cross-field validation and router precedence land together so no intermediate state validates combinations it still routes or routes combinations it rejects; no terminal history rewrite."
+cross_surface_coupling = "Board validation, exact-locator/Git identity, durable review readback and router dispatch couple inside this outcome; RF014 and OBL-M02Q-01 are separate downstream obligations."
+
+[[topology_audits]]
+card_id = "M02Q-T19"
+risk = "simple"
+triggers = []
+risk_basis = "One Board-coherence routing-precedence invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
