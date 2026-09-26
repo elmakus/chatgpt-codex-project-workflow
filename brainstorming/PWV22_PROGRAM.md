@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 7
+# PWv2.2 Program Brainstorming — Revision 8
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@7`
+Scope subject: `pwv22-program@8`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -214,3 +214,12 @@ Current disposition:
 9. **Brainstorming delegation:** subagents may gather facts, red-team options and prepare alternatives, but they cannot close owner decisions or promote scope into Definition.
 10. **Final PWv2.1 rebind:** Brainstorming proceeds now; after PWv2.1 reaches its terminal accepted state, perform one source-bound revalidation against that exact predecessor. Reopen only decisions materially affected by the final predecessor, then allow Definition promotion.
 11. **Owner-facing terminology:** use descriptive capability names rather than internal one-letter research labels.
+
+
+## 15. Owner decisions captured in Revision 8
+
+1. **Distributed semantic owners:** keep multiple small canonical records with bounded semantic ownership; do not collapse the workflow into one global STATE file or universal event ledger.
+2. **Task Board ownership:** after implementation state exists, Task Board owns current Card execution state only. It does not absorb Brainstorming, Definition, Planning, or other pre-execution semantic owners.
+3. **Result history:** Card Results are immutable historical artifacts. Re-execution/repair creates a new Result; the current Card binds the exact accepted Result without overwriting earlier results.
+4. **Review history:** review attempts are append-only. RED/GREEN/recheck attempts remain durable; deterministic finalization identifies the terminal accepted attempt for the exact subject without rewriting prior attempts.
+5. **Human-interaction-last ownership:** Planning plus Simplification Review identifies and defers human-interactive work as far as dependencies safely allow; Execution Prep/JIT materializes exact Cards/dependencies/timing. No separate Human Interaction workflow stage is introduced.
