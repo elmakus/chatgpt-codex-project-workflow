@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 176
+revision = 177
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2141,6 +2141,58 @@ card_id = "M02Q-T19"
 risk = "simple"
 triggers = []
 risk_basis = "One Board-coherence routing-precedence invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+# M02Q P7 order-16 RF014 materialization consumes the exact DONE/GREEN RF001
+# result. Execution Prep evidence: evidence/M02Q-T20_EXECUTION_PREP_2026-09-26.md.
+[[cards]]
+id = "M02Q-T20"
+status = "in_progress"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T20.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T20"
+after_card = "M02Q-T20"
+state = "waiting"
+condition = "After M02Q-T20 is DONE with an exact durable RF014 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-17 RF015 Close-continuation seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[[sizing_audits]]
+card_id = "M02Q-T20"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "jit-terminality-materialization-proof"
+kind = "invariant"
+statement = "Pending/satisfied JIT obligations participate in terminal completeness and consumed state binds exact downstream materialization/consumer proof; all-DONE with open or unproved JIT cannot Close."
+family = "jit-terminality-materialization-proof"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "JIT lifecycle terminality plus exact consumed proof is independently useful on DONE/GREEN RF001+RF013 with the RF007 locator foundation; it neither reopens them nor pulls RF015 forward."
+falsifiability_testability = "H026 satisfied-no-downstream and consumed-no-downstream fixtures fail before correction; waiting/satisfied/consumed plus missing/dangling/stale/sibling/unproved negatives discriminate while all-DONE/no-JIT and exact-proved-consumed positives pass."
+reviewability = "One Card Review covers the JIT-terminality table and validator/router/Close enforcement without certifying RF015 continuation, OBL-M02Q-01/02/03 composition/migration/compatibility or M02Q integration."
+invariant_contract_family = "One JIT-lifecycle terminality and exact-downstream-binding contract; satisfied-hold and consumed-proof are sibling probes of that table with a REQ-129 inseparable-acceptance rebuttal."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T19 (RF001) plus RF013 (T09) in P7 serial order with RF007 (T02) as the exact-identity foundation; P7 order-17 RF015 follows once this Card is DONE/GREEN."
+atomic_mutation_migration = "Board trigger validation, router terminality precedence and Close terminality land together so no intermediate state validates combinations it still routes or routes combinations it rejects; no terminal history rewrite; legacy prose-only consumed bindings stay immutable history only."
+cross_surface_coupling = "Board validation, exact-locator/Git identity, durable downstream/consumer readback, router dispatch and Close terminality couple inside this outcome; RF015 and OBL-M02Q-01/02/03 are separate downstream obligations."
+
+[[topology_audits]]
+card_id = "M02Q-T20"
+risk = "simple"
+triggers = []
+risk_basis = "One JIT-terminality materialization-proof invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
