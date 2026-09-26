@@ -1,0 +1,16 @@
+kind = "change"
+workstream_id = "change-pwv22-program-brainstorming"
+branch = "work/pwv22-program-brainstorming"
+created_from = "7aa7512ead67a86256089d1af0171e2e655e700d"
+integration_target = "main"
+authority = [
+  { class = "authority", path = "workflow/PWV22_BRAINSTORMING_ADOPTION.md" },
+]
+
+[intake]
+class = "intake"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/INTAKE.toml"
+
+[brainstorm]
+class = "brainstorm"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/BRAINSTORM.toml"
