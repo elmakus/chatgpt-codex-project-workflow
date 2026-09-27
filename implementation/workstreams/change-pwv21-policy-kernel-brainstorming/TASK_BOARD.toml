@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 264
+revision = 265
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -122,6 +122,12 @@ after_card = "M01-T01"
 state = "consumed"
 condition = "Materialize M02 only after M01 is DONE so exact registry/kernel seam paths from the accepted M01 result can be bound into the stable M02 Card contract."
 
+[jit_triggers.consumed_proof]
+card = "M02-T01"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02-T01.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "3e56fec00abd68fb51d464843983879aa0f4ffb4"
+
 [[cards]]
 id = "M02R-T01"
 status = "done"
@@ -160,11 +166,23 @@ after_card = "M02-T01"
 state = "consumed"
 condition = "P6 supersedes the old direct-M03 continuation. This trigger is consumed by reconciliation into M02R-first execution; M03 remains unmaterialized until M02R is terminal GREEN with Milestone review GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02R-T01"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T01.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "9083c8d3cdd269fa2027bb3a260165f3f10ae125"
+
 [[jit_triggers]]
 id = "after-M02R-T01"
 after_card = "M02R-T01"
 state = "consumed"
 condition = "After M02R-T01 is DONE with a durable result, Execution Prep must read back that result and materialize the next smallest meaningful M02R Card under P6; do not materialize M03 until all M02R required seams are implemented and M02R Milestone review is GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02R-T02"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T02.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "dc5428c037b36c02f323d5d3093a558d70f6c34e"
 
 [[cards]]
 id = "M02R-T02"
@@ -228,6 +246,12 @@ after_card = "M02R-T02"
 state = "consumed"
 condition = "After M02R-T02 is DONE with a durable GREEN-reviewed result, Execution Prep must read back that result and materialize the next smallest meaningful remaining M02R Card under P6; remain within the required BOOT-A seam until its remaining observation/disposition outcome is materialized, and do not materialize M03 before all M02R required seams and Milestone review are GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02R-T03"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T03.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "a40c66a300ce4370fdcb722aff3f8a314c4292eb"
+
 [[cards]]
 id = "M02R-T03"
 status = "done"
@@ -260,6 +284,12 @@ after_card = "M02R-T03"
 state = "consumed"
 condition = "After M02R-T03 is DONE with a durable GREEN-reviewed result, Execution Prep must read back that result and materialize the next smallest meaningful remaining M02R Card under P6 within the remaining required BOOT-B/C/D seams; BOOT-A completes with M02R-T03, and do not materialize M03 before all M02R required seams and Milestone review are GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02R-T04"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T04.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "1487adf2b86bf9446a6f886f551aa3a7f1c5b3b9"
+
 [[cards]]
 id = "M02R-T04"
 status = "done"
@@ -285,6 +315,12 @@ id = "after-M02R-T04"
 after_card = "M02R-T04"
 state = "consumed"
 condition = "After M02R-T04 is DONE with a durable GREEN-reviewed result, Execution Prep must read back that result and materialize the next smallest meaningful remaining M02R Card under P6 within the remaining required BOOT-B seams, then BOOT-C/D; do not materialize M03 before all M02R required seams and Milestone review are GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02R-T05"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T05.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "dd24ffb64ecf86495e09ae8e41ebf3ab8b3315fb"
 
 [[cards]]
 id = "M02R-T05"
@@ -318,6 +354,12 @@ after_card = "M02R-T05"
 state = "consumed"
 condition = "After M02R-T05 is DONE with a durable GREEN-reviewed result, Execution Prep must read back its semantic Card-sizing and decomposition-audit result and materialize the next smallest meaningful remaining M02R Card under P6 within BOOT-B (independent topology challenge/review layering and late-oversize routing), then BOOT-C/D; do not materialize M03 before all M02R required seams and Milestone review are GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02R-T06"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T06.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "b2fd28aabf4ff2a8398686089718156a65469c92"
+
 [[cards]]
 id = "M02R-T06"
 status = "done"
@@ -343,6 +385,12 @@ id = "after-M02R-T06"
 after_card = "M02R-T06"
 state = "consumed"
 condition = "After M02R-T06 is DONE with a durable GREEN-reviewed result, Execution Prep must read back its independent prelaunch topology-challenge and review-layer result and materialize the next smallest meaningful remaining BOOT-B Card for REQ-130 late-oversize evidence preservation and return, then BOOT-C/D; M03 remains unmaterialized until M02R Card work and Milestone review are GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02R-T07"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T07.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "2b60349bbc8c462c3cf5569afc08ba7fe15bd34c"
 
 [[cards]]
 id = "M02R-T07"
@@ -370,6 +418,12 @@ after_card = "M02R-T07"
 state = "consumed"
 condition = "After M02R-T07 is DONE with a durable GREEN-reviewed result, Execution Prep must read back its REQ-130 late-oversize return result and materialize the next smallest meaningful M02R Card within the separate required BOOT-C seam (REQ-122..127), then BOOT-D; do not materialize M03 before all M02R Card work and Milestone review are GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02R-T08"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T08.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "dd2da64fe3797cd60edde71cef3c4ec0b7ea5ed1"
+
 [[cards]]
 id = "M02R-T08"
 status = "done"
@@ -395,6 +449,12 @@ id = "after-M02R-T08"
 after_card = "M02R-T08"
 state = "consumed"
 condition = "After M02R-T08 is DONE with a durable GREEN-reviewed result, Execution Prep must read back its live-finding classification and trusted-intake result and materialize the next smallest meaningful BOOT-C Card for affected downstream JIT reconciliation/consumer prerequisites (REQ-123/127), then immutable history/regression replay (REQ-125/126), followed by BOOT-D; M03 remains unmaterialized until all M02R Card work and Milestone review are GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02R-T09"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T09.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "7cc691c93c132276c4a5b589b37623da31bdeb57"
 
 [[cards]]
 id = "M02R-T09"
@@ -422,6 +482,12 @@ after_card = "M02R-T09"
 state = "consumed"
 condition = "After M02R-T09 is DONE with a durable GREEN-reviewed affected-JIT result, Execution Prep must read it back and materialize the next smallest meaningful remaining BOOT-C Card for immutable historical replay/M02 regression corpus (REQ-125/126), then the separate intentional live-consumer prerequisite (REQ-127), followed by BOOT-D; M03 remains unmaterialized until all M02R Card work and Milestone review are GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02R-T10"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T10.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "e8a16ca5c120000bb2debf4fd22fbf42fe209eae"
+
 [[cards]]
 id = "M02R-T10"
 status = "done"
@@ -447,6 +513,12 @@ id = "after-M02R-T10"
 after_card = "M02R-T10"
 state = "consumed"
 condition = "After M02R-T10 is DONE with a durable GREEN-reviewed immutable historical replay/corpus result, Execution Prep must read it back and materialize the separate remaining BOOT-C Card for intentional downstream live-consumer prerequisite/no-special-prompt enforcement (REQ-127), then BOOT-D; M03 remains unmaterialized until all M02R Card work and Milestone review are GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02R-T11"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T11.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "4f19c579c73f24b7d80ec67a0effec5ffe424397"
 
 [[cards]]
 id = "M02R-T11"
@@ -474,6 +546,12 @@ after_card = "M02R-T11"
 state = "consumed"
 condition = "After M02R-T11 is DONE with a durable GREEN-reviewed intentional live-consumer prerequisite result, Execution Prep must read it back and materialize the next smallest required BOOT-D Card for falsification-first/YAGNI Worker discipline (REQ-131/132). M03 remains unmaterialized until BOOT-D Card work and M02R Milestone review are GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02R-T12"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T12.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "feba0f132858e560f4a567dac5f25a84ed9d1c02"
+
 [[cards]]
 id = "M02R-T12"
 status = "done"
@@ -499,6 +577,12 @@ id = "after-M02R-T12"
 after_card = "M02R-T12"
 state = "consumed"
 condition = "After M02R-T12 is DONE with a durable GREEN-reviewed falsification-first Worker evidence result, Execution Prep must read it back and materialize the separate remaining BOOT-D Card for binding YAGNI scope, bounded post-GREEN refactor and non-absolute DRY (REQ-132). M02R Milestone Review and M03 remain unmaterialized until all BOOT-D Card work is terminal GREEN, then stop at the user audit-reconciliation checkpoint before Milestone Review."
+
+[jit_triggers.consumed_proof]
+card = "M02R-T13"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02R-T13.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "d05f0a9a6f3c4e0c394ab901a93cdc307af45a48"
 
 [[cards]]
 id = "M02R-T13"
@@ -986,6 +1070,12 @@ after_card = "M02Q-T01"
 state = "consumed"
 condition = "After M02Q-T01 is DONE with a durable exact result and GREEN Card Review, Execution Prep must read back the RF008 result and materialize the next P7 required seam RF007 without cross-RF merging. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02Q-T02"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T02.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "25572307bcb0cb838966eb2b04bea85b88eb6ac4"
+
 [[sizing_audits]]
 card_id = "M02Q-T01"
 decision = "single"
@@ -1049,6 +1139,12 @@ id = "after-M02Q-T02"
 after_card = "M02Q-T02"
 state = "consumed"
 condition = "After M02Q-T02 is DONE with an exact durable RF007 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-3 RF005 Plan Review lifecycle seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T03"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T03.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "99abd9771b26333f2f12e250e7e6157e37ae0d8c"
 
 [[sizing_audits]]
 card_id = "M02Q-T02"
@@ -1114,6 +1210,12 @@ after_card = "M02Q-T03"
 state = "consumed"
 condition = "After M02Q-T03 is DONE with an exact durable RF005 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-4 RF017 malformed-durable-TOML Recovery seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02Q-T04"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T04.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "87e61e01fd68a87437035b998b48c5fbb9f6b8e7"
+
 [[sizing_audits]]
 card_id = "M02Q-T03"
 decision = "single"
@@ -1177,6 +1279,12 @@ id = "after-M02Q-T04"
 after_card = "M02Q-T04"
 state = "consumed"
 condition = "After M02Q-T04 is DONE with an exact durable RF017 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-5 RF002 Brainstorm-to-Definition promotion-precedence seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T05"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T05.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "18d325d2d72a7f308a6b7aa60ee9e57fb3a083b4"
 
 [[sizing_audits]]
 card_id = "M02Q-T04"
@@ -1242,6 +1350,12 @@ id = "after-M02Q-T05"
 after_card = "M02Q-T05"
 state = "consumed"
 condition = "After M02Q-T05 is DONE with an exact durable promotion-entry result and GREEN independent Card Review, Execution Prep must materialize the second separate RF002 explicit-user-stop precedence Card from this real JIT allocation. Only after both RF002 outcomes are DONE/GREEN may P7 order-6 RF016 be materialized. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T06"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T06.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "3aa95481769a9a0b70021dd62d6ffb7c9aaf5817"
 
 [[sizing_audits]]
 card_id = "M02Q-T05"
@@ -1321,6 +1435,12 @@ after_card = "M02Q-T06"
 state = "consumed"
 condition = "After M02Q-T06 is DONE with exact durable RF002 stop-precedence result and GREEN independent Card Review, both split RF002 outcomes are complete; Execution Prep must read them back and materialize separate P7 order-6 RF016 SessionStart integrity seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02Q-T07"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T07.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "0bb53691e246eaf68c8f198ae85a468b6853dcec"
+
 [[sizing_audits]]
 card_id = "M02Q-T06"
 decision = "single"
@@ -1385,6 +1505,12 @@ id = "after-M02Q-T07"
 after_card = "M02Q-T07"
 state = "consumed"
 condition = "After M02Q-T07 is DONE with an exact durable RF016 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-7 RF012 Definition-authority-key seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T08"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T08.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "513912b9db7c2063301864824fb26e315de4171d"
 
 [[sizing_audits]]
 card_id = "M02Q-T07"
@@ -1451,6 +1577,12 @@ after_card = "M02Q-T08"
 state = "consumed"
 condition = "After M02Q-T08 is DONE with an exact durable RF012 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-8 RF013 recovered-Execution contract seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02Q-T09"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T09.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "b26de9f74281fdbad056b3bbae61bb86e63d4ef6"
+
 [[sizing_audits]]
 card_id = "M02Q-T08"
 decision = "single"
@@ -1515,6 +1647,12 @@ id = "after-M02Q-T09"
 after_card = "M02Q-T09"
 state = "consumed"
 condition = "After M02Q-T09 is DONE with an exact durable RF013 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-9 RF009 Research-provenance seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T10"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T10.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "20293174c6fb30dbb8f348bb71c2c9b79a242a25"
 
 [[sizing_audits]]
 card_id = "M02Q-T09"
@@ -1581,6 +1719,12 @@ after_card = "M02Q-T10"
 state = "consumed"
 condition = "After M02Q-T10 is DONE with an exact durable RF009 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-10 RF006 review-history identity/completeness seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02Q-T11"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T11.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "e15aa88ff2d029d80e34cf119732183616876509"
+
 [[sizing_audits]]
 card_id = "M02Q-T10"
 decision = "single"
@@ -1646,6 +1790,12 @@ id = "after-M02Q-T11"
 after_card = "M02Q-T11"
 state = "consumed"
 condition = "After M02Q-T11 is DONE with exact durable RF006 H008/H009 result and GREEN independent Card Review, Execution Prep must materialize the separate RF006 H018 complete review-history readback Card. Only after both RF006 outcomes are DONE/GREEN may P7 order-11 RF004 be materialized. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T12"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T12.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "ad626edf7b2fd5f1aaf4c9a9075b370380c57cc0"
 
 [[sizing_audits]]
 card_id = "M02Q-T11"
@@ -1725,6 +1875,12 @@ after_card = "M02Q-T12"
 state = "consumed"
 condition = "After M02Q-T12 is DONE with exact durable RF006 H018 result and GREEN independent Card Review, both RF006 outcomes are complete; Execution Prep must read back T11 and T12 and materialize separate P7 order-11 RF004 subject/acceptance-binding seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02Q-T13"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T13.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "6a9b2a691124a3d8e13de821d34bf4f34100d2f4"
+
 [[sizing_audits]]
 card_id = "M02Q-T12"
 decision = "single"
@@ -1790,6 +1946,12 @@ id = "after-M02Q-T13"
 after_card = "M02Q-T13"
 state = "consumed"
 condition = "After M02Q-T13 is DONE with exact durable RF004 H005 result and GREEN independent Card Review, Execution Prep must materialize the separate RF004 H006 Plan Review authority-binding Card. Only after both RF004 outcomes are DONE/GREEN may P7 order-12 RF003 be materialized. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T14"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T14.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "e40d593ae37d6a026e232619e2d762614a4349ae"
 
 [[sizing_audits]]
 card_id = "M02Q-T13"
@@ -1869,6 +2031,12 @@ after_card = "M02Q-T14"
 state = "consumed"
 condition = "After M02Q-T14 is DONE with exact durable RF004 H006 result and GREEN independent Card Review, both RF004 outcomes are complete; Execution Prep must read back T13 and T14 and materialize separate P7 order-12 RF003 router-precedence seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02Q-T15"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T15.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "5947f82a6f756d91eb9d0ba53ffac54b83394b41"
+
 [[sizing_audits]]
 card_id = "M02Q-T14"
 decision = "single"
@@ -1933,6 +2101,12 @@ after_card = "M02Q-T15"
 state = "consumed"
 condition = "After M02Q-T15 is DONE with an exact durable RF003 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-13 RF010 issue-alignment seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02Q-T16"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T16.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "1104f4ab8df26854b3cdbdfb54f1bb54f43a0935"
+
 [[sizing_audits]]
 card_id = "M02Q-T15"
 decision = "single"
@@ -1996,6 +2170,12 @@ id = "after-M02Q-T16"
 after_card = "M02Q-T16"
 state = "consumed"
 condition = "After M02Q-T16 is DONE with an exact durable RF010 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-14 RF011 recovery/cleanup-proof seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T17"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T17.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "6df9507aa151844bce60647d30ece6cf17233ced"
 
 [[sizing_audits]]
 card_id = "M02Q-T16"
@@ -2062,6 +2242,12 @@ id = "after-M02Q-T17"
 after_card = "M02Q-T17"
 state = "consumed"
 condition = "After M02Q-T17 is DONE with exact durable RF011 H017 result and GREEN independent Card Review, Execution Prep must materialize the separate RF011 H019 cleanup-proof Card. Only after both RF011 outcomes are DONE/GREEN may P7 order-15 RF001 be materialized. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T18"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T18.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "85b9b6755a8b8a4af7dbbb725471fada6e1859db"
 
 [[sizing_audits]]
 card_id = "M02Q-T17"
@@ -2141,6 +2327,12 @@ after_card = "M02Q-T18"
 state = "consumed"
 condition = "After M02Q-T18 is DONE with exact durable RF011 H019 result and GREEN independent Card Review, both RF011 outcomes are complete; Execution Prep must read back T17 and T18 and materialize separate P7 order-15 RF001 Task Board coherence seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
 
+[jit_triggers.consumed_proof]
+card = "M02Q-T19"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T19.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "96248336e1df21e2b830927c38b923385d2b722f"
+
 [[sizing_audits]]
 card_id = "M02Q-T18"
 decision = "single"
@@ -2204,6 +2396,12 @@ id = "after-M02Q-T19"
 after_card = "M02Q-T19"
 state = "consumed"
 condition = "After M02Q-T19 is DONE with an exact durable RF001 result and GREEN independent Card Review, Execution Prep must read it back and materialize the separate P7 order-16 RF014 JIT-terminality seam. M03 remains unmaterialized until all 17 M02Q repair families and the fresh M02Q Milestone Review are terminal GREEN."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T20"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T20.md"
+commit = "b4da01b7715cfa39743b7f35b6d05022ce0e5049"
+blob = "cb17ab722d3a747d4b29ca3a0f324670464e7599"
 
 [[sizing_audits]]
 card_id = "M02Q-T19"
