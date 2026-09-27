@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 262
+revision = 263
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -3211,8 +3211,14 @@ blob = "c616ab9303585d53e601ab638fbe8dfe69f8220f"
 [[jit_triggers]]
 id = "after-M02Q-T30"
 after_card = "M02Q-T30"
-state = "waiting"
+state = "consumed"
 condition = "After M02Q-T30 is DONE with fresh independent GREEN review, materialize the separate M02Q-MILESTONE-R01 F03 append-only consumed-proof migration for exactly the 33 historical consumed JIT triggers lacking proof; keep composed final serving evidence, milestone re-review and M03 separate."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T31"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T31.md"
+commit = "2b43a0dbc1e5ce2bd5b9642ff5e65c7c011380ca"
+blob = "06c59f9df110058a5efec44e9cb01adc119fe3ab"
 
 [[sizing_audits]]
 card_id = "M02Q-T30"
@@ -3300,4 +3306,56 @@ source_workstream = "change-pwv21-policy-kernel-brainstorming"
 source_card = "M02Q-T12"
 acceptance_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T12.md"
 acceptance_blob = "ad626edf7b2fd5f1aaf4c9a9075b370380c57cc0"
+
+# M02Q-MILESTONE-R01 F03 historical consumed-JIT proof migration.
+# Execution Prep evidence: evidence/M02Q-T31_EXECUTION_PREP_2026-09-27.md.
+[[cards]]
+id = "M02Q-T31"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T31.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T31"
+after_card = "M02Q-T31"
+state = "waiting"
+condition = "After M02Q-T31 is DONE with fresh independent GREEN review, reconcile the separate legacy semicolon Evidence-refs/composed-final-serving defect already recorded by M02Q Milestone review history and materialize only its smallest correction; keep fresh milestone re-review and M03 separate."
+
+[[sizing_audits]]
+card_id = "M02Q-T31"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "f03-historical-consumed-jit-proof-migration"
+kind = "useful_outcome"
+statement = "Add exact append-only consumed_proof to exactly the 33 preserved historical consumed JIT triggers that still lack proof, using their real downstream Cards and exact causal predecessor-result dependencies."
+family = "historical-jit-consumed-proof-migration"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "RF014 exact consumed-proof semantics are already DONE/GREEN; this Card mutates only the exact 33-record historical consumer proof inventory."
+falsifiability_testability = "The immutable source Board yields exactly 33 consumed triggers without proof; each proof independently fails if downstream identity, Git bytes, Board ordering or predecessor-result causal edge is wrong."
+reviewability = "One Card Review can verify the 33-record F03 migration without certifying the separate semicolon/composed-serving correction, Milestone integration or M03."
+invariant_contract_family = "One inventory-complete historical JIT consumed-proof migration outcome for Milestone R01 F03."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T30 plus the accepted RF014 T20 proof mechanism; the separate composed-serving correction follows only after T31 GREEN."
+atomic_mutation_migration = "All 33 append-only proof tables land as one Board mutation while historical trigger core fields and historical Card/Result/Review bytes remain unchanged."
+cross_surface_coupling = "Only Task Board proof state plus read-only downstream Card and predecessor Result provenance participate; product semantics are already accepted."
+
+[[topology_audits]]
+card_id = "M02Q-T31"
+risk = "simple"
+triggers = []
+risk_basis = "One previously identified F03 consumer migration family with exact deterministic inventory and no product change, semicolon correction, milestone substitution or M03 scope."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
 
