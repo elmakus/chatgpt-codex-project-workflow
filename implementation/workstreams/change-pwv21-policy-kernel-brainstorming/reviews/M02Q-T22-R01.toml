@@ -1,16 +1,20 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02Q-T22"
 attempt = "R01"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T22_REVIEW_R01_2026-09-27.md"
 review_kind = "discovery"
 source_discovery_attempt = ""
-discovery_complete = false
-material_finding_ids = []
+discovery_complete = true
+material_finding_ids = ["M02Q-T22-F01", "M02Q-T22-F02"]
+finding_severity = [
+  { id = "M02Q-T22-F01", surface = "correctness", evidence = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T22_REVIEW_R01_2026-09-27.md#m02q-t22-f01" },
+  { id = "M02Q-T22-F02", surface = "correctness", evidence = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T22_REVIEW_R01_2026-09-27.md#m02q-t22-f02" },
+]
 review_scope = "card"
 review_epoch = "E01"
 epoch_reset_basis = ""
-material_defect_class_ids = []
+material_defect_class_ids = ["recovery-package-evidence-identity-composition"]
 failed_material_defect_class_ids = []
 post_convergence_validation = false
 convergence_basis = ""
@@ -30,4 +34,4 @@ blob = "bae478eccef547ff9ecf91f3944ec7506609bdc9"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "R01 is frozen for a fresh independent reviewer context. The current execution context materially repaired the T22 product subject and produced the exact semantic Result, so it is not eligible to issue this verdict."
+basis = "R01 is a fresh independent discovery review context that did not materially produce or repair the exact Result or product implementation."
