@@ -1,0 +1,33 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02Q-T26"
+attempt = "R04"
+verdict = "pending"
+evidence_path = ""
+review_kind = "closure_verification"
+source_discovery_attempt = "R03"
+discovery_complete = false
+material_finding_ids = ["M02Q-T26-F02", "M02Q-T26-F03", "M02Q-T26-F04"]
+review_scope = "card"
+review_epoch = "E01"
+epoch_reset_basis = ""
+material_defect_class_ids = ["legacy-result-current-source-identity-integrity", "legacy-result-source-board-semantic-integrity", "legacy-result-required-evidence-completeness"]
+failed_material_defect_class_ids = []
+post_convergence_validation = false
+convergence_basis = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "04226fefd1e9e8d8a36d7d3239cba4396d4f0e12"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T26.md"
+blob = "dbe627dfbe342c2887facd325ba6b02ab910ff0c"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T26.md"
+commit = "4676e0a41a037edbb9d3b98e1f3a6b5ee6b79b72"
+blob = "d91ae89c674b200c2e28967f0155c637933c0f99"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Reserved for a fresh independent closure-verification context that did not materially produce or repair the corrected exact T26 Result/product subject."
