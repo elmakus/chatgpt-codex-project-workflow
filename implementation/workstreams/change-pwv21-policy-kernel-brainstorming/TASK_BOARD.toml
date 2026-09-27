@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 239
+revision = 240
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2663,7 +2663,7 @@ atomicity_rationale = ""
 # Execution Prep evidence: evidence/M02Q-T26_EXECUTION_PREP_2026-09-27.md.
 [[cards]]
 id = "M02Q-T26"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
@@ -2708,7 +2708,7 @@ blob = "c86227f5a6ae84afb09fb5566e713e8aefb1eadb"
 [[jit_triggers]]
 id = "after-M02Q-T26"
 after_card = "M02Q-T26"
-state = "waiting"
+state = "satisfied"
 condition = "After M02Q-T26 is DONE with durable GREEN-reviewed legacy Result compatibility proof, materialize the separate 23-record consumer migration completion outcome; keep historical Result bytes immutable and do not materialize M03."
 
 [[sizing_audits]]
