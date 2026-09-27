@@ -1,11 +1,11 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02Q-T29"
 attempt = "R06"
-verdict = "pending"
-evidence_path = ""
+verdict = "green"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T29_REVIEW_R06_2026-09-27.md"
 review_kind = "discovery"
 source_discovery_attempt = ""
-discovery_complete = false
+discovery_complete = true
 material_finding_ids = []
 review_scope = "card"
 review_epoch = "E01"
@@ -30,4 +30,4 @@ blob = "cf14f65f5ceac63acae653371b7071dcf5b836cd"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "R06 is reserved for the mandatory fresh independent full-scope discovery review after R05 closed all known R04 findings. The current R05 closure-verification context is not the fresh reviewer assignment required by ADR-PWV21-004/PWV21-REQ-137 and therefore must not issue the R06 discovery verdict."
+basis = "Fresh independent R06 full-scope discovery reconstructed correctness from accepted authority, the exact frozen Card and Result, the exact product implementation diff and raw verification evidence after R05 closed all known findings. This reviewer did not materially produce or repair the reviewed Result or product subject and did not use prior Card-review verdict rationales as the correctness checklist."
