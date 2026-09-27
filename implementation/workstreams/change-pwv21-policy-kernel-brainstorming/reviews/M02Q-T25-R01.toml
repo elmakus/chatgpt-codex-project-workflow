@@ -1,11 +1,11 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02Q-T25"
 attempt = "R01"
-verdict = "pending"
-evidence_path = ""
+verdict = "green"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T25_REVIEW_R01_2026-09-27.md"
 review_kind = "discovery"
 source_discovery_attempt = ""
-discovery_complete = false
+discovery_complete = true
 material_finding_ids = []
 review_scope = "card"
 review_epoch = "E01"
@@ -30,4 +30,4 @@ blob = "73d4870bb456f937f597f3f54d3bdabd72a47b11"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "R01 is frozen for a fresh independent full-scope discovery reviewer. The current producing context materially implemented the T25 consumer Board migration and must not issue the independent verdict; the future reviewer must reconstruct correctness from the exact subject, acceptance, accepted authority and raw evidence."
+basis = "Independent fresh full-scope discovery reviewer did not materially produce or repair the exact T25 subject; review reconstructed correctness from the immutable result/Card, accepted authority, implementation diff, exact Git inventory/provenance/ancestry/freshness readback and required test evidence."
