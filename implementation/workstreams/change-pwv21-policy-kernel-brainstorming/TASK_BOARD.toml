@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 270
+revision = 271
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -3530,8 +3530,14 @@ blob = "4e26a757cd73cdfb672b8da84bfd222972c55f0e"
 [[jit_triggers]]
 id = "after-M02Q-T31"
 after_card = "M02Q-T31"
-state = "waiting"
+state = "consumed"
 condition = "After M02Q-T31 is DONE with fresh independent GREEN review, reconcile the separate legacy semicolon Evidence-refs/composed-final-serving defect already recorded by M02Q Milestone review history and materialize only its smallest correction; keep fresh milestone re-review and M03 separate."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T32"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T32.md"
+commit = "3503ac925e32c4cda99a3e6b1c78184b17e41926"
+blob = "f233d397732fa43953fbabdd416ce8227d8e484b"
 
 [[sizing_audits]]
 card_id = "M02Q-T31"
@@ -3569,3 +3575,50 @@ review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
 
+
+
+# Post-M02Q-MILESTONE-R01 legacy semicolon H017 Close composition correction.
+# Execution Prep evidence: evidence/M02Q-T32_EXECUTION_PREP_2026-09-28.md.
+[[cards]]
+id = "M02Q-T32"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T32.md"
+
+[[sizing_audits]]
+card_id = "M02Q-T32"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "legacy-semicolon-h017-close-composition"
+kind = "useful_outcome"
+statement = "Compose H017 recovery-package evidence closure with the accepted proved-legacy Result adapter so historical semicolon Evidence refs resolve individually without changing structured/current Result serving."
+family = "legacy-result-close-composition"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "The defect is isolated to H017 final recovery-package evidence closure and consumes already accepted legacy Result compatibility; no other milestone correction is required for this implementation."
+falsifiability_testability = "Exact RED-before reproduces one dangling semicolon-concatenated M02R-T01 evidence locator; GREEN requires individually proved refs under valid legacy migration plus negative controls."
+reviewability = "One Card Review can verify the narrow Close composition change and exact consumer H017 serving without certifying the subsequent fresh Milestone review or M03."
+invariant_contract_family = "One compatibility invariant: proved legacy Result adaptation must compose consistently into H017 Close recovery-package evidence closure."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T31 and accepted M02Q-T26 legacy Result mechanism; fresh M02Q Milestone review follows only after this Card is GREEN."
+atomic_mutation_migration = "Product code and its regression coverage form one correction; no consumer historical bytes or migration records are rewritten."
+cross_surface_coupling = "The only coupled surfaces are the existing legacy Result provenance adapter and H017 recovery-package evidence collection."
+
+[[topology_audits]]
+card_id = "M02Q-T32"
+risk = "simple"
+triggers = []
+risk_basis = "One narrow product compatibility seam with one falsifiable outcome; milestone re-review and M03 remain separate."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
