@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 240
+revision = 241
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2708,8 +2708,14 @@ blob = "c86227f5a6ae84afb09fb5566e713e8aefb1eadb"
 [[jit_triggers]]
 id = "after-M02Q-T26"
 after_card = "M02Q-T26"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T26 is DONE with durable GREEN-reviewed legacy Result compatibility proof, materialize the separate 23-record consumer migration completion outcome; keep historical Result bytes immutable and do not materialize M03."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T27"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T27.md"
+commit = "acc8b3eb738a559378ce46737db52df580501ae4"
+blob = "3dc63fb9afbc9e69eaaaa4aa5542aed951647eb6"
 
 [[sizing_audits]]
 card_id = "M02Q-T26"
@@ -2757,6 +2763,53 @@ card_id = "M02Q-T26"
 risk = "simple"
 triggers = []
 risk_basis = "One product compatibility invariant plus an explicitly split downstream consumer migration; no required-seam merge, milestone absorption or M03 scope."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+
+# OBL-M02Q-03 consumer-side 23-record migration residual.
+# Execution Prep evidence: evidence/M02Q-T27_EXECUTION_PREP_2026-09-27.md.
+[[cards]]
+id = "M02Q-T27"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T27.md"
+
+[[sizing_audits]]
+card_id = "M02Q-T27"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "legacy-result-consumer-migration"
+kind = "useful_outcome"
+statement = "Add exactly 23 append-only legacy Result migration proofs from the frozen pre-migration Board snapshot and prove those preserved statusless Results serve through the accepted T26 compatibility mechanism without rewriting historical bytes."
+family = "legacy-result-consumer-migration"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "T26 product compatibility is already DONE/GREEN; this Card mutates only consumer migration proof state against one immutable source Board snapshot."
+falsifiability_testability = "The exact source snapshot mechanically yields 23 and only 23 statusless DONE Results, each independently verifiable by the accepted product provenance helper."
+reviewability = "One Card Review can verify the 23-record consumer migration without certifying later structured-Result acceptance cleanup, consumed-trigger migration, Milestone Review or M03."
+invariant_contract_family = "One OBL-M02Q-03 consumer migration/provenance completion invariant."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T26 result and its accepted product compatibility mechanism before any consumer proof is added."
+atomic_mutation_migration = "The 23 append-only proof records form one inventory-complete Board mutation; historical Result and Review files remain immutable."
+cross_surface_coupling = "Only Task Board migration records plus read-only historical Result, Review and Git provenance participate in this outcome."
+
+[[topology_audits]]
+card_id = "M02Q-T27"
+risk = "simple"
+triggers = []
+risk_basis = "One previously allocated residual migration invariant with no seam merge, multiple invariant families, milestone absorption or M03 scope."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
