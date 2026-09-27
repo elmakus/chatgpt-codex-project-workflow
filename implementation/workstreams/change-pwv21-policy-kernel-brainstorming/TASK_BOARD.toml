@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 213
+revision = 214
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2470,7 +2470,7 @@ independently_consumed = true
 # Execution Prep evidence: evidence/M02Q-T24_EXECUTION_PREP_2026-09-27.md.
 [[cards]]
 id = "M02Q-T24"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
@@ -2485,13 +2485,13 @@ blob = "2727f76f1c3f83dd4db1f5a1ac6a169ad8d40545"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T24-R01.toml"
-commit = "5f0cb327f91ae9da20d2f364a3c170fda9eaf613"
-blob = "b80badc1de7f3f12b21260208bcd94d3b0ef1efb"
+commit = "ba793d7f34f37537be15c87728e3ce35fe20dcb4"
+blob = "db2e89aabfec1498e8d25b708e3d56a60b47a828"
 
 [[jit_triggers]]
 id = "after-M02Q-T24"
 after_card = "M02Q-T24"
-state = "waiting"
+state = "satisfied"
 condition = "After M02Q-T24 is DONE with exact durable GREEN-reviewed RF006 legacy full-attempt-id compatibility, materialize the separate consumer Review identity migration completion outcome; M03 remains unmaterialized."
 
 [[sizing_audits]]
