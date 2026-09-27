@@ -1,0 +1,33 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02Q-T31"
+attempt = "R01"
+verdict = "pending"
+evidence_path = ""
+review_kind = "discovery"
+source_discovery_attempt = ""
+discovery_complete = false
+material_finding_ids = []
+review_scope = "card"
+review_epoch = "E01"
+epoch_reset_basis = ""
+material_defect_class_ids = []
+failed_material_defect_class_ids = []
+post_convergence_validation = false
+convergence_basis = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "911de5697453fe77e1d906082ad471da78910417"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T31.md"
+blob = "6de68dd209e3f7ae737b6ca0d6b745f88a4b57fb"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T31.md"
+commit = "37d8dbf1528d2d0b50af65639e7b5a5b6db2f277"
+blob = "71342ffdc9f2b72eb75893ac50f427ac90657baf"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "R01 is reserved for a fresh independent full-scope reviewer. The current context materially executed M02Q-T31, produced its Result and performed the bounded parser Recovery, so it must not issue this Card Review verdict."
