@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 214
+revision = 215
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2491,8 +2491,14 @@ blob = "db2e89aabfec1498e8d25b708e3d56a60b47a828"
 [[jit_triggers]]
 id = "after-M02Q-T24"
 after_card = "M02Q-T24"
-state = "satisfied"
+state = "consumed"
 condition = "After M02Q-T24 is DONE with exact durable GREEN-reviewed RF006 legacy full-attempt-id compatibility, materialize the separate consumer Review identity migration completion outcome; M03 remains unmaterialized."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T25"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T25.md"
+commit = "c02731c2ee99966e3c2d33669285fd814f97c814"
+blob = "73d4870bb456f937f597f3f54d3bdabd72a47b11"
 
 [[sizing_audits]]
 card_id = "M02Q-T24"
@@ -2543,3 +2549,50 @@ risk_basis = "The split assigns consumer migration completion to a real downstre
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
+
+# Consumer completion residual from the M02Q-T23/T24 split.
+# Execution Prep evidence: evidence/M02Q-T25_EXECUTION_PREP_2026-09-27.md.
+[[cards]]
+id = "M02Q-T25"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T25.md"
+
+[[sizing_audits]]
+card_id = "M02Q-T25"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "rf006-consumer-review-identity-completion"
+kind = "useful_outcome"
+statement = "Complete exact commit+blob Task Board identity for the preserved 48 Review records after accepted RF006 full-attempt-ID compatibility."
+family = "rf006-consumer-review-identity-migration"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "The phase-1 Review files already exist and T24 product compatibility is GREEN; this Card changes only the consumer Board exact locators and validates the resulting RF006 serving state."
+falsifiability_testability = "GREEN requires 48/48 exact locator proof, 31/31 legacy provenance proof, 17/17 current-schema byte identity, and no Review-file rewrite."
+reviewability = "One Card Review covers the exact 48-record consumer migration completion without certifying OBL-M02Q-03, trigger-proof migration or Milestone Review."
+invariant_contract_family = "One RF006 consumer Review-identity migration completion invariant."
+dependency_ordering = "Consumes exact RF006 T11/T12 foundations plus exact DONE/GREEN T24 compatibility; later close residuals remain separate."
+atomic_mutation_migration = "All 48 Board locator updates land in one consumer mutation while Review-file content remains unchanged."
+cross_surface_coupling = "Only Board locators and already-preserved Review identities participate in this outcome."
+
+[[topology_audits]]
+card_id = "M02Q-T25"
+risk = "simple"
+triggers = []
+risk_basis = "One previously allocated residual outcome with no seam merge, multiple invariant families, milestone absorption or M03 scope."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
