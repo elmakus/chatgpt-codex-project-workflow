@@ -1,16 +1,21 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02Q-T26"
 attempt = "R03"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T26_REVIEW_R03_2026-09-27.md"
 review_kind = "discovery"
 source_discovery_attempt = ""
-discovery_complete = false
-material_finding_ids = []
+discovery_complete = true
+material_finding_ids = ["M02Q-T26-F02", "M02Q-T26-F03", "M02Q-T26-F04"]
+finding_severity = [
+  { id = "M02Q-T26-F02", surface = "correctness", evidence = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T26_REVIEW_R03_2026-09-27.md#m02q-t26-f02-current-result-exact-identity-may-drift-from-the-proved-historical-result" },
+  { id = "M02Q-T26-F03", surface = "data_integrity", evidence = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T26_REVIEW_R03_2026-09-27.md#m02q-t26-f03-ambiguous-or-semantically-invalid-source-board-can-certify-legacy-result-provenance" },
+  { id = "M02Q-T26-F04", surface = "required_evidence", evidence = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T26_REVIEW_R03_2026-09-27.md#m02q-t26-f04-the-committed-t26-regression-surface-does-not-satisfy-the-required-negative-matrix" },
+]
 review_scope = "card"
 review_epoch = "E01"
 epoch_reset_basis = ""
-material_defect_class_ids = []
+material_defect_class_ids = ["legacy-result-current-source-identity-integrity", "legacy-result-source-board-semantic-integrity", "legacy-result-required-evidence-completeness"]
 failed_material_defect_class_ids = []
 post_convergence_validation = false
 convergence_basis = ""
@@ -30,4 +35,4 @@ blob = "d91ae89c674b200c2e28967f0155c637933c0f99"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Pending R03 is reserved for the mandatory fresh independent full-scope discovery reviewer after R02 closure. The R02 closure-verification reviewer must not issue this fresh-discovery verdict."
+basis = "Fresh R03 full-scope discovery reviewer did not materially produce or repair the exact T26 Result/product subject; it reconstructed the stable acceptance surface and independently reproduced the current/source identity and source-Board ambiguity failures on exact product commit 4ebe6b6a17ba4b22c9221c519db175ed71ee4995."
