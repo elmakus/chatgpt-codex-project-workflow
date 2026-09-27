@@ -666,3 +666,20 @@ Any eventual PW permission must preserve:
 Formal Research returns to Brainstorming exact subject `pwv22-program@22`.
 
 Research evidence alone does not authorize changing PW semantics or retiring `orchestration-runtime`. Brainstorming must consume the integrated result, resolve material owner choices, run a challenge audit and only then seek a new Definition promotion.
+
+
+### 32.5 Durable Pi/Paseo subagent Research package
+
+Formal Research package is launch-ready:
+- repository: `elmakus/project-research`;
+- package branch: `research/pwv22-pi-paseo-subagents-package`;
+- frozen package commit: `5842f8f7d2c9aea8903ca324f0e6b59e30223770`;
+- launcher: `projects/chatgpt-codex-project-workflow/pwv2.2/research/pi_paseo_subagents/AUTO_PROMPT.md`;
+- manifest: `projects/chatgpt-codex-project-workflow/pwv2.2/research/pi_paseo_subagents/LANE_MANIFEST.toml`;
+- integration prompt: `projects/chatgpt-codex-project-workflow/pwv2.2/research/pi_paseo_subagents/INTEGRATION_PROMPT.md`;
+- wave: W00 + R00 + L01-L13 = 15 independent finite heterogeneous lanes;
+- return owner: `pwv22-program@22`.
+
+The package incorporates current `pi-unraid@main`, current Paseo managed-subagent capabilities as research leads, prior `orchestration-runtime`, role-free assignment analysis, direct agent-to-agent communication mechanics/semantics, reviewer limited writes, worktree/fan-in, lifecycle/recovery/security, and a prototype/YAGNI lane.
+
+No package conclusion is product authority until integrated Research is reconciled into Brainstorming.
