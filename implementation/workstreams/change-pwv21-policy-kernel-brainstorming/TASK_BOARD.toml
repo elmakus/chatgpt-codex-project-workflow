@@ -3121,8 +3121,8 @@ blob = "9e66244473ce33cebf3e3d9678544a1b1b8f50e2"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T29-R06.toml"
-commit = "3a968dc508b024de242cfc79707ee0ea90f906ea"
-blob = "502553cfedf86585bfbabb856f6d1e7af9c9cfd4"
+commit = "f9582884a13669fc1794e6da5988fa98845e85ea"
+blob = "04728591b6bb826ce71e201fa9bef3fdb692be5a"
 
 [[jit_triggers]]
 id = "after-M02Q-T29"
