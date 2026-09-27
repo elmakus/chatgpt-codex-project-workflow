@@ -1,0 +1,33 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02Q-T32"
+attempt = "R01"
+verdict = "pending"
+evidence_path = ""
+review_kind = "discovery"
+source_discovery_attempt = ""
+discovery_complete = false
+material_finding_ids = []
+review_scope = "card"
+review_epoch = "E01"
+epoch_reset_basis = ""
+material_defect_class_ids = []
+failed_material_defect_class_ids = []
+post_convergence_validation = false
+convergence_basis = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "3aaa41d97a080321151478099487db580cdb63da"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T32.md"
+blob = "f46746923134a6b403ecd9d17547a3225e9470cd"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T32.md"
+commit = "3503ac925e32c4cda99a3e6b1c78184b17e41926"
+blob = "f233d397732fa43953fbabdd416ce8227d8e484b"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "R01 is reserved for a fresh independent reviewer. The current execution context materially produced the T32 implementation and Result and therefore must not issue this attempt verdict."
