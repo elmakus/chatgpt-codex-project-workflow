@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 216
+revision = 217
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -21,10 +21,14 @@ blob = "f077104c3918c06c62da97cfdb13d4c4d068f5d9"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M01-T01-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "2c44f4fceb5198116be8548e5e7a35c26ece30c5"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M01-T01-R02.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "38247bf0d1ea8999b11cdf56b0118886c415eb6b"
 
 [[cards]]
 id = "M02-T01"
@@ -43,50 +47,74 @@ blob = "46ce3ec63f7c0ae82fa5c0c13c90f6428d6e9800"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02-T01-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "dcbd0a6e513746ee31076677bae4eebcba58397c"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02-T01-R02.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "bc1b12caccf551884b60add0466397b4eb0ed90a"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02-T01-R03.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "1b2860ab11239457f2a8dcd827db77acc8620944"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02-T01-R04.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "00c4d887c90e8c650957e16f95edd5184299ddf2"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02-T01-R05.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "4a5baaa33e3d0ec1f8480a041c579afc6aa0f8c0"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02-T01-R06.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "57ef7b5c4f27ed007b8dff5ca1f203c654b82102"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02-T01-R07.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "1e2b4472a7d228cdb5664d8269e7d3c67215a3d2"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02-T01-R08.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "fd16e1b8c412b91039774ff07d3edf6d4edf39f0"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02-T01-R09.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "2e6dce60e5f2bd8897d511f315bd262995298c3f"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02-T01-R10.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "aa59283f3c88eb006b9b67592ed23632ead57f64"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02-T01-R11.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "7cb5bf86e41e83c3b88130a2f3950a8a7517301e"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02-T01-R12.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "9845cb36e5fd32191bdf2a165f27a5b7e5fcf24e"
 
 [[jit_triggers]]
 id = "after-M01-T01"
@@ -111,14 +139,20 @@ blob = "3fb9566c061460c909edf45d5a7807c5dfa889a8"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T01-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "28e5f833aa15e875ba5b282fb52ecb04bb81cb69"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T01-R02.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "948bfaf8f9ca85b5b27aa7963de6f1511d7f77c8"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T01-R03.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "85f7d1a56685bd9c09a991fa927f054c3884018c"
 
 [[jit_triggers]]
 id = "after-M02-T01"
@@ -149,30 +183,44 @@ blob = "96fc29a505db6d6855f5308db6cf926c5ca6ad57"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T02-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "a5c37e0c71c75cb0a1fe06717176037abf7514a2"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T02-R02.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "dac76d88df9b9de0563ee61afe8c72f56f3d5cb0"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T02-R03.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "f7333eb626ff30d66a3af64756e2ba4f29b30368"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T02-R04.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "2bb7366ebf9ce249dbd6477a104369ab9a90a6a5"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T02-R05.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "74c2fa2061cbac68f14fbfe2f034ad30bb26d033"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T02-R06.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "cff47ac6b3b20ae92970865efcad2ae769a89323"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T02-R07.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "865913cc951442b2f3e1f069399dc5a698d23f37"
 
 [[jit_triggers]]
 id = "after-M02R-T02"
@@ -197,10 +245,14 @@ blob = "b357ba85d4975540f3ae87b05e73e3fcf8e0471a"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T03-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "41200b71e76e1de05fd891da550258399bd77f24"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T03-R02.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "981e4b948ce2576fbfba92c76b8b744ad843ee37"
 
 [[jit_triggers]]
 id = "after-M02R-T03"
@@ -225,6 +277,8 @@ blob = "9d25c57b2d07c9902a567b447ceb84acc5c5e54d"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T04-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "466f6661197443306cb7482887005a41d2aaaaa8"
 
 [[jit_triggers]]
 id = "after-M02R-T04"
@@ -249,10 +303,14 @@ blob = "bcf5fe5f35ab730b90a124fc7dd15975a649f8e5"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T05-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "971894f2311eda370ca823c0f1feb420c1c3e562"
 
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T05-R02.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "6b821965aa2be6b1f2de4e630b17c8d917193a87"
 
 [[jit_triggers]]
 id = "after-M02R-T05"
@@ -277,6 +335,8 @@ blob = "59e4af30a6b20d02b712788963ea5c5231b54c7b"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T06-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "2be22a5cb326cd9030600de0076ba4e92c2db344"
 
 [[jit_triggers]]
 id = "after-M02R-T06"
@@ -301,6 +361,8 @@ blob = "4c86131a0781c7fdabf2ff9f5e7f94097fca2aae"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T07-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "9b5771657bd92861c02a2a2c80a6a0d51b09db60"
 
 [[jit_triggers]]
 id = "after-M02R-T07"
@@ -325,6 +387,8 @@ blob = "0da4b05f8ce98236e067802bc3a8bc016dec0a3a"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T08-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "5de50db6c262abf333846f6276fee8c1d49e65dc"
 
 [[jit_triggers]]
 id = "after-M02R-T08"
@@ -349,6 +413,8 @@ blob = "bd555874c53fce9b1d71e49318929add692a2a7b"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T09-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "c771dab3cf81668f251ae5fce83d3615f72d88f5"
 
 [[jit_triggers]]
 id = "after-M02R-T09"
@@ -373,6 +439,8 @@ blob = "529654444d5163e8642147e3f55d09534e6e34d9"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T10-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "180e1d38f61790348c129d644b88898904f8dfd9"
 
 [[jit_triggers]]
 id = "after-M02R-T10"
@@ -397,6 +465,8 @@ blob = "26ab535535909fd8fd675336e0ca4bc20e0578c2"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T11-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "a518c5200bd4eddf06edb063d6ac4aadb7c13e2c"
 
 [[jit_triggers]]
 id = "after-M02R-T11"
@@ -421,6 +491,8 @@ blob = "0a95e47915f2db56eb413a5523e88b1ae27986d8"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T12-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "798c0987fb9085c83e0a1871c733ffbd8d8a38ec"
 
 [[jit_triggers]]
 id = "after-M02R-T12"
@@ -445,6 +517,8 @@ blob = "326c7a4d63df550be36e896d1b4d2473c660fd09"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T13-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "e936c98a7bc928110c3bc73313ae04322386c8b8"
 
 # Structured readback of the pre-materialization audit already recorded in
 # evidence/M02R-T05_EXECUTION_PREP_2026-09-25.md at commit 646f9eb4da680c27ec34b66a38fc2e0608aef463.
@@ -903,6 +977,8 @@ blob = "ae52d7d7006b2973da4b7e7053ac8bcc88727f13"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T01-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "1d41797921180121fd125d686c5b75a0cf595ec2"
 
 [[jit_triggers]]
 id = "after-M02Q-T01"
@@ -965,6 +1041,8 @@ blob = "181e850f8f7eee6583d4d185d4044c1952aeb30d"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T02-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "38d52eafc366ad56170aca41b2ac809423881a6d"
 
 [[jit_triggers]]
 id = "after-M02Q-T02"
@@ -1027,6 +1105,8 @@ blob = "1673579041ea1e4bd086d89c4a2cd64e6506703b"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T03-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "67fbaf2d56a0c9a347a82650547795c40861814a"
 
 [[jit_triggers]]
 id = "after-M02Q-T03"
@@ -1089,6 +1169,8 @@ blob = "66ae632e15ad99a91cb0321256b200880ae884fb"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T04-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "c21b67c4911b9386fe5cf81b0720db9e1fb6b4c2"
 
 [[jit_triggers]]
 id = "after-M02Q-T04"
@@ -1152,6 +1234,8 @@ blob = "98a6bdd66a8f47635a1a4ef547a3eb5262dd73e1"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T05-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "6b9f0c73da9ccde98e3da24d1e17cff84d992309"
 
 [[jit_triggers]]
 id = "after-M02Q-T05"
@@ -1228,6 +1312,8 @@ blob = "bba72c4d1440df0782e535d73756d5a4d6f4ba93"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T06-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "6c5d18f692686edef5c6f685cdd03d0b6c2b7a0a"
 
 [[jit_triggers]]
 id = "after-M02Q-T06"
@@ -1291,6 +1377,8 @@ blob = "c8492c2a653fe599e271e0c51220f0fd8f642474"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T07-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "89309d8e7034242ab4d146bfa71f9e4c343a3c5f"
 
 [[jit_triggers]]
 id = "after-M02Q-T07"
@@ -1354,6 +1442,8 @@ blob = "9a766a9dcca9ac12f6b09af28ad95eb4fa29252d"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T08-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "1a1f64d585f88a6d9e19afb3c93e0411fc0a5e89"
 
 [[jit_triggers]]
 id = "after-M02Q-T08"
@@ -1417,6 +1507,8 @@ blob = "ccc4206d4e1cbb244dd40ff88b4b66bfce6ac23d"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T09-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "36518e7ceafc412173335b8f2de4df0c8dd8ff8c"
 
 [[jit_triggers]]
 id = "after-M02Q-T09"
@@ -1480,6 +1572,8 @@ blob = "74d01cbc0b9398c97623a9a4c3a8fd9f7e7d4b40"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T10-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "8caccba6389810e861d32206028d944c0418ca26"
 
 [[jit_triggers]]
 id = "after-M02Q-T10"
@@ -1544,6 +1638,8 @@ blob = "634da8b3f400bd1bab229f143eceb4807e8ba367"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T11-R01.toml"
+commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+blob = "061010388a0661565327702fc8efdc524df11a37"
 
 [[jit_triggers]]
 id = "after-M02Q-T11"
