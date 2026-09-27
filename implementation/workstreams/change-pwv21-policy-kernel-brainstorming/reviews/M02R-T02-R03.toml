@@ -18,3 +18,12 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/card
 [independence]
 materially_produced_or_repaired_subject = false
 basis = "Pending exact R03 review is frozen for a fresh independent context. The context that materially repaired the M02R-T02 implementation candidate after R02 RED is not eligible to issue this verdict."
+
+[legacy_migration]
+source_repository = "elmakus/chatgpt-codex-project-workflow"
+source_commit = "fbe55b3d76746d54ca05e8dda7ea99473d60cc25"
+source_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02R-T02-R03.toml"
+source_blob = "dbcceef98a45aecafd7569e423daba4f691a03f3"
+source_workstream = "change-pwv21-policy-kernel-brainstorming"
+source_card = "M02R-T02"
+source_attempt = "R03"

@@ -18,3 +18,12 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/card
 [independence]
 materially_produced_or_repaired_subject = false
 basis = "R02 was performed by a fresh independent review context that did not materially produce or repair the repaired M01-T01 result or implementation subject."
+
+[legacy_migration]
+source_repository = "elmakus/chatgpt-codex-project-workflow"
+source_commit = "fbe55b3d76746d54ca05e8dda7ea99473d60cc25"
+source_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M01-T01-R02.toml"
+source_blob = "9381418e1479c50620dc3aaed7a9a7a086ab320e"
+source_workstream = "change-pwv21-policy-kernel-brainstorming"
+source_card = "M01-T01"
+source_attempt = "R02"
