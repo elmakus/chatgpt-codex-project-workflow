@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 19
+# PWv2.2 Program Brainstorming — Revision 20
 
-Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@19`
+Status: READY FOR DEFINITION
+Scope subject: `pwv22-program@20`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -463,3 +463,45 @@ The resulting design principle is:
 Final PWv2.1 predecessor rebind/revalidation remains mandatory before Definition is allowed to finalize any representation choice or implementation plan that depends on the terminal PWv2.1 contract. The rebind reopens only decisions materially affected by the final predecessor.
 
 Revision 19 is ready for Definition promotion, but promotion still requires explicit owner authorization for the exact subject pwv22-program@19.
+
+
+## 28. Owner decisions captured in Revision 20 — deferred defects and final qualification
+
+Evidence basis:
+- integrated formal research: `elmakus/project-research:projects/chatgpt-codex-project-workflow/pwv2.2/research/deferred_defects_final_qualification/FINAL_SYNTHESIS.md`;
+- validated orchestration experiment: `elmakus/project-research:experiments/identical-multilane-v1/RESULT.md`;
+- owner decisions in the continuation discussion after consuming that research.
+
+1. **Review verdicts remain binary.** Canonical independent Review verdicts remain `GREEN` or `RED`; there is no `CONDITIONAL_GREEN`, provisional-green or third acceptance verdict.
+2. **Deferred findings are orthogonal durable obligations.** A known finding may remain open only when the exact current acceptance still remains true and the defective property is positively proven irrelevant to all authorized work before its repair boundary. The finding remains durable and visible with exact affected subject/scope, blocking scope, release relevance, latest-safe repair boundary and closure evidence.
+3. **DONE remains truthful.** If a finding does not falsify a Card's exact acceptance, that Card may still reach ordinary GREEN/DONE while the separate finding remains open. If a finding falsifies the Card's exact acceptance, the Card may not be marked DONE merely to preserve throughput.
+4. **Blocking is dependency-local, not automatically workstream-global.** A non-accepted Card blocks only work whose accepted dependency/acceptance surface actually requires the defective property/Result. Unaffected independent Cards may continue. Unknown impact fails closed.
+5. **Repair timing is bounded by need.** A deferred defect must be repaired at the earlier of: (a) the first authorized downstream consumption that requires the defective property/acceptance, or (b) its exact latest-safe repair boundary, which cannot be later than final qualification/release gating for a current-release defect.
+6. **Post-repair impact is material-local.** After repair, preserve immutable historical Results/Review attempts and classify affected downstream surfaces as preserve / revalidate / stale / Recovery. Revalidate unchanged implementation/output rather than fabricating a new Result; create a new Result only for genuinely changed/re-executed result-producing work.
+7. **Final Qualification is standard Project Workflow behavior.** Every PW-managed change uses the final-qualification obligation family before release/Close, with proportional execution cost but without an opt-out merely because the change is small:
+   - Final Qualification Handoff real stop;
+   - Known Defect Cleanup (zero-work when no deferred findings exist);
+   - Targeted Bug Hunt using risk/coverage-driven independent prompts;
+   - Global identical-prompt Bug Hunt using an owner-selected number of fresh isolated runs;
+   - integrated finding classification/deduplication and bounded repair;
+   - post-repair material-local impact/revalidation when repairs occurred;
+   - fresh eligible independent full-scope final acceptance on the exact final subject;
+   - release/publication/readback/Close continuation under ordinary authority.
+8. **No acceptance by swarm count.** Targeted/Global hunts are defect-discovery mechanisms. Zero findings, duplicate findings, majority agreement or any fixed worker count never substitutes for exact final acceptance.
+9. **Final Qualification Handoff is mandatory.** The handoff before Known Defect Cleanup is a standard real user-facing stop and uses the existing exact-obligation/locator-only handoff primitive rather than introducing a new lifecycle stage.
+10. **Repair swarms use parallel repair with serial candidate integration.** Independent repair units may execute in parallel only under explicit finite accepted admission with write/semantic/effect conflict classification. One integration owner mutates/composes the shared candidate deterministically; workers do not self-merge or self-accept.
+11. **Orchestration mechanics are non-authoritative.** Chat/worker counts, models/providers, branch allocators, `finite_branch_claim`, `NEXT_RUN_ID`, prompt-launch mechanics and worker/session identity remain coordinator/runtime details.
+12. **P1 is superseded if this revision is promoted.** The current approved P1 cannot proceed through Premium C because it predates these material semantics and explicitly schedules mutating PWv2.2 program Cards serially. A promoted Definition R5 requires a new Planning P2 and fresh applicable Planning review/gates before Execution Prep.
+13. **PWv2.1 donor boundary remains separate.** PWv2.2 Definition/Planning may proceed, but Initial Execution Prep remains held until the separately authorized PWv2.1 pre-M03 donor boundary is complete. PWv2.1 M03 is not authorized by this decision.
+
+## 29. Revision 20 whole-scope challenge closure
+
+Challenge result: **GREEN**.
+
+The integrated 15-lane formal research independently challenged acceptance-state representation, safe deferral, dependency freshness, defect classification, review topology, targeted/global bug hunts, repair swarms, post-repair revalidation, handoff UX, release/Close, concurrency/integration, YAGNI and identical heterogeneous launch mechanics. The integration preserved material dissent and identified the research-base packaging provenance defect; that defect did not change the common frozen consumer/P1 analysis subject and has since been addressed operationally by one-source manifest/branch-claim validation.
+
+The owner deliberately adopts a stronger product policy than the research YAGNI recommendation on one point: Targeted + Global final defect discovery and the Final Qualification Handoff are standard PW behavior rather than merely project-local optional strategy. Their realization remains proportional and runtime-owned, so small changes need not use large worker counts.
+
+No further material owner/product questions remain in Revision 20.
+
+Revision 20 is `ready_for_definition`, but promotion still requires explicit owner authorization for the exact subject `pwv22-program@20`.
