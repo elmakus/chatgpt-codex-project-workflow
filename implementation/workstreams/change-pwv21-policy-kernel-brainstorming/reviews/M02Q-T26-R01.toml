@@ -1,16 +1,19 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02Q-T26"
 attempt = "R01"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T26_REVIEW_R01_2026-09-27.md"
 review_kind = "discovery"
 source_discovery_attempt = ""
-discovery_complete = false
-material_finding_ids = []
+discovery_complete = true
+material_finding_ids = ["M02Q-T26-F01"]
+finding_severity = [
+  { id = "M02Q-T26-F01", surface = "correctness", evidence = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T26_REVIEW_R01_2026-09-27.md#m02q-t26-f01-source-board-result-commit-is-not-proved-as-an-exact-git-locator" },
+]
 review_scope = "card"
 review_epoch = "E01"
 epoch_reset_basis = ""
-material_defect_class_ids = []
+material_defect_class_ids = ["legacy-result-source-locator-integrity"]
 failed_material_defect_class_ids = []
 post_convergence_validation = false
 convergence_basis = ""
@@ -30,4 +33,4 @@ blob = "d91ae89c674b200c2e28967f0155c637933c0f99"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Pending exact attempt is frozen for a fresh independent reviewer. The producing context does not issue the verdict; the reviewer must independently reconstruct the exact subject and acceptance surface before completing this attempt."
+basis = "Fresh independent reviewer did not materially produce or repair the exact T26 Result/product subject; review reconstructed the immutable Result/Card identities, exact product diff, provenance implementation, focused/full tests and an independent negative Git-provenance probe."
