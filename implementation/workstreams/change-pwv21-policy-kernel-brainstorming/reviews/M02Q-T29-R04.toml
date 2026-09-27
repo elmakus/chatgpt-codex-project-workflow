@@ -1,0 +1,33 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02Q-T29"
+attempt = "R04"
+verdict = "pending"
+evidence_path = ""
+review_kind = "discovery"
+source_discovery_attempt = ""
+discovery_complete = false
+material_finding_ids = []
+review_scope = "card"
+review_epoch = "E01"
+epoch_reset_basis = ""
+material_defect_class_ids = []
+failed_material_defect_class_ids = []
+post_convergence_validation = false
+convergence_basis = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "7a7ce947aa589196cc0d93cf24d64d31b3c39dc7"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T29.md"
+blob = "114d80adea1f6c7bf7cd69094af842fb42708436"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T29.md"
+commit = "9727f54f4750eb120db60ef4523a2c14682ca73a"
+blob = "cf14f65f5ceac63acae653371b7071dcf5b836cd"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Reserved for a fresh independent full-scope discovery reviewer assignment after R03 closure; that reviewer must not materially produce or repair the exact Result/product subject and must reconstruct correctness from accepted authority, exact current artifacts and raw evidence rather than prior verdict rationales."
