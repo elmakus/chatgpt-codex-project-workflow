@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 200
+revision = 201
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2296,7 +2296,7 @@ atomicity_rationale = ""
 # Execution Prep evidence: evidence/M02Q-T22_EXECUTION_PREP_2026-09-27.md.
 [[cards]]
 id = "M02Q-T22"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
@@ -2323,8 +2323,8 @@ blob = "4bda471d1eb64734aa6df68596ab587d261d7590"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T22-R03.toml"
-commit = "b3496d225014dce0483dfb5ec0d76234f16bbd84"
-blob = "b624e029845968a534943a5537a4fca2c0cf267a"
+commit = "ddebc367ab76df922c9219ea5041e1485bd435b8"
+blob = "73626dc0258f4f8116c12ea0bde6a62cef516ff9"
 
 [[sizing_audits]]
 card_id = "M02Q-T22"
