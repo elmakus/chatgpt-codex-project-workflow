@@ -1,6 +1,6 @@
 workstream_id = "change-pwv22-program-brainstorming"
 scope_id = "pwv22-program"
-revision = 21
+revision = 22
 state = "active"
 challenge_audit = "pending"
 explicit_user_stop = false

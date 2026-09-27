@@ -1,7 +1,7 @@
 workstream_id = "change-pwv22-program-brainstorming"
 state = "active"
 origin_role = "brainstorming"
-origin_subject = "pwv22-program@21"
+origin_subject = "pwv22-program@22"
 return_target = "brainstorming"
 return_reconciliation = "pending"
 return_result = ""

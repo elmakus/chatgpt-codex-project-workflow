@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 21
+# PWv2.2 Program Brainstorming — Revision 22
 
 Status: ACTIVE FORMAL BRAINSTORMING
-Scope subject: `pwv22-program@21`
+Scope subject: `pwv22-program@22`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -580,3 +580,89 @@ Exploratory bootstrap draft:
 - `brainstorming/PWV22_CHATGPT_PROJECT_INSTRUCTIONS_R21_DRAFT.md`.
 
 Neither artifact is Definition authority. Research must be integrated and consumed by Brainstorming before the owner backend decision and Revision-21 challenge closure.
+
+
+## 31. Revision 21 state-backend Research consumed
+
+Integrated formal Research:
+- repository: `elmakus/project-research`;
+- integration branch: `research/pwv22-state-backend-integration`;
+- integration commit: `13b16340da80c6ba6e1dc189fda83583194f3ac4`;
+- synthesis: `projects/chatgpt-codex-project-workflow/pwv2.2/research/durable_state_backend/FINAL_SYNTHESIS.md`;
+- synthesis blob: `1448cca1f5a504c118b5e9e4e255c37b4e5f23c3`.
+
+Research conclusion, still non-authoritative pending owner disposition:
+- Git-native remains the strongest canonical semantic authority;
+- a one-way rebuildable tracker projection is the smallest credible UX improvement;
+- GitHub Projects is the lowest-cost first projection candidate;
+- Linear is a later projection candidate if real Android UX remains inadequate;
+- external-canonical migration is not justified without a dedicated qualification harness.
+
+Open owner choices from that Research are carried into Revision 22:
+1. accept Git-native canonical authority as the PWv2.2 direction or request further falsification;
+2. decide whether a GitHub Projects projection pilot belongs in current PWv2.2 scope or remains deferred;
+3. finish the ChatGPT Project Instructions bootstrap disposition.
+
+The previous Research slot is considered consumed into Brainstorming evidence; no backend decision is inferred merely from the Research recommendation.
+
+## 32. Revision 22 — Pi/Paseo subagent substrate and orchestration boundary
+
+New owner direction:
+- Pi/Paseo is the intended runtime for PW-managed work after Planning/Initial Execution Prep and through ordinary Execution, Review, repair, integration/fan-in and recovery;
+- the standard Final Qualification Handoff transfers the project back to ChatGPT;
+- the ChatGPT-owned Final Qualification tail is out of scope for the Pi/Paseo subagent substrate decision;
+- a separate full `orchestration-runtime` is no longer assumed necessary;
+- investigate whether Paseo-native orchestration plus a thin Pi extension/configuration is sufficient;
+- do not assume fixed semantic roles such as Executor/Reviewer/Tester are required; compare role-free/generic bounded assignments against role presets;
+- specifically determine whether direct subagent-to-subagent communication is useful and safe enough to permit under Project Workflow, and under what semantic boundaries.
+
+### 32.1 Research questions
+
+Formal Research must determine:
+
+1. What native multi-agent/subagent primitives Paseo currently provides: spawning, parent/child relationships, agent IDs, messaging, follow-up prompts, wait/stop, workspaces/worktrees, profiles, remote hosts, completion events and result retrieval.
+2. What Pi itself provides natively or via official/example extension surfaces for spawning isolated agents, RPC sessions, extension tools and process/session control.
+3. Which existing Pi subagent extensions materially overlap the need, including persistent messaging/collaboration and worktree isolation.
+4. Whether Paseo-native orchestration already makes a dedicated Pi subagent extension unnecessary, partially useful or still required.
+5. Whether agents can communicate directly in a way that preserves PW authority, independence and exact-subject acceptance rather than creating hidden scope/authority transfer.
+6. Whether a Reviewer needs a named role at all, or only assignment-specific freshness, subject, capability and durable-write constraints.
+7. How write scopes should work: implementation mutation, Review Attempt/evidence writes, test artifacts, integration ownership and forbidden authority mutation.
+8. How concurrent PW Cards map to Paseo workspaces/worktrees and how integrated compatibility/fan-in should be handled.
+9. How lifecycle cleanup, cancellation, stale outputs, reconnect/resume, crash recovery and capacity limits should work without a second semantic state machine.
+10. What is the minimum architecture for PWv2.2: Paseo only, Paseo + thin Pi extension/skill, existing third-party extension, or dedicated orchestration runtime.
+
+### 32.2 Required architecture comparison
+
+The Research synthesis must compare at least:
+- **A. Paseo-native orchestration only**;
+- **B. Paseo-native orchestration + thin PW/Pi extension or skill**;
+- **C. existing third-party Pi subagent extension(s) integrated with Paseo**;
+- **D. dedicated `orchestration-runtime`**.
+
+Evaluation must prioritize semantic correctness, YAGNI, maintainability and use of upstream/native capabilities over building infrastructure already provided by Paseo.
+
+### 32.3 Agent communication decision surface
+
+Direct agent-to-agent communication is not automatically accepted merely because Paseo supports it.
+
+Research must distinguish:
+- operational messaging such as status/questions/evidence exchange;
+- delegation from Main to child;
+- peer-to-peer evidence exchange;
+- mutation coordination;
+- semantic decisions or scope/authority transfer.
+
+Any eventual PW permission must preserve:
+- no self-authorized new Card/scope/authority;
+- exact subject and assignment binding;
+- required independent Review contamination boundaries;
+- one mutating ownership domain per Card;
+- explicit finite admission for parallel mutation;
+- deterministic durable Results/Review evidence;
+- Main/Router ownership of legal continuation.
+
+### 32.4 Return condition
+
+Formal Research returns to Brainstorming exact subject `pwv22-program@22`.
+
+Research evidence alone does not authorize changing PW semantics or retiring `orchestration-runtime`. Brainstorming must consume the integrated result, resolve material owner choices, run a challenge audit and only then seek a new Definition promotion.
