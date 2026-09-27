@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 247
+revision = 248
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -3035,3 +3035,56 @@ source_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstormi
 source_blob = "9a766a9dcca9ac12f6b09af28ad95eb4fa29252d"
 source_workstream = "change-pwv21-policy-kernel-brainstorming"
 source_card = "M02Q-T08"
+
+
+# M02Q Milestone R01 RED correction F01.
+# Execution Prep evidence: evidence/M02Q-T28_EXECUTION_PREP_2026-09-27.md.
+[[cards]]
+id = "M02Q-T28"
+status = "in_progress"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T28.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T28"
+after_card = "M02Q-T28"
+state = "waiting"
+condition = "After M02Q-T28 is DONE with fresh independent GREEN review, materialize the separate M02Q-MILESTONE-R01 F02 correction for the four structured T09-T12 path-only acceptance histories; keep F03 and M03 separate."
+
+[[sizing_audits]]
+card_id = "M02Q-T28"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "orphan-t23-board-audit-reconciliation"
+kind = "invariant"
+statement = "Mutable Board sizing/topology audit state may reference only a materialized live Card; M02Q-T23 historical Card/evidence bytes remain immutable while its orphan live audit entries are removed."
+family = "milestone-red-board-referential-integrity"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "This correction is a consumer Board referential-integrity repair independent of the structured T09-T12 acceptance migration and historical consumed-trigger proof migration."
+falsifiability_testability = "The exact Board contains no live M02Q-T23 Card, so any remaining sizing/topology audit bound to T23 is invalid; valid audit records for materialized Cards remain untouched."
+reviewability = "One local Card Review can verify exact removal of only the orphan T23 audit state plus immutable T23 history preservation without certifying F02, F03, Milestone GREEN or M03."
+invariant_contract_family = "One Board referential-integrity invariant exposed by M02Q-MILESTONE-R01 F01."
+dependency_ordering = "Consumes terminal M02Q-T27 and the fresh milestone RED evidence; F02 follows only after this first router blocker is cleared."
+atomic_mutation_migration = "The orphan sizing/topology records are removed together so the Board cannot retain half-reconciled live audit state for a non-live Card."
+cross_surface_coupling = "Only mutable Task Board audit state and immutable T23 historical files participate; no product-side change is required."
+
+[[topology_audits]]
+card_id = "M02Q-T28"
+risk = "simple"
+triggers = []
+risk_basis = "One consumer Board referential-integrity correction with no required-seam merge, multiple invariant families, milestone absorption or M03 scope."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
