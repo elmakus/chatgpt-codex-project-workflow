@@ -1,11 +1,11 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02Q-T25"
 attempt = "R02"
-verdict = "pending"
-evidence_path = ""
+verdict = "green"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T25_REVIEW_R02_2026-09-27.md"
 review_kind = "discovery"
 source_discovery_attempt = ""
-discovery_complete = false
+discovery_complete = true
 material_finding_ids = []
 review_scope = "card"
 review_epoch = "E01"
@@ -30,4 +30,4 @@ blob = "585935ee14efe7c838f74b45c876e29ccc55f1c7"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Fresh full-scope discovery is required after bounded Card acceptance-fidelity correction. This context did not materially produce or repair the exact T25 Result or implementation subject; the stable-card metadata correction does not alter subject-relative independence."
+basis = "Independent fresh full-scope R02 discovery reconstructed the exact T25 result and implementation against the corrected stable Card acceptance, accepted RF006 product subject, immutable Git inventory/provenance/ancestry/freshness and recovery-package progression. This context did not materially produce or repair the reviewed T25 subject."
