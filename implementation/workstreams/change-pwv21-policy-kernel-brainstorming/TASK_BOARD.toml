@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 241
+revision = 242
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2714,8 +2714,8 @@ condition = "After M02Q-T26 is DONE with durable GREEN-reviewed legacy Result co
 [jit_triggers.consumed_proof]
 card = "M02Q-T27"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T27.md"
-commit = "acc8b3eb738a559378ce46737db52df580501ae4"
-blob = "3dc63fb9afbc9e69eaaaa4aa5542aed951647eb6"
+commit = "2468f1073192e94e775a3f24455666e6c5b403f0"
+blob = "da2fef9a57875bf76be5da891f57a6c250a51346"
 
 [[sizing_audits]]
 card_id = "M02Q-T26"
