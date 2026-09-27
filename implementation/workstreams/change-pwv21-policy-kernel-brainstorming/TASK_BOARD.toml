@@ -3202,6 +3202,12 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/resu
 commit = "e05352154fb24448abd1b05f87ef91693a8e80f0"
 blob = "609c10f0beb9126f10b5c53de8676fbc0b6339c3"
 
+[[cards.review_attempts]]
+class = "review_attempt"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T30-R01.toml"
+commit = "1cef12a6b6d39518b9b7170e3fb627db0ab83c24"
+blob = "e1fa1f084fe1ecb92c88275fa3718b2672e9b202"
+
 [[jit_triggers]]
 id = "after-M02Q-T30"
 after_card = "M02Q-T30"
