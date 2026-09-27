@@ -1,11 +1,11 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02Q-T26"
 attempt = "R05"
-verdict = "pending"
-evidence_path = ""
+verdict = "green"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T26_REVIEW_R05_2026-09-27.md"
 review_kind = "discovery"
 source_discovery_attempt = ""
-discovery_complete = false
+discovery_complete = true
 material_finding_ids = []
 review_scope = "card"
 review_epoch = "E01"
@@ -30,4 +30,4 @@ blob = "d91ae89c674b200c2e28967f0155c637933c0f99"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Reserved for a fresh independent full-scope discovery reviewer assignment after R04 closure; that reviewer must not materially produce or repair the exact Result/product subject and must reconstruct correctness from accepted authority, exact current artifacts and raw evidence."
+basis = "Fresh independent R05 full-scope discovery reconstructed T26 correctness from accepted authority, the exact current Card and Result, exact product code, current regression coverage and raw CI/Git readback. This reviewer did not materially produce or repair the reviewed Result or product subject; prior review verdict rationales were not used as the acceptance checklist."
