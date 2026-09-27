@@ -1,0 +1,33 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02Q-T27"
+attempt = "R01"
+verdict = "pending"
+evidence_path = ""
+review_kind = "discovery"
+source_discovery_attempt = ""
+discovery_complete = false
+material_finding_ids = []
+review_scope = "card"
+review_epoch = "E01"
+epoch_reset_basis = ""
+material_defect_class_ids = []
+failed_material_defect_class_ids = []
+post_convergence_validation = false
+convergence_basis = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "33ef224949e165e201c068a1e788000e32d58a2f"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T27.md"
+blob = "b66c24479929f2cc3d8379332077b232a7bec2e4"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T27.md"
+commit = "2468f1073192e94e775a3f24455666e6c5b403f0"
+blob = "da2fef9a57875bf76be5da891f57a6c250a51346"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "R01 is frozen for a fresh independent reviewer. The coordinating context that produced the exact T27 Result will not issue the verdict; the assigned reviewer must reconstruct correctness from accepted authority, the exact Card/Result subject and raw evidence without using prior verdict rationale as its checklist."
