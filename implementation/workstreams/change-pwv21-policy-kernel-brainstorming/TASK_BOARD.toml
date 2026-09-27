@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 188
+revision = 189
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2283,6 +2283,53 @@ card_id = "M02Q-T21"
 risk = "simple"
 triggers = []
 risk_basis = "One Close-continuation durable-completion invariant family within one P7 required seam; no preferred-seam merge, multiple-family boundary, milestone absorption, review substitution or material plan deviation."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+
+# M02Q milestone residual OBL-M02Q-01 materialized after terminal RF015.
+# Execution Prep evidence: evidence/M02Q-T22_EXECUTION_PREP_2026-09-27.md.
+[[cards]]
+id = "M02Q-T22"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T22.md"
+
+[[sizing_audits]]
+card_id = "M02Q-T22"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "recovery-package-final-cleanup-composition"
+kind = "invariant"
+statement = "Authoritative Final may accept completed cleanup work only when the same durable Board-derived H017 recovery package covers the cleanup work's recovery-critical exact subject, independent Review and evidence."
+family = "recovery-package-final-cleanup-composition"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "This closes the recorded OBL-M02Q-01 RF011-internal composition residual after T18 without reopening its GREEN Card result or merging legacy migrations."
+falsifiability_testability = "The T18 residual fixture accepts package-absent cleanup before correction and must reject after; package-covered cleanup remains positive."
+reviewability = "One local Card Review can assess H017 package versus Final cleanup composition without certifying OBL-M02Q-02/03, JIT migration or M02Q Milestone integration."
+invariant_contract_family = "One package-membership authorization invariant joins H017 target recovery coverage to H019 Final cleanup acceptance."
+dependency_ordering = "Consumes exact GREEN-reviewed T18 plus terminal T21; remaining legacy/JIT migrations and M02Q Milestone Review follow separately."
+atomic_mutation_migration = "Final package-membership enforcement and its regression fixtures land together; no terminal history rewrite or migration is included."
+cross_surface_coupling = "Close recovery package derivation and authoritative Final gate share one recovery-integrity seam; other residual obligations remain separate."
+
+[[topology_audits]]
+card_id = "M02Q-T22"
+risk = "simple"
+triggers = []
+risk_basis = "One recorded load-bearing milestone residual and one composition invariant; no preferred-seam merge, migration bundling, milestone absorption or M03 scope."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
