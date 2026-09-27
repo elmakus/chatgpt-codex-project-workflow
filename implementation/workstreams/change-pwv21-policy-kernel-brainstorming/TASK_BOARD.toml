@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 192
+revision = 193
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2291,10 +2291,12 @@ atomicity_rationale = ""
 # M02Q milestone residual OBL-M02Q-01 materialized after terminal RF015.
 # Pre-execution contract correction (before any product mutation):
 # evidence/M02Q-T22_PREEXEC_CONTRACT_CORRECTION_2026-09-27.md.
+# RED execution correction classified at exact product 3902b7f:
+# evidence/M02Q-T22_EXECUTION_CORRECTION_R01_2026-09-27.md.
 # Execution Prep evidence: evidence/M02Q-T22_EXECUTION_PREP_2026-09-27.md.
 [[cards]]
 id = "M02Q-T22"
-status = "in_progress"
+status = "ready"
 
 [cards.contract]
 class = "task_card"
