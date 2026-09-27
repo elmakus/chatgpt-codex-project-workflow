@@ -1,16 +1,19 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02Q-T29"
 attempt = "R01"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T29_REVIEW_R01_2026-09-27.md"
 review_kind = "discovery"
 source_discovery_attempt = ""
-discovery_complete = false
-material_finding_ids = []
+discovery_complete = true
+material_finding_ids = ["M02Q-T29-F01"]
+finding_severity = [
+  { id = "M02Q-T29-F01", surface = "required_evidence", evidence = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T29_REVIEW_R01_2026-09-27.md#m02q-t29-f01-required-migration-regression-matrix-is-incomplete" },
+]
 review_scope = "card"
 review_epoch = "E01"
 epoch_reset_basis = ""
-material_defect_class_ids = []
+material_defect_class_ids = ["review-acceptance-required-evidence-completeness"]
 failed_material_defect_class_ids = []
 post_convergence_validation = false
 convergence_basis = ""
@@ -30,4 +33,4 @@ blob = "cf14f65f5ceac63acae653371b7071dcf5b836cd"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "R01 is reserved for a fresh independent reviewer. The producing context implemented the exact product subject and authored the exact Result, so it is ineligible to issue this verdict; the receiving reviewer must reconstruct correctness from the frozen Card, Result, accepted authority, exact product diff and raw evidence."
+basis = "Fresh independent R01 full-scope discovery reconstructed T29 correctness from accepted authority, the exact frozen Card and Result, the exact five-commit product delta, raw implementation evidence, exact-head CI and independent T09-T12 readback. This reviewer did not materially produce or repair the reviewed Result or product subject."
