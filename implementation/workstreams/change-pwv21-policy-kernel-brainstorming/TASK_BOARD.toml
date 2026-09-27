@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 209
+revision = 210
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2419,8 +2419,8 @@ condition = "M02Q-T23 returned newly exposed separable RF006 legacy full-attempt
 [jit_triggers.consumed_proof]
 card = "M02Q-T24"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T24.md"
-commit = "1a9818daccd1c3455d0fec9d89cd299aaf50db89"
-blob = "210e49867cb992006220a9e2e968e49910334743"
+commit = "7a121f701895cce5671c2a59fc2fb8821a660760"
+blob = "152fff18691596efa9e6d88d3c4d5b262f8c1788"
 
 [[late_oversize_returns]]
 card_id = "M02Q-T23"
