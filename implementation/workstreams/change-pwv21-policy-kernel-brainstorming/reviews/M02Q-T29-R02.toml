@@ -1,8 +1,8 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02Q-T29"
 attempt = "R02"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T29_REVIEW_R02_2026-09-27.md"
 review_kind = "closure_verification"
 source_discovery_attempt = "R01"
 discovery_complete = false
@@ -11,7 +11,7 @@ review_scope = "card"
 review_epoch = "E01"
 epoch_reset_basis = ""
 material_defect_class_ids = ["review-acceptance-required-evidence-completeness"]
-failed_material_defect_class_ids = []
+failed_material_defect_class_ids = ["review-acceptance-required-evidence-completeness"]
 post_convergence_validation = false
 convergence_basis = ""
 
@@ -30,4 +30,4 @@ blob = "cf14f65f5ceac63acae653371b7071dcf5b836cd"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "R02 is reserved for a fresh independent closure-verification context. The current context materially repaired the exact T29 product subject and reconciled the repaired Result, so it is ineligible to issue this independent verdict."
+basis = "Fresh independent R02 closure-verification context did not materially produce or repair the exact reviewed Result or corrected product subject; it verified the R01 finding, repair diff, exact-head regression evidence and materially implicated Board-coherence/statusless-routing blast radius."
