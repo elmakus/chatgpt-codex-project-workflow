@@ -3076,7 +3076,7 @@ atomicity_rationale = ""
 # Execution Prep evidence: evidence/M02Q-T29_EXECUTION_PREP_2026-09-27.md.
 [[cards]]
 id = "M02Q-T29"
-status = "in_progress"
+status = "done"
 
 [cards.contract]
 class = "task_card"
