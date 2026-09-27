@@ -564,3 +564,19 @@ After Research:
 3. finish the bootstrap-template choice;
 4. run a Revision-21 whole-scope challenge;
 5. only then mark ready_for_definition and request exact promotion.
+
+
+### 30.4 Durable Revision-21 side-research package
+
+Formal state-backend Research package:
+- repository: `elmakus/project-research`;
+- package branch: `research/pwv22-state-backend-package`;
+- frozen package commit: `e3330d9a023aa595111246dc1c74045b596801f2`;
+- launcher: `projects/chatgpt-codex-project-workflow/pwv2.2/research/durable_state_backend/AUTO_PROMPT.md`;
+- lane manifest: `projects/chatgpt-codex-project-workflow/pwv2.2/research/durable_state_backend/LANE_MANIFEST.toml`;
+- return owner: `pwv22-program@21`.
+
+Exploratory bootstrap draft:
+- `brainstorming/PWV22_CHATGPT_PROJECT_INSTRUCTIONS_R21_DRAFT.md`.
+
+Neither artifact is Definition authority. Research must be integrated and consumed by Brainstorming before the owner backend decision and Revision-21 challenge closure.
