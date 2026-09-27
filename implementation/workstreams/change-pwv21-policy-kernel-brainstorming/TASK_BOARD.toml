@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 205
+revision = 206
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2421,8 +2421,8 @@ card_id = "M02Q-T23"
 origin = "execution"
 origin_attempt = ""
 origin_attempt_path = ""
-state = "pending"
-residual_card = ""
+state = "residual_bound"
+residual_card = "M02Q-T24"
 material_evidence = "Phase-1 exact verification preserves 42/48 Review identity records, while six historical M02-T01 R07-R12 attempts expose a separate RF006 full-attempt-id compatibility defect that T23 cannot self-authorize."
 preserved_refs = ["implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T23_LATE_OVERSIZE_2026-09-27.md"]
 preserved_basis = "At consumer commit a90424383e0613b36c18affbf60c6868c54ffdfa, 25 legacy attempts pass RF006 provenance plus exact locator proof and 17 current-schema attempts are byte-identical plus exact-locator valid; this evidence remains valid while the six-record compatibility residual is RED."
@@ -2458,3 +2458,70 @@ falsifiable = true
 substantial = true
 scaffolding_only = false
 independently_consumed = true
+
+
+# Residual anchor for M02Q-T23 late-oversize return.
+# Execution Prep evidence: evidence/M02Q-T24_EXECUTION_PREP_2026-09-27.md.
+[[cards]]
+id = "M02Q-T24"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T24.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T24"
+after_card = "M02Q-T24"
+state = "waiting"
+condition = "After M02Q-T24 is DONE with exact durable GREEN-reviewed RF006 legacy full-attempt-id compatibility, materialize the separate consumer Review identity migration completion outcome; M03 remains unmaterialized."
+
+[[sizing_audits]]
+card_id = "M02Q-T24"
+decision = "split"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "rf006-legacy-full-attempt-id-compatibility"
+kind = "invariant"
+statement = "RF006 accepts exact uniquely proven legacy attempts whose historical attempt field already contains the Card prefix while preserving strict canonical identity for new/current attempts."
+family = "rf006-legacy-attempt-id-compatibility"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+allocated_to = "card:M02Q-T24"
+
+[[sizing_audits.outcomes]]
+id = "rf006-consumer-review-identity-completion"
+kind = "useful_outcome"
+statement = "After RF006 compatibility is GREEN, the consumer completes exact commit+blob Board identity for all 48 path-only Review refs and proves all 31 legacy migrations plus 17 current-schema preservations."
+family = "rf006-consumer-review-identity-migration"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+allocated_to = "jit:after-M02Q-T24"
+
+[sizing_audits.dimensions]
+independent_implementability = "RF006 legacy full-ID compatibility can be GREEN and useful while consumer exact-locator migration remains RED; the second outcome consumes the corrected verifier later without invalidating the first."
+falsifiability_testability = "T24 owns the six-record/full-ID compatibility positive and negative matrix; downstream migration separately proves all 48 consumer locators and 31+17 preservation."
+reviewability = "T24 Card Review covers one RF006 product compatibility invariant; a separate downstream Card Review covers consumer migration completion; Milestone Review remains later."
+invariant_contract_family = "Legacy full-attempt-id compatibility and consumer state migration are separable review-worthy families inside the same RF006/OBL-M02Q-02 seam."
+dependency_ordering = "T24 follows the bound T23 late-oversize handoff and consumes T11/T12 RF006 foundations; consumer completion follows only after T24 GREEN."
+atomic_mutation_migration = "Product compatibility can land and be reviewed before consumer Board locator mutation; this creates a safe fail-closed intermediate state."
+cross_surface_coupling = "The product verifier enables the later consumer migration but does not require the consumer Board mutation to land atomically with the product fix."
+
+[[topology_audits]]
+card_id = "M02Q-T24"
+risk = "simple"
+triggers = []
+risk_basis = "The split assigns consumer migration completion to a real downstream JIT, leaving one RF006 product compatibility invariant in T24; no required-seam merge, multi-family Card, milestone absorption or M03 scope."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
