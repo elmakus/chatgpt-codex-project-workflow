@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 210
+revision = 211
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2470,7 +2470,7 @@ independently_consumed = true
 # Execution Prep evidence: evidence/M02Q-T24_EXECUTION_PREP_2026-09-27.md.
 [[cards]]
 id = "M02Q-T24"
-status = "ready"
+status = "in_progress"
 
 [cards.contract]
 class = "task_card"
