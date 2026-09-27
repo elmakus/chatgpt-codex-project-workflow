@@ -3127,8 +3127,14 @@ blob = "04728591b6bb826ce71e201fa9bef3fdb692be5a"
 [[jit_triggers]]
 id = "after-M02Q-T29"
 after_card = "M02Q-T29"
-state = "waiting"
+state = "consumed"
 condition = "After M02Q-T29 is DONE with fresh independent GREEN review, materialize the consumer-side F02 migration for exactly M02Q-T09 through M02Q-T12; keep F03, semicolon composition, milestone re-review and M03 separate."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T30"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T30.md"
+commit = "f05d3c23c7fb4ec80d95c5f6d16d4559326b6c3e"
+blob = "33cc2e1f977ad4953eb00a2171fb448cef838626"
 
 [[sizing_audits]]
 card_id = "M02Q-T29"
@@ -3179,3 +3185,56 @@ risk_basis = "One product compatibility invariant plus an explicitly split downs
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
+
+# M02Q-MILESTONE-R01 F02 consumer-side four-record migration.
+# Execution Prep evidence: evidence/M02Q-T30_EXECUTION_PREP_2026-09-27.md.
+[[cards]]
+id = "M02Q-T30"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T30.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T30"
+after_card = "M02Q-T30"
+state = "waiting"
+condition = "After M02Q-T30 is DONE with fresh independent GREEN review, materialize the separate M02Q-MILESTONE-R01 F03 append-only consumed-proof migration for exactly the 33 historical consumed JIT triggers lacking proof; keep composed final serving evidence, milestone re-review and M03 separate."
+
+[[sizing_audits]]
+card_id = "M02Q-T30"
+decision = "single"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "f02-structured-review-acceptance-consumer-migration"
+kind = "useful_outcome"
+statement = "Populate exactly four append-only Review-acceptance migration proofs for M02Q-T09 through M02Q-T12 using the accepted T29 compatibility contract without rewriting historical Review, Card or Result bytes."
+family = "structured-review-acceptance-consumer-migration"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+
+[sizing_audits.dimensions]
+independent_implementability = "T29 product compatibility is already DONE/GREEN; this Card mutates only the exact four-record consumer proof inventory."
+falsifiability_testability = "The pre-migration snapshot yields exactly four structured-success DONE path-only Review histories outside legacy Result migration, and every proof is independently verifiable."
+reviewability = "One Card Review can verify the four-record migration and F02 serving barrier without certifying F03, milestone composition or M03."
+invariant_contract_family = "One inventory-complete consumer migration outcome for milestone F02."
+dependency_ordering = "Consumes exact DONE/GREEN M02Q-T29 and the accepted a2bc0262 product mechanism before any consumer proof is added."
+atomic_mutation_migration = "All four append-only proof records land as one Board mutation while historical Review, Card and Result bytes remain immutable."
+cross_surface_coupling = "Only Task Board migration state and read-only exact Review/Card/Result provenance participate; product semantics are already accepted."
+
+[[topology_audits]]
+card_id = "M02Q-T30"
+risk = "simple"
+triggers = []
+risk_basis = "One previously allocated consumer migration family with no product change, F03 absorption, milestone substitution or M03 scope."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
