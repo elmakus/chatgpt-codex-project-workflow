@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 182
+revision = 183
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2232,6 +2232,12 @@ class = "result"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T21.md"
 commit = "db5f66a3b257a5e96b4e77048809127c2f55f1ff"
 blob = "746eff9b54d117c913cff8b0680fe5946f72f74b"
+
+[[cards.review_attempts]]
+class = "review_attempt"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T21-R01.toml"
+commit = "663d71522cc386750db6d9a45b165f9d1c3c646b"
+blob = "4794efffe107a3571de731f93b655ea28fc7b937"
 
 [[sizing_audits]]
 card_id = "M02Q-T21"
