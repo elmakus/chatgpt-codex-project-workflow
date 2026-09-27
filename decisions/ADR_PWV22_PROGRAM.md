@@ -1,8 +1,8 @@
-# ADR — PWv2.2 Program Definition R4
+# ADR — PWv2.2 Program Definition R5
 
-- Decision ID: `ADR-PWV22-PROGRAM-R4`
+- Decision ID: `ADR-PWV22-PROGRAM-R5`
 - Status: accepted Definition authority; supersedes the earlier predecessor-rebind/backward-compatibility assumption
-- Source subject: `pwv22-program@19`
+- Source subject: `pwv22-program@20`
 
 ## Decisions
 
@@ -42,11 +42,11 @@
 - Routine later JIT refinement stays in the normal execution context by default. A true strategy/outcome ambiguity routes back to Strategic Planning instead of being solved by silently escalating inside Execution Prep.
 
 
-## R4 owner dispositions after clean-slate research integration
+## R5 retained and updated owner dispositions
 
 - Review topology is subject/acceptance-driven. PWv2.2 does not require blanket independent Review after every Card or every administrative Milestone.
 - Routine local Cards may rely on exact Result + required tests/readback when Planning establishes no distinct independent acceptance surface. Material integration/fan-in, explicitly high-risk subjects and final closure after material repair/convergence retain independent Review.
-- The PWv2.2 implementation/release itself will use a broad final independent adversarial bug-hunt/red-team sweep plus one integrated findings pass as a program quality strategy. Exact worker/chat count and model/provider realization remain runtime/owner choices and are not universal PW law.
+- Final Qualification defect discovery is universal PW law: every PW-managed change receives a proportional Targeted Bug Hunt plus a Global identical-prompt Bug Hunt before fresh final acceptance/release. Worker/chat count and model/provider realization remain runtime/owner choices.
 - PWv2.2.0 convergence constants are local/Card=5 discovery epochs, integration/composed=4, final-closure=3, plus 3 failed repair→closure rounds per material defect class. They may be deliberately changed by a later workflow Definition.
 - Parallel legality requires an explicit finite accepted admission fact but does not require one particular named parallel-set data structure.
 - PWv2.2.0 uses one exact native semantic release/epoch per active project/workstream lineage. Mixed native epochs are deferred until a concrete need exists.
@@ -58,3 +58,20 @@
 - Once official native PWv2.2 state exists, semantic defects use fail-closed Recovery + forward corrective release/revalidation; semantic downgrade is unsupported.
 - Representative legacy states are negative release fixtures only: they must not be silently read as native, normalized, continued, inherited or migrated.
 - The authoritative M03-M07 anti-loss disposition is `decisions/PWV22_M03_M07_DISPOSITION_R4.md`.
+
+
+## R5 deferred-defect and Final Qualification decisions
+
+- Independent Review remains binary GREEN/RED. Deferred findings are separate durable obligations and never create a third acceptance verdict.
+- A Card may be GREEN/DONE with an open finding only when the finding does not falsify its exact acceptance and continuation is positively proven safe. A finding that falsifies exact acceptance prevents DONE.
+- Blocking is material-dependency-local. Unaffected Cards may continue; affected consumers wait for repair/accepted revalidation.
+- Deferred defects are repaired at the earlier of first affected consumption or the exact latest-safe repair boundary; current-release defects cannot cross final candidate acceptance/publication unresolved.
+- Final Qualification Handoff is a mandatory real stop for every PW-managed change, using the existing locator-only handoff primitive rather than a new lifecycle stage.
+- Final Qualification proceeds as: Known Defect Cleanup -> Targeted Bug Hunt -> Global identical-prompt Bug Hunt -> integrated finding reconciliation -> bounded repair/integration -> material-local impact/revalidation -> fresh eligible independent full-scope final acceptance -> ordinary release/publication/readback/Close.
+- Known Defect Cleanup is a zero-work obligation when there are no durable open findings.
+- Targeted and Global hunts are discovery mechanisms, not acceptance by worker count, duplicates, majority or zero findings. Their scale is proportional to project risk/size.
+- Multiple independent repairs may run in parallel only under explicit finite admission/conflict analysis. One integration owner serially composes the shared candidate.
+- Post-repair invalidation is material-local: preserve implementation when unchanged, revalidate proof when sufficient, make only materially changed downstream outputs stale, and use Recovery for unknown impact.
+- Runtime orchestration mechanisms such as branch claims, run-ID allocators and fresh-chat counts remain non-authoritative implementation details.
+- The approved P1 predates these material semantics and therefore cannot proceed through Premium C. R5 requires a new Planning cycle P2 with fresh A/B/Plan-Review/C progression.
+- PWv2.2 Definition and Planning may continue while the separate PWv2.1 donor workstream finishes its authorized pre-M03 boundary, but PWv2.2 Initial Execution Prep remains held until that donor boundary is complete.
