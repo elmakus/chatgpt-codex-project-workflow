@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 252
+revision = 253
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -3025,8 +3025,14 @@ blob = "ba2373bccfa89b7458ef4bf1d68ce3350800d274"
 [[jit_triggers]]
 id = "after-M02Q-T28"
 after_card = "M02Q-T28"
-state = "waiting"
+state = "consumed"
 condition = "After M02Q-T28 is DONE with fresh independent GREEN review, materialize the separate M02Q-MILESTONE-R01 F02 correction for the four structured T09-T12 path-only acceptance histories; keep F03 and M03 separate."
+
+[jit_triggers.consumed_proof]
+card = "M02Q-T29"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T29.md"
+commit = "9727f54f4750eb120db60ef4523a2c14682ca73a"
+blob = "cf14f65f5ceac63acae653371b7071dcf5b836cd"
 
 [[sizing_audits]]
 card_id = "M02Q-T28"
@@ -3060,6 +3066,74 @@ card_id = "M02Q-T28"
 risk = "simple"
 triggers = []
 risk_basis = "One consumer Board referential-integrity correction with no required-seam merge, multiple invariant families, milestone absorption or M03 scope."
+review_scope = "card_local"
+atomicity_rationale_class = ""
+atomicity_rationale = ""
+
+
+# M02Q-MILESTONE-R01 F02 is split into a reusable product compatibility
+# invariant and a downstream exact four-record consumer migration.
+# Execution Prep evidence: evidence/M02Q-T29_EXECUTION_PREP_2026-09-27.md.
+[[cards]]
+id = "M02Q-T29"
+status = "ready"
+
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T29.md"
+
+[[jit_triggers]]
+id = "after-M02Q-T29"
+after_card = "M02Q-T29"
+state = "waiting"
+condition = "After M02Q-T29 is DONE with fresh independent GREEN review, materialize the consumer-side F02 migration for exactly M02Q-T09 through M02Q-T12; keep F03, semicolon composition, milestone re-review and M03 separate."
+
+[[sizing_audits]]
+card_id = "M02Q-T29"
+decision = "split"
+rebuttal_class = ""
+rebuttal = ""
+
+[[sizing_audits.outcomes]]
+id = "structured-review-acceptance-compatibility"
+kind = "invariant"
+statement = "A preserved structured-success historical Card Review with path-only Task Card acceptance is servable only through an explicit immutable migration proof that derives the exact accepted Card bytes from the Review commit; ordinary RF004 exact acceptance remains strict."
+family = "structured-review-acceptance-compatibility"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+allocated_to = "card:M02Q-T29"
+
+[[sizing_audits.outcomes]]
+id = "structured-review-acceptance-consumer-migration"
+kind = "useful_outcome"
+statement = "After product compatibility is GREEN, add exactly four append-only consumer proof records for M02Q-T09 through M02Q-T12 without rewriting terminal Review bytes."
+family = "structured-review-acceptance-consumer-migration"
+independently_verifiable = true
+independently_useful = true
+falsifiable = true
+substantial = true
+scaffolding_only = false
+independently_consumed = true
+allocated_to = "jit:after-M02Q-T29"
+
+[sizing_audits.dimensions]
+independent_implementability = "The reusable product proof/verifier can be implemented and reviewed before consumer migration; the exact four-record Board mutation can then consume only the accepted mechanism."
+falsifiability_testability = "T29 owns product schema/verifier/router positives and negatives; downstream migration separately proves the exact T09-T12 inventory and composed serving state."
+reviewability = "One Card Review can assess the compatibility invariant without certifying consumer proof population, F03, milestone composition or M03."
+invariant_contract_family = "Product compatibility and exact consumer proof materialization are separable families inside milestone F02."
+dependency_ordering = "Consumes terminal T28 plus RF004 T13 and legacy-compatibility T26 foundations; consumer migration follows only after T29 GREEN."
+atomic_mutation_migration = "Product support lands fail-closed before any consumer proof exists; the intermediate consumer state remains safely blocked."
+cross_surface_coupling = "Board proof validation and routing/Close acceptance verification form one product invariant; exact consumer history inventory stays separate."
+
+[[topology_audits]]
+card_id = "M02Q-T29"
+risk = "simple"
+triggers = []
+risk_basis = "One product compatibility invariant plus an explicitly split downstream four-record consumer migration; no required-seam merger, milestone absorption or M03 scope."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
