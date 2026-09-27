@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 225
+revision = 226
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2566,6 +2566,10 @@ falsifiable = true
 substantial = true
 scaffolding_only = false
 independently_consumed = true
+
+[[late_oversize_returns.jit_resolutions]]
+trigger = "after-M02Q-T24"
+card = "M02Q-T25"
 
 
 # Residual anchor for M02Q-T23 late-oversize return.
