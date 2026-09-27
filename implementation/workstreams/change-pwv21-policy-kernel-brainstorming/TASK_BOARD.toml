@@ -3238,3 +3238,54 @@ review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
 
+# M02Q-T30 append-only migration proofs for the four structured-success
+# historical GREEN Reviews with path-only Task Card acceptance.
+
+[[review_acceptance_migrations]]
+card_id = "M02Q-T09"
+attempt_id = "R01"
+source_repository = "elmakus/chatgpt-codex-project-workflow"
+source_commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+source_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T09-R01.toml"
+source_blob = "36518e7ceafc412173335b8f2de4df0c8dd8ff8c"
+source_workstream = "change-pwv21-policy-kernel-brainstorming"
+source_card = "M02Q-T09"
+acceptance_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T09.md"
+acceptance_blob = "b26de9f74281fdbad056b3bbae61bb86e63d4ef6"
+
+[[review_acceptance_migrations]]
+card_id = "M02Q-T10"
+attempt_id = "R01"
+source_repository = "elmakus/chatgpt-codex-project-workflow"
+source_commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+source_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T10-R01.toml"
+source_blob = "8caccba6389810e861d32206028d944c0418ca26"
+source_workstream = "change-pwv21-policy-kernel-brainstorming"
+source_card = "M02Q-T10"
+acceptance_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T10.md"
+acceptance_blob = "20293174c6fb30dbb8f348bb71c2c9b79a242a25"
+
+[[review_acceptance_migrations]]
+card_id = "M02Q-T11"
+attempt_id = "R01"
+source_repository = "elmakus/chatgpt-codex-project-workflow"
+source_commit = "a90424383e0613b36c18affbf60c6868c54ffdfa"
+source_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T11-R01.toml"
+source_blob = "061010388a0661565327702fc8efdc524df11a37"
+source_workstream = "change-pwv21-policy-kernel-brainstorming"
+source_card = "M02Q-T11"
+acceptance_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T11.md"
+acceptance_blob = "e15aa88ff2d029d80e34cf119732183616876509"
+
+[[review_acceptance_migrations]]
+card_id = "M02Q-T12"
+attempt_id = "R01"
+source_repository = "elmakus/chatgpt-codex-project-workflow"
+source_commit = "6184b0dea00ce1f85d57dae8372c167de94eba66"
+source_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T12-R01.toml"
+source_blob = "d6725fe8999cbfab9b35f032d10c71062ed79024"
+source_workstream = "change-pwv21-policy-kernel-brainstorming"
+source_card = "M02Q-T12"
+acceptance_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T12.md"
+acceptance_blob = "ad626edf7b2fd5f1aaf4c9a9075b370380c57cc0"
+
