@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 232
+revision = 233
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2467,14 +2467,11 @@ atomicity_rationale = ""
 
 # Close residual OBL-M02Q-02 materialized after terminal M02Q-T22.
 # Execution Prep evidence: evidence/M02Q-T23_EXECUTION_PREP_2026-09-27.md.\n# Bounded contract correction: evidence/M02Q-T23_CONTRACT_CORRECTION_2026-09-27.md.
-[[cards]]
-id = "M02Q-T23"
-status = "returned"
-
-[cards.contract]
-class = "task_card"
-path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T23.md"
-
+# Current-main Recovery 2026-09-27: M02Q-T23 is not a live Card.
+# Its exact Card contract and late-oversize evidence remain immutable at
+# cards/M02Q-T23.md and evidence/M02Q-T23_LATE_OVERSIZE_2026-09-27.md.
+# The separable residual was materialized forward as M02Q-T24 then M02Q-T25;
+# no retroactive DONE Result/Review is manufactured for T23.
 [[sizing_audits]]
 card_id = "M02Q-T23"
 decision = "single"
@@ -2510,66 +2507,6 @@ risk_basis = "One RF006 Review-identity migration invariant over the exact 31+17
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
-
-
-[[jit_triggers]]
-id = "after-M02Q-T23"
-after_card = "M02Q-T23"
-state = "consumed"
-condition = "M02Q-T23 returned newly exposed separable RF006 legacy full-attempt-id compatibility plus consumer migration completion scope; hold it for Execution Prep re-decomposition and do not materialize M03."
-
-[jit_triggers.consumed_proof]
-card = "M02Q-T24"
-path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T24.md"
-commit = "7a121f701895cce5671c2a59fc2fb8821a660760"
-blob = "152fff18691596efa9e6d88d3c4d5b262f8c1788"
-
-[[late_oversize_returns]]
-card_id = "M02Q-T23"
-origin = "execution"
-origin_attempt = ""
-origin_attempt_path = ""
-state = "residual_bound"
-residual_card = "M02Q-T24"
-material_evidence = "Phase-1 exact verification preserves 42/48 Review identity records, while six historical M02-T01 R07-R12 attempts expose a separate RF006 full-attempt-id compatibility defect that T23 cannot self-authorize."
-preserved_refs = ["implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T23_LATE_OVERSIZE_2026-09-27.md"]
-preserved_basis = "At consumer commit a90424383e0613b36c18affbf60c6868c54ffdfa, 25 legacy attempts pass RF006 provenance plus exact locator proof and 17 current-schema attempts are byte-identical plus exact-locator valid; this evidence remains valid while the six-record compatibility residual is RED."
-residual_scope = "Add separately reviewed RF006 compatibility for the exact proven historical full attempt-id form without weakening current canonical identity, then finish all 48 consumer exact Board locators and full migration readback."
-residual_trigger = "after-M02Q-T23"
-bounded_correction_applies = false
-not_bug_basis = "The six-record failure is a separately falsifiable defect in the already GREEN RF006 serving verifier and requires its own product subject/review; it is not a bounded consumer-file correction inside T23."
-merges_required_seam = false
-seam_basis = "The residual remains inside the RF006/OBL-M02Q-02 seam and is split into product compatibility then consumer migration completion; no cross-RF seam is merged."
-preserves_history = true
-claims_green = false
-
-[[late_oversize_returns.residual_outcomes]]
-id = "rf006-legacy-full-attempt-id-compatibility"
-kind = "invariant"
-statement = "RF006 accepts exact uniquely proven legacy attempts whose historical attempt field already contains the Card prefix while preserving strict canonical identity for new/current attempts."
-family = "rf006-legacy-attempt-id-compatibility"
-independently_verifiable = true
-independently_useful = true
-falsifiable = true
-substantial = true
-scaffolding_only = false
-independently_consumed = true
-
-[[late_oversize_returns.residual_outcomes]]
-id = "rf006-consumer-review-identity-completion"
-kind = "useful_outcome"
-statement = "After RF006 compatibility is GREEN, the consumer completes exact commit+blob Board identity for all 48 path-only Review refs and proves all 31 legacy migrations plus 17 current-schema preservations."
-family = "rf006-consumer-review-identity-migration"
-independently_verifiable = true
-independently_useful = true
-falsifiable = true
-substantial = true
-scaffolding_only = false
-independently_consumed = true
-
-[[late_oversize_returns.jit_resolutions]]
-trigger = "after-M02Q-T24"
-card = "M02Q-T25"
 
 
 # Residual anchor for M02Q-T23 late-oversize return.
