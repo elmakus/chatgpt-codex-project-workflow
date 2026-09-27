@@ -1,7 +1,7 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 attempt = "M02Q-MILESTONE-R01"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-MILESTONE-R01_2026-09-27.md"
 
 [subject]
 class = "git_blob"
@@ -16,4 +16,4 @@ path = "planning/PWV21_POLICY_KERNEL_MASTER_PLAN_P7.md"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "M02Q Milestone R01 is frozen for a fresh independent milestone reviewer. The current context performed constituent Card review M02Q-T27 R01 and will not issue the milestone verdict. The assigned reviewer must reconstruct the complete M02Q milestone from accepted P7 authority, this exact Task Board subject, exact constituent artifacts and raw required evidence without using prior Card-review opinions as its correctness checklist."
+basis = "Fresh independent M02Q milestone discovery. This context did not materially produce or repair the exact frozen Task Board subject and did not perform any constituent M02Q Card review. Correctness was reconstructed from accepted P7 authority, exact frozen consumer state, exact constituent artifacts, raw durable evidence, direct composed-router readback, and an independent exact-product full-suite run without using prior Card-review verdict opinions as the correctness checklist."
