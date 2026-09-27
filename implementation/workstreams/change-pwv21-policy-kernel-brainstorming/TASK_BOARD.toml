@@ -3085,8 +3085,8 @@ path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/card
 [cards.result]
 class = "result"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T29.md"
-commit = "f53074824fb5ff4d1893b8aacfb2a5e15229ebb5"
-blob = "326aa14bf2ba04449888cd35ae2f33cb780ca666"
+commit = "7a7ce947aa589196cc0d93cf24d64d31b3c39dc7"
+blob = "114d80adea1f6c7bf7cd69094af842fb42708436"
 
 [[cards.review_attempts]]
 class = "review_attempt"
@@ -3099,6 +3099,12 @@ class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T29-R02.toml"
 commit = "3f4fcd4c3142e46ee75b096ddb94ceec10bd4fd3"
 blob = "26eeed8c0f753e065eb97fccd1435af68fd0111e"
+
+[[cards.review_attempts]]
+class = "review_attempt"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T29-R03.toml"
+commit = "efbbb392691eb4c4a68aa64c10806d7578a4144e"
+blob = "803d2c43312fa16ab87d6b45e078dcf9a28ffd13"
 
 [[jit_triggers]]
 id = "after-M02Q-T29"
