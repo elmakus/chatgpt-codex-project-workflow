@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 265
+revision = 266
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -3415,8 +3415,8 @@ condition = "After M02Q-T30 is DONE with fresh independent GREEN review, materia
 [jit_triggers.consumed_proof]
 card = "M02Q-T31"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T31.md"
-commit = "2b43a0dbc1e5ce2bd5b9642ff5e65c7c011380ca"
-blob = "06c59f9df110058a5efec44e9cb01adc119fe3ab"
+commit = "37d8dbf1528d2d0b50af65639e7b5a5b6db2f277"
+blob = "71342ffdc9f2b72eb75893ac50f427ac90657baf"
 
 [[sizing_audits]]
 card_id = "M02Q-T30"
