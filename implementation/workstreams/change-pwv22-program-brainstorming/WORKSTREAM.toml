@@ -20,3 +20,7 @@ path = "implementation/workstreams/change-pwv22-program-brainstorming/BRAINSTORM
 [definition]
 class = "definition"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/DEFINITION.toml"
+
+[planning]
+class = "planning"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/PLANNING.toml"
