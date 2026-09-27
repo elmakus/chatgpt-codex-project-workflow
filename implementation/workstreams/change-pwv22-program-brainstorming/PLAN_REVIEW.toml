@@ -1,0 +1,21 @@
+workstream_id = "change-pwv22-program-brainstorming"
+plan_revision = "P1"
+planning_cycle = 1
+attempt = "R01"
+verdict = "green"
+evidence_path = "implementation/workstreams/change-pwv22-program-brainstorming/evidence/PLAN_REVIEW_P1_R01_2026-09-27.md"
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "db341941a8409f890dab73a0c6a5619c8cd50f2b"
+path = "planning/PWV22_PROGRAM_MASTER_PLAN_P1.md"
+blob = "aa24572b991a8c5126c02bfe14957053f5d2f5cc"
+
+[acceptance]
+class = "authority"
+path = "requirements/PWV22_PROGRAM.md"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Fresh independent Premium-B review context examined the exact frozen P1 subject against Definition R4 requirements, ADR, M03-M07 anti-loss disposition, Planning-owned Simplification Review and planner audit; this context did not materially author or repair P1."
