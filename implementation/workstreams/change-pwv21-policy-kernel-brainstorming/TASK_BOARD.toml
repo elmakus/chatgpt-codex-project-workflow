@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 203
+revision = 204
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2364,7 +2364,7 @@ atomicity_rationale = ""
 
 
 # Close residual OBL-M02Q-02 materialized after terminal M02Q-T22.
-# Execution Prep evidence: evidence/M02Q-T23_EXECUTION_PREP_2026-09-27.md.
+# Execution Prep evidence: evidence/M02Q-T23_EXECUTION_PREP_2026-09-27.md.\n# Bounded contract correction: evidence/M02Q-T23_CONTRACT_CORRECTION_2026-09-27.md.
 [[cards]]
 id = "M02Q-T23"
 status = "in_progress"
@@ -2382,7 +2382,7 @@ rebuttal = ""
 [[sizing_audits.outcomes]]
 id = "legacy-rf006-review-migration"
 kind = "migration"
-statement = "Every current path-only terminal legacy Review relied on by the consumer Board is preserved semantically while gaining uniquely derived RF006 source provenance and exact current commit+blob identity."
+statement = "The exact 48 path-only Review refs are reconciled as 31 legacy-shaped attempts gaining uniquely derived RF006 source provenance plus 17 current-schema attempts preserved byte-identical; all 48 gain exact current commit+blob Board identity."
 family = "legacy-rf006-review-migration"
 independently_verifiable = true
 independently_useful = true
@@ -2393,9 +2393,9 @@ independently_consumed = true
 
 [sizing_audits.dimensions]
 independent_implementability = "This resolves only OBL-M02Q-02 using the already accepted RF006 proof mechanism; OBL-M02Q-03 and historical consumed-trigger proof migration remain separate downstream outcomes."
-falsifiability_testability = "The exact rev201 inventory has 48 path-only Review locators; migration is GREEN only when all 48 prove exact source provenance and exact current identity and stripping provenance reproduces source Review semantics."
+falsifiability_testability = "The exact rev201 inventory is 48 path-only Review locators = 31 legacy-shaped + 17 current-schema; GREEN requires RF006 provenance proof for all 31 legacy attempts, byte identity for all 17 current-schema attempts, and exact current Board identity for all 48."
 reviewability = "One local Card Review can assess the one repeated RF006 migration invariant over the exact inventory without certifying legacy Result compatibility, JIT-trigger migration or M02Q Milestone composition."
-invariant_contract_family = "One RF006 legacy Review identity/provenance migration family."
+invariant_contract_family = "One RF006 Review identity migration family: legacy provenance where applicable plus exact Board locator identity for the full affected inventory."
 dependency_ordering = "Consumes exact RF006 T11/T12 results plus terminal T22; OBL-M02Q-03, consumed-trigger migration and Milestone Review follow separately."
 atomic_mutation_migration = "Review-file provenance may land before Board exact locators, but acceptance requires both phases and exact readback; no historical Review semantic field may be rewritten."
 cross_surface_coupling = "Legacy Review files and their Board locators are the two representations of the same RF006 identity; they are reviewed as one migration outcome."
@@ -2404,7 +2404,7 @@ cross_surface_coupling = "Legacy Review files and their Board locators are the t
 card_id = "M02Q-T23"
 risk = "simple"
 triggers = []
-risk_basis = "One RF006 migration invariant repeated over the exact 48-item inventory; no seam merge, multiple invariant families, preferred-seam deviation, milestone absorption or M03 scope."
+risk_basis = "One RF006 Review-identity migration invariant over the exact 31+17=48 inventory; no seam merge, multiple invariant families, preferred-seam deviation, milestone absorption or M03 scope."
 review_scope = "card_local"
 atomicity_rationale_class = ""
 atomicity_rationale = ""
