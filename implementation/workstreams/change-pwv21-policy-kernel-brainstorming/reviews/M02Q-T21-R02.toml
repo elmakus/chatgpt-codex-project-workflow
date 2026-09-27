@@ -1,0 +1,33 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02Q-T21"
+attempt = "R02"
+verdict = "pending"
+evidence_path = ""
+review_kind = "closure_verification"
+source_discovery_attempt = "R01"
+discovery_complete = false
+material_finding_ids = ["M02Q-T21-F01", "M02Q-T21-F02"]
+review_scope = "card"
+review_epoch = "E01"
+epoch_reset_basis = ""
+material_defect_class_ids = ["close-terminal-proof-composition"]
+failed_material_defect_class_ids = []
+post_convergence_validation = false
+convergence_basis = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "25ec845925f7c7d9c4835447a3cdf5d2cdf5ec87"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T21.md"
+blob = "4726fbcfeb7121b823417d0b8dd637011b17b2bb"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T21.md"
+commit = "95eb5a12956574e387ea20c76811227fb33f0d1f"
+blob = "30bab518aeb2b6e0a3d3a0454b986403ba30c986"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Pending exact R02 closure verification is frozen for a fresh independent context. The current context materially repaired the M02Q-T21 subject after R01 RED and is not eligible to issue the independent closure verdict."
