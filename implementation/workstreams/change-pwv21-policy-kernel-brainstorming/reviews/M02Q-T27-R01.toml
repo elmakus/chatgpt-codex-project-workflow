@@ -1,11 +1,11 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02Q-T27"
 attempt = "R01"
-verdict = "pending"
-evidence_path = ""
+verdict = "green"
+evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T27_REVIEW_R01_2026-09-27.md"
 review_kind = "discovery"
 source_discovery_attempt = ""
-discovery_complete = false
+discovery_complete = true
 material_finding_ids = []
 review_scope = "card"
 review_epoch = "E01"
@@ -30,4 +30,4 @@ blob = "da2fef9a57875bf76be5da891f57a6c250a51346"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "R01 is frozen for a fresh independent reviewer. The coordinating context that produced the exact T27 Result will not issue the verdict; the assigned reviewer must reconstruct correctness from accepted authority, the exact Card/Result subject and raw evidence without using prior verdict rationale as its checklist."
+basis = "Fresh independent R01 full-scope discovery reconstructed T27 correctness from accepted authority, the exact current Card and Result, the frozen source Board and historical Result blobs, exact product compatibility code, independent Git checkout execution and raw readback. This reviewer did not materially produce or repair the reviewed Result or implementation subject; prior review verdict rationales were not used as the acceptance checklist."
