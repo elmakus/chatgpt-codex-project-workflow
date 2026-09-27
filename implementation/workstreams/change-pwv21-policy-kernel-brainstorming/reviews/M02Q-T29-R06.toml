@@ -1,0 +1,33 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02Q-T29"
+attempt = "R06"
+verdict = "pending"
+evidence_path = ""
+review_kind = "discovery"
+source_discovery_attempt = ""
+discovery_complete = false
+material_finding_ids = []
+review_scope = "card"
+review_epoch = "E01"
+epoch_reset_basis = ""
+material_defect_class_ids = []
+failed_material_defect_class_ids = []
+post_convergence_validation = false
+convergence_basis = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "7c68a40466d52a681842427d2d4b1d07d4606142"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T29.md"
+blob = "222abf82b59b76b5ee2168bffaa107eed159b17e"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T29.md"
+commit = "9727f54f4750eb120db60ef4523a2c14682ca73a"
+blob = "cf14f65f5ceac63acae653371b7071dcf5b836cd"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "R06 is reserved for the mandatory fresh independent full-scope discovery review after R05 closed all known R04 findings. The current R05 closure-verification context is not the fresh reviewer assignment required by ADR-PWV21-004/PWV21-REQ-137 and therefore must not issue the R06 discovery verdict."
