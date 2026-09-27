@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 181
+revision = 182
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -2226,6 +2226,12 @@ status = "in_progress"
 [cards.contract]
 class = "task_card"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T21.md"
+
+[cards.result]
+class = "result"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T21.md"
+commit = "db5f66a3b257a5e96b4e77048809127c2f55f1ff"
+blob = "746eff9b54d117c913cff8b0680fe5946f72f74b"
 
 [[sizing_audits]]
 card_id = "M02Q-T21"
