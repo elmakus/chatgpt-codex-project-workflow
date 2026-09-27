@@ -1,5 +1,5 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
-revision = 257
+revision = 258
 
 [execution_ref]
 branch = "work/pwv21-policy-kernel-brainstorming"
@@ -3103,8 +3103,14 @@ blob = "26eeed8c0f753e065eb97fccd1435af68fd0111e"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T29-R03.toml"
-commit = "efbbb392691eb4c4a68aa64c10806d7578a4144e"
-blob = "803d2c43312fa16ab87d6b45e078dcf9a28ffd13"
+commit = "2bfff528c127799ff49e99891345b59c48a3c444"
+blob = "22d2eb9fe8f0e8a92d4b9ae99b3e3902a5591dc9"
+
+[[cards.review_attempts]]
+class = "review_attempt"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-T29-R04.toml"
+commit = "6d21bcd3db478e68c7b21c7d4e49f8d88676f301"
+blob = "473451496e99b8730e938f6f6493bec148425a37"
 
 [[jit_triggers]]
 id = "after-M02Q-T29"
