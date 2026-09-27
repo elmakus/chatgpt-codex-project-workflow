@@ -1,0 +1,33 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02Q-T22"
+attempt = "R01"
+verdict = "pending"
+evidence_path = ""
+review_kind = "discovery"
+source_discovery_attempt = ""
+discovery_complete = false
+material_finding_ids = []
+review_scope = "card"
+review_epoch = "E01"
+epoch_reset_basis = ""
+material_defect_class_ids = []
+failed_material_defect_class_ids = []
+post_convergence_validation = false
+convergence_basis = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "0bca8c24c1d0f565b3971ea370f5cdbb8f4065f8"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T22.md"
+blob = "6ba7434e4bb8134dcbcc4b3b8c91df1595b95090"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T22.md"
+commit = "e76393d966ac5e30eb578645d0c000be495c41aa"
+blob = "bae478eccef547ff9ecf91f3944ec7506609bdc9"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "R01 is frozen for a fresh independent reviewer context. The current execution context materially repaired the T22 product subject and produced the exact semantic Result, so it is not eligible to issue this verdict."
