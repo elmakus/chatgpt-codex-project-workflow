@@ -1,7 +1,7 @@
-# PWv2.2 Program Brainstorming — Revision 20
+# PWv2.2 Program Brainstorming — Revision 21
 
-Status: PROMOTED TO DEFINITION
-Scope subject: `pwv22-program@20`
+Status: ACTIVE FORMAL BRAINSTORMING
+Scope subject: `pwv22-program@21`
 Authority: exploratory only; not Definition
 
 ## 1. Goal
@@ -505,3 +505,62 @@ The owner deliberately adopts a stronger product policy than the research YAGNI 
 No further material owner/product questions remain in Revision 20.
 
 Revision 20 was explicitly owner-authorized and promoted as exact subject `pwv22-program@20`.
+
+
+## 30. Revision 21 — ChatGPT Project bootstrap and durable workflow-state backend
+
+Revision 21 reopens Brainstorming before Planning because two newly surfaced product questions can materially change PWv2.2 delivery and state architecture. Prior R5 remains durable historical Definition authority for `pwv22-program@20`, but its promotion is stale for this expanded scope until Revision 21 is challenged, promoted and re-defined.
+
+### 30.1 ChatGPT Project Instructions bootstrap
+
+Current canonical prior art already exists at:
+
+- `elmakus/project_workflow_v2:prompts/CHATGPT_PROJECT_INSTRUCTIONS.md`;
+- `elmakus/project_workflow_v2:prompts/CHATGPT_FRESH_SESSION.md`;
+- `elmakus/project_workflow_v2:decisions/ADR_PROJECT_WORKFLOW_V2_DELIVERY_BOOTSTRAP.md`.
+
+The product should retain one small reusable Project-Instructions template in the canonical Project Workflow repository rather than duplicating bespoke bootstrap prose per project.
+
+Current recommended shape to challenge before Definition:
+1. identify the canonical live Project Workflow repository and instruct the receiver to read `workflow/ROUTER.md` from its current default branch;
+2. identify the exact consumer repository `<owner/repository>`;
+3. identify the non-authoritative orchestration protocol locator `elmakus/project-research:COORDINATOR_PROTOCOL.md` and state that it is used only for Research/swarm orchestration, never as workflow authority;
+4. require recovery from the consumer `PROJECT.md`, exact selected workstream and router-required durable pointers rather than chat memory;
+5. prohibit copying/pinning workflow semantics into Project Instructions merely for ordinary update propagation;
+6. keep branch/workstream/session/model identity out of the persistent Project Instructions unless a project has an explicit fixed need; transient exact branch/workstream entry belongs in the fresh-session locator/handoff;
+7. make the template directly fillable by ChatGPT and suitable for copy/paste into Android ChatGPT Project Instructions.
+
+Open bootstrap question after repository inspection:
+- whether the persistent template needs any additional stable locator beyond workflow repo/router, consumer repo and Coordinator Protocol. Avoid adding fields merely because they may be useful in one session.
+
+### 30.2 Durable workflow-state backend — Research required
+
+Owner question:
+
+> Should PWv2.2 continue to keep canonical Milestones, Cards, Task Board, Results, Review Attempts, gates and related durable workflow state in Git/GitHub repository files, or should some/all of that state move to GitHub Issues/Projects, Linear or another project-management system?
+
+The decision must account for:
+- deterministic routing and exact-subject identity;
+- guarded writes/CAS/readback and crash recovery;
+- immutable history, branching and reviewability;
+- current `project_workflow_v2` validators/router/helpers and how much they depend on Git-native files;
+- human/mobile usability and visual project tracking;
+- API/connector reliability from ChatGPT and Pi/Paseo;
+- concurrency and transactional consistency;
+- vendor lock-in/export/offline/recovery;
+- split-brain risk in hybrid models;
+- implementation and maintenance complexity/YAGNI;
+- whether external trackers are best treated as projections/bookkeeping rather than canonical authority.
+
+No backend choice is made in Revision 21 before the formal Research result is consumed.
+
+### 30.3 Return condition
+
+Formal Research returns to Brainstorming exact subject `pwv22-program@21`.
+
+After Research:
+1. reconcile the evidence;
+2. make the backend/product choice;
+3. finish the bootstrap-template choice;
+4. run a Revision-21 whole-scope challenge;
+5. only then mark ready_for_definition and request exact promotion.

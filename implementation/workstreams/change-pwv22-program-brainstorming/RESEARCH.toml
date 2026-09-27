@@ -1,0 +1,30 @@
+workstream_id = "change-pwv22-program-brainstorming"
+state = "active"
+origin_role = "brainstorming"
+origin_subject = "pwv22-program@21"
+return_target = "brainstorming"
+return_reconciliation = "pending"
+return_result = ""
+finding = ""
+limitations = ""
+conflicts = ""
+
+[[sources]]
+class = "official_upstream"
+status = "pending"
+weight = "primary"
+
+[[sources]]
+class = "project_runtime"
+status = "pending"
+weight = "direct"
+
+[[sources]]
+class = "tracker_discussion"
+status = "pending"
+weight = "supporting"
+
+[[sources]]
+class = "practitioner_community"
+status = "pending"
+weight = "supporting"

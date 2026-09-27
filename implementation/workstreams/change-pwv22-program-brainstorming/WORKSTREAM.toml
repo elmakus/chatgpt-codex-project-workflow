@@ -17,6 +17,10 @@ path = "implementation/workstreams/change-pwv22-program-brainstorming/INTAKE.tom
 class = "brainstorm"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/BRAINSTORM.toml"
 
+[research]
+class = "research"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/RESEARCH.toml"
+
 [definition]
 class = "definition"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/DEFINITION.toml"
