@@ -1,0 +1,33 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02Q-T30"
+attempt = "R01"
+verdict = "pending"
+evidence_path = ""
+review_kind = "discovery"
+source_discovery_attempt = ""
+discovery_complete = false
+material_finding_ids = []
+review_scope = "card"
+review_epoch = "E01"
+epoch_reset_basis = ""
+material_defect_class_ids = []
+failed_material_defect_class_ids = []
+post_convergence_validation = false
+convergence_basis = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "e05352154fb24448abd1b05f87ef91693a8e80f0"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T30.md"
+blob = "609c10f0beb9126f10b5c53de8676fbc0b6339c3"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T30.md"
+commit = "f05d3c23c7fb4ec80d95c5f6d16d4559326b6c3e"
+blob = "33cc2e1f977ad4953eb00a2171fb448cef838626"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "R01 is reserved for a fresh independent full-scope reviewer. The current coordinator materialized and executed M02Q-T30 and therefore must not issue this Card Review verdict."
