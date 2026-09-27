@@ -1,16 +1,16 @@
 workstream_id = "change-pwv21-policy-kernel-brainstorming"
 card_id = "M02Q-T26"
-attempt = "R02"
-verdict = "green"
-evidence_path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-T26_REVIEW_R02_2026-09-27.md"
-review_kind = "closure_verification"
-source_discovery_attempt = "R01"
+attempt = "R03"
+verdict = "pending"
+evidence_path = ""
+review_kind = "discovery"
+source_discovery_attempt = ""
 discovery_complete = false
-material_finding_ids = ["M02Q-T26-F01"]
+material_finding_ids = []
 review_scope = "card"
 review_epoch = "E01"
 epoch_reset_basis = ""
-material_defect_class_ids = ["legacy-result-source-locator-integrity"]
+material_defect_class_ids = []
 failed_material_defect_class_ids = []
 post_convergence_validation = false
 convergence_basis = ""
@@ -30,4 +30,4 @@ blob = "d91ae89c674b200c2e28967f0155c637933c0f99"
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Fresh independent R02 closure-verification context did not materially produce or repair the exact repaired Result or corrected product implementation; it verified the R01 finding, repair diff, regression evidence and materially implicated legacy-result provenance blast radius."
+basis = "Pending R03 is reserved for the mandatory fresh independent full-scope discovery reviewer after R02 closure. The R02 closure-verification reviewer must not issue this fresh-discovery verdict."
