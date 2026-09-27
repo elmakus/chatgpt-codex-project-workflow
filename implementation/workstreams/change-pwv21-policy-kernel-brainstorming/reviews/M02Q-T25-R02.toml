@@ -1,0 +1,33 @@
+workstream_id = "change-pwv21-policy-kernel-brainstorming"
+card_id = "M02Q-T25"
+attempt = "R02"
+verdict = "pending"
+evidence_path = ""
+review_kind = "discovery"
+source_discovery_attempt = ""
+discovery_complete = false
+material_finding_ids = []
+review_scope = "card"
+review_epoch = "E01"
+epoch_reset_basis = ""
+material_defect_class_ids = []
+failed_material_defect_class_ids = []
+post_convergence_validation = false
+convergence_basis = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "0701d5eebf85f5b8d21728f9de60d7712173a52c"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/results/M02Q-T25.md"
+blob = "8e994a1a469b8617df4bbbebbc4a5c46f18d2721"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/cards/M02Q-T25.md"
+commit = "32735f247c6135c81976824d0db3fa407cbcd156"
+blob = "585935ee14efe7c838f74b45c876e29ccc55f1c7"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Fresh full-scope discovery is required after bounded Card acceptance-fidelity correction. This context did not materially produce or repair the exact T25 Result or implementation subject; the stable-card metadata correction does not alter subject-relative independence."
