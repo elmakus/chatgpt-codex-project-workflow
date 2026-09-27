@@ -1,6 +1,6 @@
 # PWv2.2 Program Brainstorming — Revision 20
 
-Status: READY FOR DEFINITION
+Status: PROMOTED TO DEFINITION
 Scope subject: `pwv22-program@20`
 Authority: exploratory only; not Definition
 
@@ -504,4 +504,4 @@ The owner deliberately adopts a stronger product policy than the research YAGNI 
 
 No further material owner/product questions remain in Revision 20.
 
-Revision 20 is `ready_for_definition`, but promotion still requires explicit owner authorization for the exact subject `pwv22-program@20`.
+Revision 20 was explicitly owner-authorized and promoted as exact subject `pwv22-program@20`.
