@@ -1,0 +1,408 @@
+{
+  "schema": "pwv22-host-recovery-oracle-v1",
+  "cases": [
+    {
+      "id": "handoff-chatgpt-to-pi",
+      "req": [
+        58,
+        92,
+        93,
+        94
+      ],
+      "kind": "host",
+      "input": {
+        "direction": "chatgpt->pi",
+        "remote_commit": "exact"
+      },
+      "expected": {
+        "reconstruct": true,
+        "local_only": false
+      },
+      "actual_required": "installed Pi/Paseo receiver readback"
+    },
+    {
+      "id": "handoff-pi-to-chatgpt",
+      "req": [
+        58,
+        92,
+        93,
+        94
+      ],
+      "kind": "host",
+      "input": {
+        "direction": "pi->chatgpt",
+        "remote_commit": "exact"
+      },
+      "expected": {
+        "reconstruct": true
+      },
+      "actual_required": "fresh ChatGPT receiver readback"
+    },
+    {
+      "id": "handoff-chatgpt-to-chatgpt",
+      "req": [
+        92,
+        93,
+        94
+      ],
+      "kind": "host",
+      "input": {
+        "direction": "chatgpt->chatgpt"
+      },
+      "expected": {
+        "reconstruct": true
+      },
+      "actual_required": "fresh ChatGPT context"
+    },
+    {
+      "id": "handoff-pi-to-pi",
+      "req": [
+        92,
+        93,
+        94
+      ],
+      "kind": "host",
+      "input": {
+        "direction": "pi->pi"
+      },
+      "expected": {
+        "reconstruct": true
+      },
+      "actual_required": "fresh Pi Main"
+    },
+    {
+      "id": "package-compatible",
+      "req": [
+        89,
+        90,
+        91
+      ],
+      "kind": "package",
+      "input": {
+        "installed": "compatible_official"
+      },
+      "expected": {
+        "source": "package",
+        "authority": "git_release"
+      },
+      "actual_required": "installed package provenance readback"
+    },
+    {
+      "id": "package-fallback",
+      "req": [
+        90,
+        91
+      ],
+      "kind": "package",
+      "input": {
+        "installed": "absent_or_incompatible"
+      },
+      "expected": {
+        "source": "canonical_git"
+      },
+      "actual_required": "fallback resolution readback"
+    },
+    {
+      "id": "mutant-trust-latest",
+      "req": [
+        89,
+        90
+      ],
+      "kind": "mutant",
+      "input": {
+        "selection": "latest"
+      },
+      "expected": {
+        "accepted": false
+      }
+    },
+    {
+      "id": "mutant-wrong-provenance",
+      "req": [
+        89,
+        90
+      ],
+      "kind": "mutant",
+      "input": {
+        "official_identity": false
+      },
+      "expected": {
+        "accepted": false
+      }
+    },
+    {
+      "id": "mutant-local-only",
+      "req": [
+        94
+      ],
+      "kind": "mutant",
+      "input": {
+        "remote_contains_commit": false
+      },
+      "expected": {
+        "accepted": false
+      }
+    },
+    {
+      "id": "mutant-duplicate-slot",
+      "req": [
+        95,
+        96
+      ],
+      "kind": "mutant",
+      "input": {
+        "active_same_branch_slots": 2
+      },
+      "expected": {
+        "accepted": false
+      }
+    },
+    {
+      "id": "mutant-archive-parent",
+      "req": [
+        88
+      ],
+      "kind": "mutant",
+      "input": {
+        "parent_archived": true,
+        "descendants_checked": false
+      },
+      "expected": {
+        "all_closed": false
+      }
+    },
+    {
+      "id": "mutant-clean-merge-semantic-mismatch",
+      "req": [
+        84
+      ],
+      "kind": "mutant",
+      "input": {
+        "git_conflict": false,
+        "semantic_compatible": false
+      },
+      "expected": {
+        "accepted": false
+      }
+    },
+    {
+      "id": "busy-message",
+      "req": [
+        88
+      ],
+      "kind": "lifecycle",
+      "input": {
+        "recipient": "busy"
+      },
+      "expected": {
+        "fifo_assumed": false,
+        "cleanup_readback": true
+      },
+      "actual_required": "Pi/Paseo lifecycle observation"
+    },
+    {
+      "id": "review-contamination",
+      "req": [
+        82,
+        83
+      ],
+      "kind": "review",
+      "input": {
+        "preverdict_implementer_message": true
+      },
+      "expected": {
+        "review_valid": false
+      },
+      "actual_required": "independent Review contamination observation"
+    },
+    {
+      "id": "restart-recovery",
+      "req": [
+        60,
+        80,
+        87
+      ],
+      "kind": "recovery",
+      "retain": [
+        "canonical_git",
+        "published_contracts",
+        "native_paseo_evidence"
+      ],
+      "delete": [
+        "chat_memory",
+        "session_state",
+        "helper_cache",
+        "disposable_projection"
+      ],
+      "expected": {
+        "same_legal_continuation": true,
+        "no_replay": true
+      },
+      "actual_required": "disposable destructive fixture"
+    },
+    {
+      "id": "stale-generation",
+      "req": [
+        80,
+        87
+      ],
+      "kind": "recovery",
+      "input": {
+        "result_generation": "old",
+        "authority_generation": "new"
+      },
+      "expected": {
+        "accepted": false
+      }
+    },
+    {
+      "id": "legacy-v1",
+      "req": [
+        62
+      ],
+      "kind": "legacy",
+      "input": {
+        "generation": "v1"
+      },
+      "expected": {
+        "accepted": false,
+        "bytes_unchanged": true,
+        "writes": 0
+      }
+    },
+    {
+      "id": "legacy-v20",
+      "req": [
+        62
+      ],
+      "kind": "legacy",
+      "input": {
+        "generation": "v2.0"
+      },
+      "expected": {
+        "accepted": false,
+        "bytes_unchanged": true,
+        "writes": 0
+      }
+    },
+    {
+      "id": "legacy-v21",
+      "req": [
+        62
+      ],
+      "kind": "legacy",
+      "input": {
+        "generation": "v2.1"
+      },
+      "expected": {
+        "accepted": false,
+        "bytes_unchanged": true,
+        "writes": 0
+      }
+    },
+    {
+      "id": "r6-p0-config",
+      "req": [
+        81,
+        87
+      ],
+      "kind": "r6",
+      "input": {
+        "family": "P0"
+      },
+      "expected": {
+        "failure_detected": "missing_or_drifted_injection_config"
+      },
+      "actual_required": "installed config/tool injection"
+    },
+    {
+      "id": "r6-p1-worktree",
+      "req": [
+        78,
+        81
+      ],
+      "kind": "r6",
+      "input": {
+        "family": "P1"
+      },
+      "expected": {
+        "failure_detected": "workspace_or_isolation_mismatch"
+      },
+      "actual_required": "native child/worktree"
+    },
+    {
+      "id": "r6-p2-review-envelope",
+      "req": [
+        81,
+        83
+      ],
+      "kind": "r6",
+      "input": {
+        "family": "P2"
+      },
+      "expected": {
+        "failure_detected": "review_write_escape"
+      },
+      "actual_required": "fresh Review publication"
+    },
+    {
+      "id": "r6-p3-messaging",
+      "req": [
+        82,
+        88
+      ],
+      "kind": "r6",
+      "input": {
+        "family": "P3"
+      },
+      "expected": {
+        "failure_detected": "contamination_or_busy_fifo_assumption"
+      },
+      "actual_required": "peer messaging"
+    },
+    {
+      "id": "r6-p4-lifecycle",
+      "req": [
+        88
+      ],
+      "kind": "r6",
+      "input": {
+        "family": "P4"
+      },
+      "expected": {
+        "failure_detected": "dirty_or_descendant_cleanup_loss"
+      },
+      "actual_required": "stop/readback/archive"
+    },
+    {
+      "id": "r6-p5-restart",
+      "req": [
+        80,
+        87
+      ],
+      "kind": "r6",
+      "input": {
+        "family": "P5"
+      },
+      "expected": {
+        "failure_detected": "replay_or_stale_accept"
+      },
+      "actual_required": "fresh Main recovery"
+    },
+    {
+      "id": "r6-p6-fanin",
+      "req": [
+        54,
+        84
+      ],
+      "kind": "r6",
+      "input": {
+        "family": "P6"
+      },
+      "expected": {
+        "failure_detected": "unadmitted_or_semantically_incompatible_fanin"
+      },
+      "actual_required": "finite admission + serial fan-in"
+    }
+  ]
+}
