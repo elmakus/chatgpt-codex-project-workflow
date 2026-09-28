@@ -1,9 +1,9 @@
 workstream_id = "change-pwv22-program-brainstorming"
-source_scope_subject = "pwv22-program@20"
-revision = "R5"
-state = "green"
-completeness_audit = "green"
-premium_a = "due"
+source_scope_subject = "pwv22-program@22"
+revision = "R6"
+state = "active"
+completeness_audit = "pending"
+premium_a = "blocked"
 decisions = [
   { class = "authority", path = "decisions/ADR_PWV22_PROGRAM.md" },
   { class = "authority", path = "decisions/PWV22_M03_M07_DISPOSITION_R4.md" },
@@ -12,3 +12,9 @@ decisions = [
 [requirements]
 class = "authority"
 path = "requirements/PWV22_PROGRAM.md"
+
+[qualification]
+class = "evidence"
+path = "definition/PWV22_PI_PASEO_QUALIFICATION_R6.md"
+state = "pending"
+required = ["P0", "P1", "P2", "P3", "P4", "P5", "P6"]
