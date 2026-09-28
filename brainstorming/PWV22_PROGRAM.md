@@ -770,3 +770,43 @@ Current recommendations for owner disposition:
 - adopt the Revision-21 bootstrap draft shape with no additional stable locator fields.
 
 No Definition promotion may occur until these inherited owner choices are resolved and the final challenge is rerun/closed GREEN.
+
+
+## 36. Revision 22 inherited Revision 21 owner decisions
+
+The owner resolves the three inherited Revision-21 choices:
+
+1. **Canonical workflow-state backend remains Git-native.** Milestones, Cards, Task Board semantic state, Results, Review Attempts, gates, exact dependency/result bindings and other durable workflow authority remain in Git/GitHub repository state. No tracker becomes canonical authority.
+
+2. **No GitHub Projects / Linear projection in PWv2.2 scope.** The previously researched external projection idea is rejected for the current PWv2.2 program rather than merely deferred from the core release. PWv2.2 does not add GitHub Projects, Linear or another tracker as a projection/dashboard subsystem. A future separate owner decision may reopen that UX idea if a concrete need arises.
+
+3. **ChatGPT Project Instructions bootstrap adopted in minimalist form.** Persistent Project Instructions carry only stable bootstrap locators: canonical Project Workflow repository/router, consumer repository and the non-authoritative Coordinator Protocol locator. Transient branch/workstream/Card/model/session/current-research state remains excluded and belongs in exact locator-only handoffs.
+
+These choices close the remaining inherited Revision-21 owner decisions for `pwv22-program@22`.
+
+## 37. Revision 22 final whole-scope challenge closure
+
+Challenge result: **GREEN**.
+
+The final challenge rechecked the complete current Revision-22 scope after consuming the Pi/Paseo subagent Research and resolving the inherited Revision-21 decisions.
+
+The resulting PWv2.2 direction is internally consistent:
+
+- Git remains the sole canonical durable workflow authority; no tracker/projection subsystem is included in current scope.
+- ChatGPT Project Instructions remain a small bootstrap locator rather than a copied workflow policy/state store.
+- Pi/Paseo is the intended execution substrate from post-Planning/Initial Execution Prep through ordinary Execution, Review, bounded repair, parallel work, integration/fan-in and recovery until the mandatory Final Qualification Handoff.
+- Native Paseo managed agents/workspaces/worktrees are the default subagent substrate.
+- Pi runs as the execution provider; no third-party Pi subagent package or full orchestration-runtime is installed/configured prospectively.
+- Runtime complexity is evidence-triggered: begin with native Paseo + configuration/skills; add only the smallest thin reconstructible PW/Pi helper where P0-P6 prove deterministic code is needed; third-party extensions/full OR require stronger failed-evidence gates.
+- P0-P6 are development/qualification evidence for the PWv2.2 Pi/Paseo realization, not ordinary canonical lifecycle stages for projects using released PWv2.2.
+- Generic bounded assignments are canonical; role labels are optional runtime/UX presets only.
+- Direct child↔child communication is Main-mediated by default and may be explicitly admitted only inside a bounded non-independent envelope; implementer↔Reviewer pre-verdict communication and semantic authority transfer remain forbidden.
+- Review uses canonical integrity/detect-and-reject as the baseline enforcement target; hard physical prevention is added only where an exact accepted obligation requires it.
+- Review RED -> bounded repair remains, with narrow known-finding recheck distinguished from fresh independent full-scope closure after material repair.
+- Parallel fan-in has exactly one mutating integration owner, which may be a dedicated Paseo integration subagent. Main retains semantic authority, exact Result/order/scope admission and final readback.
+- The old orchestration-runtime is frozen/archived as prior-art, invariant and regression/fault-test donor; its backlog/control plane is not resumed.
+- Pi/Paseo ownership stops at the mandatory Final Qualification Handoff; the researched Final Qualification tail remains ChatGPT-owned.
+
+No unresolved material owner/product question remains in Revision 22. Technical uncertainties are bounded by the P0-P6 qualification evidence and do not justify another Brainstorming Research cycle.
+
+Revision 22 is ready for Definition promotion, but promotion still requires explicit owner authorization for the exact subject `pwv22-program@22`.
