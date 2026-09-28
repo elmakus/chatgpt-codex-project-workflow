@@ -1,8 +1,8 @@
 workstream_id = "change-pwv22-program-brainstorming"
 card_id = "M01-S05-T01"
 attempt = "M01-S05-T01-R01"
-verdict = "pending"
-evidence_path = ""
+verdict = "red"
+evidence_path = "implementation/workstreams/change-pwv22-program-brainstorming/evidence/M01-S05-T01-R01.md"
 
 [subject]
 class = "git_blob"
@@ -17,4 +17,4 @@ path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M01-
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Pending R01 requires a fresh independent reviewer that did not materially produce or repair the exact implementation/Result subject. The producing context freezes this obligation but does not issue its verdict."
+basis = "Independent review context did not materially produce or repair the exact implementation/Result subject. Review inspected the frozen Result, exact product implementation commit and accepted R7/P2 S05 authority."
