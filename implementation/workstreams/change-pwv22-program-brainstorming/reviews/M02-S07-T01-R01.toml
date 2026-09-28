@@ -1,0 +1,20 @@
+workstream_id = "change-pwv22-program-brainstorming"
+card_id = "M02-S07-T01"
+attempt = "M02-S07-T01-R01"
+verdict = "pending"
+evidence_path = "implementation/workstreams/change-pwv22-program-brainstorming/evidence/M02-S07-T01-R01.md"
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "7e081f29d91b6ead992d730755bfe200a755cbb3"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/results/M02-S07-T01.md"
+blob = "d1164621bc8607eea99462681594d03ea2b1bb15"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-S07-T01.md"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Fresh continuation context did not materially produce or repair the exact S07 implementation/Result subject; review is frozen before verdict."
