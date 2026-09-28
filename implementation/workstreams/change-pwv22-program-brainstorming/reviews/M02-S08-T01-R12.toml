@@ -1,0 +1,21 @@
+workstream_id = "change-pwv22-program-brainstorming"
+card_id = "M02-S08-T01"
+attempt = "M02-S08-T01-R12"
+verdict = "GREEN"
+
+evidence_path = "implementation/workstreams/change-pwv22-program-brainstorming/evidence/M02-S08-T01-R12_REVIEW.md"
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "054fe5821a15787ba22ae3e65d1f167f432f22ad"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/results/M02-S08-T01.md"
+blob = "ab009167e73436993ea9fd2b5eebf0cde3b3aab3"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-S08-T01.md"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Fresh independent recovery review of the exact still-current S08 subject. This context did not materially produce or repair the Result or implementation subject. R11 remains immutable but is not used as valid independent acceptance because its canonical metadata records non-independence."
