@@ -14,6 +14,7 @@ authority = [
   { class = "authority", path = "decisions/ADR_PWV21_LIVE_VALIDATION.md" },
   { class = "authority", path = "decisions/ADR_PWV21_EXECUTION_DISCIPLINE.md" },
   { class = "authority", path = "decisions/ADR_PWV21_RECOVERY_MIGRATION_HANDOFF.md" },
+  { class = "authority", path = "decisions/PWV21_PRE_M03_DONOR_SUPERSESSION_R1.md" },
 ]
 
 [intake]
