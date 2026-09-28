@@ -1,0 +1,19 @@
+workstream_id = "change-pwv22-program-brainstorming"
+card_id = "M02-S09-T01"
+attempt = "M02-S09-T01-R01"
+verdict = "pending"
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "1095513b629fdb68b9284fa26a244dbce2bba125"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/results/M02-S09-T01.md"
+blob = "44e76450c9e8af8bec0b6aee6a23e752bbe26efa"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-S09-T01.md"
+
+[independence]
+materially_produced_or_repaired_subject = true
+basis = "Current continuation context materially produced the exact S09 implementation and Result subject; a fresh qualifying context is required for the independent R04/R01 verdict."
