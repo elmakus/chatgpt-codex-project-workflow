@@ -11,8 +11,8 @@ Purpose: disposable-fixture evidence for Requirements 77-85. This evidence does 
 | --- | --- | --- |
 | P0 | bridge/config/tool-injection preflight | GREEN |
 | P1 | native child/worktree baseline | GREEN |
-| P2 | fresh Review + exact publication/write envelope | PENDING |
-| P3 | communication semantics/contamination | PENDING |
+| P2 | fresh Review + exact publication/write envelope | GREEN |
+| P3 | communication semantics/contamination | GREEN |
 | P4 | lifecycle/cancel/archive/cleanup | PENDING |
 | P5 | Main restart + lost notification + stale generation fencing | PENDING |
 | P6 | explicit finite parallel fixture + serial fan-in + integrated compatibility | PENDING |
@@ -72,3 +72,48 @@ Independent Git readback inside the fixture:
 - Paseo reports separate worktree workspaces for A and B and local workspace for Main/read-only child.
 
 Disposition: native Paseo is sufficient for parented child creation, same-workspace read-only delegation, concurrent isolated worktree mutation and exact result readback. No third-party Pi subagent extension is justified by P1.
+
+
+## P2 — GREEN
+
+Exact implementation subject: `b58b359d33afc7a05bcc958f1931b252f155767a`.
+
+Negative Reviewer:
+- fresh worktree branch `pwv22-p2-bad-review`;
+- final commit `b3f2678c2f4f7cffd56fa5c16699f5d8666b1089`;
+- changed `b.txt` plus `review/P2_ATTEMPT.md`;
+- independent publication gate compared the exact review branch to the frozen subject and returned `GATE=REJECT` because a non-`review/**` path changed.
+
+Positive Reviewer:
+- fresh agent `4be52276-e419-45dd-9394-0d5656d8bf8d`, `ParentAgentId=null`, isolated worktree;
+- branch `pwv22-p2-good-review`, commit `b3623be353e8e407df93ce2e70f865331e721b43`;
+- parent is exactly the frozen subject;
+- changed only `review/P2_ATTEMPT.md` and `review/evidence/P2.txt`;
+- verdict/subject fields were independently validated;
+- publication gate returned `GATE=ALLOW`;
+- deterministic publication produced `pwv22-p2-published@23cc2d799b7aa39da14ed05ae49e4489c02e2846`;
+- implementation tree `a.txt/b.txt/contract.txt` remained byte-identical to the frozen subject.
+
+Disposition: canonical detect-and-reject Review integrity is viable without a universal hard sandbox. Exact path/subject publication validation is a strong candidate for deterministic helper code only if repeated prompt-side realization proves too fragile.
+
+## P3 — GREEN characterization
+
+Bounded non-review peer exchange:
+- Main-created peer A `28fa3a47-5a47-4a41-a205-8c9c5e8296cf`;
+- Main-created peer B `3bd388d8-88f6-4b89-bd02-ee6f8fc917b8`;
+- A used injected Paseo MCP to send exact `EVIDENCE_PING_FROM_A`;
+- B received it as a new user message and replied `EVIDENCE_ACK_FROM_B`.
+
+Busy-recipient behavior:
+- B was observed `running` on a long shell task;
+- A sent exact `BUSY_PING_FROM_A` through injected Paseo MCP;
+- B's timeline switched from the active task to the new user message before `LONG_TASK_DONE`;
+- the earlier shell process remained alive in the container after the run switch, proving that direct messaging to a busy target is not a safe FIFO coordination primitive and may leave operational residue.
+
+Review contamination:
+- fresh Reviewer `e39b6275-8fc6-4fa0-8c49-86fe23e7d707` started against the exact frozen subject;
+- peer A sent `IMPLEMENTER_HINT_PRE_VERDICT` before verdict;
+- the reviewer timeline durably shows the peer message after review start;
+- the attempt was classified `INVALID_CONTAMINATED`; it is not acceptable Review evidence.
+
+Disposition: direct peer transport is useful but must remain Main-mediated by default. Pre-verdict implementer/reviewer lateral contact invalidates independence. Busy-target messaging must not be used as an implicit queue; lifecycle cleanup/readback is required after interruption.
