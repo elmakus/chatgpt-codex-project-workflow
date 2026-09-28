@@ -1,0 +1,20 @@
+workstream_id = "change-pwv22-program-brainstorming"
+card_id = "M01-S05-T01"
+attempt = "M01-S05-T01-R02"
+verdict = "pending"
+evidence_path = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "73877b116b9776e1924313eeaa624aa5620c4079"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/results/M01-S05-T01.md"
+blob = "5fc454d79cedc084d6f9ee507bf64fb1c55eaccd"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M01-S05-T01.md"
+
+[independence]
+materially_produced_or_repaired_subject = true
+basis = "Current correction context materially repaired the exact implementation/Result subject after R01 RED and therefore cannot issue the fresh independent R02 verdict. Freeze the exact repaired subject for a fresh independent reviewer."
