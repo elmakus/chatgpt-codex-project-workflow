@@ -1,8 +1,8 @@
-# ADR — PWv2.2 Program Definition R5
+# ADR — PWv2.2 Program Definition R6
 
-- Decision ID: `ADR-PWV22-PROGRAM-R5`
-- Status: accepted Definition authority; supersedes the earlier predecessor-rebind/backward-compatibility assumption
-- Source subject: `pwv22-program@20`
+- Decision ID: `ADR-PWV22-PROGRAM-R6`
+- Status: ACTIVE Definition R6 authority; extends R5 with the promoted Revision-22 backend/bootstrap/Pi-Paseo decisions
+- Source subject: `pwv22-program@22`
 
 ## Decisions
 
@@ -75,3 +75,18 @@
 - Runtime orchestration mechanisms such as branch claims, run-ID allocators and fresh-chat counts remain non-authoritative implementation details.
 - The approved P1 predates these material semantics and therefore cannot proceed through Premium C. R5 requires a new Planning cycle P2 with fresh A/B/Plan-Review/C progression.
 - PWv2.2 Definition and Planning may continue while the separate PWv2.1 donor workstream finishes its authorized pre-M03 boundary, but PWv2.2 Initial Execution Prep remains held until that donor boundary is complete.
+
+
+## R6 backend, bootstrap and Pi/Paseo realization decisions
+
+- Git remains the sole canonical workflow-state backend for current PWv2.2 scope; GitHub Projects, Linear and other tracker projections are not included.
+- Adopt the minimalist ChatGPT Project Instructions bootstrap: stable workflow repo/router + consumer repo + non-authoritative Coordinator Protocol locator only.
+- Native Paseo managed agents/workspaces/worktrees/lifecycle are the Pi/Paseo subagent substrate; Pi is the execution provider through the existing bridge.
+- Start with native Paseo + configuration/skills. Do not install/configure third-party Pi subagent extensions or a full orchestration-runtime prospectively.
+- Escalation is evidence-triggered. A thin reconstructible PW/Pi adapter is allowed only for exact deterministic gaps proven by P0-P6. Third-party extensions require a proven missing native primitive. Full OR requires proven irreducible separately durable supervisory state.
+- P0-P6 are PWv2.2 development/host-qualification evidence and must complete before R6 Definition GREEN; they are not ordinary workflow stages in downstream projects.
+- Direct non-review peer messaging is Main-mediated by default; bounded direct exchanges may be admitted explicitly. Pre-verdict implementer/reviewer lateral communication remains forbidden.
+- Review baseline is canonical detect-and-reject integrity, not universal per-agent hard sandboxing.
+- Fan-in has one mutating integration owner, which may be a dedicated bounded Paseo subagent; Main retains semantic authority and exact readback.
+- Freeze/archive the prior orchestration-runtime as prior-art/test donor; do not resume its backlog/control plane.
+- The Pi/Paseo realization stops at the mandatory Final Qualification Handoff.
