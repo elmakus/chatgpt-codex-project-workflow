@@ -172,6 +172,11 @@ status = "in_progress"
 [cards.contract]
 class = "task_card"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-S07-T01.md"
+[cards.result]
+class = "result"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/results/M02-S07-T01.md"
+commit = "7e081f29d91b6ead992d730755bfe200a755cbb3"
+blob = "d1164621bc8607eea99462681594d03ea2b1bb15"
 
 # after_card is an existing ancestor anchor demanded by the current schema.
 # ALL condition facts, exact accepted Results and required verdicts govern satisfaction.
