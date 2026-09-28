@@ -3,7 +3,7 @@
 # Mutable status/Results/Review refs and JIT lifecycle live only here.
 # Multiple READY Cards are semantic readiness, not parallel admission. First: M01-S01-T01.
 workstream_id = "change-pwv22-program-brainstorming"
-revision = 13
+revision = 14
 
 [execution_ref]
 branch = "work/pwv22-program-brainstorming"
@@ -82,10 +82,15 @@ blob = "f66dbc5f08b038216e08d28c752798835a8304b9"
 
 [[cards]]
 id = "M01-S04-T02"
-status = "in_progress"
+status = "done"
 [cards.contract]
 class = "task_card"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M01-S04-T02.md"
+[cards.result]
+class = "result"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/results/M01-S04-T02.md"
+commit = "ac0f7a847b6c50d250ba9abbfba54ecdc7bbc79e"
+blob = "b6feaeef983c16f5f08bc8222e34b09f4504c343"
 
 [[cards]]
 id = "M04-S19-T01"
