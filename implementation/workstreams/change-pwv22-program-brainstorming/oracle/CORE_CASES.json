@@ -1,0 +1,175 @@
+{
+  "schema": "pwv22-core-oracle-v1",
+  "cases": [
+    {
+      "id": "route-research-return",
+      "requirements": [
+        20,
+        44
+      ],
+      "input": {
+        "research": "applied",
+        "return_owner": "definition"
+      },
+      "expected": {
+        "owner": "definition",
+        "write": "return_once"
+      }
+    },
+    {
+      "id": "gate-stale",
+      "requirements": [
+        14,
+        50
+      ],
+      "input": {
+        "gate": "D",
+        "subject_match": false
+      },
+      "expected": {
+        "owner": "gate",
+        "write": "none"
+      }
+    },
+    {
+      "id": "done-without-result",
+      "requirements": [
+        6
+      ],
+      "input": {
+        "predecessor_status": "done",
+        "result": null
+      },
+      "expected": {
+        "owner": "execution_prep",
+        "accepted": false,
+        "write": "none"
+      }
+    },
+    {
+      "id": "unknown-finding-impact",
+      "requirements": [
+        65,
+        66
+      ],
+      "input": {
+        "finding": "open",
+        "impact": "unknown"
+      },
+      "expected": {
+        "owner": "recovery",
+        "accepted": false
+      }
+    },
+    {
+      "id": "reviewer-is-author",
+      "requirements": [
+        13,
+        57
+      ],
+      "input": {
+        "independent": false
+      },
+      "expected": {
+        "verdict_allowed": false,
+        "write": "none"
+      }
+    },
+    {
+      "id": "parallel-no-admission",
+      "requirements": [
+        54
+      ],
+      "input": {
+        "parallel": true,
+        "admission": null
+      },
+      "expected": {
+        "parallel_allowed": false
+      }
+    },
+    {
+      "id": "old-gate-satisfaction",
+      "requirements": [
+        14,
+        50
+      ],
+      "input": {
+        "gate": "C",
+        "current_subject": "new",
+        "satisfied_subject": "old"
+      },
+      "expected": {
+        "accepted": false,
+        "write": "none"
+      }
+    },
+    {
+      "id": "safe-empty-cleanup",
+      "requirements": [
+        68
+      ],
+      "input": {
+        "open_findings": []
+      },
+      "expected": {
+        "owner": "targeted_bug_hunt",
+        "cleanup": "zero_work"
+      }
+    },
+    {
+      "id": "external-unknown",
+      "requirements": [
+        31
+      ],
+      "input": {
+        "effect_response": "unknown"
+      },
+      "expected": {
+        "owner": "external_effect",
+        "retry": false,
+        "state": "UNKNOWN"
+      }
+    },
+    {
+      "id": "unrelated-change",
+      "requirements": [
+        7
+      ],
+      "input": {
+        "material_changed": false,
+        "unrelated_changed": true
+      },
+      "expected": {
+        "fresh": true
+      }
+    },
+    {
+      "id": "changed-result",
+      "requirements": [
+        5,
+        7
+      ],
+      "input": {
+        "consumed_result_blob_changed": true
+      },
+      "expected": {
+        "fresh": false
+      }
+    },
+    {
+      "id": "close-not-all-done",
+      "requirements": [
+        45
+      ],
+      "input": {
+        "cards_done": true,
+        "target_readback": false
+      },
+      "expected": {
+        "owner": "close",
+        "complete": false
+      }
+    }
+  ]
+}
