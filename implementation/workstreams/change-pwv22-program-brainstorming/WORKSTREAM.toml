@@ -5,8 +5,11 @@ created_from = "7aa7512ead67a86256089d1af0171e2e655e700d"
 integration_target = "main"
 authority = [
   { class = "authority", path = "workflow/PWV22_BRAINSTORMING_ADOPTION.md" },
-  { class = "authority", path = "requirements/PWV22_PROGRAM.md" },
+  { class = "authority", path = "requirements/PWV22_PROGRAM_R7.md" },
   { class = "authority", path = "decisions/ADR_PWV22_PROGRAM.md" },
+  { class = "authority", path = "decisions/PWV22_M03_M07_DISPOSITION_R4.md" },
+  { class = "authority", path = "decisions/PWV22_PI_PACKAGE_HANDOFF_R7.md" },
+  { class = "authority", path = "planning/PWV22_PROGRAM_MASTER_PLAN_P2.md" },
 ]
 
 [intake]
@@ -32,3 +35,7 @@ path = "implementation/workstreams/change-pwv22-program-brainstorming/PLANNING.t
 [plan_review]
 class = "plan_review"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/PLAN_REVIEW.toml"
+
+[task_board]
+class = "task_board"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/TASK_BOARD.toml"

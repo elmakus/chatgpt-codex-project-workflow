@@ -1,0 +1,239 @@
+# Read-only preparation input identities, not workflow state/authority or donor qualification.
+consumer_repository = "elmakus/chatgpt-codex-project-workflow"
+consumer_branch = "work/pwv22-program-brainstorming"
+handoff_commit = "80d4ecbe97655ee385ea1bad50112fe11fececc0"
+governing_repository = "elmakus/project_workflow_v2"
+governing_default_commit = "4fb4bfb7d7b1481d6f347c182fc96a5a1135e045"
+product_donor_repository = "elmakus/project_workflow_v2"
+product_donor_branch = "work/pwv21-policy-kernel"
+product_donor_commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+consumer_donor_branch = "work/pwv21-policy-kernel-brainstorming"
+consumer_donor_close_commit = "ea09ee916c039b4884266b5c24256bd902e814f1"
+
+[[authority]]
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "486685f17bb4a022e6dfed89383f8b9744b668fa"
+path = "requirements/PWV22_PROGRAM_R7.md"
+blob = "f326a0778915cfed5ddcecc735f19b59dfd63051"
+
+[[authority]]
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "486685f17bb4a022e6dfed89383f8b9744b668fa"
+path = "decisions/ADR_PWV22_PROGRAM.md"
+blob = "c1b5f21e91649566525dae1dfbe57b4e40c04d22"
+
+[[authority]]
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "486685f17bb4a022e6dfed89383f8b9744b668fa"
+path = "decisions/PWV22_M03_M07_DISPOSITION_R4.md"
+blob = "d2bfb87f5cb50bb017b6c14e9cd5a57e2295ca1b"
+
+[[authority]]
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "486685f17bb4a022e6dfed89383f8b9744b668fa"
+path = "decisions/PWV22_PI_PACKAGE_HANDOFF_R7.md"
+blob = "5a1746626b25a2b4e8a48e75a0d9891d70a2218d"
+
+[[authority]]
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "76c46d59566807a4d0f11832d0c30f3123c0c54e"
+path = "planning/PWV22_PROGRAM_MASTER_PLAN_P2.md"
+blob = "5524876b49320a1f4da6dd0cf8b0cbc38b31c4fc"
+
+[[evidence]]
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "486685f17bb4a022e6dfed89383f8b9744b668fa"
+path = "definition/PWV22_PI_PASEO_QUALIFICATION_R6.md"
+blob = "0a9ac3dad9abeecbdd904e87802d8c9044f5df6e"
+
+[[evidence]]
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "ea09ee916c039b4884266b5c24256bd902e814f1"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/PRE_M03_TERMINAL_DONOR_CLOSE_2026-09-28.md"
+blob = "01f750b44e0a4b42718d283db12cbd66b40cdead"
+
+[[evidence]]
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "ea09ee916c039b4884266b5c24256bd902e814f1"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/PRE_M03_TERMINAL_DONOR_PACKAGE.toml"
+blob = "8d48c20a760cdb6b6ad5fdb8039c06d93bc00bed"
+
+[[evidence]]
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "147aca1eebf2f753788dfb72bea812dbb936597d"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/TASK_BOARD.toml"
+blob = "11e3d8f455b5c38d4ff5baabdfc9450b8a35dbe0"
+
+[[evidence]]
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "147aca1eebf2f753788dfb72bea812dbb936597d"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/reviews/M02Q-MILESTONE-R04.toml"
+blob = "c59955e367a47a1d88d0b80143d489a15a3c5f8e"
+
+[[evidence]]
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "147aca1eebf2f753788dfb72bea812dbb936597d"
+path = "implementation/workstreams/change-pwv21-policy-kernel-brainstorming/evidence/M02Q-MILESTONE-R04_2026-09-28.md"
+blob = "2b634cb07ceb2e85688e5d217cc55fa8f740a86f"
+
+[[evidence]]
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "4bee29c17d3f66813c47561224d81a1c11304383"
+path = "decisions/PWV21_PRE_M03_DONOR_SUPERSESSION_R1.md"
+blob = "7a7613bd42e25bd8d973164c20234b863868774e"
+
+[[governor]]
+repository = "elmakus/project_workflow_v2"
+commit = "4fb4bfb7d7b1481d6f347c182fc96a5a1135e045"
+path = "workflow/ROUTER.md"
+blob = "eb794dbff91053c58932a3fff12db420ea28f4ac"
+
+[[governor]]
+repository = "elmakus/project_workflow_v2"
+commit = "4fb4bfb7d7b1481d6f347c182fc96a5a1135e045"
+path = "workflow/EXECUTION_PREP.md"
+blob = "d6e982d5699c41cb24f2301548a9aedfcd49f7e6"
+
+[[governor]]
+repository = "elmakus/project_workflow_v2"
+commit = "4fb4bfb7d7b1481d6f347c182fc96a5a1135e045"
+path = "workflow/STATE.md"
+blob = "abc70478a19fe0ad806c71cee0d27e72084663fe"
+
+[[governor]]
+repository = "elmakus/project_workflow_v2"
+commit = "4fb4bfb7d7b1481d6f347c182fc96a5a1135e045"
+path = "tools/state_contract.py"
+blob = "da8107945ccbf284c5c5445378035592143bfefd"
+
+[[governor]]
+repository = "elmakus/project_workflow_v2"
+commit = "4fb4bfb7d7b1481d6f347c182fc96a5a1135e045"
+path = "tools/router.py"
+blob = "b9b47cdee9fbca0d55e94301cce97e05f7b70433"
+
+[[governor]]
+repository = "elmakus/project_workflow_v2"
+commit = "4fb4bfb7d7b1481d6f347c182fc96a5a1135e045"
+path = "templates/TASK_CARD.md"
+blob = "2e7462e0d7018392435797eda04057e288b05ab5"
+
+[[governor]]
+repository = "elmakus/project_workflow_v2"
+commit = "4fb4bfb7d7b1481d6f347c182fc96a5a1135e045"
+path = "templates/TASK_BOARD.toml"
+blob = "b1d279a4c35ab154f3a2a72b2cf1a439d162f771"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tools/exact_locator.py"
+blob = "c888697089749473ce9cdff10b93fb6ee0afab96"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tools/obligation_contract.py"
+blob = "199944d975853dcef1ba71f9a4c4bcddef5bc8f4"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tools/policy_kernel.py"
+blob = "df4fe6299dd2fc696b2b320d474a66532df6a803"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tools/review_contract.py"
+blob = "ebcfba2698c759e5f9cfe5b7e8644683af54342d"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tools/live_finding_contract.py"
+blob = "8498f051ed31cbba9f3b8e6906890f768a3678f4"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tools/seam_contract.py"
+blob = "87ba14f411c07fb59bd07be008182686b1f7a9da"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tools/topology_contract.py"
+blob = "a82b9877c22b5acfa54a18d12acf515b1a0d8e3d"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tools/jit_terminality_contract.py"
+blob = "493116b73f105eeeee572196bd07dad20f4e9c4d"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tools/close_contract.py"
+blob = "8b9192d26ca0877d6067a19e36b9314a4df0feaf"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "schemas/EXECUTION_OBLIGATION.schema.json"
+blob = "85dc323e89d9a5c31c47782bf010ce70440ba1f5"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "schemas/EXECUTION_RESULT.schema.json"
+blob = "a260cdeb7142af8fe20b5278024f91274d2e79bb"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tests/test_exact_locator.py"
+blob = "ac6849f941a5a7100a8a56aa3f13163846d2e203"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tests/test_obligation_contract.py"
+blob = "4db8ea5fe07582bd134d163b8019e87092160504"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tests/test_policy_kernel.py"
+blob = "437bf5555e1821f4ff6ff2f03df71c3887df7fc3"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tests/test_review_contract.py"
+blob = "73d5c409952c50d87671cec14e088d6d50e59055"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tests/test_jit_reconciliation_contract.py"
+blob = "8982a8458039a512657af37850878103a6c99fc3"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tests/test_recovered_execution_contract.py"
+blob = "1d55b1ed6e9ee66d61f14918fddf970e0b84d242"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tests/test_session_router_integrity.py"
+blob = "bc3a13c8d0ec3ee44ea1368a741190d22db6b23a"
+
+[[donor_candidate]]
+repository = "elmakus/project_workflow_v2"
+commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+path = "tests/test_close_contract.py"
+blob = "eab52ff6b6dc890a7e72fce569d983833cc2f6d0"

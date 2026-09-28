@@ -1,0 +1,473 @@
+# Initial Execution Prep only. Current V2 governor; no native Premium D fields.
+# Stop before first Execution by explicit user instruction recorded in preparation evidence.
+# Mutable status/Results/Review refs and JIT lifecycle live only here.
+# Multiple READY Cards are semantic readiness, not parallel admission. First: M01-S01-T01.
+workstream_id = "change-pwv22-program-brainstorming"
+revision = 1
+
+[execution_ref]
+branch = "work/pwv22-program-brainstorming"
+
+[[cards]]
+id = "M01-S01-T01"
+status = "ready"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M01-S01-T01.md"
+
+[[cards]]
+id = "M01-S01-T02"
+status = "ready"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M01-S01-T02.md"
+
+[[cards]]
+id = "M01-S02-T01"
+status = "ready"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M01-S02-T01.md"
+
+[[cards]]
+id = "M01-S02-T02"
+status = "ready"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M01-S02-T02.md"
+
+[[cards]]
+id = "M01-S03-T01"
+status = "ready"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M01-S03-T01.md"
+
+[[cards]]
+id = "M01-S04-T01"
+status = "ready"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M01-S04-T01.md"
+
+[[cards]]
+id = "M01-S04-T02"
+status = "ready"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M01-S04-T02.md"
+
+[[cards]]
+id = "M04-S19-T01"
+status = "planned"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M04-S19-T01.md"
+
+[[cards]]
+id = "M04-S20-T01"
+status = "planned"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M04-S20-T01.md"
+
+[[cards]]
+id = "M04-S21-T01"
+status = "planned"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M04-S21-T01.md"
+
+[[cards]]
+id = "M04-S22-T01"
+status = "planned"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M04-S22-T01.md"
+
+[[cards]]
+id = "M04-S23-T01"
+status = "planned"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M04-S23-T01.md"
+
+# after_card is an existing ancestor anchor demanded by the current schema.
+# ALL condition facts, exact accepted Results and required verdicts govern satisfaction.
+# Re-anchor to real producing Cards as materialized; never invent placeholder Cards.
+# Planned stable Card dependency hash-binding is NOT a JIT trigger.
+
+[[jit_triggers]]
+id = "J-S05"
+after_card = "M01-S04-T02"
+state = "waiting"
+condition = """
+Producer(s): S01-T01 + S01-T02 + S03-T01 + S04-T01 + S04-T02
+Missing future fact: Accepted native owner/field interfaces, qualified reusable API inventory and exact provenance envelope.
+Material effect on Card shape: These choose native admission/identity/CAS module boundaries and the allowed cohesive implementation patch, not just its SHA.
+Earliest deterministic consumption: Immediately after all five accepted Results are published/read back and their specification compatibility is established.
+Bounded refinement envelope: Split native admission/epoch, exact identity/material reads and atomic guarded writes if their write/acceptance domains differ; isolated product contribution branch, negative/race/crash tests.
+Must NOT guess: Do not copy donor schema/kinds/legacy readers, invent native API names or choose an official target before those contracts.
+Required acceptance surface: R01 foundation composition REQUIRED before consumption.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S06"
+after_card = "M01-S01-T01"
+state = "waiting"
+condition = """
+Producer(s): S05 accepted foundation + R01
+Missing future fact: Concrete bounded-owner read/publication interfaces and native gate subject representation.
+Material effect on Card shape: Determines routing/gate transition writes, binding operands and observable invalid-state behavior.
+Earliest deterministic consumption: First Prep after S05 exact accepted Results and R01 GREEN readback.
+Bounded refinement envelope: Routing, Simplification Review, A/B/C/D, eager Prep/JIT and ordered mandatory qualification; split owner-law patches when cohesive domains differ.
+Must NOT guess: No invented owner fields, early gate satisfaction, convenience JIT, new qualification lifecycle stage or live consumer native fields.
+Required acceptance surface: R02 REQUIRED.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S07"
+after_card = "M01-S01-T02"
+state = "waiting"
+condition = """
+Producer(s): S05 accepted foundation + R01
+Missing future fact: Native exact-identity/material-reader/guarded-write API and persisted subject representation.
+Material effect on Card shape: Determines Result/dependency serialization and verification/freshness patch surface.
+Earliest deterministic consumption: First Prep after all S05 accepted inputs and R01.
+Bounded refinement envelope: Typed Results, exact dependency proof, immutable history, affected-cone freshness and derived readiness; retained unchanged Result under revalidation.
+Must NOT guess: No donor DONE inheritance, whole-Board freshness hash, fabricated future Result or stale acceptance reuse.
+Required acceptance surface: R03 composed S07/S08 and R06; retain constituent high-risk coverage.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S08"
+after_card = "M01-S01-T02"
+state = "waiting"
+condition = """
+Producer(s): S07 accepted Results
+Missing future fact: Actual material-input/Result relationship and write/resource/effect claim operands.
+Material effect on Card shape: Determines finite-admission/conflict and fan-in compatibility interface.
+Earliest deterministic consumption: Immediately after S07 exact accepted Result contracts are durable, before any S08 execution.
+Bounded refinement envelope: Explicit finite admission, uncertainty/overlap serialization, one mutation owner, exact sibling set/order and compatibility on disposable native fixtures.
+Must NOT guess: No canonical worker scheduler, no-dependency parallel permission, live program parallelism or clean-merge-is-compatible inference.
+Required acceptance surface: R03 REQUIRED for S07/S08 composition.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S09"
+after_card = "M01-S01-T02"
+state = "waiting"
+condition = """
+Producer(s): S07 accepted Results
+Missing future fact: Exact subject/material relationship and Result/acceptance identifiers usable by attempts/findings.
+Material effect on Card shape: Determines append-only attempt/finding schema, affected cones and finalizer CAS operands.
+Earliest deterministic consumption: First Prep after S07 accepted outputs are read back.
+Bounded refinement envelope: Binary Review, independence, narrow publication, safe deferral/truthful DONE and 5/4/3 plus 3-round mode changes; split cohesive review/finding/finalizer patches while retaining full surface.
+Must NOT guess: No conditional GREEN, invented eligibility from runtime IDs, advisory relabeling of acceptance violations or blanket Card Review.
+Required acceptance surface: R04 REQUIRED.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S10-RECOVERY"
+after_card = "M01-S01-T01"
+state = "waiting"
+condition = """
+Producer(s): S06/R02 + S09/R04
+Missing future fact: Actual gate/return and attempt/finding owner records, incomplete-state combinations and safe mechanical repair operations.
+Material effect on Card shape: Determines exact-owner reconstruction/repair code and affected-cone blocking.
+Earliest deterministic consumption: After S06/R02 and S09/R04 exact acceptance; before recovery implementation consumption.
+Bounded refinement envelope: Native canonical reconstruction, mechanical repair versus factual/strategy/intent owner choice; isolate recovery-owned writes.
+Must NOT guess: No legacy normalization, effect replay, guessed return owner or competing recovery journal.
+Required acceptance surface: R05 REQUIRED composed recovery/effects/evolution/Close.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S10-EFFECTS"
+after_card = "M01-S04-T01"
+state = "waiting"
+condition = """
+Producer(s): S06/R02 + S09/R04
+Missing future fact: Concrete obligation/acceptance bindings to which effect intent/attempt/readback belongs.
+Material effect on Card shape: Determines safe effect-record API and testable retry/readback boundary.
+Earliest deterministic consumption: After both producer acceptance sets, alongside but separate from recovery/evolution/Close Cards.
+Bounded refinement envelope: Obligation-local intent/attempt/readback/known-or-UNKNOWN and supported stable idempotency; isolated fake target tests.
+Must NOT guess: No live target permission, secret persistence, universal effect ledger or blind retry.
+Required acceptance surface: R05 REQUIRED; no independent acceptance bypass through splitting.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S10-EVOLUTION"
+after_card = "M01-S01-T02"
+state = "waiting"
+condition = """
+Producer(s): S06/R02 + S09/R04
+Missing future fact: Native epoch/gate/finding and acceptance-link schema for classifying an existing native lineage.
+Material effect on Card shape: Determines preserve/revalidate/stale/Recovery writes and unchanged-Result acceptance attachment.
+Earliest deterministic consumption: After exact S06/S09 accepted representation and Reviews.
+Bounded refinement envelope: One native epoch, forward correction, immutable Results, new acceptance evidence when unchanged; no migration.
+Must NOT guess: No automatic old-project adoption, mixed epochs, semantic downgrade or new Result solely for revalidation.
+Required acceptance surface: R05 REQUIRED.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S10-CLOSE"
+after_card = "M01-S04-T01"
+state = "waiting"
+condition = """
+Producer(s): S06/R02 + S09/R04; accepted S10 effect/recovery interfaces when needed
+Missing future fact: Concrete closure/gate/finding/effect completion proofs and native target-readback representation.
+Material effect on Card shape: Determines Close composition and no-remaining-obligation checks.
+Earliest deterministic consumption: As soon as those exact producer interfaces and Reviews are durable; split from external-effect implementation.
+Bounded refinement envelope: Accepted integration/publication/readback/durable confirmation and local affected-boundary checks in fixtures.
+Must NOT guess: No branch-termination-is-Close, all-current-Cards-DONE shortcut or unproved effect/cleanup completion.
+Required acceptance surface: R05 REQUIRED full S10 composition before S11.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S11"
+after_card = "M01-S01-T01"
+state = "waiting"
+condition = """
+Producer(s): S06 + S07 + S08 + all S10 domains + S09; R02–R05
+Missing future fact: Actual sibling APIs/schemas and demonstrated composition incompatibilities.
+Material effect on Card shape: Determines integration patch and multi-input compatibility test surface.
+Earliest deterministic consumption: Immediately after exact constituent Results and required verdicts are complete.
+Bounded refinement envelope: Full native lifecycle, interrupts/repair/gates/qualification/effects/Close and explicit composed-set compatibility.
+Must NOT guess: No dropping constituent Reviews, guessing schema adapters or treating milestone crossing as acceptance.
+Required acceptance surface: R06 REQUIRED before delivery consumes core.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S12"
+after_card = "M01-S04-T02"
+state = "waiting"
+condition = """
+Producer(s): S04 contracts + S11/R06
+Missing future fact: Actual native entry/stop/Result API and published bootstrap locators.
+Material effect on Card shape: Determines concrete ChatGPT surface edits and receiver return integration; S04 already owns the stable protocol prose.
+Earliest deterministic consumption: First Prep after S11/R06 exact accepted core API.
+Bounded refinement envelope: Minimal stable Project Instructions and universal four-direction handoff/Research/Brainstorming return integration.
+Must NOT guess: No speculative host function names, duplicate S04 prose Card, transient persistent instructions or hidden receiver state.
+Required acceptance surface: R08 integrated required-host acceptance; no substitute standalone host verdict.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S13"
+after_card = "M01-S01-T02"
+state = "waiting"
+condition = """
+Producer(s): S11/R06 + qualified R6 P0–P6 evidence
+Missing future fact: Exact native Result/Review/admission contracts and permitted publication operands.
+Material effect on Card shape: Determines deterministic helper entrypoints and bounded assignment/fan-in/cleanup validation writes.
+Earliest deterministic consumption: First Prep after S11/R06 exact APIs; R6 input is already durable.
+Bounded refinement envelope: Split assignment/result fencing, Review envelope, admitted fan-in and cleanup readback into cohesive Cards as actual interfaces require; use native Paseo.
+Must NOT guess: No scheduler/journal/queue, runtime ID as authority, hard sandbox claim, third-party extension or resumed OR backlog.
+Required acceptance surface: R07 helper exact subject REQUIRED before S14; later composed R07 still required.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S14"
+after_card = "M01-S04-T01"
+state = "waiting"
+condition = """
+Producer(s): S04 + S11/R06 + S13/helper-R07
+Missing future fact: Helper entrypoints, accepted core surface and concrete provenance/build input contract.
+Material effect on Card shape: Determines Pi package inventory, packaging/build/install tests and compatibility resolution.
+Earliest deterministic consumption: Immediately after all three accepted input sets and helper R07.
+Bounded refinement envelope: Official installable bootstrap/skill/instructions/helper package, absent/incompatible/tampered/offline negative and fallback parity; no updater.
+Must NOT guess: No guessed package layout/dependency, official status from candidate branch or separate semantic state store.
+Required acceptance surface: R07 changed delivery composition + R08 installed-host acceptance REQUIRED.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S15-DISTRIBUTION"
+after_card = "M01-S04-T01"
+state = "waiting"
+condition = """
+Producer(s): S14 accepted artifact/install contract; fresh pi-unraid factual inspection via its owner
+Missing future fact: Actual package install/pin/readback interface and current distribution/config/regression mechanisms plus desired relay policy.
+Material effect on Card shape: Determines bounded cross-repository source edits, rollback checks and config integration; unknown mechanisms are not implementation choices to guess.
+Earliest deterministic consumption: After S14 durable interface and factual inspection/Research; pi-unraid must be separately selected/bound before any mutation.
+Bounded refinement envelope: Owner-local source/regression work pinning package/stack and MCP enabled/injection, preserving explicit desired relay; consumer receives exact accepted owner Results.
+Must NOT guess: No new updater/service, unselected pi-unraid mutation, guessed relay value or inferred production deployment permission.
+Required acceptance surface: R07 composed distribution trust surface; R08 actual-host evidence.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S15-TARGET"
+after_card = "M01-S04-T01"
+state = "waiting"
+condition = """
+Producer(s): S15 distribution/config accepted owner Result(s) + exact target authorization/access
+Missing future fact: Actual allowed target, expected prior deployment/config state, install artifact and permitted effect/readback envelope.
+Material effect on Card shape: Determines live or fixture effect scope, interruption/rollback plan and observations needed from Main/children.
+Earliest deterministic consumption: After owner Results, explicit target/effect authority and access are available; late safe attended action, not a speculative deployment Card.
+Bounded refinement envelope: Separate deployment/readback from distribution source work; intent/attempt/readback, stack/config pins, MCP tool injection and relay readback.
+Must NOT guess: No treating fixture proof as live proof, default relay overwrite, blind retry or real LLM test outside approved launcher/profile.
+Required acceptance surface: R07 delivery composition and R08 host readback; owner-required deployment acceptance retained.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S16"
+after_card = "M01-S02-T02"
+state = "waiting"
+condition = """
+Producer(s): S02 both corpus Cards + S12 + S13 + S14 + S15 exact accepted Results; staged R07
+Missing future fact: Actual required-host entrypoints, installed package/configurations and observable tool/lifecycle outputs.
+Material effect on Card shape: Determines executable adapter/observation bindings and real host acceptance matrix.
+Earliest deterministic consumption: First Prep after concrete host surfaces and exact environment readback are available.
+Bounded refinement envelope: Both ChatGPT and installed Pi/Paseo, package/fallback parity, four-direction handoffs, contamination/lifecycle/stale/fan-in negatives.
+Must NOT guess: No simulated Pi response as live injection evidence, R6 as current acceptance or Pi-local Research/Brainstorming requirement.
+Required acceptance surface: R08 REQUIRED including oracle independence.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S17"
+after_card = "M01-S02-T02"
+state = "waiting"
+condition = """
+Producer(s): S02 + all S10/R05 + S11/R06 + S16/R08
+Missing future fact: Actual native retained persistence, disposable helper/runtime surfaces and host observation paths.
+Material effect on Card shape: Determines safe deletion/retention and reconstruction harness scope.
+Earliest deterministic consumption: After exact required inputs, before any destructive fixture operation.
+Bounded refinement envelope: Disposable canonical sufficiency, native interruptions, pending gates/findings/UNKNOWN/Close, independent oracle and hard no-legacy byte-preserving rejection.
+Must NOT guess: No deletion of real state, invented retained cache, circular router oracle or legacy successful migration.
+Required acceptance surface: R09 REQUIRED.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S18"
+after_card = "M01-S04-T01"
+state = "waiting"
+condition = """
+Producer(s): S04 + S11 + S14 + S16/R08 + S17/R09
+Missing future fact: Actual complete content inventory, reproducible package build and scope/environment-specific acceptance bindings.
+Material effect on Card shape: Determines assembly/freeze manifest and contents of the exact release candidate.
+Earliest deterministic consumption: Immediately after inventory and host/recovery accepted evidence are durable.
+Bounded refinement envelope: Freeze policy/tools/tests/bootstrap/Pi package/provenance; bind compatible pi-unraid evidence externally, no self-commit hash cycle.
+Must NOT guess: No presumed inventory, hidden service, inherited release status, secret or default-governor cutover.
+Required acceptance surface: R10 later accepts final fulfillment; prior R01–R09 remain required.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S20-CLEANUP"
+after_card = "M04-S20-T01"
+state = "waiting"
+condition = """
+Producer(s): M04-S20-T01 reconciled exact findings + S18/S19; any resulting accepted repair/revalidation Results
+Missing future fact: Actual current-scope violations/unknowns and repair targets, or positively proved empty/fully resolved set.
+Material effect on Card shape: Determines real bounded repair Cards and cleanup-completion acceptance; the stable inventory Card intentionally does not implement an unknown fix.
+Earliest deterministic consumption: Immediately after reconciliation; materialize each real repair as soon as scope is known, and completion once exact resolved inputs are known.
+Bounded refinement envelope: Create only evidenced cohesive repairs; classify factual/strategy/intent returns; retain exact no-work pass when empty and prove cleanup before S21.
+Must NOT guess: No guessed defects, relabeling acceptance violations, declaring cleanup complete from inventory alone or crossing latest-safe boundary.
+Required acceptance surface: Affected constituent high-risk Reviews retained; R10 final barrier remains.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S23-REPAIRS"
+after_card = "M04-S23-T01"
+state = "waiting"
+condition = """
+Producer(s): M04-S23-T01 integrated findings
+Missing future fact: Actual verified defect classes, property cones, reproduction, write/effect envelopes and accepted repair intent.
+Material effect on Card shape: Determines individual repair scope/acceptance/dependencies; no stable fix can be guessed from a hunt protocol.
+Earliest deterministic consumption: Immediately after each cohesive repair unit becomes evidence-complete under accepted authority; zero defects consumes as explicit no-repair disposition.
+Bounded refinement envelope: Separate repair Cards by mutation/effect domain, program serial, retain affected acceptance; native parallel repair only in admitted fixtures.
+Must NOT guess: No speculative repairs, worker-created successors, overlap override, scope laundering or self-acceptance.
+Required acceptance surface: All materially affected R01–R09 requirements; fresh R10 after material repair.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S23-INTEGRATE"
+after_card = "M04-S23-T01"
+state = "waiting"
+condition = """
+Producer(s): M04-S23-T01 + actual accepted repair Results and required Reviews
+Missing future fact: Exact repair Result set, order, base/interface conflicts and integration write surface (or proved empty repair set).
+Material effect on Card shape: Determines serial composition patch and integrated compatibility acceptance.
+Earliest deterministic consumption: As soon as necessary accepted repairs and integration operands are durable; do not wait for unrelated work.
+Bounded refinement envelope: Exactly one integration mutator, fixed accepted order/set, conflict classification and no unaccepted manual changes.
+Must NOT guess: No empty speculative integration Card, worker self-merge, clean Git merge as compatibility or unadmitted program parallelism.
+Required acceptance surface: Affected integration Review(s) plus fresh R10; constituents retained.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S23-IMPACT"
+after_card = "M04-S23-T01"
+state = "waiting"
+condition = """
+Producer(s): Exact S23 integrated subject/repair Results + prior accepted material-input/evidence graph
+Missing future fact: Actual changed versus unchanged properties/output and environment/authority effects of the repair.
+Material effect on Card shape: Determines least-cost sufficient local revalidation/rerun/Review/stale/Recovery obligations.
+Earliest deterministic consumption: Immediately when integrated change and its input graph are read back, before affected consumption or S24.
+Bounded refinement envelope: Preserve unaffected Results; unchanged revalidation adds evidence, changed output new Result; route unknown impact to Recovery.
+Must NOT guess: No blanket staling, guessed safe cone, manufactured new Result for unchanged implementation or stale host proof.
+Required acceptance surface: Required affected Reviews plus fresh final R10.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S24"
+after_card = "M04-S23-T01"
+state = "waiting"
+condition = """
+Producer(s): S23 completed repair/integration/impact dispositions + affected core/host/recovery acceptance + S04
+Missing future fact: Actual final repaired subject and impact/revalidation graph, including remaining findings and environment validity.
+Material effect on Card shape: Determines fresh closure subject and exact full-scope rerun/reuse checks.
+Earliest deterministic consumption: After all required material-local dispositions are accepted and final candidate is frozen.
+Bounded refinement envelope: Full R7/release checklist, fresh eligible full-scope Review, both hosts/Recovery, unresolved/stale/unknown barrier.
+Must NOT guess: No hunts as acceptance, original material repairer as reviewer, arbitrary full-suite reuse or finalizing at a convergence ceiling.
+Required acceptance surface: R10 REQUIRED, final subject; native ceiling 3 is not current-governor retroactive law.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S25"
+after_card = "M01-S04-T01"
+state = "waiting"
+condition = """
+Producer(s): S18 + S24/R10 + S15 + exact repository/artifact/target access and authorization
+Missing future fact: Actual accepted candidate and publication/deployment targets with observed prior refs/artifacts/effects.
+Material effect on Card shape: Determines guarded effect envelope, attended actions, CAS and target readback; split release ref/package/deployment domains as required.
+Earliest deterministic consumption: Once exact accepted candidate and target/effect facts are available; late safe publication, no speculative target Card.
+Bounded refinement envelope: Versioned release ref + immutable official tag/package provenance/readback; disposable native admission; deployment only through pi-unraid owner.
+Must NOT guess: No live default governor replacement, consumer self-adoption, retagging changed content under old Review, secrets or package-local updater.
+Required acceptance surface: R10 exact content must remain valid; material publication change returns to affected acceptance.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
+
+[[jit_triggers]]
+id = "J-S26"
+after_card = "M01-S04-T01"
+state = "waiting"
+condition = """
+Producer(s): S25 exact publication/readback + refreshed consumer integration target
+Missing future fact: Actual consumer merge/conflict state, consequential tag effects and final release/finding/deferred/effect dispositions.
+Material effect on Card shape: Determines integration patch/effect/readback and whether mechanical Close is legal.
+Earliest deterministic consumption: Immediately after S25 accepted effects and fresh target inspection; before consumer merge.
+Bounded refinement envelope: Namespaced authority/evidence integration, target-side recovery/readback/durable confirmation, visible deferred register.
+Must NOT guess: No unguarded merge/force-push, branch/chat-end Close, ignored auto-patch-tag consequence or deletion without authority.
+Required acceptance surface: New material integration conflict repair needs affected acceptance; mechanical Close is not a new administrative Review.
+Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
+"""
