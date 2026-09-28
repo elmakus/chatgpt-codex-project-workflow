@@ -14,7 +14,7 @@ Purpose: disposable-fixture evidence for Requirements 77-85. This evidence does 
 | P2 | fresh Review + exact publication/write envelope | GREEN |
 | P3 | communication semantics/contamination | GREEN |
 | P4 | lifecycle/cancel/archive/cleanup | GREEN |
-| P5 | Main restart + lost notification + stale generation fencing | PENDING |
+| P5 | Main restart + lost notification + stale generation fencing | GREEN |
 | P6 | explicit finite parallel fixture + serial fan-in + integrated compatibility | PENDING |
 
 ## P0 — initial live readback
@@ -135,3 +135,46 @@ Cross-workspace descendant behavior:
 - the child remained unarchived and its `ParentAgentId` became null/detached.
 
 Disposition: normal cleanup can use stop -> readback -> archive while preserving uncertain/dirty worktrees. Parent cleanup must explicitly enumerate/reconcile descendants; parent archive is not a cascade guarantee. No custom lifecycle daemon is justified, but bounded cleanup/readback logic is required.
+
+
+## P5 — GREEN
+
+### Lost-Main recovery without replay
+
+Generation-1 authority:
+- exact authority commit `c4ea4949ff8d0a8b519e77e0e90bd86bd0485043`;
+- `authority.json`: generation 1, assignment `P5-result`, expected branch `pwv22-p5-result`.
+
+Old Main `1dcbfb87-3254-45f5-b639-85be4c0b7d5c` launched worktree child `31f0d831-5e8a-4271-b857-098dc915baf7`. Old Main was archived while the child remained active; the child survived and detached from the archived parent. The old Main therefore could not be relied on to consume the eventual completion notification.
+
+The child later committed:
+- branch `pwv22-p5-result`;
+- commit `2d6db3d888f1465005fd2044e22a129f55b72d25`;
+- exact result `generation=1`.
+
+Fresh replacement Main `cfd8ab39-206c-4b8f-b863-e9bd320be94c`, with no prior P5 transcript, reconstructed the assignment from Git authority + Paseo + the expected branch and returned `recovered_without_replay=true` with the exact durable result commit. It did not create or rerun a worker.
+
+Correlation pitfall: its first agent-ID correlation selected the archived Main when filtering by the local workspace rather than the result worktree. Exact Git recovery was still correct. Any production helper should correlate by assignment/expected branch/workspace metadata rather than a broad cwd query.
+
+### Late stale-result fence
+
+A second stale test was bound to:
+- generation-2 authority commit `eabdadf61a834cf3d0206c07e340c6759e6c2234`;
+- branch `pwv22-p5-stale2`.
+
+While the result-producing `sleep 90` process was still running and the branch still equaled the generation-2 base, main authority advanced to generation 3 at `a3a51aa1dedf6e873ae7f86441757562eed21f5c`.
+
+The old worker later produced:
+- commit `1af786f17693ca953d279bd302d68af5623aa5fc`;
+- parent `eabdadf61a834cf3d0206c07e340c6759e6c2234`;
+- `stale2.txt = generation=2`.
+
+Deterministic fence:
+- current authority = generation-3 commit;
+- result parent = generation-2 commit;
+- result is not an ancestor of current main;
+- outcome: `FENCE=STALE_REJECT`, with no merge.
+
+Fresh evaluator `dc3c199b-7ba4-4575-a522-23332dcb4fe5` independently reconstructed the same facts and returned verdict `STALE`.
+
+Disposition: PW/Git + native Paseo evidence are sufficient for restart recovery and stale-result rejection without a separately durable orchestration journal/state machine. Exact assignment correlation and generation/authority fencing are strong candidates for a thin deterministic PW/Pi helper because correctness should not depend on an LLM choosing the right agent query.
