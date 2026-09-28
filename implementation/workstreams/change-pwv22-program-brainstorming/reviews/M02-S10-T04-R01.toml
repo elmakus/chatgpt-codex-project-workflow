@@ -1,0 +1,19 @@
+workstream_id = "change-pwv22-program-brainstorming"
+card_id = "M02-S10-T04"
+attempt = "M02-S10-T04-R01"
+verdict = "pending"
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "02b8f809feaae3e847058b643c04118abb6cb1ea"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/results/M02-S10-T04.md"
+blob = "b705b7dcc02b989321c922819b5f286437a8e690"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-S10-T04.md"
+
+[independence]
+materially_produced_or_repaired_subject = false
+basis = "Pending fresh independent R05 review. The reviewing context must not have materially produced or repaired the exact composed S10 subject."
