@@ -733,3 +733,20 @@ Research leaves four material policy choices; it does not decide them:
 4. **Prior `orchestration-runtime` lifecycle:** formally archive/freeze it as prior art/test donor versus leave it open as historical reference without resuming its backlog.
 
 Revision 22 remains ACTIVE with challenge audit pending until these owner decisions are resolved and the resulting scope receives a final whole-scope challenge.
+
+
+## 34. Revision 22 owner decisions after Pi/Paseo Research
+
+The owner resolves the remaining Pi/Paseo policy choices as follows:
+
+1. **Reviewer enforcement target — canonical integrity by default.** PWv2.2 requires exact-subject acceptance integrity, bounded allowed Review Attempt/evidence publication, independent readback and rejection of unauthorized reviewer mutation. Hard OS/provider/filesystem/network/credential prevention is not a universal baseline requirement and is added only for an obligation whose accepted policy explicitly requires physical prevention of an effect rather than detect-and-reject canonical integrity.
+
+2. **Direct non-review peer messaging — Main-mediated by default.** Child↔child communication is not globally enabled as an authority path. Main may explicitly admit a bounded direct exchange inside an already-authorized non-independent envelope, without granting scope/authority/mutation expansion. Implementer↔Reviewer communication before verdict remains forbidden; semantic decisions and scope/authority transfer remain forbidden through peer messaging.
+
+3. **Pi/Paseo architecture — native-first, evidence-triggered escalation.** Baseline realization is native Paseo managed agents/workspaces/worktrees + Pi provider + configuration/skills/instructions, with PW/Git remaining semantic truth. No third-party Pi subagent package and no full dedicated orchestration-runtime are installed, configured or integrated speculatively. P0-P6 disposable-fixture evidence is used to identify exact missing mechanics. Only a concrete demonstrated gap may justify adding the smallest targeted mechanism: first a thin reconstructible PW/Pi adapter where deterministic PW fencing/finalization/readback needs code; a third-party Pi subagent extension only for one proven missing native primitive; a full OR only for proven irreducible separately durable supervisory state.
+
+4. **Prior orchestration-runtime lifecycle — freeze/archive as donor.** The prior OR backlog is not resumed as the implementation path. Preserve its useful semantic invariants, adversarial/fault scenarios and regression-test ideas as prior art/test donors; do not carry forward its duplicate scheduler, durable journal, fixed role ontology, custom worktree manager, control plane, queue/reservation store, tool registry or dashboard unless a later exact evidence gate reopens one bounded need.
+
+5. **Serial integration owner realization.** PW requires exactly one mutating owner for a fan-in/integration surface, but that owner need not be Main. Main retains semantic authority, freezes the exact admitted Results/order/scope and validates the combined candidate. A dedicated Paseo integration subagent may own the bounded technical integration mutation when useful; it may not choose new scope, Results, ordering semantics, conflict policy or acceptance.
+
+These decisions do not themselves authorize installation/configuration changes in pi-unraid or any retired OR implementation work. P0-P6 are PWv2.2 development/qualification evidence, not ordinary canonical lifecycle stages for downstream projects.
