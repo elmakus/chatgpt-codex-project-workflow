@@ -3,7 +3,7 @@
 # Mutable status/Results/Review refs and JIT lifecycle live only here.
 # Multiple READY Cards are semantic readiness, not parallel admission. First: M01-S01-T01.
 workstream_id = "change-pwv22-program-brainstorming"
-revision = 61
+revision = 62
 
 [execution_ref]
 branch = "work/pwv22-program-brainstorming"
@@ -418,6 +418,21 @@ Must NOT guess: No automatic old-project adoption, mixed epochs, semantic downgr
 Required acceptance surface: R05 REQUIRED.
 Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
 """
+
+[[cards]]
+id = "M02-S10-T04"
+status = "review"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-S10-T04.md"
+[cards.result]
+class = "result"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/results/M02-S10-T04.md"
+commit = "02b8f809feaae3e847058b643c04118abb6cb1ea"
+blob = "b705b7dcc02b989321c922819b5f286437a8e690"
+[[cards.review_attempts]]
+class = "review_attempt"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/reviews/M02-S10-T04-R01.toml"
 
 [[jit_triggers]]
 id = "J-S10-CLOSE"
