@@ -1,7 +1,8 @@
 workstream_id = "change-pwv22-program-brainstorming"
 card_id = "M02-S06-T01"
 attempt = "M02-S06-T01-R02"
-verdict = "pending"
+verdict = "green"
+evidence_path = "implementation/workstreams/change-pwv22-program-brainstorming/evidence/M02-S06-T01-R02.md"
 
 [subject]
 class = "git_blob"
@@ -16,4 +17,4 @@ path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-
 
 [independence]
 materially_produced_or_repaired_subject = false
-basis = "Pending fresh exact-subject independent R02 review frozen after bounded correction of terminal RED R01. The correction context materially repaired the implementation/Result subject and cannot issue this verdict."
+basis = "Fresh-context exact-subject independent R02 review. This context did not materially produce or repair the corrected Result/implementation subject; it inspected the frozen subject, acceptance authority, implementation and tests and published only this verdict/evidence."
