@@ -28,3 +28,7 @@ path = "implementation/workstreams/change-pwv22-program-brainstorming/DEFINITION
 [planning]
 class = "planning"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/PLANNING.toml"
+
+[plan_review]
+class = "plan_review"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/PLAN_REVIEW.toml"
