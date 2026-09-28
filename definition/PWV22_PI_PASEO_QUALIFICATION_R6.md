@@ -13,7 +13,7 @@ Purpose: disposable-fixture evidence for Requirements 77-85. This evidence does 
 | P1 | native child/worktree baseline | GREEN |
 | P2 | fresh Review + exact publication/write envelope | GREEN |
 | P3 | communication semantics/contamination | GREEN |
-| P4 | lifecycle/cancel/archive/cleanup | PENDING |
+| P4 | lifecycle/cancel/archive/cleanup | GREEN |
 | P5 | Main restart + lost notification + stale generation fencing | PENDING |
 | P6 | explicit finite parallel fixture + serial fan-in + integrated compatibility | PENDING |
 
@@ -117,3 +117,21 @@ Review contamination:
 - the attempt was classified `INVALID_CONTAMINATED`; it is not acceptable Review evidence.
 
 Disposition: direct peer transport is useful but must remain Main-mediated by default. Pre-verdict implementer/reviewer lateral contact invalidates independence. Busy-target messaging must not be used as an implicit queue; lifecycle cleanup/readback is required after interruption.
+
+
+## P4 — GREEN
+
+Disposable worktree child `b73d1b11-9474-4d78-a562-757f82a0317f`:
+- modified `contract.txt` without committing, then entered `sleep 120`;
+- coordinator waited until both `Status=running` and dirty Git state were observed;
+- `paseo stop` returned one stopped agent and the agent became idle;
+- no `sleep 120` process remained after stop;
+- dirty `contract.txt` remained in the worktree at the original exact base;
+- `paseo archive` changed the agent to `closed/Archived=true`;
+- the dirty worktree remained present after archive.
+
+Cross-workspace descendant behavior:
+- archiving Main `d3c7ad0d-a3e8-47d0-8116-d64f153632dc` did not cascade-close P1 worktree child `adc48795-d27e-4326-8283-55d336d4410e`;
+- the child remained unarchived and its `ParentAgentId` became null/detached.
+
+Disposition: normal cleanup can use stop -> readback -> archive while preserving uncertain/dirty worktrees. Parent cleanup must explicitly enumerate/reconcile descendants; parent archive is not a cascade guarantee. No custom lifecycle daemon is justified, but bounded cleanup/readback logic is required.
