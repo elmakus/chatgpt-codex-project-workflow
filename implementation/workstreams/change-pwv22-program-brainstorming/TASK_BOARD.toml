@@ -150,7 +150,7 @@ path = "implementation/workstreams/change-pwv22-program-brainstorming/reviews/M0
 
 [[cards]]
 id = "M02-S06-T01"
-status = "in_progress"
+status = "done"
 [cards.contract]
 class = "task_card"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-S06-T01.md"
