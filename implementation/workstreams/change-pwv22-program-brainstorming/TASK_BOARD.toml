@@ -3,7 +3,7 @@
 # Mutable status/Results/Review refs and JIT lifecycle live only here.
 # Multiple READY Cards are semantic readiness, not parallel admission. First: M01-S01-T01.
 workstream_id = "change-pwv22-program-brainstorming"
-revision = 40
+revision = 41
 
 [execution_ref]
 branch = "work/pwv22-program-brainstorming"
@@ -255,8 +255,8 @@ path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-
 [cards.result]
 class = "result"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/results/M02-S08-T01.md"
-commit = "9e716212f6b13cefb3d3168d8c9baa2252674fdf"
-blob = "47b50c8aab150f666eb37fec9f4237db469dc70f"
+commit = "2210767ae5cefdf8d9a6fd98b22d868f4f26b04a"
+blob = "25434a4a266b2a889354866f43c33e0bb74e5af4"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/reviews/M02-S08-T01-R01.toml"
@@ -272,6 +272,10 @@ path = "implementation/workstreams/change-pwv22-program-brainstorming/reviews/M0
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/reviews/M02-S08-T01-R04.toml"
+
+[[cards.review_attempts]]
+class = "review_attempt"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/reviews/M02-S08-T01-R05.toml"
 
 [[jit_triggers]]
 id = "J-S08"
