@@ -2,7 +2,7 @@ workstream_id = "change-pwv22-program-brainstorming"
 cycle = 3
 entry_subject = "plan:P2@5524876b49320a1f4da6dd0cf8b0cbc38b31c4fc|correction:S07-S08-R03-order|planning-cycle:3"
 revision = "P3"
-state = "frozen"
+state = "approved"
 planner_audit = "green"
 plan_path = "planning/PWV22_PROGRAM_MASTER_PLAN_P3.md"
 review_mode = "independent"
@@ -12,8 +12,8 @@ premium_a = "satisfied"
 premium_a_subject = "plan:P2@5524876b49320a1f4da6dd0cf8b0cbc38b31c4fc|correction:S07-S08-R03-order|planning-cycle:3"
 premium_b = "satisfied"
 premium_b_subject = "plan:P3@3a16c2e6623f89f1b0c8c2a096b13d6cc6028b0f"
-premium_c = "not_due"
-premium_c_subject = ""
+premium_c = "due"
+premium_c_subject = "plan:P3@3a16c2e6623f89f1b0c8c2a096b13d6cc6028b0f"
 
 # Material Strategic Planning re-entry from J-S08 Execution Prep.
 # Exact contradiction to resolve without weakening R03:
