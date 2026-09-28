@@ -1,7 +1,8 @@
 workstream_id = "change-pwv22-program-brainstorming"
 card_id = "M01-S05-T01"
 attempt = "M01-S05-T01-R03"
-verdict = "pending"
+verdict = "green"
+evidence_path = "implementation/workstreams/change-pwv22-program-brainstorming/evidence/M01-S05-T01-R03.md"
 
 [subject]
 class = "git_blob"
