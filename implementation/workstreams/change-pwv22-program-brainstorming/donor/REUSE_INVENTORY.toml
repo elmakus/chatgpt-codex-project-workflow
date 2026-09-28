@@ -1,0 +1,74 @@
+version = 1
+donor_product_commit = "5352386e4328c967543c1b6cce6ebf80d54b4b88"
+terminal_consumer_commit = "ea09ee916c039b4884266b5c24256bd902e814f1"
+source_snapshot_commit = "147aca1eebf2f753788dfb72bea812dbb936597d"
+
+[[items]]
+path = "tools/exact_locator.py"
+blob = "c888697089749473ce9cdff10b93fb6ee0afab96"
+symbols = ["normalize_locator_path","resolve_blob_at_commit","read_confined_worktree_bytes","verify_exact_git_locator","verify_worktree_freshness"]
+disposition = "adapt_candidate"
+reason = "stdlib-only exact path/blob/serving-byte primitives; native caller must add trusted repository/remote-publication proof"
+
+[[items]]
+path = "tools/obligation_contract.py"
+blob = "199944d975853dcef1ba71f9a4c4bcddef5bc8f4"
+symbols = ["canonical_json","validate_exact_ref","build_freshness_material","verify_mutation_preconditions","verify_mutation_readback"]
+disposition = "algorithm_only"
+reason = "useful material/CAS patterns but module imports close_contract and carries donor schema/rule assumptions"
+
+[[items]]
+path = "tools/policy_kernel.py"
+blob = "df4fe6299dd2fc696b2b320d474a66532df6a803"
+symbols = []
+disposition = "fault_donor_only"
+reason = "coupled to donor obligation/state contracts; native owner law must be derived from R7"
+
+[[items]]
+path = "tools/review_contract.py"
+blob = "ebcfba2698c759e5f9cfe5b7e8644683af54342d"
+symbols = ["review_convergence_state","validate_discovery_surface","validate_closure_surface"]
+disposition = "algorithm_only"
+reason = "counterexamples/convergence mechanics useful; native binary verdict/finding interfaces are S09-owned"
+
+[[items]]
+path = "tools/seam_contract.py"
+blob = "87ba14f411c07fb59bd07be008182686b1f7a9da"
+symbols = ["classify_seam_jit_decision","validate_seam_decisions"]
+disposition = "fault_donor_only"
+reason = "planning/prep negative checks useful; donor seam schema is not native authority"
+
+[[items]]
+path = "tools/topology_contract.py"
+blob = "a82b9877c22b5acfa54a18d12acf515b1a0d8e3d"
+symbols = ["validate_challenge","ready_topology_hold"]
+disposition = "fault_donor_only"
+reason = "topology challenge ideas only; no native scheduler/topology state"
+
+[[items]]
+path = "tools/live_finding_contract.py"
+blob = "8498f051ed31cbba9f3b8e6906890f768a3678f4"
+symbols = ["classify_live_finding_owner","require_reconciled_trigger_consumption","tracker_cannot_authorize"]
+disposition = "fault_donor_only"
+reason = "finding/JIT counterexamples useful; native finding schema must follow R7 S09"
+
+[[items]]
+path = "tools/close_contract.py"
+blob = "8b9192d26ca0877d6067a19e36b9314a4df0feaf"
+symbols = ["verify_pre_mutation_target","external_effect_recovery_action","verify_terminal_unmerged_closure"]
+disposition = "algorithm_only"
+reason = "target/readback/effect patterns useful; module contains legacy/tracker/recovery-package coupling"
+
+[[items]]
+path = "tools/v1_migration.py"
+blob = "bf61ed927b1454b6d7d1b915d524efed0edf3727"
+symbols = []
+disposition = "negative_fixture_only"
+reason = "legacy migration success semantics explicitly rejected by PWv2.2"
+
+[[items]]
+path = "tools/migration_apply.py"
+blob = "ff7cef5873b56833432cea0902f2b5a6b1a28098"
+symbols = []
+disposition = "negative_fixture_only"
+reason = "migration application/normalization excluded from native success contract"
