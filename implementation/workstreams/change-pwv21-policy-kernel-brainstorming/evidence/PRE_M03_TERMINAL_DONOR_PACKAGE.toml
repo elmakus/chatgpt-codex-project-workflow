@@ -1,5 +1,5 @@
 package_id = "pwv21-pre-m03-terminal-donor-r1"
-status = "prepared"
+status = "terminal"
 repository = "elmakus/chatgpt-codex-project-workflow"
 branch = "work/pwv21-policy-kernel-brainstorming"
 source_snapshot_commit = "147aca1eebf2f753788dfb72bea812dbb936597d"
@@ -23,3 +23,6 @@ superseding_authority_blob = "d2bfb87f5cb50bb017b6c14e9cd5a57e2295ca1b"
 superseding_plan_path = "planning/PWV22_PROGRAM_MASTER_PLAN_P2.md"
 superseding_plan_blob = "5524876b49320a1f4da6dd0cf8b0cbc38b31c4fc"
 cleanup_authorized = false
+supersession_authority_commit = "4bee29c17d3f66813c47561224d81a1c11304383"
+supersession_authority_path = "decisions/PWV21_PRE_M03_DONOR_SUPERSESSION_R1.md"
+supersession_authority_blob = "7a7613bd42e25bd8d973164c20234b863868774e"
