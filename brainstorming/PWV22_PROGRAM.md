@@ -750,3 +750,23 @@ The owner resolves the remaining Pi/Paseo policy choices as follows:
 5. **Serial integration owner realization.** PW requires exactly one mutating owner for a fan-in/integration surface, but that owner need not be Main. Main retains semantic authority, freezes the exact admitted Results/order/scope and validates the combined candidate. A dedicated Paseo integration subagent may own the bounded technical integration mutation when useful; it may not choose new scope, Results, ordering semantics, conflict policy or acceptance.
 
 These decisions do not themselves authorize installation/configuration changes in pi-unraid or any retired OR implementation work. P0-P6 are PWv2.2 development/qualification evidence, not ordinary canonical lifecycle stages for downstream projects.
+
+
+## 35. Revision 22 final challenge — pending inherited Revision 21 owner choices
+
+Challenge status: **PENDING OWNER DECISIONS**.
+
+The Pi/Paseo decisions in section 34 are internally consistent with current PWv2.2 semantics and do not by themselves require another Research wave. The challenge found no material contradiction in the native-Paseo-first architecture, evidence-triggered escalation, Main-mediated peer communication, canonical-integrity Review model, or bounded integration-subagent model.
+
+However, Revision 21 explicitly carried three unresolved owner choices into Revision 22. They remain material and must be resolved before the exact `pwv22-program@22` subject can become GREEN/ready_for_definition:
+
+1. **Canonical workflow-state backend direction.** Research supports Git-native canonical semantic authority and does not justify moving Milestones/Cards/Task Board/Results/Reviews/gates into GitHub Projects, Linear or another tracker.
+2. **Projection pilot scope.** If improved human/mobile UX is desired, the smallest evidence-backed experiment is a one-way rebuildable GitHub Projects projection from canonical Git. This is optional and must never become routing/authority truth.
+3. **ChatGPT Project Instructions bootstrap.** The existing Revision-21 draft proposes stable persistent locators only for canonical Project Workflow, the consumer repository and the non-authoritative Coordinator Protocol, with transient branch/workstream/Card/model/research-run state excluded and carried only by locator-only handoffs.
+
+Current recommendations for owner disposition:
+- accept Git-native canonical workflow authority;
+- defer the GitHub Projects projection pilot from the PWv2.2.0 core unless the owner explicitly wants that UX experiment in current scope;
+- adopt the Revision-21 bootstrap draft shape with no additional stable locator fields.
+
+No Definition promotion may occur until these inherited owner choices are resolved and the final challenge is rerun/closed GREEN.
