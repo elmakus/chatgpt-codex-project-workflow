@@ -3,7 +3,7 @@
 # Mutable status/Results/Review refs and JIT lifecycle live only here.
 # Multiple READY Cards are semantic readiness, not parallel admission. First: M01-S01-T01.
 workstream_id = "change-pwv22-program-brainstorming"
-revision = 51
+revision = 52
 
 [execution_ref]
 branch = "work/pwv22-program-brainstorming"
@@ -347,10 +347,32 @@ Required acceptance surface: R04 REQUIRED.
 Satisfaction guard: verify all named exact accepted Result path/commit/blob identities and applicable Reviews, not only after_card DONE. Re-anchor to actual producer Cards before satisfying; no placeholder IDs. Missing factual input -> Research; changed strategy/order/outcome -> Planning; changed product/global intent -> Definition; bounded execution detail stays in Prep.
 """
 
+
+[[cards]]
+id = "M02-S10-T01"
+status = "ready"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-S10-T01.md"
+
+[[cards]]
+id = "M02-S10-T02"
+status = "planned"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-S10-T02.md"
+
+[[cards]]
+id = "M02-S10-T03"
+status = "planned"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-S10-T03.md"
+
 [[jit_triggers]]
 id = "J-S10-RECOVERY"
-after_card = "M01-S01-T01"
-state = "waiting"
+after_card = "M02-S09-T01"
+state = "consumed"
 condition = """
 Producer(s): S06/R02 + S09/R04
 Missing future fact: Actual gate/return and attempt/finding owner records, incomplete-state combinations and safe mechanical repair operations.
@@ -364,8 +386,8 @@ Satisfaction guard: verify all named exact accepted Result path/commit/blob iden
 
 [[jit_triggers]]
 id = "J-S10-EFFECTS"
-after_card = "M01-S04-T01"
-state = "waiting"
+after_card = "M02-S09-T01"
+state = "consumed"
 condition = """
 Producer(s): S06/R02 + S09/R04
 Missing future fact: Concrete obligation/acceptance bindings to which effect intent/attempt/readback belongs.
@@ -379,8 +401,8 @@ Satisfaction guard: verify all named exact accepted Result path/commit/blob iden
 
 [[jit_triggers]]
 id = "J-S10-EVOLUTION"
-after_card = "M01-S01-T02"
-state = "waiting"
+after_card = "M02-S09-T01"
+state = "consumed"
 condition = """
 Producer(s): S06/R02 + S09/R04
 Missing future fact: Native epoch/gate/finding and acceptance-link schema for classifying an existing native lineage.
@@ -394,7 +416,7 @@ Satisfaction guard: verify all named exact accepted Result path/commit/blob iden
 
 [[jit_triggers]]
 id = "J-S10-CLOSE"
-after_card = "M01-S04-T01"
+after_card = "M02-S10-T03"
 state = "waiting"
 condition = """
 Producer(s): S06/R02 + S09/R04; accepted S10 effect/recovery interfaces when needed
