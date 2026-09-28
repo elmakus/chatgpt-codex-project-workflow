@@ -1,6 +1,6 @@
 # PWv2.2 Definition R6 — Pi/Paseo realization qualification
 
-Status: IN PROGRESS
+Status: COMPLETE — GREEN
 Definition subject: `pwv22-program@22 / R6`
 Runtime subject: `elmakus/pi-unraid@fc7a470a7330839cbaf8eaf0c2914323981d6901`
 Purpose: disposable-fixture evidence for Requirements 77-85. This evidence does not make runtime/session identity canonical workflow authority.
@@ -15,7 +15,7 @@ Purpose: disposable-fixture evidence for Requirements 77-85. This evidence does 
 | P3 | communication semantics/contamination | GREEN |
 | P4 | lifecycle/cancel/archive/cleanup | GREEN |
 | P5 | Main restart + lost notification + stale generation fencing | GREEN |
-| P6 | explicit finite parallel fixture + serial fan-in + integrated compatibility | PENDING |
+| P6 | explicit finite parallel fixture + serial fan-in + integrated compatibility | GREEN |
 
 ## P0 — initial live readback
 
@@ -178,3 +178,106 @@ Deterministic fence:
 Fresh evaluator `dc3c199b-7ba4-4575-a522-23332dcb4fe5` independently reconstructed the same facts and returned verdict `STALE`.
 
 Disposition: PW/Git + native Paseo evidence are sufficient for restart recovery and stale-result rejection without a separately durable orchestration journal/state machine. Exact assignment correlation and generation/authority fencing are strong candidates for a thin deterministic PW/Pi helper because correctness should not depend on an LLM choosing the right agent query.
+
+
+## P6 — GREEN
+
+### Explicit admission characterization
+
+Synthetic admission classifier produced:
+- disjoint write pair -> `ALLOW`;
+- overlapping write pair -> `SERIALIZE`;
+- shared external-effect resource -> `SERIALIZE`;
+- disjoint semantic seam -> `ALLOW_REQUIRES_INTEGRATED_COMPAT`.
+
+This confirms that worktree disjointness is not itself parallel legality.
+
+### Positive serial fan-in
+
+Exact sibling Results:
+- A `b58b359d33afc7a05bcc958f1931b252f155767a`;
+- B `2e631804ddaeefd9ab1d2aa1b601fa4c3f98bd01`;
+- common base `c39e4ab9b91cc3edf990992ce4a4010f82395032`.
+
+Dedicated Paseo integration agent `b873451c-06c6-4915-8dce-22033ba703fc` was the single mutating integration owner. It applied A then B in the frozen order, with no manual conflict repair or reorder.
+
+Combined candidate:
+- branch `pwv22-p6-integration`;
+- final commit `a80d77a948d7f346c60a3475d663e3ec950996cf`;
+- changed only `a.txt` and `b.txt`;
+- `a.txt` ends `child-a`;
+- `b.txt` ends `child-b`;
+- `contract.txt` remains exactly `contract=v1`.
+
+Fresh read-only integrated-compatibility verifier `15e66a91-5742-43fe-8691-06e53e8abe88` ran against the exact combined commit, made zero commits/mutations and returned `GREEN`.
+
+### Semantic-conflict negative case
+
+Two sibling Results were constructed from the same exact base with disjoint write sets:
+- producer `be3b7d3fd9dbcfb85b362eaf9a3bc2f44f3e3e39` adds `producer.txt: api=2`;
+- consumer `8738ef82ffea30531fd209eb7758126e0a461305` adds `consumer.txt: expects=1`.
+
+Dedicated integration agent `b6f286fa-effa-4963-97e5-050cf965d27a` cherry-picked producer then consumer cleanly with no Git conflict. Combined commit:
+- `45de8f2c7bde2cc40f019d305dd88fb0aa847efe`;
+- changed only `producer.txt` and `consumer.txt`.
+
+Fresh read-only compatibility verifier `4e074665-db52-4f44-be38-e394d00d5dcf` made no mutation and returned:
+- `verdict=RED`;
+- producer API = 2;
+- consumer expects = 1.
+
+Disposition: one serial integration mutator may be a dedicated Paseo subagent, but exact admitted Results/order/scope remain Main/PW authority. A clean Git fan-in never substitutes for integrated semantic compatibility.
+
+## Integrated R6 architecture disposition
+
+P0-P6 falsified the need for a separate subagent runtime while proving a small deterministic semantic helper boundary.
+
+### Selected realization
+
+**Native Paseo + Pi + explicit configuration/skills + thin reconstructible PW/Pi helper.**
+
+Native Paseo owns:
+- managed agents and parentage;
+- workspaces/worktrees;
+- concurrent child execution;
+- direct messaging transport;
+- status/activity;
+- stop/archive lifecycle;
+- provider/model execution mechanics.
+
+The thin helper owns only deterministic, reconstructible mechanics:
+- materialize exact assignment/authority/generation fences from current PW/Git authority;
+- correlate assignment -> expected branch/workspace/agent without treating runtime IDs as semantic truth;
+- validate exact result ancestry/subject/output contract;
+- reject stale/late outputs;
+- validate Review Attempt/evidence publication paths and frozen subject;
+- implement explicit finite parallel admission checks from accepted PW claims;
+- freeze/validate deterministic fan-in order and exact sibling Result set;
+- validate integrated-compatibility subject binding;
+- perform bounded stop -> readback -> archive and explicit descendant cleanup/readback.
+
+The helper MUST NOT own a durable semantic queue, journal, Task Board, scope decisions, strategy, acceptance, or a second recovery truth. Deleting helper-local state must leave recovery possible from PW/Git plus native Paseo evidence.
+
+### Rejected/escalation-only mechanisms
+
+- third-party Pi subagent extension: **not justified** by P0-P6; native spawn/worktree/parent/lifecycle mechanics passed;
+- full dedicated orchestration-runtime: **not justified**; P5 proved recovery and stale rejection without a separate durable journal/state machine;
+- hard per-agent sandbox: **not required** by current owner policy; P2 proved canonical detect-and-reject publication integrity.
+
+### Required production realization delta
+
+The production `pi-unraid` configuration path must, during later implementation/Planning:
+- durably pin and read back `daemon.mcp.enabled=true`;
+- durably pin and read back `daemon.mcp.injectIntoAgents=true`;
+- preserve explicit desired relay policy/readback;
+- extend the existing Paseo/Pi regression harness rather than adding another runtime service.
+
+No production runtime/config mutation was performed by this qualification.
+
+### P7 disposition
+
+P7 is **NOT REQUIRED** for Definition R6 because R6 does not claim universal hard physical prevention. If a future exact obligation requires hard prevention, that obligation must add and prove the appropriate OS/provider/filesystem/network/credential boundary.
+
+## Qualification conclusion
+
+All required P0-P6 evidence is GREEN. The selected architecture is smaller than the prior orchestration-runtime while preserving the required PW semantics. No unresolved technical unknown from this qualification requires another owner/product decision before Definition completion.
