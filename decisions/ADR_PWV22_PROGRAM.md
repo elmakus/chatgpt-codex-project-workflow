@@ -90,3 +90,26 @@
 - Fan-in has one mutating integration owner, which may be a dedicated bounded Paseo subagent; Main retains semantic authority and exact readback.
 - Freeze/archive the prior orchestration-runtime as prior-art/test donor; do not resume its backlog/control plane.
 - The Pi/Paseo realization stops at the mandatory Final Qualification Handoff.
+
+
+## R6 qualification outcome
+
+Disposable-fixture P0-P6 qualification is GREEN. Exact evidence is recorded in `definition/PWV22_PI_PASEO_QUALIFICATION_R6.md`.
+
+The qualified realization is:
+
+> **native Paseo managed agents/workspaces/worktrees + Pi provider + explicit configuration/skills + a thin reconstructible PW/Pi deterministic helper.**
+
+The helper is justified by observed deterministic seams, not by a desire for another orchestrator:
+- P2 showed exact frozen-subject/write-path publication gating must reject a Reviewer that mutates implementation;
+- P3 showed direct messaging can replace/interleave a busy run and leave operational residue, and pre-verdict implementer contact contaminates Review;
+- P4 showed stop/archive preserve dirty worktrees and parent archive does not cascade to cross-workspace children;
+- P5 proved restart/result recovery and stale-generation rejection from PW/Git + Paseo without a durable OR journal, while also exposing a runtime-correlation ambiguity that should not depend on LLM interpretation;
+- P6 proved one dedicated Paseo integration subagent can own bounded technical fan-in, while a clean Git merge can still fail a separate integrated-compatibility obligation.
+
+Therefore:
+- third-party Pi subagent packages remain unconfigured/uninstalled by default;
+- the full orchestration-runtime remains frozen/archived prior art and test donor;
+- no second semantic journal/database/control plane is introduced;
+- production Pi/Paseo realization must pin/read back MCP enablement and agent injection before relying on native orchestration;
+- P7 hard-isolation qualification is not required because R6 adopts canonical detect-and-reject integrity rather than universal physical prevention.
