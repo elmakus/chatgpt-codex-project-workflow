@@ -1,0 +1,20 @@
+workstream_id = "change-pwv22-program-brainstorming"
+card_id = "M02-S08-T01"
+attempt = "M02-S08-T01-R05"
+verdict = "pending"
+evidence_path = ""
+
+[subject]
+class = "git_blob"
+repository = "elmakus/chatgpt-codex-project-workflow"
+commit = "2210767ae5cefdf8d9a6fd98b22d868f4f26b04a"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/results/M02-S08-T01.md"
+blob = "25434a4a266b2a889354866f43c33e0bb74e5af4"
+
+[acceptance]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-S08-T01.md"
+
+[independence]
+materially_produced_or_repaired_subject = true
+basis = "Current continuation context materially repaired and reconciled the exact S08 implementation/Result subject after R04 RED; a fresh qualifying context is required for R05 verdict."
