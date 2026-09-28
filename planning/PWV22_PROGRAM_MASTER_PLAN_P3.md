@@ -36,7 +36,7 @@ Any Card/JIT wording that requires R03 before S08 can consume S07 is superseded 
 
 ### Existing governor versus product under construction
 
-This existing non-native workstream continues under current `elmakus/project_workflow_v2@main`, observed at `4fb4bfb7d7b1481d6f347c182fc96a5a1135e045`. Its published router/owner modules govern actual state records and A/B/C transitions. New native C advice, D, Final Qualification semantics, release admission and schemas are product deliverables exercised in disposable fixtures; do not invent those fields in the current V2 records or self-adopt a candidate release. P2's explicit Final Qualification Handoff is also an accepted program authority boundary before S20.
+This existing non-native workstream continues under current `elmakus/project_workflow_v2@main`, observed at `4fb4bfb7d7b1481d6f347c182fc96a5a1135e045`. Its published router/owner modules govern actual state records and A/B/C transitions. New native C advice, D, Final Qualification semantics, release admission and schemas are product deliverables exercised in disposable fixtures; do not invent those fields in the current V2 records or self-adopt a candidate release. P3's explicit Final Qualification Handoff is also an accepted program authority boundary before S20.
 
 The product and official Pi package source belong in `elmakus/project_workflow_v2`. The consumer holds this plan and program authority/Results/review/effect evidence. `elmakus/pi-unraid` owns runtime configuration and Pi package installation/pinning/update/rollback/readback; changes there require its own legal branch/workstream binding and exact accepted results before consumption here. This planning entry does not select or mutate that project or authorize a live deployment. The prior orchestration-runtime is frozen/archived prior-art and invariant/fault-test donor only; its scheduler, journal, roles, queue, worktree manager and control plane are not resumed.
 
@@ -118,7 +118,7 @@ All dependency edges mean exact **accepted Result identity**, not mere DONE or a
 
 | Surface | Required independent acceptance subject | Native product ceiling to implement/test |
 |---|---|---|
-| Stage-6 P2 | Exact frozen Plan repo/commit/path/blob, cycle 2, R7 authority | Current governor's Plan Review law, not candidate rules |
+| Stage-6 P3 | Exact frozen Plan repo/commit/path/blob, cycle 3, R7 authority | Current governor's Plan Review law, not candidate rules |
 | R01 | S05 native admission/identity/CAS plus S01/S03/S04 composition | Integration: 4 discovery epochs |
 | R02 | S06 routing, A/B/C/D, eager Prep and mandatory qualification boundaries | Local/high-risk: 5 |
 | R03 | S07/S08 Result/dependency/finite-admission/fan-in semantics | Integration: 4 |
