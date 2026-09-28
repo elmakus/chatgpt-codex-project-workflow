@@ -16,8 +16,9 @@ Anti-loss mapping:
 - M07 Recovery/Close: adapt small target/effect/readback algorithms; reject migration/tracker/legacy package coupling.
 
 ## Regression observation
-The required focused donor suite is an execution-environment test, not safely reproducible by reading source files alone. This ChatGPT connector context provides exact immutable source/readback but no repository test runner. Therefore this Card does **not** claim that command passed here. Exact command remains:
+Executed on an isolated temporary checkout of exact product donor `5352386e4328c967543c1b6cce6ebf80d54b4b88`:
 `python3 -m unittest tests.test_exact_locator tests.test_obligation_contract tests.test_policy_kernel tests.test_review_contract tests.test_seam_contract`
-on product snapshot `5352386e...`.
 
-This missing observed regression is material to the Card's explicit Required verification, so the execution cannot truthfully produce an accepted semantic Result until that exact or equivalent isolated test execution is observed.
+Observed: **93 tests, OK, exit 0**. Temporary checkout was removed after execution. This qualifies donor behavior only; it does not make donor semantics native.
+
+Wrong-blob/nonterminal/no-composition reuse remains rejected by the exact terminal package/subject checks above. Legacy migration/tracker modules remain excluded from native success-contract reuse and are useful only as negative/fault fixtures.
