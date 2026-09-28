@@ -3,7 +3,7 @@
 # Mutable status/Results/Review refs and JIT lifecycle live only here.
 # Multiple READY Cards are semantic readiness, not parallel admission. First: M01-S01-T01.
 workstream_id = "change-pwv22-program-brainstorming"
-revision = 65
+revision = 66
 
 [execution_ref]
 branch = "work/pwv22-program-brainstorming"
@@ -200,6 +200,13 @@ path = "implementation/workstreams/change-pwv22-program-brainstorming/reviews/M0
 # ALL condition facts, exact accepted Results and required verdicts govern satisfaction.
 # Re-anchor to real producing Cards as materialized; never invent placeholder Cards.
 # Planned stable Card dependency hash-binding is NOT a JIT trigger.
+
+[[cards]]
+id = "M02-S11-T01"
+status = "ready"
+[cards.contract]
+class = "task_card"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-S11-T01.md"
 
 [[jit_triggers]]
 id = "J-S05"
@@ -459,7 +466,7 @@ Satisfaction guard: verify all named exact accepted Result path/commit/blob iden
 [[jit_triggers]]
 id = "J-S11"
 after_card = "M01-S01-T01"
-state = "waiting"
+state = "consumed"
 condition = """
 Producer(s): S06 + S07 + S08 + all S10 domains + S09; R02–R05
 Missing future fact: Actual sibling APIs/schemas and demonstrated composition incompatibilities.
