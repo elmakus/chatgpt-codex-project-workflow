@@ -3,7 +3,7 @@
 # Mutable status/Results/Review refs and JIT lifecycle live only here.
 # Multiple READY Cards are semantic readiness, not parallel admission. First: M01-S01-T01.
 workstream_id = "change-pwv22-program-brainstorming"
-revision = 19
+revision = 20
 
 [execution_ref]
 branch = "work/pwv22-program-brainstorming"
@@ -136,14 +136,17 @@ path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M01-
 [cards.result]
 class = "result"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/results/M01-S05-T01.md"
-commit = "73877b116b9776e1924313eeaa624aa5620c4079"
-blob = "5fc454d79cedc084d6f9ee507bf64fb1c55eaccd"
+commit = "de3c3557df0392b8cbdc007035d853c3d49f00bc"
+blob = "5d25c437b76cd59cecc6af6fd18d48df4f901ff8"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/reviews/M01-S05-T01-R01.toml"
 [[cards.review_attempts]]
 class = "review_attempt"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/reviews/M01-S05-T01-R02.toml"
+[[cards.review_attempts]]
+class = "review_attempt"
+path = "implementation/workstreams/change-pwv22-program-brainstorming/reviews/M01-S05-T01-R03.toml"
 
 # after_card is an existing ancestor anchor demanded by the current schema.
 # ALL condition facts, exact accepted Results and required verdicts govern satisfaction.
