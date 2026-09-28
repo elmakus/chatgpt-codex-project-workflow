@@ -12,7 +12,7 @@ premium_a = "satisfied"
 premium_a_subject = "definition:R7|planning-cycle:2"
 premium_b = "satisfied"
 premium_b_subject = "elmakus/chatgpt-codex-project-workflow@76c46d59566807a4d0f11832d0c30f3123c0c54e:planning/PWV22_PROGRAM_MASTER_PLAN_P2.md@5524876b49320a1f4da6dd0cf8b0cbc38b31c4fc"
-premium_c = "due"
+premium_c = "satisfied"
 premium_c_subject = "elmakus/chatgpt-codex-project-workflow@76c46d59566807a4d0f11832d0c30f3123c0c54e:planning/PWV22_PROGRAM_MASTER_PLAN_P2.md@5524876b49320a1f4da6dd0cf8b0cbc38b31c4fc"
 
 [subject]
