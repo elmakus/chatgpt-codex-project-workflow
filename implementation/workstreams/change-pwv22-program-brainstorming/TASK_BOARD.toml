@@ -10,7 +10,7 @@ branch = "work/pwv22-program-brainstorming"
 
 [[cards]]
 id = "M01-S01-T01"
-status = "ready"
+status = "in_progress"
 [cards.contract]
 class = "task_card"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M01-S01-T01.md"
