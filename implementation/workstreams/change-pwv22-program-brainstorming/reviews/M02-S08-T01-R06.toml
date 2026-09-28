@@ -1,7 +1,8 @@
 workstream_id = "change-pwv22-program-brainstorming"
 card_id = "M02-S08-T01"
 attempt = "M02-S08-T01-R06"
-verdict = "pending"
+verdict = "RED"
+evidence_path = "implementation/workstreams/change-pwv22-program-brainstorming/evidence/M02-S08-T01-R06_REVIEW.md"
 
 [subject]
 class = "git_blob"
@@ -15,5 +16,5 @@ class = "task_card"
 path = "implementation/workstreams/change-pwv22-program-brainstorming/cards/M02-S08-T01.md"
 
 [independence]
-materially_produced_or_repaired_subject = true
-basis = "Current continuation context materially repaired and reconciled the exact S08 implementation/Result subject after R05 RED; a fresh qualifying context is required for R06 verdict."
+materially_produced_or_repaired_subject = false
+basis = "Fresh independent context reviewed the exact frozen Result subject and did not materially produce or repair it. Static falsification covered the Card acceptance, exact finite admission, R05 durable-locator correction, fan-in and focused tests; an acceptance-blocking stale-subject admission defect was found."
