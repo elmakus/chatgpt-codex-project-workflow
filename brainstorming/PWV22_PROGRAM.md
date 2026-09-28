@@ -670,10 +670,11 @@ Research evidence alone does not authorize changing PW semantics or retiring `or
 
 ### 32.5 Durable Pi/Paseo subagent Research package
 
-Formal Research package is launch-ready:
+Formal Research package was launched from:
 - repository: `elmakus/project-research`;
 - package branch: `research/pwv22-pi-paseo-subagents-package`;
-- frozen package commit: `5842f8f7d2c9aea8903ca324f0e6b59e30223770`;
+- initial frozen package commit: `5842f8f7d2c9aea8903ca324f0e6b59e30223770`;
+- generation-2 recovered package head after the authorized claim-loop reset: `e9fca9de3b2eb90a8c83095ae4d462c6a8325fcd`;
 - launcher: `projects/chatgpt-codex-project-workflow/pwv2.2/research/pi_paseo_subagents/AUTO_PROMPT.md`;
 - manifest: `projects/chatgpt-codex-project-workflow/pwv2.2/research/pi_paseo_subagents/LANE_MANIFEST.toml`;
 - integration prompt: `projects/chatgpt-codex-project-workflow/pwv2.2/research/pi_paseo_subagents/INTEGRATION_PROMPT.md`;
@@ -683,3 +684,52 @@ Formal Research package is launch-ready:
 The package incorporates current `pi-unraid@main`, current Paseo managed-subagent capabilities as research leads, prior `orchestration-runtime`, role-free assignment analysis, direct agent-to-agent communication mechanics/semantics, reviewer limited writes, worktree/fan-in, lifecycle/recovery/security, and a prototype/YAGNI lane.
 
 No package conclusion is product authority until integrated Research is reconciled into Brainstorming.
+
+
+## 33. Revision 22 Pi/Paseo subagent Research consumed
+
+Integrated formal Research:
+- repository: `elmakus/project-research`;
+- integration branch: `research/pwv22-pi-paseo-subagents-integration`;
+- integrated synthesis commit: `cbfb58707a715ef4412236b7d2e2d01f395293b3`;
+- synthesis: `projects/chatgpt-codex-project-workflow/pwv2.2/research/pi_paseo_subagents/FINAL_SYNTHESIS.md`;
+- package provenance base: `e9fca9de3b2eb90a8c83095ae4d462c6a8325fcd`;
+- validated coverage: W00 + R00 + L01-L13, all 15 generation-2 lanes complete.
+
+Research conclusions are consumed as non-authoritative evidence for `pwv22-program@22`:
+
+1. Paseo already supplies the required agent/workspace/worktree/lifecycle substrate; Pi does not need a separate subagent system merely to spawn workers under Paseo.
+2. The leading architecture is native Paseo + Pi provider + PW/Git semantic truth + at most a thin reconstructible PW/Pi adapter for exact assignment/fence binding, stale-output rejection, Review/fan-in validation and deterministic readback/recovery.
+3. Third-party Pi subagent extensions are not baseline requirements; they are gap-triggered fallbacks only after a concrete missing native primitive is proven.
+4. The prior full `orchestration-runtime` is not justified as the default product boundary. Its semantic invariants remain useful prior art/tests; its duplicate scheduler/journal/role/worktree/control-plane mechanics should not be carried forward automatically.
+5. Generic bounded assignments are the semantic baseline. Role names may remain UX/telemetry presets but never create authority, freshness, independence or mutation rights.
+6. Direct messaging is transport, not authority. Main->child and child->Main are normal; implementer<->Reviewer pre-verdict communication is disallowed; mutation coordination, RED repair routing and recursive delegation are Main-mediated; non-review peer evidence exchange is optional inside an already admitted non-independent envelope.
+7. Review independence is exact-subject/fresh-context/authorship based. Reviewer durable writes remain limited to its exact Review Attempt/verdict/evidence; deterministic finalization remains separate.
+8. Parallelism remains a PW admission problem first: one mutating Card -> one mutating owner/worktree; sibling Results require serial deterministic fan-in plus integrated compatibility.
+9. Paseo notifications/messages are wakeups only. Canonical PW/Git readback plus immutable assignment/generation fences determine whether output is current; restart recovery should reconstruct from PW/Git + Paseo rather than a second semantic journal.
+10. Tool/catalog restriction is least-privilege guidance, not a hard sandbox when agents retain same-user shell/process access.
+11. Current `pi-unraid` is already the intended substrate; the principal baseline delta is durable/read-back-verified Paseo agent tool injection plus a bounded regression/prototype harness.
+12. Pi/Paseo ownership ends at the mandatory Final Qualification Handoff; the Final Qualification tail remains ChatGPT-owned for this scope.
+
+### 33.1 Required prototype evidence before Definition binds mechanics
+
+The consumed Research requires disposable-fixture validation for:
+- P0 bridge/config/tool-injection preflight;
+- P1 native child/worktree creation + exact-base/result readback;
+- P2 fresh Review + exact publication/write-envelope validation;
+- P3 communication contamination and busy-recipient behavior;
+- P4 lifecycle/cancel/archive/cleanup;
+- P5 Main restart + lost notification + durable result recovery + stale-generation rejection;
+- P6 explicit finite parallel admission + deterministic fan-in + integrated compatibility;
+- P7 only for any restriction Definition intends to describe as physically/hard enforced.
+
+### 33.2 Genuine owner decisions still open
+
+Research leaves four material policy choices; it does not decide them:
+
+1. **Reviewer enforcement target:** canonical acceptance integrity/detect-and-reject versus hard technical prevention of protected mutation/effects.
+2. **Default non-review peer messaging:** disabled/Main-mediated by default versus generally permitted inside already-admitted non-independent envelopes.
+3. **Architecture adoption after prototypes:** simplify to native+configuration/skills if sufficient, otherwise native+thin reconstructible adapter; third-party extension/full OR require explicit failed evidence gates.
+4. **Prior `orchestration-runtime` lifecycle:** formally archive/freeze it as prior art/test donor versus leave it open as historical reference without resuming its backlog.
+
+Revision 22 remains ACTIVE with challenge audit pending until these owner decisions are resolved and the resulting scope receives a final whole-scope challenge.
